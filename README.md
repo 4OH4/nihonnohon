@@ -6,7 +6,7 @@ A Japanese reading practice web app. Read Japanese stories word-by-word with ins
 
 ```bash
 pnpm install
-turbo dev
+pnpm dev
 ```
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for full setup instructions.
+A `CONTRIBUTING.md` with the full contributor guide will be added in Story 1.5.

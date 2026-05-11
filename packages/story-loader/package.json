@@ -12,5 +12,8 @@
   },
   "dependencies": {
     "@nihonnohon/schema": "workspace:*"
+  },
+  "devDependencies": {
+    "@nihonnohon/typescript-config": "workspace:*"
   }
 }

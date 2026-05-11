@@ -18,13 +18,21 @@ importers:
 
   packages/eslint-config: {}
 
-  packages/schema: {}
+  packages/schema:
+    devDependencies:
+      '@nihonnohon/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
 
   packages/story-loader:
     dependencies:
       '@nihonnohon/schema':
         specifier: workspace:*
         version: link:../schema
+    devDependencies:
+      '@nihonnohon/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
 
   packages/typescript-config: {}
 
