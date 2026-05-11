@@ -3,5 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
-  "main": "index.js"
+  "main": "index.js",
+  "peerDependencies": {
+    "eslint": ">=8.0.0"
+  },
+  "dependencies": {
+    "eslint-plugin-boundaries": "^5.0.0",
+    "eslint-plugin-react": "^7.37.0",
+    "eslint-plugin-react-hooks": "^4.6.2"
+  }
 }

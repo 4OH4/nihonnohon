@@ -1,17 +1,30 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
+    "build-vocab": {
+      "inputs": ["scripts/build-vocab.ts", "scripts/data/genki-vocab.csv"],
+      "outputs": ["apps/web/public/vocab.json"],
+      "cache": true
+    },
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "build-vocab"],
       "outputs": ["dist/**"]
     },
     "dev": {
+      "dependsOn": ["^build", "build-vocab"],
       "persistent": true,
       "cache": false
     },
-    "lint": {},
     "typecheck": {
       "dependsOn": ["^build"]
-    }
+    },
+    "test:unit": {
+      "dependsOn": ["^build", "build-vocab"]
+    },
+    "test:e2e": {
+      "dependsOn": ["build"],
+      "cache": false
+    },
+    "lint": {}
   }
 }
