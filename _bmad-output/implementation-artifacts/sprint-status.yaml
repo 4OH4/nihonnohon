@@ -48,7 +48,7 @@ development_status:
   1-2-schema-package-and-story-format-contract: done
   1-3-story-loader-package: done
   1-4-web-app-scaffold: review
-  1-5-monorepo-pipeline-ci-and-project-scaffolding: review
+  1-5-monorepo-pipeline-ci-and-project-scaffolding: done
   epic-1-retrospective: optional
 
   # Epic 2: Minimum Viable Reader (Milestone 1)

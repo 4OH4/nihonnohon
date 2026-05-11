@@ -19,6 +19,25 @@ function firstPart(value: string): string {
   return value.split(/[;/]/)[0].trim()
 }
 
+function parseCSVLine(line: string): string[] {
+  const fields: string[] = []
+  let current = ''
+  let inQuotes = false
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i]
+    if (char === '"') {
+      inQuotes = !inQuotes
+    } else if (char === ',' && !inQuotes) {
+      fields.push(current)
+      current = ''
+    } else {
+      current += char
+    }
+  }
+  fields.push(current)
+  return fields
+}
+
 const scriptDir = resolve(process.cwd(), 'scripts')
 const csvPath = resolve(scriptDir, 'data/genki-vocab.csv')
 const outPath = resolve(process.cwd(), 'apps/web/public/vocab.json')
@@ -27,11 +46,18 @@ const csv = readFileSync(csvPath, 'utf-8')
 const lines = csv.split('\n').filter(line => line.trim().length > 0)
 
 const entries: VocabEntry[] = lines.map((line, index) => {
-  const parts = line.split(',')
+  const parts = parseCSVLine(line)
+  if (parts.length !== 4) {
+    console.warn(`build-vocab: unexpected column count (${parts.length}) at line ${index + 1}: ${line.slice(0, 60)}`)
+  }
   const rawReading = parts[0]?.trim() ?? ''
   const rawKanji = parts[1]?.trim() ?? ''
   const meaning = parts[2]?.trim() ?? ''
   const lessonNum = parseInt(parts[3]?.trim() ?? '0', 10)
+
+  if (isNaN(lessonNum)) {
+    console.warn(`build-vocab: invalid lesson number at line ${index + 1}, defaulting to 0: "${parts[3]?.trim()}"`)
+  }
 
   const reading = firstPart(rawReading)
   const word = rawKanji.length > 0 ? firstPart(rawKanji) : reading

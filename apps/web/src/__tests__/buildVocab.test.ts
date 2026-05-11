@@ -24,10 +24,9 @@ describe('vocab.json (build-vocab output)', () => {
     }
   })
 
-  it('ids are sequential starting at 1', () => {
+  it('ids are sequential starting at 1 with no gaps', () => {
     const ids = (entries as { id: number }[]).map(e => e.id)
-    expect(ids[0]).toBe(1)
-    expect(ids[ids.length - 1]).toBe(entries.length)
+    expect(ids.every((id, i) => id === i + 1)).toBe(true)
   })
 
   it('contains a known Genki I Ch.1 vocabulary entry', () => {

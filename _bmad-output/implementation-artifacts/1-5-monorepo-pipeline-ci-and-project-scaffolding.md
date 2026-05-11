@@ -1,6 +1,6 @@
 # Story 1.5: Monorepo Pipeline, CI & Project Scaffolding
 
-Status: review
+Status: done
 
 ## Story
 
@@ -89,6 +89,27 @@ so that every PR is automatically verified and the project is ready for open-sou
   - [x] `pnpm --filter @nihonnohon/story-loader test:unit` — 14/14 pass
   - [x] `pnpm --filter @nihonnohon/web test:unit` — 5/5 pass (buildVocab.test.ts)
   - [x] Playwright smoke test (chromium) — 1/1 pass
+
+### Review Findings (Senior Developer Review — 2026-05-12)
+
+**Outcome:** Changes Requested — 5 patches, 5 defers.
+
+#### Patches
+
+- [x] [Review][Patch] Fix CSV parser: replace naive split(',') with RFC 4180 quote-aware parseCSVLine() [scripts/build-vocab.ts] — 19 entries had commas in their meaning fields (e.g. "to stay (at a hotel, etc.)"); naive split corrupted lesson numbers to "Genki I Intro" for all affected rows; now correctly parsed
+- [x] [Review][Patch] Add console.warn when lesson number parses as NaN [scripts/build-vocab.ts] — silent `isNaN → 0` masks malformed CSV rows; warning makes corruption visible during build
+- [x] [Review][Patch] Validate each CSV line produces exactly 4 parts; warn if not [scripts/build-vocab.ts] — surfaces future comma-in-field issues immediately
+- [x] [Review][Patch] Strengthen sequential-ID assertion to validate all intermediate IDs [apps/web/src/__tests__/buildVocab.test.ts] — replaced trivial `ids[last] === length` with `ids.every((id, i) => id === i + 1)`
+- [x] [Review][Patch] Pin pnpm to exact version 11.0.9 in CI workflow [.github/workflows/ci.yml] — matches `packageManager` field in package.json
+- [x] [Review][Patch] Remove `node: false` from react.js ESLint env [packages/eslint-config/react.js] — ESLint env flags cannot be unset by child configs; was a misleading no-op
+
+#### Defers
+
+- [x] [Review][Defer] eslint-plugin-boundaries path patterns may not match when linting from workspace directory — without `basePath` set to repo root, boundary rules may silently never fire; investigate in a follow-up
+- [x] [Review][Defer] build-vocab.ts uses process.cwd() instead of import.meta.url — intentional design choice for turbo root task; low risk in practice but fragile if run outside turbo
+- [x] [Review][Defer] Header row safety: no skip logic if CSV ever gains a header row — headerless format is intentional; add guard if format changes
+- [x] [Review][Defer] buildVocab.test.ts reads vocab.json at module scope (opaque ENOENT if file missing) — acceptable within turbo pipeline; low priority given turbo enforces dependency ordering
+- [x] [Review][Defer] @typescript-eslint v7 with TypeScript 5.5 — resolved v7.18.0 supports 5.5; monitor if upgrading TypeScript past 5.5 triggers issues
 
 ## Dev Notes
 

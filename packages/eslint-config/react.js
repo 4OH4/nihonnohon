@@ -5,7 +5,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
   ],
-  env: { browser: true, es2022: true, node: false },
+  env: { browser: true, es2022: true },
   settings: {
     react: { version: 'detect' },
   },

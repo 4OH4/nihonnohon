@@ -1,5 +1,13 @@
 # Deferred Work
 
+## Deferred from: code review of 1-5-monorepo-pipeline-ci-and-project-scaffolding (2026-05-12)
+
+- `eslint-plugin-boundaries` path patterns may not match when linting from workspace directory — `pattern: 'packages/*'` and `pattern: 'apps/*'` in `packages/eslint-config/index.js` require `basePath` pointing to the repo root to resolve correctly; without it the boundary rules may silently never fire. Investigate and add `basePath` configuration in a follow-up.
+- `scripts/build-vocab.ts` uses `process.cwd()` instead of `import.meta.url` — intentional design choice for turbo root task context; if ever run outside turbo (e.g., directly via `tsx`), paths will break. Low risk while turbo manages the task.
+- Header row safety in `scripts/build-vocab.ts` — no skip logic if `scripts/data/genki-vocab.csv` ever gains a header row; headerless format is intentional. Add a guard when format changes.
+- `buildVocab.test.ts` reads `vocab.json` at module scope — produces an opaque ENOENT crash if the file is missing. Acceptable within turbo pipeline (enforced by `dependsOn: build-vocab`); refactor to `beforeAll` if running tests outside turbo becomes common.
+- `@typescript-eslint` v7 + TypeScript 5.5 — resolved v7.18.0 supports TypeScript 5.5; monitor if upgrading TypeScript past 5.5 triggers compatibility issues before moving to `@typescript-eslint` v8.
+
 ## Deferred from: code review of 1-4-web-app-scaffold (2026-05-11)
 
 - No ESLint config in `apps/web` — `apps/web/package.json` declares `"lint": "eslint ."` and depends on `@nihonnohon/eslint-config`, but no `.eslintrc.*` or `eslint.config.*` exists; `turbo lint` will fail for this package. Full eslint wiring (including `eslint-plugin-boundaries`) is Story 1.5 scope.
