@@ -1,6 +1,6 @@
 # Story 1.3: Story Loader Package
 
-Status: review
+Status: done
 
 ## Story
 
@@ -84,6 +84,26 @@ so that every story consumer receives validated, version-agnostic data with clea
   - [x] Run `turbo build --filter=@nihonnohon/story-loader` — confirm CJS + ESM + declarations produced in `dist/`
   - [x] Run `turbo typecheck --filter=@nihonnohon/story-loader` — exit 0
   - [x] Run `pnpm --filter @nihonnohon/story-loader test:unit` — all tests pass (14/14)
+
+### Review Findings (Senior Developer Review — 2026-05-11)
+
+**Outcome:** Changes Requested — 3 patches required before marking done.
+
+#### Patches
+
+- [x] [Review][Patch] Replace `version in LOADERS` with `Object.hasOwn(LOADERS, version)` [packages/story-loader/src/index.ts] — `in` operator traverses the prototype chain; `"schema_version": "constructor"` passes the guard and calls `LOADERS["constructor"](data)` returning the raw wire object instead of a StoryModel, or for other inherited names throws an opaque TypeError instead of a LoaderError
+- [x] [Review][Patch] Pass `{ cause }` to `super()` in LoaderError constructor [packages/story-loader/src/errors.ts] — `super(message)` without `{ cause }` leaves the native `Error.cause` property unset; APM agents and structured loggers that follow the `Error.cause` chain will miss the original error; fix: `super(message, { cause })`
+- [x] [Review][Patch] Rename `invalid-malformed.json` to `invalid-malformed.txt` [packages/story-loader/src/__fixtures__/] — the file contains invalid JSON text and is never imported as JSON (test uses a string literal); IDEs, JSON linters, and schema-scanner tools that auto-scan `**/*.json` will emit errors on it; renaming to `.txt` removes the ambiguity
+
+#### Defers
+
+- [x] [Review][Defer] `vocab_keys` values not bounds-checked against `vocab_supplement` array length [packages/story-loader/src/v1.ts] — deferred, semantic validation (valid index vs array bounds) is out of scope for the loader; Story 2 components responsible for safe indexing
+- [x] [Review][Defer] `sentence.grammar` indices not bounds-checked against `StoryModel.grammar` array [packages/story-loader/src/v1.ts] — deferred, same rationale; grammar panel (Story 4.2) handles out-of-range indices gracefully
+- [x] [Review][Defer] Duplicate `sentence.id` values not checked for uniqueness [packages/story-loader/src/v1.ts] — deferred, not required by AC3; relevant when story navigation by id is implemented
+- [x] [Review][Defer] No `ajv-formats` plugin for URI validation of `audio_url` [packages/story-loader/src/v1.ts] — deferred, audio_url is stored but not played in v1; URI validation belongs with the audio feature
+- [x] [Review][Defer] No `sourcemap: true` in `packages/story-loader/tsup.config.ts` [packages/story-loader/tsup.config.ts] — deferred, optional enhancement; add alongside schema package when debugging dist outputs becomes needed
+- [x] [Review][Defer] AJV `validate.errors` mutation not concurrency-safe [packages/story-loader/src/v1.ts] — deferred, loader is synchronous; not a practical concern until async refactor
+- [x] [Review][Defer] Non-object `rawJson` (null, number, array) yields misleading UNSUPPORTED_VERSION message [packages/story-loader/src/index.ts] — deferred, affects no realistic caller; callers always pass either a fetch response object or a file string
 
 ## Dev Notes
 

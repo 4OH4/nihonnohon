@@ -1,5 +1,14 @@
 # Deferred Work
 
+## Deferred from: code review of 1-3-story-loader-package (2026-05-11)
+
+- `vocab_keys` values not bounds-checked against `vocab_supplement` array length — semantic validation out of scope for loader; Story 2 components handle safe indexing.
+- `sentence.grammar` indices not bounds-checked against `StoryModel.grammar` array — grammar panel (Story 4.2) handles out-of-range indices gracefully.
+- Duplicate `sentence.id` values not checked for uniqueness — not required by AC3; relevant when navigation by id is implemented.
+- No `ajv-formats` plugin for URI validation of `audio_url` — audio_url stored but not played in v1; URI validation belongs with the audio feature.
+- No `sourcemap: true` in `packages/story-loader/tsup.config.ts` — add alongside schema package when debugging compiled outputs becomes needed.
+- AJV `validate.errors` mutation not concurrency-safe — loader is synchronous; not a concern until async refactor.
+
 ## Deferred from: code review of 1-2-schema-package-and-story-format-contract (2026-05-11)
 
 - `story-loader/package.json` `main`/`types` still point at `./src/index.ts` — same class of fix as schema package; Story 1.3 must update to `./dist/` paths before the loader is consumable from built contexts.

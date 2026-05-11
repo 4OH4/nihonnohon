@@ -4,7 +4,7 @@ export class LoaderError extends Error {
     message: string,
     public readonly cause?: unknown
   ) {
-    super(message)
+    super(message, { cause })
     this.name = 'LoaderError'
   }
 }

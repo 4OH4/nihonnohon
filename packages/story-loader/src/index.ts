@@ -26,7 +26,7 @@ export function loadStory(rawJson: unknown): StoryModel {
       ? (data as Record<string, unknown>)['schema_version']
       : undefined
 
-  if (typeof version !== 'string' || !(version in LOADERS)) {
+  if (typeof version !== 'string' || !Object.hasOwn(LOADERS, version)) {
     throw new LoaderError(
       'UNSUPPORTED_VERSION',
       `Unsupported schema version: ${String(version)}. Supported: ${Object.keys(LOADERS).join(', ')}.`

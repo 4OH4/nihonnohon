@@ -46,7 +46,7 @@ development_status:
   epic-1: in-progress
   1-1-monorepo-initialization: done
   1-2-schema-package-and-story-format-contract: done
-  1-3-story-loader-package: review
+  1-3-story-loader-package: done
   1-4-web-app-scaffold: backlog
   1-5-monorepo-pipeline-ci-and-project-scaffolding: backlog
   epic-1-retrospective: optional
