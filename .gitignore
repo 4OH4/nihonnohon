@@ -19,6 +19,17 @@ apps/web/public/vocab.json
 *.swp
 *.swo
 
+# TypeScript incremental build info
+*.tsbuildinfo
+
+# test outputs
+coverage/
+playwright-report/
+test-results/
+
+# lint cache
+.eslintcache
+
 # OS
 .DS_Store
 Thumbs.db

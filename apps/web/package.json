@@ -2,5 +2,39 @@
   "name": "@nihonnohon/web",
   "version": "0.0.0",
   "private": true,
-  "license": "MIT"
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b",
+    "lint": "eslint .",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@nihonnohon/schema": "workspace:*",
+    "@nihonnohon/story-loader": "workspace:*",
+    "clsx": "^2.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.0",
+    "tailwind-merge": "^2.3.0",
+    "zustand": "^4.5.4"
+  },
+  "devDependencies": {
+    "@nihonnohon/eslint-config": "workspace:*",
+    "@nihonnohon/typescript-config": "workspace:*",
+    "@playwright/test": "^1.44.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.57.0",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.5.0",
+    "vite": "^5.3.0"
+  }
 }

@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --story-font-size: 1.25rem;
+}
+
+ruby {
+  ruby-position: over;
+  ruby-align: center;
+}
+
+.word-token {
+  white-space: nowrap;
+}
+
+.ruby-hidden rt {
+  visibility: hidden;
+}
