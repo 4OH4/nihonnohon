@@ -1,0 +1,14 @@
+{
+  "name": "nihonnohon",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck"
+  },
+  "devDependencies": {
+    "turbo": "^2.9.12"
+  },
+  "packageManager": "pnpm@11.0.9"
+}

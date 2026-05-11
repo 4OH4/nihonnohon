@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nihon no Hon — UX Design Directions</title>
+<style>
+  :root {
+    --paper-bg: #FDF6E3;
+    --paper-text: #1C1C1C;
+    --surface: #FFFFFF;
+    --surface-subtle: #F5F5F0;
+    --accent: #C8A85A;
+    --accent-subtle: #F5EDD6;
+    --muted: #6B6B6B;
+    --border: #E0D8C8;
+    --error: #C0392B;
+    --font-ui: 'Inter', system-ui, sans-serif;
+    --font-ja: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    --translation-color: #4A7B9D;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-ui); background: #2A2A2A; color: var(--paper-text); }
+
+  /* Nav */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: #1A1A1A; padding: 12px 16px;
+    display: flex; gap: 8px; overflow-x: auto;
+    border-bottom: 1px solid #333;
+  }
+  .nav-btn {
+    padding: 6px 14px; border: 1px solid #444; border-radius: 4px;
+    background: transparent; color: #ccc; font-size: 12px;
+    cursor: pointer; white-space: nowrap; font-family: var(--font-ui);
+  }
+  .nav-btn.active, .nav-btn:hover { background: var(--accent); color: #1A1A1A; border-color: var(--accent); }
+
+  .mockup-section { display: none; padding-top: 52px; }
+  .mockup-section.active { display: block; }
+  .mockup-label {
+    text-align: center; color: #999; font-size: 12px; padding: 12px;
+    background: #222; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+
+  /* Device frames */
+  .device-frame {
+    max-width: 390px; margin: 24px auto; border-radius: 12px;
+    overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    background: var(--surface);
+  }
+  .device-frame.wide { max-width: 900px; }
+
+  /* App bar — logo lives here */
+  .app-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 40px;
+  }
+  .app-back {
+    font-size: 13px; color: var(--accent); cursor: pointer;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .app-logo {
+    font-family: var(--font-ja);
+    font-size: 15px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+
+  /* Info panel */
+  .info-panel {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 16px;
+    min-height: 110px;
+  }
+  .info-panel.resting { display: flex; flex-direction: column; justify-content: center; }
+  .panel-story-title { font-size: 14px; font-weight: 600; color: var(--paper-text); }
+  .panel-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .lookup-word-original {
+    font-size: 13px; color: var(--accent); margin-bottom: 4px; font-family: var(--font-ja);
+  }
+  .lookup-translation { font-size: 18px; font-weight: 600; color: var(--paper-text); margin-bottom: 3px; }
+  .lookup-hiragana { font-size: 14px; color: var(--muted); font-family: var(--font-ja); margin-bottom: 7px; }
+  .kanji-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .kanji-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .kanji-char { font-size: 22px; font-family: var(--font-ja); color: var(--paper-text); line-height: 1; }
+  .kanji-meaning { font-size: 11px; color: var(--muted); text-align: center; }
+
+  /* Toolbar */
+  .toolbar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 7px 16px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .toggle-group { display: flex; gap: 6px; }
+  .toggle-btn {
+    padding: 4px 10px; border-radius: 4px; font-size: 12px;
+    border: 1px solid var(--border); background: var(--surface);
+    color: var(--muted); cursor: pointer; font-family: var(--font-ui);
+  }
+  .toggle-btn.on {
+    background: var(--accent-subtle); border-color: var(--accent); color: var(--paper-text);
+  }
+  .toggle-btn.ja { font-family: var(--font-ja); font-size: 13px; padding: 3px 9px; }
+  .size-btn {
+    padding: 4px 8px; border-radius: 4px; font-size: 12px;
+    border: 1px solid var(--border); background: var(--surface);
+    color: var(--muted); cursor: pointer; font-family: var(--font-ui);
+  }
+
+  /* Scrollable story area */
+  .story-area {
+    background: var(--paper-bg);
+    padding: 20px 20px 28px;
+    max-height: 360px;
+    overflow-y: auto;
+  }
+  .story-area-wide { max-height: 400px; padding: 28px 40px 36px; }
+
+  /* Sentence block */
+  .sentence-block { margin-bottom: 20px; }
+  .sentence-block:last-child { margin-bottom: 0; }
+  .sentence {
+    font-family: var(--font-ja); font-size: 20px; line-height: 2.5;
+    color: var(--paper-text); display: flex; flex-wrap: wrap; align-items: baseline;
+  }
+  .sentence-translation {
+    font-size: 13px; color: var(--translation-color);
+    margin-top: 2px; line-height: 1.4; padding-left: 2px;
+    font-style: italic;
+  }
+
+  /* Word tokens */
+  .word-token {
+    position: relative; cursor: pointer; padding: 2px 1px;
+    border-radius: 3px; transition: background 0.1s;
+    display: inline-flex; flex-direction: column; align-items: center;
+  }
+  .word-token:hover { background: var(--accent-subtle); }
+  .word-token.active { background: var(--accent-subtle); border-bottom: 2px solid var(--accent); }
+  .ruby-text { font-size: 10px; color: var(--muted); line-height: 1; margin-bottom: 1px; font-family: var(--font-ja); }
+  .word-space { display: inline-block; width: 6px; }
+
+  /* Bottom tabs */
+  .tab-bar { display: flex; background: var(--surface); border-top: 1px solid var(--border); }
+  .tab {
+    flex: 1; padding: 11px 8px; text-align: center; font-size: 13px;
+    color: var(--muted); border-bottom: 2px solid transparent; cursor: pointer; font-family: var(--font-ui);
+  }
+  .tab.active { color: var(--paper-text); border-bottom-color: var(--accent); font-weight: 600; }
+
+  /* Library */
+  .library-area { background: var(--surface); min-height: 500px; }
+  .library-header { padding: 16px; border-bottom: 1px solid var(--border); }
+  .library-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .library-title { font-size: 18px; font-weight: 700; }
+  .filter-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-select {
+    padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px;
+    font-size: 13px; background: var(--surface-subtle); color: var(--paper-text);
+    font-family: var(--font-ui); cursor: pointer;
+  }
+  .filter-select.selected { border-color: var(--accent); background: var(--accent-subtle); }
+  .story-list { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .story-card {
+    background: var(--surface-subtle); border: 1px solid var(--border);
+    border-radius: 8px; padding: 14px; cursor: pointer;
+  }
+  .story-card:hover { border-color: var(--accent); }
+  .card-title { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+  .card-title-ja { font-family: var(--font-ja); font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .card-difficulty {
+    display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px;
+    background: var(--accent-subtle); color: var(--paper-text); border: 1px solid var(--accent); margin-right: 6px;
+  }
+  .card-desc { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+  .upload-btn {
+    margin: 0 12px 12px; padding: 12px;
+    border: 2px dashed var(--border); border-radius: 8px;
+    text-align: center; font-size: 13px; color: var(--muted);
+    cursor: pointer; background: var(--surface-subtle);
+  }
+  .upload-btn:hover { border-color: var(--accent); color: var(--paper-text); }
+
+  /* Vocabulary */
+  .vocab-list { padding: 8px 12px; }
+  .vocab-header { font-size: 11px; color: var(--muted); padding: 6px 4px 8px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .vocab-item {
+    padding: 9px 4px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: baseline; gap: 10px; cursor: pointer;
+  }
+  .vocab-item:hover { background: var(--accent-subtle); border-radius: 4px; padding-left: 6px; }
+  .vocab-word { font-family: var(--font-ja); font-size: 18px; min-width: 56px; }
+  .vocab-reading { font-family: var(--font-ja); font-size: 13px; color: var(--muted); min-width: 70px; }
+  .vocab-translation-text { font-size: 13px; color: var(--paper-text); }
+
+  /* Grammar */
+  .grammar-list { padding: 16px; display: flex; flex-direction: column; gap: 12px; background: var(--surface); }
+  .grammar-header { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .grammar-item {
+    padding: 12px; background: var(--surface-subtle); border-radius: 6px;
+    border-left: 3px solid var(--accent); font-size: 14px; line-height: 1.6; color: var(--paper-text);
+  }
+
+  /* Wide two-column */
+  .wide-layout { display: grid; grid-template-columns: 1fr 360px; min-height: 520px; }
+  .wide-story-col { border-right: 1px solid var(--border); }
+  .wide-panel-col { background: var(--surface); display: flex; flex-direction: column; }
+  .wide-panel-tabs { display: flex; border-bottom: 1px solid var(--border); }
+  .wide-tab {
+    flex: 1; padding: 10px; text-align: center; font-size: 13px;
+    color: var(--muted); border-bottom: 2px solid transparent; cursor: pointer; font-family: var(--font-ui);
+  }
+  .wide-tab.active { color: var(--paper-text); border-bottom-color: var(--accent); font-weight: 600; }
+  .wide-panel-content { flex: 1; overflow-y: auto; }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+  <button class="nav-btn active" onclick="show(0)">1 · Reader (resting)</button>
+  <button class="nav-btn" onclick="show(1)">2 · Reader (lookup)</button>
+  <button class="nav-btn" onclick="show(2)">3 · Reader (translations on)</button>
+  <button class="nav-btn" onclick="show(3)">4 · Vocabulary tab</button>
+  <button class="nav-btn" onclick="show(4)">5 · Library</button>
+  <button class="nav-btn" onclick="show(5)">6 · Desktop two-column</button>
+</nav>
+
+<!-- ─── MOCKUP 1: Reader resting, continuous scroll ─── -->
+<div class="mockup-section active" id="m0">
+  <div class="mockup-label">Direction 1 — Reader: resting state · continuous scroll · no nav controls</div>
+  <div class="device-frame">
+    <div class="app-bar">
+      <span class="app-back">← Library</span>
+      <span class="app-logo">日本の本</span>
+    </div>
+    <div class="info-panel resting">
+      <div class="panel-story-title">タナカさんからの手紙</div>
+      <div class="panel-meta">Genki I · Ch.6 · Japanese</div>
+    </div>
+    <div class="toolbar">
+      <div class="toggle-group">
+        <button class="toggle-btn ja on">ルビ</button>
+        <button class="toggle-btn">Spaces</button>
+        <button class="toggle-btn">Trans</button>
+      </div>
+      <div class="toggle-group">
+        <button class="size-btn">A−</button>
+        <button class="size-btn" style="font-size:15px">A</button>
+        <button class="size-btn" style="font-size:17px">A+</button>
+      </div>
+    </div>
+    <div class="story-area">
+      <div class="sentence-block">
+        <div class="sentence">
+          <div class="word-token"><span class="ruby-text">わたし</span><span>私</span></div>
+          <div class="word-token"><span class="ruby-text">は</span><span>は</span></div>
+          <div class="word-token"><span class="ruby-text">まいにち</span><span>毎日</span></div>
+          <div class="word-token"><span class="ruby-text">にほんご</span><span>日本語</span></div>
+          <div class="word-token"><span class="ruby-text">を</span><span>を</span></div>
+          <div class="word-token"><span class="ruby-text">べんきょう</span><span>勉強</span></div>
+          <div class="word-token"><span class="ruby-text">します</span><span>します</span></div>
+          <div class="word-token"><span>。</span></div>
+        </div>
+      </div>
+      <div class="sentence-block">
+        <div class="sentence">
+          <div class="word-token"><span class="ruby-text">がっこう</span><span>学校</span></div>
+          <div class="word-token"><span class="ruby-text">で</span><span>で</span></div>
+          <div class="word-token"><span class="ruby-text">ともだち</span><span>友達</span></div>
+          <div class="word-token"><span class="ruby-text">が</span><span>が</span></div>
+          <div class="word-token"><span class="ruby-text">たくさん</span><span>たくさん</span></div>
+          <div class="word-token"><span class="ruby-text">でき</span><span>でき</span></div>
+          <div class="word-token"><span class="ruby-text">ました</span><span>ました</span></div>
+          <div class="word-token"><span>。</span></div>
+        </div>
+      </div>
+      <div class="sentence-block">
+        <div class="sentence">
+          <div class="word-token"><span class="ruby-text">せんせい</span><span>先生</span></div>
+          <div class="word-token"><span class="ruby-text">も</span><span>も</span></div>
+          <div class="word-token"><span class="ruby-text">とても</span><span>とても</span></div>
+          <div class="word-token"><span class="ruby-text">しんせつ</span><span>親切</span></div>
+          <div class="word-token"><span class="ruby-text">です</span><span>です</span></div>
+          <div class="word-token"><span>。</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-bar">
+      <div class="tab active">Story</div>
+      <div class="tab">Vocabulary</div>
+      <div class="tab">Grammar</div>
+    </div>
+  </div>
+  <div class="mockup-label" style="background:#1a1a1a">
+    Continuous scroll · No nav buttons · ルビ button (language-specific) · Trans toggle (off) · 日本の本 logo top-right
+  </div>
+</div>
+
+<!-- ─── MOCKUP 2: Reader with active lookup ─── -->
+<div class="mockup-section" id="m1">
+  <div class="mockup-label">Direction 2 — Reader: word tapped · lookup in info panel</div>
+  <div class="device-frame">
+    <div class="app-bar">
+      <span class="app-back">← Library</span>
+      <span class="app-logo">日本の本</span>
+    </div>
+    <div class="info-panel">
+      <div class="lookup-word-original">勉強</div>
+      <div class="lookup-translation">study, studying</div>
+      <div class="lookup-hiragana">べんきょう</div>
+      <div class="kanji-row">
+        <div class="kanji-item"><span class="kanji-char">勉</span><span class="kanji-meaning">exertion</span></div>
+        <div class="kanji-item"><span class="kanji-char">強</span><span class="kanji-meaning">strong</span></div>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="toggle-group">
+        <button class="toggle-btn ja on">ルビ</button>
+        <button class="toggle-btn">Spaces</button>
+        <button class="toggle-btn">Trans</button>
+      </div>
+      <div class="toggle-group">
+        <button class="size-btn">A−</button>
+        <button class="size-btn" style="font-size:15px">A</button>
+        <button class="size-btn" style="font-size:17px">A+</button>
+      </div>
+    </div>
+    <div class="story-area">
+      <div class="sentence-block">
+        <div class="sentence">
+          <div class="word-token"><span class="ruby-text">わたし</span><span>私</span></div>
+          <div class="word-token"><span class="ruby-text">は</span><span>は</span></div>
+          <div class="word-token"><span class="ruby-text">まいにち</span><span>毎日</span></div>
+          <div class="word-token"><span class="ruby-text">にほんご</span><span>日本語</span></div>
+          <div class="word-token"><span class="ruby-text">を</span><span>を</span></div>
+          <div class="word-token active"><span class="ruby-text">べんきょう</span><span>勉強</span></div>
+          <div class="word-token"><span class="ruby-text">します</span><span>します</span></div>
+          <div class="word-token"><span>。</span></div>
+        </div>
+      </div>
+      <div class="sentence-block">
+        <div class="sentence">
+          <div class="word-token"><span class="ruby-text">がっこう</span><span>学校</span></div>
+          <div class="word-token"><span class="ruby-text">で</span><span>で</span></div>
+          <div class="word-token"><span class="ruby-text">ともだち</span><span>友達</span></div>
+          <div class="word-token"><span class="ruby-text">が</span><span>が</span></div>
+          <div class="word-token"><span class="ruby-text">たくさん</span><span>たくさん</span></div>
+          <div class="word-token"><span class="ruby-text">でき</span><span>でき</span></div>
+          <div class="word-token"><span class="ruby-text">ました</span><span>ました</span></div>
+          <div class="word-token"><span>。</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-bar">
+      <div class="tab active">Story</div>
+      <div class="tab">Vocabulary</div>
+      <div class="tab">Grammar</div>
+    </div>
+  </div>
+  <div class="mockup-label" style="background:#1a1a1a">
+    勉強 tapped · panel updates instantly · story stays fully visible · active word highlighted
+  </div>
+</div>
+
+<!-- ─── MOCKUP 3: Translations on ─── -->
+<div class="mockup-section" id="m2">
+  <div class="mockup-label">Direction 3 — Reader: sentence translations visible (Trans toggle on)</div>
+  <div class="device-frame">
+    <div class="app-bar">
+      <span class="app-back">← Library</span>
+      <span class="app-logo">日本の本</span>
+    </div>
+    <div class="info-panel resting">
+      <div class="panel-story-title">タナカさんからの手紙</div>
+      <div class="panel-meta">Genki I · Ch.6 · Japanese</div>
+    </div>
+    <div class="toolbar">
+      <div class="toggle-group">
+        <button class="toggle-btn ja on">ルビ</button>
+        <button class="toggle-btn">Spaces</button>
+        <button class="toggle-btn on">Trans</button>
+      </div>
+      <div class="toggle-group">
+        <button class="size-btn">A−</button>
+        <button class="size-btn" style="font-size:15px">A</button>
+        <button class="size-btn" style="font-size:17px">A+</button>
+      </div>
+    </div>
+    <div class="story-area">
+      <div class="sentence-block">
+        <div class="sentence">
+          <div class="word-token"><span class="ruby-text">わたし</span><span>私</span></div>
+          <div class="word-token"><span class="ruby-text">は</span><span>は</span></div>
+          <div class="word-token"><span class="ruby-text">まいにち</span><span>毎日</span></div>
+          <div class="word-token"><span class="ruby-text">にほんご</span><span>日本語</span></div>
+          <div class="word-token"><span class="ruby-text">を</span><span>を</span></div>
+          <div class="word-token"><span class="ruby-text">べんきょう</span><span>勉強</span></div>
+          <div class="word-token"><span class="ruby-text">します</span><span>します</span></div>
+          <div class="word-token"><span>。</span></div>
+        </div>
+        <div class="sentence-translation">I study Japanese every day.</div>
+      </div>
+      <div class="sentence-block">
+        <div class="sentence">
+          <div class="word-token"><span class="ruby-text">がっこう</span><span>学校</span></div>
+          <div class="word-token"><span class="ruby-text">で</span><span>で</span></div>
+          <div class="word-token"><span class="ruby-text">ともだち</span><span>友達</span></div>
+          <div class="word-token"><span class="ruby-text">が</span><span>が</span></div>
+          <div class="word-token"><span class="ruby-text">たくさん</span><span>たくさん</span></div>
+          <div class="word-token"><span class="ruby-text">でき</span><span>でき</span></div>
+          <div class="word-token"><span class="ruby-text">ました</span><span>ました</span></div>
+          <div class="word-token"><span>。</span></div>
+        </div>
+        <div class="sentence-translation">I made many friends at school.</div>
+      </div>
+      <div class="sentence-block">
+        <div class="sentence">
+          <div class="word-token"><span class="ruby-text">せんせい</span><span>先生</span></div>
+          <div class="word-token"><span class="ruby-text">も</span><span>も</span></div>
+          <div class="word-token"><span class="ruby-text">とても</span><span>とても</span></div>
+          <div class="word-token"><span class="ruby-text">しんせつ</span><span>親切</span></div>
+          <div class="word-token"><span class="ruby-text">です</span><span>です</span></div>
+          <div class="word-token"><span>。</span></div>
+        </div>
+        <div class="sentence-translation">The teacher is also very kind.</div>
+      </div>
+    </div>
+    <div class="tab-bar">
+      <div class="tab active">Story</div>
+      <div class="tab">Vocabulary</div>
+      <div class="tab">Grammar</div>
+    </div>
+  </div>
+  <div class="mockup-label" style="background:#1a1a1a">
+    Trans toggle ON · translations appear beneath each Japanese sentence in muted blue-grey · words still tappable
+  </div>
+</div>
+
+<!-- ─── MOCKUP 4: Vocabulary tab ─── -->
+<div class="mockup-section" id="m3">
+  <div class="mockup-label">Direction 4 — Vocabulary tab active</div>
+  <div class="device-frame">
+    <div class="app-bar">
+      <span class="app-back">← Library</span>
+      <span class="app-logo">日本の本</span>
+    </div>
+    <div class="info-panel">
+      <div class="lookup-word-original">学校</div>
+      <div class="lookup-translation">school</div>
+      <div class="lookup-hiragana">がっこう</div>
+      <div class="kanji-row">
+        <div class="kanji-item"><span class="kanji-char">学</span><span class="kanji-meaning">study</span></div>
+        <div class="kanji-item"><span class="kanji-char">校</span><span class="kanji-meaning">school</span></div>
+      </div>
+    </div>
+    <div class="vocab-list">
+      <div class="vocab-header">Story vocabulary · 8 words</div>
+      <div class="vocab-item"><span class="vocab-word">私</span><span class="vocab-reading">わたし</span><span class="vocab-translation-text">I, me</span></div>
+      <div class="vocab-item" style="background:var(--accent-subtle);border-radius:4px;padding-left:6px;">
+        <span class="vocab-word">学校</span><span class="vocab-reading">がっこう</span><span class="vocab-translation-text">school</span>
+      </div>
+      <div class="vocab-item"><span class="vocab-word">勉強</span><span class="vocab-reading">べんきょう</span><span class="vocab-translation-text">study, studying</span></div>
+      <div class="vocab-item"><span class="vocab-word">毎日</span><span class="vocab-reading">まいにち</span><span class="vocab-translation-text">every day</span></div>
+      <div class="vocab-item"><span class="vocab-word">先生</span><span class="vocab-reading">せんせい</span><span class="vocab-translation-text">teacher</span></div>
+      <div class="vocab-item"><span class="vocab-word">友達</span><span class="vocab-reading">ともだち</span><span class="vocab-translation-text">friend</span></div>
+    </div>
+    <div class="tab-bar">
+      <div class="tab">Story</div>
+      <div class="tab active">Vocabulary</div>
+      <div class="tab">Grammar</div>
+    </div>
+  </div>
+  <div class="mockup-label" style="background:#1a1a1a">
+    Vocabulary tab · tapping 学校 updates the same info panel · keyword vocab + supplement merged
+  </div>
+</div>
+
+<!-- ─── MOCKUP 5: Library ─── -->
+<div class="mockup-section" id="m4">
+  <div class="mockup-label">Direction 5 — Library view</div>
+  <div class="device-frame">
+    <div class="app-bar" style="border-bottom:none;">
+      <span></span>
+      <span class="app-logo" style="font-size:18px;color:var(--paper-text)">日本の本</span>
+    </div>
+    <div class="library-area">
+      <div class="library-header">
+        <div class="filter-row">
+          <select class="filter-select selected"><option>Genki I</option><option>Genki II</option><option>JLPT</option><option>All sources</option></select>
+          <select class="filter-select selected"><option>Chapter 6</option><option>Chapter 5</option><option>Chapter 7</option><option>All chapters</option></select>
+        </div>
+      </div>
+      <div class="story-list">
+        <div class="story-card">
+          <div class="card-title">A Letter from Tanaka-san</div>
+          <div class="card-title-ja">タナカさんからの手紙</div>
+          <span class="card-difficulty">Genki I · Ch.6</span>
+          <div class="card-desc">Tanaka writes to her friend about her new school and daily routine.</div>
+        </div>
+        <div class="story-card">
+          <div class="card-title">At the Supermarket</div>
+          <div class="card-title-ja">スーパーで</div>
+          <span class="card-difficulty">Genki I · Ch.6</span>
+          <div class="card-desc">Kenji goes shopping and asks about prices and quantities.</div>
+        </div>
+        <div class="story-card">
+          <div class="card-title">Weekend Plans</div>
+          <div class="card-title-ja">週末の予定</div>
+          <span class="card-difficulty">Genki I · Ch.6</span>
+          <div class="card-desc">Two students discuss what they are doing this weekend.</div>
+        </div>
+      </div>
+      <div class="upload-btn">↑ Load a story from your device</div>
+    </div>
+  </div>
+  <div class="mockup-label" style="background:#1a1a1a">
+    Library: logo prominent · two-level filter · story cards · local upload at bottom
+  </div>
+</div>
+
+<!-- ─── MOCKUP 6: Desktop two-column ─── -->
+<div class="mockup-section" id="m5">
+  <div class="mockup-label">Direction 6 — Desktop two-column (900px+)</div>
+  <div class="device-frame wide">
+    <div class="app-bar">
+      <span class="app-back">← Library</span>
+      <span class="app-logo">日本の本</span>
+    </div>
+    <div class="info-panel" style="display:grid;grid-template-columns:1fr 360px;gap:0;min-height:100px;padding:0;">
+      <div style="padding:12px 20px;border-right:1px solid var(--border);">
+        <div class="lookup-word-original">日本語</div>
+        <div class="lookup-translation">Japanese language</div>
+        <div class="lookup-hiragana">にほんご</div>
+        <div class="kanji-row">
+          <div class="kanji-item"><span class="kanji-char">日</span><span class="kanji-meaning">sun / day</span></div>
+          <div class="kanji-item"><span class="kanji-char">本</span><span class="kanji-meaning">origin / book</span></div>
+          <div class="kanji-item"><span class="kanji-char">語</span><span class="kanji-meaning">language</span></div>
+        </div>
+      </div>
+      <div style="padding:12px 16px;">
+        <div class="panel-story-title">タナカさんからの手紙</div>
+        <div class="panel-meta">Genki I · Ch.6 · Japanese</div>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="toggle-group">
+        <button class="toggle-btn ja on">ルビ</button>
+        <button class="toggle-btn on">Spaces</button>
+        <button class="toggle-btn">Trans</button>
+      </div>
+      <div class="toggle-group">
+        <button class="size-btn">A−</button>
+        <button class="size-btn" style="font-size:15px">A</button>
+        <button class="size-btn" style="font-size:17px">A+</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 360px;min-height:460px;">
+      <div style="border-right:1px solid var(--border);">
+        <div class="story-area story-area-wide" style="max-height:460px;">
+          <div class="sentence-block">
+            <div class="sentence">
+              <div class="word-token"><span class="ruby-text">わたし</span><span>私</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token"><span class="ruby-text">は</span><span>は</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token"><span class="ruby-text">まいにち</span><span>毎日</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token active"><span class="ruby-text">にほんご</span><span>日本語</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token"><span class="ruby-text">を</span><span>を</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token"><span class="ruby-text">べんきょう</span><span>勉強</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token"><span class="ruby-text">します</span><span>します</span></div>
+              <div class="word-token"><span>。</span></div>
+            </div>
+          </div>
+          <div class="sentence-block">
+            <div class="sentence">
+              <div class="word-token"><span class="ruby-text">がっこう</span><span>学校</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token"><span class="ruby-text">で</span><span>で</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token"><span class="ruby-text">ともだち</span><span>友達</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token"><span class="ruby-text">が</span><span>が</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token"><span class="ruby-text">たくさん</span><span>たくさん</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token"><span class="ruby-text">でき</span><span>でき</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token"><span class="ruby-text">ました</span><span>ました</span></div>
+              <div class="word-token"><span>。</span></div>
+            </div>
+          </div>
+          <div class="sentence-block">
+            <div class="sentence">
+              <div class="word-token"><span class="ruby-text">せんせい</span><span>先生</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token"><span class="ruby-text">も</span><span>も</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token"><span class="ruby-text">とても</span><span>とても</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token"><span class="ruby-text">しんせつ</span><span>親切</span></div>
+              <span class="word-space"> </span>
+              <div class="word-token"><span class="ruby-text">です</span><span>です</span></div>
+              <div class="word-token"><span>。</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--surface);display:flex;flex-direction:column;">
+        <div style="display:flex;border-bottom:1px solid var(--border);">
+          <div class="wide-tab active">Vocabulary</div>
+          <div class="wide-tab">Grammar</div>
+        </div>
+        <div style="flex:1;overflow-y:auto;">
+          <div class="vocab-list">
+            <div class="vocab-header">8 words</div>
+            <div class="vocab-item"><span class="vocab-word">私</span><span class="vocab-reading">わたし</span><span class="vocab-translation-text">I, me</span></div>
+            <div class="vocab-item"><span class="vocab-word">学校</span><span class="vocab-reading">がっこう</span><span class="vocab-translation-text">school</span></div>
+            <div class="vocab-item"><span class="vocab-word">勉強</span><span class="vocab-reading">べんきょう</span><span class="vocab-translation-text">study</span></div>
+            <div class="vocab-item"><span class="vocab-word">毎日</span><span class="vocab-reading">まいにち</span><span class="vocab-translation-text">every day</span></div>
+            <div class="vocab-item"><span class="vocab-word">先生</span><span class="vocab-reading">せんせい</span><span class="vocab-translation-text">teacher</span></div>
+            <div class="vocab-item"><span class="vocab-word">友達</span><span class="vocab-reading">ともだち</span><span class="vocab-translation-text">friend</span></div>
+            <div class="vocab-item"><span class="vocab-word">日本語</span><span class="vocab-reading">にほんご</span><span class="vocab-translation-text">Japanese language</span></div>
+            <div class="vocab-item"><span class="vocab-word">手紙</span><span class="vocab-reading">てがみ</span><span class="vocab-translation-text">letter</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mockup-label" style="background:#1a1a1a">
+    Desktop two-column · continuous scroll story · ルビ + Spaces on · Trans off · vocabulary panel right
+  </div>
+</div>
+
+<script>
+function show(idx) {
+  document.querySelectorAll('.mockup-section').forEach((el,i) => el.classList.toggle('active', i===idx));
+  document.querySelectorAll('.nav-btn').forEach((el,i) => el.classList.toggle('active', i===idx));
+}
+</script>
+</body>
+</html>

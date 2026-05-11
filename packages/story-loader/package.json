@@ -1,0 +1,16 @@
+{
+  "name": "@nihonnohon/story-loader",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "import": { "types": "./dist/index.d.mts", "default": "./dist/index.mjs" },
+      "require": { "types": "./dist/index.d.ts", "default": "./dist/index.js" }
+    }
+  },
+  "dependencies": {
+    "@nihonnohon/schema": "workspace:*"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(head *)",
+      "Bash(python3 *)",
+      "WebSearch",
+      "Bash(py *)",
+      "Bash(Get-ChildItem \"C:\\\\repo\\\\nihonnohon\\\\_bmad-output\\\\planning-artifacts\" -Recurse)",
+      "Bash(Select-Object FullName, Length, LastWriteTime)",
+      "Bash(Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem \"C:\\\\repo\\\\nihonnohon\\\\_bmad-output\\\\planning-artifacts\" -Recurse -File | Select-Object @{N='Name';E={$_.FullName.Replace\\('C:\\\\repo\\\\nihonnohon\\\\_bmad-output\\\\planning-artifacts\\\\',''\\)}}, @{N='Size\\(KB\\)';E={[math]::Round\\($_.Length/1KB,1\\)}}, @{N='Modified';E={$_.LastWriteTime.ToString\\('yyyy-MM-dd HH:mm'\\)}} | Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem \"C:\\\\repo\\\\nihonnohon\\\\_bmad-output\\\\implementation-artifacts\" -Recurse -File 2>$null | Select-Object @{N='Name';E={$_.FullName.Replace\\('C:\\\\repo\\\\nihonnohon\\\\_bmad-output\\\\implementation-artifacts\\\\',''\\)}}, @{N='Size\\(KB\\)';E={[math]::Round\\($_.Length/1KB,1\\)}}, @{N='Modified';E={$_.LastWriteTime.ToString\\('yyyy-MM-dd HH:mm'\\)}} | Format-Table -AutoSize)",
+      "PowerShell(pnpm *)",
+      "PowerShell(npm show *)"
+    ]
+  }
+}

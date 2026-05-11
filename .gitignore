@@ -1,0 +1,24 @@
+# dependencies
+node_modules/
+
+# build outputs
+dist/
+.turbo/
+
+# generated files (never committed)
+apps/web/public/vocab.json
+
+# local environment
+.env
+.env.local
+*.local
+
+# editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

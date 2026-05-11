@@ -1,0 +1,7 @@
+{
+  "name": "@nihonnohon/api",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "description": "Future: community story-sharing backend"
+}
