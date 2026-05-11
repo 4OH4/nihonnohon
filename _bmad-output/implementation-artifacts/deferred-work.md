@@ -1,5 +1,9 @@
 # Deferred Work
 
+## Deferred from: code review of 1-4-web-app-scaffold (2026-05-11)
+
+- No ESLint config in `apps/web` — `apps/web/package.json` declares `"lint": "eslint ."` and depends on `@nihonnohon/eslint-config`, but no `.eslintrc.*` or `eslint.config.*` exists; `turbo lint` will fail for this package. Full eslint wiring (including `eslint-plugin-boundaries`) is Story 1.5 scope.
+
 ## Deferred from: code review of 1-3-story-loader-package (2026-05-11)
 
 - `vocab_keys` values not bounds-checked against `vocab_supplement` array length — semantic validation out of scope for loader; Story 2 components handle safe indexing.

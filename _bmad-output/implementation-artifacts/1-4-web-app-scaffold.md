@@ -28,7 +28,7 @@ so that all subsequent stories build on a consistent, type-safe foundation witho
 
 - [x] Task 1: Update `apps/web/package.json` — complete package configuration (AC: 1, 2, 7)
   - [x] Add `name: "@nihonnohon/web"`, `version: "0.0.0"`, `private: true`, `type: "module"`
-  - [x] Add `scripts`: `dev: vite`, `build: tsc -b && vite build`, `preview: vite preview`, `typecheck: tsc -b`, `lint: eslint .`, `test:e2e: playwright test`
+  - [x] Add `scripts`: `dev: vite`, `build: tsc -b && vite build`, `preview: vite preview`, `typecheck: tsc -b` (story spec said `tsc --noEmit` but that silently checks nothing with project-references `files:[]` root; `tsc -b` is correct), `lint: eslint .`, `test:e2e: playwright test`
   - [x] Add `dependencies`: `react ^18.3.1`, `react-dom ^18.3.1`, `react-router-dom ^6.24.0`, `zustand ^4.5.4`, `@nihonnohon/schema workspace:*`, `@nihonnohon/story-loader workspace:*`, `clsx ^2.1.0`, `tailwind-merge ^2.3.0`
   - [x] Add `devDependencies`: `vite ^5.3.0`, `@vitejs/plugin-react ^4.3.0`, `typescript ^5.5.0`, `@types/react ^18.3.0`, `@types/react-dom ^18.3.0`, `@types/node ^20.0.0`, `tailwindcss ^3.4.0`, `autoprefixer ^10.4.0`, `postcss ^8.4.0`, `@nihonnohon/typescript-config workspace:*`, `@nihonnohon/eslint-config workspace:*`, `@playwright/test ^1.44.0`, `eslint ^8.57.0`
 
