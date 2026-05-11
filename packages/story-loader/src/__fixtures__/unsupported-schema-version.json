@@ -1,0 +1,9 @@
+{
+  "schema_version": "99",
+  "id": "future-story",
+  "title": "Future Story",
+  "title_ja": "未来のストーリー",
+  "language": "Japanese",
+  "description": "Uses an unsupported schema version.",
+  "sentences": [{ "id": "s1", "words": ["test"] }]
+}

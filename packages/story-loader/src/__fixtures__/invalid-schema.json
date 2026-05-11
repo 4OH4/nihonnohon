@@ -1,0 +1,10 @@
+{
+  "schema_version": "1",
+  "id": "invalid-story",
+  "title": "Invalid Story",
+  "title_ja": "無効なストーリー",
+  "language": "Japanese",
+  "description": "Story with extra field.",
+  "sentences": [{ "id": "s1", "words": ["test"] }],
+  "unknown_field": "this causes schema validation failure"
+}

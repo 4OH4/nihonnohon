@@ -1,0 +1,24 @@
+{
+  "schema_version": "1",
+  "id": "test-story-complete",
+  "title": "Complete Test Story",
+  "title_ja": "完全なテストストーリー",
+  "language": "Japanese",
+  "description": "A complete test story with all optional fields.",
+  "difficulty": "Genki I Ch.6",
+  "keywords": [{ "word": "田中", "hiragana": "たなか", "translation": "Tanaka (name)" }],
+  "grammar": ["て-form for connecting actions"],
+  "vocab_supplement": [{ "word": "先生", "hiragana": "せんせい", "translation": "teacher" }],
+  "metadata": { "source": "test" },
+  "sentences": [
+    {
+      "id": "s1",
+      "words": ["田中", "さん", "は", "先生", "です"],
+      "ruby": ["たなか", null, null, "せんせい", null],
+      "vocab_keys": [null, null, null, 1, null],
+      "translation": "Mr. Tanaka is a teacher.",
+      "grammar": [0],
+      "audio_url": "https://example.com/s1.mp3"
+    }
+  ]
+}

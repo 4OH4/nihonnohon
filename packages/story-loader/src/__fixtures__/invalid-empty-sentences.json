@@ -1,0 +1,9 @@
+{
+  "schema_version": "1",
+  "id": "empty-sentences",
+  "title": "Empty Sentences",
+  "title_ja": "文なし",
+  "language": "Japanese",
+  "description": "Story with no sentences.",
+  "sentences": []
+}
