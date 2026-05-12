@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build data assets
+        run: pnpm build-vocab && pnpm build-kanji
+
       - name: Lint
         run: pnpm run lint
 
