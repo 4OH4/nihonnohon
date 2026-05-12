@@ -58,7 +58,7 @@ development_status:
   2-3-wordtoken-and-sentenceblock-components: done
   2-4-infopanel-and-kanjibreakdown-components: done
   2-5-minimum-viable-reader-route: done
-  epic-2-retrospective: optional
+  epic-2-retrospective: done
 
   # Epic 3: Story Library & File Access
   epic-3: backlog
