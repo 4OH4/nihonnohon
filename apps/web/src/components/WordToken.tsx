@@ -1,0 +1,57 @@
+import { cn } from '@/lib/utils'
+import { useLookupStore } from '@/stores/lookupStore'
+import { usePreferenceStore } from '@/stores/preferenceStore'
+import { lookupVocab } from '@/services/vocabService'
+
+interface WordTokenProps {
+  word: string
+  ruby: string | null
+  vocabKey: number | null
+  sentenceId: string
+}
+
+/** Single Japanese word token with optional ruby annotation and vocabulary lookup. */
+export function WordToken({ word, ruby, vocabKey, sentenceId }: WordTokenProps) {
+  const lookup = useLookupStore((s) => s.lookup)
+  const lookupStatus = useLookupStore((s) => s.lookupState.status)
+  const activeWord = useLookupStore((s) =>
+    s.lookupState.status === 'found' ? s.lookupState.word : null
+  )
+  const rubyVisible = usePreferenceStore((s) => s.rubyVisible)
+
+  const isActive = lookupStatus === 'found' && activeWord === word
+
+  const handleActivate = (e: React.MouseEvent | React.KeyboardEvent) => {
+    // Stop propagation always — prevents SentenceBlock container from calling
+    // selectSentence and immediately resetting the lookupState we're about to set.
+    e.stopPropagation()
+    if (vocabKey === null) return
+    const entry = lookupVocab(vocabKey)
+    if (entry === null) return
+    lookup(word, entry, sentenceId)
+  }
+
+  return (
+    <ruby
+      role="button"
+      tabIndex={0}
+      aria-label={word}
+      lang="ja"
+      className={cn(
+        'font-ja cursor-pointer rounded word-token',
+        isActive
+          ? 'bg-accent-subtle border-b-2 border-accent'
+          : 'hover:bg-accent-subtle',
+      )}
+      onClick={handleActivate}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') handleActivate(e)
+      }}
+    >
+      {word}
+      <rt className={cn(!rubyVisible && 'invisible')}>
+        {ruby ?? ''}
+      </rt>
+    </ruby>
+  )
+}

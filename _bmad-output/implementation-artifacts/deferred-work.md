@@ -1,5 +1,9 @@
 # Deferred Work
 
+## Deferred from: code review of 2-3-wordtoken-and-sentenceblock-components (2026-05-12)
+
+- `WordToken` renders `<rt>` with empty string when `ruby` is null. Some screen readers may announce the empty annotation or add an awkward pause. Fix: conditionally omit `<rt>` when `ruby` is null, or add `aria-hidden` when empty. Defer until fuller a11y audit in Story 4.4.
+
 ## Deferred from: code review of 2-2-lookup-and-preference-stores (2026-05-12)
 
 - `preferenceStore.ts` `partialize` manually enumerates all five state fields — adding a new persisted field requires remembering to update this list; a missed field silently loses persistence. Consider an `Omit<state, keyof actions>` type approach if the store grows.
