@@ -54,7 +54,7 @@ development_status:
   # Epic 2: Minimum Viable Reader (Milestone 1)
   epic-2: in-progress
   2-1-vocabulary-and-kanji-data-services: done
-  2-2-lookup-and-preference-stores: backlog
+  2-2-lookup-and-preference-stores: done
   2-3-wordtoken-and-sentenceblock-components: backlog
   2-4-infopanel-and-kanjibreakdown-components: backlog
   2-5-minimum-viable-reader-route: backlog

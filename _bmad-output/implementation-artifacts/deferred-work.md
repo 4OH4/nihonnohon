@@ -1,5 +1,11 @@
 # Deferred Work
 
+## Deferred from: code review of 2-2-lookup-and-preference-stores (2026-05-12)
+
+- `preferenceStore.ts` `partialize` manually enumerates all five state fields — adding a new persisted field requires remembering to update this list; a missed field silently loses persistence. Consider an `Omit<state, keyof actions>` type approach if the store grows.
+- `lookupStore.lookup` accepts empty-string `word` and `sentenceId` without validation — not a concern for valid callers (loader enforces `minLength:1` via AJV), but worth a runtime guard if the service is ever called from untrusted paths.
+- `usePreferenceStore` persist config has no `version` or `migrate` option — a future union change to `textSize` or `activeTab` will silently rehydrate stale values. Add a `version` and `migrate` function when either field's union is narrowed or extended.
+
 ## Deferred from: code review of 2-1-vocabulary-and-kanji-data-services (2026-05-12)
 
 - Test-only exports (`_initVocabFromData`, `_resetVocab`, `_initKanjiFromData`, `_resetKanji`) are exported from production modules with only a naming convention as guard; no compile-time or package-boundary enforcement. Acceptable for v1; revisit if these are misused.

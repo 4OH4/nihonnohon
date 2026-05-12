@@ -17,12 +17,18 @@ const initialState = {
 
 export const useLookupStore = create<LookupStoreState>()((set) => ({
   ...initialState,
-  lookup: (_word, _entry, _sentenceId) => {
-    // Full implementation in Story 2.2
-  },
-  selectSentence: (_sentenceId) => {
-    // Full implementation in Story 2.2
-  },
+  lookup: (word, entry, sentenceId) =>
+    set({
+      lookupState: entry !== null
+        ? { status: 'found', word, entry }
+        : { status: 'not-found', word },
+      selectedSentenceId: sentenceId,
+    }),
+  selectSentence: (sentenceId) =>
+    set({
+      selectedSentenceId: sentenceId,
+      lookupState: { status: 'idle' },
+    }),
   reset: () => set(initialState),
   _reset: () => set(initialState),
 }))
