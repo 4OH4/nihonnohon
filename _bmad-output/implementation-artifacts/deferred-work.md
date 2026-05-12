@@ -1,5 +1,11 @@
 # Deferred Work
 
+## Deferred from: code review of 2-4-infopanel-and-kanjibreakdown-components (2026-05-12)
+
+- **kanjiService race:** `lookupKanji` returns null if `initKanji` hasn't resolved when `KanjiBreakdown` first mounts. Breakdown silently disappears; no re-render when map becomes available. Pre-existing architecture; revisit if kanji data is ever lazily loaded post-route.
+- **Empty label span:** When `KanjiEntry.kw === null` and `m` is an empty array, `kw ?? m[0] ?? ''` emits an empty `<span>` with font metrics but no visible text. Unlikely with real kyouiku kanji data; address if data quality issues arise.
+- **aria-live verbosity:** No `aria-atomic` on the InfoPanel live region — KanjiBreakdown chip text is announced alongside word/meaning/reading on each lookup update, potentially producing verbose AT readout for words with many kanji. Revisit during Story 4.4 full a11y audit.
+
 ## Deferred from: code review of 2-3-wordtoken-and-sentenceblock-components (2026-05-12)
 
 - `WordToken` renders `<rt>` with empty string when `ruby` is null. Some screen readers may announce the empty annotation or add an awkward pause. Fix: conditionally omit `<rt>` when `ruby` is null, or add `aria-hidden` when empty. Defer until fuller a11y audit in Story 4.4.

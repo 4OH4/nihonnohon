@@ -56,7 +56,7 @@ development_status:
   2-1-vocabulary-and-kanji-data-services: done
   2-2-lookup-and-preference-stores: done
   2-3-wordtoken-and-sentenceblock-components: done
-  2-4-infopanel-and-kanjibreakdown-components: backlog
+  2-4-infopanel-and-kanjibreakdown-components: done
   2-5-minimum-viable-reader-route: backlog
   epic-2-retrospective: optional
 
