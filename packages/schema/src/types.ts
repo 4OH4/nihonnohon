@@ -8,10 +8,11 @@ export interface VocabEntry {
 }
 
 export interface KanjiEntry {
-  character: string
-  meaning: string
-  onYomi: string[]
-  kunYomi: string[]
+  char: string
+  kw: string | null // heisig_en: short Heisig keyword shown as the label in KanjiBreakdown
+  m: string[]       // full dictionary meanings shown in kanji detail view
+  onY: string[]
+  kunY: string[]
 }
 
 export interface VocabSupplementEntry {
