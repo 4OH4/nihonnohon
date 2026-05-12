@@ -3,6 +3,14 @@
 ## Deferred from: code review of 2-5-minimum-viable-reader-route (2026-05-13)
 
 - **`buildSupplementMap` not memoized:** Called on every render of `ReaderRoute`, allocating a new `Map` each time. Wrap with `useMemo(() => buildSupplementMap(story.vocabSupplement), [story.vocabSupplement])` before adding `React.memo` to `SentenceBlock` in a future refactor.
+
+## Deferred from: code review of 3-1-story-manifest-storycard-and-difficultybadge (2026-05-13)
+
+- **`ReaderRoute` loader hardcoded:** Fetches `genki-i-ch6-tanaka-letter.json` unconditionally — will silently serve the wrong story if a second manifest entry is clicked. Story 3.3 replaces the loader body. [ReaderRoute.tsx:29]
+- **`manifest.json` no build-time validation:** A hand-edit typo silently drops a story entry from the library with no developer warning. Story 3.2 adds `fetchManifest()` with `isManifestEntry` per-entry validation at runtime; a CI schema check would catch this earlier.
+- **No unit tests for `isManifestEntry` type guard:** Boundary cases (non-string `difficulty`, empty `id`) are untested. Story 3.2 AC explicitly requires these tests.
+- **`StoryCard` link AT name:** The accessible name of the `<Link>` is the full concatenation of title + Japanese title + description — can produce a noisy AT experience in a long list. Standard card-link pattern; consider `aria-labelledby` scoping in a future accessibility pass.
+- **`filename` field coupling:** `ManifestEntry.filename` creates an implicit `id + ".json"` invariant that is not enforced anywhere. If it always equals `id + ".json"`, the field is redundant; if it can differ, the divergence is undocumented. Architectural decision in epics spec — revisit before adding non-trivially-named stories.
 - **Duplicate supplement word entries silently drop:** `buildSupplementMap` iterates with index, so if `vocabSupplement` has two entries with the same `word`, the last one wins in the `Map` with no warning. Add a dedup check or dev-mode warning when building the map.
 - **No `errorElement` on `/read/:storyId` route:** `loadStory()` rejection and fetch failures surface as an unhandled React crash. Epic 3 adds `ErrorBoundary` per spec — route error element must be added there.
 - **`res.json()` on non-JSON 200 response throws unformatted `SyntaxError`:** CDN or proxy 200 HTML error pages produce a confusing error. Catch `SyntaxError` separately in the loader and throw a user-facing message; coordinate with Epic 3 error boundary work.
