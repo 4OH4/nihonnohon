@@ -1,5 +1,11 @@
 # Deferred Work
 
+## Deferred from: code review of 2-1-vocabulary-and-kanji-data-services (2026-05-12)
+
+- Test-only exports (`_initVocabFromData`, `_resetVocab`, `_initKanjiFromData`, `_resetKanji`) are exported from production modules with only a naming convention as guard; no compile-time or package-boundary enforcement. Acceptable for v1; revisit if these are misused.
+- `kanji-data.json` entries have a `char` field that duplicates the top-level object key — if these ever diverge (copy-paste error), `lookupKanji` returns an entry whose `entry.char` is inconsistent with the key used to retrieve it. Add a build-time consistency assertion if the file is ever regenerated.
+- Duplicate `id` values in `vocab.json` would silently drop earlier entries in the `Map` constructor (`new Map(data.map(e => [e.id, e]))`). Architecture prevents this (append-only CSV, stable IDs), but a build-vocab guard would make it explicit.
+
 ## Deferred from: code review of 1-5-monorepo-pipeline-ci-and-project-scaffolding (2026-05-12)
 
 - `eslint-plugin-boundaries` path patterns may not match when linting from workspace directory — `pattern: 'packages/*'` and `pattern: 'apps/*'` in `packages/eslint-config/index.js` require `basePath` pointing to the repo root to resolve correctly; without it the boundary rules may silently never fire. Investigate and add `basePath` configuration in a follow-up.
