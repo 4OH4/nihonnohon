@@ -28,19 +28,19 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: turbo lint
+        run: pnpm run lint
 
       - name: Type check
-        run: turbo typecheck
+        run: pnpm run typecheck
 
       - name: Unit tests
-        run: turbo test:unit
+        run: pnpm run test:unit
 
       - name: Install Playwright browsers
         run: pnpm --filter @nihonnohon/web exec playwright install --with-deps chromium firefox webkit
 
       - name: E2E tests
-        run: turbo test:e2e
+        run: pnpm run test:e2e
 
       - name: Build
-        run: turbo build
+        run: pnpm run build
