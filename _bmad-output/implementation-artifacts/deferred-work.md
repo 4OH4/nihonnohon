@@ -1,5 +1,13 @@
 # Deferred Work
 
+## Deferred from: code review of 2-5-minimum-viable-reader-route (2026-05-13)
+
+- **`buildSupplementMap` not memoized:** Called on every render of `ReaderRoute`, allocating a new `Map` each time. Wrap with `useMemo(() => buildSupplementMap(story.vocabSupplement), [story.vocabSupplement])` before adding `React.memo` to `SentenceBlock` in a future refactor.
+- **Duplicate supplement word entries silently drop:** `buildSupplementMap` iterates with index, so if `vocabSupplement` has two entries with the same `word`, the last one wins in the `Map` with no warning. Add a dedup check or dev-mode warning when building the map.
+- **No `errorElement` on `/read/:storyId` route:** `loadStory()` rejection and fetch failures surface as an unhandled React crash. Epic 3 adds `ErrorBoundary` per spec — route error element must be added there.
+- **`res.json()` on non-JSON 200 response throws unformatted `SyntaxError`:** CDN or proxy 200 HTML error pages produce a confusing error. Catch `SyntaxError` separately in the loader and throw a user-facing message; coordinate with Epic 3 error boundary work.
+- **`loader()` body not directly unit tested:** The exported loader function is never called in `ReaderRoute.test.tsx`; tests mock `useLoaderData` only. The loader is intentionally thin (Epic 3 replaces it), but a loader integration test (mocking `fetch`) would close this gap post-Epic 3.
+
 ## Deferred from: code review of 2-4-infopanel-and-kanjibreakdown-components (2026-05-12)
 
 - **kanjiService race:** `lookupKanji` returns null if `initKanji` hasn't resolved when `KanjiBreakdown` first mounts. Breakdown silently disappears; no re-render when map becomes available. Pre-existing architecture; revisit if kanji data is ever lazily loaded post-route.

@@ -3,15 +3,17 @@ import { cn } from '@/lib/utils'
 import { useLookupStore } from '@/stores/lookupStore'
 import { usePreferenceStore } from '@/stores/preferenceStore'
 import { WordToken } from '@/components/WordToken'
-import type { SentenceModel } from '@nihonnohon/schema'
+import type { SentenceModel, VocabEntry } from '@nihonnohon/schema'
 
 interface SentenceBlockProps {
   sentence: SentenceModel
   sentenceIndex: number
+  /** Per-story supplement entries keyed by word string — supplement takes precedence over main vocab. */
+  supplementMap?: Map<string, VocabEntry>
 }
 
 /** Renders a sentence as a row of WordTokens with optional spacing, highlight, and translation. */
-export function SentenceBlock({ sentence, sentenceIndex }: SentenceBlockProps) {
+export function SentenceBlock({ sentence, sentenceIndex, supplementMap }: SentenceBlockProps) {
   const { selectSentence, selectedSentenceId } = useLookupStore(
     useShallow((s) => ({
       selectSentence: s.selectSentence,
@@ -43,6 +45,7 @@ export function SentenceBlock({ sentence, sentenceIndex }: SentenceBlockProps) {
           ruby={sentence.ruby[i] ?? null}
           vocabKey={sentence.vocabKeys[i] ?? null}
           sentenceId={sentence.id}
+          supplementEntry={supplementMap?.get(word) ?? null}
         />
       ))}
       {transVisible && sentence.translation !== null && (

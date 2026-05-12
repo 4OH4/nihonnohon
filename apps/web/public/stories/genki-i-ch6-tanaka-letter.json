@@ -1,0 +1,90 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch6-tanaka-letter",
+  "title": "A Letter from Mary",
+  "title_ja": "メアリーさんのてがみ",
+  "language": "Japanese",
+  "difficulty": "Genki I Ch.6",
+  "description": "Mary writes a letter about her daily routine as a university student in Japan.",
+  "keywords": [
+    { "word": "てがみ", "hiragana": "てがみ", "translation": "letter" },
+    { "word": "まいあさ", "hiragana": "まいあさ", "translation": "every morning" },
+    { "word": "でんしゃ", "hiragana": "でんしゃ", "translation": "train" }
+  ],
+  "grammar": [
+    "Verb ます-form: polite present/future tense",
+    "Time expressions with に (at [specific time])",
+    "Expressing sequence with てから (after doing; and then)"
+  ],
+  "vocab_supplement": [
+    { "word": "まいあさ", "hiragana": "まいあさ", "translation": "every morning" },
+    { "word": "てがみ", "hiragana": "てがみ", "translation": "letter" }
+  ],
+  "metadata": {},
+  "sentences": [
+    {
+      "id": "s1",
+      "words": ["はじめまして", "。"],
+      "ruby": [null, null],
+      "vocab_keys": [20, null],
+      "translation": "How do you do?",
+      "grammar": []
+    },
+    {
+      "id": "s2",
+      "words": ["田中", "メアリー", "と", "いいます", "。"],
+      "ruby": ["たなか", null, null, null, null],
+      "vocab_keys": [null, null, null, null, null],
+      "translation": "My name is Mary Tanaka.",
+      "grammar": []
+    },
+    {
+      "id": "s3",
+      "words": ["まいあさ", "、", "六時", "に", "起きます", "。"],
+      "ruby": [null, null, "ろくじ", null, "おきます", null],
+      "vocab_keys": [null, null, null, null, 176, null],
+      "translation": "Every morning, I wake up at six o'clock.",
+      "grammar": [0, 1]
+    },
+    {
+      "id": "s4",
+      "words": ["大学", "で", "朝ごはん", "を", "食べます", "。"],
+      "ruby": ["だいがく", null, "あさごはん", null, "たべます", null],
+      "vocab_keys": [50, null, 147, null, 177, null],
+      "translation": "I eat breakfast at the university.",
+      "grammar": [0]
+    },
+    {
+      "id": "s5",
+      "words": ["日本語", "を", "よく", "勉強します", "。"],
+      "ruby": ["にほんご", null, null, "べんきょうします", null],
+      "vocab_keys": [null, null, 190, 182, null],
+      "translation": "I often study Japanese.",
+      "grammar": [0]
+    },
+    {
+      "id": "s6",
+      "words": ["夜", "は", "テレビ", "を", "見てから", "、", "寝ます", "。"],
+      "ruby": ["よる", null, null, null, "みてから", null, "ねます", null],
+      "vocab_keys": [325, null, 145, null, 179, null, 178, null],
+      "translation": "At night, I watch TV and then go to sleep.",
+      "grammar": [0, 2]
+    },
+    {
+      "id": "s7",
+      "words": ["週末", "に", "友達", "と", "公園", "で", "遊びます", "。"],
+      "ruby": ["しゅうまつ", null, "ともだち", null, "こうえん", null, "あそびます", null],
+      "vocab_keys": [165, null, 52, null, 209, null, 329, null],
+      "translation": "On weekends, I play with friends at the park.",
+      "grammar": [0]
+    },
+    {
+      "id": "s8",
+      "words": ["また", "てがみ", "を", "書きます", "。"],
+      "ruby": [null, null, null, "かきます", null],
+      "vocab_keys": [null, 204, null, null, null],
+      "translation": "I will write a letter again.",
+      "grammar": [0]
+    }
+  ]
+}
