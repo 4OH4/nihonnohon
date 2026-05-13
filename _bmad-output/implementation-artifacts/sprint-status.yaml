@@ -61,12 +61,12 @@ development_status:
   epic-2-retrospective: done
 
   # Epic 3: Story Library & File Access
-  epic-3: in-progress
+  epic-3: done
   3-1-story-manifest-storycard-and-difficultybadge: done
   3-2-library-route-and-difficulty-filter: done
   3-3-full-story-loading-and-routing: done
   3-4-local-file-upload-and-validation: done
-  epic-3-retrospective: optional
+  epic-3-retrospective: done
 
   # Epic 4: Vocabulary, Grammar, Layout Polish & v1 Complete
   epic-4: backlog

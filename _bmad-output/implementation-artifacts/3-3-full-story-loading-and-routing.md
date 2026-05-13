@@ -1,6 +1,6 @@
 # Story 3.3: Full Story Loading & Routing
 
-Status: review
+Status: done
 
 ## Story
 
@@ -75,8 +75,8 @@ Then all 11 existing tests pass unchanged (preserved); the file has a comment he
 
 ### Review Findings
 
-- [ ] [Review][Patch] Replace `params.storyId!` non-null assertion with explicit guard: `if (!params.storyId) throw new Response('Not Found', { status: 404 })` [ReaderRoute.tsx:28]
-- [ ] [Review][Patch] `ReaderError` has no `<h1>` — screen readers get no heading hierarchy on the error page; add `<h1>` above the message [ReaderRoute.tsx:38-48]
+- [x] [Review][Patch] Replace `params.storyId!` non-null assertion with explicit guard: `if (!params.storyId) throw new Response('Not Found', { status: 404 })` [ReaderRoute.tsx:28] — applied in Story 3.4 loader rewrite
+- [x] [Review][Patch] `ReaderError` has no `<h1>` — applied in Story 3.4 ReaderError expansion; message now renders inside `<h1>` [ReaderRoute.tsx:71]
 - [x] [Review][Defer] `initVocab`/`initKanji` failure renders "Failed to load this story." with no retry button (unlike `LibraryError`) — deferred, retry not in AC2 scope for v1 [ReaderRoute.tsx:29]
 - [x] [Review][Defer] All non-404 errors (CDN 404 on file, `LoaderError`, `SyntaxError`) produce the same generic message with no logging — deferred, intentional v1 design; observability pass needed before production [ReaderRoute.tsx:32-33]
 - [x] [Review][Defer] 404 loader test does not assert that `initVocab`/`initKanji` were called before the throw — deferred, low value; doesn't affect correctness [ReaderRoute.test.tsx]

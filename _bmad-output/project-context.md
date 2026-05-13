@@ -117,6 +117,79 @@ _Critical rules and patterns that AI agents must follow when implementing code i
 - Test data integrity (vocab.json shape, id sequence) with Vitest unit tests
 - Do not unit-test pure Tailwind layout — use Playwright for UI behaviour
 
+### React Router v6 route component test pattern
+
+Route components (`LibraryRoute`, `ReaderRoute`) use `useLoaderData()` and other React Router hooks. The recommended `createMemoryRouter + RouterProvider` pattern produces empty renders in jsdom because the async navigation promise chain does not flush reliably. **Use this pattern instead:**
+
+```typescript
+// 1. Mock the React Router hooks used by the component under test
+vi.mock('react-router-dom', async (importOriginal) => {
+  const mod = await importOriginal<typeof import('react-router-dom')>()
+  return {
+    ...mod,
+    useLoaderData: vi.fn(),
+    useRouteError: vi.fn(),        // if component uses ReaderError / LibraryError
+    useRevalidator: vi.fn(),       // if component uses LibraryError retry
+    useNavigate: vi.fn(),          // if component calls navigate()
+    isRouteErrorResponse: vi.fn(), // if component discriminates error types
+  }
+})
+
+// 2. Import the mocked hooks after the vi.mock block
+import { useLoaderData, useNavigate } from 'react-router-dom'
+
+// 3. Wrap renders in MemoryRouter (provides Link/NavLink context without router machinery)
+function renderRoute(data: MyType) {
+  vi.mocked(useLoaderData).mockReturnValue(data)
+  return render(<MemoryRouter><MyRoute /></MemoryRouter>)
+}
+```
+
+**Key rules:**
+- Always spread `...mod` first so un-mocked hooks (e.g. `Link`, `MemoryRouter`) remain real
+- `vi.mock` is hoisted — import mocked hooks *after* the mock block, not before
+- Shared render helpers that set mocks must accept overrides: `function renderX(data = defaults, navigate = vi.fn())` — never unconditionally set `useNavigate` inside the helper or it will clobber a test-specific mock
+
+### FileReader API mock pattern (jsdom)
+
+jsdom does not implement `FileReader`. When testing file upload handlers, stub the global constructor and simulate the `onload` callback manually:
+
+```typescript
+// 1. Create a shared mock object and stub the global before any tests run
+const mockFileReader = {
+  readAsText: vi.fn(),
+  onload: null as ((e: ProgressEvent<FileReader>) => void) | null,
+  result: null as string | null,
+}
+vi.stubGlobal('FileReader', vi.fn(() => mockFileReader))
+
+// 2. Reset between tests
+beforeEach(() => {
+  mockFileReader.readAsText.mockReset()
+  mockFileReader.onload = null
+  mockFileReader.result = null
+  mockFileReader.readAsText.mockImplementation(() => {}) // no-op; onload set by simulateFileLoad
+})
+
+// 3. Helper: fire the input change and call onload with the mock result
+async function simulateFileLoad(text: string) {
+  const input = document.querySelector('input[type="file"]') as HTMLInputElement
+  Object.defineProperty(input, 'files', {
+    value: [new File([text], 'story.json', { type: 'application/json' })],
+    configurable: true,
+  })
+  fireEvent.change(input)
+  await act(async () => {
+    mockFileReader.result = text
+    if (mockFileReader.onload) {
+      await mockFileReader.onload({ target: mockFileReader } as unknown as ProgressEvent<FileReader>)
+    }
+  })
+}
+```
+
+**Why `act(async () => ...)`:** The `reader.onload` callback is `async` (it awaits `saveStory` and calls `navigate`). Wrapping in `act` flushes React state updates triggered inside the callback.
+
 ## Code Quality & Style Rules
 
 ### Naming Conventions
@@ -202,4 +275,4 @@ src/
 
 **For Humans:** Keep this file lean and focused on agent needs. Update when the technology stack changes or new non-obvious patterns emerge.
 
-_Last updated: 2026-05-12_
+_Last updated: 2026-05-13_
