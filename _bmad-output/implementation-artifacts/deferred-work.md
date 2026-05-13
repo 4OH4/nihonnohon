@@ -4,6 +4,13 @@
 
 - **`buildSupplementMap` not memoized:** Called on every render of `ReaderRoute`, allocating a new `Map` each time. Wrap with `useMemo(() => buildSupplementMap(story.vocabSupplement), [story.vocabSupplement])` before adding `React.memo` to `SentenceBlock` in a future refactor.
 
+## Deferred from: code review of 3-3-full-story-loading-and-routing (2026-05-13)
+
+- **`ReaderError` has no retry button:** `LibraryError` offers "Try again" via `useRevalidator`; `ReaderError` only links back to library. If `initVocab`, `initKanji`, or manifest fetch fail transiently, the user has no recovery path except navigating away. Add a retry affordance before v1 ships.
+- **All non-404 loader errors produce the same generic message with no logging:** `LoaderError` (schema invalid, unsupported version), CDN 404 on story file, and `SyntaxError` from malformed JSON all show "Failed to load this story." with no distinguishing information and no `console.error`. Add error logging before production.
+- **No catch-all route:** Paths like `/about`, `/credits`, or `/read/` (trailing slash, no segment) show the unstyled React Router default error UI. A root-level `errorElement` on the router would brand all unmatched paths.
+- **`buildSupplementMap` synthetic IDs (-1, -2, …) can be stale in `lookupStore` across story navigations:** The lookup store is not reset on route change. If a user has a supplement word in the InfoPanel from Story A and navigates to Story B, the stale `entry` object remains until a new word is tapped. Reset `lookupStore` on loader entry or add navigation-based teardown.
+
 ## Deferred from: code review of 3-2-library-route-and-difficulty-filter (2026-05-13)
 
 - **`parseDifficultyChapter` empty-string edge case:** A manifest entry with `difficulty: "Genki I"` (no space+chapter after the prefix) causes `parseDifficultyChapter` to return `""`, which appears as a blank `<option>` in the chapter dropdown. Requires difficulty format validation beyond type-checking in `isManifestEntry`.

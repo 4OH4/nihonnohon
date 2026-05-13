@@ -1,7 +1,9 @@
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, useRouteError, isRouteErrorResponse, Link } from 'react-router-dom'
+import type { LoaderFunctionArgs } from 'react-router-dom'
 import { loadStory } from '@nihonnohon/story-loader'
 import { initVocab } from '@/services/vocabService'
 import { initKanji } from '@/services/kanjiService'
+import { fetchManifest } from '@/utils/storyManifest'
 import { AppBar } from '@/components/AppBar'
 import { InfoPanel } from '@/components/InfoPanel'
 import { ToolBar } from '@/components/ToolBar'
@@ -23,12 +25,34 @@ function buildSupplementMap(supplement: VocabSupplementEntry[]): Map<string, Voc
   return map
 }
 
-/** React Router loader: initialises data services and fetches the story. Epic 3 replaces the loader body, not this pattern. */
-export async function loader(): Promise<StoryModel> {
+/** React Router loader — looks up storyId in manifest then fetches and parses the story file. */
+export async function loader({ params }: LoaderFunctionArgs): Promise<StoryModel> {
+  if (!params.storyId) throw new Response('Not Found', { status: 404 })
+  const storyId = params.storyId
   await Promise.all([initVocab(), initKanji()])
-  const res = await fetch('/stories/genki-i-ch6-tanaka-letter.json')
+  const manifest = await fetchManifest()
+  const entry = manifest.find(e => e.id === storyId)
+  if (!entry) throw new Response('Not Found', { status: 404 })
+  const res = await fetch(`/stories/${entry.filename}`)
   if (!res.ok) throw new Error(`Failed to load story: ${res.status}`)
   return loadStory(await res.json())
+}
+
+/** Error element for the reader route — shown when the loader throws (story not found or load failure). */
+export function ReaderError() {
+  const error = useRouteError()
+  const isNotFound = isRouteErrorResponse(error) && error.status === 404
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-dvh bg-paper-bg p-8 text-center">
+      <h1 className="text-paper-text font-semibold mb-2">
+        {isNotFound ? 'Story not found.' : 'Failed to load this story.'}
+      </h1>
+      <Link to="/" className="text-sm underline text-muted">
+        ← Back to library
+      </Link>
+    </div>
+  )
 }
 
 /** Full reader view — displays all sentences with word lookup, ruby and translation toggles. */

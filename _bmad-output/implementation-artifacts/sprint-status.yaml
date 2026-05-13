@@ -64,7 +64,7 @@ development_status:
   epic-3: in-progress
   3-1-story-manifest-storycard-and-difficultybadge: done
   3-2-library-route-and-difficulty-filter: done
-  3-3-full-story-loading-and-routing: backlog
+  3-3-full-story-loading-and-routing: done
   3-4-local-file-upload-and-validation: backlog
   epic-3-retrospective: optional
 
