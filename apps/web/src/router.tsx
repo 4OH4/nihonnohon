@@ -6,7 +6,7 @@ import { CreditsRoute } from '@/routes/CreditsRoute'
 const router = createBrowserRouter([
   { path: '/', element: <LibraryRoute />, loader: libraryLoader, errorElement: <LibraryError /> },
   { path: '/read/:storyId', element: <ReaderRoute />, loader: readerLoader, errorElement: <ReaderError /> },
-  { path: '/credits', element: <CreditsRoute /> },
+  { path: '/credits', element: <CreditsRoute />, errorElement: <LibraryError /> },
 ])
 
 export function Router() {
