@@ -1,7 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
-    "build-vocab": {
+    "//#build-vocab": {
       "inputs": ["scripts/build-vocab.ts", "scripts/data/genki-vocab.csv"],
       "outputs": ["apps/web/public/vocab.json"],
       "cache": true
