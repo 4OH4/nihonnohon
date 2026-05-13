@@ -4,6 +4,14 @@
 
 - **`buildSupplementMap` not memoized:** Called on every render of `ReaderRoute`, allocating a new `Map` each time. Wrap with `useMemo(() => buildSupplementMap(story.vocabSupplement), [story.vocabSupplement])` before adding `React.memo` to `SentenceBlock` in a future refactor.
 
+## Deferred from: code review of 3-2-library-route-and-difficulty-filter (2026-05-13)
+
+- **`parseDifficultyChapter` empty-string edge case:** A manifest entry with `difficulty: "Genki I"` (no space+chapter after the prefix) causes `parseDifficultyChapter` to return `""`, which appears as a blank `<option>` in the chapter dropdown. Requires difficulty format validation beyond type-checking in `isManifestEntry`.
+- **`fetchManifest` silent invalid-entry drop:** Invalid manifest entries are filtered without a `console.warn`. Debugging manifest authoring errors in dev is harder than necessary. Add dev-mode warning before v1 ships.
+- **`availableChapters` lexicographic sort:** Default `Array.sort()` puts `"Ch.10"` before `"Ch.9"`. No current impact with one story; fix with a numeric-component sort when multi-chapter sources are added.
+- **Chapter select stale after revalidation:** If revalidation removes a currently-selected chapter, the `<select>` shows a stale value and the empty state is shown with no automatic reset. Reset `chapter` to `'All'` in a `useEffect` watching `availableChapters` if needed.
+- **Static `<title>` not route-specific:** Library page shares the same `<title>` as all other routes. Acceptable for "basic SEO" in v1 but will need dynamic title management (e.g. `document.title` in `useEffect`) before v2 if the reader route needs a story-specific title.
+
 ## Deferred from: code review of 3-1-story-manifest-storycard-and-difficultybadge (2026-05-13)
 
 - **`ReaderRoute` loader hardcoded:** Fetches `genki-i-ch6-tanaka-letter.json` unconditionally — will silently serve the wrong story if a second manifest entry is clicked. Story 3.3 replaces the loader body. [ReaderRoute.tsx:29]
