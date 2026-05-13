@@ -52,7 +52,7 @@ development_status:
   epic-1-retrospective: done
 
   # Epic 2: Minimum Viable Reader (Milestone 1)
-  epic-2: in-progress
+  epic-2: done
   2-1-vocabulary-and-kanji-data-services: done
   2-2-lookup-and-preference-stores: done
   2-3-wordtoken-and-sentenceblock-components: done
@@ -69,8 +69,8 @@ development_status:
   epic-3-retrospective: done
 
   # Epic 4: Vocabulary, Grammar, Layout Polish & v1 Complete
-  epic-4: backlog
-  4-1-vocabulary-panel-and-vocabitem: backlog
+  epic-4: in-progress
+  4-1-vocabulary-panel-and-vocabitem: done
   4-2-grammar-panel-and-sentence-highlighting: backlog
   4-3-responsive-layout-and-settingsmenu: backlog
   4-4-credits-seo-polish-and-playwright-e2e-suite: backlog

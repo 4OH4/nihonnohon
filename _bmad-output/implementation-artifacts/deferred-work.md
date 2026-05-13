@@ -1,5 +1,13 @@
 # Deferred Work
 
+## Deferred from: code review of 4-1-vocabulary-panel-and-vocabitem (2026-05-13)
+
+- **`isActive` word-string matching:** Two entries sharing the same `word` value (homophone across keywords and supplement lists) both render as active simultaneously. Author-controlled data makes this unlikely; address if story authoring tooling allows duplicates. [VocabItem.tsx:9]
+- **`lesson: 'supplement'` assigned to keyword entries:** `toVocabEntries` labels all converted entries as `'supplement'` regardless of source; no downstream code currently branches on this field for panel entries. Revisit if keyword/supplement distinction is exposed in UI. [VocabPanel.tsx:11]
+- **Two `useLookupStore` selectors in `VocabItem`:** `lookup` and `lookupState` are separate `useLookupStore()` calls, causing two re-renders per state change. Combine into a single selector or use `useShallow` if profiling identifies this as a bottleneck. [VocabItem.tsx:7-8]
+- **No `aria-label` on `role="button"` div:** Screen readers concatenate all three child spans (word+reading+translation) as the button name. Explicit `aria-label` with the Japanese word would be cleaner; revisit in Story 4.4 full accessibility audit. [VocabItem.tsx:17]
+- **Empty/whitespace `word` field passes silently to lookup:** `toVocabEntries` applies no guard; an empty word would render an empty InfoPanel heading. Schema/loader responsibility; add a guard if authoring tools can produce empty word fields. [VocabPanel.tsx:5]
+
 ## Deferred from: code review of 3-4-local-file-upload-and-validation (2026-05-13)
 
 - **`saveStory` resolves before transaction commits:** `request.onsuccess` fires before `tx.oncomplete`; use `tx.oncomplete` to resolve and wire `tx.onerror`/`tx.onabort` to reject so callers get a real rejection on quota-exceeded or abort. [indexedDbService.ts:29]

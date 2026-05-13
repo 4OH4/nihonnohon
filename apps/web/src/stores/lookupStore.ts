@@ -4,7 +4,7 @@ import type { LookupState, VocabEntry } from '@nihonnohon/schema'
 interface LookupStoreState {
   lookupState: LookupState
   selectedSentenceId: string | null
-  lookup: (word: string, entry: VocabEntry | null, sentenceId: string) => void
+  lookup: (word: string, entry: VocabEntry | null, sentenceId: string | null) => void
   selectSentence: (sentenceId: string) => void
   reset: () => void
   _reset: () => void
