@@ -36,6 +36,7 @@
 
 generated: 2026-05-11
 last_updated: 2026-05-13
+# v1 complete: all epics done, retrospective closed
 project: nihonnohon
 project_key: NOKEY
 tracking_system: file-system
@@ -69,9 +70,9 @@ development_status:
   epic-3-retrospective: done
 
   # Epic 4: Vocabulary, Grammar, Layout Polish & v1 Complete
-  epic-4: in-progress
+  epic-4: done
   4-1-vocabulary-panel-and-vocabitem: done
   4-2-grammar-panel-and-sentence-highlighting: done
   4-3-responsive-layout-and-settingsmenu: done
   4-4-credits-seo-polish-and-playwright-e2e-suite: done
-  epic-4-retrospective: optional
+  epic-4-retrospective: done
