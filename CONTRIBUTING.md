@@ -41,6 +41,25 @@ For Playwright to run locally, install browsers once:
 pnpm --filter @nihonnohon/web exec playwright install chromium firefox webkit
 ```
 
+### Adding visual regression snapshot tests
+
+Playwright's `toMatchSnapshot()` stores per-platform baseline PNGs. CI runs on Linux, so
+Linux baselines must be committed alongside any new snapshot test. When you add a new
+`toMatchSnapshot()` call, follow this one-time process to generate them:
+
+1. Push your branch — CI will fail on the E2E step because the Linux PNGs don't exist yet.
+2. Download the `playwright-actual-snapshots` artifact from the failed run:
+   ```bash
+   gh run download <run-id> --name playwright-actual-snapshots --dir /tmp/snapshots
+   ```
+3. Copy the `-linux.png` files into `apps/web/e2e/accessibility.spec.ts-snapshots/`:
+   ```bash
+   cp /tmp/snapshots/*linux*.png apps/web/e2e/accessibility.spec.ts-snapshots/
+   ```
+4. Commit and push — CI will pass on the next run.
+
+The artifact is only uploaded when the E2E step fails, so it won't appear on green runs.
+
 ## Where does code go?
 
 | Code type | Location |
