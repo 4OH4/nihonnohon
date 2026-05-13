@@ -71,7 +71,7 @@ development_status:
   # Epic 4: Vocabulary, Grammar, Layout Polish & v1 Complete
   epic-4: in-progress
   4-1-vocabulary-panel-and-vocabitem: done
-  4-2-grammar-panel-and-sentence-highlighting: backlog
+  4-2-grammar-panel-and-sentence-highlighting: done
   4-3-responsive-layout-and-settingsmenu: backlog
   4-4-credits-seo-polish-and-playwright-e2e-suite: backlog
   epic-4-retrospective: optional

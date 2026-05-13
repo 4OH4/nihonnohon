@@ -1,5 +1,11 @@
 # Deferred Work
 
+## Deferred from: code review of 4-2-grammar-panel-and-sentence-highlighting (2026-05-13)
+
+- **Out-of-bounds SentenceModel.grammar indices silently mute all items:** If a sentence's `grammar: number[]` contains an index beyond `StoryModel.grammar.length - 1`, that index is added to `highlightedIndices` but never matches any `i`, so all items are muted despite no valid highlighted index. Silent-correct in practice (loader architecture forbids UI re-validation); address if a story authoring quality issue produces out-of-range grammar references. [GrammarPanel.tsx:17]
+- **Stale selectedSentenceId (ID not in sentences prop) causes unexpected all-muted state:** When `sentences.find()` returns `undefined` (ID from store doesn't match any sentence in the prop), `activeSentence` is `null` so all items are muted even though the UI appears to have a selection. Indistinguishable from a valid empty-grammar sentence. Parent integration (Story 4.3) must pass `story.sentences` consistently; this cannot occur in correct usage. [GrammarPanel.tsx:15]
+- **Empty-string grammar points render invisible list items:** A `""` entry in `StoryModel.grammar` produces a `<li>` with no visible text but real vertical height. Data quality constraint belongs in schema/loader layer; grammar point `minLength: 1` is not currently enforced by the schema. [GrammarPanel.tsx:32]
+
 ## Deferred from: code review of 4-1-vocabulary-panel-and-vocabitem (2026-05-13)
 
 - **`isActive` word-string matching:** Two entries sharing the same `word` value (homophone across keywords and supplement lists) both render as active simultaneously. Author-controlled data makes this unlikely; address if story authoring tooling allows duplicates. [VocabItem.tsx:9]
