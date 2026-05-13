@@ -58,7 +58,7 @@ export function WordToken({ word, ruby, vocabKey, sentenceId, supplementEntry }:
     >
       {word}
       <rt className={cn(!rubyVisible && 'invisible')}>
-        {ruby ?? ''}
+        {ruby ?? ' '}
       </rt>
     </ruby>
   )

@@ -8,7 +8,11 @@
 
 ruby {
   ruby-position: over;
-  ruby-align: center;
+  ruby-align: justify;
+}
+
+rt {
+  letter-spacing: 0.15em;
 }
 
 .word-token {
