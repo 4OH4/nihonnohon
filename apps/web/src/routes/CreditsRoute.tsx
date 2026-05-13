@@ -39,7 +39,7 @@ export function CreditsRoute() {
               kanjiapi.dev
             </a>
             , which aggregates data from the KANJIDIC2 project.
-            KANJIDIC2 is released under a Creative Commons Attribution-ShareAlike licence.
+            KANJIDIC2 is released under a Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0) licence.
           </p>
         </section>
 

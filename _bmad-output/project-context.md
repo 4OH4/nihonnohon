@@ -87,6 +87,39 @@ _Critical rules and patterns that AI agents must follow when implementing code i
 - UI primitives go in `apps/web/src/components/ui/`; feature components in `apps/web/src/components/`
 - Always compose classes with `cn()` — never raw string concatenation
 
+### CSS Custom Properties
+
+CSS custom properties are a **two-sided contract** — both the assignment and the consumption must exist and must be tested.
+
+```tsx
+// Setting a custom property in a React inline style
+style={{ '--story-font-size': TEXT_SIZE_VALUES[textSize], fontSize: 'var(--story-font-size)' } as React.CSSProperties}
+//       ^^^ assignment                                   ^^^ consumption — both are required
+```
+
+**Testing requirement:** When a story introduces or modifies a CSS custom property, the test must assert both sides:
+
+```typescript
+// 1. Assert the property is assigned on the element
+const el = container.querySelector('.story-container')!
+expect(el.style.getPropertyValue('--story-font-size')).toBe('1.5rem')
+
+// 2. Assert the consuming property references the variable (static assertion)
+expect(el).toHaveStyle({ fontSize: 'var(--story-font-size)' })
+```
+
+Checking only the store state (`textSize === 'large'`) is insufficient — if the consumer is removed during a refactor, the store test still passes while the visual feature silently breaks.
+
+### Visual Verification for UI Stories
+
+For any story that changes CSS visual behaviour (text size, spacing, visibility toggles), start the dev server and exercise the feature in a browser before marking the task complete:
+
+```bash
+pnpm dev   # from apps/web
+```
+
+Open `http://localhost:5173`, exercise the specific feature, and confirm the visual change is observable. Store assertion tests cannot detect a "setter without consumer" bug — only the browser can.
+
 ### Data Loading
 
 - `vocab.json` and `kanji-data.json` are served from `apps/web/public/` — fetch at runtime, do not import them as modules
@@ -110,6 +143,10 @@ _Critical rules and patterns that AI agents must follow when implementing code i
 - E2E tests live in `apps/web/e2e/`, file pattern `*.spec.ts`
 - Run via `pnpm test:e2e` in `apps/web`
 - Do not put E2E tests in `src/__tests__/` — Vitest excludes the `e2e/` folder explicitly
+- **Browser pre-flight:** `playwright install` does NOT install Firefox by default. Before running the full E2E suite, verify all browser projects listed in `playwright.config.ts` are installed. Install explicitly: `playwright install chromium firefox webkit` (or by name). A missing browser silently skips that project rather than erroring.
+- **axe-core scope:** When using `@axe-core/playwright`, always scope to WCAG tags to avoid best-practice noise: `new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])`. Unscoped runs surface `page-has-heading-one` and `landmark-one-main` as violations even when the page is structurally valid.
+- **Mobile viewport for mobile-specific UI:** CSS breakpoints (`lg:hidden`) do not apply in jsdom or at the default Playwright desktop viewport. Tests targeting mobile-only UI (e.g. bottom tab bar) must call `page.setViewportSize({ width: 768, height: 1024 })` explicitly.
+- **`test.use()` must be at the top level of a spec file, not inside a `describe` block.** Playwright ignores or errors on nested `test.use()`. Per-device coverage should come from Playwright project config (`playwright.config.ts` projects), not from per-spec `test.use()`.
 
 ### What to test
 
