@@ -1,12 +1,13 @@
 import { cn } from '@/lib/utils'
 import { usePreferenceStore } from '@/stores/preferenceStore'
 import { useShallow } from 'zustand/react/shallow'
+import { SettingsMenu } from '@/components/SettingsMenu'
 
 interface ToolBarProps {
   language: string
 }
 
-/** Reader toolbar with ruby and translation toggles. Exactly 2 interactive controls (regression guard for Epic 4). */
+/** Reader toolbar with 3 interactive controls: ruby toggle, translation toggle, settings. */
 export function ToolBar({ language }: ToolBarProps) {
   const { rubyVisible, transVisible, setRubyVisible, setTransVisible } = usePreferenceStore(
     useShallow((s) => ({
@@ -47,6 +48,7 @@ export function ToolBar({ language }: ToolBarProps) {
       >
         Trans
       </button>
+      <SettingsMenu />
     </div>
   )
 }

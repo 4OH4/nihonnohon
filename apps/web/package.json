@@ -16,6 +16,7 @@
   "dependencies": {
     "@nihonnohon/schema": "workspace:*",
     "@nihonnohon/story-loader": "workspace:*",
+    "@radix-ui/react-popover": "^1.1.15",
     "clsx": "^2.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

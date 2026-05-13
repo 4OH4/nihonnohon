@@ -1,14 +1,21 @@
+import { useRef, useState, useEffect } from 'react'
 import { useLoaderData, useRouteError, isRouteErrorResponse, Link } from 'react-router-dom'
 import type { LoaderFunctionArgs } from 'react-router-dom'
+import { useShallow } from 'zustand/react/shallow'
 import { loadStory } from '@nihonnohon/story-loader'
 import { initVocab } from '@/services/vocabService'
 import { initKanji } from '@/services/kanjiService'
 import { fetchManifest } from '@/utils/storyManifest'
 import { getStory } from '@/services/indexedDbService'
+import { TEXT_SIZE_VALUES } from '@/utils/textSize'
+import { cn } from '@/lib/utils'
 import { AppBar } from '@/components/AppBar'
 import { InfoPanel } from '@/components/InfoPanel'
 import { ToolBar } from '@/components/ToolBar'
 import { SentenceBlock } from '@/components/SentenceBlock'
+import { VocabPanel } from '@/components/VocabPanel'
+import { GrammarPanel } from '@/components/GrammarPanel'
+import { usePreferenceStore } from '@/stores/preferenceStore'
 import type { StoryModel, VocabEntry, VocabSupplementEntry } from '@nihonnohon/schema'
 
 /** Converts vocab supplement entries to VocabEntry shape for lookup store compatibility. */
@@ -76,27 +83,129 @@ export function ReaderError() {
   )
 }
 
-/** Full reader view — displays all sentences with word lookup, ruby and translation toggles. */
+type Tab = 'story' | 'vocabulary' | 'grammar'
+
+const TABS: { id: Tab; label: string }[] = [
+  { id: 'story', label: 'Story' },
+  { id: 'vocabulary', label: 'Vocabulary' },
+  { id: 'grammar', label: 'Grammar' },
+]
+
+/** Full reader view — story text with word lookup, panels, and responsive two-column layout. */
 export function ReaderRoute() {
   const story = useLoaderData() as StoryModel
   const supplementMap = buildSupplementMap(story.vocabSupplement)
+
+  const { textSize, activeTab, setActiveTab } = usePreferenceStore(
+    useShallow(s => ({
+      textSize: s.textSize,
+      activeTab: s.activeTab,
+      setActiveTab: s.setActiveTab,
+    }))
+  )
+
+  // Save and restore story area scroll position when switching away from / back to story tab
+  const storyScrollRef = useRef<HTMLDivElement>(null)
+  const [savedScrollTop, setSavedScrollTop] = useState(0)
+
+  const switchTab = (tab: Tab) => {
+    if (activeTab === 'story' && tab !== 'story' && storyScrollRef.current) {
+      setSavedScrollTop(storyScrollRef.current.scrollTop)
+    }
+    setActiveTab(tab)
+  }
+
+  useEffect(() => {
+    if (activeTab === 'story' && storyScrollRef.current) {
+      storyScrollRef.current.scrollTop = savedScrollTop
+    }
+  }, [activeTab]) // intentionally omits savedScrollTop — only fires when tab changes TO story
 
   return (
     <div className="flex flex-col h-dvh bg-paper-bg">
       <AppBar />
       <InfoPanel story={story} />
       <ToolBar language={story.language} />
-      <div
-        className="flex-1 overflow-y-auto p-4"
-        style={{ fontSize: 'var(--story-font-size, 1.25rem)' }}
-      >
-        {story.sentences.map((sentence, i) => (
-          <SentenceBlock
-            key={sentence.id}
-            sentence={sentence}
-            sentenceIndex={i}
-            supplementMap={supplementMap}
-          />
+
+      {/* Content area: single column on mobile, two-column on desktop (lg+) */}
+      <div className="flex-1 flex overflow-hidden">
+
+        {/* Story column: full width on mobile (story tab), left column on desktop (always) */}
+        <div
+          ref={storyScrollRef}
+          className={cn(
+            'overflow-y-auto p-4 w-full',
+            activeTab !== 'story' ? 'hidden lg:block' : 'block',
+            'lg:max-w-[65ch]',
+          )}
+          style={{ '--story-font-size': TEXT_SIZE_VALUES[textSize], fontSize: 'var(--story-font-size)' } as React.CSSProperties}
+        >
+          {story.sentences.map((sentence, i) => (
+            <SentenceBlock
+              key={sentence.id}
+              sentence={sentence}
+              sentenceIndex={i}
+              supplementMap={supplementMap}
+            />
+          ))}
+        </div>
+
+        {/* Desktop right panel: Vocabulary/Grammar tabs — hidden on mobile */}
+        <div className="hidden lg:flex lg:flex-col lg:flex-1 lg:overflow-hidden lg:border-l lg:border-border">
+          <div className="flex border-b border-border bg-surface">
+            {(['vocabulary', 'grammar'] as const).map(tab => (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setActiveTab(tab)}
+                className={cn(
+                  'flex-1 py-2 text-sm capitalize',
+                  (activeTab === tab || (activeTab === 'story' && tab === 'vocabulary'))
+                    ? 'border-b-2 border-accent text-paper-text'
+                    : 'text-muted',
+                )}
+              >
+                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              </button>
+            ))}
+          </div>
+          <div className="flex-1 overflow-y-auto">
+            {activeTab === 'grammar'
+              ? <GrammarPanel grammar={story.grammar} sentences={story.sentences} />
+              : <VocabPanel keywords={story.keywords} vocabSupplement={story.vocabSupplement} />
+            }
+          </div>
+        </div>
+
+        {/* Mobile-only: vocabulary panel (hidden on desktop since it's in right panel) */}
+        <div className={cn('w-full overflow-y-auto', activeTab === 'vocabulary' ? 'block lg:hidden' : 'hidden')}>
+          <VocabPanel keywords={story.keywords} vocabSupplement={story.vocabSupplement} />
+        </div>
+
+        {/* Mobile-only: grammar panel */}
+        <div className={cn('w-full overflow-y-auto', activeTab === 'grammar' ? 'block lg:hidden' : 'hidden')}>
+          <GrammarPanel grammar={story.grammar} sentences={story.sentences} />
+        </div>
+      </div>
+
+      {/* Mobile bottom tab bar — hidden on desktop */}
+      <div className="lg:hidden flex border-t border-border bg-surface" role="tablist" aria-label="Content tabs">
+        {TABS.map(({ id, label }) => (
+          <button
+            key={id}
+            type="button"
+            role="tab"
+            aria-selected={activeTab === id}
+            onClick={() => switchTab(id)}
+            className={cn(
+              'flex-1 py-3 text-sm',
+              activeTab === id
+                ? 'border-b-2 border-accent text-paper-text'
+                : 'text-muted',
+            )}
+          >
+            {label}
+          </button>
         ))}
       </div>
     </div>

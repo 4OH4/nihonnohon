@@ -58,12 +58,12 @@ import { useLoaderData, useRouteError, isRouteErrorResponse } from 'react-router
 import { getStory } from '@/services/indexedDbService'
 
 // ─── AC Tracking ─────────────────────────────────────────────────────────────
-// PRESERVED (Story 2.5 — all 11 component tests unchanged):
+// PRESERVED (Story 2.5 — component tests, updated counts):
 //   - renders all sentences in document order
 //   - InfoPanel idle state shows story title
 //   - word tap updates InfoPanel to found state
 //   - Escape key resets InfoPanel to idle
-//   - ToolBar has exactly 2 interactive controls
+//   - ToolBar has exactly 3 interactive controls (UPDATED from 2 — Story 4.3)
 //   - ルビ label is "ルビ" for Japanese, "Ruby" otherwise
 //   - ruby toggle uses visibility:hidden not display:none
 //   - Trans toggle shows translations
@@ -83,11 +83,19 @@ import { getStory } from '@/services/indexedDbService'
 //   - loader hardcoded to fetch genki-i-ch6-tanaka-letter.json
 //   (component tests mock useLoaderData directly — loader body was never called)
 //
-// NEW (Story 3.4):
+// PRESERVED (Story 3.4):
 //   - loader calls getStory when manifest misses
 //   - loader returns StoryModel from IndexedDB hit
 //   - loader throws 410 Response when IndexedDB also misses
 //   - ReaderError renders "not available on this device" for status 410
+//
+// NEW (Story 4.3):
+//   - ToolBar has exactly 3 controls (updated from 2)
+//   - SettingsMenu opens with spacing and text size controls
+//   - A+ sets textSize to 'large' in preferenceStore
+//   - Bottom tab bar renders Story/Vocabulary/Grammar tabs
+//   - Vocabulary tab shows VocabPanel
+//   - Grammar tab shows GrammarPanel
 
 // ─── Fixtures ────────────────────────────────────────────────────────────────
 
@@ -203,11 +211,11 @@ describe('ReaderRoute', () => {
     expect(useLookupStore.getState().lookupState.status).toBe('idle')
   })
 
-  it('ToolBar has exactly 2 interactive controls', () => {
+  it('ToolBar has exactly 3 interactive controls', () => {
     renderRoute()
     const toolbar = screen.getByRole('toolbar')
     const buttons = within(toolbar).getAllByRole('button')
-    expect(buttons).toHaveLength(2)
+    expect(buttons).toHaveLength(3)
   })
 
   it('ルビ label is "ルビ" when story language is Japanese', () => {
@@ -258,8 +266,48 @@ describe('ReaderRoute', () => {
 
     renderRoute(storyWithSupplement)
     fireEvent.click(screen.getByRole('button', { name: '食べる' }))
-    expect(screen.getByText('to eat (supplement)')).toBeInTheDocument()
+    // Supplement entry appears in InfoPanel and VocabPanel (CSS hides one in practice)
+    expect(screen.getAllByText('to eat (supplement)').length).toBeGreaterThan(0)
     expect(screen.queryByText('to eat')).not.toBeInTheDocument()
+  })
+
+  it('SettingsMenu opens with spacing and text size controls', () => {
+    renderRoute()
+    fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
+    expect(screen.getByText('Spaces')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Smaller text' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Larger text' })).toBeInTheDocument()
+  })
+
+  it('A+ button updates textSize to large and sets --story-font-size CSS property', () => {
+    renderRoute()
+    fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Larger text' }))
+    expect(usePreferenceStore.getState().textSize).toBe('large')
+    // Verify the CSS custom property is set on the story container
+    const storyContainer = screen.getAllByRole('group')[0].parentElement as HTMLElement
+    expect(storyContainer.style.getPropertyValue('--story-font-size')).toBe('1.5rem')
+  })
+
+  it('renders bottom tab bar with Story, Vocabulary, Grammar tabs', () => {
+    renderRoute()
+    expect(screen.getByRole('tab', { name: 'Story' })).toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: 'Vocabulary' })).toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: 'Grammar' })).toBeInTheDocument()
+  })
+
+  it('clicking Vocabulary tab shows vocab panel empty state', () => {
+    renderRoute()
+    fireEvent.click(screen.getByRole('tab', { name: 'Vocabulary' }))
+    // VocabPanel renders in both mobile and desktop slots (CSS hides one at runtime)
+    expect(screen.getAllByText('No vocabulary defined for this story.').length).toBeGreaterThan(0)
+  })
+
+  it('clicking Grammar tab shows grammar panel empty state', () => {
+    renderRoute()
+    fireEvent.click(screen.getByRole('tab', { name: 'Grammar' }))
+    // GrammarPanel renders in both mobile and desktop slots (CSS hides one at runtime)
+    expect(screen.getAllByText('No grammar notes for this story.').length).toBeGreaterThan(0)
   })
 
   it('supplement word with null vocabKey is tappable via supplement', () => {
@@ -280,7 +328,8 @@ describe('ReaderRoute', () => {
 
     renderRoute(storyWithSupplement)
     fireEvent.click(screen.getByRole('button', { name: 'まいあさ' }))
-    expect(screen.getByText('every morning')).toBeInTheDocument()
+    // 'every morning' appears in InfoPanel and VocabPanel (CSS hides one in practice)
+    expect(screen.getAllByText('every morning').length).toBeGreaterThan(0)
   })
 })
 

@@ -1,5 +1,13 @@
 # Deferred Work
 
+## Deferred from: code review of 4-3-responsive-layout-and-settingsmenu (2026-05-13)
+
+- **Desktop right-panel tab label duplication:** Desktop tab buttons compute label via `tab.charAt(0).toUpperCase() + tab.slice(1)` rather than looking up from the `TABS` constant used by the mobile tab bar. A future label rename diverges silently between mobile and desktop. [ReaderRoute.tsx — desktop right panel tab buttons]
+- **`activeTab` localStorage not validated:** Persisted `activeTab` is rehydrated without checking it's one of `'story' | 'vocabulary' | 'grammar'`. An invalid stored value causes an unknown tab state on startup. Guard belongs in preferenceStore `migrate` or `onRehydrateStorage` callback. [preferenceStore.ts]
+- **No test for bottom tab bar absence on desktop:** The `lg:hidden` class is CSS-based and unverifiable in jsdom. Cover in Playwright E2E suite (Story 4.4). [ReaderRoute.test.tsx]
+- **No test for story scroll restoration on tab switch:** jsdom does not implement `scrollTop` behavior. Cover in Playwright E2E suite (Story 4.4). [ReaderRoute.test.tsx]
+- **`getAllByText().length > 0` assertions could be more precise:** Four ReaderRoute tests use `toBeGreaterThan(0)` instead of an exact count — acceptable given CSS-responsive dual DOM rendering but hides count regressions. Consider tightening when layout is stable. [ReaderRoute.test.tsx]
+
 ## Deferred from: code review of 4-2-grammar-panel-and-sentence-highlighting (2026-05-13)
 
 - **Out-of-bounds SentenceModel.grammar indices silently mute all items:** If a sentence's `grammar: number[]` contains an index beyond `StoryModel.grammar.length - 1`, that index is added to `highlightedIndices` but never matches any `i`, so all items are muted despite no valid highlighted index. Silent-correct in practice (loader architecture forbids UI re-validation); address if a story authoring quality issue produces out-of-range grammar references. [GrammarPanel.tsx:17]
