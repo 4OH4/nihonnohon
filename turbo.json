@@ -7,11 +7,11 @@
       "cache": true
     },
     "build": {
-      "dependsOn": ["^build", "build-vocab"],
+      "dependsOn": ["^build", "//#build-vocab"],
       "outputs": ["dist/**"]
     },
     "dev": {
-      "dependsOn": ["^build", "build-vocab"],
+      "dependsOn": ["^build", "//#build-vocab"],
       "persistent": true,
       "cache": false
     },
