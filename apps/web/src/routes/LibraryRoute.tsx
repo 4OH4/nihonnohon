@@ -1,8 +1,10 @@
-import { useState, useMemo } from 'react'
-import { useLoaderData, useRevalidator } from 'react-router-dom'
+import { useState, useMemo, useRef, useEffect } from 'react'
+import { useLoaderData, useRevalidator, useNavigate } from 'react-router-dom'
+import { loadStory, LoaderError } from '@nihonnohon/story-loader'
 import { AppBar } from '@/components/AppBar'
 import { StoryCard } from '@/components/StoryCard'
 import { cn } from '@/lib/utils'
+import { saveStory } from '@/services/indexedDbService'
 import {
   fetchManifest,
   parseDifficultySource,
@@ -10,6 +12,21 @@ import {
   type ManifestEntry,
   type DifficultySource,
 } from '@/utils/storyManifest'
+
+const FORMAT_SPEC_URL =
+  'https://github.com/rupertthomas/nihonnohon/blob/main/schemas/story.v1.json'
+
+/** User-facing first line of the upload error message. */
+function errorTitle(code: LoaderError['code']): string {
+  switch (code) {
+    case 'SCHEMA_INVALID':
+      return "This doesn't look like a valid Nihon no Hon story."
+    case 'UNSUPPORTED_VERSION':
+      return "This story uses a format version this app doesn't support."
+    case 'PARSE_FAILED':
+      return "This file couldn't be read as a story."
+  }
+}
 
 /** React Router loader — fetches and validates the story manifest. */
 export async function loader(): Promise<ManifestEntry[]> {
@@ -43,8 +60,19 @@ function selectClass(active: boolean) {
 /** Library landing page — displays all stories with source and chapter difficulty filters. */
 export function LibraryRoute() {
   const entries = useLoaderData() as ManifestEntry[]
+  const navigate = useNavigate()
   const [source, setSource] = useState<DifficultySource | 'All'>('All')
   const [chapter, setChapter] = useState<string>('All')
+  const [uploadError, setUploadError] = useState<LoaderError | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  // Dismiss upload error when user clicks anywhere outside the error panel
+  useEffect(() => {
+    if (!uploadError) return
+    const dismiss = () => setUploadError(null)
+    document.addEventListener('click', dismiss)
+    return () => document.removeEventListener('click', dismiss)
+  }, [uploadError])
 
   // Unique sources present in the manifest, sorted alphabetically
   const availableSources = useMemo<DifficultySource[]>(() => {
@@ -90,6 +118,35 @@ export function LibraryRoute() {
   const resetFilter = () => {
     setSource('All')
     setChapter('All')
+  }
+
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setUploadError(null)
+    const file = e.target.files?.[0]
+    // Reset so re-selecting the same file fires onChange again
+    e.target.value = ''
+    if (!file) return
+
+    const reader = new FileReader()
+    reader.onload = async (event) => {
+      const text = event.target?.result as string
+      try {
+        // loadStory handles JSON.parse internally — throws LoaderError on any failure
+        loadStory(text)
+        // Parse again to get the object for IndexedDB storage
+        const rawJson = JSON.parse(text) as unknown
+        const uuid = crypto.randomUUID()
+        await saveStory(uuid, rawJson)
+        navigate(`/read/${uuid}`)
+      } catch (err) {
+        if (err instanceof LoaderError) {
+          setUploadError(err)
+        } else {
+          setUploadError(new LoaderError('PARSE_FAILED', 'An unexpected error occurred. Please try again.'))
+        }
+      }
+    }
+    reader.readAsText(file)
   }
 
   return (
@@ -157,12 +214,42 @@ export function LibraryRoute() {
             >
               Reset filter
             </button>
-            {/* Placeholder — Story 3.4 wires the file picker */}
-            <button type="button" className="text-sm underline text-muted">
-              Load a story from your device
-            </button>
           </div>
         )}
+
+        {/* File upload CTA — always visible at bottom of list */}
+        <div className="mt-8 text-center">
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="text-sm underline text-muted"
+          >
+            Load a story from your device
+          </button>
+          {uploadError && (
+            <div className="mt-3 text-left max-w-sm mx-auto" onClick={e => e.stopPropagation()}>
+              <p className="text-error text-sm">{errorTitle(uploadError.code)}</p>
+              {uploadError.code === 'SCHEMA_INVALID' && (
+                <p className="text-error text-xs mt-1 font-mono">{uploadError.message}</p>
+              )}
+              <a
+                href={FORMAT_SPEC_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs underline text-muted mt-1 inline-block"
+              >
+                View the story format documentation
+              </a>
+            </div>
+          )}
+        </div>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".json"
+          className="hidden"
+          onChange={handleFileChange}
+        />
       </main>
     </div>
   )

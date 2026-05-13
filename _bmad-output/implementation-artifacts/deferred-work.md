@@ -1,5 +1,15 @@
 # Deferred Work
 
+## Deferred from: code review of 3-4-local-file-upload-and-validation (2026-05-13)
+
+- **`saveStory` resolves before transaction commits:** `request.onsuccess` fires before `tx.oncomplete`; use `tx.oncomplete` to resolve and wire `tx.onerror`/`tx.onabort` to reject so callers get a real rejection on quota-exceeded or abort. [indexedDbService.ts:29]
+- **Non-`LoaderError` from `saveStory` silently swallowed:** The `catch` block in `handleFileChange` only handles `LoaderError`; a native IDB rejection (quota, permission) is discarded with no user feedback. Add a fallback `else` branch with a generic error message. [LibraryRoute.tsx:handleFileChange]
+- **Concurrent `openDb()` race:** If two callers both see `db === null` before the first open settles, each fire a separate `indexedDB.open()`. Benign today (no parallel IDB calls in current flows), but the unclosed extra connection will block future DB version upgrades.
+- **`loadStory(text)` return value discarded in `handleFileChange`:** Called purely for validation; raw JSON stored via a separate `JSON.parse(text)`. Contract works correctly (IDB stores wire format; loader re-validates on read) but is non-obvious to future readers.
+- **`_resetDb` exported from production module without env guard:** Test-only helper is callable from any app code. Consistent with `_resetVocab`/`_resetKanji` precedent; consider a `TEST_ONLY` comment or moving to a separate test-utils module if the pattern grows.
+- **Manifest ID / UUID collision:** A library slug equal to a locally-stored UUID would shadow the local upload permanently (manifest checked first). Vanishingly unlikely given human-readable slug vs UUID formats, but worth noting before any non-slug manifest IDs are introduced.
+- **`fetchManifest` called on every reader navigation:** No client-side cache; pre-existing gap. Browser cache mitigates in practice. Relevant if latency SLOs are tightened.
+
 ## Deferred from: code review of 2-5-minimum-viable-reader-route (2026-05-13)
 
 - **`buildSupplementMap` not memoized:** Called on every render of `ReaderRoute`, allocating a new `Map` each time. Wrap with `useMemo(() => buildSupplementMap(story.vocabSupplement), [story.vocabSupplement])` before adding `React.memo` to `SentenceBlock` in a future refactor.

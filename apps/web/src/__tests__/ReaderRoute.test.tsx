@@ -48,8 +48,14 @@ vi.mock('@/services/kanjiService', async (importOriginal) => {
   return { ...mod, initKanji: vi.fn().mockResolvedValue(undefined) }
 })
 
+vi.mock('@/services/indexedDbService', async (importOriginal) => {
+  const mod = await importOriginal<typeof import('@/services/indexedDbService')>()
+  return { ...mod, getStory: vi.fn().mockResolvedValue(null) }
+})
+
 // Import after mocks are set up
 import { useLoaderData, useRouteError, isRouteErrorResponse } from 'react-router-dom'
+import { getStory } from '@/services/indexedDbService'
 
 // ─── AC Tracking ─────────────────────────────────────────────────────────────
 // PRESERVED (Story 2.5 — all 11 component tests unchanged):
@@ -64,16 +70,24 @@ import { useLoaderData, useRouteError, isRouteErrorResponse } from 'react-router
 //   - vocab supplement takes precedence over main dict
 //   - supplement word with null vocabKey is tappable via supplement
 //
-// SUPERSEDED (Story 2.5):
-//   - loader hardcoded to fetch genki-i-ch6-tanaka-letter.json
-//   (component tests mock useLoaderData directly — loader body was never called)
-//
-// NEW (Story 3.3):
+// PRESERVED (Story 3.3):
 //   - ReaderError renders "Story not found." for 404
 //   - ReaderError renders fallback for non-404
 //   - ReaderError always shows Back to library link
 //   - loader returns StoryModel when story ID found in manifest
-//   - loader throws 404 Response when story ID not in manifest
+//
+// SUPERSEDED (Story 3.4):
+//   - "loader throws 404 when not in manifest" → now throws 410 (tries IndexedDB first)
+//
+// SUPERSEDED (Story 2.5):
+//   - loader hardcoded to fetch genki-i-ch6-tanaka-letter.json
+//   (component tests mock useLoaderData directly — loader body was never called)
+//
+// NEW (Story 3.4):
+//   - loader calls getStory when manifest misses
+//   - loader returns StoryModel from IndexedDB hit
+//   - loader throws 410 Response when IndexedDB also misses
+//   - ReaderError renders "not available on this device" for status 410
 
 // ─── Fixtures ────────────────────────────────────────────────────────────────
 
@@ -321,8 +335,10 @@ describe('loader', () => {
     expect(vi.mocked(fetch)).toHaveBeenCalledWith('/stories/test-story.json')
   })
 
-  it('throws a 404 Response when story ID is not in manifest', async () => {
+  it('throws a 410 Response when story ID is not in manifest and not in IndexedDB', async () => {
+    // Supersedes Story 3.3 "throws 404 when not in manifest" — loader now tries IndexedDB first
     vi.mocked(fetchManifest).mockResolvedValue([])
+    vi.mocked(getStory).mockResolvedValue(null)
 
     const error = await loader({
       params: { storyId: 'nonexistent' },
@@ -330,6 +346,42 @@ describe('loader', () => {
     } as LoaderFunctionArgs).catch(e => e)
 
     expect(error).toBeInstanceOf(Response)
-    expect((error as Response).status).toBe(404)
+    expect((error as Response).status).toBe(410)
+  })
+})
+
+// ─── Loader Tests — IndexedDB Fallback (NEW — Story 3.4) ─────────────────────
+
+describe('loader — IndexedDB fallback', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  it('returns StoryModel from IndexedDB when ID not in manifest', async () => {
+    vi.mocked(fetchManifest).mockResolvedValue([])
+    vi.mocked(getStory).mockResolvedValue({ schema_version: '1' })
+    vi.mocked(loadStory).mockReturnValue(baseStory)
+
+    const result = await loader({
+      params: { storyId: 'some-uuid' },
+      request: new Request('http://localhost/read/some-uuid'),
+    } as LoaderFunctionArgs)
+
+    expect(result).toEqual(baseStory)
+    expect(vi.mocked(getStory)).toHaveBeenCalledWith('some-uuid')
+  })
+})
+
+// ─── ReaderError — Storage Not Found (NEW — Story 3.4) ───────────────────────
+
+describe('ReaderError — storage not found', () => {
+  it('renders "not available on this device" for status 410', () => {
+    vi.mocked(useRouteError).mockReturnValue({
+      status: 410, statusText: 'Gone', internal: true, data: '',
+    })
+    vi.mocked(isRouteErrorResponse).mockReturnValue(true)
+    render(<MemoryRouter><ReaderError /></MemoryRouter>)
+    expect(screen.getByText('This story is not available on this device.')).toBeInTheDocument()
+    expect(screen.getByText('← Back to library')).toBeInTheDocument()
   })
 })
