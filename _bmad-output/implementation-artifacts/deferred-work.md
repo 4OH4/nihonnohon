@@ -1,5 +1,13 @@
 # Deferred Work
 
+## Deferred from: code review of 4-4-credits-seo-polish-and-playwright-e2e-suite (2026-05-13)
+
+- **`/credits` route missing `errorElement`:** A render crash in CreditsRoute shows a blank page with no recovery path. CreditsRoute is static-only today so risk is very low, but consistency with other routes (which have `errorElement`) would be cleaner. Add `errorElement: <LibraryError />` when error boundaries are reviewed. [router.tsx]
+- **`CreditsRoute` `document.title` strict-mode double-invoke:** React 18 strict mode runs effects twice; on second mount, `prev` has already been set to `'Credits — Nihon no Hon'`, so the cleanup restores the wrong title. Production-only effects don't double-invoke; dev-only concern. Revisit if title restoration bugs surface. [CreditsRoute.tsx]
+- **CC licence version number precision:** Attribution text says "Creative Commons Attribution-ShareAlike licence" without specifying "4.0 International". Technically incomplete; correct to "CC BY-SA 4.0" before public v1 release. [CreditsRoute.tsx]
+- **Duplicate E2E upload tests:** `'valid story file — reader loads'` and `'optional-fields-absent story — reader loads normally'` both upload the same fixture. Second test is retained for its difficulty-badge absence assertion, but the first sentence overlap could be trimmed.
+- **Visual regression snapshot baseline drift:** Snapshot tests don't explicitly reset `localStorage` between runs. Each Playwright test gets a fresh page context so this is currently safe, but worth noting if shared-context patterns are introduced.
+
 ## Deferred from: code review of 4-3-responsive-layout-and-settingsmenu (2026-05-13)
 
 - **Desktop right-panel tab label duplication:** Desktop tab buttons compute label via `tab.charAt(0).toUpperCase() + tab.slice(1)` rather than looking up from the `TABS` constant used by the mobile tab bar. A future label rename diverges silently between mobile and desktop. [ReaderRoute.tsx — desktop right panel tab buttons]

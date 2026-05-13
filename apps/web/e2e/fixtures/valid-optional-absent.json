@@ -1,0 +1,16 @@
+{
+  "schema_version": "1",
+  "id": "test-optional-absent",
+  "title": "Optional Fields Absent",
+  "title_ja": "テスト",
+  "language": "Japanese",
+  "description": "A test story with all optional fields absent.",
+  "sentences": [
+    {
+      "id": "s1",
+      "words": ["こんにちは", "。"],
+      "vocab_keys": [null, null]
+    }
+  ],
+  "metadata": {}
+}

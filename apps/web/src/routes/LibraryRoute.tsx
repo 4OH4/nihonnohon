@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from 'react'
-import { useLoaderData, useRevalidator, useNavigate } from 'react-router-dom'
+import { useLoaderData, useRevalidator, useNavigate, Link } from 'react-router-dom'
 import { loadStory, LoaderError } from '@nihonnohon/story-loader'
 import { AppBar } from '@/components/AppBar'
 import { StoryCard } from '@/components/StoryCard'
@@ -250,6 +250,13 @@ export function LibraryRoute() {
           className="hidden"
           onChange={handleFileChange}
         />
+
+        {/* Credits link */}
+        <div className="mt-6 text-center">
+          <Link to="/credits" className="text-xs text-muted underline">
+            Credits
+          </Link>
+        </div>
       </main>
     </div>
   )

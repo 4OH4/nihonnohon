@@ -25,6 +25,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
     "@nihonnohon/eslint-config": "workspace:*",
     "@nihonnohon/typescript-config": "workspace:*",
     "@playwright/test": "^1.44.0",
