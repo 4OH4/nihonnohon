@@ -14,7 +14,7 @@ import {
 } from '@/utils/storyManifest'
 
 const FORMAT_SPEC_URL =
-  'https://github.com/4OH4/nihonnohon/blob/main/schemas/story.v1.json'
+  'https://github.com/4OH4/nihonnohon/blob/main/packages/schema/schemas/story.v1.json'
 
 /** User-facing first line of the upload error message. */
 function errorTitle(code: LoaderError['code']): string {
