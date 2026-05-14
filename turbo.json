@@ -19,7 +19,7 @@
       "dependsOn": ["^build"]
     },
     "test:unit": {
-      "dependsOn": ["^build", "build-vocab"]
+      "dependsOn": ["^build", "//#build-vocab"]
     },
     "test:e2e": {
       "dependsOn": ["build"],
