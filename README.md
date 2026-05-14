@@ -2,6 +2,8 @@
 
 A Japanese reading practice web app. Read graded stories word-by-word with instant vocabulary lookup, furigana annotations, kanji breakdown, and grammar notes.
 
+_Author note: I've been learning Japanese for a couple of years now, and what I've found really helpful is reading texts at the right proficiency level that use the vocabulary and grammar I am studying. This is a reader app that is highly optimized for learning Japanese, and I'm building a story library with fine-grained difficulty levels, using generative AI._
+
 ---
 
 ## Features
