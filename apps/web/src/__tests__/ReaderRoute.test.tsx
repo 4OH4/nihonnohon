@@ -252,7 +252,7 @@ describe('ReaderRoute', () => {
     const storyWithSupplement: StoryModel = {
       ...baseStory,
       vocabSupplement: [
-        { word: '食べる', hiragana: 'たべる', translation: 'to eat (supplement)' },
+        { key: 1, word: '食べる', hiragana: 'たべる', translation: 'to eat (supplement)' },
       ],
       sentences: [{
         id: 's1',
@@ -314,7 +314,7 @@ describe('ReaderRoute', () => {
     const storyWithSupplement: StoryModel = {
       ...baseStory,
       vocabSupplement: [
-        { word: 'まいあさ', hiragana: 'まいあさ', translation: 'every morning' },
+        { key: 2001, word: 'まいあさ', hiragana: 'まいあさ', translation: 'every morning' },
       ],
       sentences: [{
         id: 's1',

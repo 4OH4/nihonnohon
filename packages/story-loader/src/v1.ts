@@ -7,6 +7,7 @@ const ajv = new Ajv()
 const validate = ajv.compile(schema)
 
 interface WireVocabEntry {
+  key: number
   word: string
   hiragana: string
   translation: string
@@ -83,7 +84,7 @@ export function loadV1(raw: unknown): StoryModel {
 }
 
 function mapVocabEntry(e: WireVocabEntry): VocabSupplementEntry {
-  return { word: e.word, hiragana: e.hiragana, translation: e.translation }
+  return { key: e.key!, word: e.word, hiragana: e.hiragana, translation: e.translation }
 }
 
 function mapSentence(s: WireSentence): SentenceModel {

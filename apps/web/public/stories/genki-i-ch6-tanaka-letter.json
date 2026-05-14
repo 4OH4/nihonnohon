@@ -7,9 +7,9 @@
   "difficulty": "Genki I Ch.6",
   "description": "Mary writes a letter about her daily routine as a university student in Japan.",
   "keywords": [
-    { "word": "てがみ", "hiragana": "てがみ", "translation": "letter" },
-    { "word": "まいあさ", "hiragana": "まいあさ", "translation": "every morning" },
-    { "word": "でんしゃ", "hiragana": "でんしゃ", "translation": "train" }
+    { "key": 204, "word": "てがみ", "hiragana": "てがみ", "translation": "letter" },
+    { "key": 2001, "word": "まいあさ", "hiragana": "まいあさ", "translation": "every morning" },
+    { "key": 2002, "word": "でんしゃ", "hiragana": "でんしゃ", "translation": "train" }
   ],
   "grammar": [
     "Verb ます-form: polite present/future tense",
@@ -17,8 +17,8 @@
     "Expressing sequence with てから (after doing; and then)"
   ],
   "vocab_supplement": [
-    { "word": "まいあさ", "hiragana": "まいあさ", "translation": "every morning" },
-    { "word": "てがみ", "hiragana": "てがみ", "translation": "letter" }
+    { "key": 2001, "word": "まいあさ", "hiragana": "まいあさ", "translation": "every morning" },
+    { "key": 204, "word": "てがみ", "hiragana": "てがみ", "translation": "letter" }
   ],
   "metadata": {},
   "sentences": [

@@ -83,11 +83,11 @@ describe('VocabItem', () => {
 
 describe('VocabPanel', () => {
   const keywords: VocabSupplementEntry[] = [
-    { word: '猫', hiragana: 'ねこ', translation: 'cat' },
-    { word: '犬', hiragana: 'いぬ', translation: 'dog' },
+    { key: 1000, word: '猫', hiragana: 'ねこ', translation: 'cat' },
+    { key: 1001, word: '犬', hiragana: 'いぬ', translation: 'dog' },
   ]
   const supplement: VocabSupplementEntry[] = [
-    { word: '魚', hiragana: 'さかな', translation: 'fish' },
+    { key: 1002, word: '魚', hiragana: 'さかな', translation: 'fish' },
   ]
 
   it('shows empty state when both keywords and supplement are empty', () => {

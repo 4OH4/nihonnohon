@@ -19,8 +19,8 @@ describe('loadStory', () => {
       expect(result.titleJa).toBe('完全なテストストーリー')
       expect(result.difficulty).toBe('Genki I Ch.6')
       expect(result.grammar).toEqual(['て-form for connecting actions'])
-      expect(result.keywords).toEqual([{ word: '田中', hiragana: 'たなか', translation: 'Tanaka (name)' }])
-      expect(result.vocabSupplement).toEqual([{ word: '先生', hiragana: 'せんせい', translation: 'teacher' }])
+      expect(result.keywords).toEqual([{ key: 1000, word: '田中', hiragana: 'たなか', translation: 'Tanaka (name)' }])
+      expect(result.vocabSupplement).toEqual([{ key: 1, word: '先生', hiragana: 'せんせい', translation: 'teacher' }])
     })
 
     it('correctly transforms all sentence snake_case fields to camelCase', () => {
