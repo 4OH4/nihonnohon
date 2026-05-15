@@ -31,7 +31,15 @@
       "Bash(Select-Object Name)",
       "Bash(pnpm test:unit --run)",
       "Bash(pnpm test:unit --run --reporter=verbose)",
-      "Bash(\"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" run list --limit 1)"
+      "Bash(\"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" run list --limit 1)",
+      "PowerShell(& \"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" run list --limit 2 2>&1)",
+      "PowerShell(& \"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" run list --limit 1 2>&1)",
+      "PowerShell(& \"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" run watch * 2>&1)",
+      "Bash(pnpm test:unit --reporter=verbose)",
+      "Bash(Get-ChildItem \"C:\\\\repo\\\\nihonnohon\\\\apps\\\\web\\\\public\" -Recurse)",
+      "Bash(Select-Object FullName)",
+      "Bash(pnpm test:unit)",
+      "Bash(pnpm test:e2e --update-snapshots)"
     ]
   }
 }

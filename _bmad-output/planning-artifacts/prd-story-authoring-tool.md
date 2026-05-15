@@ -33,7 +33,7 @@ The nihonnohon Japanese graded reader app is feature-complete and awaiting libra
 
 The Story Authoring Tool is an AI-powered content generation pipeline that transforms an English source story into a fully-annotated, schema-valid nihonnohon story file calibrated to a target Genki chapter difficulty level. It is built in two major versions. **v1** runs locally — a browser UI backed by a Python backend, used by RT to generate library content. **v2** is a cloud-deployed public product: the Python backend on Google Cloud Run, the frontend on Vercel, exposing the same generation pipeline to community authors via a secure, multi-user web interface. v2 is triggered by the launch of the nihonnohon community story-sharing hub and is a committed roadmap item. Architecture and technology choices in v1 (Python + ADK backend, React/Vite/Tailwind frontend) are made with v2's deployment target in mind — the transition from local to cloud is a configuration and infrastructure change, not a rewrite. This PRD covers v1 (M0–M3); v2 requirements will be specified separately.
 
-The tool is delivered across four milestones: M0 (feasibility spike — no UI, validates core generation approach), M1 (local browser UI + Python backend, single-call prompt-grounded generation), M2 (RT-built ReAct agentic workflow with tool-call grounded calibration validation), and M3 (topic-to-story generation prepended to the M2 pipeline).
+The tool is delivered across four milestones: M0 (feasibility spike — no UI, validates core generation approach), M1 (local browser UI + Python backend, single-call prompt-grounded generation), M2 (4-agent ReAct agentic workflow — reasoning, action, grammar checker, final QC — that validates and corrects before returning output), and M3 (topic-to-story generation prepended to the M2 pipeline).
 
 ### What Makes This Special
 
@@ -41,7 +41,7 @@ The tool is delivered across four milestones: M0 (feasibility spike — no UI, v
 
 **Output is schema-native.** The generated file either passes `story.v1.json` validation and loads correctly in the nihonnohon reader, or it is not saved. The parallel array invariant (words, ruby, vocab_keys of equal length per sentence) is enforced before write. Vocabulary not in the Genki list is assigned a supplemental key and placed in `vocab_supplement`, referenced consistently from `vocab_keys`.
 
-**M1 and M2 differ in calibration reliability, not schema contract.** M1 uses prompt-grounded generation (CSVs in system prompt — fast to build, bounded by LLM compliance). M2 uses tool-call grounded generation (ReAct agents explicitly look up and verify each word and grammar point — reliable calibration enforced programmatically). The schema output contract is identical across both milestones.
+**M1 and M2 differ in calibration reliability, not schema contract.** M1 uses prompt-grounded generation (CSVs in system prompt — fast to build, bounded by LLM compliance). M2 uses a 4-agent ReAct workflow (reasoning → action → grammar checker → final QC) that validates and corrects the story before returning output — calibration enforced programmatically rather than relying on LLM compliance alone. The schema output contract and UI are identical across both milestones; M2 adds only a single agent status message line to the progress display.
 
 **No competitor does this.** Existing tools offer fixed human-authored catalogues (Satori Reader, Tadoku) or simplify native Japanese text (Lenguia, LingQ). None offer English source → Genki-chapter-calibrated Japanese → structured JSON output. The intermediate plateau (Genki II / JLPT N4–N3) is the most under-served difficulty band and the primary target.
 
@@ -97,7 +97,7 @@ The tool is delivered across four milestones: M0 (feasibility spike — no UI, v
 
 **Climax (M1):** RT reviews the output — his editorial eye is the quality gate at this milestone. If satisfied, he clicks Save. The tool validates the `id` as a legal filename and runs the full client-side semantic validation suite. If all checks pass, the browser downloads the file as `{id}.json` (UTF-8, no BOM) and a toast confirms the download. RT uploads the file to the nihonnohon reader to verify rendering.
 
-**Climax (M2):** Same UI, but the ReAct agentic loop including the grammar verification agent runs on the backend before returning. The UI only receives output that has passed all LLM-based checks.
+**Climax (M2):** Same UI as M1 plus a single agent status text line in the progress area (e.g., "Planning story structure…", "Checking grammar…"). The 4-agent ReAct loop runs on the backend — reasoning, generation, grammar verification, final QC — before any output reaches the frontend. Sentences that fail grammar verification may be rewritten or dropped; no 1:1 sentence mapping is guaranteed. RT sees the same output textarea and download flow as M1.
 
 **Resolution:** Story verified and downloaded. RT adds it to `manifest.json` alongside other stories at a later point.
 
@@ -170,8 +170,9 @@ The tool is delivered across four milestones: M0 (feasibility spike — no UI, v
 | Clear button (resets all + session state, no confirmation) | 1, 2, 3 | M1 | Frontend |
 | Re-run from original inputs (not textarea) | 2 | M1 | Frontend |
 | Re-run confirmation when manual edits exist | 2 | M1 | Frontend |
-| Grammar verification agent (per sentence, backend only) | 1, 2, 3 | M2 | Backend (ADK ReAct) |
-| All LLM quality checks pass before output reaches UI | 1, 2, 3 | M2 | Backend (ADK ReAct) |
+| 4-agent ReAct loop: reasoning → action → grammar checker → final QC (backend only) | 1, 2, 3 | M2 | Backend (ADK ReAct) |
+| Agent status message line in progress display (single line, updates periodically) | 1, 2, 3 | M2 | Frontend |
+| All agent checks pass before output reaches UI; sentences may be rewritten or dropped | 1, 2, 3 | M2 | Backend (ADK ReAct) |
 | Topic/prompt input mode (Path B) | 3 | M3 | Frontend |
 | English proposal in editable text area + approval gate | 3 | M3 | Frontend |
 | Proceed to Translation action | 3 | M3 | Frontend |
@@ -216,7 +217,7 @@ The tool is delivered across four milestones: M0 (feasibility spike — no UI, v
 
 **Schema-native structured content generation.** The output must satisfy strict inter-field constraints: three parallel arrays per sentence of equal length, grammar indices valid against a story-level array, vocab keys resolved against a reference CSV. Generating this via Pydantic-mapped Gemini structured output and validating it at both generation time (backend) and save time (frontend, post-edit) is a novel application of constrained LLM output for a domain-specific artifact format.
 
-**Two-phase calibration architecture.** M1 (prompt-grounded: fast, integration baseline) and M2 (tool-call grounded: agents programmatically verify each word and grammar point) are designed as an explicit upgrade path with an identical output contract. This pattern — separating "good enough to integrate" from "reliable enough at scale" — is a reproducible model for AI content generation product development.
+**Two-phase calibration architecture.** M1 (prompt-grounded: fast, integration baseline) and M2 (4-agent ReAct workflow: reasoning, action, grammar checker, final QC — calibration enforced programmatically) are designed as an explicit upgrade path with an identical output contract and near-identical UI. This pattern — separating "good enough to integrate" from "reliable enough at scale" — is a reproducible model for AI content generation product development.
 
 ### Market Context & Competitive Landscape
 
@@ -226,7 +227,7 @@ No tool offers the complete pipeline of English source → Genki-chapter-calibra
 
 - **M0 spike:** Single Gemini API call validates core schema generation feasibility before any UI investment
 - **M1 validation:** RT's editorial review of generated stories; correction rate tracked informally
-- **M2 validation:** Correction rate compared against M1 baseline; grammar verification agent provides machine-checkable calibration evidence per sentence
+- **M2 validation:** Correction rate compared against M1 baseline; the grammar checker agent provides machine-checkable calibration evidence at story level (sentences rewritten or dropped as needed)
 - **Ongoing:** User feedback on story quality and difficulty accuracy via the nihonnohon app
 
 ### Risk Mitigation
@@ -276,15 +277,20 @@ The Story Authoring Tool is a single-page application (React/Vite) sharing the s
 - **FR2:** Author can specify a target Genki difficulty level by chapter
 - **FR3:** Author can initiate story generation from the provided inputs
 - **FR4:** Author can clear all current inputs, output, and session state in a single action
-- **FR5:** System restores the most recent session (inputs and generated output) when the tool is reopened, using client-side storage only
+- **FR5:** System restores the most recent session (inputs and generated output) when the tool is reopened, using client-side storage only. Session state is keyed by mode; switching modes does not restore the other mode's output.
 - **FR6:** Author can provide a topic description as an alternative to a full English story *(M3)*
 - **FR46:** Author can optionally provide additional steering instructions to further direct the LLM's output; these instructions are submitted alongside the source story and calibration data *(M1 — collapsible panel with hint text)*
 - **FR50:** System validates that required inputs are present and within acceptable bounds before initiating a generation request
+- **FR52:** Author can switch between "Convert a story" mode (Path A — English prose input) and "Generate from topic" mode (Path B — topic description input) using a mode selector. Switching mode clears any generated output and manual edits; if unsaved manual edits exist at the time of switching, the system presents an inline confirmation before clearing *(M1 for mode selector; Path B functionality gated on M3)*
+- **FR53:** Author can configure the LLM generation temperature via a slider in the settings panel. The value is passed to the backend as generation metadata. *(M1)*
+- **FR54:** Author can configure grammar point distribution — whether generation should draw evenly from all grammar points studied to date, or weight towards recently introduced grammar — using a three-position control in the settings panel. The value is passed to the backend as `grammar_distribution: 0 | 1 | 2`. *(M1)*
+- **FR55:** In Generate from topic mode, author can specify a target story length using preset options (Short ~100 words, Medium ~250 words, Long ~400 words) or a custom numeric value (maximum 1000 words). The resolved word count is passed to the backend as `target_word_count`. This setting is not applicable in Convert a story mode. *(M3)*
 
 ### Story Generation
 
 - **FR7:** System generates a complete, curriculum-calibrated Japanese story from an English source story
-- **FR8:** System generates an English story from a topic description as a reviewable intermediate step *(M3)*
+- **FR8:** System generates an English story from a topic description as a reviewable intermediate step; the author reviews and may freely edit the draft before clicking "Convert to Japanese" to proceed *(M3)*
+- **FR56:** In Generate from topic mode, the author can request a backend-generated topic suggestion for the selected Genki chapter. If the topic field is empty, the suggestion replaces the content immediately. If the topic field already contains content, the system presents an inline confirmation before replacing. The backend generates a single-sentence topic string calibrated to the selected chapter. *(M3)*
 - **FR9:** System indicates that generation is in progress and has not stalled
 - **FR10:** System handles generation failure gracefully, preserving all author inputs and offering retry
 - **FR11:** System generates a unique story identifier that embeds the textbook, chapter, and content context
@@ -309,7 +315,7 @@ The Story Authoring Tool is a single-page application (React/Vite) sharing the s
 - **FR21:** Author can re-run story generation from the original inputs, replacing the current output
 - **FR22:** System notifies the author before re-running generation when unsaved manual edits exist in the output
 - **FR23:** Author can review and edit an English story proposal before proceeding to translation *(M3)*
-- **FR24:** System requires the author to explicitly confirm the English proposal before proceeding to translation, and revokes confirmation if the proposal is subsequently edited *(M3)*
+- **FR24:** The author initiates Japanese conversion by clicking "Convert to Japanese"; this click is the confirmation gesture. No separate approval step is required. The author may edit the English draft freely before clicking; clicking the button immediately starts conversion with the current draft content. *(M3)*
 
 ### Output Validation
 
@@ -372,6 +378,10 @@ The Story Authoring Tool is a single-page application (React/Vite) sharing the s
 - **NFR12:** Every story file must conform to `story.v1.json` (JSON Schema Draft-07) with `additionalProperties: false` enforced at every object node
 - **NFR13:** Generated story files are encoded as UTF-8 without byte-order mark
 
+### Topic Suggestion
+
+- **NFR14:** Suggest-topic requests (`POST /suggest-topic`) complete within 10 seconds; the frontend applies a 300ms debounce on the trigger button and the backend enforces a minimum 2-second per-session cooldown between requests *(M3)*
+
 ## Project Scoping & Phased Development
 
 ### MVP Strategy
@@ -397,31 +407,36 @@ The Story Authoring Tool is a single-page application (React/Vite) sharing the s
 
 **Must-have capabilities:**
 - React/Vite SPA + ADK `api_server` Python backend, AG-UI protocol
-- English story text area, Genki chapter selector, optional steering panel, Generate button
+- Mode selector: "Convert a story" (Path A) / "Generate from topic" (Path B) — Path B functionality deferred to M3; mode selector UI ships in M1
+- English story text area (Convert mode), Genki chapter selector, optional steering panel, "Convert to Japanese" button
+- Settings panel (gear icon, slides from right): LLM temperature slider, grammar point distribution three-position control
 - Pre-flight input validation; 60-second timeout with Retry; generation cancellation (Generate → Stop)
 - Backend health monitoring on load + 60s re-verification
-- Prompt-grounded calibration: `genki1vocab.csv` + `Genki_grammar_for_AI_generation.csv` in system prompt
+- Prompt-grounded calibration: `genki1vocab.csv` + `Genki_grammar_for_AI_generation.csv` in system prompt; temperature and grammar distribution passed as generation metadata
 - Pydantic-mapped Gemini structured output; backend validates JSON syntax + parallel arrays before returning
 - LLM-generated `id` field (textbook+chapter + content summary)
 - Editable JSON output textarea; Re-run from original inputs with edit-warning prompt
 - Client-side validation on Save: JSON syntax + full semantic rule suite; download blocked until all pass
 - Browser file download as `{id}.json` (UTF-8, no BOM) + download toast
-- Client-side session state restore on reload; Clear button (resets all, no confirmation)
+- Client-side session state restore on reload (mode-keyed); Clear button (resets all, no confirmation)
 - `.env` file for Gemini API key (gitignored); content provenance note in UI
 
 **Gate:** One valid story generated and downloaded in under 5 minutes. nihonnohon v1 launches.
 
 ### M2 — ReAct Agentic Workflow
 
-**Core user journeys:** Journey 1 + 2 (same UI, improved backend quality).
+**Core user journeys:** Journey 1 + 2 (same UI as M1 plus a single agent status message line; improved backend quality).
 
 **Must-have capabilities:**
-- RT-built ReAct agentic workflow using Google ADK; lighter Gemini model (TBD at M2 start)
-- Tool-call grounded calibration: agents explicitly look up vocab chapter membership and available grammar points
-- Grammar verification agent: confirms each sentence uses its annotated grammar points (backend only)
-- Agent loop validates and corrects before any output is returned to the UI
-- `sentence.id` used internally by agents for targeted sentence correction; no per-sentence UI in M2
-- Identical output contract and UI to M1
+- 4-agent ReAct agentic workflow using Google ADK; lighter Gemini model (TBD at M2 start):
+  - **Reasoning agent** — plans story structure and calibration approach
+  - **Action agent** — generates the story
+  - **Grammar checker agent** — verifies each sentence's annotated grammar points match the text; sentences that fail may be rewritten or dropped (no guaranteed 1:1 input-to-output sentence mapping)
+  - **Final QC agent** — reviews the complete story for quality and calibration
+- Agent loop validates and corrects before any output is returned to the UI; if correction budget exhausted, `ERROR` is emitted
+- Backend emits `AGENT_STATUS` events periodically (e.g., "Planning story structure…", "Generating story…", "Checking grammar…", "Running quality review…")
+- Frontend displays current agent status as a single text line below the M1 shimmer progress bar — no sentence-level rows, no substitution surfacing, no post-generation audit summary
+- Identical output JSON contract and download flow to M1
 
 **Gate:** RT's editorial review finds fewer semantic errors per story than M1 baseline.
 
@@ -430,10 +445,13 @@ The Story Authoring Tool is a single-page application (React/Vite) sharing the s
 **Core user journeys:** Journey 3 (topic → English proposal → translation).
 
 **Must-have capabilities:**
-- Topic/prompt input mode (Path B)
-- English story generation step; proposal displayed in editable text area with approval gate
-- Approval state tied to content (edit revokes until Proceed clicked again)
-- Proceed to Translation feeds M2 pipeline; same Save/download flow as M1
+- Topic/prompt input field activated in Generate from topic mode (mode selector ships in M1; topic input activates at M3)
+- "Suggest a topic" button in topic field: fires immediately when field is empty; shows inline confirmation when field has content; separate `POST /suggest-topic` backend endpoint (not the generation pipeline)
+- Target story length setting in settings panel: Short (~100w) / Medium (~250w) / Long (~400w) / Custom (≤1000w); active only in Generate from topic mode; passes `target_word_count` to backend
+- English story generation step; proposal displayed in editable text area; author edits freely
+- "Convert to Japanese" button initiates translation directly — no separate approval step; clicking is the confirmation
+- English draft preserved in frontend state throughout Japanese conversion; restored to textarea on conversion failure — author does not need to regenerate the English story
+- Path B feeds the M2 pipeline for Japanese conversion; same Save/download flow as M1
 
 ### v2 — Community Deployment
 
