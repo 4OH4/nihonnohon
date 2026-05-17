@@ -21,6 +21,27 @@ describe('authoringStore — generate() from idle', () => {
   })
 })
 
+describe('authoringStore — setPathMode mode-change', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('clears outputJson and resets to idle when mode actually changes', () => {
+    useAuthoringStore.getState()._setOutputJson('{"test":true}')
+    expect(useAuthoringStore.getState().outputJson).toBeTruthy()
+    useAuthoringStore.getState().setPathMode('B')  // A → B
+    expect(useAuthoringStore.getState().outputJson).toBeNull()
+    expect(useAuthoringStore.getState().phase).toBe('idle')
+    expect(useAuthoringStore.getState().pathMode).toBe('B')
+  })
+
+  it('is a no-op when same mode is selected', () => {
+    useAuthoringStore.getState()._setOutputJson('{"test":true}')
+    useAuthoringStore.getState().setPathMode('A')  // already A
+    expect(useAuthoringStore.getState().outputJson).toBeTruthy()
+  })
+})
+
 describe('authoringStore — generate() from error (implicit retry)', () => {
   beforeEach(() => {
     useAuthoringStore.getState()._reset()

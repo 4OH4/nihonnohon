@@ -54,7 +54,7 @@ development_status:
   epic-2: in-progress
   2-1-frontend-project-scaffold-state-machine-and-ag-ui-hook: done
   2-2-m1-production-backend-agent-sse-endpoints-and-cancellation: done
-  2-3-app-shell-backendstatus-modetoggle-and-settingspanel: backlog
+  2-3-app-shell-backendstatus-modetoggle-and-settingspanel: done
   2-4-input-panel-chapter-selector-and-scopechip: backlog
   2-5-ag-ui-sse-lifecycle-and-store-integration: backlog
   2-6-generation-ui-progress-display-stop-button-and-inputsection-collapse: backlog

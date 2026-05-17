@@ -130,7 +130,21 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   setInputText: (v) => set({ inputText: v }),
   setChapterTarget: (v) => set({ chapterTarget: v }),
   setSteeringInstructions: (v) => set({ steeringInstructions: v }),
-  setPathMode: (v) => set({ pathMode: v }),
+
+  setPathMode(v) {
+    const { pathMode, phase } = get()
+    if (pathMode === v) return   // no-op if same mode
+    // If the SSE pipeline is active, trigger cancel so the connection closes cleanly.
+    // Phase stays 'cancelling' until _resolveCancel fires; we do not override it here.
+    if (phase === 'generating') get().cancel()
+    const isActive = phase === 'generating' || phase === 'cancelling'
+    set({
+      pathMode: v,
+      outputJson: null,
+      outputIsDirty: false,
+      ...(isActive ? {} : { phase: 'idle' }),
+    })
+  },
   setTemperature: (v) => set({ temperature: v }),
   setGrammarDist: (v) => set({ grammarDist: v }),
 

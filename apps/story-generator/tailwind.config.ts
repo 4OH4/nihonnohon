@@ -15,6 +15,8 @@ export default {
         border:           '#E0D8C8',
         error:            '#C0392B',
         translation:      '#4A7B9D',
+        success:          '#22C55E',
+        warning:          '#F59E0B',
       },
       fontFamily: {
         ja: ['Noto Sans JP', 'system-ui', 'sans-serif'],

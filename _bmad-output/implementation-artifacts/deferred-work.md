@@ -1,5 +1,14 @@
 # Deferred Work
 
+## Deferred from: code review of 2-3-app-shell-backendstatus-modetoggle-and-settingspanel (2026-05-17)
+
+- **Concurrent in-flight `fetch()` in `useBackendStatus`:** No abort of previous call when re-trigger fires. Single-user v1; address if concurrent load grows. [useBackendStatus.ts]
+- **`AbortSignal.timeout` browser support:** Requires Safari ≥ 16.4. All deployment targets meet this; document and accept. [useBackendStatus.ts]
+- **`proposalText` not cleared on mode switch:** Stale Path B proposal persists if user switches modes. M3 / Path B scope — Story 4.x. [authoringStore.ts]
+- **`storedInputs` snapshot missing `pathMode` and `temperature`:** Re-run URL construction in Story 2.6 will need to extend the snapshot; deferred intentionally. [authoringStore.ts / useAgUiRun.ts]
+- **`save()` doesn't return from `downloading` phase:** No `output-clean` transition on download completion. Story 2.8 scope. [authoringStore.ts]
+- **`useAuthoringStore()` full subscription in components:** Components subscribe to entire store; potential unnecessary re-renders at scale. Address when profiling shows need. [ModeToggle.tsx, SettingsPanel.tsx, BackendStatus.tsx]
+
 ## Deferred from: code review of 2-2-m1-production-backend-agent-sse-endpoints-and-cancellation (2026-05-17)
 
 - **Dangling threads on asyncio.TimeoutError:** `asyncio.to_thread` threads can't be cancelled; after a 55s timeout the OS thread continues until TCP timeout. Under concurrent load threads pile up. Single-user v1 won't hit this; address in M2 if concurrent usage grows. [agent.py]
