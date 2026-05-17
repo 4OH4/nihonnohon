@@ -57,7 +57,7 @@ development_status:
   2-2-m1-production-backend-agent-sse-endpoints-and-cancellation: done
   2-3-app-shell-backendstatus-modetoggle-and-settingspanel: done
   2-4-input-panel-chapter-selector-and-scopechip: done
-  2-5-ag-ui-sse-lifecycle-and-store-integration: backlog
+  2-5-ag-ui-sse-lifecycle-and-store-integration: done
   2-6-generation-ui-progress-display-stop-button-and-inputsection-collapse: backlog
   2-7-output-panel-dirty-state-and-re-run: backlog
   2-8-client-side-validation-suite-story-download-and-statsbar: backlog

@@ -1,5 +1,13 @@
 # Deferred Work
 
+## Deferred from: code review of 2-5-ag-ui-sse-lifecycle-and-store-integration (2026-05-17)
+
+- **AC2 timer-cleared proof is indirect:** The test verifies no error fires after 5s following RUN_STARTED, but does not prove `clearTimeout` was actually called. A direct proof would require injecting spy timers. Acceptable for v1. [useAgUiRun.test.ts]
+- **AC4 proposal single-chunk emission:** Proposal buffer path tested with one chunk; the story buffer path (multi-chunk) is tested separately. Cover multi-chunk proposal if the proposal path gains independent buffer logic. [useAgUiRun.test.ts]
+- **AC9 mockEs.close() not verified on cancel:** The SSE connection close on cancellation is handled by the hook's useEffect cleanup (called when phase changes away from generating), not directly asserted. [useAgUiRun.test.ts]
+- **No re-render test with changed createEventSource factory:** If the hook consumer re-renders with a new factory, the old EventSource should be closed. Not required by Story 2.5 ACs. [useAgUiRun.test.ts]
+- **No test for non-generating phase on hook mount:** The no-op guard `if (store.phase !== 'generating' || !store.runId) return` is not directly exercised. Covered implicitly by store phase guards in authoringStore.test.ts. [useAgUiRun.test.ts]
+
 ## Deferred from: code review of 2-4-input-panel-chapter-selector-and-scopechip (2026-05-17)
 
 - **`useBackendStatus` concurrent in-flight fetches:** Pre-existing — see 2-3 deferred section. Also surfaced again in 2-4 context via the `InputPanel` consuming the hook. [useBackendStatus.ts]

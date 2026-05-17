@@ -22,6 +22,26 @@ class MockEventSource {
   }
 }
 
+// ─── Shared setup helper ─────────────────────────────────────────────────────
+
+/** Puts the store in generating phase with inputs set and returns the mockEs + factory. */
+function setupGenerating(
+  inputText = 'A story about Tanaka.',
+  chapter = 'Genki I Ch.6',
+  steering = '',
+) {
+  const mockEs = new MockEventSource()
+  const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+  const store = useAuthoringStore.getState()
+  store.setInputText(inputText)
+  store.setChapterTarget(chapter)
+  if (steering) store.setSteeringInstructions(steering)
+  store.generate()
+  return { mockEs, factory }
+}
+
+// ─── Existing test: RUN_FINISHED mapping (from Story 2.1) ────────────────────
+
 describe('useAgUiRun — RUN_FINISHED mapping', () => {
   beforeEach(() => {
     vi.useFakeTimers()  // P8: prevent 3s/60s timeouts from leaking into teardown
@@ -57,5 +77,375 @@ describe('useAgUiRun — RUN_FINISHED mapping', () => {
     // Store state assertions (synchronous — Zustand updates are immediate)
     expect(useAuthoringStore.getState().outputJson).toBe('{"id":"test"}')
     expect(useAuthoringStore.getState().phase).toBe('output-clean')
+  })
+})
+
+// ─── AC1: SSE URL construction ───────────────────────────────────────────────
+
+describe('useAgUiRun — SSE URL construction', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    vi.restoreAllMocks()
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('factory called with URL containing all required params', () => {
+    const { mockEs: _es, factory } = setupGenerating()
+
+    renderHook(() => useAgUiRun(factory))
+
+    expect(factory).toHaveBeenCalledTimes(1)
+    const url = factory.mock.calls[0][0] as string
+    const params = new URLSearchParams(url.split('?')[1])
+
+    expect(params.get('inputText')).toBe('A story about Tanaka.')
+    expect(params.get('chapter')).toBe('Genki I Ch.6')
+    expect(params.get('pathMode')).toBe('A')
+    expect(params.get('temperature')).toBe('1')
+    expect(params.get('grammar_distribution')).toBe('1')
+    expect(params.get('runId')).toBeTruthy()
+  })
+
+  it('steeringInstructions omitted from URL when empty', () => {
+    const { factory } = setupGenerating('A story.', 'Genki I Ch.3', '')
+
+    renderHook(() => useAgUiRun(factory))
+
+    const url = factory.mock.calls[0][0] as string
+    const params = new URLSearchParams(url.split('?')[1])
+    expect(params.has('steeringInstructions')).toBe(false)
+  })
+
+  it('steeringInstructions included in URL when set', () => {
+    const { factory } = setupGenerating('A story.', 'Genki I Ch.3', 'Use simple sentences.')
+
+    renderHook(() => useAgUiRun(factory))
+
+    const url = factory.mock.calls[0][0] as string
+    const params = new URLSearchParams(url.split('?')[1])
+    expect(params.get('steeringInstructions')).toBe('Use simple sentences.')
+  })
+
+  it('URL runId matches the store runId at generate() time', () => {
+    const { factory } = setupGenerating()
+    const expectedRunId = useAuthoringStore.getState().runId!
+
+    renderHook(() => useAgUiRun(factory))
+
+    const url = factory.mock.calls[0][0] as string
+    const params = new URLSearchParams(url.split('?')[1])
+    expect(params.get('runId')).toBe(expectedRunId)
+  })
+})
+
+// ─── AC2: RUN_STARTED handling ───────────────────────────────────────────────
+
+describe('useAgUiRun — RUN_STARTED handling', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    vi.restoreAllMocks()
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('RUN_STARTED cancels first-event timeout so no error fires at 3s', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    // RUN_STARTED arrives before the 3s window
+    act(() => {
+      mockEs.emit({ type: 'RUN_STARTED', runId: useAuthoringStore.getState().runId })
+    })
+
+    // Advance past the 3s window — no error should fire
+    act(() => {
+      vi.advanceTimersByTime(5_000)
+    })
+
+    expect(useAuthoringStore.getState().phase).toBe('generating')
+    expect(useAuthoringStore.getState().errorCode).toBeNull()
+  })
+})
+
+// ─── AC4: RUN_FINISHED (proposal) ────────────────────────────────────────────
+
+describe('useAgUiRun — RUN_FINISHED proposal flow', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('RUN_FINISHED (proposal) calls _setProposalText and transitions to proposal', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'TEXT_MESSAGE_CHUNK', delta: 'English draft text.' })
+      mockEs.emit({ type: 'RUN_FINISHED', resultType: 'proposal', content: '' })
+    })
+
+    expect(useAuthoringStore.getState().proposalText).toBe('English draft text.')
+    expect(useAuthoringStore.getState().phase).toBe('proposal')
+  })
+})
+
+// ─── AC5: RUN_CANCELLED ──────────────────────────────────────────────────────
+
+describe('useAgUiRun — RUN_CANCELLED', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('RUN_CANCELLED transitions to idle with runId cleared', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_CANCELLED', runId: useAuthoringStore.getState().runId })
+    })
+
+    expect(useAuthoringStore.getState().phase).toBe('idle')
+    expect(useAuthoringStore.getState().runId).toBeNull()
+  })
+
+  it('RUN_CANCELLED preserves all input fields', () => {
+    const { mockEs, factory } = setupGenerating('My story text.', 'Genki I Ch.8')
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_CANCELLED', runId: useAuthoringStore.getState().runId })
+    })
+
+    const state = useAuthoringStore.getState()
+    expect(state.inputText).toBe('My story text.')
+    expect(state.chapterTarget).toBe('Genki I Ch.8')
+  })
+})
+
+// ─── AC6: 3-second first-event timeout ──────────────────────────────────────
+
+describe('useAgUiRun — first-event timeout', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    vi.restoreAllMocks()
+    vi.unstubAllGlobals()
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('3s first-event timeout triggers health check and sets BACKEND_UNAVAILABLE when health fails', async () => {
+    // Capture mock to assert fetch was called with /health
+    const fetchMock = vi.fn().mockRejectedValue(new Error('network error'))
+    vi.stubGlobal('fetch', fetchMock)
+
+    const { factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    // vi.advanceTimersByTimeAsync advances timers AND flushes async microtasks
+    // triggered by those timers — required for the async setTimeout callback body
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(3_000)
+    })
+
+    expect(fetchMock).toHaveBeenCalledWith('/health', expect.anything())
+    expect(useAuthoringStore.getState().phase).toBe('error')
+    expect(useAuthoringStore.getState().errorCode).toBe('BACKEND_UNAVAILABLE')
+  })
+
+  it('3s first-event timeout does NOT set error when health check succeeds', async () => {
+    // Backend is healthy — health check returns 200
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true }))
+
+    const { factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(3_000)
+    })
+
+    // Phase stays generating — health was fine, just slow to start
+    expect(useAuthoringStore.getState().phase).toBe('generating')
+    expect(useAuthoringStore.getState().errorCode).toBeNull()
+  })
+})
+
+// ─── AC7: 60-second generation timeout ──────────────────────────────────────
+
+describe('useAgUiRun — generation timeout', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('60s timeout sets TIMEOUT error with the exact spec message', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    // Cancel the 3s first-event timer first so it doesn't interfere
+    act(() => {
+      mockEs.emit({ type: 'RUN_STARTED', runId: useAuthoringStore.getState().runId })
+    })
+
+    // Advance past the 60s generation timeout (synchronous — the callback is not async)
+    act(() => {
+      vi.advanceTimersByTime(60_000)
+    })
+
+    const state = useAuthoringStore.getState()
+    expect(state.phase).toBe('error')
+    expect(state.errorCode).toBe('TIMEOUT')
+    expect(state.errorMessage).toBe(
+      'This took longer than expected — your inputs are preserved. Try again.',
+    )
+  })
+})
+
+// ─── AC8: Unexpected stream close ───────────────────────────────────────────
+
+describe('useAgUiRun — stream close behaviour', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('onerror without prior RUN_FINISHED sets BACKEND_UNAVAILABLE error', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.onerror?.({} as Event)
+    })
+
+    const state = useAuthoringStore.getState()
+    expect(state.phase).toBe('error')
+    expect(state.errorCode).toBe('BACKEND_UNAVAILABLE')
+    expect(state.errorMessage).toContain('Connection lost')
+  })
+
+  it('onerror after RUN_FINISHED is a no-op (output-clean phase preserved)', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'TEXT_MESSAGE_CHUNK', delta: '{"id":"ok"}' })
+      mockEs.emit({ type: 'RUN_FINISHED', resultType: 'story', content: '' })
+      // Stream close arrives after successful completion — must not override
+      mockEs.onerror?.({} as Event)
+    })
+
+    expect(useAuthoringStore.getState().phase).toBe('output-clean')
+    expect(useAuthoringStore.getState().outputJson).toBe('{"id":"ok"}')
+  })
+})
+
+// ─── AC9: Cancellation POST ──────────────────────────────────────────────────
+
+describe('useAgUiRun — cancellation POST dispatch', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    vi.restoreAllMocks()
+    vi.unstubAllGlobals()
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('cancel() transitions to cancelling and dispatches POST /cancel/{runId}', () => {
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true })
+    vi.stubGlobal('fetch', fetchMock)
+
+    const { factory } = setupGenerating()
+    const expectedRunId = useAuthoringStore.getState().runId!
+
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      useAuthoringStore.getState().cancel()
+    })
+
+    expect(useAuthoringStore.getState().phase).toBe('cancelling')
+    expect(fetchMock).toHaveBeenCalledWith(
+      `/cancel/${expectedRunId}`,
+      expect.objectContaining({
+        method: 'POST',
+        body: JSON.stringify({ type: 'CANCEL', runId: expectedRunId }),
+      }),
+    )
+  })
+})
+
+// ─── AC10: ERROR event ───────────────────────────────────────────────────────
+
+describe('useAgUiRun — ERROR event', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('ERROR event transitions to error with correct code and message', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'ERROR', code: 'GENERATION_FAILED', message: 'LLM call failed' })
+    })
+
+    const state = useAuthoringStore.getState()
+    expect(state.phase).toBe('error')
+    expect(state.errorCode).toBe('GENERATION_FAILED')
+    expect(state.errorMessage).toBe('LLM call failed')
+  })
+
+  it('ERROR event clears runId', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'ERROR', code: 'VALIDATION_ERROR', message: 'Schema invalid' })
+    })
+
+    expect(useAuthoringStore.getState().runId).toBeNull()
   })
 })
