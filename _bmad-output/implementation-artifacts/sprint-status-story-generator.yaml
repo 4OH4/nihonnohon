@@ -47,7 +47,7 @@ development_status:
   epic-1: in-progress
   1-1-project-setup-and-pre-implementation-checklist: done
   1-2-backend-project-scaffold: done
-  1-3-m0-feasibility-spike: backlog
+  1-3-m0-feasibility-spike: done
   epic-1-retrospective: optional
 
   # Epic 2: M1 — Full Convert a Story Pipeline

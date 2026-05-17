@@ -18,3 +18,6 @@ dev:
 
 test:
 	pytest
+
+spike:
+	PYTHONPATH=src python3 -m story_generator.spike

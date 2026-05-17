@@ -1,5 +1,12 @@
 # Deferred Work
 
+## Deferred from: code review of 1-3-m0-feasibility-spike (2026-05-17)
+
+- **CWD-relative FIXTURE_PATH / DATA_DIR:** Spike uses relative paths that only resolve correctly when invoked via `make spike` from `apps/story-generator-backend/`. Add a CWD assertion or resolve paths relative to `__file__` when this script is promoted to a reusable tool. [spike.py]
+- **No enforced Gemini timeout:** AC1 documents the 60-second expectation but the Gemini call has no programmatic timeout. Add request timeout in the production `agent.py` (Story 2.2). [spike.py]
+- **Raw LLM response not persisted:** On a successful run the raw JSON string from Gemini is discarded. Consider writing it alongside the fixture for debugging variance between runs. [spike.py]
+- **No markdown fence stripping:** If `response_mime_type="application/json"` fails to prevent a code-fence wrapper, `json.loads` will fail without a helpful diagnostic. Strip ` ```json … ``` ` fences as a defensive fallback in the production agent. [spike.py, agent.py Story 2.2]
+
 ## Deferred from: code review of 1-2-backend-project-scaffold (2026-05-16)
 
 - **Duplicate vocab ID silent overwrite:** `by_id[entry.id] = entry` in `load_vocab_data` silently replaces earlier entries with identical IDs. Trusted reference data makes this low-risk for now; add a warning log or assertion in Story 2.2. [data_loader.py:load_vocab_data]

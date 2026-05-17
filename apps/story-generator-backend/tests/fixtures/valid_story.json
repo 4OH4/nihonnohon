@@ -1,0 +1,467 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch8-kenji-student-life",
+  "title": "Kenji's Student Life",
+  "title_ja": "けんじさんの 学生生活",
+  "language": "ja",
+  "description": "This story introduces Kenji, a university student in Tokyo, his studies, hobbies, and social life with his friend Yuki, calibrated to Genki I Chapter 8.",
+  "difficulty": "Genki I Ch.8",
+  "grammar": [
+    "Defining Identity (X は Y です)",
+    "Connecting Nouns (Noun1 の Noun2)",
+    "Addition and Inclusion (Particle も)",
+    "Verb Classes and Conjugation",
+    "The Present Tense",
+    "Sentence Logistics (Particles を, で, に, へ)",
+    "Temporal Markers (Time References)",
+    "Frequency Adverbs",
+    "Connecting Items (Particle と)",
+    "Attribute Basics (Adjective Tenses)",
+    "Personal Preferences (好き / 嫌い)",
+    "Current Actions (～ている)",
+    "Purpose of Movement (Stem + に行く)",
+    "Nominalized Verbs (Verb + のが好き)",
+    "Conjunction が (but)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "けんじ",
+      "hiragana": "けんじ",
+      "translation": "Kenji"
+    },
+    {
+      "key": 10001,
+      "word": "とうきょう",
+      "hiragana": "とうきょう",
+      "translation": "Tokyo"
+    },
+    {
+      "key": 10002,
+      "word": "一年生",
+      "hiragana": "いちねんせい",
+      "translation": "first-year student"
+    },
+    {
+      "key": 10003,
+      "word": "おおさか",
+      "hiragana": "おおさか",
+      "translation": "Osaka"
+    },
+    {
+      "key": 10004,
+      "word": "ラーメン",
+      "hiragana": "ラーメン",
+      "translation": "ramen"
+    },
+    {
+      "key": 10005,
+      "word": "ゆき",
+      "hiragana": "ゆき",
+      "translation": "Yuki"
+    },
+    {
+      "key": 10006,
+      "word": "きょうと",
+      "hiragana": "きょうと",
+      "translation": "Kyoto"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "けんじ",
+        "さん",
+        "は",
+        "とうきょう",
+        "の",
+        "だいがく",
+        "一年生",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "だいがく",
+        "いちねんせい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        10001,
+        null,
+        50,
+        10002,
+        null,
+        null
+      ],
+      "translation": "Kenji is a first-year university student in Tokyo.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "けんじ",
+        "さん",
+        "は",
+        "おおさか",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        10003,
+        null,
+        null
+      ],
+      "translation": "He is from Osaka.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "けいざい",
+        "を",
+        "べんきょうして",
+        "います",
+        "。"
+      ],
+      "ruby": [
+        "けいざい",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        129,
+        null,
+        182,
+        null,
+        null
+      ],
+      "translation": "He studies economics.",
+      "grammar": [
+        5,
+        11
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "まいにち",
+        "、",
+        "クラス",
+        "の",
+        "あとで",
+        "、",
+        "にほん",
+        "の",
+        "れきし",
+        "を",
+        "べんきょうしに",
+        "としょかん",
+        "へ",
+        "行きます",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "にほん",
+        null,
+        "れきし",
+        null,
+        null,
+        "としょかん",
+        null,
+        "いきます",
+        null
+      ],
+      "vocab_keys": [
+        168,
+        null,
+        196,
+        null,
+        353,
+        null,
+        55,
+        null,
+        76,
+        null,
+        182,
+        127,
+        null,
+        170,
+        null
+      ],
+      "translation": "Every day after class, he goes to the library to study Japanese history.",
+      "grammar": [
+        1,
+        5,
+        6,
+        12
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "けんじ",
+        "さん",
+        "は",
+        "読む",
+        "の",
+        "が",
+        "好きです",
+        "が",
+        "、",
+        "漢字",
+        "は",
+        "難しいです",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "よむ",
+        null,
+        null,
+        "すきです",
+        null,
+        null,
+        "かんじ",
+        null,
+        "むずかしいです",
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        175,
+        null,
+        null,
+        293,
+        405,
+        null,
+        314,
+        null,
+        286,
+        null
+      ],
+      "translation": "He likes reading, but he finds kanji difficult.",
+      "grammar": [
+        9,
+        10,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "週末",
+        "に",
+        "、",
+        "クラス",
+        "の",
+        "友達",
+        "と",
+        "ラーメン",
+        "を",
+        "食べます",
+        "。"
+      ],
+      "ruby": [
+        "しゅうまつ",
+        null,
+        null,
+        null,
+        null,
+        "ともだち",
+        null,
+        null,
+        null,
+        "たべます",
+        null
+      ],
+      "vocab_keys": [
+        165,
+        null,
+        null,
+        196,
+        null,
+        52,
+        240,
+        10004,
+        null,
+        177,
+        null
+      ],
+      "translation": "On weekends, he eats ramen with his friends from class.",
+      "grammar": [
+        1,
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "けんじ",
+        "さん",
+        "の",
+        "友達",
+        "の",
+        "ゆき",
+        "さん",
+        "は",
+        "きょうと",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "ともだち",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        52,
+        null,
+        10005,
+        44,
+        null,
+        10006,
+        null,
+        null
+      ],
+      "translation": "His friend Yuki is from Kyoto.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "ゆき",
+        "さん",
+        "も",
+        "にほん",
+        "の",
+        "たべもの",
+        "が",
+        "好きです",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "にほん",
+        null,
+        "たべもの",
+        null,
+        "すきです",
+        null
+      ],
+      "vocab_keys": [
+        10005,
+        44,
+        null,
+        55,
+        null,
+        262,
+        null,
+        293,
+        null
+      ],
+      "translation": "Yuki also likes Japanese food.",
+      "grammar": [
+        1,
+        2,
+        10
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "二人",
+        "は",
+        "いっしょに",
+        "よく",
+        "日本語",
+        "を",
+        "話します",
+        "。"
+      ],
+      "ruby": [
+        "ふたり",
+        null,
+        null,
+        null,
+        "にほんご",
+        null,
+        "はなします",
+        null
+      ],
+      "vocab_keys": [
+        407,
+        null,
+        304,
+        190,
+        39,
+        null,
+        174,
+        null
+      ],
+      "translation": "They often speak Japanese together.",
+      "grammar": [
+        3,
+        4,
+        5,
+        7
+      ]
+    }
+  ]
+}

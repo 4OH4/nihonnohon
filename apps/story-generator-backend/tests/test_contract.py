@@ -8,11 +8,10 @@ import subprocess
 import pytest
 
 
-@pytest.mark.skip(reason="Fixture JSON not yet available — activated in Story 1.3")
 def test_load_story_contract():
     """loadStory() accepts a fixture produced by the backend without throwing."""
     if not shutil.which("node"):
-        pytest.skip("node not on PATH")
+        pytest.skip("node not available")
 
     fixture_path = "tests/fixtures/valid_story.json"
     # Resolve the built story-loader CJS entry relative to the monorepo root.
