@@ -1,5 +1,12 @@
 # Deferred Work
 
+## Deferred from: code review of 1-2-backend-project-scaffold (2026-05-16)
+
+- **Duplicate vocab ID silent overwrite:** `by_id[entry.id] = entry` in `load_vocab_data` silently replaces earlier entries with identical IDs. Trusted reference data makes this low-risk for now; add a warning log or assertion in Story 2.2. [data_loader.py:load_vocab_data]
+- **`ValidationResult` mutable list despite `frozen=True`:** `frozen=True` prevents attribute reassignment but not `errors.append(...)`. No external callers yet — harden the API surface (use tuple) in Story 2.2 when the validator interface stabilises. [validator.py:ValidationResult]
+- **Unpinned `requirements.txt`:** All deps except `ag-ui-protocol` are unpinned. Reproducibility risk grows over time. Lock versions or add a `pip-compile`-generated lockfile when the backend dependency set stabilises. [requirements.txt]
+- **Uncaught `ValueError` on malformed CSV rows:** `int(row[0])` and `int(row["Chapter"])` raise `ValueError` on bad data. Fail-fast at startup is correct for trusted reference data; add validation with a clear error message if the CSVs ever come from an external source. [data_loader.py]
+
 ## Deferred from: code review of 4-4-credits-seo-polish-and-playwright-e2e-suite (2026-05-13)
 
 - **`/credits` route missing `errorElement`:** A render crash in CreditsRoute shows a blank page with no recovery path. CreditsRoute is static-only today so risk is very low, but consistency with other routes (which have `errorElement`) would be cleaner. Add `errorElement: <LibraryError />` when error boundaries are reviewed. [router.tsx]
