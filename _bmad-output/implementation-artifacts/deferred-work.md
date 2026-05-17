@@ -1,5 +1,14 @@
 # Deferred Work
 
+## Deferred from: code review of 2-1-frontend-project-scaffold-state-machine-and-ag-ui-hook (2026-05-17)
+
+- **`clear()` during generating leaves SSE open until next render:** `clear()` is valid from any phase but the SSE cleanup runs asynchronously. Add UI guard in Story 2.6 when components bind `clear()` to the generating phase. [authoringStore.ts / useAgUiRun.ts]
+- **`steeringInstructions` empty-string ambiguity:** Empty field sends no param; non-empty sends the value. If the backend distinguishes missing vs empty, silent mismatch. Confirm API contract in Story 2.2. [useAgUiRun.ts]
+- **`crypto.randomUUID()` secure-context requirement:** Only safe on localhost and HTTPS. If ever previewed over plain HTTP (staging), throws and breaks generation. All deployment targets use localhost/HTTPS so not a practical issue for v1. [authoringStore.ts]
+- **`_resolveCancel()` leaves `storedInputs` intact:** Cancelled run leaves a Re-run snapshot. Whether the cancelled inputs should persist or be cleared is a product decision; resolve when building Re-run in Story 2.6. [authoringStore.ts]
+- **`generate()` from error doesn't clear `outputJson`:** Stale output from a prior successful run persists while retrying. No component reads `outputJson` directly in Story 2.1 so no visible effect; clear it in the error-retry path when output display is wired up in Story 2.7. [authoringStore.ts]
+- **`approve()` doesn't clear `proposalText`/`outputJson`:** Stale Path A output persists when entering Path B approval flow. Scope to Story 4.3. [authoringStore.ts]
+
 ## Deferred from: code review of 1-3-m0-feasibility-spike (2026-05-17)
 
 - **CWD-relative FIXTURE_PATH / DATA_DIR:** Spike uses relative paths that only resolve correctly when invoked via `make spike` from `apps/story-generator-backend/`. Add a CWD assertion or resolve paths relative to `__file__` when this script is promoted to a reusable tool. [spike.py]
