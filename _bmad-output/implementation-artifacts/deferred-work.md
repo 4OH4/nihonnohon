@@ -1,5 +1,13 @@
 # Deferred Work
 
+## Deferred from: code review of 2-4-input-panel-chapter-selector-and-scopechip (2026-05-17)
+
+- **`useBackendStatus` concurrent in-flight fetches:** Pre-existing — see 2-3 deferred section. Also surfaced again in 2-4 context via the `InputPanel` consuming the hook. [useBackendStatus.ts]
+- **`useAgUiRun` 3s first-event timeout calls `_setError` after component unmounts:** On the success path `phaseRef.current` is read, but if the component unmounts during the 3s+5s window, the ref holds a stale value and `_setError` may fire on a newly-mounted store instance. Pre-existing; Story 2.5 owns the `useAgUiRun` lifecycle. [useAgUiRun.ts]
+- **React concurrent-mode potential tear from separate `useAuthoringStore` subscriptions in `InputPanel`:** `inputText` and `chapterTarget` each use separate `useAuthoringStore` calls, theoretically readable in different render passes. Consolidate to a single combined selector if concurrent-mode tearing becomes observable. Not a current issue with synchronous Zustand. [InputPanel.tsx]
+- **No visible indicator on steering toggle when hidden instructions are present:** If the user types steering instructions, collapses the panel, and forgets, the instructions are silently included in the next `generate()` call. A badge or dot on the toggle button would make this visible. Enhancement for a future story. [InputPanel.tsx]
+- **`focus-visible` without `:focus` fallback for older browsers:** Pre-existing pattern across the whole app (all interactive elements); all deployment targets use modern browsers with `:focus-visible` support. [InputPanel.tsx, ScopeChip.tsx and throughout]
+
 ## Deferred from: code review of 2-3-app-shell-backendstatus-modetoggle-and-settingspanel (2026-05-17)
 
 - **Concurrent in-flight `fetch()` in `useBackendStatus`:** No abort of previous call when re-trigger fires. Single-user v1; address if concurrent load grows. [useBackendStatus.ts]

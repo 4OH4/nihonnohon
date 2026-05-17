@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { useAgUiRun } from '@/hooks/useAgUiRun'
 import { BackendStatus } from './BackendStatus'
+import { InputPanel } from './InputPanel'
 import { ModeToggle } from './ModeToggle'
 import { SettingsPanel } from './SettingsPanel'
 
@@ -41,7 +42,7 @@ export function AuthoringTool() {
         <div className="mb-6">
           <ModeToggle />
         </div>
-        {/* Story 2.4: InputPanel */}
+        <InputPanel />
         {/* Story 2.7: OutputPanel */}
       </main>
 
