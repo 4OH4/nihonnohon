@@ -1,5 +1,15 @@
 # Deferred Work
 
+## Deferred from: code review of 2-2-m1-production-backend-agent-sse-endpoints-and-cancellation (2026-05-17)
+
+- **Dangling threads on asyncio.TimeoutError:** `asyncio.to_thread` threads can't be cancelled; after a 55s timeout the OS thread continues until TCP timeout. Under concurrent load threads pile up. Single-user v1 won't hit this; address in M2 if concurrent usage grows. [agent.py]
+- **`_active_runs` multi-worker isolation:** Each uvicorn worker has its own dict; cancel routed to different worker silently does nothing. v1 uses single worker; v2 (Cloud Run) will need a shared store (Redis, etc.). [main.py]
+- **`cancel` always returns `{"ok": True}`:** No 404 for unknown run_id; idempotent cancel is acceptable for v1. [main.py]
+- **TEXT_MESSAGE_CHUNK + RUN_FINISHED both carry full JSON:** Doubles bandwidth per generation. Functionally correct; use Gemini streaming response in M2 to send true incremental chunks. [agent.py]
+- **`path_mode` accepted but unused:** Path B (Generate from topic) is M3 scope. Wire `path_mode` into agent logic in Story 4.1. [agent.py]
+- **Ch.0 vocab entries excluded from prompts:** `build_system_prompt` loops `range(1, chapter+1)` matching spike.py pattern; Ch.0 greetings (おはよう, etc.) are never included. Intentional curriculum design — revisit if greetings are needed. [agent.py]
+- **Health 503 only for absent key, not invalid/revoked key:** Validating key correctness requires a Gemini API call, inappropriate for a health endpoint. Accept this limitation; add a separate "connection test" endpoint in v2 if needed. [main.py]
+
 ## Deferred from: code review of 2-1-frontend-project-scaffold-state-machine-and-ag-ui-hook (2026-05-17)
 
 - **`clear()` during generating leaves SSE open until next render:** `clear()` is valid from any phase but the SSE cleanup runs asynchronously. Add UI guard in Story 2.6 when components bind `clear()` to the generating phase. [authoringStore.ts / useAgUiRun.ts]
