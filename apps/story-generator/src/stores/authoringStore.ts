@@ -15,6 +15,19 @@ export type Phase =
   | 'error'
   | 'proposal'
 
+/** Story length preset — active only in Path B (Generate from topic). */
+export type StoryLengthPreset = 'short' | 'medium' | 'long' | 'custom'
+
+/** Hard upper limit on target word count. */
+export const MAX_TARGET_WORD_COUNT = 1000
+
+/** Word-count targets for each built-in preset. */
+export const STORY_LENGTH_WORD_COUNTS: Record<Exclude<StoryLengthPreset, 'custom'>, number> = {
+  short: 300,
+  medium: 600,
+  long: MAX_TARGET_WORD_COUNT,
+}
+
 /** Snapshot of inputs taken when generation starts; used by SSE URL and Re-run. */
 interface StoredInputs {
   inputText: string
@@ -33,6 +46,8 @@ interface AuthoringStore {
   pathMode: 'A' | 'B'
   temperature: number
   grammarDist: 0 | 1 | 2
+  storyLengthPreset: StoryLengthPreset
+  targetWordCount: number
   outputJson: string | null
   /** One-way latch: true from first edit after output-clean; resets only via clear() or completed generate(). */
   outputIsDirty: boolean
@@ -59,6 +74,8 @@ interface AuthoringStore {
   setPathMode: (v: 'A' | 'B') => void
   setTemperature: (v: number) => void
   setGrammarDist: (v: 0 | 1 | 2) => void
+  setStoryLengthPreset: (preset: StoryLengthPreset) => void
+  setTargetWordCount: (v: number) => void
 
   // Internal actions — called by useAgUiRun or OutputPanel, not part of the public API
   _setOutputJson: (v: string) => void
@@ -93,6 +110,8 @@ const defaultState = {
   pathMode: 'A' as const,
   temperature: 1.0,
   grammarDist: 1 as const,
+  storyLengthPreset: 'medium' as StoryLengthPreset,
+  targetWordCount: STORY_LENGTH_WORD_COUNTS.medium,
   outputJson: null,
   outputIsDirty: false,
   proposalText: null,
@@ -216,6 +235,14 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   },
   setTemperature: (v) => set({ temperature: v }),
   setGrammarDist: (v) => set({ grammarDist: v }),
+  setStoryLengthPreset(preset) {
+    if (preset === 'custom') {
+      set({ storyLengthPreset: 'custom' })
+    } else {
+      set({ storyLengthPreset: preset, targetWordCount: STORY_LENGTH_WORD_COUNTS[preset] })
+    }
+  },
+  setTargetWordCount: (v) => set({ storyLengthPreset: 'custom', targetWordCount: Math.min(v, MAX_TARGET_WORD_COUNT) }),
 
   _setOutputJson(v) {
     set({ outputJson: v, phase: 'output-clean', runId: null, outputIsDirty: false })

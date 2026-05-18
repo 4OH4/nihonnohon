@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
-import { useAuthoringStore } from '@/stores/authoringStore'
-import type { Phase } from '@/stores/authoringStore'
+import { useAuthoringStore, STORY_LENGTH_WORD_COUNTS } from '@/stores/authoringStore'
+import type { Phase, StoryLengthPreset } from '@/stores/authoringStore'
 
 /** localStorage key for the authoring session. */
 export const SESSION_KEY = 'nihonnohon-sg-session'
@@ -18,6 +18,8 @@ interface SessionState {
   pathMode: 'A' | 'B'
   temperature: number
   grammarDist: 0 | 1 | 2
+  storyLengthPreset: StoryLengthPreset
+  targetWordCount: number
   outputJson: string | null
   outputIsDirty: boolean
 }
@@ -63,6 +65,13 @@ export function useSession(): void {
     // Sanitize: outputIsDirty is meaningless without outputJson (one-way latch requires content)
     const restoredOutputIsDirty = session.outputJson !== null ? session.outputIsDirty : false
 
+    // Guard against stale sessions missing the length fields (added after v1 was deployed)
+    const storyLengthPreset: StoryLengthPreset =
+      session.storyLengthPreset ?? 'medium'
+    const targetWordCount: number =
+      session.targetWordCount ??
+      (storyLengthPreset !== 'custom' ? STORY_LENGTH_WORD_COUNTS[storyLengthPreset] : STORY_LENGTH_WORD_COUNTS.medium)
+
     // Batch-set the store in one atomic write
     useAuthoringStore.setState({
       phase: restoredPhase,
@@ -72,6 +81,8 @@ export function useSession(): void {
       pathMode: session.pathMode,
       temperature: session.temperature,
       grammarDist: session.grammarDist,
+      storyLengthPreset,
+      targetWordCount,
       outputJson: session.outputJson,
       outputIsDirty: restoredOutputIsDirty,
     })
@@ -112,6 +123,8 @@ export function useSession(): void {
         pathMode: state.pathMode,
         temperature: state.temperature,
         grammarDist: state.grammarDist,
+        storyLengthPreset: state.storyLengthPreset,
+        targetWordCount: state.targetWordCount,
         outputJson: state.outputJson,
         outputIsDirty: state.outputIsDirty,
       }

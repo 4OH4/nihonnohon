@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
-import { useAuthoringStore } from '@/stores/authoringStore'
+import { useAuthoringStore, STORY_LENGTH_WORD_COUNTS, MAX_TARGET_WORD_COUNT } from '@/stores/authoringStore'
+import type { StoryLengthPreset } from '@/stores/authoringStore'
 import {
   Sheet,
   SheetContent,
@@ -14,21 +15,36 @@ interface SettingsPanelProps {
 
 /** Grammar distribution hint text per 3-position slider value. */
 const GRAMMAR_HINTS: Record<number, string> = {
-  0: 'Fewer patterns — simpler sentence structures',
+  0: 'Fewer patterns - simpler sentence structures',
   1: 'Balanced variety',
   2: 'Maximum grammar variety',
 }
 
+const LENGTH_PRESETS: StoryLengthPreset[] = ['short', 'medium', 'long', 'custom']
+
+const PRESET_LABELS: Record<StoryLengthPreset, string> = {
+  short: 'Short',
+  medium: 'Medium',
+  long: 'Long',
+  custom: 'Custom',
+}
+
 /**
  * Sliding settings panel (right Sheet) for generation configuration.
- * In-scope: temperature slider, grammar distribution slider.
- * Stub (disabled): story length controls (M3 scope).
+ * Controls: temperature, grammar distribution, story length (Path B only).
  */
 export function SettingsPanel({ open, onClose }: SettingsPanelProps) {
-  const temperature = useAuthoringStore(s => s.temperature)
-  const grammarDist  = useAuthoringStore(s => s.grammarDist)
-  const setTemperature = useAuthoringStore(s => s.setTemperature)
-  const setGrammarDist = useAuthoringStore(s => s.setGrammarDist)
+  const temperature          = useAuthoringStore(s => s.temperature)
+  const grammarDist          = useAuthoringStore(s => s.grammarDist)
+  const pathMode             = useAuthoringStore(s => s.pathMode)
+  const storyLengthPreset    = useAuthoringStore(s => s.storyLengthPreset)
+  const targetWordCount      = useAuthoringStore(s => s.targetWordCount)
+  const setTemperature       = useAuthoringStore(s => s.setTemperature)
+  const setGrammarDist       = useAuthoringStore(s => s.setGrammarDist)
+  const setStoryLengthPreset = useAuthoringStore(s => s.setStoryLengthPreset)
+  const setTargetWordCount   = useAuthoringStore(s => s.setTargetWordCount)
+
+  const lengthEnabled = pathMode === 'B'
 
   const handleTempRange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const v = parseFloat(e.target.value)
@@ -105,33 +121,65 @@ export function SettingsPanel({ open, onClose }: SettingsPanelProps) {
             </p>
           </section>
 
-          {/* Story Length — disabled stub (M3) */}
+          {/* Story Length — active in Path B (Generate from topic) */}
           <section aria-label="Story length settings">
-            <label className="block text-sm font-medium text-paper-text mb-3">
+            <label
+              className={cn(
+                'block text-sm font-medium mb-3',
+                lengthEnabled ? 'text-paper-text' : 'text-muted',
+              )}
+            >
               Story Length
             </label>
-            <div className="opacity-[0.38] cursor-not-allowed space-y-2" aria-disabled="true">
+            <div
+              className={cn(
+                'space-y-2',
+                !lengthEnabled && 'opacity-[0.38] cursor-not-allowed',
+              )}
+              aria-disabled={!lengthEnabled}
+            >
               <div className="flex gap-2">
-                {(['Short', 'Medium', 'Long', 'Custom'] as const).map(preset => (
+                {LENGTH_PRESETS.map(preset => (
                   <button
                     key={preset}
-                    disabled
-                    className="px-3 py-1 text-xs border border-border rounded bg-surface text-muted cursor-not-allowed"
+                    disabled={!lengthEnabled}
+                    onClick={() => setStoryLengthPreset(preset)}
+                    className={cn(
+                      'px-3 py-1 text-xs border rounded',
+                      lengthEnabled ? 'cursor-pointer' : 'cursor-not-allowed',
+                      storyLengthPreset === preset && lengthEnabled
+                        ? 'border-accent bg-accent text-white'
+                        : 'border-border bg-surface text-muted',
+                    )}
                   >
-                    {preset}
+                    {PRESET_LABELS[preset]}
                   </button>
                 ))}
               </div>
               <input
                 type="number"
-                disabled
+                min="1"
+                max={MAX_TARGET_WORD_COUNT}
+                disabled={!lengthEnabled || storyLengthPreset !== 'custom'}
+                value={targetWordCount}
+                onChange={e => {
+                  const v = parseInt(e.target.value, 10)
+                  if (!isNaN(v) && v > 0) setTargetWordCount(v)
+                }}
                 placeholder="Word count"
-                className="w-full px-2 py-1 text-sm border border-border rounded bg-surface text-muted cursor-not-allowed"
+                className={cn(
+                  'w-full px-2 py-1 text-sm border border-border rounded bg-surface',
+                  lengthEnabled && storyLengthPreset === 'custom'
+                    ? 'text-paper-text focus-visible:ring-2 ring-accent outline-none'
+                    : 'text-muted cursor-not-allowed',
+                )}
               />
             </div>
-            <p className="text-xs text-muted mt-2">
-              Available in Generate from topic mode
-            </p>
+            {!lengthEnabled && (
+              <p className="text-xs text-muted mt-2">
+                Available in Generate from topic mode
+              </p>
+            )}
           </section>
         </div>
       </SheetContent>
