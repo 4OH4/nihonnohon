@@ -26,6 +26,27 @@ The app is available at `http://localhost:5173`.
 The Turborepo pipeline ensures packages are built and `vocab.json` is generated before the
 dev server starts.
 
+## Pre-commit hook
+
+`pnpm install` automatically installs a git pre-commit hook (via [husky](https://typicode.github.io/husky/)).
+The hook runs three checks before every commit:
+
+```
+lint → typecheck → test:unit
+```
+
+All three use Turbo, so results for unchanged packages are served from cache and typically
+complete in under a second. A full run on a cold cache takes roughly 60 seconds.
+
+If the hook blocks your commit, fix the reported errors before committing. Do not bypass the
+hook with `--no-verify`.
+
+To run the same checks manually at any time:
+
+```bash
+turbo lint && turbo typecheck && turbo test:unit
+```
+
 ## Testing
 
 ```bash
