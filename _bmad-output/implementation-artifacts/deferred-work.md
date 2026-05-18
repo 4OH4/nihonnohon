@@ -1,5 +1,15 @@
 # Deferred Work
 
+## Deferred from: code review of 3-1-path-b-backend-english-generation-and-suggest-topic-endpoints (2026-05-18)
+
+- **Cooldown timestamp set before Gemini call:** `_suggest_topic_cooldowns[chapter] = now` is written before the async call completes, so a timeout locks the chapter for 2 seconds before a retry is allowed. Acceptable for v1 — 2s retry delay is minor. [main.py:suggest_topic]
+- **Concurrent suggest-topic cooldown race:** Two simultaneous requests for the same chapter can both pass the `now - last_call < 2.0` check before either writes to the dict. Asyncio cooperative multitasking means this only matters under multi-worker deployment — same known limitation as `_active_runs`. [main.py:suggest_topic]
+- **Per-chapter vs per-session cooldown:** AC4 specifies "per-session" cooldown; implementation keys by chapter string. In v1 with no authentication, per-chapter is an effective approximation — the concept of "session" is undefined without a session ID. Revisit if auth is added. [main.py:suggest_topic]
+- **Both `topic` + `english_draft` set in same request → phase 1 silently wins:** The `if path_mode == "B" and topic` branch fires first, discarding `english_draft`. The two-request protocol prevents correctly-written clients from sending both. No guard needed for v1. [agent.py:generate]
+- **Large text in GET query params for `topic`/`english_draft`:** Long or multi-line text in URL query strings can hit server/proxy length limits. Consistent with the pre-existing `inputText` GET param pattern. Architectural concern for a future refactor to use a POST body. [main.py:run_sse]
+- **NFR14 timeout boundary not unit-tested:** The `asyncio.wait_for(9.0s)` path in `suggest_topic` is exercised only in integration. Fake-clock/timer injection not in scope for v1 test suite. [main.py / tests/test_agent.py]
+- **`_suggest_topic_cooldowns` dict never pruned:** Module-level dict grows by one entry per unique chapter string seen. Bounded in practice by the small set of valid Genki chapters. Consistent with `_active_runs` pattern — same caveat applies. [main.py]
+
 ## Deferred from: code review of 2-9-session-persistence-clear-and-content-provenance (2026-05-18)
 
 - **`sessionRestored` banner not cleared by SettingsPanel changes (temperature/grammarDist/pathMode):** Changing settings after a restored session leaves the "Restored from previous session" banner visible. Minor UX issue; SettingsPanel is a separate component from InputPanel and wiring dismissal there adds complexity for little value in v1. [InputPanel.tsx / useSession.ts]

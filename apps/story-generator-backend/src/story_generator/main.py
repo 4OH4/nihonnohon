@@ -4,13 +4,15 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import time
 from contextlib import asynccontextmanager
 from pathlib import Path
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse
+from pydantic import BaseModel
 
 load_dotenv()
 
@@ -23,6 +25,12 @@ _grammar_data = None
 
 # Registry of in-flight runs: runId → cancel Event
 _active_runs: dict[str, asyncio.Event] = {}
+
+# Per-chapter cooldown tracking for /suggest-topic: chapter → last-call monotonic timestamp
+_suggest_topic_cooldowns: dict[str, float] = {}
+
+_SUGGEST_TOPIC_COOLDOWN_S = 2.0
+_SUGGEST_TOPIC_TIMEOUT_S = 9.0  # 1s margin before NFR14's 10s limit
 
 
 @asynccontextmanager
@@ -70,9 +78,11 @@ async def health() -> JSONResponse:
 @app.get("/run_sse")
 async def run_sse(
     run_id: str = Query(..., alias="runId"),
-    input_text: str = Query(..., alias="inputText"),
+    input_text: str = Query("", alias="inputText"),
     chapter: str = Query(...),
     path_mode: str = Query("A", alias="pathMode"),
+    topic: str = Query("", alias="topic"),
+    english_draft: str = Query("", alias="englishDraft"),
     steering_instructions: str = Query("", alias="steeringInstructions"),
     temperature: float = Query(1.0),
     grammar_distribution: int = Query(1, alias="grammar_distribution"),
@@ -99,6 +109,8 @@ async def run_sse(
                 input_text=input_text,
                 chapter=chapter,
                 path_mode=path_mode,
+                topic=topic,
+                english_draft=english_draft,
                 steering_instructions=steering_instructions,
                 temperature=temperature,
                 grammar_distribution=grammar_distribution,
@@ -109,6 +121,86 @@ async def run_sse(
             _active_runs.pop(run_id, None)
 
     return StreamingResponse(event_stream(), media_type="text/event-stream")
+
+
+# ---------------------------------------------------------------------------
+# Suggest-topic endpoint
+# ---------------------------------------------------------------------------
+
+
+class SuggestTopicRequest(BaseModel):
+    """Request body for POST /suggest-topic."""
+
+    chapter: str
+
+
+def _generate_topic_suggestion(chapter: str, gemini_client=None) -> str:
+    """Call Gemini to produce a single-sentence topic suggestion for the given chapter.
+
+    Injectable gemini_client follows the same pattern as StoryGeneratorAgent.
+    """
+    if gemini_client is None:
+        api_key = os.environ.get("GEMINI_API_KEY")
+        if not api_key:
+            raise RuntimeError("GEMINI_API_KEY environment variable is not set.")
+        from google import genai
+
+        client = genai.Client(api_key=api_key)
+        gemini_client = lambda model, contents, config: client.models.generate_content(  # noqa: E731
+            model=model, contents=contents, config=config
+        )
+
+    # Parse chapter number for the prompt
+    try:
+        from story_generator.agent import _parse_chapter
+
+        chapter_int = _parse_chapter(chapter)
+    except ValueError:
+        chapter_int = 1
+
+    prompt = (
+        f"Suggest a single topic sentence for a short English story intended for a Genki I "
+        f"Chapter {chapter_int} Japanese learner. The topic should reflect everyday student life "
+        f"or simple cultural activities appropriate for beginners. "
+        f"Return only the topic sentence — no explanation, no punctuation at the end."
+    )
+
+    from google.genai import types as genai_types
+
+    config = genai_types.GenerateContentConfig(temperature=1.0)
+    response = gemini_client("gemini-2.5-flash", prompt, config)
+    text = getattr(response, "text", "") or ""
+    return text.strip()
+
+
+@app.post("/suggest-topic")
+async def suggest_topic(request: SuggestTopicRequest) -> dict:
+    """Return a single-sentence topic suggestion calibrated to the given chapter.
+
+    Enforces a 2-second per-chapter cooldown. Returns 429 on violation.
+    """
+    chapter = request.chapter
+    now = time.monotonic()
+    last_call = _suggest_topic_cooldowns.get(chapter, 0.0)
+    if now - last_call < _SUGGEST_TOPIC_COOLDOWN_S:
+        raise HTTPException(status_code=429, detail="cooldown")
+
+    _suggest_topic_cooldowns[chapter] = now
+
+    try:
+        topic = await asyncio.wait_for(
+            asyncio.to_thread(_generate_topic_suggestion, chapter),
+            timeout=_SUGGEST_TOPIC_TIMEOUT_S,
+        )
+    except asyncio.TimeoutError:
+        raise HTTPException(status_code=504, detail="Suggest-topic timed out.")
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(status_code=500, detail=str(exc))
+
+    if not topic:
+        raise HTTPException(status_code=500, detail="Gemini returned no topic suggestion.")
+
+    return {"topic": topic}
 
 
 @app.post("/cancel/{run_id}")

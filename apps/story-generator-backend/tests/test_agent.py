@@ -241,3 +241,239 @@ def test_cancel_before_gemini_call(vocab_data, grammar_data, fixture_json):
     types = [e["type"] for e in events]
     assert "RUN_CANCELLED" in types, f"Expected RUN_CANCELLED, got: {types}"
     assert "RUN_FINISHED" not in types
+
+
+# ---------------------------------------------------------------------------
+# Path B tests
+# ---------------------------------------------------------------------------
+
+
+def test_path_b_phase1_emits_proposal(vocab_data, grammar_data):
+    """Path B phase 1 (topic → English proposal) emits RUN_FINISHED with resultType='proposal'."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    proposal_text = "Ken goes to a coffee shop near the university."
+    proposal_client = lambda model, contents, config: SimpleNamespace(text=proposal_text)  # noqa: E731
+
+    agent = StoryGeneratorAgent(vocab_data, grammar_data, gemini_client=proposal_client)
+    events = _collect(
+        agent.generate(
+            run_id="pb1-test",
+            chapter="Genki I Ch.5",
+            path_mode="B",
+            topic="A student visits a coffee shop",
+        )
+    )
+
+    types = [e["type"] for e in events]
+    assert types[0] == "RUN_STARTED"
+    assert "RUN_FINISHED" in types
+    assert "ERROR" not in types, f"Unexpected ERROR: {events}"
+
+    finished = next(e for e in events if e["type"] == "RUN_FINISHED")
+    assert finished["resultType"] == "proposal"
+    assert finished["content"] == proposal_text
+
+
+def test_path_b_phase1_strips_proposal_text(vocab_data, grammar_data):
+    """Proposal content is stripped of leading/trailing whitespace."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    raw_text = "  Ken visits the library.  \n"
+    client = lambda model, contents, config: SimpleNamespace(text=raw_text)  # noqa: E731
+
+    agent = StoryGeneratorAgent(vocab_data, grammar_data, gemini_client=client)
+    events = _collect(
+        agent.generate(run_id="t", chapter="Genki I Ch.3", path_mode="B", topic="library")
+    )
+
+    finished = next(e for e in events if e["type"] == "RUN_FINISHED")
+    assert finished["content"] == raw_text.strip()
+
+
+def test_path_b_phase1_none_response_emits_error(vocab_data, grammar_data):
+    """Safety-filter None response in Path B phase 1 emits GENERATION_FAILED."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    none_client = lambda model, contents, config: SimpleNamespace(text=None)  # noqa: E731
+    agent = StoryGeneratorAgent(vocab_data, grammar_data, gemini_client=none_client)
+    events = _collect(
+        agent.generate(run_id="t", chapter="Genki I Ch.1", path_mode="B", topic="test")
+    )
+    assert any(e["type"] == "ERROR" and e["code"] == "GENERATION_FAILED" for e in events)
+    assert not any(e["type"] == "RUN_FINISHED" for e in events)
+
+
+def test_path_b_phase2_emits_story(vocab_data, grammar_data, fixture_json):
+    """Path B phase 2 (english_draft → Japanese story) emits RUN_FINISHED with resultType='story'."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    agent = StoryGeneratorAgent(vocab_data, grammar_data, gemini_client=make_mock_client(fixture_json))
+    events = _collect(
+        agent.generate(
+            run_id="pb2-test",
+            chapter="Genki I Ch.5",
+            path_mode="B",
+            english_draft="Ken goes to the library to study.",
+        )
+    )
+
+    types = [e["type"] for e in events]
+    assert types[0] == "RUN_STARTED"
+    assert types[-1] == "RUN_FINISHED"
+
+    finished = next(e for e in events if e["type"] == "RUN_FINISHED")
+    assert finished["resultType"] == "story"
+    assert finished["content"]
+
+
+def test_path_b_phase2_validation_failure_emits_error(vocab_data, grammar_data):
+    """Path B phase 2 enforces the same validation gate as Path A."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    bad_story = json.dumps({
+        "schema_version": "1",
+        "id": "test",
+        "title": "Test",
+        "title_ja": "テスト",
+        "language": "ja",
+        "description": "test",
+        "sentences": [
+            {"id": "s01", "words": ["a", "b"], "ruby": ["r1"], "vocab_keys": [None, None]}
+        ],
+    })
+    agent = StoryGeneratorAgent(vocab_data, grammar_data, gemini_client=make_mock_client(bad_story))
+    events = _collect(
+        agent.generate(
+            run_id="t",
+            chapter="Genki I Ch.1",
+            path_mode="B",
+            english_draft="Some English text.",
+        )
+    )
+
+    assert any(e["type"] == "ERROR" and e["code"] == "VALIDATION_ERROR" for e in events)
+    assert not any(e["type"] == "RUN_FINISHED" for e in events)
+
+
+def test_path_a_unchanged_with_new_params(vocab_data, grammar_data, fixture_json):
+    """Existing Path A callers with default topic/english_draft params are unaffected."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    agent = StoryGeneratorAgent(vocab_data, grammar_data, gemini_client=make_mock_client(fixture_json))
+    events = _collect(
+        agent.generate(run_id="pa-test", input_text="A test story.", chapter="Genki I Ch.3")
+    )
+    finished = next(e for e in events if e["type"] == "RUN_FINISHED")
+    assert finished["resultType"] == "story"
+
+
+# ---------------------------------------------------------------------------
+# Suggest-topic helper tests
+# ---------------------------------------------------------------------------
+
+
+def test_generate_topic_suggestion_returns_string():
+    """_generate_topic_suggestion returns a non-empty string using an injected mock."""
+    from story_generator.main import _generate_topic_suggestion
+
+    mock_client = lambda model, contents, config: SimpleNamespace(text="Ken goes to the library.")  # noqa: E731
+    result = _generate_topic_suggestion("Genki I Ch.5", gemini_client=mock_client)
+    assert isinstance(result, str)
+    assert len(result) > 0
+
+
+def test_generate_topic_suggestion_strips_whitespace():
+    """_generate_topic_suggestion strips leading/trailing whitespace from the result."""
+    from story_generator.main import _generate_topic_suggestion
+
+    mock_client = lambda model, contents, config: SimpleNamespace(text="  topic with spaces.  ")  # noqa: E731
+    result = _generate_topic_suggestion("Genki I Ch.1", gemini_client=mock_client)
+    assert result == "topic with spaces."
+
+
+def test_generate_topic_suggestion_handles_empty_response():
+    """_generate_topic_suggestion returns empty string when Gemini returns None."""
+    from story_generator.main import _generate_topic_suggestion
+
+    mock_client = lambda model, contents, config: SimpleNamespace(text=None)  # noqa: E731
+    result = _generate_topic_suggestion("Genki I Ch.2", gemini_client=mock_client)
+    assert result == ""
+
+
+def test_generate_topic_suggestion_bad_chapter_falls_back_gracefully():
+    """A bad chapter string falls back to chapter 1 and still returns a string (does not raise)."""
+    from story_generator.main import _generate_topic_suggestion
+
+    mock_client = lambda model, contents, config: SimpleNamespace(text="A simple topic.")  # noqa: E731
+    result = _generate_topic_suggestion("not-a-valid-chapter", gemini_client=mock_client)
+    assert isinstance(result, str)
+    assert len(result) > 0
+
+
+# ---------------------------------------------------------------------------
+# /suggest-topic HTTP endpoint tests
+# ---------------------------------------------------------------------------
+
+
+def test_suggest_topic_endpoint_returns_topic_dict(monkeypatch):
+    """POST /suggest-topic returns { 'topic': '<string>' } when the helper succeeds."""
+    from fastapi.testclient import TestClient
+    import story_generator.main as main_module
+    from story_generator.main import app
+
+    # Inject a fast mock that bypasses the real Gemini call
+    monkeypatch.setattr(
+        main_module,
+        "_generate_topic_suggestion",
+        lambda chapter, gemini_client=None: "Ken studies at the library.",
+    )
+    # Reset cooldown state so the test starts fresh
+    main_module._suggest_topic_cooldowns.clear()
+
+    client = TestClient(app)
+    response = client.post("/suggest-topic", json={"chapter": "Genki I Ch.5"})
+    assert response.status_code == 200
+    data = response.json()
+    assert "topic" in data
+    assert data["topic"] == "Ken studies at the library."
+
+
+def test_suggest_topic_endpoint_returns_500_on_empty_result(monkeypatch):
+    """POST /suggest-topic returns 500 when the helper returns an empty string."""
+    from fastapi.testclient import TestClient
+    import story_generator.main as main_module
+    from story_generator.main import app
+
+    monkeypatch.setattr(
+        main_module,
+        "_generate_topic_suggestion",
+        lambda chapter, gemini_client=None: "",
+    )
+    main_module._suggest_topic_cooldowns.clear()
+
+    client = TestClient(app)
+    response = client.post("/suggest-topic", json={"chapter": "Genki I Ch.1"})
+    assert response.status_code == 500
+
+
+def test_suggest_topic_endpoint_enforces_cooldown(monkeypatch):
+    """POST /suggest-topic returns 429 on a second request within the cooldown window."""
+    from fastapi.testclient import TestClient
+    import story_generator.main as main_module
+    from story_generator.main import app
+
+    monkeypatch.setattr(
+        main_module,
+        "_generate_topic_suggestion",
+        lambda chapter, gemini_client=None: "A topic.",
+    )
+    main_module._suggest_topic_cooldowns.clear()
+
+    client = TestClient(app)
+    # First request should succeed
+    r1 = client.post("/suggest-topic", json={"chapter": "Genki I Ch.3"})
+    assert r1.status_code == 200
+    # Immediate second request should be throttled
+    r2 = client.post("/suggest-topic", json={"chapter": "Genki I Ch.3"})
+    assert r2.status_code == 429

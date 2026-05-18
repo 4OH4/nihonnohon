@@ -1,4 +1,4 @@
-"""M1 story generation agent with injectable Gemini client."""
+"""Story generation agent with injectable Gemini client — M1 (Path A) and M3 (Path B)."""
 from __future__ import annotations
 
 import asyncio
@@ -138,6 +138,41 @@ Return ONLY the JSON object. No markdown, no code fences, no explanation.
 
 
 # ---------------------------------------------------------------------------
+# Path B — English proposal prompt
+# ---------------------------------------------------------------------------
+
+
+def build_proposal_prompt(
+    chapter: int,
+    topic: str,
+    steering_instructions: str = "",
+) -> str:
+    """Build the Gemini prompt for Path B phase 1: topic → English story proposal."""
+    steering_block = (
+        f"\n## Additional Instructions\n\n{steering_instructions.strip()}\n"
+        if steering_instructions.strip()
+        else ""
+    )
+    return f"""You are a creative writing assistant helping to generate source material for a Japanese graded reader aimed at Genki I Chapter {chapter} learners.
+
+## Task
+
+Write a short English story (~150-300 words) based on the topic below. The story will later be translated into Japanese, so:
+- Keep the vocabulary and concepts within reach of an early Japanese learner (simple daily life themes)
+- Use clear, concrete scenes and actions that translate naturally
+- Avoid idioms, cultural references, or complex abstractions that resist translation
+
+## Topic
+
+{topic.strip()}
+{steering_block}
+## Output Format
+
+Return only the English story as plain prose. No title, no JSON, no markdown, no code fences. Just the story text.
+"""
+
+
+# ---------------------------------------------------------------------------
 # Chapter parsing
 # ---------------------------------------------------------------------------
 
@@ -202,9 +237,11 @@ class StoryGeneratorAgent:
         self,
         *,
         run_id: str,
-        input_text: str,
+        input_text: str = "",
         chapter: str,
         path_mode: str = "A",
+        topic: str = "",
+        english_draft: str = "",
         steering_instructions: str = "",
         temperature: float = 1.0,
         grammar_distribution: int = 1,
@@ -212,7 +249,9 @@ class StoryGeneratorAgent:
     ) -> AsyncGenerator[dict, None]:
         """Yield AG-UI event dicts per ADR-004.
 
-        Emits: RUN_STARTED → [TEXT_MESSAGE_CHUNK] → RUN_FINISHED  or  ERROR/RUN_CANCELLED
+        Path A:  RUN_STARTED → [TEXT_MESSAGE_CHUNK] → RUN_FINISHED(story)  or  ERROR/RUN_CANCELLED
+        Path B1: RUN_STARTED → [TEXT_MESSAGE_CHUNK] → RUN_FINISHED(proposal)  or  ERROR/RUN_CANCELLED
+        Path B2: identical to Path A but uses english_draft as source text
         """
         # Emit RUN_STARTED immediately so the frontend's 3-second first-event timeout is satisfied
         yield {"type": "RUN_STARTED", "runId": run_id}
@@ -220,6 +259,32 @@ class StoryGeneratorAgent:
         # Check cancel before expensive Gemini call
         if cancel_event and cancel_event.is_set():
             yield {"type": "RUN_CANCELLED", "runId": run_id}
+            return
+
+        # Route Path B phase 1 (topic → English proposal) before chapter parsing
+        if path_mode == "B" and topic:
+            async for event in self._generate_proposal(
+                run_id=run_id,
+                chapter=chapter,
+                topic=topic,
+                steering_instructions=steering_instructions,
+                temperature=temperature,
+                cancel_event=cancel_event,
+            ):
+                yield event
+            return
+
+        # Path A and Path B phase 2 both go through the Japanese story pipeline.
+        # Phase 2 uses english_draft as the source text; Path A uses input_text.
+        source_text = english_draft if (path_mode == "B" and english_draft) else input_text
+
+        # Guard: reject empty source before the expensive Gemini call
+        if not source_text.strip():
+            yield {
+                "type": "ERROR",
+                "code": "GENERATION_FAILED",
+                "message": "No source text provided. Supply inputText (Path A) or englishDraft (Path B phase 2).",
+            }
             return
 
         # P1: catch ValueError so a bad chapter string yields ERROR instead of breaking the stream
@@ -232,7 +297,7 @@ class StoryGeneratorAgent:
             self._vocab_data,
             self._grammar_data,
             chapter_int,
-            input_text,
+            source_text,
             steering_instructions,
             grammar_distribution,
         )
@@ -309,3 +374,69 @@ class StoryGeneratorAgent:
             "resultType": "story",
             "content": raw_json,
         }
+
+    async def _generate_proposal(
+        self,
+        *,
+        run_id: str,
+        chapter: str,
+        topic: str,
+        steering_instructions: str,
+        temperature: float,
+        cancel_event: asyncio.Event | None,
+    ) -> AsyncGenerator[dict, None]:
+        """Path B phase 1: topic → English story proposal.
+
+        Emits TEXT_MESSAGE_CHUNK + RUN_FINISHED(resultType='proposal') on success.
+        """
+        # Check cancel before any work
+        if cancel_event and cancel_event.is_set():
+            yield {"type": "RUN_CANCELLED", "runId": run_id}
+            return
+
+        # P1: catch ValueError from bad chapter string
+        try:
+            chapter_int = _parse_chapter(chapter)
+        except ValueError as exc:
+            yield {"type": "ERROR", "code": "GENERATION_FAILED", "message": str(exc)}
+            return
+
+        prompt = build_proposal_prompt(chapter_int, topic, steering_instructions)
+
+        try:
+            from google.genai import types as genai_types
+
+            # Plain text output — no JSON mime type for the proposal
+            config = genai_types.GenerateContentConfig(temperature=temperature)
+            call = self._get_caller()
+            response = await asyncio.wait_for(
+                asyncio.to_thread(call, GEMINI_MODEL, prompt, config),
+                timeout=_GENERATION_TIMEOUT_S,
+            )
+        except asyncio.TimeoutError:
+            yield {
+                "type": "ERROR",
+                "code": "TIMEOUT",
+                "message": "This took longer than expected — your inputs are preserved. Try again.",
+            }
+            return
+        except Exception as exc:  # noqa: BLE001
+            yield {"type": "ERROR", "code": "GENERATION_FAILED", "message": str(exc)}
+            return
+
+        if cancel_event and cancel_event.is_set():
+            yield {"type": "RUN_CANCELLED", "runId": run_id}
+            return
+
+        proposal_text = getattr(response, "text", None)
+        if not proposal_text:
+            yield {
+                "type": "ERROR",
+                "code": "GENERATION_FAILED",
+                "message": "Gemini returned no content. Check safety filters or prompt length.",
+            }
+            return
+
+        proposal_text = proposal_text.strip()
+        yield {"type": "TEXT_MESSAGE_CHUNK", "delta": proposal_text}
+        yield {"type": "RUN_FINISHED", "resultType": "proposal", "content": proposal_text}
