@@ -45,7 +45,8 @@ if ($backend.HasExited) {
     exit 1
 }
 
-Write-Host "Opening frontend (Ctrl+C here to stop Vite; close backend window to stop uvicorn)..."
+Write-Host "Opening frontend..."
+Write-Host "  Ctrl+C here stops Vite.  Close the backend window to stop uvicorn."
 Write-Host ""
 
 try {
