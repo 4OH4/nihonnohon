@@ -52,7 +52,7 @@ development_status:
   epic-1-retrospective: done
 
   # Epic 2: M1 — Full Convert a Story Pipeline
-  epic-2: in-progress
+  epic-2: done
   2-1-frontend-project-scaffold-state-machine-and-ag-ui-hook: done
   2-2-m1-production-backend-agent-sse-endpoints-and-cancellation: done
   2-3-app-shell-backendstatus-modetoggle-and-settingspanel: done
@@ -62,7 +62,7 @@ development_status:
   2-7-output-panel-dirty-state-and-re-run: done
   2-8-client-side-validation-suite-story-download-and-statsbar: done
   2-9-session-persistence-clear-and-content-provenance: done
-  epic-2-retrospective: optional
+  epic-2-retrospective: done
 
   # Epic 3: M2 — Agentic Calibration Quality
   epic-3: backlog

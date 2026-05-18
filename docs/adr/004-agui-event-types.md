@@ -92,6 +92,22 @@ Emitted after the backend has successfully terminated a generation in response t
 }
 ```
 
+#### `AGENT_STATUS` *(M2 only)*
+Emitted zero or more times during the M2 ReAct agentic loop to surface a live status
+message to the author. Each event replaces the previous status message — the frontend
+displays only the most recent value. Absent in M1 mode (no events emitted). Added to this
+ADR before any M2 implementation begins, per the contract-first rule above.
+
+```json
+{
+  "type": "AGENT_STATUS",
+  "message": "<string — plain-English status, e.g. \"Checking grammar…\">"
+}
+```
+
+Example messages (non-exhaustive): `"Planning story structure…"`, `"Generating story…"`,
+`"Checking grammar…"`, `"Running quality review…"`.
+
 ### Frontend → Backend (cancel signal)
 
 Cancellation is sent as a standard HTTP POST, not through the SSE stream (SSE is
@@ -114,13 +130,15 @@ Content-Type: application/json
 | `RUN_FINISHED` (`resultType: 'proposal'`) | `_setProposalText(content)`; `phase → 'proposal'` |
 | `ERROR` | `_setError(code, message)`; `phase → 'error'` |
 | `RUN_CANCELLED` | `phase → 'idle'`; `runId → null`; inputs preserved |
+| `AGENT_STATUS` *(M2)* | update `agentStatusMessage`; `GenerationProgress` displays below shimmer |
 | unexpected stream close (no `RUN_FINISHED`) | `_setError('BACKEND_UNAVAILABLE', '...')`; `phase → 'error'` |
 
 ## Consequences
 
 - `useAgUiRun` is implemented strictly against this event contract.
 - `agent.py` emits only the event types listed here.
-- Any new event type required by M2 (ReAct tool calls) or M3 (Path B proposal) must be
-  added to this ADR before implementation begins.
+- `AGENT_STATUS` is the sole M2 addition. No further M2 event types are introduced.
+- Any new event type required by M3 (Path B proposal) must be added to this ADR before
+  implementation begins.
 - The `ag-ui-protocol` Python SDK (v0.1.18) provides the base types; field names follow
   the SDK's camelCase convention throughout.
