@@ -3,11 +3,14 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 import os
 from typing import AsyncGenerator
 
 from story_generator.data_loader import GrammarData, VocabData
 from story_generator.validator import validate
+
+logger = logging.getLogger(__name__)
 
 GEMINI_MODEL = "gemini-2.5-flash"
 
@@ -263,6 +266,7 @@ class StoryGeneratorAgent:
 
         # Route Path B phase 1 (topic → English proposal) before chapter parsing
         if path_mode == "B" and topic:
+            logger.info("Path B phase 1 — run_id=%s chapter=%s topic=%.60r", run_id, chapter, topic)
             async for event in self._generate_proposal(
                 run_id=run_id,
                 chapter=chapter,
@@ -277,6 +281,12 @@ class StoryGeneratorAgent:
         # Path A and Path B phase 2 both go through the Japanese story pipeline.
         # Phase 2 uses english_draft as the source text; Path A uses input_text.
         source_text = english_draft if (path_mode == "B" and english_draft) else input_text
+
+        logger.info(
+            "Path %s generation — run_id=%s chapter=%s temp=%.1f grammar_dist=%s",
+            "B2" if path_mode == "B" else "A",
+            run_id, chapter, temperature, grammar_distribution,
+        )
 
         # Guard: reject empty source before the expensive Gemini call
         if not source_text.strip():
@@ -301,6 +311,7 @@ class StoryGeneratorAgent:
             steering_instructions,
             grammar_distribution,
         )
+        logger.debug("Prompt (%d chars):\n%s", len(prompt), prompt)
 
         # Call Gemini (blocking) via asyncio.to_thread to avoid blocking the event loop
         try:
@@ -311,11 +322,13 @@ class StoryGeneratorAgent:
                 temperature=temperature,
             )
             call = self._get_caller()
+            logger.debug("Calling %s (timeout=%ss)", GEMINI_MODEL, _GENERATION_TIMEOUT_S)
             response = await asyncio.wait_for(
                 asyncio.to_thread(call, GEMINI_MODEL, prompt, config),
                 timeout=_GENERATION_TIMEOUT_S,
             )
         except asyncio.TimeoutError:
+            logger.warning("run_id=%s timed out after %ss", run_id, _GENERATION_TIMEOUT_S)
             yield {
                 "type": "ERROR",
                 "code": "TIMEOUT",
@@ -323,6 +336,7 @@ class StoryGeneratorAgent:
             }
             return
         except Exception as exc:  # noqa: BLE001
+            logger.error("run_id=%s Gemini call failed: %s", run_id, exc)
             yield {
                 "type": "ERROR",
                 "code": "GENERATION_FAILED",
@@ -338,6 +352,7 @@ class StoryGeneratorAgent:
         # Guard against Gemini safety filter returning None
         raw_json = getattr(response, "text", None)
         if raw_json is None:
+            logger.warning("run_id=%s Gemini returned no content (safety filter?)", run_id)
             yield {
                 "type": "ERROR",
                 "code": "GENERATION_FAILED",
@@ -345,10 +360,13 @@ class StoryGeneratorAgent:
             }
             return
 
+        logger.debug("Response (%d chars):\n%s", len(raw_json), raw_json[:2000])
+
         # Parse JSON
         try:
             story_dict = json.loads(raw_json)
         except json.JSONDecodeError as exc:
+            logger.error("run_id=%s invalid JSON from Gemini: %s", run_id, exc)
             yield {
                 "type": "ERROR",
                 "code": "GENERATION_FAILED",
@@ -360,12 +378,17 @@ class StoryGeneratorAgent:
         result = validate(story_dict)
         if not result.valid:
             errors_str = "; ".join(e.message for e in result.errors[:3])
+            logger.warning("run_id=%s validation failed: %s", run_id, errors_str)
             yield {
                 "type": "ERROR",
                 "code": "VALIDATION_ERROR",
                 "message": f"Generated story failed validation: {errors_str}",
             }
             return
+
+        story_id = story_dict.get("id", "unknown")
+        sentences = story_dict.get("sentences", [])
+        logger.info("run_id=%s generation complete — id=%r sentences=%d", run_id, story_id, len(sentences))
 
         # Stream complete JSON as a single chunk then finish
         yield {"type": "TEXT_MESSAGE_CHUNK", "delta": raw_json}
@@ -402,6 +425,7 @@ class StoryGeneratorAgent:
             return
 
         prompt = build_proposal_prompt(chapter_int, topic, steering_instructions)
+        logger.debug("Proposal prompt (%d chars):\n%s", len(prompt), prompt)
 
         try:
             from google.genai import types as genai_types
@@ -409,11 +433,13 @@ class StoryGeneratorAgent:
             # Plain text output — no JSON mime type for the proposal
             config = genai_types.GenerateContentConfig(temperature=temperature)
             call = self._get_caller()
+            logger.debug("Calling %s for English proposal", GEMINI_MODEL)
             response = await asyncio.wait_for(
                 asyncio.to_thread(call, GEMINI_MODEL, prompt, config),
                 timeout=_GENERATION_TIMEOUT_S,
             )
         except asyncio.TimeoutError:
+            logger.warning("run_id=%s proposal timed out", run_id)
             yield {
                 "type": "ERROR",
                 "code": "TIMEOUT",
@@ -421,6 +447,7 @@ class StoryGeneratorAgent:
             }
             return
         except Exception as exc:  # noqa: BLE001
+            logger.error("run_id=%s proposal Gemini call failed: %s", run_id, exc)
             yield {"type": "ERROR", "code": "GENERATION_FAILED", "message": str(exc)}
             return
 
@@ -430,6 +457,7 @@ class StoryGeneratorAgent:
 
         proposal_text = getattr(response, "text", None)
         if not proposal_text:
+            logger.warning("run_id=%s Gemini returned no proposal (safety filter?)", run_id)
             yield {
                 "type": "ERROR",
                 "code": "GENERATION_FAILED",
@@ -438,5 +466,7 @@ class StoryGeneratorAgent:
             return
 
         proposal_text = proposal_text.strip()
+        logger.info("run_id=%s proposal complete (%d chars)", run_id, len(proposal_text))
+        logger.debug("Proposal text:\n%s", proposal_text)
         yield {"type": "TEXT_MESSAGE_CHUNK", "delta": proposal_text}
         yield {"type": "RUN_FINISHED", "resultType": "proposal", "content": proposal_text}

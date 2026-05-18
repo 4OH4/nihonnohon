@@ -1,5 +1,15 @@
 # Deferred Work
 
+## Deferred from: code review of 3-2-topic-input-suggest-topic-button-and-mode-activation (2026-05-18)
+
+- **`doSuggest` silently dropped if `isSuggesting` true when `handleConfirmReplace` fires:** Unreachable in normal UI flow (SuggestConfirm strip only opens when `isSuggesting === false`). Defensive: add AbortController or allow the second call to proceed when confirm was explicitly clicked. [TopicTextarea.tsx]
+- **`pendingMode` stale when `outputIsDirty` clears externally while ModeToggle strip is showing:** If an external action (e.g., generation completing) resets `outputIsDirty` while the dirty-mode-switch confirmation strip is visible, `pendingMode` stays set and the strip remains open. Single-user v1 — external reset during confirmation window is practically impossible. [ModeToggle.tsx]
+- **`doSuggest` overwrites user-typed content during in-flight request:** If the user types into the topic textarea while a suggest-topic fetch is in-flight, `setTopicText(data.topic)` unconditionally replaces it. Add `AbortController` or a staleness check if user edits during fetch become a problem. [TopicTextarea.tsx]
+- **No Escape key handler on ModeToggle dirty-output warning strip:** The SuggestConfirm strip has Escape; the ModeToggle warning strip does not. AC6 does not require Escape — inconsistency noted for a future accessibility pass. [ModeToggle.tsx]
+- **Debounce blocks re-click within 300ms after SuggestConfirm Cancel:** Expected behaviour, confirmed by test. UX quirk: user must wait 300ms after cancelling a replace before the button responds again. [TopicTextarea.tsx]
+- **`approve()` snapshots live `topicText` not the phase-1 `storedInputs.topicText`:** If the user edits the topic field between phase 1 (English proposal) and phase 2 (Japanese conversion), `storedInputs.topicText` in the phase-2 snapshot reflects the edited value, not the original. Story 3.3 owns the approval flow — revisit if this creates a mismatch. [authoringStore.ts]
+- **No `AbortController`; unmounting `TopicTextarea` during in-flight `/suggest-topic` may call `setTopicText` on stale component:** React 18 should suppress the state update, but no cancellation signal is sent to the backend. Consistent with existing backend-fetch patterns in the app. [TopicTextarea.tsx]
+
 ## Deferred from: code review of 3-1-path-b-backend-english-generation-and-suggest-topic-endpoints (2026-05-18)
 
 - **Cooldown timestamp set before Gemini call:** `_suggest_topic_cooldowns[chapter] = now` is written before the async call completes, so a timeout locks the chapter for 2 seconds before a retry is allowed. Acceptable for v1 — 2s retry delay is minor. [main.py:suggest_topic]

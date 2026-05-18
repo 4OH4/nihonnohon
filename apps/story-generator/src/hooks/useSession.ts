@@ -13,6 +13,7 @@ interface SessionState {
   version: 1
   phase: Phase
   inputText: string
+  topicText: string
   chapterTarget: string
   steeringInstructions: string
   pathMode: 'A' | 'B'
@@ -72,10 +73,14 @@ export function useSession(): void {
       session.targetWordCount ??
       (storyLengthPreset !== 'custom' ? STORY_LENGTH_WORD_COUNTS[storyLengthPreset] : STORY_LENGTH_WORD_COUNTS.medium)
 
+    // Guard against stale sessions missing topicText (added in Story 3.2)
+    const topicText: string = session.topicText ?? ''
+
     // Batch-set the store in one atomic write
     useAuthoringStore.setState({
       phase: restoredPhase,
       inputText: session.inputText,
+      topicText,
       chapterTarget: session.chapterTarget,
       steeringInstructions: session.steeringInstructions,
       pathMode: session.pathMode,
@@ -91,6 +96,7 @@ export function useSession(): void {
     const hasContent =
       session.outputJson !== null ||
       session.inputText !== '' ||
+      topicText !== '' ||
       session.chapterTarget !== '' ||
       session.steeringInstructions !== ''
     if (hasContent) {
@@ -118,6 +124,7 @@ export function useSession(): void {
         version: 1,
         phase: state.phase,
         inputText: state.inputText,
+        topicText: state.topicText,
         chapterTarget: state.chapterTarget,
         steeringInstructions: state.steeringInstructions,
         pathMode: state.pathMode,

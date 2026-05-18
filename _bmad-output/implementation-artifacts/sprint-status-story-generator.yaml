@@ -67,7 +67,7 @@ development_status:
   # Epic 3: M3 — Generate from Topic (Path B)
   epic-3: in-progress
   3-1-path-b-backend-english-generation-and-suggest-topic-endpoints: done
-  3-2-topic-input-suggest-topic-button-and-mode-activation: backlog
+  3-2-topic-input-suggest-topic-button-and-mode-activation: done
   3-3-english-proposal-review-and-convert-to-japanese: backlog
   3-4-story-length-settings-and-path-b-session-restore: backlog
   epic-3-retrospective: optional

@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils'
 import { useAuthoringStore, selectCanGenerate } from '@/stores/authoringStore'
 import { useBackendStatus } from '@/hooks/useBackendStatus'
 import { ScopeChip, CHAPTER_SCOPE } from './ScopeChip'
+import { TopicTextarea } from './TopicTextarea'
 
 /** Ordered chapter options derived from the scope data — single source of truth. */
 const CHAPTER_OPTIONS = Object.keys(CHAPTER_SCOPE)
@@ -10,6 +11,7 @@ const CHAPTER_OPTIONS = Object.keys(CHAPTER_SCOPE)
 interface ValidationHints {
   story: boolean
   chapter: boolean
+  topic: boolean
 }
 
 /**
@@ -21,8 +23,10 @@ interface ValidationHints {
  */
 export function InputPanel() {
   const inputText               = useAuthoringStore(s => s.inputText)
+  const topicText               = useAuthoringStore(s => s.topicText)
   const chapterTarget           = useAuthoringStore(s => s.chapterTarget)
   const steeringInstructions    = useAuthoringStore(s => s.steeringInstructions)
+  const pathMode                = useAuthoringStore(s => s.pathMode)
   const phase                   = useAuthoringStore(s => s.phase)
   const storedInputs            = useAuthoringStore(s => s.storedInputs)
   const sessionRestored         = useAuthoringStore(s => s.sessionRestored)
@@ -37,12 +41,19 @@ export function InputPanel() {
   const backendStatus           = useBackendStatus()
 
   const [steeringOpen, setSteeringOpen] = useState(false)
-  const [hints, setHints] = useState<ValidationHints>({ story: false, chapter: false })
+  const [hints, setHints] = useState<ValidationHints>({ story: false, chapter: false, topic: false })
   const [manualExpanded, setManualExpanded] = useState(false)
+  // Tracks whether TopicTextarea's SuggestConfirm strip is open (to disable Generate)
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false)
   const steeringToggleRef = useRef<HTMLButtonElement>(null)
 
   const isGeneratingOrCancelling = phase === 'generating' || phase === 'cancelling'
   const isCollapsed = isGeneratingOrCancelling && !manualExpanded
+
+  // Reset confirm-open gate when leaving Path B so Generate button never stays disabled after mode switch
+  useEffect(() => {
+    if (pathMode !== 'B') setIsConfirmOpen(false)
+  }, [pathMode])
 
   // Auto-reset manual expansion when generation ends (phase returns to idle/error/etc.)
   useEffect(() => {
@@ -62,17 +73,26 @@ export function InputPanel() {
   }
 
   const handleGenerate = () => {
-    const missingStory   = inputText.trim() === ''
-    const missingChapter = chapterTarget === ''
-    if (missingStory || missingChapter) {
-      setHints({ story: missingStory, chapter: missingChapter })
-      return
+    if (pathMode === 'B') {
+      const missingTopic   = topicText.trim() === ''
+      const missingChapter = chapterTarget === ''
+      if (missingTopic || missingChapter) {
+        setHints({ story: false, chapter: missingChapter, topic: missingTopic })
+        return
+      }
+    } else {
+      const missingStory   = inputText.trim() === ''
+      const missingChapter = chapterTarget === ''
+      if (missingStory || missingChapter) {
+        setHints({ story: missingStory, chapter: missingChapter, topic: false })
+        return
+      }
     }
-    setHints({ story: false, chapter: false })
+    setHints({ story: false, chapter: false, topic: false })
     generate()
   }
 
-  const isGenerateDisabled = !canGenerate || backendStatus === 'unavailable'
+  const isGenerateDisabled = !canGenerate || backendStatus === 'unavailable' || isConfirmOpen
 
   return (
     <section aria-label="Story inputs" className="space-y-3">
@@ -127,35 +147,45 @@ export function InputPanel() {
       {/* Full form — hidden when collapsed */}
       {!isCollapsed && (
         <>
-          {/* English story textarea */}
-          <div>
-            <label
-              htmlFor="input-text"
-              className="block text-sm font-medium text-paper-text mb-1"
-            >
-              English story
-            </label>
-            <textarea
-              id="input-text"
-              value={inputText}
-              onChange={e => handleInputChange(e.target.value)}
-              placeholder="Paste your English story here…"
-              className={cn(
-                'w-full min-h-[200px] max-h-[400px] overflow-y-auto resize-none',
-                'px-3 py-2 text-sm border rounded-md bg-surface-subtle text-paper-text',
-                'focus-visible:ring-2 ring-accent outline-none transition-colors',
-                hints.story ? 'border-error' : 'border-border',
+          {/* Path A: English story textarea / Path B: TopicTextarea */}
+          {pathMode === 'A' ? (
+            <div>
+              <label
+                htmlFor="input-text"
+                className="block text-sm font-medium text-paper-text mb-1"
+              >
+                English story
+              </label>
+              <textarea
+                id="input-text"
+                value={inputText}
+                onChange={e => handleInputChange(e.target.value)}
+                placeholder="Paste your English story here…"
+                className={cn(
+                  'w-full min-h-[200px] max-h-[400px] overflow-y-auto resize-none',
+                  'px-3 py-2 text-sm border rounded-md bg-surface-subtle text-paper-text',
+                  'focus-visible:ring-2 ring-accent outline-none transition-colors',
+                  hints.story ? 'border-error' : 'border-border',
+                )}
+              />
+              {hints.story && (
+                <p className="text-xs text-error mt-1">
+                  Enter your English story before generating.
+                </p>
               )}
-            />
-            {hints.story && (
-              <p className="text-xs text-error mt-1">
-                Enter your English story before generating.
+              <p className="text-xs text-muted mt-1">
+                English source material must be original or appropriately licensed.
               </p>
-            )}
-            <p className="text-xs text-muted mt-1">
-              English source material must be original or appropriately licensed.
-            </p>
-          </div>
+            </div>
+          ) : (
+            <TopicTextarea
+              hint={hints.topic}
+              onConfirmOpen={open => {
+                setIsConfirmOpen(open)
+                if (!open && sessionRestored) _setSessionRestored(false)
+              }}
+            />
+          )}
 
           {/* Chapter selector */}
           <div>
@@ -249,7 +279,7 @@ export function InputPanel() {
               isGenerateDisabled && 'opacity-[0.45] cursor-not-allowed pointer-events-none',
             )}
           >
-            Convert to Japanese
+            {pathMode === 'A' ? 'Convert to Japanese' : 'Generate'}
           </button>
         )}
 

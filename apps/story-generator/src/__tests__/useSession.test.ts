@@ -155,6 +155,53 @@ describe('useSession — hydration on mount', () => {
   })
 })
 
+describe('useSession — topicText persistence', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+    localStorage.clear()
+  })
+
+  afterEach(() => {
+    useAuthoringStore.getState()._reset()
+    localStorage.clear()
+  })
+
+  it('restores topicText from session', () => {
+    writeSession({ topicText: 'library study', outputJson: null, inputText: '' })
+    renderHook(() => useSession())
+    expect(useAuthoringStore.getState().topicText).toBe('library study')
+  })
+
+  it('topicText non-empty triggers sessionRestored banner', () => {
+    writeSession({ topicText: 'coffee trip', outputJson: null, inputText: '', chapterTarget: '' })
+    renderHook(() => useSession())
+    expect(useAuthoringStore.getState().sessionRestored).toBe(true)
+  })
+
+  it('falls back to empty string when session has no topicText (older session)', () => {
+    writeSession({ outputJson: null, inputText: 'A story' })
+    // writeSession does not include topicText — simulates older session format
+    renderHook(() => useSession())
+    expect(useAuthoringStore.getState().topicText).toBe('')
+  })
+
+  it('persists topicText to localStorage via a phase-change write', async () => {
+    // topicText is written in the session state on any write (phase change triggers immediate write)
+    renderHook(() => useSession())
+    act(() => {
+      useAuthoringStore.getState().setTopicText('market visit')
+      // Phase change triggers immediate (non-debounced) write that includes current state
+      useAuthoringStore.getState()._setOutputJson('{"id":"x"}')
+    })
+    await act(async () => {})
+
+    const stored = localStorage.getItem(SESSION_KEY)
+    expect(stored).not.toBeNull()
+    const parsed = JSON.parse(stored!) as Record<string, unknown>
+    expect(parsed.topicText).toBe('market visit')
+  })
+})
+
 describe('useSession — subscription / persistence', () => {
   beforeEach(() => {
     useAuthoringStore.getState()._reset()

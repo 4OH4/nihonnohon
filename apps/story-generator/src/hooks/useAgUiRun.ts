@@ -55,6 +55,8 @@ export function useAgUiRun(
     const pathMode             = storedInputs?.pathMode             ?? store.pathMode
     const temperature          = storedInputs?.temperature          ?? store.temperature
     const grammarDist          = storedInputs?.grammarDist          ?? store.grammarDist
+    const topicText            = storedInputs?.topicText            ?? ''
+    const englishDraft         = storedInputs?.englishDraft         ?? ''
 
     // Build query string
     const params = new URLSearchParams({
@@ -67,6 +69,11 @@ export function useAgUiRun(
     })
     if (steeringInstructions) {
       params.set('steeringInstructions', steeringInstructions)
+    }
+    // Path B params: topic (phase 1) and englishDraft (phase 2)
+    if (pathMode === 'B') {
+      if (topicText)    params.set('topic', topicText)
+      if (englishDraft) params.set('englishDraft', englishDraft)
     }
 
     const url = `/run_sse?${params.toString()}`

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 import os
 import time
 from contextlib import asynccontextmanager
@@ -15,6 +16,37 @@ from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel
 
 load_dotenv()
+
+# ---------------------------------------------------------------------------
+# Logging — configured before anything else so library loggers are captured
+# ---------------------------------------------------------------------------
+
+def _configure_logging() -> None:
+    """Set up logging from LOG_LEVEL env var (default INFO).
+
+    INFO:  generation lifecycle events (start, finish, errors, validation failures)
+    DEBUG: full prompts and raw LLM responses in addition to the above
+    """
+    level_name = os.environ.get("LOG_LEVEL", "INFO").upper()
+    level = getattr(logging, level_name, logging.INFO)
+
+    logging.basicConfig(
+        level=level,
+        format="%(asctime)s [%(levelname)s] %(name)s — %(message)s",
+        datefmt="%H:%M:%S",
+    )
+
+    # google.genai INFO shows API request lifecycle; DEBUG includes full payloads
+    logging.getLogger("google.genai").setLevel(level)
+    # httpx at DEBUG logs raw HTTP bodies — only useful when troubleshooting auth/network
+    logging.getLogger("httpx").setLevel(logging.WARNING if level > logging.DEBUG else logging.DEBUG)
+    # Keep uvicorn/fastapi access logs at their default level
+    logging.getLogger("uvicorn.access").setLevel(logging.INFO)
+
+
+_configure_logging()
+
+logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
 # Module-level state — loaded once at startup
@@ -159,15 +191,23 @@ def _generate_topic_suggestion(chapter: str, gemini_client=None) -> str:
         chapter_int = 1
 
     prompt = (
-        f"Suggest a single topic sentence for a short English story intended for a Genki I "
-        f"Chapter {chapter_int} Japanese learner. The topic should reflect everyday student life "
-        f"or simple cultural activities appropriate for beginners. "
+        f"Suggest a single topic sentence in English as start point for a short story."
+        f"It is intended for a Japanese learner who has studied using the Genki "
+        f"textbooks up to Chapter {chapter_int}, and will later be translated into Japanese."
+        f"The topic should reflect everyday student life or simple cultural activities appropriate for beginners. "
         f"Return only the topic sentence — no explanation, no punctuation at the end."
     )
 
     from google.genai import types as genai_types
 
-    config = genai_types.GenerateContentConfig(temperature=1.0)
+    # Disable thinking (thinking_budget=0) and cap tokens — keeps latency well under 10s
+    # for this lightweight one-sentence utility call (unlike JSON generation which implicitly
+    # disables thinking via response_mime_type, plain-text mode enables it by default)
+    config = genai_types.GenerateContentConfig(
+        temperature=1.0,
+        max_output_tokens=64,
+        thinking_config=genai_types.ThinkingConfig(thinking_budget=0),
+    )
     response = gemini_client("gemini-2.5-flash", prompt, config)
     text = getattr(response, "text", "") or ""
     return text.strip()
@@ -186,6 +226,7 @@ async def suggest_topic(request: SuggestTopicRequest) -> dict:
         raise HTTPException(status_code=429, detail="cooldown")
 
     _suggest_topic_cooldowns[chapter] = now
+    logger.info("suggest-topic chapter=%r", chapter)
 
     try:
         topic = await asyncio.wait_for(
@@ -193,13 +234,17 @@ async def suggest_topic(request: SuggestTopicRequest) -> dict:
             timeout=_SUGGEST_TOPIC_TIMEOUT_S,
         )
     except asyncio.TimeoutError:
+        logger.warning("suggest-topic timed out for chapter=%r", chapter)
         raise HTTPException(status_code=504, detail="Suggest-topic timed out.")
     except Exception as exc:  # noqa: BLE001
+        logger.error("suggest-topic error for chapter=%r: %s", chapter, exc)
         raise HTTPException(status_code=500, detail=str(exc))
 
     if not topic:
+        logger.warning("suggest-topic returned empty string for chapter=%r", chapter)
         raise HTTPException(status_code=500, detail="Gemini returned no topic suggestion.")
 
+    logger.info("suggest-topic result: %r", topic)
     return {"topic": topic}
 
 

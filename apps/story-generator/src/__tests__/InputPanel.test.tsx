@@ -306,6 +306,60 @@ describe('InputPanel — SessionRestoreBanner', () => {
   })
 })
 
+describe('InputPanel — Path B mode', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+    vi.mocked(useBackendStatus).mockReturnValue('connected')
+    // Switch to Path B
+    useAuthoringStore.getState().setPathMode('B')
+  })
+
+  afterEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('renders TopicTextarea in place of English story textarea in Path B', () => {
+    render(<InputPanel />)
+    expect(screen.queryByLabelText(/english story/i)).not.toBeInTheDocument()
+    expect(screen.getByLabelText(/topic/i)).toBeInTheDocument()
+  })
+
+  it('shows "Generate" button label in Path B', () => {
+    render(<InputPanel />)
+    expect(screen.getByRole('button', { name: /^generate$/i })).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /convert to japanese/i })).not.toBeInTheDocument()
+  })
+
+  it('pre-flight validation checks topicText in Path B (empty topic shows hint)', () => {
+    render(<InputPanel />)
+    fireEvent.change(screen.getByLabelText(/genki chapter/i), {
+      target: { value: 'Genki I Ch.5' },
+    })
+    fireEvent.click(screen.getByRole('button', { name: /^generate$/i }))
+    expect(screen.getByText('Enter a topic before generating.')).toBeInTheDocument()
+    expect(useAuthoringStore.getState().phase).toBe('idle')
+  })
+
+  it('pre-flight validation passes with topicText + chapter in Path B', () => {
+    useAuthoringStore.getState().setTopicText('library study')
+    render(<InputPanel />)
+    fireEvent.change(screen.getByLabelText(/genki chapter/i), {
+      target: { value: 'Genki I Ch.5' },
+    })
+    fireEvent.click(screen.getByRole('button', { name: /^generate$/i }))
+    expect(useAuthoringStore.getState().phase).toBe('generating')
+  })
+
+  it('switching from Path B to Path A re-enables Generate button (isConfirmOpen reset)', () => {
+    const { rerender } = render(<InputPanel />)
+    // Start in Path B (already set in beforeEach), switch to Path A
+    act(() => useAuthoringStore.getState().setPathMode('A'))
+    rerender(<InputPanel />)
+    // After switch, Generate button should reflect Path A label
+    expect(screen.getByRole('button', { name: /convert to japanese/i })).toBeInTheDocument()
+  })
+})
+
 describe('InputPanel — content provenance note', () => {
   beforeEach(() => {
     useAuthoringStore.getState()._reset()

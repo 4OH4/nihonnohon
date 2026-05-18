@@ -476,3 +476,70 @@ describe('useAgUiRun — RUN_STARTED calls _markRunStarted', () => {
     expect(useAuthoringStore.getState().agentRunStarted).toBe(true)
   })
 })
+
+// ─── Story 3.2: Path B URL params ────────────────────────────────────────────
+
+describe('useAgUiRun — Path B URL params', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('includes topic param in URL when pathMode=B and topicText non-empty', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setPathMode('B')
+    store.setTopicText('café study session')
+    store.setChapterTarget('Genki I Ch.5')
+    store.generate()
+
+    renderHook(() => useAgUiRun(factory))
+
+    expect(factory).toHaveBeenCalledOnce()
+    const url: string = factory.mock.calls[0][0]
+    const params = new URLSearchParams(url.split('?')[1] ?? '')
+    expect(params.get('topic')).toBe('café study session')
+    expect(url).toContain('pathMode=B')
+  })
+
+  it('does not include topic param in URL for Path A', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setInputText('A regular story.')
+    store.setChapterTarget('Genki I Ch.5')
+    store.generate()
+
+    renderHook(() => useAgUiRun(factory))
+
+    expect(factory).toHaveBeenCalledOnce()
+    const url: string = factory.mock.calls[0][0]
+    expect(url).not.toContain('&topic=')
+    expect(url).toContain('pathMode=A')
+  })
+
+  it('includes englishDraft param in URL for Path B approve() flow', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setPathMode('B')
+    store.setChapterTarget('Genki I Ch.5')
+    store._setProposalText('Ken goes to the library.')
+    store.approve()
+
+    renderHook(() => useAgUiRun(factory))
+
+    expect(factory).toHaveBeenCalledOnce()
+    const url: string = factory.mock.calls[0][0]
+    // Use URLSearchParams to properly decode + signs from URLSearchParams encoding
+    const params = new URLSearchParams(url.split('?')[1] ?? '')
+    expect(params.get('englishDraft')).toBe('Ken goes to the library.')
+    expect(url).toContain('pathMode=B')
+  })
+})

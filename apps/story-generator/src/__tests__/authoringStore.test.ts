@@ -298,6 +298,64 @@ describe('authoringStore — save()', () => {
   })
 })
 
+describe('authoringStore — topicText and Path B storedInputs', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('topicText defaults to empty string', () => {
+    expect(useAuthoringStore.getState().topicText).toBe('')
+  })
+
+  it('setTopicText updates topicText', () => {
+    useAuthoringStore.getState().setTopicText('coffee shop visit')
+    expect(useAuthoringStore.getState().topicText).toBe('coffee shop visit')
+  })
+
+  it('generate() in Path B captures topicText in storedInputs', () => {
+    useAuthoringStore.getState().setPathMode('B')
+    useAuthoringStore.getState().setTopicText('library study')
+    useAuthoringStore.getState().generate()
+    expect(useAuthoringStore.getState().storedInputs?.topicText).toBe('library study')
+  })
+
+  it('generate() in Path A captures empty topicText in storedInputs', () => {
+    useAuthoringStore.getState().setTopicText('ignored topic')
+    useAuthoringStore.getState().generate()
+    // topicText is captured regardless of mode — SSE hook decides whether to use it
+    expect(useAuthoringStore.getState().storedInputs?.topicText).toBe('ignored topic')
+  })
+
+  it('clear() resets topicText to empty string', () => {
+    useAuthoringStore.getState().setTopicText('some topic')
+    useAuthoringStore.getState().clear()
+    expect(useAuthoringStore.getState().topicText).toBe('')
+  })
+})
+
+describe('authoringStore — approve() Path B storedInputs', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('approve() includes englishDraft from proposalText in storedInputs', () => {
+    useAuthoringStore.getState().setPathMode('B')
+    useAuthoringStore.getState()._setProposalText('An English story proposal.')
+    useAuthoringStore.getState().approve()
+    expect(useAuthoringStore.getState().storedInputs?.englishDraft).toBe('An English story proposal.')
+  })
+
+  it('approve() sets englishDraft to empty string when proposalText is null', () => {
+    useAuthoringStore.getState().setPathMode('B')
+    useAuthoringStore.getState()._setProposalText('draft')
+    useAuthoringStore.getState().approve()
+    // Reset and test null path - need to manually set phase to proposal with null proposalText
+    useAuthoringStore.setState({ phase: 'proposal', proposalText: null })
+    useAuthoringStore.getState().approve()
+    expect(useAuthoringStore.getState().storedInputs?.englishDraft).toBe('')
+  })
+})
+
 describe('authoringStore — _clearDownloadToast()', () => {
   beforeEach(() => {
     useAuthoringStore.getState()._reset()

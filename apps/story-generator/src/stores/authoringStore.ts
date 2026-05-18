@@ -36,11 +36,18 @@ interface StoredInputs {
   pathMode: 'A' | 'B'
   temperature: number
   grammarDist: 0 | 1 | 2
+  /** Path B phase 1: topic text snapshotted at generate() time. */
+  topicText?: string
+  /** Path B phase 2: English draft snapshotted at approve() time. */
+  englishDraft?: string
+  /** Path B: word count target snapshotted at generate() time (wired to SSE URL in Story 3.4). */
+  targetWordCount?: number
 }
 
 interface AuthoringStore {
   phase: Phase
   inputText: string
+  topicText: string
   chapterTarget: string
   steeringInstructions: string
   pathMode: 'A' | 'B'
@@ -69,6 +76,7 @@ interface AuthoringStore {
   save: () => void
   clear: () => void
   setInputText: (v: string) => void
+  setTopicText: (v: string) => void
   setChapterTarget: (v: string) => void
   setSteeringInstructions: (v: string) => void
   setPathMode: (v: 'A' | 'B') => void
@@ -105,6 +113,7 @@ interface AuthoringStore {
 const defaultState = {
   phase: 'idle' as Phase,
   inputText: '',
+  topicText: '',
   chapterTarget: '',
   steeringInstructions: '',
   pathMode: 'A' as const,
@@ -130,7 +139,8 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   ...defaultState,
 
   generate() {
-    const { phase, inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist } = get()
+    const { phase, inputText, topicText, chapterTarget, steeringInstructions, pathMode,
+            temperature, grammarDist, targetWordCount } = get()
     // Valid from idle and error (implicit retry from error clears error state)
     if (phase !== 'idle' && phase !== 'error') return
     set({
@@ -141,7 +151,11 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
       errorCode: null,
       errorMessage: null,
       agentRunStarted: false,
-      storedInputs: { inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist },
+      storedInputs: {
+        inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist,
+        topicText,       // Path B phase 1 SSE param
+        targetWordCount, // Path B word count (wired to SSE URL in Story 3.4)
+      },
     })
   },
 
@@ -153,7 +167,8 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
 
   approve() {
     // M3 Path B: approves the English proposal and triggers Japanese generation
-    const { phase, inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist } = get()
+    const { phase, inputText, topicText, chapterTarget, steeringInstructions, pathMode,
+            temperature, grammarDist, targetWordCount, proposalText } = get()
     if (phase !== 'proposal') return
     set({
       proposalApproved: true,
@@ -163,7 +178,12 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
       errorCode: null,
       errorMessage: null,
       agentRunStarted: false,
-      storedInputs: { inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist },
+      storedInputs: {
+        inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist,
+        topicText,
+        targetWordCount,
+        englishDraft: proposalText ?? '', // Path B phase 2 SSE param
+      },
     })
   },
 
@@ -218,6 +238,7 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   },
 
   setInputText: (v) => set({ inputText: v }),
+  setTopicText: (v) => set({ topicText: v }),
   setChapterTarget: (v) => set({ chapterTarget: v }),
   setSteeringInstructions: (v) => set({ steeringInstructions: v }),
 
