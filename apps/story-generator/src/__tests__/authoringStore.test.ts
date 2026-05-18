@@ -1,4 +1,14 @@
+// Mock DOM-touching lib functions so store tests don't require a real DOM
+vi.mock('@/lib/validateStoryJson', () => ({
+  validateStoryJson: vi.fn(() => []),
+}))
+vi.mock('@/lib/downloadStoryFile', () => ({
+  downloadStoryFile: vi.fn(),
+}))
+
 import { useAuthoringStore } from '../stores/authoringStore'
+import { validateStoryJson } from '@/lib/validateStoryJson'
+import { downloadStoryFile } from '@/lib/downloadStoryFile'
 
 describe('authoringStore — generate() from idle', () => {
   beforeEach(() => {
@@ -214,5 +224,88 @@ describe('authoringStore — generate() from error clears outputJson', () => {
     useAuthoringStore.getState()._setError('TIMEOUT', 'timed out')
     useAuthoringStore.getState().generate()
     expect(useAuthoringStore.getState().outputJson).toBeNull()
+  })
+})
+
+describe('authoringStore — save()', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+    vi.mocked(validateStoryJson).mockReturnValue([])
+    vi.mocked(downloadStoryFile).mockImplementation(() => {})
+  })
+
+  afterEach(() => {
+    vi.clearAllMocks()
+  })
+
+  it('is a no-op from idle phase', () => {
+    useAuthoringStore.getState().save()
+    expect(validateStoryJson).not.toHaveBeenCalled()
+    expect(useAuthoringStore.getState().phase).toBe('idle')
+  })
+
+  it('sets validationErrors when validation fails and stays in current phase', () => {
+    vi.mocked(validateStoryJson).mockReturnValue([
+      { rule: 'JSON_PARSE', message: 'bad json' },
+    ])
+    useAuthoringStore.getState()._setOutputJson('{}')
+    useAuthoringStore.getState().save()
+    expect(useAuthoringStore.getState().validationErrors).toHaveLength(1)
+    expect(useAuthoringStore.getState().validationErrors[0].rule).toBe('JSON_PARSE')
+    expect(useAuthoringStore.getState().phase).toBe('output-clean')
+  })
+
+  it('calls downloadStoryFile with story id when validation passes', () => {
+    const json = JSON.stringify({ id: 'test-story', schema_version: '1' })
+    useAuthoringStore.getState()._setOutputJson(json)
+    useAuthoringStore.getState().save()
+    expect(downloadStoryFile).toHaveBeenCalledWith('test-story', json)
+  })
+
+  it('sets downloadToastId to the story id on success', () => {
+    const json = JSON.stringify({ id: 'my-story' })
+    useAuthoringStore.getState()._setOutputJson(json)
+    useAuthoringStore.getState().save()
+    expect(useAuthoringStore.getState().downloadToastId).toBe('my-story')
+  })
+
+  it('resets to output-clean phase and clears outputIsDirty on success', () => {
+    useAuthoringStore.getState()._setOutputJson('{}')
+    useAuthoringStore.getState()._markDirty()
+    expect(useAuthoringStore.getState().outputIsDirty).toBe(true)
+    useAuthoringStore.getState().save()
+    expect(useAuthoringStore.getState().phase).toBe('output-clean')
+    expect(useAuthoringStore.getState().outputIsDirty).toBe(false)
+  })
+
+  it('clears validationErrors on success', () => {
+    // First save fails, leaving errors
+    vi.mocked(validateStoryJson).mockReturnValueOnce([{ rule: 'MISSING_FIELD', message: 'x' }])
+    useAuthoringStore.getState()._setOutputJson('{}')
+    useAuthoringStore.getState().save()
+    expect(useAuthoringStore.getState().validationErrors).toHaveLength(1)
+
+    // Second save passes, errors are cleared
+    vi.mocked(validateStoryJson).mockReturnValue([])
+    useAuthoringStore.getState().save()
+    expect(useAuthoringStore.getState().validationErrors).toHaveLength(0)
+  })
+
+  it('falls back to "story" as id if outputJson has no id field', () => {
+    useAuthoringStore.getState()._setOutputJson('{"schema_version":"1"}')
+    useAuthoringStore.getState().save()
+    expect(downloadStoryFile).toHaveBeenCalledWith('story', expect.any(String))
+  })
+})
+
+describe('authoringStore — _clearDownloadToast()', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('sets downloadToastId to null', () => {
+    useAuthoringStore.setState({ downloadToastId: 'some-id' })
+    useAuthoringStore.getState()._clearDownloadToast()
+    expect(useAuthoringStore.getState().downloadToastId).toBeNull()
   })
 })

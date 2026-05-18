@@ -1,5 +1,14 @@
 # Deferred Work
 
+## Deferred from: code review of 2-8-client-side-validation-suite-story-download-and-statsbar (2026-05-18)
+
+- **Transient `'downloading'` phase in synchronous `save()`:** Zero-tick intermediate state between the two `set()` calls in `save()`; React 18 batches synchronous Zustand updates so this phase is never rendered. Cosmetic; no observable effect. [authoringStore.ts]
+- **Vocab key upper bound not checked:** Positive integers ≥1 are accepted as valid Genki vocab IDs without an upper bound check. Intentional design tradeoff (frontend lacks the Genki CSV); documented in story spec. [validateStoryJson.ts]
+- **Non-object sentence elements silently skip per-sentence validation:** A `sentences` array containing a primitive (null, number, string) results in all per-sentence checks being skipped for that entry with no error. Backend structural validation prevents this in generated output; treat as adversarial input guard. [validateStoryJson.ts]
+- **Non-numeric `vocab_supplement[].key` causes false-positive `VOCAB_KEY_UNRESOLVED`:** `v.key as number` casts without a type guard; a string key produces `NaN` in the supplementalKeys Set, making `supplementalKeys.has(NaN)` always false and incorrectly flagging sentence vocab_keys that reference the malformed entry. Backend enforces schema; low risk. [validateStoryJson.ts]
+- **`ValidationErrorList` uses array-index as React `key`:** When the error list shrinks or reorders on re-validation, React reconciles by index and may re-announce the wrong error via `role="alert"`. Minor a11y issue; not critical for v1. [ValidationErrorList.tsx]
+- **No test for Save & Download button state during `'downloading'` phase:** The transient `'downloading'` phase has no test coverage. Safe to skip for v1. [OutputPanel.test.tsx]
+
 ## Deferred from: code review of 2-7-output-panel-dirty-state-and-re-run (2026-05-18)
 
 - **UX-DR5 deviation — JS gutter + textarea instead of `<pre>` + CSS counter-increment:** `JsonOutput` uses a `<div>` gutter with JS-computed line numbers and a `<textarea>`, not the `<pre>` + `counter-increment` approach specified in UX-DR5. The story spec explicitly specified the gutter-div approach. Fixing requires a full component redesign (contenteditable `<pre>` or switch to CodeMirror). Defer to a future polish story. [JsonOutput.tsx]

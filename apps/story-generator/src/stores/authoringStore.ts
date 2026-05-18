@@ -1,4 +1,8 @@
 import { create } from 'zustand'
+import { validateStoryJson, type ValidationError } from '@/lib/validateStoryJson'
+import { downloadStoryFile } from '@/lib/downloadStoryFile'
+
+export type { ValidationError }
 
 /** All phases of the authoring workflow. */
 export type Phase =
@@ -66,6 +70,14 @@ interface AuthoringStore {
   _resolveCancel: () => void
   _markRunStarted: () => void
 
+  /** Errors from the last save() validation run; empty when valid. */
+  validationErrors: ValidationError[]
+  /** Set to the story id on a successful download; triggers toast display. */
+  downloadToastId: string | null
+
+  // Internal actions — called by useAgUiRun or OutputPanel, not part of the public API
+  _clearDownloadToast: () => void
+
   // Test teardown helper
   _reset: () => void
 }
@@ -87,6 +99,8 @@ const defaultState = {
   runId: null,
   storedInputs: null,
   agentRunStarted: false,
+  validationErrors: [],
+  downloadToastId: null,
 }
 
 export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
@@ -147,10 +161,33 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   },
 
   save() {
-    // Validation and download logic implemented in Story 2.8
-    const { phase } = get()
+    const { phase, outputJson } = get()
     if (phase !== 'output-clean' && phase !== 'output-dirty') return
-    set({ phase: 'downloading' })
+    if (!outputJson) return
+
+    // Run client-side validation pipeline
+    const errors = validateStoryJson(outputJson)
+    if (errors.length > 0) {
+      set({ validationErrors: errors })
+      return
+    }
+
+    // Extract story id for the download filename
+    let storyId = 'story'
+    try {
+      const parsed = JSON.parse(outputJson) as { id?: string }
+      if (parsed.id) storyId = parsed.id
+    } catch { /* outputJson already parsed successfully above */ }
+
+    // Trigger download and update state; recover to error phase if Blob/URL API fails
+    set({ validationErrors: [], phase: 'downloading' })
+    try {
+      downloadStoryFile(storyId, outputJson)
+    } catch (e) {
+      set({ phase: 'error', errorCode: 'DOWNLOAD_FAILED', errorMessage: 'Download failed — your output is preserved. Try again.' })
+      return
+    }
+    set({ phase: 'output-clean', outputIsDirty: false, downloadToastId: storyId })
   },
 
   clear() {
@@ -210,6 +247,10 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
 
   _markRunStarted() {
     set({ agentRunStarted: true })
+  },
+
+  _clearDownloadToast() {
+    set({ downloadToastId: null })
   },
 
   _reset() {
