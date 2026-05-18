@@ -61,7 +61,7 @@ development_status:
   2-6-generation-ui-progress-display-stop-button-and-inputsection-collapse: done
   2-7-output-panel-dirty-state-and-re-run: done
   2-8-client-side-validation-suite-story-download-and-statsbar: done
-  2-9-session-persistence-clear-and-content-provenance: backlog
+  2-9-session-persistence-clear-and-content-provenance: done
   epic-2-retrospective: optional
 
   # Epic 3: M2 — Agentic Calibration Quality

@@ -20,18 +20,21 @@ interface ValidationHints {
  * "Edit inputs" ghost button allows manual re-expansion while generating.
  */
 export function InputPanel() {
-  const inputText              = useAuthoringStore(s => s.inputText)
-  const chapterTarget          = useAuthoringStore(s => s.chapterTarget)
-  const steeringInstructions   = useAuthoringStore(s => s.steeringInstructions)
-  const phase                  = useAuthoringStore(s => s.phase)
-  const storedInputs           = useAuthoringStore(s => s.storedInputs)
-  const setInputText           = useAuthoringStore(s => s.setInputText)
-  const setChapterTarget       = useAuthoringStore(s => s.setChapterTarget)
+  const inputText               = useAuthoringStore(s => s.inputText)
+  const chapterTarget           = useAuthoringStore(s => s.chapterTarget)
+  const steeringInstructions    = useAuthoringStore(s => s.steeringInstructions)
+  const phase                   = useAuthoringStore(s => s.phase)
+  const storedInputs            = useAuthoringStore(s => s.storedInputs)
+  const sessionRestored         = useAuthoringStore(s => s.sessionRestored)
+  const setInputText            = useAuthoringStore(s => s.setInputText)
+  const setChapterTarget        = useAuthoringStore(s => s.setChapterTarget)
   const setSteeringInstructions = useAuthoringStore(s => s.setSteeringInstructions)
-  const generate               = useAuthoringStore(s => s.generate)
-  const cancel                 = useAuthoringStore(s => s.cancel)
-  const canGenerate            = useAuthoringStore(selectCanGenerate)
-  const backendStatus          = useBackendStatus()
+  const _setSessionRestored     = useAuthoringStore(s => s._setSessionRestored)
+  const generate                = useAuthoringStore(s => s.generate)
+  const cancel                  = useAuthoringStore(s => s.cancel)
+  const clear                   = useAuthoringStore(s => s.clear)
+  const canGenerate             = useAuthoringStore(selectCanGenerate)
+  const backendStatus           = useBackendStatus()
 
   const [steeringOpen, setSteeringOpen] = useState(false)
   const [hints, setHints] = useState<ValidationHints>({ story: false, chapter: false })
@@ -49,11 +52,13 @@ export function InputPanel() {
   const handleInputChange = (v: string) => {
     setInputText(v)
     if (hints.story && v.trim() !== '') setHints(h => ({ ...h, story: false }))
+    if (sessionRestored) _setSessionRestored(false)
   }
 
   const handleChapterChange = (v: string) => {
     setChapterTarget(v)
     if (hints.chapter && v !== '') setHints(h => ({ ...h, chapter: false }))
+    if (sessionRestored) _setSessionRestored(false)
   }
 
   const handleGenerate = () => {
@@ -71,6 +76,24 @@ export function InputPanel() {
 
   return (
     <section aria-label="Story inputs" className="space-y-3">
+
+      {/* Session restore banner — shown above all other content after session hydration */}
+      {sessionRestored && (
+        <div className="flex items-center gap-2 rounded-md border border-border bg-surface-subtle px-3 py-2 text-sm">
+          <span className="text-muted">Restored from previous session</span>
+          <span aria-hidden="true">·</span>
+          <button
+            type="button"
+            onClick={clear}
+            className={cn(
+              'text-accent hover:text-accent/80',
+              'focus-visible:ring-2 ring-accent outline-none rounded',
+            )}
+          >
+            Clear
+          </button>
+        </div>
+      )}
 
       {/* Collapsed summary row */}
       {isCollapsed && (
@@ -129,6 +152,9 @@ export function InputPanel() {
                 Enter your English story before generating.
               </p>
             )}
+            <p className="text-xs text-muted mt-1">
+              English source material must be original or appropriately licensed.
+            </p>
           </div>
 
           {/* Chapter selector */}
@@ -191,7 +217,10 @@ export function InputPanel() {
                 <textarea
                   id="steering-input"
                   value={steeringInstructions}
-                  onChange={e => setSteeringInstructions(e.target.value)}
+                  onChange={e => {
+                    setSteeringInstructions(e.target.value)
+                    if (sessionRestored) _setSessionRestored(false)
+                  }}
                   rows={3}
                   className={cn(
                     'w-full px-3 py-2 text-sm border border-border rounded-md',

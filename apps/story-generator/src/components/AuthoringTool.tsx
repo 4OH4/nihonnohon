@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { useAgUiRun } from '@/hooks/useAgUiRun'
+import { useSession } from '@/hooks/useSession'
 import { BackendStatus } from './BackendStatus'
 import { GenerationProgress } from './GenerationProgress'
 import { InputPanel } from './InputPanel'
@@ -14,6 +15,7 @@ import { SettingsPanel } from './SettingsPanel'
  */
 export function AuthoringTool() {
   useAgUiRun()
+  useSession()
 
   const [settingsOpen, setSettingsOpen] = useState(false)
 

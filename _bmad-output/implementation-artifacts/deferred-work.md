@@ -1,5 +1,14 @@
 # Deferred Work
 
+## Deferred from: code review of 2-9-session-persistence-clear-and-content-provenance (2026-05-18)
+
+- **`sessionRestored` banner not cleared by SettingsPanel changes (temperature/grammarDist/pathMode):** Changing settings after a restored session leaves the "Restored from previous session" banner visible. Minor UX issue; SettingsPanel is a separate component from InputPanel and wiring dismissal there adds complexity for little value in v1. [InputPanel.tsx / useSession.ts]
+- **`parsed as SessionState` skips field-level type validation:** After the `version === 1` check, the parsed object is cast to `SessionState` without verifying individual field types (e.g., `grammarDist: 5`, `temperature: "hot"`). Single-user tool with self-written sessions makes corruption unlikely; acceptable for v1. Add field guards if the session format is ever user-editable or externally supplied. [useSession.ts]
+- **`localStorage.setItem` quota exception silently swallowed:** Large `outputJson` values can cause quota-exceeded errors that are caught and discarded. Per spec, graceful degradation without blocking is the required behaviour; no user notification needed for v1. [useSession.ts]
+- **`prevPhase` not reset on remount (Strict Mode double-invoke):** In React Strict Mode, the subscribe effect mounts → unmounts → remounts; `prevPhase` is re-captured at second mount from current store state, potentially missing a phase transition that occurred in the gap. Dev-only concern; no production impact. [useSession.ts]
+- **Stale debounce races phase-change write:** If a debounced write timer is queued and a phase change fires before the timer callback enters the JS task queue, the phase-change path cancels the timer — but if the timer already queued, a stale snapshot could overwrite the correct phase-tagged save. Practically impossible in a browser's single-threaded event loop; acceptable for v1. [useSession.ts]
+- **`clear()` removes localStorage session via subscription, not directly:** `clear()` triggers `isClearedState → true` which triggers the subscriber to call `localStorage.removeItem()`. If `useSession` is unmounted when `clear()` is called, the removal doesn't happen. In the current UI, `clear()` is only callable from mounted components that always have `useSession` mounted. [authoringStore.ts / useSession.ts]
+
 ## Deferred from: code review of 2-8-client-side-validation-suite-story-download-and-statsbar (2026-05-18)
 
 - **Transient `'downloading'` phase in synchronous `save()`:** Zero-tick intermediate state between the two `set()` calls in `save()`; React 18 batches synchronous Zustand updates so this phase is never rendered. Cosmetic; no observable effect. [authoringStore.ts]

@@ -74,9 +74,12 @@ interface AuthoringStore {
   validationErrors: ValidationError[]
   /** Set to the story id on a successful download; triggers toast display. */
   downloadToastId: string | null
+  /** True after useSession restores a non-empty session; cleared on first input edit or clear(). */
+  sessionRestored: boolean
 
   // Internal actions — called by useAgUiRun or OutputPanel, not part of the public API
   _clearDownloadToast: () => void
+  _setSessionRestored: (v: boolean) => void
 
   // Test teardown helper
   _reset: () => void
@@ -101,6 +104,7 @@ const defaultState = {
   agentRunStarted: false,
   validationErrors: [],
   downloadToastId: null,
+  sessionRestored: false,
 }
 
 export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
@@ -251,6 +255,10 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
 
   _clearDownloadToast() {
     set({ downloadToastId: null })
+  },
+
+  _setSessionRestored(v) {
+    set({ sessionRestored: v })
   },
 
   _reset() {

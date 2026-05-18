@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { act, render, screen, fireEvent } from '@testing-library/react'
 import { InputPanel } from '../components/InputPanel'
 import { useAuthoringStore } from '../stores/authoringStore'
 
@@ -239,5 +239,83 @@ describe('InputPanel — collapse and phase-aware button', () => {
     useAuthoringStore.getState().generate()
     render(<InputPanel />)
     expect(screen.getByText(/A story about Tanaka/)).toBeInTheDocument()
+  })
+})
+
+describe('InputPanel — SessionRestoreBanner', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+    vi.mocked(useBackendStatus).mockReturnValue('connected')
+  })
+
+  afterEach(() => { useAuthoringStore.getState()._reset() })
+
+  it('shows banner when sessionRestored is true', () => {
+    act(() => useAuthoringStore.setState({ sessionRestored: true }))
+    render(<InputPanel />)
+    expect(screen.getByText(/restored from previous session/i)).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /^clear$/i })).toBeInTheDocument()
+  })
+
+  it('does not show banner when sessionRestored is false', () => {
+    render(<InputPanel />)
+    expect(screen.queryByText(/restored from previous session/i)).not.toBeInTheDocument()
+  })
+
+  it('Clear button in banner calls store.clear() and resets state', () => {
+    act(() => {
+      useAuthoringStore.setState({
+        sessionRestored: true,
+        inputText: 'some text',
+        chapterTarget: 'Genki I Ch.3',
+      })
+    })
+    render(<InputPanel />)
+    fireEvent.click(screen.getByRole('button', { name: /^clear$/i }))
+    expect(useAuthoringStore.getState().phase).toBe('idle')
+    expect(useAuthoringStore.getState().inputText).toBe('')
+    expect(useAuthoringStore.getState().sessionRestored).toBe(false)
+  })
+
+  it('editing story textarea clears sessionRestored', () => {
+    act(() => useAuthoringStore.setState({ sessionRestored: true }))
+    render(<InputPanel />)
+    fireEvent.change(screen.getByLabelText(/english story/i), {
+      target: { value: 'new text' },
+    })
+    expect(useAuthoringStore.getState().sessionRestored).toBe(false)
+  })
+
+  it('changing chapter selector clears sessionRestored', () => {
+    act(() => useAuthoringStore.setState({ sessionRestored: true }))
+    render(<InputPanel />)
+    fireEvent.change(screen.getByLabelText(/genki chapter/i), {
+      target: { value: 'Genki I Ch.3' },
+    })
+    expect(useAuthoringStore.getState().sessionRestored).toBe(false)
+  })
+
+  it('editing steering instructions clears sessionRestored', () => {
+    act(() => useAuthoringStore.setState({ sessionRestored: true }))
+    render(<InputPanel />)
+    // Open the steering instructions collapsible first
+    fireEvent.click(screen.getByRole('button', { name: /steering instructions/i }))
+    const steeringArea = screen.getByLabelText(/optional guidance/i)
+    fireEvent.change(steeringArea, { target: { value: 'Use simple vocabulary' } })
+    expect(useAuthoringStore.getState().sessionRestored).toBe(false)
+  })
+})
+
+describe('InputPanel — content provenance note', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+    vi.mocked(useBackendStatus).mockReturnValue('connected')
+  })
+
+  it('shows provenance note in the expanded form', () => {
+    render(<InputPanel />)
+    expect(
+      screen.getByText(/english source material must be original or appropriately licensed/i)
+    ).toBeInTheDocument()
   })
 })
