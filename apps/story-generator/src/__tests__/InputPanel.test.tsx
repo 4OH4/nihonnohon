@@ -167,3 +167,77 @@ describe('InputPanel', () => {
     expect(btn).toHaveAttribute('aria-disabled', 'true')
   })
 })
+
+describe('InputPanel — collapse and phase-aware button', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+    vi.mocked(useBackendStatus).mockReturnValue('connected')
+  })
+
+  afterEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('collapses form fields when phase is generating', () => {
+    useAuthoringStore.getState().setInputText('A story.')
+    useAuthoringStore.getState().setChapterTarget('Genki I Ch.6')
+    useAuthoringStore.getState().generate()
+    render(<InputPanel />)
+    expect(screen.queryByLabelText(/english story/i)).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /edit inputs/i })).toBeInTheDocument()
+  })
+
+  it('shows Stop button when phase is generating', () => {
+    useAuthoringStore.getState().setInputText('A story.')
+    useAuthoringStore.getState().setChapterTarget('Genki I Ch.6')
+    useAuthoringStore.getState().generate()
+    render(<InputPanel />)
+    expect(screen.getByRole('button', { name: /^stop$/i })).toBeInTheDocument()
+  })
+
+  it('Stop button dispatches cancel()', () => {
+    useAuthoringStore.getState().setInputText('A story.')
+    useAuthoringStore.getState().setChapterTarget('Genki I Ch.6')
+    useAuthoringStore.getState().generate()
+    render(<InputPanel />)
+    fireEvent.click(screen.getByRole('button', { name: /^stop$/i }))
+    expect(useAuthoringStore.getState().phase).toBe('cancelling')
+  })
+
+  it('shows Stopping… when phase is cancelling', () => {
+    useAuthoringStore.getState().setInputText('A story.')
+    useAuthoringStore.getState().setChapterTarget('Genki I Ch.6')
+    useAuthoringStore.getState().generate()
+    useAuthoringStore.getState().cancel()
+    render(<InputPanel />)
+    expect(screen.getByText('Stopping…')).toBeInTheDocument()
+  })
+
+  it('re-expands form fields when phase returns to idle', () => {
+    useAuthoringStore.getState().setInputText('A story.')
+    useAuthoringStore.getState().setChapterTarget('Genki I Ch.6')
+    useAuthoringStore.getState().generate()
+    const { rerender } = render(<InputPanel />)
+    expect(screen.queryByLabelText(/english story/i)).not.toBeInTheDocument()
+    useAuthoringStore.getState()._resolveCancel()
+    rerender(<InputPanel />)
+    expect(screen.getByLabelText(/english story/i)).toBeInTheDocument()
+  })
+
+  it('Edit inputs button manually expands form while generating', () => {
+    useAuthoringStore.getState().setInputText('A story.')
+    useAuthoringStore.getState().setChapterTarget('Genki I Ch.6')
+    useAuthoringStore.getState().generate()
+    render(<InputPanel />)
+    fireEvent.click(screen.getByRole('button', { name: /edit inputs/i }))
+    expect(screen.getByLabelText(/english story/i)).toBeInTheDocument()
+  })
+
+  it('collapsed summary shows truncated input text from storedInputs', () => {
+    useAuthoringStore.getState().setInputText('A story about Tanaka.')
+    useAuthoringStore.getState().setChapterTarget('Genki I Ch.6')
+    useAuthoringStore.getState().generate()
+    render(<InputPanel />)
+    expect(screen.getByText(/A story about Tanaka/)).toBeInTheDocument()
+  })
+})

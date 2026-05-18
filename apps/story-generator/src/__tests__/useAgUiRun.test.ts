@@ -449,3 +449,30 @@ describe('useAgUiRun — ERROR event', () => {
     expect(useAuthoringStore.getState().runId).toBeNull()
   })
 })
+
+// ─── Story 2.6: RUN_STARTED calls _markRunStarted ────────────────────────────
+
+describe('useAgUiRun — RUN_STARTED calls _markRunStarted', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('RUN_STARTED sets agentRunStarted in store', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    expect(useAuthoringStore.getState().agentRunStarted).toBe(false)
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_STARTED', runId: useAuthoringStore.getState().runId })
+    })
+
+    expect(useAuthoringStore.getState().agentRunStarted).toBe(true)
+  })
+})

@@ -11,11 +11,14 @@ export type Phase =
   | 'error'
   | 'proposal'
 
-/** Snapshot of inputs taken when generation starts; used by Re-run. */
+/** Snapshot of inputs taken when generation starts; used by SSE URL and Re-run. */
 interface StoredInputs {
   inputText: string
   chapterTarget: string
   steeringInstructions: string
+  pathMode: 'A' | 'B'
+  temperature: number
+  grammarDist: 0 | 1 | 2
 }
 
 interface AuthoringStore {
@@ -34,8 +37,10 @@ interface AuthoringStore {
   errorCode: string | null
   errorMessage: string | null
   runId: string | null
-  /** Snapshot of inputs taken at generate() time; used by Re-run (Story 2.6+). */
+  /** Snapshot of all generation inputs taken at generate() time; used for SSE URL and Re-run. */
   storedInputs: StoredInputs | null
+  /** True once the backend emits RUN_STARTED; reset on each new generate(). */
+  agentRunStarted: boolean
 
   // Public actions
   generate: () => void
@@ -56,6 +61,7 @@ interface AuthoringStore {
   _markDirty: () => void
   _setError: (code: string, message: string) => void
   _resolveCancel: () => void
+  _markRunStarted: () => void
 
   // Test teardown helper
   _reset: () => void
@@ -77,13 +83,14 @@ const defaultState = {
   errorMessage: null,
   runId: null,
   storedInputs: null,
+  agentRunStarted: false,
 }
 
 export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   ...defaultState,
 
   generate() {
-    const { phase, inputText, chapterTarget, steeringInstructions } = get()
+    const { phase, inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist } = get()
     // Valid from idle and error (implicit retry from error clears error state)
     if (phase !== 'idle' && phase !== 'error') return
     set({
@@ -92,7 +99,8 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
       outputIsDirty: false,
       errorCode: null,
       errorMessage: null,
-      storedInputs: { inputText, chapterTarget, steeringInstructions },
+      agentRunStarted: false,
+      storedInputs: { inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist },
     })
   },
 
@@ -104,20 +112,22 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
 
   approve() {
     // M3 Path B: approves the English proposal and triggers Japanese generation
-    const { phase, inputText, chapterTarget, steeringInstructions } = get()
+    const { phase, inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist } = get()
     if (phase !== 'proposal') return
-    // P5: Snapshot storedInputs (Path B context) so the SSE hook builds a consistent URL
     set({
       proposalApproved: true,
       phase: 'generating',
       runId: crypto.randomUUID(),
-      storedInputs: { inputText, chapterTarget, steeringInstructions },
+      outputIsDirty: false,
+      errorCode: null,
+      errorMessage: null,
+      agentRunStarted: false,
+      storedInputs: { inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist },
     })
   },
 
   save() {
     // Validation and download logic implemented in Story 2.8
-    // Transitions through 'downloading' and back to 'output-clean' on success
     const { phase } = get()
     if (phase !== 'output-clean' && phase !== 'output-dirty') return
     set({ phase: 'downloading' })
@@ -133,9 +143,7 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
 
   setPathMode(v) {
     const { pathMode, phase } = get()
-    if (pathMode === v) return   // no-op if same mode
-    // If the SSE pipeline is active, trigger cancel so the connection closes cleanly.
-    // Phase stays 'cancelling' until _resolveCancel fires; we do not override it here.
+    if (pathMode === v) return
     if (phase === 'generating') get().cancel()
     const isActive = phase === 'generating' || phase === 'cancelling'
     set({
@@ -169,6 +177,10 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
 
   _resolveCancel() {
     set({ phase: 'idle', runId: null })
+  },
+
+  _markRunStarted() {
+    set({ agentRunStarted: true })
   },
 
   _reset() {

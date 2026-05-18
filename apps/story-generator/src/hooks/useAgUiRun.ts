@@ -39,21 +39,22 @@ export function useAgUiRun(
     const {
       runId,
       storedInputs,
-      pathMode,
-      temperature,
-      grammarDist,
       _setOutputJson,
       _setProposalText,
       _setError,
       _resolveCancel,
+      _markRunStarted,
     } = store
 
-    // P1: Use the storedInputs snapshot captured at generate() time, not live store values.
-    // This ensures the SSE URL is consistent with the runId even if the user edits fields
-    // concurrently while generation is in-flight.
-    const inputText           = storedInputs?.inputText           ?? store.inputText
-    const chapterTarget       = storedInputs?.chapterTarget       ?? store.chapterTarget
+    // Use storedInputs snapshot for ALL URL params — captured at generate() time.
+    // This ensures the SSE URL is fully consistent with the runId regardless of
+    // any concurrent user edits to inputs or settings.
+    const inputText            = storedInputs?.inputText            ?? store.inputText
+    const chapterTarget        = storedInputs?.chapterTarget        ?? store.chapterTarget
     const steeringInstructions = storedInputs?.steeringInstructions ?? store.steeringInstructions
+    const pathMode             = storedInputs?.pathMode             ?? store.pathMode
+    const temperature          = storedInputs?.temperature          ?? store.temperature
+    const grammarDist          = storedInputs?.grammarDist          ?? store.grammarDist
 
     // Build query string
     const params = new URLSearchParams({
@@ -114,6 +115,7 @@ export function useAgUiRun(
         case 'RUN_STARTED':
           // Cancel the first-event timeout — we have a response
           if (firstEventRef.current) clearTimeout(firstEventRef.current)
+          _markRunStarted()
           break
 
         case 'TEXT_MESSAGE_CHUNK':

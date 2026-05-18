@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { useAgUiRun } from '@/hooks/useAgUiRun'
 import { BackendStatus } from './BackendStatus'
+import { GenerationProgress } from './GenerationProgress'
 import { InputPanel } from './InputPanel'
 import { ModeToggle } from './ModeToggle'
 import { SettingsPanel } from './SettingsPanel'
@@ -43,6 +44,7 @@ export function AuthoringTool() {
           <ModeToggle />
         </div>
         <InputPanel />
+        <GenerationProgress />
         {/* Story 2.7: OutputPanel */}
       </main>
 

@@ -1,5 +1,11 @@
 # Deferred Work
 
+## Deferred from: code review of 2-6-generation-ui-progress-display-stop-button-and-inputsection-collapse (2026-05-18)
+
+- **`useAgUiRun` `?? store.*` fallback contradicts AC7:** `storedInputs?.pathMode ?? store.pathMode` (and temperature/grammarDist) falls back to live store reads, which AC7 explicitly prohibits. Unreachable in production — `generate()` always sets `storedInputs` before the effect fires. Consistent with pre-existing pattern for inputText/chapterTarget. [useAgUiRun.ts:53]
+- **`agentRunStarted` not reset in `_setError`/`_resolveCancel`:** `agentRunStarted` can be `true` when phase returns to `idle` or `error`. No visible impact — all rendering paths gate on phase. `generate()` always resets it on the next run. [authoringStore.ts:171,175]
+- **Elapsed timer can tick one extra second after `generating` ends:** Standard `setInterval` race — the tick already queued before cleanup runs can fire one more time. Cosmetic only; no data impact. [GenerationProgress.tsx:47]
+
 ## Deferred from: code review of 2-5-ag-ui-sse-lifecycle-and-store-integration (2026-05-17)
 
 - **AC2 timer-cleared proof is indirect:** The test verifies no error fires after 5s following RUN_STARTED, but does not prove `clearTimeout` was actually called. A direct proof would require injecting spy timers. Acceptable for v1. [useAgUiRun.test.ts]
