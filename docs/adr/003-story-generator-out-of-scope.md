@@ -1,7 +1,8 @@
-# ADR 003: Story Generator Out of Scope
+# ADR 003: Story Generator — Separate Project with Split Frontend/Backend
 
-**Status:** Accepted
+**Status:** Superseded (updated 2026-05-15; original decision 2026-05-11)
 **Date:** 2026-05-11
+**Updated:** 2026-05-15
 
 ## Context
 
@@ -14,24 +15,39 @@ Including the story-generator in the same development sprint as the nihonnohon w
 - Require coordinated schema freezes before authoring can begin.
 - Increase sprint scope significantly beyond the web app MVP.
 
-## Decision
+## Original Decision (2026-05-11)
 
-The story-generator is a separate project. `apps/story-generator/` is a placeholder in the
-monorepo that documents the interface contract. It is excluded from the pnpm workspace
-(`pnpm-workspace.yaml` does not list `apps/story-generator`) because it is a Python project,
-not a Node.js package.
+The story-generator is a separate project. `apps/story-generator/` was a placeholder in the
+monorepo documenting the interface contract, excluded from `pnpm-workspace.yaml` because it
+was a Python project.
 
-nihonnohon ships v1 with a hand-crafted story fixture (`genki-i-ch6-tanaka-letter.json`)
-to enable development. The story-generator can be developed independently once the schema
-contract (`story.v1.json`) is frozen.
+## Updated Decision (2026-05-15)
+
+The story authoring tool has been fully specified (see PRD and architecture document) and is
+now actively developed. It consists of two separate directories with different workspace membership:
+
+**`apps/story-generator/`** — React/Vite SPA frontend
+- **IS added to `pnpm-workspace.yaml`** — it is a Node.js package
+- Access to shared tooling: `@nihonnohon/typescript-config`, `@nihonnohon/eslint-config`
+- Participates in the Turborepo pipeline
+
+**`apps/story-generator-backend/`** — Python ADK backend
+- **Must NOT be added to `pnpm-workspace.yaml`** — it is a Python project, not Node.js
+- Contains the ADK agent server, Pydantic models (generated from `story.v1.json`), and
+  reference data loader
+- Existing `apps/story-generator/` Python skeleton (`validator.py`, `requirements.txt`, etc.)
+  has been migrated here
 
 ## Consequences
 
 - **nihonnohon v1 uses a hand-crafted fixture story** for development and the initial release.
-- **The story-generator is developed independently**, consuming `story.v1.json` as its contract.
-- **`apps/story-generator` must NOT be added to `pnpm-workspace.yaml`** — pnpm would attempt
-  to install it as a Node.js package, which it is not.
+- **`apps/story-generator/`** is the React frontend — a normal pnpm workspace member.
+- **`apps/story-generator-backend/`** is the Python backend — excluded from pnpm workspace.
+- **`apps/story-generator-backend` must NOT be added to `pnpm-workspace.yaml`** — pnpm would
+  attempt to install it as a Node.js package, which it is not.
 - **Schema coordination required:** Breaking changes to `story.v1.json` must be coordinated
-  with the story-generator project before the version is bumped.
+  with the story-generator backend. The Pydantic models in `apps/story-generator-backend/` are
+  auto-generated from `story.v1.json` via `make generate-models` — regenerate after any schema change.
 - **v1 soft dependency:** At least one valid, readable story is required before nihonnohon v1
-  can ship; this comes from the hand-crafted fixture, not the generator.
+  can ship; this is now expected to come from the story authoring tool (M0+M1) rather than the
+  hand-crafted fixture.

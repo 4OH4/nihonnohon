@@ -1,0 +1,1 @@
+turbo lint && turbo typecheck && turbo test:unit

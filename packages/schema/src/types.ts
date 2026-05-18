@@ -16,6 +16,7 @@ export interface KanjiEntry {
 }
 
 export interface VocabSupplementEntry {
+  key: number
   word: string
   hiragana: string
   translation: string

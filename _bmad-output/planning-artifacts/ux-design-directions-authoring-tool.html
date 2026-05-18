@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nihonnohon Story Authoring Tool — UX Design Directions</title>
+<style>
+  :root {
+    --surface: #FFFFFF;
+    --surface-subtle: #F5F5F0;
+    --paper-text: #1C1C1C;
+    --accent: #C8A85A;
+    --accent-subtle: #F5EDD6;
+    --muted: #6B6B6B;
+    --border: #E0D8C8;
+    --error: #C0392B;
+    --font-ui: 'Inter', system-ui, sans-serif;
+    --font-ja: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-ui); background: #2A2A2A; color: var(--paper-text); min-height: 100vh; }
+
+  .nav {
+    background: #1A1A1A; padding: 14px 24px;
+    display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
+    position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #333;
+  }
+  .nav-title { color: #999; font-size: 11px; margin-right: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+  .nav-btn { background: #333; color: #ccc; border: 1px solid #444; border-radius: 6px; padding: 5px 12px; font-size: 11px; cursor: pointer; font-family: var(--font-ui); transition: all 0.15s; }
+  .nav-btn:hover { background: #444; color: #fff; }
+  .nav-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  .mockup { display: none; }
+  .mockup.visible { display: block; }
+  .mockup-label { color: #888; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; padding: 24px 0 12px; }
+
+  .tool-shell { background: var(--surface); max-width: 860px; margin: 0 auto 48px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.4); position: relative; }
+
+  /* App bar */
+  .app-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .app-bar-title { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+  .app-bar-title .ja { font-family: var(--font-ja); font-weight: 400; color: var(--muted); font-size: 13px; }
+  .app-bar-right { display: flex; align-items: center; gap: 12px; }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #4CAF50; display: inline-block; }
+  .status-label { font-size: 12px; color: var(--muted); }
+  .gear-btn { background: none; border: 1px solid var(--border); border-radius: 6px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--muted); font-size: 14px; }
+  .gear-btn.active { background: var(--accent-subtle); border-color: var(--accent); color: var(--accent); }
+
+  /* Segmented mode toggle */
+  .mode-bar { padding: 12px 24px; background: var(--surface-subtle); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+  .mode-toggle {
+    display: inline-flex; background: var(--border); border-radius: 8px; padding: 3px; gap: 0;
+  }
+  .mode-opt {
+    padding: 6px 18px; border-radius: 6px; font-size: 12px; font-family: var(--font-ui);
+    cursor: pointer; border: none; background: transparent; color: var(--muted);
+    transition: all 0.15s; font-weight: 500; white-space: nowrap;
+  }
+  .mode-opt.active { background: var(--surface); color: var(--paper-text); box-shadow: 0 1px 3px rgba(0,0,0,0.12); font-weight: 600; }
+
+  /* Sections */
+  .section { border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; background: var(--surface-subtle); border-bottom: 1px solid var(--border); }
+  .section-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+  .section-action { font-size: 12px; color: var(--accent); cursor: pointer; font-weight: 500; background: none; border: none; font-family: var(--font-ui); }
+  .section-content { padding: 20px 24px; }
+
+  .form-row { margin-bottom: 16px; }
+  .form-label { font-size: 12px; font-weight: 500; color: var(--muted); margin-bottom: 6px; display: block; }
+  .form-textarea { width: 100%; background: var(--surface-subtle); border: 1px solid var(--border); border-radius: 6px; padding: 12px; font-size: 13px; font-family: var(--font-ui); color: var(--paper-text); line-height: 1.6; resize: vertical; }
+  .form-row-inline { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 16px; }
+  .form-select-wrap { flex: 1; }
+  .form-select { width: 100%; background: var(--surface-subtle); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; font-size: 13px; font-family: var(--font-ui); color: var(--paper-text); }
+
+  /* Scope chip */
+  .scope-chip { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-subtle); border: 1px solid var(--accent); border-radius: 20px; padding: 4px 12px; font-size: 11px; color: var(--paper-text); margin-top: 8px; }
+  .scope-chip-label { color: var(--muted); font-weight: 600; }
+  .scope-grammar { font-family: var(--font-ja); font-size: 11px; }
+  .scope-div { color: var(--border); }
+
+  /* Topic row with suggest button */
+  .topic-input-row { position: relative; }
+  .suggest-btn {
+    position: absolute; top: 10px; right: 10px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+    padding: 5px 12px; font-size: 11px; font-family: var(--font-ui); cursor: pointer;
+    color: var(--muted); display: flex; align-items: center; gap: 5px;
+    transition: all 0.15s;
+  }
+  .suggest-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .suggest-btn .icon { font-size: 12px; }
+  .topic-textarea { padding-right: 140px !important; }
+
+  /* Buttons */
+  .btn-primary { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 10px 24px; font-size: 13px; font-weight: 600; font-family: var(--font-ui); cursor: pointer; }
+  .btn-secondary { background: none; color: var(--muted); border: 1px solid var(--border); border-radius: 6px; padding: 10px 20px; font-size: 13px; font-family: var(--font-ui); cursor: pointer; }
+  .btn-stop { background: #fff; color: var(--error); border: 1px solid var(--error); border-radius: 6px; padding: 10px 24px; font-size: 13px; font-weight: 600; font-family: var(--font-ui); cursor: pointer; }
+  .btn-save { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 10px 20px; font-size: 13px; font-weight: 600; font-family: var(--font-ui); cursor: pointer; }
+  .btn-save.disabled { opacity: 0.45; cursor: not-allowed; }
+  .btn-proceed { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 10px 20px; font-size: 13px; font-weight: 600; font-family: var(--font-ui); cursor: pointer; }
+  .action-row { display: flex; align-items: center; gap: 12px; padding-top: 4px; }
+
+  /* Collapsed section */
+  .section-collapsed { border-bottom: 1px solid var(--border); }
+  .section-collapsed-header { padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; background: var(--surface-subtle); gap: 12px; }
+  .section-collapsed-left { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .section-collapsed-preview { font-size: 12px; color: var(--muted); font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
+  .scope-pill { display: inline-flex; background: var(--accent-subtle); border: 1px solid var(--accent); border-radius: 12px; padding: 2px 8px; font-size: 10px; color: var(--paper-text); white-space: nowrap; }
+
+  /* Progress shimmer */
+  .progress-wrap { padding: 20px 24px; }
+  .progress-track { background: var(--surface-subtle); border-radius: 3px; height: 3px; overflow: hidden; margin-bottom: 14px; position: relative; }
+  .progress-shimmer { position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, var(--accent) 40%, transparent 80%); background-size: 250% 100%; animation: shimmer 1.6s linear infinite; }
+  @keyframes shimmer { from { background-position: 200% 0; } to { background-position: -100% 0; } }
+  .progress-status-row { display: flex; justify-content: space-between; align-items: center; }
+  .progress-status-text { font-size: 13px; color: var(--paper-text); }
+  .progress-elapsed { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .progress-hint { margin-top: 8px; font-size: 12px; color: var(--muted); }
+
+  /* M2 step rows */
+  .step-rows { padding: 16px 24px; display: flex; flex-direction: column; gap: 4px; }
+  .step-row { display: flex; align-items: flex-start; gap: 12px; padding: 8px 12px; border-radius: 6px; font-size: 12px; background: var(--surface-subtle); border: 1px solid transparent; }
+  .step-row.done { border-color: var(--border); }
+  .step-row.active { border-color: var(--accent); background: var(--accent-subtle); }
+  .step-row.sub { border-color: var(--accent); background: var(--accent-subtle); }
+  .step-icon { width: 18px; text-align: center; font-size: 13px; flex-shrink: 0; padding-top: 1px; }
+  .step-icon.ok { color: var(--accent); }
+  .step-icon.spin { color: var(--muted); display: inline-block; animation: spin 1.5s linear infinite; }
+  .step-icon.dash { color: var(--border); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .step-sentence { color: var(--muted); font-weight: 600; min-width: 72px; flex-shrink: 0; line-height: 1.6; }
+  .step-body { flex: 1; }
+  .step-detail { color: var(--paper-text); }
+  .step-sub-row { margin-top: 4px; display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
+  .sub-tag { color: var(--accent); font-weight: 700; font-size: 10px; letter-spacing: 0.04em; }
+  .ja { font-family: var(--font-ja); font-size: 12px; color: var(--paper-text); }
+  .ch-delta { font-size: 10px; color: var(--muted); }
+  .step-footer { padding: 0 24px 12px; display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+
+  /* Audit summary */
+  .audit-summary { margin: 12px 24px 0; padding: 10px 14px; background: var(--accent-subtle); border: 1px solid var(--accent); border-radius: 6px; font-size: 12px; color: var(--paper-text); display: flex; align-items: center; justify-content: space-between; }
+  .audit-link { font-size: 11px; color: var(--accent); cursor: pointer; }
+
+  /* JSON output */
+  .json-output-meta-bar { padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+  .json-meta { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+  .dirty-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  .dirty-lbl { font-size: 11px; color: var(--accent); font-weight: 600; }
+  .json-pre { font-family: var(--font-mono); font-size: 12.5px; line-height: 1.65; padding: 12px 0; max-height: 280px; overflow-y: auto; background: var(--surface); display: block; }
+  .jl { display: flex; white-space: pre; }
+  .jl:hover { background: var(--surface-subtle); }
+  .jl.err-line { background: #fef2f2; }
+  .ln { min-width: 44px; text-align: right; padding-right: 16px; padding-left: 16px; color: #ccc; user-select: none; font-size: 11px; flex-shrink: 0; }
+  .ln.bad { color: var(--error); }
+  .lc { color: var(--paper-text); padding-right: 24px; }
+  .k { color: #7c5cbf; } .s { color: #2e7d32; } .n { color: #1565c0; }
+  .err-ann { color: var(--error); font-size: 11px; }
+
+  /* Validation errors */
+  .val-panel { margin: 0 24px 16px; border: 1px solid var(--error); border-radius: 6px; overflow: hidden; }
+  .val-header { background: #fef2f2; padding: 10px 14px; font-size: 12px; font-weight: 600; color: var(--error); border-bottom: 1px solid #fecaca; }
+  .val-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 12px; }
+  .val-row:last-child { border-bottom: none; }
+  .badge { background: var(--error); color: #fff; border-radius: 4px; padding: 2px 7px; font-size: 10px; font-weight: 700; white-space: nowrap; flex-shrink: 0; letter-spacing: 0.04em; }
+  .val-path { font-family: var(--font-mono); font-size: 11px; color: var(--muted); margin-bottom: 2px; }
+  .val-msg { color: var(--paper-text); }
+
+  /* Re-run warning */
+  .rerun-warn { background: #fffbeb; border: 1px solid var(--accent); border-radius: 6px; padding: 12px 16px; margin: 0 24px 16px; }
+  .rerun-warn-text { font-size: 12px; margin-bottom: 10px; }
+  .rerun-warn-btns { display: flex; gap: 8px; }
+  .btn-discard { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 7px 14px; font-size: 12px; font-weight: 600; font-family: var(--font-ui); cursor: pointer; }
+  .btn-cancel-sm { background: none; color: var(--muted); border: 1px solid var(--border); border-radius: 6px; padding: 7px 14px; font-size: 12px; font-family: var(--font-ui); cursor: pointer; }
+
+  /* English proposal */
+  .proposal-notice { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; background: #f0f9ff; border-bottom: 1px solid #bae6fd; font-size: 12px; color: #0369a1; }
+  .approved-badge { display: inline-flex; align-items: center; gap: 5px; background: #f0fdf4; border: 1px solid #86efac; border-radius: 12px; padding: 3px 10px; font-size: 11px; color: #166534; font-weight: 600; }
+
+  /* Settings sheet */
+  .sheet-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.22); border-radius: 12px; display: flex; justify-content: flex-end; }
+  .sheet { background: var(--surface); width: 340px; height: 100%; border-left: 1px solid var(--border); border-radius: 0 12px 12px 0; display: flex; flex-direction: column; overflow: hidden; }
+  .sheet-hdr { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .sheet-title { font-size: 14px; font-weight: 600; }
+  .sheet-close { font-size: 18px; color: var(--muted); cursor: pointer; background: none; border: none; font-family: var(--font-ui); }
+  .sheet-body { padding: 20px; flex: 1; overflow-y: auto; }
+  .sg { margin-bottom: 24px; }
+  .sg-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+  .path-b-tag { font-size: 10px; background: var(--surface-subtle); border: 1px solid var(--border); border-radius: 10px; padding: 1px 8px; color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0; }
+  .s-hint { font-size: 11px; color: var(--muted); margin-bottom: 10px; line-height: 1.55; }
+  .s-hint.dim { color: var(--border); font-style: italic; }
+
+  /* Length presets — no word counts on buttons */
+  .preset-row { display: flex; gap: 6px; margin-bottom: 10px; }
+  .preset-btn { flex: 1; padding: 8px 4px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: var(--font-ui); background: var(--surface-subtle); cursor: pointer; text-align: center; color: var(--paper-text); font-weight: 500; }
+  .preset-btn.on { background: var(--accent-subtle); border-color: var(--accent); font-weight: 600; }
+  .preset-btn.dim { opacity: 0.38; cursor: not-allowed; }
+  .custom-row { display: flex; align-items: center; gap: 8px; }
+  .custom-in { width: 72px; border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 13px; font-family: var(--font-ui); background: var(--surface-subtle); }
+  .custom-lbl { font-size: 12px; color: var(--muted); }
+
+  /* Slider */
+  .slider-row { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+  input[type=range] { flex: 1; -webkit-appearance: none; height: 4px; background: linear-gradient(to right, var(--accent) 40%, var(--border) 40%); border-radius: 4px; outline: none; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+  .slider-val { font-size: 13px; font-weight: 600; min-width: 32px; text-align: right; }
+  .temp-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); }
+
+  /* Three-position slider with left/right labels only */
+  .grammar-slider-wrap { position: relative; }
+  .grammar-slider-labels { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+  .grammar-label-left { font-size: 11px; color: var(--muted); max-width: 90px; text-align: left; line-height: 1.3; }
+  .grammar-label-right { font-size: 11px; color: var(--muted); max-width: 90px; text-align: right; line-height: 1.3; }
+  .grammar-label-mid { font-size: 11px; color: transparent; } /* spacer */
+  .slider-3pos { flex: 1; -webkit-appearance: none; height: 4px; border-radius: 4px; outline: none; background: linear-gradient(to right, var(--border) 0%, var(--border) 100%); }
+  .slider-3pos::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+  /* Tick marks for 3-position */
+  .slider-ticks { display: flex; justify-content: space-between; padding: 0 8px; margin-top: 2px; }
+  .tick { width: 1px; height: 5px; background: var(--border); }
+
+  .sheet-footer { padding: 12px 20px; border-top: 1px solid var(--border); font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+  .action-footer { padding: 16px 24px; display: flex; gap: 10px; align-items: center; border-top: 1px solid var(--border); }
+  .action-footer-hint { font-size: 12px; color: var(--muted); }
+  .action-footer-hint.err { color: var(--error); }
+
+  .disabled-section { opacity: 0.38; pointer-events: none; }
+
+  /* Suggest-topic inline confirmation */
+  .suggest-confirm {
+    display: flex; align-items: center; justify-content: space-between;
+    background: #fffbeb; border: 1px solid var(--accent);
+    border-radius: 6px; padding: 8px 12px; margin-top: 6px;
+    font-size: 12px; gap: 12px;
+  }
+  .suggest-confirm-text { color: var(--paper-text); flex: 1; }
+  .suggest-confirm-btns { display: flex; gap: 6px; flex-shrink: 0; }
+  .btn-replace {
+    background: var(--accent); color: #fff; border: none;
+    border-radius: 5px; padding: 5px 12px; font-size: 12px;
+    font-weight: 600; font-family: var(--font-ui); cursor: pointer;
+  }
+  .btn-keep {
+    background: none; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 5px; padding: 5px 12px; font-size: 12px;
+    font-family: var(--font-ui); cursor: pointer;
+  }
+  /* Suggest button loading state */
+  .suggest-btn.loading { color: var(--accent); border-color: var(--accent); pointer-events: none; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <span class="nav-title">Story Authoring Tool — UX Directions</span>
+  <button class="nav-btn active" onclick="show(0,this)">1 · Convert a story</button>
+  <button class="nav-btn" onclick="show(1,this)">2 · Generate from topic</button>
+  <button class="nav-btn" onclick="show(2,this)">2b · Suggest topic (has content)</button>
+  <button class="nav-btn" onclick="show(3,this)">3 · English review</button>
+  <button class="nav-btn" onclick="show(4,this)">4 · Generating M1</button>
+  <button class="nav-btn" onclick="show(5,this)">5 · Generating M2 (status line)</button>
+  <button class="nav-btn" onclick="show(6,this)">6 · Output arrived</button>
+  <button class="nav-btn" onclick="show(7,this)">7 · Validation error</button>
+  <button class="nav-btn" onclick="show(8,this)">8 · Settings panel</button>
+</div>
+
+<!-- ── 1: Convert a story ── -->
+<div class="mockup visible" id="m0">
+  <div class="mockup-label">Direction 1 — Convert a story (pre-generation)</div>
+  <div class="tool-shell">
+    <div class="app-bar">
+      <div class="app-bar-title">Story Authoring Tool <span class="ja">日本の本</span></div>
+      <div class="app-bar-right">
+        <span class="status-dot"></span><span class="status-label">Backend connected</span>
+        <button class="gear-btn">⚙</button>
+      </div>
+    </div>
+    <div class="mode-bar">
+      <div class="mode-toggle">
+        <button class="mode-opt active">Convert a story</button>
+        <button class="mode-opt">Generate from topic</button>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header"><span class="section-title">English source story</span></div>
+      <div class="section-content">
+        <div class="form-row">
+          <textarea class="form-textarea" rows="7">Kenji arrived at Narita Airport on a Tuesday morning. He had a big suitcase and a small backpack. The airport was very busy. Many people were walking quickly. Kenji looked at his phone and found the train to Tokyo. He bought a ticket and waited on the platform. The train was fast and clean. He looked out the window at the rice fields and mountains.</textarea>
+        </div>
+        <div class="form-row-inline">
+          <div class="form-select-wrap">
+            <label class="form-label">Target curriculum</label>
+            <select class="form-select">
+              <option>Genki I — Chapter 6</option>
+              <option>Genki I — Chapter 3</option>
+              <option>Genki II — Chapter 14</option>
+            </select>
+            <div class="scope-chip">
+              <span class="scope-chip-label">Scope:</span>
+              <span>~210 vocab items</span>
+              <span class="scope-div">·</span>
+              <span>18 grammar patterns</span>
+              <span class="scope-div">·</span>
+              <span class="scope-grammar">です/ます · て-form · に/を/が/は</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <button class="btn-secondary" style="font-size:12px;padding:6px 14px;">▸ Additional steering instructions <span style="color:var(--border);font-size:10px;margin-left:4px;">(optional)</span></button>
+        </div>
+        <div class="action-row">
+          <button class="btn-primary">Convert to Japanese →</button>
+          <button class="btn-secondary">Clear</button>
+        </div>
+      </div>
+    </div>
+    <div style="padding:36px 24px;text-align:center;color:var(--muted);font-size:13px;">Output will appear here after conversion.</div>
+  </div>
+</div>
+
+<!-- ── 2: Generate from topic ── -->
+<div class="mockup" id="m1">
+  <div class="mockup-label">Direction 2 — Generate from topic (M3) with Suggest a topic button</div>
+  <div class="tool-shell">
+    <div class="app-bar">
+      <div class="app-bar-title">Story Authoring Tool <span class="ja">日本の本</span></div>
+      <div class="app-bar-right">
+        <span class="status-dot"></span><span class="status-label">Backend connected</span>
+        <button class="gear-btn">⚙</button>
+      </div>
+    </div>
+    <div class="mode-bar">
+      <div class="mode-toggle">
+        <button class="mode-opt">Convert a story</button>
+        <button class="mode-opt active">Generate from topic</button>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header"><span class="section-title">Topic or creative brief</span></div>
+      <div class="section-content">
+        <div class="form-row">
+          <label class="form-label">Describe what the story should be about</label>
+          <div class="topic-input-row">
+            <textarea class="form-textarea topic-textarea" rows="4" placeholder="e.g. A student asks for directions to the university library…">A student visits a convenience store for the first time in Japan and tries to buy an onigiri using limited Japanese.</textarea>
+            <button class="suggest-btn"><span class="icon">✦</span> Suggest a topic</button>
+          </div>
+        </div>
+        <div class="form-row-inline">
+          <div class="form-select-wrap">
+            <label class="form-label">Target curriculum</label>
+            <select class="form-select"><option>Genki I — Chapter 5</option></select>
+            <div class="scope-chip">
+              <span class="scope-chip-label">Scope:</span>
+              <span>~155 vocab items</span>
+              <span class="scope-div">·</span>
+              <span>14 grammar patterns</span>
+              <span class="scope-div">·</span>
+              <span class="scope-grammar">です/ます · Numbers · が/は/を</span>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--surface-subtle);border:1px solid var(--border);border-radius:6px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:var(--muted);">
+          <strong style="color:var(--paper-text);">Workflow:</strong> Generate English story → Review &amp; approve → Convert to Japanese
+        </div>
+        <div class="action-row">
+          <button class="btn-primary">Generate English story →</button>
+          <button class="btn-secondary">Clear</button>
+        </div>
+      </div>
+    </div>
+    <div style="padding:36px 24px;text-align:center;color:var(--muted);font-size:13px;">Your English story draft will appear here for review.</div>
+  </div>
+</div>
+
+<!-- ── 2b: Suggest a topic — has-content confirmation ── -->
+<div class="mockup" id="m2b">
+  <div class="mockup-label">Direction 2b — "Suggest a topic" when textarea has content (inline replace confirmation)</div>
+  <div class="tool-shell">
+    <div class="app-bar">
+      <div class="app-bar-title">Story Authoring Tool <span class="ja">日本の本</span></div>
+      <div class="app-bar-right">
+        <span class="status-dot"></span><span class="status-label">Backend connected</span>
+        <button class="gear-btn">⚙</button>
+      </div>
+    </div>
+    <div class="mode-bar">
+      <div class="mode-toggle">
+        <button class="mode-opt">Convert a story</button>
+        <button class="mode-opt active">Generate from topic</button>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header"><span class="section-title">Topic or creative brief</span></div>
+      <div class="section-content">
+        <div class="form-row">
+          <label class="form-label">Describe what the story should be about</label>
+          <div class="topic-input-row">
+            <textarea class="form-textarea topic-textarea" rows="4">A student visits a convenience store for the first time in Japan and tries to buy an onigiri using limited Japanese.</textarea>
+            <!-- Button label changes to "Replace topic" when field has content -->
+            <button class="suggest-btn" style="border-color:var(--accent);color:var(--accent);background:var(--accent-subtle);">✦ Replace topic</button>
+          </div>
+          <!-- Inline confirmation — appears after clicking "Replace topic" -->
+          <div class="suggest-confirm">
+            <span class="suggest-confirm-text">Replace your current topic with a suggested one?</span>
+            <div class="suggest-confirm-btns">
+              <button class="btn-replace">Yes, replace</button>
+              <button class="btn-keep">Cancel</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-row-inline">
+          <div class="form-select-wrap">
+            <label class="form-label">Target curriculum</label>
+            <select class="form-select"><option>Genki I — Chapter 5</option></select>
+            <div class="scope-chip">
+              <span class="scope-chip-label">Scope:</span>
+              <span>~155 vocab items</span>
+              <span class="scope-div">·</span>
+              <span>14 grammar patterns</span>
+            </div>
+          </div>
+        </div>
+        <div class="action-row">
+          <button class="btn-primary" style="opacity:0.5;cursor:not-allowed;">Generate English story →</button>
+          <button class="btn-secondary">Clear</button>
+        </div>
+        <div style="margin-top:8px;font-size:11px;color:var(--muted);">Confirm or cancel the topic replacement before generating.</div>
+      </div>
+    </div>
+    <div style="padding:36px 24px;text-align:center;color:var(--muted);font-size:13px;">Your English story draft will appear here for review.</div>
+  </div>
+</div>
+
+<!-- ── 3: English story review ── -->
+<div class="mockup" id="m2">
+  <div class="mockup-label">Direction 3 — English story review (approve before conversion)</div>
+  <div class="tool-shell">
+    <div class="app-bar">
+      <div class="app-bar-title">Story Authoring Tool <span class="ja">日本の本</span></div>
+      <div class="app-bar-right">
+        <span class="status-dot"></span><span class="status-label">Backend connected</span>
+        <button class="gear-btn">⚙</button>
+      </div>
+    </div>
+    <div class="mode-bar">
+      <div class="mode-toggle">
+        <button class="mode-opt">Convert a story</button>
+        <button class="mode-opt active">Generate from topic</button>
+      </div>
+    </div>
+    <div class="section-collapsed">
+      <div class="section-collapsed-header">
+        <div class="section-collapsed-left">
+          <span class="section-title" style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">Topic</span>
+          <span class="scope-pill">Genki I Ch.5</span>
+        </div>
+        <span class="section-collapsed-preview">A student visits a convenience store for the first time in Japan…</span>
+        <button class="section-action">Edit topic</button>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">English story — review before conversion</span>
+        <div class="approved-badge">✓ Approved</div>
+      </div>
+      <div class="proposal-notice">
+        <span>ℹ</span>
+        <span>Review and edit the generated English story. Editing after approval will require you to re-confirm before proceeding.</span>
+      </div>
+      <div class="section-content">
+        <textarea class="form-textarea" rows="8">Yuki walked into the convenience store near the university. She looked at the rows of onigiri in the cold case. There were many kinds — salmon, tuna, and pickled plum. She wanted the salmon one. She picked it up carefully and looked for the price. It was 138 yen. She went to the counter and said, "Kore o kudasai." The clerk smiled and told her the total. Yuki paid and said thank you. Outside, she opened the wrapper slowly, following the numbers on the plastic. The onigiri tasted very good.</textarea>
+        <div style="margin-top:12px;display:flex;align-items:center;justify-content:space-between;">
+          <button class="btn-secondary" style="font-size:12px;padding:7px 14px;">Regenerate</button>
+          <button class="btn-proceed">Proceed to Japanese conversion →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 4: Generating M1 ── -->
+<div class="mockup" id="m3">
+  <div class="mockup-label">Direction 4 — Generating (M1 — shimmer progress)</div>
+  <div class="tool-shell">
+    <div class="app-bar">
+      <div class="app-bar-title">Story Authoring Tool <span class="ja">日本の本</span></div>
+      <div class="app-bar-right">
+        <span class="status-dot"></span><span class="status-label">Backend connected</span>
+        <button class="gear-btn">⚙</button>
+      </div>
+    </div>
+    <div class="mode-bar">
+      <div class="mode-toggle">
+        <button class="mode-opt active">Convert a story</button>
+        <button class="mode-opt">Generate from topic</button>
+      </div>
+    </div>
+    <div class="section-collapsed">
+      <div class="section-collapsed-header">
+        <div class="section-collapsed-left">
+          <span class="section-title" style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">English source</span>
+          <span class="scope-pill">Genki I Ch.6</span>
+        </div>
+        <span class="section-collapsed-preview">Kenji arrived at Narita Airport on a Tuesday morning…</span>
+        <button class="section-action">Edit inputs</button>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header"><span class="section-title">Conversion in progress</span></div>
+      <div class="progress-wrap">
+        <div class="progress-track"><div class="progress-shimmer"></div></div>
+        <div class="progress-status-row">
+          <span class="progress-status-text">Converting to Japanese…</span>
+          <span class="progress-elapsed">0:23 elapsed</span>
+        </div>
+        <p class="progress-hint">This usually takes 30–60 seconds.</p>
+      </div>
+      <div style="padding:0 24px 20px;"><button class="btn-stop">■ Stop</button></div>
+    </div>
+    <div style="padding:36px 24px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--border);">Output will appear here when conversion completes.</div>
+  </div>
+</div>
+
+<!-- ── 5: Generating M2 ── -->
+<div class="mockup" id="m4">
+  <div class="mockup-label">Direction 5 — Generating (M2 — 4-agent pipeline with status message line)</div>
+  <div class="tool-shell">
+    <div class="app-bar">
+      <div class="app-bar-title">Story Authoring Tool <span class="ja">日本の本</span></div>
+      <div class="app-bar-right">
+        <span class="status-dot"></span><span class="status-label">Backend connected</span>
+        <button class="gear-btn">⚙</button>
+      </div>
+    </div>
+    <div class="mode-bar">
+      <div class="mode-toggle">
+        <button class="mode-opt active">Convert a story</button>
+        <button class="mode-opt">Generate from topic</button>
+      </div>
+    </div>
+    <div class="section-collapsed">
+      <div class="section-collapsed-header">
+        <div class="section-collapsed-left">
+          <span class="section-title" style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">English source</span>
+          <span class="scope-pill">Genki I Ch.6</span>
+        </div>
+        <span class="section-collapsed-preview">Kenji arrived at Narita Airport on a Tuesday morning…</span>
+        <button class="section-action">Edit inputs</button>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header"><span class="section-title">Conversion in progress</span></div>
+      <div class="progress-wrap">
+        <div class="progress-track"><div class="progress-shimmer"></div></div>
+        <div class="progress-status-row">
+          <span class="progress-status-text">Converting to Japanese…</span>
+          <span class="progress-elapsed">0:31 elapsed</span>
+        </div>
+        <p class="progress-hint" style="font-size:12px;color:var(--muted);margin-top:6px;font-style:italic;">Checking grammar…</p>
+      </div>
+      <div style="padding:0 24px 20px;"><button class="btn-stop">■ Stop</button></div>
+    </div>
+    <div style="padding:36px 24px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--border);">Output will appear here when conversion completes.</div>
+  </div>
+  <div style="max-width:860px;margin:0 auto 24px;padding:0 12px;">
+    <div style="background:#1e2a1e;border:1px solid #3a4f3a;border-radius:8px;padding:14px 18px;font-size:12px;color:#8aab8a;font-family:var(--font-mono);">
+      <div style="margin-bottom:8px;color:#5c7a5c;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;">M2 vs M1 — what changes</div>
+      <div style="margin-bottom:4px;"><span style="color:#6aaa6a;">+</span> Single <code style="background:#2a3a2a;padding:1px 5px;border-radius:3px;">AGENT_STATUS</code> text line below the shimmer bar</div>
+      <div style="margin-bottom:4px;"><span style="color:#6aaa6a;">+</span> Updates periodically: "Planning story…" → "Generating story…" → "Checking grammar…" → "Running quality review…"</div>
+      <div style="margin-bottom:4px;"><span style="color:#888;">≡</span> Shimmer + elapsed time + Stop button — identical to M1</div>
+      <div><span style="color:#888;">≡</span> Output textarea, Save &amp; Download, validation — all identical to M1</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 6: Output arrived ── -->
+<div class="mockup" id="m5">
+  <div class="mockup-label">Direction 6 — Output arrived (review + save)</div>
+  <div class="tool-shell">
+    <div class="app-bar">
+      <div class="app-bar-title">Story Authoring Tool <span class="ja">日本の本</span></div>
+      <div class="app-bar-right">
+        <span class="status-dot"></span><span class="status-label">Backend connected</span>
+        <button class="gear-btn">⚙</button>
+      </div>
+    </div>
+    <div class="mode-bar">
+      <div class="mode-toggle">
+        <button class="mode-opt active">Convert a story</button>
+        <button class="mode-opt">Generate from topic</button>
+      </div>
+    </div>
+    <div class="section-collapsed">
+      <div class="section-collapsed-header">
+        <div class="section-collapsed-left">
+          <span class="section-title" style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">English source</span>
+          <span class="scope-pill">Genki I Ch.6</span>
+        </div>
+        <span class="section-collapsed-preview">Kenji arrived at Narita Airport on a Tuesday morning…</span>
+        <button class="section-action">Edit inputs</button>
+      </div>
+    </div>
+    <div class="audit-summary">
+      <span>✓ 43 vocab items verified · 18 grammar patterns confirmed · <strong>1 curriculum substitution</strong></span>
+      <button class="audit-link">Show log ↓</button>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">Output</span>
+        <div style="display:flex;gap:10px;"><button class="section-action">Copy</button><button class="btn-secondary" style="padding:5px 12px;font-size:11px;">Re-run</button></div>
+      </div>
+      <div class="json-output-meta-bar">
+        <div class="json-meta"><span>genki-i-ch6-narita-airport.json</span><span>·</span><span>9 sentences · 43 vocab · 6 grammar</span></div>
+      </div>
+      <div class="json-pre">
+        <div class="jl"><span class="ln">1</span><span class="lc">{</span></div>
+        <div class="jl"><span class="ln">2</span><span class="lc">  <span class="k">"schema_version"</span>: <span class="s">"1"</span>,</span></div>
+        <div class="jl"><span class="ln">3</span><span class="lc">  <span class="k">"id"</span>: <span class="s">"genki-i-ch6-narita-airport"</span>,</span></div>
+        <div class="jl"><span class="ln">4</span><span class="lc">  <span class="k">"title"</span>: <span class="s">"成田空港"</span>,</span></div>
+        <div class="jl"><span class="ln">5</span><span class="lc">  <span class="k">"title_en"</span>: <span class="s">"Narita Airport"</span>,</span></div>
+        <div class="jl"><span class="ln">6</span><span class="lc">  <span class="k">"difficulty"</span>: <span class="s">"Genki I Ch.6"</span>,</span></div>
+        <div class="jl"><span class="ln">7</span><span class="lc">  <span class="k">"sentences"</span>: [</span></div>
+        <div class="jl"><span class="ln">8</span><span class="lc">    { <span class="k">"id"</span>: <span class="s">"s1"</span>, <span class="k">"words"</span>: [<span class="s">"けんじは"</span>, <span class="s">"なりたくうこうに"</span>, <span class="s">"つきました"</span>], … }</span></div>
+        <div class="jl"><span class="ln">9</span><span class="lc">    <span style="color:var(--muted);">// … 8 more sentences</span></span></div>
+        <div class="jl"><span class="ln">10</span><span class="lc">  ]</span></div>
+        <div class="jl"><span class="ln">11</span><span class="lc">}</span></div>
+      </div>
+    </div>
+    <div class="action-footer">
+      <button class="btn-save">Save &amp; Download</button>
+      <span class="action-footer-hint">Validates JSON · parallel arrays · vocab keys · grammar indices</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── 7: Validation error ── -->
+<div class="mockup" id="m6">
+  <div class="mockup-label">Direction 7 — Validation error + re-run warning</div>
+  <div class="tool-shell">
+    <div class="app-bar">
+      <div class="app-bar-title">Story Authoring Tool <span class="ja">日本の本</span></div>
+      <div class="app-bar-right">
+        <span class="status-dot"></span><span class="status-label">Backend connected</span>
+        <button class="gear-btn">⚙</button>
+      </div>
+    </div>
+    <div class="mode-bar">
+      <div class="mode-toggle">
+        <button class="mode-opt active">Convert a story</button>
+        <button class="mode-opt">Generate from topic</button>
+      </div>
+    </div>
+    <div class="section-collapsed">
+      <div class="section-collapsed-header">
+        <div class="section-collapsed-left">
+          <span class="section-title" style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);">English source</span>
+          <span class="scope-pill">Genki I Ch.6</span>
+        </div>
+        <span class="section-collapsed-preview">Kenji arrived at Narita Airport…</span>
+        <button class="section-action">Edit inputs</button>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">Output</span>
+        <div style="display:flex;gap:8px;align-items:center;"><span class="dirty-dot"></span><span class="dirty-lbl">Unsaved edits</span></div>
+      </div>
+      <div class="json-output-meta-bar"><div class="json-meta"><span>genki-i-ch6-narita-airport.json</span></div></div>
+      <div class="json-pre">
+        <div class="jl"><span class="ln">1</span><span class="lc">{ <span class="k">"sentences"</span>: [{</span></div>
+        <div class="jl"><span class="ln">2</span><span class="lc">  <span class="k">"words"</span>: [<span class="s">"けんじは"</span>, <span class="s">"なりたに"</span>, <span class="s">"つきました"</span>],</span></div>
+        <div class="jl err-line"><span class="ln bad">3</span><span class="lc">  <span class="k">"ruby"</span>: [<span class="s">""</span>, <span class="s">"なりたに"</span>],  <span class="err-ann">← 3 words, 2 ruby entries</span></span></div>
+        <div class="jl"><span class="ln">4</span><span class="lc">  <span class="k">"vocab_keys"</span>: [<span class="n">null</span>, <span class="n">999</span>, <span class="n">418</span>]</span></div>
+        <div class="jl"><span class="ln">5</span><span class="lc">}]}</span></div>
+      </div>
+    </div>
+    <div class="val-panel">
+      <div class="val-header">2 validation errors — download blocked</div>
+      <div class="val-row"><span class="badge">PARALLEL-ARRAYS</span><div><div class="val-path">sentences[0].ruby</div><div class="val-msg">Array length mismatch: words has 3 tokens, ruby has 2.</div></div></div>
+      <div class="val-row"><span class="badge">VOCAB-KEYS</span><div><div class="val-path">sentences[0].vocab_keys[1]</div><div class="val-msg">Key 999 does not resolve to a Genki vocab entry or vocab_supplement entry.</div></div></div>
+    </div>
+    <div class="rerun-warn">
+      <div class="rerun-warn-text">You've manually edited the output. Re-running will replace your edits with a fresh conversion.</div>
+      <div class="rerun-warn-btns"><button class="btn-discard">Discard my edits and Re-run</button><button class="btn-cancel-sm">Cancel</button></div>
+    </div>
+    <div class="action-footer"><button class="btn-save disabled">Save &amp; Download</button><span class="action-footer-hint err">Fix 2 errors to enable download</span></div>
+  </div>
+</div>
+
+<!-- ── 8: Settings panel ── -->
+<div class="mockup" id="m7">
+  <div class="mockup-label">Direction 8 — Settings panel (length · grammar distribution · temperature)</div>
+  <div class="tool-shell">
+    <div class="app-bar">
+      <div class="app-bar-title">Story Authoring Tool <span class="ja">日本の本</span></div>
+      <div class="app-bar-right">
+        <span class="status-dot"></span><span class="status-label">Backend connected</span>
+        <button class="gear-btn active">⚙</button>
+      </div>
+    </div>
+    <div class="mode-bar">
+      <div class="mode-toggle">
+        <button class="mode-opt active">Convert a story</button>
+        <button class="mode-opt">Generate from topic</button>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-header"><span class="section-title">English source story</span></div>
+      <div class="section-content">
+        <textarea class="form-textarea" rows="3">Kenji arrived at Narita Airport on a Tuesday morning…</textarea>
+        <div style="margin-top:12px;" class="form-row-inline">
+          <div class="form-select-wrap">
+            <select class="form-select"><option>Genki I — Chapter 6</option></select>
+            <div class="scope-chip" style="margin-top:8px;"><span class="scope-chip-label">Scope:</span><span>~210 vocab</span><span class="scope-div">·</span><span>18 grammar patterns</span></div>
+          </div>
+        </div>
+        <div class="action-row" style="margin-top:8px;">
+          <button class="btn-primary">Convert to Japanese →</button>
+          <button class="btn-secondary">Clear</button>
+        </div>
+      </div>
+    </div>
+    <!-- Settings overlay -->
+    <div class="sheet-overlay">
+      <div class="sheet">
+        <div class="sheet-hdr"><span class="sheet-title">Generation settings</span><button class="sheet-close">×</button></div>
+        <div class="sheet-body">
+
+          <!-- Story length — Path B only, dimmed in Convert mode -->
+          <div class="sg">
+            <div class="sg-title">Story length <span class="path-b-tag">Generate from topic only</span></div>
+            <div class="s-hint dim">Not applicable in Convert mode — length is determined by the source story.</div>
+            <div class="disabled-section">
+              <div class="preset-row">
+                <button class="preset-btn dim">Short</button>
+                <button class="preset-btn on dim">Medium</button>
+                <button class="preset-btn dim">Long</button>
+                <button class="preset-btn dim">Custom</button>
+              </div>
+              <div class="custom-row">
+                <input class="custom-in" type="number" value="250" disabled>
+                <span class="custom-lbl">words (max 1000)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Grammar distribution -->
+          <div class="sg">
+            <div class="sg-title">Grammar point distribution</div>
+            <div class="s-hint">Select whether story generation should prioritise recently learnt grammar points, or evenly select from all previous grammar.</div>
+            <div class="grammar-slider-wrap">
+              <div class="slider-row">
+                <input type="range" class="slider-3pos" min="0" max="2" step="1" value="1" style="background: linear-gradient(to right, var(--accent) 50%, var(--border) 50%);">
+              </div>
+              <div class="slider-ticks"><span class="tick"></span><span class="tick"></span><span class="tick"></span></div>
+              <div class="grammar-slider-labels">
+                <span class="grammar-label-left">Balanced grammar</span>
+                <span class="grammar-label-right">Prioritise recent grammar</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Temperature -->
+          <div class="sg">
+            <div class="sg-title">LLM temperature</div>
+            <div class="s-hint">Lower = more predictable output. Higher = more varied language and sentence structures.</div>
+            <div class="slider-row">
+              <input type="range" min="0" max="1" step="0.05" value="0.4">
+              <span class="slider-val">0.4</span>
+            </div>
+            <div class="temp-labels"><span>Precise (0.0)</span><span>Balanced (0.5)</span><span>Creative (1.0)</span></div>
+          </div>
+
+        </div>
+        <div class="sheet-footer">Settings are passed to the backend as generation metadata and saved in your session.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const MOCKUP_IDS = ['m0','m1','m2b','m2','m3','m4','m5','m6','m7'];
+function show(idx, btn) {
+  MOCKUP_IDS.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('visible', i === idx);
+  });
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

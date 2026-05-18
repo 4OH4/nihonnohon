@@ -1,5 +1,96 @@
 # Deferred Work
 
+## Deferred from: code review of 2-9-session-persistence-clear-and-content-provenance (2026-05-18)
+
+- **`sessionRestored` banner not cleared by SettingsPanel changes (temperature/grammarDist/pathMode):** Changing settings after a restored session leaves the "Restored from previous session" banner visible. Minor UX issue; SettingsPanel is a separate component from InputPanel and wiring dismissal there adds complexity for little value in v1. [InputPanel.tsx / useSession.ts]
+- **`parsed as SessionState` skips field-level type validation:** After the `version === 1` check, the parsed object is cast to `SessionState` without verifying individual field types (e.g., `grammarDist: 5`, `temperature: "hot"`). Single-user tool with self-written sessions makes corruption unlikely; acceptable for v1. Add field guards if the session format is ever user-editable or externally supplied. [useSession.ts]
+- **`localStorage.setItem` quota exception silently swallowed:** Large `outputJson` values can cause quota-exceeded errors that are caught and discarded. Per spec, graceful degradation without blocking is the required behaviour; no user notification needed for v1. [useSession.ts]
+- **`prevPhase` not reset on remount (Strict Mode double-invoke):** In React Strict Mode, the subscribe effect mounts → unmounts → remounts; `prevPhase` is re-captured at second mount from current store state, potentially missing a phase transition that occurred in the gap. Dev-only concern; no production impact. [useSession.ts]
+- **Stale debounce races phase-change write:** If a debounced write timer is queued and a phase change fires before the timer callback enters the JS task queue, the phase-change path cancels the timer — but if the timer already queued, a stale snapshot could overwrite the correct phase-tagged save. Practically impossible in a browser's single-threaded event loop; acceptable for v1. [useSession.ts]
+- **`clear()` removes localStorage session via subscription, not directly:** `clear()` triggers `isClearedState → true` which triggers the subscriber to call `localStorage.removeItem()`. If `useSession` is unmounted when `clear()` is called, the removal doesn't happen. In the current UI, `clear()` is only callable from mounted components that always have `useSession` mounted. [authoringStore.ts / useSession.ts]
+
+## Deferred from: code review of 2-8-client-side-validation-suite-story-download-and-statsbar (2026-05-18)
+
+- **Transient `'downloading'` phase in synchronous `save()`:** Zero-tick intermediate state between the two `set()` calls in `save()`; React 18 batches synchronous Zustand updates so this phase is never rendered. Cosmetic; no observable effect. [authoringStore.ts]
+- **Vocab key upper bound not checked:** Positive integers ≥1 are accepted as valid Genki vocab IDs without an upper bound check. Intentional design tradeoff (frontend lacks the Genki CSV); documented in story spec. [validateStoryJson.ts]
+- **Non-object sentence elements silently skip per-sentence validation:** A `sentences` array containing a primitive (null, number, string) results in all per-sentence checks being skipped for that entry with no error. Backend structural validation prevents this in generated output; treat as adversarial input guard. [validateStoryJson.ts]
+- **Non-numeric `vocab_supplement[].key` causes false-positive `VOCAB_KEY_UNRESOLVED`:** `v.key as number` casts without a type guard; a string key produces `NaN` in the supplementalKeys Set, making `supplementalKeys.has(NaN)` always false and incorrectly flagging sentence vocab_keys that reference the malformed entry. Backend enforces schema; low risk. [validateStoryJson.ts]
+- **`ValidationErrorList` uses array-index as React `key`:** When the error list shrinks or reorders on re-validation, React reconciles by index and may re-announce the wrong error via `role="alert"`. Minor a11y issue; not critical for v1. [ValidationErrorList.tsx]
+- **No test for Save & Download button state during `'downloading'` phase:** The transient `'downloading'` phase has no test coverage. Safe to skip for v1. [OutputPanel.test.tsx]
+
+## Deferred from: code review of 2-7-output-panel-dirty-state-and-re-run (2026-05-18)
+
+- **UX-DR5 deviation — JS gutter + textarea instead of `<pre>` + CSS counter-increment:** `JsonOutput` uses a `<div>` gutter with JS-computed line numbers and a `<textarea>`, not the `<pre>` + `counter-increment` approach specified in UX-DR5. The story spec explicitly specified the gutter-div approach. Fixing requires a full component redesign (contenteditable `<pre>` or switch to CodeMirror). Defer to a future polish story. [JsonOutput.tsx]
+- **`rerun()` does not clear `proposalApproved`:** After a Path B run where `approve()` set `proposalApproved: true`, calling `rerun()` leaves the flag stale. Pre-existing on `generate()` too. Scope to Story 4.x when Path B is wired up. [authoringStore.ts:131]
+- **Single-frame `editedValue = null` before first useEffect on output-clean entry:** On the render cycle immediately after `output-clean` is reached, `editedValue` is null and `JsonOutput` receives `""` for one frame before the sync effect fires. Imperceptible; tests pass via `act()`. [OutputPanel.tsx:29]
+- **Latent stale `editedValue` after rerun if future phases reach output-dirty without going through output-clean:** Non-triggerable with the current phase machine (`_markDirty` only transitions from output-clean → output-dirty). Guard if new phases are added. [OutputPanel.tsx]
+- **Escape keydown attached to `document` without `stopPropagation`:** If `OutputPanel` is ever rendered inside a Sheet or Dialog that also handles Escape, pressing Escape dismisses the RerunWarning AND closes the parent overlay. Not an issue in the current flat layout. [OutputPanel.tsx:52]
+- **Double `_setOutputJson` while in `output-clean` re-syncs `editedValue`, discarding user edits:** The `useEffect([phase, outputJson])` would fire again if `outputJson` changed while already in `output-clean`. `RUN_FINISHED` is a terminal event — this is unreachable in production. [OutputPanel.tsx:29]
+
+## Deferred from: code review of 2-6-generation-ui-progress-display-stop-button-and-inputsection-collapse (2026-05-18)
+
+- **`useAgUiRun` `?? store.*` fallback contradicts AC7:** `storedInputs?.pathMode ?? store.pathMode` (and temperature/grammarDist) falls back to live store reads, which AC7 explicitly prohibits. Unreachable in production — `generate()` always sets `storedInputs` before the effect fires. Consistent with pre-existing pattern for inputText/chapterTarget. [useAgUiRun.ts:53]
+- **`agentRunStarted` not reset in `_setError`/`_resolveCancel`:** `agentRunStarted` can be `true` when phase returns to `idle` or `error`. No visible impact — all rendering paths gate on phase. `generate()` always resets it on the next run. [authoringStore.ts:171,175]
+- **Elapsed timer can tick one extra second after `generating` ends:** Standard `setInterval` race — the tick already queued before cleanup runs can fire one more time. Cosmetic only; no data impact. [GenerationProgress.tsx:47]
+
+## Deferred from: code review of 2-5-ag-ui-sse-lifecycle-and-store-integration (2026-05-17)
+
+- **AC2 timer-cleared proof is indirect:** The test verifies no error fires after 5s following RUN_STARTED, but does not prove `clearTimeout` was actually called. A direct proof would require injecting spy timers. Acceptable for v1. [useAgUiRun.test.ts]
+- **AC4 proposal single-chunk emission:** Proposal buffer path tested with one chunk; the story buffer path (multi-chunk) is tested separately. Cover multi-chunk proposal if the proposal path gains independent buffer logic. [useAgUiRun.test.ts]
+- **AC9 mockEs.close() not verified on cancel:** The SSE connection close on cancellation is handled by the hook's useEffect cleanup (called when phase changes away from generating), not directly asserted. [useAgUiRun.test.ts]
+- **No re-render test with changed createEventSource factory:** If the hook consumer re-renders with a new factory, the old EventSource should be closed. Not required by Story 2.5 ACs. [useAgUiRun.test.ts]
+- **No test for non-generating phase on hook mount:** The no-op guard `if (store.phase !== 'generating' || !store.runId) return` is not directly exercised. Covered implicitly by store phase guards in authoringStore.test.ts. [useAgUiRun.test.ts]
+
+## Deferred from: code review of 2-4-input-panel-chapter-selector-and-scopechip (2026-05-17)
+
+- **`useBackendStatus` concurrent in-flight fetches:** Pre-existing — see 2-3 deferred section. Also surfaced again in 2-4 context via the `InputPanel` consuming the hook. [useBackendStatus.ts]
+- **`useAgUiRun` 3s first-event timeout calls `_setError` after component unmounts:** On the success path `phaseRef.current` is read, but if the component unmounts during the 3s+5s window, the ref holds a stale value and `_setError` may fire on a newly-mounted store instance. Pre-existing; Story 2.5 owns the `useAgUiRun` lifecycle. [useAgUiRun.ts]
+- **React concurrent-mode potential tear from separate `useAuthoringStore` subscriptions in `InputPanel`:** `inputText` and `chapterTarget` each use separate `useAuthoringStore` calls, theoretically readable in different render passes. Consolidate to a single combined selector if concurrent-mode tearing becomes observable. Not a current issue with synchronous Zustand. [InputPanel.tsx]
+- **No visible indicator on steering toggle when hidden instructions are present:** If the user types steering instructions, collapses the panel, and forgets, the instructions are silently included in the next `generate()` call. A badge or dot on the toggle button would make this visible. Enhancement for a future story. [InputPanel.tsx]
+- **`focus-visible` without `:focus` fallback for older browsers:** Pre-existing pattern across the whole app (all interactive elements); all deployment targets use modern browsers with `:focus-visible` support. [InputPanel.tsx, ScopeChip.tsx and throughout]
+
+## Deferred from: code review of 2-3-app-shell-backendstatus-modetoggle-and-settingspanel (2026-05-17)
+
+- **Concurrent in-flight `fetch()` in `useBackendStatus`:** No abort of previous call when re-trigger fires. Single-user v1; address if concurrent load grows. [useBackendStatus.ts]
+- **`AbortSignal.timeout` browser support:** Requires Safari ≥ 16.4. All deployment targets meet this; document and accept. [useBackendStatus.ts]
+- **`proposalText` not cleared on mode switch:** Stale Path B proposal persists if user switches modes. M3 / Path B scope — Story 4.x. [authoringStore.ts]
+- **`storedInputs` snapshot missing `pathMode` and `temperature`:** Re-run URL construction in Story 2.6 will need to extend the snapshot; deferred intentionally. [authoringStore.ts / useAgUiRun.ts]
+- **`save()` doesn't return from `downloading` phase:** No `output-clean` transition on download completion. Story 2.8 scope. [authoringStore.ts]
+- **`useAuthoringStore()` full subscription in components:** Components subscribe to entire store; potential unnecessary re-renders at scale. Address when profiling shows need. [ModeToggle.tsx, SettingsPanel.tsx, BackendStatus.tsx]
+
+## Deferred from: code review of 2-2-m1-production-backend-agent-sse-endpoints-and-cancellation (2026-05-17)
+
+- **Dangling threads on asyncio.TimeoutError:** `asyncio.to_thread` threads can't be cancelled; after a 55s timeout the OS thread continues until TCP timeout. Under concurrent load threads pile up. Single-user v1 won't hit this; address in M2 if concurrent usage grows. [agent.py]
+- **`_active_runs` multi-worker isolation:** Each uvicorn worker has its own dict; cancel routed to different worker silently does nothing. v1 uses single worker; v2 (Cloud Run) will need a shared store (Redis, etc.). [main.py]
+- **`cancel` always returns `{"ok": True}`:** No 404 for unknown run_id; idempotent cancel is acceptable for v1. [main.py]
+- **TEXT_MESSAGE_CHUNK + RUN_FINISHED both carry full JSON:** Doubles bandwidth per generation. Functionally correct; use Gemini streaming response in M2 to send true incremental chunks. [agent.py]
+- **`path_mode` accepted but unused:** Path B (Generate from topic) is M3 scope. Wire `path_mode` into agent logic in Story 4.1. [agent.py]
+- **Ch.0 vocab entries excluded from prompts:** `build_system_prompt` loops `range(1, chapter+1)` matching spike.py pattern; Ch.0 greetings (おはよう, etc.) are never included. Intentional curriculum design — revisit if greetings are needed. [agent.py]
+- **Health 503 only for absent key, not invalid/revoked key:** Validating key correctness requires a Gemini API call, inappropriate for a health endpoint. Accept this limitation; add a separate "connection test" endpoint in v2 if needed. [main.py]
+
+## Deferred from: code review of 2-1-frontend-project-scaffold-state-machine-and-ag-ui-hook (2026-05-17)
+
+- **`clear()` during generating leaves SSE open until next render:** `clear()` is valid from any phase but the SSE cleanup runs asynchronously. Add UI guard in Story 2.6 when components bind `clear()` to the generating phase. [authoringStore.ts / useAgUiRun.ts]
+- **`steeringInstructions` empty-string ambiguity:** Empty field sends no param; non-empty sends the value. If the backend distinguishes missing vs empty, silent mismatch. Confirm API contract in Story 2.2. [useAgUiRun.ts]
+- **`crypto.randomUUID()` secure-context requirement:** Only safe on localhost and HTTPS. If ever previewed over plain HTTP (staging), throws and breaks generation. All deployment targets use localhost/HTTPS so not a practical issue for v1. [authoringStore.ts]
+- **`_resolveCancel()` leaves `storedInputs` intact:** Cancelled run leaves a Re-run snapshot. Whether the cancelled inputs should persist or be cleared is a product decision; resolve when building Re-run in Story 2.6. [authoringStore.ts]
+- **`generate()` from error doesn't clear `outputJson`:** Stale output from a prior successful run persists while retrying. No component reads `outputJson` directly in Story 2.1 so no visible effect; clear it in the error-retry path when output display is wired up in Story 2.7. [authoringStore.ts]
+- **`approve()` doesn't clear `proposalText`/`outputJson`:** Stale Path A output persists when entering Path B approval flow. Scope to Story 4.3. [authoringStore.ts]
+
+## Deferred from: code review of 1-3-m0-feasibility-spike (2026-05-17)
+
+- **CWD-relative FIXTURE_PATH / DATA_DIR:** Spike uses relative paths that only resolve correctly when invoked via `make spike` from `apps/story-generator-backend/`. Add a CWD assertion or resolve paths relative to `__file__` when this script is promoted to a reusable tool. [spike.py]
+- **No enforced Gemini timeout:** AC1 documents the 60-second expectation but the Gemini call has no programmatic timeout. Add request timeout in the production `agent.py` (Story 2.2). [spike.py]
+- **Raw LLM response not persisted:** On a successful run the raw JSON string from Gemini is discarded. Consider writing it alongside the fixture for debugging variance between runs. [spike.py]
+- **No markdown fence stripping:** If `response_mime_type="application/json"` fails to prevent a code-fence wrapper, `json.loads` will fail without a helpful diagnostic. Strip ` ```json … ``` ` fences as a defensive fallback in the production agent. [spike.py, agent.py Story 2.2]
+
+## Deferred from: code review of 1-2-backend-project-scaffold (2026-05-16)
+
+- **Duplicate vocab ID silent overwrite:** `by_id[entry.id] = entry` in `load_vocab_data` silently replaces earlier entries with identical IDs. Trusted reference data makes this low-risk for now; add a warning log or assertion in Story 2.2. [data_loader.py:load_vocab_data]
+- **`ValidationResult` mutable list despite `frozen=True`:** `frozen=True` prevents attribute reassignment but not `errors.append(...)`. No external callers yet — harden the API surface (use tuple) in Story 2.2 when the validator interface stabilises. [validator.py:ValidationResult]
+- **Unpinned `requirements.txt`:** All deps except `ag-ui-protocol` are unpinned. Reproducibility risk grows over time. Lock versions or add a `pip-compile`-generated lockfile when the backend dependency set stabilises. [requirements.txt]
+- **Uncaught `ValueError` on malformed CSV rows:** `int(row[0])` and `int(row["Chapter"])` raise `ValueError` on bad data. Fail-fast at startup is correct for trusted reference data; add validation with a clear error message if the CSVs ever come from an external source. [data_loader.py]
+
 ## Deferred from: code review of 4-4-credits-seo-polish-and-playwright-e2e-suite (2026-05-13)
 
 - **`/credits` route missing `errorElement`:** A render crash in CreditsRoute shows a blank page with no recovery path. CreditsRoute is static-only today so risk is very low, but consistency with other routes (which have `errorElement`) would be cleaner. Add `errorElement: <LibraryError />` when error boundaries are reviewed. [router.tsx]

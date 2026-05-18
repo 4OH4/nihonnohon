@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "id": "genki-1-ch3-test-story",
+  "title": "Test Story",
+  "title_ja": "テスト話",
+  "language": "ja",
+  "description": "A minimal test story.",
+  "difficulty": "Genki I Ch.3",
+  "grammar": ["〜です", "〜ます"],
+  "vocab_supplement": [
+    { "key": 9001, "word": "テスト", "hiragana": "てすと", "translation": "test" }
+  ],
+  "sentences": [
+    {
+      "id": "genki-1-ch3-test-story-s1",
+      "words": ["これ", "は", "テスト", "です"],
+      "ruby": [null, null, "てすと", null],
+      "vocab_keys": [null, null, 9001, null],
+      "translation": "This is a test.",
+      "grammar": [0]
+    }
+  ]
+}

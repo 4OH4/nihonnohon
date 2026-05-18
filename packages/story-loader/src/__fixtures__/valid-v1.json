@@ -6,9 +6,9 @@
   "language": "Japanese",
   "description": "A complete test story with all optional fields.",
   "difficulty": "Genki I Ch.6",
-  "keywords": [{ "word": "田中", "hiragana": "たなか", "translation": "Tanaka (name)" }],
+  "keywords": [{ "key": 1000, "word": "田中", "hiragana": "たなか", "translation": "Tanaka (name)" }],
   "grammar": ["て-form for connecting actions"],
-  "vocab_supplement": [{ "word": "先生", "hiragana": "せんせい", "translation": "teacher" }],
+  "vocab_supplement": [{ "key": 1, "word": "先生", "hiragana": "せんせい", "translation": "teacher" }],
   "metadata": { "source": "test" },
   "sentences": [
     {
