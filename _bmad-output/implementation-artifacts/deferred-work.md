@@ -1,5 +1,14 @@
 # Deferred Work
 
+## Deferred from: code review of 2-7-output-panel-dirty-state-and-re-run (2026-05-18)
+
+- **UX-DR5 deviation — JS gutter + textarea instead of `<pre>` + CSS counter-increment:** `JsonOutput` uses a `<div>` gutter with JS-computed line numbers and a `<textarea>`, not the `<pre>` + `counter-increment` approach specified in UX-DR5. The story spec explicitly specified the gutter-div approach. Fixing requires a full component redesign (contenteditable `<pre>` or switch to CodeMirror). Defer to a future polish story. [JsonOutput.tsx]
+- **`rerun()` does not clear `proposalApproved`:** After a Path B run where `approve()` set `proposalApproved: true`, calling `rerun()` leaves the flag stale. Pre-existing on `generate()` too. Scope to Story 4.x when Path B is wired up. [authoringStore.ts:131]
+- **Single-frame `editedValue = null` before first useEffect on output-clean entry:** On the render cycle immediately after `output-clean` is reached, `editedValue` is null and `JsonOutput` receives `""` for one frame before the sync effect fires. Imperceptible; tests pass via `act()`. [OutputPanel.tsx:29]
+- **Latent stale `editedValue` after rerun if future phases reach output-dirty without going through output-clean:** Non-triggerable with the current phase machine (`_markDirty` only transitions from output-clean → output-dirty). Guard if new phases are added. [OutputPanel.tsx]
+- **Escape keydown attached to `document` without `stopPropagation`:** If `OutputPanel` is ever rendered inside a Sheet or Dialog that also handles Escape, pressing Escape dismisses the RerunWarning AND closes the parent overlay. Not an issue in the current flat layout. [OutputPanel.tsx:52]
+- **Double `_setOutputJson` while in `output-clean` re-syncs `editedValue`, discarding user edits:** The `useEffect([phase, outputJson])` would fire again if `outputJson` changed while already in `output-clean`. `RUN_FINISHED` is a terminal event — this is unreachable in production. [OutputPanel.tsx:29]
+
 ## Deferred from: code review of 2-6-generation-ui-progress-display-stop-button-and-inputsection-collapse (2026-05-18)
 
 - **`useAgUiRun` `?? store.*` fallback contradicts AC7:** `storedInputs?.pathMode ?? store.pathMode` (and temperature/grammarDist) falls back to live store reads, which AC7 explicitly prohibits. Unreachable in production — `generate()` always sets `storedInputs` before the effect fires. Consistent with pre-existing pattern for inputText/chapterTarget. [useAgUiRun.ts:53]

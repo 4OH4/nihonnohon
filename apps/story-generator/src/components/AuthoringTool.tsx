@@ -5,6 +5,7 @@ import { BackendStatus } from './BackendStatus'
 import { GenerationProgress } from './GenerationProgress'
 import { InputPanel } from './InputPanel'
 import { ModeToggle } from './ModeToggle'
+import { OutputPanel } from './OutputPanel'
 import { SettingsPanel } from './SettingsPanel'
 
 /** Root layout component for the Story Authoring Tool.
@@ -45,7 +46,7 @@ export function AuthoringTool() {
         </div>
         <InputPanel />
         <GenerationProgress />
-        {/* Story 2.7: OutputPanel */}
+        <OutputPanel />
       </main>
 
       <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} />

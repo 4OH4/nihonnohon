@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-05-15
-last_updated: 2026-05-17
+last_updated: 2026-05-18
 # note: story 2-4 created
 project: nihonnohon-story-generator
 # note: epic-2 activated; story 2-1 created
@@ -59,7 +59,7 @@ development_status:
   2-4-input-panel-chapter-selector-and-scopechip: done
   2-5-ag-ui-sse-lifecycle-and-store-integration: done
   2-6-generation-ui-progress-display-stop-button-and-inputsection-collapse: done
-  2-7-output-panel-dirty-state-and-re-run: backlog
+  2-7-output-panel-dirty-state-and-re-run: done
   2-8-client-side-validation-suite-story-download-and-statsbar: backlog
   2-9-session-persistence-clear-and-content-provenance: backlog
   epic-2-retrospective: optional

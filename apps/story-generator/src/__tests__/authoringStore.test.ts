@@ -111,3 +111,108 @@ describe('authoringStore — _markRunStarted', () => {
     expect(useAuthoringStore.getState().agentRunStarted).toBe(false)
   })
 })
+
+describe('authoringStore — rerun()', () => {
+  // Helper: reach output-clean with storedInputs set (mirrors production flow)
+  const reachOutputClean = () => {
+    useAuthoringStore.getState().generate()   // sets storedInputs, enters generating
+    useAuthoringStore.getState()._setOutputJson('{}')  // enters output-clean
+  }
+
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('transitions from output-clean to generating', () => {
+    reachOutputClean()
+    useAuthoringStore.getState().rerun()
+    expect(useAuthoringStore.getState().phase).toBe('generating')
+  })
+
+  it('transitions from output-dirty to generating', () => {
+    reachOutputClean()
+    useAuthoringStore.getState()._markDirty()
+    useAuthoringStore.getState().rerun()
+    expect(useAuthoringStore.getState().phase).toBe('generating')
+  })
+
+  it('preserves storedInputs snapshot unchanged', () => {
+    useAuthoringStore.getState().setInputText('Original story')
+    reachOutputClean()
+    const before = useAuthoringStore.getState().storedInputs
+    useAuthoringStore.getState().setInputText('Changed story')
+    useAuthoringStore.getState().rerun()
+    expect(useAuthoringStore.getState().storedInputs).toEqual(before)
+  })
+
+  it('clears outputJson', () => {
+    reachOutputClean()
+    expect(useAuthoringStore.getState().outputJson).toBe('{}')
+    useAuthoringStore.getState().rerun()
+    expect(useAuthoringStore.getState().outputJson).toBeNull()
+  })
+
+  it('resets outputIsDirty', () => {
+    reachOutputClean()
+    useAuthoringStore.getState()._markDirty()
+    expect(useAuthoringStore.getState().outputIsDirty).toBe(true)
+    useAuthoringStore.getState().rerun()
+    expect(useAuthoringStore.getState().outputIsDirty).toBe(false)
+  })
+
+  it('is a no-op from idle', () => {
+    useAuthoringStore.getState().rerun()
+    expect(useAuthoringStore.getState().phase).toBe('idle')
+  })
+
+  it('assigns a new runId each call', () => {
+    reachOutputClean()
+    useAuthoringStore.getState().rerun()
+    const id1 = useAuthoringStore.getState().runId
+    reachOutputClean()
+    useAuthoringStore.getState().rerun()
+    const id2 = useAuthoringStore.getState().runId
+    expect(id1).not.toBe(id2)
+  })
+})
+
+describe('authoringStore — _editOutputJson()', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('transitions output-clean → output-dirty and updates outputJson', () => {
+    useAuthoringStore.getState()._setOutputJson('{}')
+    useAuthoringStore.getState()._editOutputJson('{"edited":true}')
+    expect(useAuthoringStore.getState().phase).toBe('output-dirty')
+    expect(useAuthoringStore.getState().outputIsDirty).toBe(true)
+    expect(useAuthoringStore.getState().outputJson).toBe('{"edited":true}')
+  })
+
+  it('updates outputJson without changing phase when already output-dirty', () => {
+    useAuthoringStore.getState()._setOutputJson('{}')
+    useAuthoringStore.getState()._markDirty()
+    useAuthoringStore.getState()._editOutputJson('{"second":"edit"}')
+    expect(useAuthoringStore.getState().phase).toBe('output-dirty')
+    expect(useAuthoringStore.getState().outputJson).toBe('{"second":"edit"}')
+  })
+
+  it('is a no-op from idle', () => {
+    useAuthoringStore.getState()._editOutputJson('{"ignored":true}')
+    expect(useAuthoringStore.getState().outputJson).toBeNull()
+    expect(useAuthoringStore.getState().phase).toBe('idle')
+  })
+})
+
+describe('authoringStore — generate() from error clears outputJson', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('clears outputJson when retrying from error phase', () => {
+    useAuthoringStore.getState()._setOutputJson('{"old":true}')
+    useAuthoringStore.getState()._setError('TIMEOUT', 'timed out')
+    useAuthoringStore.getState().generate()
+    expect(useAuthoringStore.getState().outputJson).toBeNull()
+  })
+})

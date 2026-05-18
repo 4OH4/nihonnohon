@@ -46,6 +46,7 @@ interface AuthoringStore {
   generate: () => void
   cancel: () => void
   approve: () => void
+  rerun: () => void
   save: () => void
   clear: () => void
   setInputText: (v: string) => void
@@ -55,10 +56,12 @@ interface AuthoringStore {
   setTemperature: (v: number) => void
   setGrammarDist: (v: 0 | 1 | 2) => void
 
-  // Internal actions — called by useAgUiRun only, not exposed to components
+  // Internal actions — called by useAgUiRun or OutputPanel, not part of the public API
   _setOutputJson: (v: string) => void
   _setProposalText: (v: string) => void
   _markDirty: () => void
+  /** Update outputJson with user edits; latches dirty state on first call from output-clean. */
+  _editOutputJson: (v: string) => void
   _setError: (code: string, message: string) => void
   _resolveCancel: () => void
   _markRunStarted: () => void
@@ -96,6 +99,7 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
     set({
       phase: 'generating',
       runId: crypto.randomUUID(),
+      outputJson: null,          // clear stale output so OutputPanel collapses on retry
       outputIsDirty: false,
       errorCode: null,
       errorMessage: null,
@@ -123,6 +127,22 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
       errorMessage: null,
       agentRunStarted: false,
       storedInputs: { inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist },
+    })
+  },
+
+  rerun() {
+    const { phase, storedInputs } = get()
+    if (phase !== 'output-clean' && phase !== 'output-dirty') return
+    if (!storedInputs) return
+    set({
+      phase: 'generating',
+      runId: crypto.randomUUID(),
+      outputJson: null,
+      outputIsDirty: false,
+      errorCode: null,
+      errorMessage: null,
+      agentRunStarted: false,
+      // storedInputs preserved — same snapshot reused for SSE URL params
     })
   },
 
@@ -168,6 +188,15 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
     const { phase } = get()
     if (phase === 'output-clean') {
       set({ phase: 'output-dirty', outputIsDirty: true })
+    }
+  },
+
+  _editOutputJson(v) {
+    const { phase } = get()
+    if (phase === 'output-clean') {
+      set({ phase: 'output-dirty', outputIsDirty: true, outputJson: v })
+    } else if (phase === 'output-dirty') {
+      set({ outputJson: v })
     }
   },
 
