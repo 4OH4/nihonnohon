@@ -367,3 +367,140 @@ describe('authoringStore — _clearDownloadToast()', () => {
     expect(useAuthoringStore.getState().downloadToastId).toBeNull()
   })
 })
+
+describe('authoringStore — _setError with proposalApproved', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('goes to error phase when proposalApproved is false (normal generation)', () => {
+    const { generate, _setError } = useAuthoringStore.getState()
+    useAuthoringStore.getState().setInputText('A story')
+    useAuthoringStore.getState().setChapterTarget('Genki I Ch.5')
+    generate()
+    expect(useAuthoringStore.getState().phase).toBe('generating')
+    _setError('TIMEOUT', 'Timed out')
+    expect(useAuthoringStore.getState().phase).toBe('error')
+    expect(useAuthoringStore.getState().errorCode).toBe('TIMEOUT')
+  })
+
+  it('restores to proposal phase when proposalApproved is true', () => {
+    const store = useAuthoringStore.getState()
+    store.setPathMode('B')
+    store.setChapterTarget('Genki I Ch.5')
+    store._setProposalText('My English draft.')
+    // approve() sets proposalApproved = true and transitions to generating
+    store.approve()
+    expect(useAuthoringStore.getState().phase).toBe('generating')
+    expect(useAuthoringStore.getState().proposalApproved).toBe(true)
+    // Simulate conversion failure
+    useAuthoringStore.getState()._setError('TIMEOUT', 'Timed out.')
+    expect(useAuthoringStore.getState().phase).toBe('proposal')
+    expect(useAuthoringStore.getState().errorCode).toBe('TIMEOUT')
+    expect(useAuthoringStore.getState().errorMessage).toBe('Timed out.')
+    // Draft is preserved
+    expect(useAuthoringStore.getState().proposalText).toBe('My English draft.')
+  })
+
+  it('preserves proposalText when restoring to proposal on error', () => {
+    const store = useAuthoringStore.getState()
+    store.setPathMode('B')
+    store.setChapterTarget('Genki I Ch.5')
+    store._setProposalText('The draft text.')
+    store.approve()
+    useAuthoringStore.getState()._setError('GENERATION_FAILED', 'API error')
+    expect(useAuthoringStore.getState().proposalText).toBe('The draft text.')
+    expect(useAuthoringStore.getState().runId).toBeNull()
+  })
+
+  it('approve() after error-restored proposal clears errorCode and retries', () => {
+    const store = useAuthoringStore.getState()
+    store.setPathMode('B')
+    store.setChapterTarget('Genki I Ch.5')
+    store._setProposalText('My draft.')
+    store.approve()
+    useAuthoringStore.getState()._setError('TIMEOUT', 'msg')
+    // Now in proposal with error displayed — approve again (retry)
+    useAuthoringStore.getState().approve()
+    const st = useAuthoringStore.getState()
+    expect(st.phase).toBe('generating')
+    expect(st.errorCode).toBeNull()
+    expect(st.errorMessage).toBeNull()
+    expect(st.storedInputs?.englishDraft).toBe('My draft.')
+  })
+})
+
+describe('authoringStore — generate() from proposal phase (Regenerate)', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('transitions proposal → generating and resets proposalApproved', () => {
+    const store = useAuthoringStore.getState()
+    store.setPathMode('B')
+    store.setChapterTarget('Genki I Ch.5')
+    store.setTopicText('My topic.')
+    store._setProposalText('Old draft.')
+    expect(useAuthoringStore.getState().phase).toBe('proposal')
+    useAuthoringStore.getState().generate()
+    const st = useAuthoringStore.getState()
+    expect(st.phase).toBe('generating')
+    expect(st.proposalApproved).toBe(false)
+    expect(st.proposalText).toBeNull()
+    expect(st.runId).not.toBeNull()
+  })
+
+  it('captures current topicText in storedInputs when regenerating', () => {
+    const store = useAuthoringStore.getState()
+    store.setPathMode('B')
+    store.setChapterTarget('Genki I Ch.5')
+    store.setTopicText('My topic.')
+    store._setProposalText('Old draft.')
+    useAuthoringStore.getState().generate()
+    expect(useAuthoringStore.getState().storedInputs?.topicText).toBe('My topic.')
+    // No englishDraft in storedInputs for phase 1
+    expect(useAuthoringStore.getState().storedInputs?.englishDraft).toBeUndefined()
+  })
+
+  it('does NOT allow generate() from output-clean phase', () => {
+    useAuthoringStore.getState()._setOutputJson('{"id":"x"}')
+    useAuthoringStore.getState().generate()
+    expect(useAuthoringStore.getState().phase).toBe('output-clean')
+  })
+})
+
+describe('authoringStore — proposalApproved reset on success', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('_setOutputJson resets proposalApproved so rerun errors go to error phase', () => {
+    const store = useAuthoringStore.getState()
+    // Simulate successful Path B conversion
+    store.setPathMode('B')
+    store.setChapterTarget('Genki I Ch.5')
+    store._setProposalText('My draft.')
+    store.approve()
+    // Successful conversion
+    useAuthoringStore.getState()._setOutputJson('{"id":"test","sentences":[]}')
+    expect(useAuthoringStore.getState().proposalApproved).toBe(false)
+    // Now simulate a rerun that fails
+    useAuthoringStore.getState().rerun()
+    useAuthoringStore.getState()._setError('TIMEOUT', 'Timed out.')
+    // Should go to error, NOT proposal
+    expect(useAuthoringStore.getState().phase).toBe('error')
+  })
+})
+
+describe('authoringStore — setProposalText', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('updates proposalText in the store', () => {
+    useAuthoringStore.getState()._setProposalText('Initial.')
+    useAuthoringStore.getState().setProposalText('Updated.')
+    expect(useAuthoringStore.getState().proposalText).toBe('Updated.')
+    expect(useAuthoringStore.getState().phase).toBe('proposal')
+  })
+})

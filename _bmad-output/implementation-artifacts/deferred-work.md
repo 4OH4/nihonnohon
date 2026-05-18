@@ -244,3 +244,11 @@
 - `packages/typescript-config/base.json` uses `module: ESNext` + `moduleResolution: bundler`. This is correct for Vite/tsup consumers but won't suit `apps/api` Node runtime when it's implemented. Decision: add a separate `node.json` preset or accept the compromise — defer until apps/api is real.
 - `packages/typescript-config/react-library.json` extends base but declares no React peer dep contract — any consumer (currently only the future apps/web) must supply `react` and `@types/react` themselves. Story 1.4 concern.
 - `turbo.json` task is named `typecheck` while the spec's Dev Notes parenthetically referenced `check-types` as the default scaffold name. Both root `package.json` scripts and `turbo.json` are internally consistent with `typecheck`. Spec is permissive — no rename needed.
+
+
+## Deferred from: code review of 3-3-english-proposal-review-and-convert-to-japanese (2026-05-19)
+
+- **"Convert to Japanese" not disabled when backend unavailable:** ProposalPanel doesn't read `backendStatus`; inconsistent with InputPanel's Generate button guard. Acceptable for v1 since error recovery (restoring to proposal on failure) works correctly. [ProposalPanel.tsx]
+- **Collapsed summary blank if storedInputs is null in proposal phase:** Only reachable via direct store manipulation; normal UX flow always creates storedInputs before entering proposal via generate(). [InputPanel.tsx]
+- **useSession discards proposalText on stale-phase restore:** Intentional — Story 3.4 will add `proposalText` to `SessionState` and remove 'proposal' from STALE_PHASES. [useSession.ts]
+- **"Regenerate" lacks aria-label distinguishing it from InputPanel's "Generate":** Low a11y gap; defer to accessibility pass. [ProposalPanel.tsx]

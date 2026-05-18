@@ -7,6 +7,7 @@ import { GenerationProgress } from './GenerationProgress'
 import { InputPanel } from './InputPanel'
 import { ModeToggle } from './ModeToggle'
 import { OutputPanel } from './OutputPanel'
+import { ProposalPanel } from './ProposalPanel'
 import { SettingsPanel } from './SettingsPanel'
 
 /** Root layout component for the Story Authoring Tool.
@@ -48,6 +49,7 @@ export function AuthoringTool() {
         </div>
         <InputPanel />
         <GenerationProgress />
+        <ProposalPanel />
         <OutputPanel />
       </main>
 

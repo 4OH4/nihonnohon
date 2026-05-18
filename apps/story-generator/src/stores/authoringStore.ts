@@ -84,6 +84,8 @@ interface AuthoringStore {
   setGrammarDist: (v: 0 | 1 | 2) => void
   setStoryLengthPreset: (preset: StoryLengthPreset) => void
   setTargetWordCount: (v: number) => void
+  /** Update the English proposal text while in proposal phase. */
+  setProposalText: (v: string) => void
 
   // Internal actions — called by useAgUiRun or OutputPanel, not part of the public API
   _setOutputJson: (v: string) => void
@@ -141,8 +143,8 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   generate() {
     const { phase, inputText, topicText, chapterTarget, steeringInstructions, pathMode,
             temperature, grammarDist, targetWordCount } = get()
-    // Valid from idle and error (implicit retry from error clears error state)
-    if (phase !== 'idle' && phase !== 'error') return
+    // Valid from idle, error (implicit retry), and proposal (Regenerate — restarts phase 1)
+    if (phase !== 'idle' && phase !== 'error' && phase !== 'proposal') return
     set({
       phase: 'generating',
       runId: crypto.randomUUID(),
@@ -151,6 +153,8 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
       errorCode: null,
       errorMessage: null,
       agentRunStarted: false,
+      proposalApproved: false,   // reset so _setError won't restore to proposal on a new flow
+      proposalText: null,        // clear stale draft; new proposal set by _setProposalText
       storedInputs: {
         inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist,
         topicText,       // Path B phase 1 SSE param
@@ -256,6 +260,7 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   },
   setTemperature: (v) => set({ temperature: v }),
   setGrammarDist: (v) => set({ grammarDist: v }),
+  setProposalText: (v) => set({ proposalText: v }),
   setStoryLengthPreset(preset) {
     if (preset === 'custom') {
       set({ storyLengthPreset: 'custom' })
@@ -266,7 +271,8 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   setTargetWordCount: (v) => set({ storyLengthPreset: 'custom', targetWordCount: Math.min(v, MAX_TARGET_WORD_COUNT) }),
 
   _setOutputJson(v) {
-    set({ outputJson: v, phase: 'output-clean', runId: null, outputIsDirty: false })
+    // Reset proposalApproved so _setError on any subsequent generation goes to 'error', not 'proposal'
+    set({ outputJson: v, phase: 'output-clean', runId: null, outputIsDirty: false, proposalApproved: false })
   },
 
   _setProposalText(v) {
@@ -290,7 +296,13 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   },
 
   _setError(code, message) {
-    set({ phase: 'error', errorCode: code, errorMessage: message, runId: null })
+    const { proposalApproved } = get()
+    if (proposalApproved) {
+      // Error during Japanese conversion — restore to proposal so the draft is preserved
+      set({ phase: 'proposal', errorCode: code, errorMessage: message, runId: null })
+    } else {
+      set({ phase: 'error', errorCode: code, errorMessage: message, runId: null })
+    }
   },
 
   _resolveCancel() {

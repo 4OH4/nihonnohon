@@ -5,8 +5,9 @@ import type { Phase, StoryLengthPreset } from '@/stores/authoringStore'
 /** localStorage key for the authoring session. */
 export const SESSION_KEY = 'nihonnohon-sg-session'
 
-/** Phases treated as crashed when found in a restored session — remapped on restore. */
-const STALE_PHASES = new Set<Phase>(['generating', 'cancelling', 'downloading'])
+/** Phases treated as crashed when found in a restored session — remapped on restore.
+ *  'proposal' is stale until Story 3.4 adds proposalText to SessionState. */
+const STALE_PHASES = new Set<Phase>(['generating', 'cancelling', 'downloading', 'proposal'])
 
 /** Shape of the persisted session object. */
 interface SessionState {

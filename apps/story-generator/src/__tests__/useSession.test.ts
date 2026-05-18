@@ -94,6 +94,18 @@ describe('useSession — hydration on mount', () => {
     expect(useAuthoringStore.getState().phase).toBe('output-clean')
   })
 
+  it('maps stale proposal phase + outputJson → output-clean', () => {
+    writeSession({ phase: 'proposal', outputJson: '{"stale":true}' })
+    renderHook(() => useSession())
+    expect(useAuthoringStore.getState().phase).toBe('output-clean')
+  })
+
+  it('maps stale proposal phase + no outputJson → idle', () => {
+    writeSession({ phase: 'proposal', outputJson: null, inputText: 'hi', topicText: 'my topic' })
+    renderHook(() => useSession())
+    expect(useAuthoringStore.getState().phase).toBe('idle')
+  })
+
   it('maps stale generating phase + no outputJson → idle with inputs', () => {
     writeSession({
       phase: 'generating',

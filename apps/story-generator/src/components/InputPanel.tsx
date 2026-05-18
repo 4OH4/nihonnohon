@@ -47,18 +47,19 @@ export function InputPanel() {
   const [isConfirmOpen, setIsConfirmOpen] = useState(false)
   const steeringToggleRef = useRef<HTMLButtonElement>(null)
 
-  const isGeneratingOrCancelling = phase === 'generating' || phase === 'cancelling'
-  const isCollapsed = isGeneratingOrCancelling && !manualExpanded
+  // Collapse during generation, cancellation, and proposal review
+  const isCollapsedPhase = phase === 'generating' || phase === 'cancelling' || phase === 'proposal'
+  const isCollapsed = isCollapsedPhase && !manualExpanded
 
   // Reset confirm-open gate when leaving Path B so Generate button never stays disabled after mode switch
   useEffect(() => {
     if (pathMode !== 'B') setIsConfirmOpen(false)
   }, [pathMode])
 
-  // Auto-reset manual expansion when generation ends (phase returns to idle/error/etc.)
+  // Auto-reset manual expansion when leaving collapsed phases
   useEffect(() => {
-    if (!isGeneratingOrCancelling) setManualExpanded(false)
-  }, [isGeneratingOrCancelling])
+    if (!isCollapsedPhase) setManualExpanded(false)
+  }, [isCollapsedPhase])
 
   const handleInputChange = (v: string) => {
     setInputText(v)
@@ -124,12 +125,23 @@ export function InputPanel() {
           {storedInputs?.chapterTarget && (
             <span className="text-muted shrink-0">· {storedInputs.chapterTarget}</span>
           )}
-          {storedInputs?.inputText && (
-            <span className="text-paper-text truncate flex-1 min-w-0">
-              {storedInputs.inputText.length > 60
-                ? storedInputs.inputText.slice(0, 60) + '…'
-                : storedInputs.inputText}
-            </span>
+          {/* Path B shows topic; Path A shows inputText */}
+          {storedInputs?.pathMode === 'B' ? (
+            storedInputs?.topicText && (
+              <span className="text-paper-text truncate flex-1 min-w-0">
+                {storedInputs.topicText.length > 60
+                  ? storedInputs.topicText.slice(0, 60) + '…'
+                  : storedInputs.topicText}
+              </span>
+            )
+          ) : (
+            storedInputs?.inputText && (
+              <span className="text-paper-text truncate flex-1 min-w-0">
+                {storedInputs.inputText.length > 60
+                  ? storedInputs.inputText.slice(0, 60) + '…'
+                  : storedInputs.inputText}
+              </span>
+            )
           )}
           <button
             type="button"

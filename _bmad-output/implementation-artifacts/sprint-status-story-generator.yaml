@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-05-15
-last_updated: 2026-05-18
+last_updated: 2026-05-19
 # note: story 2-4 created
 project: nihonnohon-story-generator
 # note: epic-2 activated; story 2-1 created
@@ -68,7 +68,7 @@ development_status:
   epic-3: in-progress
   3-1-path-b-backend-english-generation-and-suggest-topic-endpoints: done
   3-2-topic-input-suggest-topic-button-and-mode-activation: done
-  3-3-english-proposal-review-and-convert-to-japanese: backlog
+  3-3-english-proposal-review-and-convert-to-japanese: done
   3-4-story-length-settings-and-path-b-session-restore: backlog
   epic-3-retrospective: optional
 

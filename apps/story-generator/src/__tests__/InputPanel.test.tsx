@@ -240,6 +240,35 @@ describe('InputPanel — collapse and phase-aware button', () => {
     render(<InputPanel />)
     expect(screen.getByText(/A story about Tanaka/)).toBeInTheDocument()
   })
+
+  it('collapses form fields when phase is proposal', () => {
+    act(() => {
+      useAuthoringStore.getState().setPathMode('B')
+      useAuthoringStore.getState().setChapterTarget('Genki I Ch.5')
+      useAuthoringStore.getState().setTopicText('My topic.')
+      useAuthoringStore.getState()._setProposalText('English draft here.')
+    })
+    render(<InputPanel />)
+    // Full form not visible
+    expect(screen.queryByLabelText(/genki chapter/i)).not.toBeInTheDocument()
+    // Collapsed summary + Edit inputs visible
+    expect(screen.getByRole('button', { name: /edit inputs/i })).toBeInTheDocument()
+  })
+
+  it('collapsed summary shows topicText for Path B in proposal phase', () => {
+    act(() => {
+      useAuthoringStore.getState().setPathMode('B')
+      useAuthoringStore.getState().setChapterTarget('Genki I Ch.5')
+      useAuthoringStore.getState().setTopicText('Shopping at the market.')
+      useAuthoringStore.getState()._setProposalText('English draft here.')
+      // generate() to create storedInputs snapshot with topicText
+      useAuthoringStore.getState().generate()
+      // restore to proposal after generate creates storedInputs
+      useAuthoringStore.getState()._setProposalText('English draft here.')
+    })
+    render(<InputPanel />)
+    expect(screen.getByText(/Shopping at the market/)).toBeInTheDocument()
+  })
 })
 
 describe('InputPanel — SessionRestoreBanner', () => {
