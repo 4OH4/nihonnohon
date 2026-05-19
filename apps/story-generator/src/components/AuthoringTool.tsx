@@ -25,7 +25,7 @@ export function AuthoringTool() {
       <header className="border-b border-border">
         <div className="max-w-[860px] mx-auto px-4 py-3 flex items-center justify-between">
           <h1 className="text-lg font-semibold text-paper-text">
-            nihonnohon Story Authoring Tool
+            日本の本 Story Authoring Tool
           </h1>
           <div className="flex items-center gap-4">
             <BackendStatus />
