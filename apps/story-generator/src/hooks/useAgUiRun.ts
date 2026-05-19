@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useAuthoringStore } from '@/stores/authoringStore'
+import timeouts from '../../../../config/timeouts.json'
 
 /** AG-UI event types per ADR-004. */
 type AgUiEvent =
@@ -10,7 +11,7 @@ type AgUiEvent =
   | { type: 'RUN_CANCELLED'; runId: string }
 
 const FIRST_EVENT_TIMEOUT_MS = 3_000
-const GENERATION_TIMEOUT_MS  = 60_000
+const GENERATION_TIMEOUT_MS = (timeouts.generationTimeoutS + timeouts.frontendMarginS) * 1_000
 
 /**
  * Manages the full SSE lifecycle for AG-UI generation.

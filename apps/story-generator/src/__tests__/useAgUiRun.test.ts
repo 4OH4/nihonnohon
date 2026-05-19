@@ -1,6 +1,7 @@
 import { renderHook, act } from '@testing-library/react'
 import { useAgUiRun } from '../hooks/useAgUiRun'
 import { useAuthoringStore } from '../stores/authoringStore'
+import timeouts from '../../../../config/timeouts.json'
 
 // Minimal mock that captures onmessage/onerror so tests can fire events
 class MockEventSource {
@@ -306,7 +307,8 @@ describe('useAgUiRun — generation timeout', () => {
     useAuthoringStore.getState()._reset()
   })
 
-  it('60s timeout sets TIMEOUT error with the exact spec message', () => {
+  it('generation timeout sets TIMEOUT error with the exact spec message', () => {
+    const generationTimeoutMs = (timeouts.generationTimeoutS + timeouts.frontendMarginS) * 1_000
     const { mockEs, factory } = setupGenerating()
     renderHook(() => useAgUiRun(factory))
 
@@ -315,9 +317,9 @@ describe('useAgUiRun — generation timeout', () => {
       mockEs.emit({ type: 'RUN_STARTED', runId: useAuthoringStore.getState().runId })
     })
 
-    // Advance past the 60s generation timeout (synchronous — the callback is not async)
+    // Advance past the generation timeout (synchronous — the callback is not async)
     act(() => {
-      vi.advanceTimersByTime(60_000)
+      vi.advanceTimersByTime(generationTimeoutMs)
     })
 
     const state = useAuthoringStore.getState()

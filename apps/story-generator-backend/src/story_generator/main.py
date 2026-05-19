@@ -34,6 +34,7 @@ class _JsonLLMPerfFormatter(logging.Formatter):
             "run_id": getattr(record, "run_id", ""),
             "elapsed_ms": getattr(record, "elapsed_ms", 0),
             "response_chars": getattr(record, "response_chars", 0),
+            "status": getattr(record, "status", "ok"),
         }
         return json.dumps(doc, ensure_ascii=False)
 
@@ -80,6 +81,27 @@ _configure_logging()
 logger = logging.getLogger(__name__)
 _perf_logger = logging.getLogger("llm_perf")
 
+
+def _load_timeout_config() -> dict:
+    """Load timeout values from config/timeouts.json at the repo root.
+
+    Falls back to hardcoded defaults if the file is missing so tests and
+    isolated runs don't require the config file to be present.
+    """
+    defaults = {"generationTimeoutS": 55.0, "suggestTopicTimeoutS": 9.0, "frontendMarginS": 5.0}
+    config_path = Path(__file__).parents[4] / "config" / "timeouts.json"
+    try:
+        with open(config_path) as f:
+            return {**defaults, **json.load(f)}
+    except FileNotFoundError:
+        logger.warning("config/timeouts.json not found — using default timeouts")
+        return defaults
+
+
+_timeouts = _load_timeout_config()
+_GENERATION_TIMEOUT_S: float = float(_timeouts["generationTimeoutS"])
+_SUGGEST_TOPIC_TIMEOUT_S: float = float(_timeouts["suggestTopicTimeoutS"])
+
 # ---------------------------------------------------------------------------
 # Module-level state — loaded once at startup
 # ---------------------------------------------------------------------------
@@ -94,7 +116,6 @@ _active_runs: dict[str, asyncio.Event] = {}
 _suggest_topic_cooldowns: dict[str, float] = {}
 
 _SUGGEST_TOPIC_COOLDOWN_S = 2.0
-_SUGGEST_TOPIC_TIMEOUT_S = 9.0  # 1s margin before NFR14's 10s limit
 
 
 @asynccontextmanager
@@ -165,7 +186,7 @@ async def run_sse(
 
     from story_generator.agent import StoryGeneratorAgent
 
-    agent = StoryGeneratorAgent(_vocab_data, _grammar_data)
+    agent = StoryGeneratorAgent(_vocab_data, _grammar_data, generation_timeout_s=_GENERATION_TIMEOUT_S)
 
     async def event_stream():
         try:
@@ -230,6 +251,7 @@ def _generate_topic_suggestion(chapter: str, gemini_client=None) -> str:
         f"textbooks up to Chapter {chapter_int}, and will later be translated into Japanese."
         f"The topic should reflect everyday student life or simple cultural activities appropriate for beginners. "
         f"Return only the topic sentence — no explanation, no punctuation at the end."
+        f"Only reply in English language."
     )
 
     from google.genai import types as genai_types
@@ -242,20 +264,8 @@ def _generate_topic_suggestion(chapter: str, gemini_client=None) -> str:
         max_output_tokens=64,
         thinking_config=genai_types.ThinkingConfig(thinking_budget=0),
     )
-    t0 = time.perf_counter()
     response = gemini_client("gemini-2.5-flash", prompt, config)
-    elapsed_ms = (time.perf_counter() - t0) * 1000
-    text = (getattr(response, "text", "") or "").strip()
-    _perf_logger.info(
-        "",
-        extra={
-            "activity": "Suggest a topic",
-            "run_id": "",
-            "elapsed_ms": round(elapsed_ms),
-            "response_chars": len(text),
-        },
-    )
-    return text
+    return (getattr(response, "text", "") or "").strip()
 
 
 @app.post("/suggest-topic")
@@ -273,15 +283,36 @@ async def suggest_topic(request: SuggestTopicRequest) -> dict:
     _suggest_topic_cooldowns[chapter] = now
     logger.info("suggest-topic chapter=%r", chapter)
 
+    t0 = time.perf_counter()
     try:
         topic = await asyncio.wait_for(
             asyncio.to_thread(_generate_topic_suggestion, chapter),
             timeout=_SUGGEST_TOPIC_TIMEOUT_S,
         )
     except asyncio.TimeoutError:
+        _perf_logger.info(
+            "",
+            extra={
+                "activity": "Suggest a topic",
+                "run_id": "",
+                "elapsed_ms": round((time.perf_counter() - t0) * 1000),
+                "response_chars": 0,
+                "status": "timeout",
+            },
+        )
         logger.warning("suggest-topic timed out for chapter=%r", chapter)
         raise HTTPException(status_code=504, detail="Suggest-topic timed out.")
     except Exception as exc:  # noqa: BLE001
+        _perf_logger.info(
+            "",
+            extra={
+                "activity": "Suggest a topic",
+                "run_id": "",
+                "elapsed_ms": round((time.perf_counter() - t0) * 1000),
+                "response_chars": 0,
+                "status": "error",
+            },
+        )
         logger.error("suggest-topic error for chapter=%r: %s", chapter, exc)
         raise HTTPException(status_code=500, detail=str(exc))
 
@@ -289,6 +320,16 @@ async def suggest_topic(request: SuggestTopicRequest) -> dict:
         logger.warning("suggest-topic returned empty string for chapter=%r", chapter)
         raise HTTPException(status_code=500, detail="Gemini returned no topic suggestion.")
 
+    _perf_logger.info(
+        "",
+        extra={
+            "activity": "Suggest a topic",
+            "run_id": "",
+            "elapsed_ms": round((time.perf_counter() - t0) * 1000),
+            "response_chars": len(topic),
+            "status": "ok",
+        },
+    )
     logger.info("suggest-topic result: %r", topic)
     return {"topic": topic}
 

@@ -16,9 +16,6 @@ _perf_logger = logging.getLogger("llm_perf")
 
 GEMINI_MODEL = "gemini-2.5-flash"
 
-# Seconds before the frontend's 60-second timeout so we can return a clean error
-_GENERATION_TIMEOUT_S = 55.0
-
 
 # ---------------------------------------------------------------------------
 # Prompt construction — adapted from spike.py
@@ -213,10 +210,12 @@ class StoryGeneratorAgent:
         vocab_data: VocabData,
         grammar_data: GrammarData,
         gemini_client=None,
+        generation_timeout_s: float = 55.0,
     ) -> None:
         self._vocab_data = vocab_data
         self._grammar_data = grammar_data
         self._gemini_client = gemini_client  # None → real client on first call
+        self._generation_timeout_s = generation_timeout_s
 
     def _get_caller(self):
         """Return the Gemini generate_content callable (cached after first call)."""
@@ -320,6 +319,7 @@ class StoryGeneratorAgent:
         logger.debug("Prompt (%d chars):\n%s", len(prompt), prompt)
 
         # Call Gemini (blocking) via asyncio.to_thread to avoid blocking the event loop
+        t0 = time.perf_counter()
         try:
             from google.genai import types as genai_types
 
@@ -328,15 +328,24 @@ class StoryGeneratorAgent:
                 temperature=temperature,
             )
             call = self._get_caller()
-            logger.debug("Calling %s (timeout=%ss)", GEMINI_MODEL, _GENERATION_TIMEOUT_S)
-            t0 = time.perf_counter()
+            logger.debug("Calling %s (timeout=%ss)", GEMINI_MODEL, self._generation_timeout_s)
             response = await asyncio.wait_for(
                 asyncio.to_thread(call, GEMINI_MODEL, prompt, config),
-                timeout=_GENERATION_TIMEOUT_S,
+                timeout=self._generation_timeout_s,
             )
             elapsed_ms = (time.perf_counter() - t0) * 1000
         except asyncio.TimeoutError:
-            logger.warning("run_id=%s timed out after %ss", run_id, _GENERATION_TIMEOUT_S)
+            _perf_logger.info(
+                "",
+                extra={
+                    "activity": "Convert to Japanese",
+                    "run_id": run_id,
+                    "elapsed_ms": round((time.perf_counter() - t0) * 1000),
+                    "response_chars": 0,
+                    "status": "timeout",
+                },
+            )
+            logger.warning("run_id=%s timed out after %ss", run_id, self._generation_timeout_s)
             yield {
                 "type": "ERROR",
                 "code": "TIMEOUT",
@@ -344,6 +353,16 @@ class StoryGeneratorAgent:
             }
             return
         except Exception as exc:  # noqa: BLE001
+            _perf_logger.info(
+                "",
+                extra={
+                    "activity": "Convert to Japanese",
+                    "run_id": run_id,
+                    "elapsed_ms": round((time.perf_counter() - t0) * 1000),
+                    "response_chars": 0,
+                    "status": "error",
+                },
+            )
             logger.error("run_id=%s Gemini call failed: %s", run_id, exc)
             yield {
                 "type": "ERROR",
@@ -375,6 +394,7 @@ class StoryGeneratorAgent:
                 "run_id": run_id,
                 "elapsed_ms": round(elapsed_ms),
                 "response_chars": len(raw_json),
+                "status": "ok",
             },
         )
         logger.debug("Response (%d chars):\n%s", len(raw_json), raw_json[:2000])
@@ -445,6 +465,7 @@ class StoryGeneratorAgent:
         prompt = build_proposal_prompt(chapter_int, topic, steering_instructions, target_word_count)
         logger.debug("Proposal prompt (%d chars):\n%s", len(prompt), prompt)
 
+        t0 = time.perf_counter()
         try:
             from google.genai import types as genai_types
 
@@ -452,13 +473,22 @@ class StoryGeneratorAgent:
             config = genai_types.GenerateContentConfig(temperature=temperature)
             call = self._get_caller()
             logger.debug("Calling %s for English proposal", GEMINI_MODEL)
-            t0 = time.perf_counter()
             response = await asyncio.wait_for(
                 asyncio.to_thread(call, GEMINI_MODEL, prompt, config),
-                timeout=_GENERATION_TIMEOUT_S,
+                timeout=self._generation_timeout_s,
             )
             elapsed_ms = (time.perf_counter() - t0) * 1000
         except asyncio.TimeoutError:
+            _perf_logger.info(
+                "",
+                extra={
+                    "activity": "Generate story in English",
+                    "run_id": run_id,
+                    "elapsed_ms": round((time.perf_counter() - t0) * 1000),
+                    "response_chars": 0,
+                    "status": "timeout",
+                },
+            )
             logger.warning("run_id=%s proposal timed out", run_id)
             yield {
                 "type": "ERROR",
@@ -467,6 +497,16 @@ class StoryGeneratorAgent:
             }
             return
         except Exception as exc:  # noqa: BLE001
+            _perf_logger.info(
+                "",
+                extra={
+                    "activity": "Generate story in English",
+                    "run_id": run_id,
+                    "elapsed_ms": round((time.perf_counter() - t0) * 1000),
+                    "response_chars": 0,
+                    "status": "error",
+                },
+            )
             logger.error("run_id=%s proposal Gemini call failed: %s", run_id, exc)
             yield {"type": "ERROR", "code": "GENERATION_FAILED", "message": str(exc)}
             return
@@ -493,6 +533,7 @@ class StoryGeneratorAgent:
                 "run_id": run_id,
                 "elapsed_ms": round(elapsed_ms),
                 "response_chars": len(proposal_text),
+                "status": "ok",
             },
         )
         logger.info("run_id=%s proposal complete (%d chars)", run_id, len(proposal_text))
