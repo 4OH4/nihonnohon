@@ -71,11 +71,17 @@ export function useAgUiRun(
     if (steeringInstructions) {
       params.set('steeringInstructions', steeringInstructions)
     }
-    // Path B params: topic (phase 1), englishDraft (phase 2), target_word_count (phase 1 only)
+    // Path B params — topic and englishDraft are mutually exclusive:
+    // phase 1 sends topic (backend routes on "B" + topic → English proposal)
+    // phase 2 sends englishDraft only (backend routes on "B" + englishDraft → Japanese story)
+    // Sending both would trigger phase 1 routing even during phase 2.
     if (pathMode === 'B') {
-      if (topicText)         params.set('topic', topicText)
-      if (englishDraft)      params.set('englishDraft', englishDraft)
-      if (targetWordCount > 0) params.set('target_word_count', String(targetWordCount))
+      if (englishDraft) {
+        params.set('englishDraft', englishDraft)
+      } else if (topicText) {
+        params.set('topic', topicText)
+        if (targetWordCount > 0) params.set('target_word_count', String(targetWordCount))
+      }
     }
 
     const url = `/run_sse?${params.toString()}`

@@ -530,6 +530,7 @@ describe('useAgUiRun — Path B URL params', () => {
     const store = useAuthoringStore.getState()
     store.setPathMode('B')
     store.setChapterTarget('Genki I Ch.5')
+    store.setTopicText('A topic.')
     store._setProposalText('Ken goes to the library.')
     store.approve()
 
@@ -541,6 +542,25 @@ describe('useAgUiRun — Path B URL params', () => {
     const params = new URLSearchParams(url.split('?')[1] ?? '')
     expect(params.get('englishDraft')).toBe('Ken goes to the library.')
     expect(url).toContain('pathMode=B')
+  })
+
+  it('does NOT include topic param in URL for Path B phase 2 (approve flow) — would trigger phase 1 on backend', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setPathMode('B')
+    store.setChapterTarget('Genki I Ch.5')
+    store.setTopicText('A topic.')              // topic is set in the store
+    store._setProposalText('Ken goes to the library.')
+    store.approve()                             // phase 2: snapshots englishDraft
+
+    renderHook(() => useAgUiRun(factory))
+
+    const url: string = factory.mock.calls[0][0]
+    const params = new URLSearchParams(url.split('?')[1] ?? '')
+    // englishDraft must be present; topic must NOT be sent (would route to phase 1)
+    expect(params.get('englishDraft')).toBe('Ken goes to the library.')
+    expect(params.has('topic')).toBe(false)
   })
 
   it('includes target_word_count in URL when non-zero in Path B phase 1', () => {
