@@ -15,6 +15,7 @@ const writeSession = (overrides: Record<string, unknown> = {}) => {
     grammarDist: 1,
     outputJson: '{"id":"test"}',
     outputIsDirty: false,
+    proposalText: null,
     ...overrides,
   }
   localStorage.setItem(SESSION_KEY, JSON.stringify(base))
@@ -94,6 +95,49 @@ describe('useSession — hydration on mount', () => {
     expect(useAuthoringStore.getState().phase).toBe('output-clean')
   })
 
+  it('restores proposal phase when proposalText is present', () => {
+    writeSession({ phase: 'proposal', proposalText: 'My English draft.', outputJson: null })
+    renderHook(() => useSession())
+    const st = useAuthoringStore.getState()
+    expect(st.phase).toBe('proposal')
+    expect(st.proposalText).toBe('My English draft.')
+  })
+
+  it('maps proposal phase to idle when proposalText is null and no outputJson', () => {
+    writeSession({ phase: 'proposal', proposalText: null, outputJson: null, inputText: 'hi' })
+    renderHook(() => useSession())
+    expect(useAuthoringStore.getState().phase).toBe('idle')
+  })
+
+  it('maps proposal phase to output-clean when proposalText is null but outputJson present', () => {
+    writeSession({ phase: 'proposal', proposalText: null, outputJson: '{"id":"x"}' })
+    renderHook(() => useSession())
+    expect(useAuthoringStore.getState().phase).toBe('output-clean')
+  })
+
+  it('proposalText triggers sessionRestored banner', () => {
+    writeSession({ phase: 'proposal', proposalText: 'Draft here.', inputText: '', outputJson: null })
+    renderHook(() => useSession())
+    expect(useAuthoringStore.getState().sessionRestored).toBe(true)
+  })
+
+  it('restores topicText and chapter alongside proposalText', () => {
+    writeSession({
+      phase: 'proposal',
+      proposalText: 'A story about Ken.',
+      topicText: 'Ken at the park',
+      chapterTarget: 'Genki I Ch.5',
+      pathMode: 'B',
+      outputJson: null,
+    })
+    renderHook(() => useSession())
+    const st = useAuthoringStore.getState()
+    expect(st.phase).toBe('proposal')
+    expect(st.proposalText).toBe('A story about Ken.')
+    expect(st.topicText).toBe('Ken at the park')
+    expect(st.chapterTarget).toBe('Genki I Ch.5')
+  })
+
   it('maps stale generating phase + no outputJson → idle with inputs', () => {
     writeSession({
       phase: 'generating',
@@ -155,6 +199,53 @@ describe('useSession — hydration on mount', () => {
   })
 })
 
+describe('useSession — topicText persistence', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+    localStorage.clear()
+  })
+
+  afterEach(() => {
+    useAuthoringStore.getState()._reset()
+    localStorage.clear()
+  })
+
+  it('restores topicText from session', () => {
+    writeSession({ topicText: 'library study', outputJson: null, inputText: '' })
+    renderHook(() => useSession())
+    expect(useAuthoringStore.getState().topicText).toBe('library study')
+  })
+
+  it('topicText non-empty triggers sessionRestored banner', () => {
+    writeSession({ topicText: 'coffee trip', outputJson: null, inputText: '', chapterTarget: '' })
+    renderHook(() => useSession())
+    expect(useAuthoringStore.getState().sessionRestored).toBe(true)
+  })
+
+  it('falls back to empty string when session has no topicText (older session)', () => {
+    writeSession({ outputJson: null, inputText: 'A story' })
+    // writeSession does not include topicText — simulates older session format
+    renderHook(() => useSession())
+    expect(useAuthoringStore.getState().topicText).toBe('')
+  })
+
+  it('persists topicText to localStorage via a phase-change write', async () => {
+    // topicText is written in the session state on any write (phase change triggers immediate write)
+    renderHook(() => useSession())
+    act(() => {
+      useAuthoringStore.getState().setTopicText('market visit')
+      // Phase change triggers immediate (non-debounced) write that includes current state
+      useAuthoringStore.getState()._setOutputJson('{"id":"x"}')
+    })
+    await act(async () => {})
+
+    const stored = localStorage.getItem(SESSION_KEY)
+    expect(stored).not.toBeNull()
+    const parsed = JSON.parse(stored!) as Record<string, unknown>
+    expect(parsed.topicText).toBe('market visit')
+  })
+})
+
 describe('useSession — subscription / persistence', () => {
   beforeEach(() => {
     useAuthoringStore.getState()._reset()
@@ -195,6 +286,19 @@ describe('useSession — subscription / persistence', () => {
     await act(async () => {})
 
     expect(localStorage.getItem(SESSION_KEY)).toBeNull()
+  })
+
+  it('persists proposalText to localStorage on phase change', async () => {
+    renderHook(() => useSession())
+    act(() => {
+      useAuthoringStore.getState()._setProposalText('My proposal draft.')
+    })
+    await act(async () => {})
+    const raw = localStorage.getItem(SESSION_KEY)
+    expect(raw).not.toBeNull()
+    const parsed = JSON.parse(raw!)
+    expect(parsed.phase).toBe('proposal')
+    expect(parsed.proposalText).toBe('My proposal draft.')
   })
 
   it('write survives localStorage errors gracefully', async () => {

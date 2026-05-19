@@ -36,11 +36,18 @@ interface StoredInputs {
   pathMode: 'A' | 'B'
   temperature: number
   grammarDist: 0 | 1 | 2
+  /** Path B phase 1: topic text snapshotted at generate() time. */
+  topicText?: string
+  /** Path B phase 2: English draft snapshotted at approve() time. */
+  englishDraft?: string
+  /** Path B: word count target snapshotted at generate() time (wired to SSE URL in Story 3.4). */
+  targetWordCount?: number
 }
 
 interface AuthoringStore {
   phase: Phase
   inputText: string
+  topicText: string
   chapterTarget: string
   steeringInstructions: string
   pathMode: 'A' | 'B'
@@ -60,6 +67,8 @@ interface AuthoringStore {
   storedInputs: StoredInputs | null
   /** True once the backend emits RUN_STARTED; reset on each new generate(). */
   agentRunStarted: boolean
+  /** Latest AGENT_STATUS message from the backend; null when not generating or cleared. */
+  agentStatus: string | null
 
   // Public actions
   generate: () => void
@@ -69,6 +78,7 @@ interface AuthoringStore {
   save: () => void
   clear: () => void
   setInputText: (v: string) => void
+  setTopicText: (v: string) => void
   setChapterTarget: (v: string) => void
   setSteeringInstructions: (v: string) => void
   setPathMode: (v: 'A' | 'B') => void
@@ -76,6 +86,8 @@ interface AuthoringStore {
   setGrammarDist: (v: 0 | 1 | 2) => void
   setStoryLengthPreset: (preset: StoryLengthPreset) => void
   setTargetWordCount: (v: number) => void
+  /** Update the English proposal text while in proposal phase. */
+  setProposalText: (v: string) => void
 
   // Internal actions — called by useAgUiRun or OutputPanel, not part of the public API
   _setOutputJson: (v: string) => void
@@ -86,17 +98,21 @@ interface AuthoringStore {
   _setError: (code: string, message: string) => void
   _resolveCancel: () => void
   _markRunStarted: () => void
+  _setAgentStatus: (msg: string | null) => void
 
   /** Errors from the last save() validation run; empty when valid. */
   validationErrors: ValidationError[]
   /** Set to the story id on a successful download; triggers toast display. */
   downloadToastId: string | null
+  /** Elapsed seconds for the most recently completed generation phase; null until first completion. */
+  lastGenerationElapsedS: number | null
   /** True after useSession restores a non-empty session; cleared on first input edit or clear(). */
   sessionRestored: boolean
 
   // Internal actions — called by useAgUiRun or OutputPanel, not part of the public API
   _clearDownloadToast: () => void
   _setSessionRestored: (v: boolean) => void
+  _setLastGenerationElapsed: (s: number) => void
 
   // Test teardown helper
   _reset: () => void
@@ -105,6 +121,7 @@ interface AuthoringStore {
 const defaultState = {
   phase: 'idle' as Phase,
   inputText: '',
+  topicText: '',
   chapterTarget: '',
   steeringInstructions: '',
   pathMode: 'A' as const,
@@ -121,18 +138,21 @@ const defaultState = {
   runId: null,
   storedInputs: null,
   agentRunStarted: false,
+  agentStatus: null,
   validationErrors: [],
   downloadToastId: null,
   sessionRestored: false,
+  lastGenerationElapsedS: null,
 }
 
 export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   ...defaultState,
 
   generate() {
-    const { phase, inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist } = get()
-    // Valid from idle and error (implicit retry from error clears error state)
-    if (phase !== 'idle' && phase !== 'error') return
+    const { phase, inputText, topicText, chapterTarget, steeringInstructions, pathMode,
+            temperature, grammarDist, targetWordCount } = get()
+    // Valid from idle, error (implicit retry), and proposal (Regenerate — restarts phase 1)
+    if (phase !== 'idle' && phase !== 'error' && phase !== 'proposal') return
     set({
       phase: 'generating',
       runId: crypto.randomUUID(),
@@ -141,7 +161,15 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
       errorCode: null,
       errorMessage: null,
       agentRunStarted: false,
-      storedInputs: { inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist },
+      agentStatus: null,
+      proposalApproved: false,    // reset so _setError won't restore to proposal on a new flow
+      proposalText: null,         // clear stale draft; new proposal set by _setProposalText
+      lastGenerationElapsedS: null, // clear stale elapsed; new time set on RUN_FINISHED
+      storedInputs: {
+        inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist,
+        topicText,       // Path B phase 1 SSE param
+        targetWordCount, // Path B word count (wired to SSE URL in Story 3.4)
+      },
     })
   },
 
@@ -153,7 +181,8 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
 
   approve() {
     // M3 Path B: approves the English proposal and triggers Japanese generation
-    const { phase, inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist } = get()
+    const { phase, inputText, topicText, chapterTarget, steeringInstructions, pathMode,
+            temperature, grammarDist, targetWordCount, proposalText } = get()
     if (phase !== 'proposal') return
     set({
       proposalApproved: true,
@@ -163,7 +192,13 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
       errorCode: null,
       errorMessage: null,
       agentRunStarted: false,
-      storedInputs: { inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist },
+      agentStatus: null,
+      storedInputs: {
+        inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist,
+        topicText,
+        targetWordCount,
+        englishDraft: proposalText ?? '', // Path B phase 2 SSE param
+      },
     })
   },
 
@@ -179,6 +214,7 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
       errorCode: null,
       errorMessage: null,
       agentRunStarted: false,
+      agentStatus: null,
       // storedInputs preserved — same snapshot reused for SSE URL params
     })
   },
@@ -218,6 +254,7 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   },
 
   setInputText: (v) => set({ inputText: v }),
+  setTopicText: (v) => set({ topicText: v }),
   setChapterTarget: (v) => set({ chapterTarget: v }),
   setSteeringInstructions: (v) => set({ steeringInstructions: v }),
 
@@ -235,6 +272,7 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   },
   setTemperature: (v) => set({ temperature: v }),
   setGrammarDist: (v) => set({ grammarDist: v }),
+  setProposalText: (v) => set({ proposalText: v }),
   setStoryLengthPreset(preset) {
     if (preset === 'custom') {
       set({ storyLengthPreset: 'custom' })
@@ -245,11 +283,12 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   setTargetWordCount: (v) => set({ storyLengthPreset: 'custom', targetWordCount: Math.min(v, MAX_TARGET_WORD_COUNT) }),
 
   _setOutputJson(v) {
-    set({ outputJson: v, phase: 'output-clean', runId: null, outputIsDirty: false })
+    // Reset proposalApproved so _setError on any subsequent generation goes to 'error', not 'proposal'
+    set({ outputJson: v, phase: 'output-clean', runId: null, outputIsDirty: false, proposalApproved: false, agentStatus: null })
   },
 
   _setProposalText(v) {
-    set({ proposalText: v, phase: 'proposal', runId: null })
+    set({ proposalText: v, phase: 'proposal', runId: null, agentStatus: null })
   },
 
   _markDirty() {
@@ -269,19 +308,33 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   },
 
   _setError(code, message) {
-    set({ phase: 'error', errorCode: code, errorMessage: message, runId: null })
+    const { proposalApproved } = get()
+    if (proposalApproved) {
+      // Error during Japanese conversion — restore to proposal so the draft is preserved
+      set({ phase: 'proposal', errorCode: code, errorMessage: message, runId: null, agentStatus: null })
+    } else {
+      set({ phase: 'error', errorCode: code, errorMessage: message, runId: null, agentStatus: null })
+    }
   },
 
   _resolveCancel() {
-    set({ phase: 'idle', runId: null })
+    set({ phase: 'idle', runId: null, agentStatus: null })
   },
 
   _markRunStarted() {
     set({ agentRunStarted: true })
   },
 
+  _setAgentStatus(msg) {
+    set({ agentStatus: msg })
+  },
+
   _clearDownloadToast() {
     set({ downloadToastId: null })
+  },
+
+  _setLastGenerationElapsed(s) {
+    set({ lastGenerationElapsedS: s })
   },
 
   _setSessionRestored(v) {

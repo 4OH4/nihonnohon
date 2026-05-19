@@ -1,5 +1,32 @@
 # Deferred Work
 
+## Deferred from: code review of supp-1-gemini-thinking-live-status (2026-05-19)
+
+- **Thought text forwarded verbatim to client with no sanitisation:** React escapes HTML so XSS is not a concern; Unicode bidirectional control characters are a cosmetic edge case. Acceptable for v1. [agent.py — both streaming loops]
+- **Hint disappears during cancelling phase:** The `phase === 'generating'` guard is intentional per spec; the hint disappearing on Stop is acceptable v1 UX. Revisit if UX feedback identifies this as jarring. [GenerationProgress.tsx:122]
+- **API key rotation staleness in `_get_stream_caller`:** Pre-existing identical pattern in `_get_caller`; both cache the client on first use. Not introduced by this story. [agent.py:_get_stream_caller]
+- **`AGENT_STATUS` yielded inside `try` — disconnect during streaming:** If the ASGI layer disconnects mid-stream, the yield raises and is caught by `except Exception`, emitting an ERROR event the disconnected client never receives. Pre-existing pattern for all yields in generate(); no regression. [agent.py]
+
+## Deferred from: code review of 3-2-topic-input-suggest-topic-button-and-mode-activation (2026-05-18)
+
+- **`doSuggest` silently dropped if `isSuggesting` true when `handleConfirmReplace` fires:** Unreachable in normal UI flow (SuggestConfirm strip only opens when `isSuggesting === false`). Defensive: add AbortController or allow the second call to proceed when confirm was explicitly clicked. [TopicTextarea.tsx]
+- **`pendingMode` stale when `outputIsDirty` clears externally while ModeToggle strip is showing:** If an external action (e.g., generation completing) resets `outputIsDirty` while the dirty-mode-switch confirmation strip is visible, `pendingMode` stays set and the strip remains open. Single-user v1 — external reset during confirmation window is practically impossible. [ModeToggle.tsx]
+- **`doSuggest` overwrites user-typed content during in-flight request:** If the user types into the topic textarea while a suggest-topic fetch is in-flight, `setTopicText(data.topic)` unconditionally replaces it. Add `AbortController` or a staleness check if user edits during fetch become a problem. [TopicTextarea.tsx]
+- **No Escape key handler on ModeToggle dirty-output warning strip:** The SuggestConfirm strip has Escape; the ModeToggle warning strip does not. AC6 does not require Escape — inconsistency noted for a future accessibility pass. [ModeToggle.tsx]
+- **Debounce blocks re-click within 300ms after SuggestConfirm Cancel:** Expected behaviour, confirmed by test. UX quirk: user must wait 300ms after cancelling a replace before the button responds again. [TopicTextarea.tsx]
+- **`approve()` snapshots live `topicText` not the phase-1 `storedInputs.topicText`:** If the user edits the topic field between phase 1 (English proposal) and phase 2 (Japanese conversion), `storedInputs.topicText` in the phase-2 snapshot reflects the edited value, not the original. Story 3.3 owns the approval flow — revisit if this creates a mismatch. [authoringStore.ts]
+- **No `AbortController`; unmounting `TopicTextarea` during in-flight `/suggest-topic` may call `setTopicText` on stale component:** React 18 should suppress the state update, but no cancellation signal is sent to the backend. Consistent with existing backend-fetch patterns in the app. [TopicTextarea.tsx]
+
+## Deferred from: code review of 3-1-path-b-backend-english-generation-and-suggest-topic-endpoints (2026-05-18)
+
+- **Cooldown timestamp set before Gemini call:** `_suggest_topic_cooldowns[chapter] = now` is written before the async call completes, so a timeout locks the chapter for 2 seconds before a retry is allowed. Acceptable for v1 — 2s retry delay is minor. [main.py:suggest_topic]
+- **Concurrent suggest-topic cooldown race:** Two simultaneous requests for the same chapter can both pass the `now - last_call < 2.0` check before either writes to the dict. Asyncio cooperative multitasking means this only matters under multi-worker deployment — same known limitation as `_active_runs`. [main.py:suggest_topic]
+- **Per-chapter vs per-session cooldown:** AC4 specifies "per-session" cooldown; implementation keys by chapter string. In v1 with no authentication, per-chapter is an effective approximation — the concept of "session" is undefined without a session ID. Revisit if auth is added. [main.py:suggest_topic]
+- **Both `topic` + `english_draft` set in same request → phase 1 silently wins:** The `if path_mode == "B" and topic` branch fires first, discarding `english_draft`. The two-request protocol prevents correctly-written clients from sending both. No guard needed for v1. [agent.py:generate]
+- **Large text in GET query params for `topic`/`english_draft`:** Long or multi-line text in URL query strings can hit server/proxy length limits. Consistent with the pre-existing `inputText` GET param pattern. Architectural concern for a future refactor to use a POST body. [main.py:run_sse]
+- **NFR14 timeout boundary not unit-tested:** The `asyncio.wait_for(9.0s)` path in `suggest_topic` is exercised only in integration. Fake-clock/timer injection not in scope for v1 test suite. [main.py / tests/test_agent.py]
+- **`_suggest_topic_cooldowns` dict never pruned:** Module-level dict grows by one entry per unique chapter string seen. Bounded in practice by the small set of valid Genki chapters. Consistent with `_active_runs` pattern — same caveat applies. [main.py]
+
 ## Deferred from: code review of 2-9-session-persistence-clear-and-content-provenance (2026-05-18)
 
 - **`sessionRestored` banner not cleared by SettingsPanel changes (temperature/grammarDist/pathMode):** Changing settings after a restored session leaves the "Restored from previous session" banner visible. Minor UX issue; SettingsPanel is a separate component from InputPanel and wiring dismissal there adds complexity for little value in v1. [InputPanel.tsx / useSession.ts]
@@ -224,3 +251,18 @@
 - `packages/typescript-config/base.json` uses `module: ESNext` + `moduleResolution: bundler`. This is correct for Vite/tsup consumers but won't suit `apps/api` Node runtime when it's implemented. Decision: add a separate `node.json` preset or accept the compromise — defer until apps/api is real.
 - `packages/typescript-config/react-library.json` extends base but declares no React peer dep contract — any consumer (currently only the future apps/web) must supply `react` and `@types/react` themselves. Story 1.4 concern.
 - `turbo.json` task is named `typecheck` while the spec's Dev Notes parenthetically referenced `check-types` as the default scaffold name. Both root `package.json` scripts and `turbo.json` are internally consistent with `typecheck`. Spec is permissive — no rename needed.
+
+
+## Deferred from: code review of 3-3-english-proposal-review-and-convert-to-japanese (2026-05-19)
+
+- **"Convert to Japanese" not disabled when backend unavailable:** ProposalPanel doesn't read `backendStatus`; inconsistent with InputPanel's Generate button guard. Acceptable for v1 since error recovery (restoring to proposal on failure) works correctly. [ProposalPanel.tsx]
+- **Collapsed summary blank if storedInputs is null in proposal phase:** Only reachable via direct store manipulation; normal UX flow always creates storedInputs before entering proposal via generate(). [InputPanel.tsx]
+- **useSession discards proposalText on stale-phase restore:** Intentional — Story 3.4 will add `proposalText` to `SessionState` and remove 'proposal' from STALE_PHASES. [useSession.ts]
+- **"Regenerate" lacks aria-label distinguishing it from InputPanel's "Generate":** Low a11y gap; defer to accessibility pass. [ProposalPanel.tsx]
+
+## Deferred from: code review of 3-4-story-length-settings-and-path-b-session-restore (2026-05-19)
+
+- **No upper-bound on `target_word_count` in backend:** Frontend enforces max 1000 via `Math.min(v, MAX_TARGET_WORD_COUNT)` but a direct API call can pass any integer. Acceptable for v1 local-only use. [main.py]
+- **`target_word_count` included in phase 2 SSE URL:** When `approve()` fires the Japanese conversion, `target_word_count` is still in the URL params even though the backend ignores it in phase 2. Harmless but could add a comment clarifying it's phase-1-only. [useAgUiRun.ts]
+- **En-dash in default length hint:** `"~150–300 words"` uses Unicode en-dash (–) while the rest of the prompt uses hyphen-minus. Cosmetic inconsistency. [agent.py]
+- **`isClearedState` check does not include `topicText`:** Pre-existing issue; not introduced by this story. The cleared-state detection could be audited for completeness. [useSession.ts]

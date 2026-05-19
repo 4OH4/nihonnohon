@@ -8,9 +8,10 @@ export default defineConfig({
   server: {
     port: 5174,
     proxy: {
-      '/run_sse': 'http://localhost:8000',
-      '/cancel':  'http://localhost:8000',
-      '/health':  'http://localhost:8000',
+      '/run_sse':       'http://localhost:8000',
+      '/cancel':        'http://localhost:8000',
+      '/health':        'http://localhost:8000',
+      '/suggest-topic': 'http://localhost:8000',
     },
   },
   resolve: {

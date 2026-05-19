@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useAuthoringStore } from '@/stores/authoringStore'
+import timeouts from '../../../../config/timeouts.json'
 
 /** AG-UI event types per ADR-004. */
 type AgUiEvent =
@@ -8,9 +9,10 @@ type AgUiEvent =
   | { type: 'RUN_FINISHED'; resultType: 'story' | 'proposal'; content: string }
   | { type: 'ERROR'; code: string; message: string }
   | { type: 'RUN_CANCELLED'; runId: string }
+  | { type: 'AGENT_STATUS'; message: string }
 
 const FIRST_EVENT_TIMEOUT_MS = 3_000
-const GENERATION_TIMEOUT_MS  = 60_000
+const GENERATION_TIMEOUT_MS = (timeouts.generationTimeoutS + timeouts.frontendMarginS) * 1_000
 
 /**
  * Manages the full SSE lifecycle for AG-UI generation.
@@ -23,11 +25,12 @@ export function useAgUiRun(
   createEventSource: (url: string) => EventSource = (url) => new EventSource(url),
 ): void {
   const store = useAuthoringStore()
-  const esRef          = useRef<EventSource | null>(null)
-  const bufferRef      = useRef<string>('')
-  const firstEventRef  = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const genTimeoutRef  = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const phaseRef       = useRef(store.phase)
+  const esRef               = useRef<EventSource | null>(null)
+  const bufferRef           = useRef<string>('')
+  const firstEventRef       = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const genTimeoutRef       = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const agentStatusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const phaseRef            = useRef(store.phase)
 
   // Keep phaseRef current so async timeout callbacks can read the latest phase
   phaseRef.current = store.phase
@@ -44,6 +47,7 @@ export function useAgUiRun(
       _setError,
       _resolveCancel,
       _markRunStarted,
+      _setAgentStatus,
     } = store
 
     // Use storedInputs snapshot for ALL URL params — captured at generate() time.
@@ -55,6 +59,9 @@ export function useAgUiRun(
     const pathMode             = storedInputs?.pathMode             ?? store.pathMode
     const temperature          = storedInputs?.temperature          ?? store.temperature
     const grammarDist          = storedInputs?.grammarDist          ?? store.grammarDist
+    const topicText            = storedInputs?.topicText            ?? ''
+    const englishDraft         = storedInputs?.englishDraft         ?? ''
+    const targetWordCount      = storedInputs?.targetWordCount      ?? 0
 
     // Build query string
     const params = new URLSearchParams({
@@ -67,6 +74,18 @@ export function useAgUiRun(
     })
     if (steeringInstructions) {
       params.set('steeringInstructions', steeringInstructions)
+    }
+    // Path B params — topic and englishDraft are mutually exclusive:
+    // phase 1 sends topic (backend routes on "B" + topic → English proposal)
+    // phase 2 sends englishDraft only (backend routes on "B" + englishDraft → Japanese story)
+    // Sending both would trigger phase 1 routing even during phase 2.
+    if (pathMode === 'B') {
+      if (englishDraft) {
+        params.set('englishDraft', englishDraft)
+      } else if (topicText) {
+        params.set('topic', topicText)
+        if (targetWordCount > 0) params.set('target_word_count', String(targetWordCount))
+      }
     }
 
     const url = `/run_sse?${params.toString()}`
@@ -99,8 +118,9 @@ export function useAgUiRun(
     }, GENERATION_TIMEOUT_MS)
 
     const clearTimers = () => {
-      if (firstEventRef.current)  clearTimeout(firstEventRef.current)
-      if (genTimeoutRef.current)  clearTimeout(genTimeoutRef.current)
+      if (firstEventRef.current)       clearTimeout(firstEventRef.current)
+      if (genTimeoutRef.current)       clearTimeout(genTimeoutRef.current)
+      if (agentStatusTimerRef.current) clearTimeout(agentStatusTimerRef.current)
     }
 
     es.onmessage = (event: MessageEvent) => {
@@ -112,6 +132,14 @@ export function useAgUiRun(
       }
 
       switch (parsed.type) {
+        case 'AGENT_STATUS': {
+          // Debounce rapid thinking-chunk arrivals to limit aria-live announcement rate
+          if (agentStatusTimerRef.current) clearTimeout(agentStatusTimerRef.current)
+          const msg = parsed.message
+          agentStatusTimerRef.current = setTimeout(() => { _setAgentStatus(msg) }, 500)
+          break
+        }
+
         case 'RUN_STARTED':
           // Cancel the first-event timeout — we have a response
           if (firstEventRef.current) clearTimeout(firstEventRef.current)

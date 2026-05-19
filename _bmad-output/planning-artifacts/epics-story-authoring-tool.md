@@ -203,15 +203,15 @@ FR2  → Epic 2 — Genki chapter selector (StoryInputPanel)
 FR3  → Epic 2 — Generate button trigger (GenerateButton / authoringStore)
 FR4  → Epic 2 — Clear button (ClearButton)
 FR5  → Epic 2 — Session restore on load (useSession)
-FR6  → Epic 4 — Topic input field (TopicTextarea, Path B)
+FR6  → Epic 3 — Topic input field (TopicTextarea, Path B)
 FR7  → Epic 1 (M0 proof) → Epic 2 (full UI pipeline)
-FR8  → Epic 4 — English proposal generation (Path B)
+FR8  → Epic 3 — English proposal generation (Path B)
 FR9  → Epic 2 — GenerationProgress component
 FR10 → Epic 2 — Error state + Retry (authoringStore + GenerationProgress)
 FR11 → Epic 2 — LLM-generated id field (agent.py)
 FR12 → Epic 1 (M0 proof) → Epic 2 (full: validator.py + backend integration)
-FR13 → Epic 3 — Grammar verification agent (agent.py M2, tools.py)
-FR14 → Epic 3 — Both validation checks pass before RUN_FINISHED emitted
+FR13 → Epic 4 — Grammar verification agent (agent.py M2, tools.py)
+FR14 → Epic 4 — Both validation checks pass before RUN_FINISHED emitted
 FR15 → Epic 1 (M0 proof) → Epic 2 (full: data_loader.py + system prompt)
 FR16 → Epic 1 (M0 proof) → Epic 2 (full: grammar CSV in system prompt)
 FR17 → Epic 1 (M0 proof) → Epic 2 (full: supplemental vocab key logic)
@@ -220,8 +220,8 @@ FR19 → Epic 2 — JsonOutput + OutputPanel
 FR20 → Epic 2 — OutputPanel editable + outputIsDirty latch
 FR21 → Epic 2 — Re-run from storedInputs (authoringStore.generate())
 FR22 → Epic 2 — RerunWarning component
-FR23 → Epic 4 — English proposal textarea review (ProposalPanel, Path B)
-FR24 → Epic 4 — "Convert to Japanese" button (Path B commitment gesture)
+FR23 → Epic 3 — English proposal textarea review (ProposalPanel, Path B)
+FR24 → Epic 3 — "Convert to Japanese" button (Path B commitment gesture)
 FR25 → Epic 2 — validateStoryJson: JSON.parse check
 FR26 → Epic 2 — validateStoryJson: parallel array parity
 FR27 → Epic 2 — validateStoryJson: grammar index bounds
@@ -242,11 +242,11 @@ FR48 → Epic 2 — BackendStatus + useAgUiRun health pre-flight
 FR49 → Epic 1 (M0 proof) → Epic 2 (full: sentence.id in Pydantic model)
 FR50 → Epic 2 — Pre-flight validation before generate() (authoringStore)
 FR51 → Epic 2 — Error state human-readable messages (useAgUiRun)
-FR52 → Epic 2 — ModeToggle (Path B inactive; activated in Epic 4)
+FR52 → Epic 2 — ModeToggle (Path B inactive; activated in Epic 3)
 FR53 → Epic 2 — Temperature slider in SettingsPanel
 FR54 → Epic 2 — Grammar distribution control in SettingsPanel
-FR55 → Epic 4 — Story length presets in SettingsPanel (Path B only)
-FR56 → Epic 4 — Suggest-topic button + POST /suggest-topic endpoint
+FR55 → Epic 3 — Story length presets in SettingsPanel (Path B only)
+FR56 → Epic 3 — Suggest-topic button + POST /suggest-topic endpoint
 
 NFR1  → Epic 2 — 60s timeout in useAgUiRun
 NFR2  → Epic 2 — 3s first-event window in useAgUiRun
@@ -261,7 +261,7 @@ NFR10 → Epic 2 — BackendStatus 60s re-check interval
 NFR11 → Epic 1 (test_contract.py) + Epic 2 (validateStoryJson calls loadStory)
 NFR12 → Epic 1 (test_contract.py) + Epic 2 (Pydantic model conformance)
 NFR13 → Epic 1 (backend) + Epic 2 (downloadStoryFile)
-NFR14 → Epic 4 — suggest-topic 10s timeout + debounce + cooldown
+NFR14 → Epic 3 — suggest-topic 10s timeout + debounce + cooldown
 ```
 
 ---
@@ -289,22 +289,22 @@ RT can open the tool in a browser, paste an English story, select a Genki chapte
 
 ---
 
-### Epic 3: M2 — Agentic Calibration Quality
+### Epic 3: M3 — Generate from Topic (Path B)
 
-RT gets higher-quality output — the ReAct agentic workflow verifies every sentence's vocabulary and grammar against the Genki curriculum before presenting results. The UI surfaces what the agents checked, building RT's trust in the output without requiring a separate audit interface.
-
-**FRs covered:** FR13, FR14
-**UX-DRs covered:** UX-DR3 (M2 status message addition)
-
----
-
-### Epic 4: M3 — Generate from Topic (Path B)
-
-RT can generate a story from a topic description alone — no English source material required. The tool generates an English proposal for review, then converts it to Japanese using the M2 pipeline. The mode selector (shipped in M1) activates fully.
+RT can generate a story from a topic description alone — no English source material required. The tool generates an English proposal for review, then converts it to Japanese using the M1 single-call pipeline. The mode selector (shipped in M1) activates fully.
 
 **FRs covered:** FR6, FR8, FR23, FR24, FR55, FR56
 **NFRs covered:** NFR14
 **UX-DRs covered:** UX-DR8, UX-DR9, UX-DR14 (story length activation)
+
+---
+
+### Epic 4: M2 — Agentic Calibration Quality
+
+RT gets higher-quality output — the ReAct agentic workflow verifies every sentence's vocabulary and grammar against the Genki curriculum before presenting results. The UI surfaces what the agents checked, building RT's trust in the output without requiring a separate audit interface. Undertaken after the full Path A + Path B pipeline has been validated in use.
+
+**FRs covered:** FR13, FR14
+**UX-DRs covered:** UX-DR3 (M2 status message addition)
 
 ---
 
@@ -482,7 +482,7 @@ So that I know whether the tool is ready before filling in inputs.
 
 **Given** `ModeToggle` is rendered
 **When** the user clicks "Convert a story" or "Generate from topic"
-**Then** the active option has `aria-selected="true"`; switching to "Generate from topic" is a no-op beyond updating the toggle (Path B UI activates in Epic 4); switching clears any `outputJson` in the store; `role="tablist"` / `role="tab"` present
+**Then** the active option has `aria-selected="true"`; switching to "Generate from topic" is a no-op beyond updating the toggle (Path B UI activates in Epic 3); switching clears any `outputJson` in the store; `role="tablist"` / `role="tab"` present
 
 **Given** Story 2.3 is the first story to render interactive components
 **When** components are implemented
@@ -716,11 +716,135 @@ So that I never lose work and can always reset to a clean state.
 
 ---
 
-## Epic 3: M2 — Agentic Calibration Quality
+## Epic 3: M3 — Generate from Topic (Path B)
 
-RT gets higher-quality output — the 4-agent ReAct workflow plans, generates, verifies grammar, and quality-reviews the story before presenting results. The UI surfaces live agent status with a single updating message line; output delivery and download are identical to M1.
+RT can generate a story from a topic description alone — no English source material required. The tool generates an English proposal for review, then converts it to Japanese using the M1 single-call pipeline. The mode selector shipped in M1 activates fully.
 
-### Story 3.1: M2 Multi-Agent Backend
+### Story 3.1: Path B Backend — English Generation & Suggest-Topic Endpoints
+
+As a developer,
+I want the backend extended with a Path B generation flow and a lightweight suggest-topic endpoint,
+So that the frontend can trigger English story generation and topic suggestions without changing the existing M1 pipeline contract.
+
+**Acceptance Criteria:**
+
+**Given** Path B uses two separate SSE lifecycle phases
+**When** the frontend is in "Generate from topic" mode
+**Then** Path B requires **two separate `GET /run_sse` requests** — each is a complete SSE lifecycle (RUN_STARTED → RUN_FINISHED | ERROR); the frontend opens a fresh SSE connection for each phase; the two requests are not multiplexed on a single stream
+
+**Given** the first `GET /run_sse` request with `pathMode=B`, `topic`, and `chapter` params
+**When** the backend processes it
+**Then** the agent generates an English story proposal using a single Gemini call; `RUN_FINISHED` is emitted with `resultType: 'proposal'` and `content` set to the English story text; the SSE stream closes after this `RUN_FINISHED`
+
+**Given** the second `GET /run_sse` request with `pathMode=B`, `englishDraft`, and `chapter` params
+**When** the backend processes it
+**Then** the M1 single-call pipeline converts the English draft to a Japanese story (identical to Path A but using `englishDraft` as the source text); `RUN_FINISHED` is emitted with `resultType: 'story'`; output passes all structural checks; schema contract identical to Path A
+
+**Given** `POST /suggest-topic` is called with `{ "chapter": "Genki I Ch.5" }`
+**When** the backend handles it
+**Then** it returns a single-sentence topic string calibrated to that chapter within 10 seconds (NFR14); a 2-second per-session cooldown is enforced server-side; the endpoint is separate from the generation pipeline and does not emit AG-UI events
+
+**Given** `test_agent.py` Path B tests
+**When** `make test` is run without `GEMINI_API_KEY`
+**Then** mock verifies: Path B emits `RUN_FINISHED` with `resultType: 'proposal'` on the first call and `resultType: 'story'` on the second; suggest-topic returns a plausible string; all tests pass
+
+---
+
+### Story 3.2: Topic Input, Suggest-Topic Button & Mode Activation
+
+As a content author,
+I want to switch to "Generate from topic" mode, type or generate a topic, and see the same chapter selector and settings I used in Convert mode,
+So that I can start Path B from a topic description without any additional setup.
+
+**Acceptance Criteria:**
+
+**Given** the user clicks "Generate from topic" in `ModeToggle`
+**When** Path B activates
+**Then** the story textarea is replaced by `TopicTextarea`; chapter selector and `ScopeChip` remain; story length controls in `SettingsPanel` become active; `steeringInstructions` collapsible remains; `pathMode` in store updates to `'B'`
+
+**Given** `TopicTextarea` is rendered with an empty topic field
+**When** the "✦ Suggest a topic" button is clicked
+**Then** the button transitions to a spinner (`aria-busy="true"`, `pointer-events: none`) without unmounting; `POST /suggest-topic` fires with the current chapter as payload; on response, the textarea is populated and the button resets; on error, a shadcn Toast "Could not fetch suggestion" appears and the button resets
+
+**Given** `TopicTextarea` already has content
+**When** "Replace topic" is clicked
+**Then** a `SuggestConfirm` strip appears inline below the textarea; Generate button is disabled while the strip is visible
+
+**Given** `SuggestConfirm` strip is visible
+**When** it renders
+**Then** `role="alert"` on the strip container; `accent-subtle` background + `accent` border; message: "Replace your current topic with a suggested one?"; [Yes, replace] fires the suggest-topic request and dismisses the strip; [Cancel] dismisses the strip without firing; focus moves to [Yes, replace] button on appearance; Escape key triggers [Cancel] from anywhere while the strip is visible
+
+**Given** the 300ms frontend debounce on the suggest button
+**When** the button is clicked rapidly
+**Then** only one request is sent per 300ms window; the button remains in spinner state until the request resolves
+
+**Given** `useSession` and `storedInputs`
+**When** the user switches from Convert to Generate mode
+**Then** `chapter`, `grammarDist`, and `temperature` migrate to the new mode's `storedInputs`; the previous Convert mode's `storyText` is preserved separately so switching back restores it; generated output is cleared on mode switch; if `outputIsDirty`, inline warning appears before switching
+
+---
+
+### Story 3.3: English Proposal Review & Convert to Japanese
+
+As a content author,
+I want to review and edit the generated English story proposal before converting it to Japanese,
+So that I can steer the content before committing to the full generation pipeline.
+
+**Acceptance Criteria:**
+
+**Given** the user clicks Generate in Path B mode with a topic and chapter set
+**When** the backend returns `RUN_FINISHED` with `resultType: 'proposal'`
+**Then** `phase → 'proposal'`; the English draft appears in an editable textarea with a "Convert to Japanese" primary button and a "Regenerate" secondary button; `InputSection` collapses (content preserved); `englishDraft` is saved to `storedInputs` and persisted to localStorage
+
+**Given** `phase === 'proposal'`
+**When** the user edits the English draft freely
+**Then** edits are captured in the store; there is no dirty-state warning for the proposal (editing is expected and encouraged); "Convert to Japanese" remains active as long as the textarea is non-empty
+
+**Given** the user clicks "Convert to Japanese"
+**When** the action fires
+**Then** the click is the commitment gesture (no separate confirmation); `phase → 'generating'`; a new `runId` is assigned; the English draft is sent as `englishDraft` param on the second `GET /run_sse` request; the M1 single-call pipeline runs; `englishDraft` is held in `authoringStore` throughout conversion and is not cleared on any error
+
+**Given** Japanese conversion fails (timeout or `ERROR` event)
+**When** `phase → 'error'`
+**Then** `englishDraft` is restored to the proposal textarea; `phase` transitions back to `'proposal'` (not `'idle'`); Retry button re-dispatches the second `GET /run_sse` request with the preserved `englishDraft` — it does not regenerate the English story; state transitions for this story: `proposal → generating` (Convert click); `generating → output-clean` (RUN_FINISHED story); `generating → proposal` (error/timeout — restores draft)
+
+**Given** the user clicks "Regenerate" from `proposal` state
+**When** the action fires
+**Then** Path B generation restarts from the topic + chapter inputs; the previous English draft is replaced on the new `RUN_FINISHED`
+
+---
+
+### Story 3.4: Story Length Settings & Path B Session Restore
+
+As a content author,
+I want to set a target story length when generating from a topic, and have my Path B session restore correctly when I reopen the tool,
+So that I can control the scope of generated stories and pick up where I left off.
+
+**Acceptance Criteria:**
+
+**Given** the user is in "Generate from topic" mode
+**When** `SettingsPanel` is open
+**Then** story length presets are active: Short (~100w) / Medium (~250w) / Long (~400w) / Custom; selecting a preset populates the numeric input; typing in the numeric input (max 1000) implicitly selects Custom; only `wordCount` (integer) is sent to the backend as `target_word_count`; preset selection is UI state only
+
+**Given** the user is in "Convert a story" mode
+**When** `SettingsPanel` is open
+**Then** story length controls are dimmed (38% opacity) with the hint "Available in Generate from topic mode"; they are not interactive; no `target_word_count` is sent to the backend
+
+**Given** a Path B session is in `proposal` state (English draft present) when the tab is closed
+**When** the user reopens the tool
+**Then** `useSession` restores to `proposal` state with the English draft in the textarea and "Convert to Japanese" available; the topic and chapter are also restored
+
+**Given** a Path B session is in a generating phase when the tab is closed
+**When** the user reopens the tool
+**Then** the stale generating phase is treated as crashed; the tool restores to `idle` with the topic and chapter pre-filled; no stuck spinner
+
+---
+
+## Epic 4: M2 — Agentic Calibration Quality
+
+RT gets higher-quality output — the 4-agent ReAct workflow plans, generates, verifies grammar, and quality-reviews the story before presenting results. The UI surfaces live agent status with a single updating message line; output delivery and download are identical to M1. Undertaken after the full Path A + Path B pipeline has been validated in use.
+
+### Story 4.1: M2 Multi-Agent Backend
 
 As a developer,
 I want the M1 backend upgraded to a 4-agent ReAct system that plans, generates, verifies grammar, and quality-reviews the story before returning output,
@@ -758,7 +882,7 @@ So that RT receives higher-quality, better-calibrated stories without any UI con
 
 ---
 
-### Story 3.2: M2 Progress UI — Agent Status Message Line
+### Story 4.2: M2 Progress UI — Agent Status Message Line
 
 As a content author,
 I want to see a live status message during M2 generation showing what the system is currently doing,
@@ -781,127 +905,3 @@ So that I know the tool is actively working and have a rough sense of where it i
 **Given** `useAgUiRun.test.ts`
 **When** a synthetic `AGENT_STATUS` event is emitted via `MockEventSource`
 **Then** the displayed status message updates to the new message; all existing store and hook tests continue to pass
-
----
-
-## Epic 4: M3 — Generate from Topic (Path B)
-
-RT can generate a story from a topic description alone — no English source material required. The tool generates an English proposal for review, then converts it to Japanese using the M2 pipeline. The mode selector shipped in M1 activates fully.
-
-### Story 4.1: Path B Backend — English Generation & Suggest-Topic Endpoints
-
-As a developer,
-I want the backend extended with a Path B generation flow and a lightweight suggest-topic endpoint,
-So that the frontend can trigger English story generation and topic suggestions without changing the existing M2 pipeline contract.
-
-**Acceptance Criteria:**
-
-**Given** Path B uses two separate SSE lifecycle phases
-**When** the frontend is in "Generate from topic" mode
-**Then** Path B requires **two separate `GET /run_sse` requests** — each is a complete SSE lifecycle (RUN_STARTED → [AGENT_STATUS*] → RUN_FINISHED | ERROR); the frontend opens a fresh SSE connection for each phase; the two requests are not multiplexed on a single stream
-
-**Given** the first `GET /run_sse` request with `pathMode=B`, `topic`, and `chapter` params
-**When** the backend processes it
-**Then** the agent generates an English story proposal; `RUN_FINISHED` is emitted with `resultType: 'proposal'` and `content` set to the English story text; the SSE stream closes after this `RUN_FINISHED`
-
-**Given** the second `GET /run_sse` request with `pathMode=B`, `englishDraft`, and `chapter` params
-**When** the backend processes it
-**Then** the M2 pipeline converts the English draft to a Japanese story; `RUN_FINISHED` is emitted with `resultType: 'story'`; output passes all structural and grammar checks; schema contract identical to Path A
-
-**Given** `POST /suggest-topic` is called with `{ "chapter": "Genki I Ch.5" }`
-**When** the backend handles it
-**Then** it returns a single-sentence topic string calibrated to that chapter within 10 seconds (NFR14); a 2-second per-session cooldown is enforced server-side; the endpoint is separate from the generation pipeline and does not emit AG-UI events
-
-**Given** `test_agent.py` Path B tests
-**When** `make test` is run without `GEMINI_API_KEY`
-**Then** mock verifies: Path B emits `RUN_FINISHED` with `resultType: 'proposal'` on the first call and `resultType: 'story'` on the second; suggest-topic returns a plausible string; all tests pass
-
----
-
-### Story 4.2: Topic Input, Suggest-Topic Button & Mode Activation
-
-As a content author,
-I want to switch to "Generate from topic" mode, type or generate a topic, and see the same chapter selector and settings I used in Convert mode,
-So that I can start Path B from a topic description without any additional setup.
-
-**Acceptance Criteria:**
-
-**Given** the user clicks "Generate from topic" in `ModeToggle`
-**When** Path B activates
-**Then** the story textarea is replaced by `TopicTextarea`; chapter selector and `ScopeChip` remain; story length controls in `SettingsPanel` become active; `steeringInstructions` collapsible remains; `pathMode` in store updates to `'B'`
-
-**Given** `TopicTextarea` is rendered with an empty topic field
-**When** the "✦ Suggest a topic" button is clicked
-**Then** the button transitions to a spinner (`aria-busy="true"`, `pointer-events: none`) without unmounting; `POST /suggest-topic` fires with the current chapter as payload; on response, the textarea is populated and the button resets; on error, a shadcn Toast "Could not fetch suggestion" appears and the button resets
-
-**Given** `TopicTextarea` already has content
-**When** "Replace topic" is clicked
-**Then** a `SuggestConfirm` strip appears inline below the textarea; Generate button is disabled while the strip is visible
-
-**Given** `SuggestConfirm` strip is visible
-**When** it renders
-**Then** `role="alert"` on the strip container; `accent-subtle` background + `accent` border; message: "Replace your current topic with a suggested one?"; [Yes, replace] fires the suggest-topic request and dismisses the strip; [Cancel] dismisses the strip without firing; focus moves to [Yes, replace] button on appearance; Escape key triggers [Cancel] from anywhere while the strip is visible
-
-**Given** the 300ms frontend debounce on the suggest button
-**When** the button is clicked rapidly
-**Then** only one request is sent per 300ms window; the button remains in spinner state until the request resolves
-
-**Given** `useSession` and `storedInputs`
-**When** the user switches from Convert to Generate mode
-**Then** `chapter`, `grammarDist`, and `temperature` migrate to the new mode's `storedInputs`; the previous Convert mode's `storyText` is preserved separately so switching back restores it; generated output is cleared on mode switch; if `outputIsDirty`, inline warning appears before switching
-
----
-
-### Story 4.3: English Proposal Review & Convert to Japanese
-
-As a content author,
-I want to review and edit the generated English story proposal before converting it to Japanese,
-So that I can steer the content before committing to the full generation pipeline.
-
-**Acceptance Criteria:**
-
-**Given** the user clicks Generate in Path B mode with a topic and chapter set
-**When** the backend returns `RUN_FINISHED` with `resultType: 'proposal'`
-**Then** `phase → 'proposal'`; the English draft appears in an editable textarea with a "Convert to Japanese" primary button and a "Regenerate" secondary button; `InputSection` collapses (content preserved); `englishDraft` is saved to `storedInputs` and persisted to localStorage
-
-**Given** `phase === 'proposal'`
-**When** the user edits the English draft freely
-**Then** edits are captured in the store; there is no dirty-state warning for the proposal (editing is expected and encouraged); "Convert to Japanese" remains active as long as the textarea is non-empty
-
-**Given** the user clicks "Convert to Japanese"
-**When** the action fires
-**Then** the click is the commitment gesture (no separate confirmation); `phase → 'generating'`; a new `runId` is assigned; the English draft is sent as `englishDraft` param on the second `GET /run_sse` request; `AGENT_STATUS` events and the M2 pipeline run; `englishDraft` is held in `authoringStore` throughout conversion and is not cleared on any error
-
-**Given** Japanese conversion fails (timeout or `ERROR` event)
-**When** `phase → 'error'`
-**Then** `englishDraft` is restored to the proposal textarea; `phase` transitions back to `'proposal'` (not `'idle'`); Retry button re-dispatches the second `GET /run_sse` request with the preserved `englishDraft` — it does not regenerate the English story; state transitions for this story: `proposal → generating` (Convert click); `generating → output-clean` (RUN_FINISHED story); `generating → proposal` (error/timeout — restores draft)
-
-**Given** the user clicks "Regenerate" from `proposal` state
-**When** the action fires
-**Then** Path B generation restarts from the topic + chapter inputs; the previous English draft is replaced on the new `RUN_FINISHED`
-
----
-
-### Story 4.4: Story Length Settings & Path B Session Restore
-
-As a content author,
-I want to set a target story length when generating from a topic, and have my Path B session restore correctly when I reopen the tool,
-So that I can control the scope of generated stories and pick up where I left off.
-
-**Acceptance Criteria:**
-
-**Given** the user is in "Generate from topic" mode
-**When** `SettingsPanel` is open
-**Then** story length presets are active: Short (~100w) / Medium (~250w) / Long (~400w) / Custom; selecting a preset populates the numeric input; typing in the numeric input (max 1000) implicitly selects Custom; only `wordCount` (integer) is sent to the backend as `target_word_count`; preset selection is UI state only
-
-**Given** the user is in "Convert a story" mode
-**When** `SettingsPanel` is open
-**Then** story length controls are dimmed (38% opacity) with the hint "Available in Generate from topic mode"; they are not interactive; no `target_word_count` is sent to the backend
-
-**Given** a Path B session is in `proposal` state (English draft present) when the tab is closed
-**When** the user reopens the tool
-**Then** `useSession` restores to `proposal` state with the English draft in the textarea and "Convert to Japanese" available; the topic and chapter are also restored
-
-**Given** a Path B session is in a generating phase when the tab is closed
-**When** the user reopens the tool
-**Then** the stale generating phase is treated as crashed; the tool restores to `idle` with the topic and chapter pre-filled; no stuck spinner

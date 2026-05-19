@@ -92,11 +92,12 @@ Emitted after the backend has successfully terminated a generation in response t
 }
 ```
 
-#### `AGENT_STATUS` *(M2 only)*
-Emitted zero or more times during the M2 ReAct agentic loop to surface a live status
-message to the author. Each event replaces the previous status message — the frontend
-displays only the most recent value. Absent in M1 mode (no events emitted). Added to this
-ADR before any M2 implementation begins, per the contract-first rule above.
+#### `AGENT_STATUS`
+Emitted zero or more times during generation to surface a live status hint to the author.
+Each event replaces the previous status message — the frontend displays only the most recent
+value. In M1, these events carry Gemini thinking-token text emitted during the pre-output
+reasoning phase (all generation paths). In M2, they will additionally carry ReAct agent
+step messages.
 
 ```json
 {
@@ -130,7 +131,7 @@ Content-Type: application/json
 | `RUN_FINISHED` (`resultType: 'proposal'`) | `_setProposalText(content)`; `phase → 'proposal'` |
 | `ERROR` | `_setError(code, message)`; `phase → 'error'` |
 | `RUN_CANCELLED` | `phase → 'idle'`; `runId → null`; inputs preserved |
-| `AGENT_STATUS` *(M2)* | update `agentStatusMessage`; `GenerationProgress` displays below shimmer |
+| `AGENT_STATUS` | update `agentStatus` in store; `GenerationProgress` renders "Thinking: " hint below status label |
 | unexpected stream close (no `RUN_FINISHED`) | `_setError('BACKEND_UNAVAILABLE', '...')`; `phase → 'error'` |
 
 ## Consequences

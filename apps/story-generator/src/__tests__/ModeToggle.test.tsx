@@ -51,3 +51,63 @@ describe('ModeToggle', () => {
     expect(useAuthoringStore.getState().phase).toBe('idle')
   })
 })
+
+describe('ModeToggle — dirty output warning', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('switches immediately when outputIsDirty is false', () => {
+    render(<ModeToggle />)
+    const tabs = screen.getAllByRole('tab')
+    fireEvent.click(tabs[1])
+    expect(useAuthoringStore.getState().pathMode).toBe('B')
+    expect(screen.queryByRole('alert')).toBeNull()
+  })
+
+  it('shows dirty warning strip instead of switching when outputIsDirty is true', () => {
+    useAuthoringStore.getState()._setOutputJson('{"id":"test"}')
+    useAuthoringStore.getState()._markDirty()
+    expect(useAuthoringStore.getState().outputIsDirty).toBe(true)
+
+    render(<ModeToggle />)
+    const tabs = screen.getAllByRole('tab')
+    fireEvent.click(tabs[1])  // try to switch to B
+
+    // Mode should NOT have changed yet
+    expect(useAuthoringStore.getState().pathMode).toBe('A')
+    // Warning strip should appear
+    expect(screen.getByRole('alert')).toBeInTheDocument()
+    expect(screen.getByText(/discard your edited output/i)).toBeInTheDocument()
+  })
+
+  it('[Switch anyway] confirms the switch and dismisses the strip', () => {
+    useAuthoringStore.getState()._setOutputJson('{"id":"test"}')
+    useAuthoringStore.getState()._markDirty()
+
+    render(<ModeToggle />)
+    const tabs = screen.getAllByRole('tab')
+    fireEvent.click(tabs[1])
+
+    fireEvent.click(screen.getByText('Switch anyway'))
+    expect(useAuthoringStore.getState().pathMode).toBe('B')
+    expect(screen.queryByRole('alert')).toBeNull()
+  })
+
+  it('[Cancel] dismisses the strip without switching', () => {
+    useAuthoringStore.getState()._setOutputJson('{"id":"test"}')
+    useAuthoringStore.getState()._markDirty()
+
+    render(<ModeToggle />)
+    const tabs = screen.getAllByRole('tab')
+    fireEvent.click(tabs[1])
+
+    fireEvent.click(screen.getByText('Cancel'))
+    expect(useAuthoringStore.getState().pathMode).toBe('A')
+    expect(screen.queryByRole('alert')).toBeNull()
+  })
+})

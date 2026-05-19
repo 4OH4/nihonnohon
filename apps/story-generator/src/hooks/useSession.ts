@@ -13,6 +13,7 @@ interface SessionState {
   version: 1
   phase: Phase
   inputText: string
+  topicText: string
   chapterTarget: string
   steeringInstructions: string
   pathMode: 'A' | 'B'
@@ -22,6 +23,8 @@ interface SessionState {
   targetWordCount: number
   outputJson: string | null
   outputIsDirty: boolean
+  /** Path B English draft; present when phase was 'proposal'. */
+  proposalText: string | null
 }
 
 /** Map a restored phase: stale generation/cancel phases are treated as crashed. */
@@ -62,6 +65,13 @@ export function useSession(): void {
 
     const restoredPhase = mapRestoredPhase(session)
 
+    // Guard: proposal phase requires proposalText — without it, degrade gracefully
+    const proposalText: string | null = session.proposalText ?? null
+    const safePhase: Phase =
+      restoredPhase === 'proposal' && !proposalText
+        ? session.outputJson !== null ? 'output-clean' : 'idle'
+        : restoredPhase
+
     // Sanitize: outputIsDirty is meaningless without outputJson (one-way latch requires content)
     const restoredOutputIsDirty = session.outputJson !== null ? session.outputIsDirty : false
 
@@ -72,10 +82,14 @@ export function useSession(): void {
       session.targetWordCount ??
       (storyLengthPreset !== 'custom' ? STORY_LENGTH_WORD_COUNTS[storyLengthPreset] : STORY_LENGTH_WORD_COUNTS.medium)
 
+    // Guard against stale sessions missing topicText (added in Story 3.2)
+    const topicText: string = session.topicText ?? ''
+
     // Batch-set the store in one atomic write
     useAuthoringStore.setState({
-      phase: restoredPhase,
+      phase: safePhase,
       inputText: session.inputText,
+      topicText,
       chapterTarget: session.chapterTarget,
       steeringInstructions: session.steeringInstructions,
       pathMode: session.pathMode,
@@ -85,14 +99,17 @@ export function useSession(): void {
       targetWordCount,
       outputJson: session.outputJson,
       outputIsDirty: restoredOutputIsDirty,
+      proposalText,
     })
 
     // Show the restore banner when meaningful content was recovered
     const hasContent =
       session.outputJson !== null ||
       session.inputText !== '' ||
+      topicText !== '' ||
       session.chapterTarget !== '' ||
-      session.steeringInstructions !== ''
+      session.steeringInstructions !== '' ||
+      proposalText !== null
     if (hasContent) {
       useAuthoringStore.getState()._setSessionRestored(true)
     }
@@ -118,6 +135,7 @@ export function useSession(): void {
         version: 1,
         phase: state.phase,
         inputText: state.inputText,
+        topicText: state.topicText,
         chapterTarget: state.chapterTarget,
         steeringInstructions: state.steeringInstructions,
         pathMode: state.pathMode,
@@ -127,6 +145,7 @@ export function useSession(): void {
         targetWordCount: state.targetWordCount,
         outputJson: state.outputJson,
         outputIsDirty: state.outputIsDirty,
+        proposalText: state.proposalText,
       }
       try { localStorage.setItem(SESSION_KEY, JSON.stringify(sessionState)) } catch { /* quota or storage unavailable */ }
     }

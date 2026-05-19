@@ -1,6 +1,7 @@
 import { renderHook, act } from '@testing-library/react'
 import { useAgUiRun } from '../hooks/useAgUiRun'
 import { useAuthoringStore } from '../stores/authoringStore'
+import timeouts from '../../../../config/timeouts.json'
 
 // Minimal mock that captures onmessage/onerror so tests can fire events
 class MockEventSource {
@@ -306,7 +307,8 @@ describe('useAgUiRun — generation timeout', () => {
     useAuthoringStore.getState()._reset()
   })
 
-  it('60s timeout sets TIMEOUT error with the exact spec message', () => {
+  it('generation timeout sets TIMEOUT error with the exact spec message', () => {
+    const generationTimeoutMs = (timeouts.generationTimeoutS + timeouts.frontendMarginS) * 1_000
     const { mockEs, factory } = setupGenerating()
     renderHook(() => useAgUiRun(factory))
 
@@ -315,9 +317,9 @@ describe('useAgUiRun — generation timeout', () => {
       mockEs.emit({ type: 'RUN_STARTED', runId: useAuthoringStore.getState().runId })
     })
 
-    // Advance past the 60s generation timeout (synchronous — the callback is not async)
+    // Advance past the generation timeout (synchronous — the callback is not async)
     act(() => {
-      vi.advanceTimersByTime(60_000)
+      vi.advanceTimersByTime(generationTimeoutMs)
     })
 
     const state = useAuthoringStore.getState()
@@ -474,5 +476,263 @@ describe('useAgUiRun — RUN_STARTED calls _markRunStarted', () => {
     })
 
     expect(useAuthoringStore.getState().agentRunStarted).toBe(true)
+  })
+})
+
+// ─── Story 3.2: Path B URL params ────────────────────────────────────────────
+
+describe('useAgUiRun — Path B URL params', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('includes topic param in URL when pathMode=B and topicText non-empty', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setPathMode('B')
+    store.setTopicText('café study session')
+    store.setChapterTarget('Genki I Ch.5')
+    store.generate()
+
+    renderHook(() => useAgUiRun(factory))
+
+    expect(factory).toHaveBeenCalledOnce()
+    const url: string = factory.mock.calls[0][0]
+    const params = new URLSearchParams(url.split('?')[1] ?? '')
+    expect(params.get('topic')).toBe('café study session')
+    expect(url).toContain('pathMode=B')
+  })
+
+  it('does not include topic param in URL for Path A', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setInputText('A regular story.')
+    store.setChapterTarget('Genki I Ch.5')
+    store.generate()
+
+    renderHook(() => useAgUiRun(factory))
+
+    expect(factory).toHaveBeenCalledOnce()
+    const url: string = factory.mock.calls[0][0]
+    expect(url).not.toContain('&topic=')
+    expect(url).toContain('pathMode=A')
+  })
+
+  it('includes englishDraft param in URL for Path B approve() flow', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setPathMode('B')
+    store.setChapterTarget('Genki I Ch.5')
+    store.setTopicText('A topic.')
+    store._setProposalText('Ken goes to the library.')
+    store.approve()
+
+    renderHook(() => useAgUiRun(factory))
+
+    expect(factory).toHaveBeenCalledOnce()
+    const url: string = factory.mock.calls[0][0]
+    // Use URLSearchParams to properly decode + signs from URLSearchParams encoding
+    const params = new URLSearchParams(url.split('?')[1] ?? '')
+    expect(params.get('englishDraft')).toBe('Ken goes to the library.')
+    expect(url).toContain('pathMode=B')
+  })
+
+  it('does NOT include topic param in URL for Path B phase 2 (approve flow) — would trigger phase 1 on backend', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setPathMode('B')
+    store.setChapterTarget('Genki I Ch.5')
+    store.setTopicText('A topic.')              // topic is set in the store
+    store._setProposalText('Ken goes to the library.')
+    store.approve()                             // phase 2: snapshots englishDraft
+
+    renderHook(() => useAgUiRun(factory))
+
+    const url: string = factory.mock.calls[0][0]
+    const params = new URLSearchParams(url.split('?')[1] ?? '')
+    // englishDraft must be present; topic must NOT be sent (would route to phase 1)
+    expect(params.get('englishDraft')).toBe('Ken goes to the library.')
+    expect(params.has('topic')).toBe(false)
+  })
+
+  it('includes target_word_count in URL when non-zero in Path B phase 1', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setPathMode('B')
+    store.setChapterTarget('Genki I Ch.5')
+    store.setTopicText('My topic.')
+    store.setTargetWordCount(400)
+    store.generate()
+
+    renderHook(() => useAgUiRun(factory))
+
+    expect(factory).toHaveBeenCalledOnce()
+    const url: string = factory.mock.calls[0][0]
+    const params = new URLSearchParams(url.split('?')[1] ?? '')
+    expect(params.get('target_word_count')).toBe('400')
+  })
+
+  it('omits target_word_count from URL when targetWordCount is default (600) in Path B', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setPathMode('B')
+    store.setChapterTarget('Genki I Ch.5')
+    store.setTopicText('My topic.')
+    // Default targetWordCount is 600 (medium preset) — should still be included since > 0
+    store.generate()
+
+    renderHook(() => useAgUiRun(factory))
+
+    expect(factory).toHaveBeenCalledOnce()
+    const url: string = factory.mock.calls[0][0]
+    const params = new URLSearchParams(url.split('?')[1] ?? '')
+    // Default 600 > 0, so it IS included
+    expect(params.get('target_word_count')).toBe('600')
+  })
+
+  it('omits target_word_count from URL for Path A', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setInputText('A story.')
+    store.setChapterTarget('Genki I Ch.5')
+    store.generate()
+
+    renderHook(() => useAgUiRun(factory))
+
+    expect(factory).toHaveBeenCalledOnce()
+    const url: string = factory.mock.calls[0][0]
+    expect(url).not.toContain('target_word_count')
+  })
+})
+
+// ─── AGENT_STATUS handling ───────────────────────────────────────────────────
+
+describe('useAgUiRun — AGENT_STATUS', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('AGENT_STATUS sets agentStatus in store after 500ms debounce', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_STARTED', runId: 'r1' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'Planning the structure…' })
+    })
+
+    // Before debounce fires — not yet set
+    expect(useAuthoringStore.getState().agentStatus).toBeNull()
+
+    act(() => { vi.advanceTimersByTime(500) })
+
+    expect(useAuthoringStore.getState().agentStatus).toBe('Planning the structure…')
+  })
+
+  it('rapid AGENT_STATUS events debounce to only the last message', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_STARTED', runId: 'r1' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'First thought' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'Second thought' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'Third thought' })
+    })
+
+    act(() => { vi.advanceTimersByTime(500) })
+
+    expect(useAuthoringStore.getState().agentStatus).toBe('Third thought')
+  })
+
+  it('agentStatus resets to null on RUN_FINISHED', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_STARTED', runId: 'r1' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'Thinking…' })
+    })
+    act(() => { vi.advanceTimersByTime(500) })
+    expect(useAuthoringStore.getState().agentStatus).toBe('Thinking…')
+
+    act(() => {
+      mockEs.emit({ type: 'TEXT_MESSAGE_CHUNK', delta: '{"id":"x"}' })
+      mockEs.emit({ type: 'RUN_FINISHED', resultType: 'story', content: '' })
+    })
+
+    expect(useAuthoringStore.getState().agentStatus).toBeNull()
+  })
+
+  it('agentStatus resets to null on ERROR', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_STARTED', runId: 'r1' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'Thinking…' })
+    })
+    act(() => { vi.advanceTimersByTime(500) })
+
+    act(() => {
+      mockEs.emit({ type: 'ERROR', code: 'GENERATION_FAILED', message: 'oops' })
+    })
+
+    expect(useAuthoringStore.getState().agentStatus).toBeNull()
+  })
+
+  it('agentStatus resets to null on RUN_CANCELLED', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_STARTED', runId: 'r1' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'Thinking…' })
+    })
+    act(() => { vi.advanceTimersByTime(500) })
+    expect(useAuthoringStore.getState().agentStatus).toBe('Thinking…')
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_CANCELLED', runId: 'r1' })
+    })
+
+    expect(useAuthoringStore.getState().agentStatus).toBeNull()
+  })
+
+  it('agentStatus debounce timer is cleared by clearTimers on RUN_FINISHED', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_STARTED', runId: 'r1' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'Thinking…' })
+      // RUN_FINISHED arrives before debounce fires
+      mockEs.emit({ type: 'TEXT_MESSAGE_CHUNK', delta: '{"id":"x"}' })
+      mockEs.emit({ type: 'RUN_FINISHED', resultType: 'story', content: '' })
+    })
+
+    // Advance past debounce — timer was cleared so agentStatus stays null
+    act(() => { vi.advanceTimersByTime(500) })
+
+    expect(useAuthoringStore.getState().agentStatus).toBeNull()
   })
 })

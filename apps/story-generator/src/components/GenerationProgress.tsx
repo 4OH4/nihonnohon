@@ -1,9 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { useAuthoringStore } from '@/stores/authoringStore'
 
 /** Phases where GenerationProgress is visible. */
 const ACTIVE_PHASES = new Set(['generating', 'cancelling', 'error'])
+
+/** Word-boundary truncation — cuts at the last space before `max` chars. */
+function truncateHint(msg: string, max = 80): string {
+  if (msg.length <= max) return msg
+  const cut = msg.slice(0, max)
+  const lastSpace = cut.lastIndexOf(' ')
+  return (lastSpace > 0 ? cut.slice(0, lastSpace) : cut) + '…'
+}
 
 /** Returns the human-readable error message for a given error code. */
 function getErrorMessage(code: string | null): string {
@@ -30,14 +38,19 @@ function getErrorMessage(code: string | null): string {
 export function GenerationProgress() {
   const phase           = useAuthoringStore(s => s.phase)
   const agentRunStarted = useAuthoringStore(s => s.agentRunStarted)
+  const agentStatus     = useAuthoringStore(s => s.agentStatus)
   const errorCode       = useAuthoringStore(s => s.errorCode)
   const runId           = useAuthoringStore(s => s.runId)
-  const generate        = useAuthoringStore(s => s.generate)
-  const inputText       = useAuthoringStore(s => s.inputText)
-  const chapterTarget   = useAuthoringStore(s => s.chapterTarget)
+  const generate                   = useAuthoringStore(s => s.generate)
+  const inputText                  = useAuthoringStore(s => s.inputText)
+  const chapterTarget              = useAuthoringStore(s => s.chapterTarget)
+  const _setLastGenerationElapsed  = useAuthoringStore(s => s._setLastGenerationElapsed)
 
   // Elapsed time counter — increments each second once RUN_STARTED is received; freezes on cancelling
   const [elapsed, setElapsed] = useState(0)
+  // Ref keeps elapsed current for the phase-transition effect without making it a dependency
+  const elapsedRef = useRef(elapsed)
+  elapsedRef.current = elapsed
 
   // Reset elapsed when a new run starts (new runId)
   useEffect(() => {
@@ -50,6 +63,13 @@ export function GenerationProgress() {
     const id = setInterval(() => setElapsed(e => e + 1), 1_000)
     return () => clearInterval(id)
   }, [phase, agentRunStarted])
+
+  // Persist elapsed to store when a successful phase completes (not on cancel or error)
+  useEffect(() => {
+    if ((phase === 'output-clean' || phase === 'proposal') && elapsedRef.current > 0) {
+      _setLastGenerationElapsed(elapsedRef.current)
+    }
+  }, [phase, _setLastGenerationElapsed])
 
   const isActive = ACTIVE_PHASES.has(phase)
   const showShimmer = (phase === 'generating' && agentRunStarted) || phase === 'cancelling'
@@ -97,6 +117,13 @@ export function GenerationProgress() {
               <span className="text-xs text-muted tabular-nums">{elapsed}s</span>
             )}
           </div>
+
+          {/* Thinking hint — separate subordinate line; outside aria-live to avoid noisy announcements */}
+          {agentRunStarted && agentStatus && phase === 'generating' && (
+            <p className="text-xs text-muted truncate">
+              Thinking: {truncateHint(agentStatus)}
+            </p>
+          )}
 
           {/* Retry button — only in error phase */}
           {phase === 'error' && (
