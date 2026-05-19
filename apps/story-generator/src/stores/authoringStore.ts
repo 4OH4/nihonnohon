@@ -101,12 +101,15 @@ interface AuthoringStore {
   validationErrors: ValidationError[]
   /** Set to the story id on a successful download; triggers toast display. */
   downloadToastId: string | null
+  /** Elapsed seconds for the most recently completed generation phase; null until first completion. */
+  lastGenerationElapsedS: number | null
   /** True after useSession restores a non-empty session; cleared on first input edit or clear(). */
   sessionRestored: boolean
 
   // Internal actions — called by useAgUiRun or OutputPanel, not part of the public API
   _clearDownloadToast: () => void
   _setSessionRestored: (v: boolean) => void
+  _setLastGenerationElapsed: (s: number) => void
 
   // Test teardown helper
   _reset: () => void
@@ -135,6 +138,7 @@ const defaultState = {
   validationErrors: [],
   downloadToastId: null,
   sessionRestored: false,
+  lastGenerationElapsedS: null,
 }
 
 export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
@@ -153,8 +157,9 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
       errorCode: null,
       errorMessage: null,
       agentRunStarted: false,
-      proposalApproved: false,   // reset so _setError won't restore to proposal on a new flow
-      proposalText: null,        // clear stale draft; new proposal set by _setProposalText
+      proposalApproved: false,    // reset so _setError won't restore to proposal on a new flow
+      proposalText: null,         // clear stale draft; new proposal set by _setProposalText
+      lastGenerationElapsedS: null, // clear stale elapsed; new time set on RUN_FINISHED
       storedInputs: {
         inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist,
         topicText,       // Path B phase 1 SSE param
@@ -315,6 +320,10 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
 
   _clearDownloadToast() {
     set({ downloadToastId: null })
+  },
+
+  _setLastGenerationElapsed(s) {
+    set({ lastGenerationElapsedS: s })
   },
 
   _setSessionRestored(v) {

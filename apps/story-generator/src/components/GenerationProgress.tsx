@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { useAuthoringStore } from '@/stores/authoringStore'
 
@@ -32,12 +32,16 @@ export function GenerationProgress() {
   const agentRunStarted = useAuthoringStore(s => s.agentRunStarted)
   const errorCode       = useAuthoringStore(s => s.errorCode)
   const runId           = useAuthoringStore(s => s.runId)
-  const generate        = useAuthoringStore(s => s.generate)
-  const inputText       = useAuthoringStore(s => s.inputText)
-  const chapterTarget   = useAuthoringStore(s => s.chapterTarget)
+  const generate                   = useAuthoringStore(s => s.generate)
+  const inputText                  = useAuthoringStore(s => s.inputText)
+  const chapterTarget              = useAuthoringStore(s => s.chapterTarget)
+  const _setLastGenerationElapsed  = useAuthoringStore(s => s._setLastGenerationElapsed)
 
   // Elapsed time counter — increments each second once RUN_STARTED is received; freezes on cancelling
   const [elapsed, setElapsed] = useState(0)
+  // Ref keeps elapsed current for the phase-transition effect without making it a dependency
+  const elapsedRef = useRef(elapsed)
+  elapsedRef.current = elapsed
 
   // Reset elapsed when a new run starts (new runId)
   useEffect(() => {
@@ -50,6 +54,13 @@ export function GenerationProgress() {
     const id = setInterval(() => setElapsed(e => e + 1), 1_000)
     return () => clearInterval(id)
   }, [phase, agentRunStarted])
+
+  // Persist elapsed to store when a successful phase completes (not on cancel or error)
+  useEffect(() => {
+    if ((phase === 'output-clean' || phase === 'proposal') && elapsedRef.current > 0) {
+      _setLastGenerationElapsed(elapsedRef.current)
+    }
+  }, [phase, _setLastGenerationElapsed])
 
   const isActive = ACTIVE_PHASES.has(phase)
   const showShimmer = (phase === 'generating' && agentRunStarted) || phase === 'cancelling'

@@ -1,3 +1,5 @@
+import { useAuthoringStore } from '@/stores/authoringStore'
+
 interface StatsBarProps {
   outputJson: string | null
 }
@@ -5,10 +7,12 @@ interface StatsBarProps {
 /**
  * Displays a summary of story structure counts above the output textarea.
  *
- * Shows: sentence count · unique non-null vocab items · grammar patterns.
+ * Shows: sentence count · unique non-null vocab items · grammar patterns · generation time.
  * Hidden when no output has been generated yet.
  */
 export function StatsBar({ outputJson }: StatsBarProps) {
+  const lastGenerationElapsedS = useAuthoringStore(s => s.lastGenerationElapsedS)
+
   if (!outputJson) return null
 
   let sentenceCount = 0
@@ -44,6 +48,7 @@ export function StatsBar({ outputJson }: StatsBarProps) {
   return (
     <p className="text-xs text-muted mb-2">
       {sentenceCount} sentences · {vocabItems} vocab items · {grammarPatterns} grammar patterns
+      {lastGenerationElapsedS !== null && ` · ${lastGenerationElapsedS}s`}
     </p>
   )
 }
