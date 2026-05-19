@@ -2,8 +2,10 @@
 from __future__ import annotations
 
 import asyncio
+import datetime
 import json
 import logging
+import logging.handlers
 import os
 import time
 from contextlib import asynccontextmanager
@@ -20,6 +22,21 @@ load_dotenv()
 # ---------------------------------------------------------------------------
 # Logging — configured before anything else so library loggers are captured
 # ---------------------------------------------------------------------------
+
+
+class _JsonLLMPerfFormatter(logging.Formatter):
+    """Formats llm_perf log records as a single JSON line per Gemini call."""
+
+    def format(self, record: logging.LogRecord) -> str:
+        doc = {
+            "ts": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="milliseconds"),
+            "activity": getattr(record, "activity", ""),
+            "run_id": getattr(record, "run_id", ""),
+            "elapsed_ms": getattr(record, "elapsed_ms", 0),
+            "response_chars": getattr(record, "response_chars", 0),
+        }
+        return json.dumps(doc, ensure_ascii=False)
+
 
 def _configure_logging() -> None:
     """Set up logging from LOG_LEVEL env var (default INFO).
@@ -43,10 +60,25 @@ def _configure_logging() -> None:
     # Keep uvicorn/fastapi access logs at their default level
     logging.getLogger("uvicorn.access").setLevel(logging.INFO)
 
+    # ---------------------------------------------------------------------------
+    # LLM performance log — one JSON line per Gemini call, cloud-ingest ready
+    # ---------------------------------------------------------------------------
+    perf_log_path = Path(os.environ.get("LLM_PERF_LOG", "logs/llm_perf.jsonl"))
+    perf_log_path.parent.mkdir(parents=True, exist_ok=True)
+    _perf_handler = logging.handlers.TimedRotatingFileHandler(
+        perf_log_path, when="W0", backupCount=4, encoding="utf-8"
+    )
+    _perf_handler.setFormatter(_JsonLLMPerfFormatter())
+    _perf_logger = logging.getLogger("llm_perf")
+    _perf_logger.setLevel(logging.INFO)
+    _perf_logger.addHandler(_perf_handler)
+    _perf_logger.propagate = False
+
 
 _configure_logging()
 
 logger = logging.getLogger(__name__)
+_perf_logger = logging.getLogger("llm_perf")
 
 # ---------------------------------------------------------------------------
 # Module-level state — loaded once at startup
@@ -210,9 +242,20 @@ def _generate_topic_suggestion(chapter: str, gemini_client=None) -> str:
         max_output_tokens=64,
         thinking_config=genai_types.ThinkingConfig(thinking_budget=0),
     )
+    t0 = time.perf_counter()
     response = gemini_client("gemini-2.5-flash", prompt, config)
-    text = getattr(response, "text", "") or ""
-    return text.strip()
+    elapsed_ms = (time.perf_counter() - t0) * 1000
+    text = (getattr(response, "text", "") or "").strip()
+    _perf_logger.info(
+        "",
+        extra={
+            "activity": "Suggest a topic",
+            "run_id": "",
+            "elapsed_ms": round(elapsed_ms),
+            "response_chars": len(text),
+        },
+    )
+    return text
 
 
 @app.post("/suggest-topic")

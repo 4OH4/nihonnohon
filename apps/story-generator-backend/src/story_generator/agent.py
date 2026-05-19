@@ -5,12 +5,14 @@ import asyncio
 import json
 import logging
 import os
+import time
 from typing import AsyncGenerator
 
 from story_generator.data_loader import GrammarData, VocabData
 from story_generator.validator import validate
 
 logger = logging.getLogger(__name__)
+_perf_logger = logging.getLogger("llm_perf")
 
 GEMINI_MODEL = "gemini-2.5-flash"
 
@@ -327,10 +329,12 @@ class StoryGeneratorAgent:
             )
             call = self._get_caller()
             logger.debug("Calling %s (timeout=%ss)", GEMINI_MODEL, _GENERATION_TIMEOUT_S)
+            t0 = time.perf_counter()
             response = await asyncio.wait_for(
                 asyncio.to_thread(call, GEMINI_MODEL, prompt, config),
                 timeout=_GENERATION_TIMEOUT_S,
             )
+            elapsed_ms = (time.perf_counter() - t0) * 1000
         except asyncio.TimeoutError:
             logger.warning("run_id=%s timed out after %ss", run_id, _GENERATION_TIMEOUT_S)
             yield {
@@ -364,6 +368,15 @@ class StoryGeneratorAgent:
             }
             return
 
+        _perf_logger.info(
+            "",
+            extra={
+                "activity": "Convert to Japanese",
+                "run_id": run_id,
+                "elapsed_ms": round(elapsed_ms),
+                "response_chars": len(raw_json),
+            },
+        )
         logger.debug("Response (%d chars):\n%s", len(raw_json), raw_json[:2000])
 
         # Parse JSON
@@ -439,10 +452,12 @@ class StoryGeneratorAgent:
             config = genai_types.GenerateContentConfig(temperature=temperature)
             call = self._get_caller()
             logger.debug("Calling %s for English proposal", GEMINI_MODEL)
+            t0 = time.perf_counter()
             response = await asyncio.wait_for(
                 asyncio.to_thread(call, GEMINI_MODEL, prompt, config),
                 timeout=_GENERATION_TIMEOUT_S,
             )
+            elapsed_ms = (time.perf_counter() - t0) * 1000
         except asyncio.TimeoutError:
             logger.warning("run_id=%s proposal timed out", run_id)
             yield {
@@ -471,6 +486,15 @@ class StoryGeneratorAgent:
             return
 
         proposal_text = proposal_text.strip()
+        _perf_logger.info(
+            "",
+            extra={
+                "activity": "Generate story in English",
+                "run_id": run_id,
+                "elapsed_ms": round(elapsed_ms),
+                "response_chars": len(proposal_text),
+            },
+        )
         logger.info("run_id=%s proposal complete (%d chars)", run_id, len(proposal_text))
         logger.debug("Proposal text:\n%s", proposal_text)
         yield {"type": "TEXT_MESSAGE_CHUNK", "delta": proposal_text}
