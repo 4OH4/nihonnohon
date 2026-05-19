@@ -160,7 +160,7 @@ export function SettingsPanel({ open, onClose }: SettingsPanelProps) {
                 type="number"
                 min="1"
                 max={MAX_TARGET_WORD_COUNT}
-                disabled={!lengthEnabled || storyLengthPreset !== 'custom'}
+                disabled={!lengthEnabled}
                 value={targetWordCount}
                 onChange={e => {
                   const v = parseInt(e.target.value, 10)

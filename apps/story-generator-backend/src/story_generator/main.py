@@ -118,6 +118,7 @@ async def run_sse(
     steering_instructions: str = Query("", alias="steeringInstructions"),
     temperature: float = Query(1.0),
     grammar_distribution: int = Query(1, alias="grammar_distribution"),
+    target_word_count: int = Query(0, alias="target_word_count"),
 ) -> StreamingResponse:
     """Open an SSE stream for story generation. Streams AG-UI events per ADR-004."""
     # P2: guard against requests arriving before lifespan completes CSV loading
@@ -146,6 +147,7 @@ async def run_sse(
                 steering_instructions=steering_instructions,
                 temperature=temperature,
                 grammar_distribution=grammar_distribution,
+                target_word_count=target_word_count,
                 cancel_event=cancel_event,
             ):
                 yield f"data: {json.dumps(event, ensure_ascii=False)}\n\n"

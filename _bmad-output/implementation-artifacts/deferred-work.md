@@ -252,3 +252,10 @@
 - **Collapsed summary blank if storedInputs is null in proposal phase:** Only reachable via direct store manipulation; normal UX flow always creates storedInputs before entering proposal via generate(). [InputPanel.tsx]
 - **useSession discards proposalText on stale-phase restore:** Intentional — Story 3.4 will add `proposalText` to `SessionState` and remove 'proposal' from STALE_PHASES. [useSession.ts]
 - **"Regenerate" lacks aria-label distinguishing it from InputPanel's "Generate":** Low a11y gap; defer to accessibility pass. [ProposalPanel.tsx]
+
+## Deferred from: code review of 3-4-story-length-settings-and-path-b-session-restore (2026-05-19)
+
+- **No upper-bound on `target_word_count` in backend:** Frontend enforces max 1000 via `Math.min(v, MAX_TARGET_WORD_COUNT)` but a direct API call can pass any integer. Acceptable for v1 local-only use. [main.py]
+- **`target_word_count` included in phase 2 SSE URL:** When `approve()` fires the Japanese conversion, `target_word_count` is still in the URL params even though the backend ignores it in phase 2. Harmless but could add a comment clarifying it's phase-1-only. [useAgUiRun.ts]
+- **En-dash in default length hint:** `"~150–300 words"` uses Unicode en-dash (–) while the rest of the prompt uses hyphen-minus. Cosmetic inconsistency. [agent.py]
+- **`isClearedState` check does not include `topicText`:** Pre-existing issue; not introduced by this story. The cleared-state detection could be audited for completeness. [useSession.ts]

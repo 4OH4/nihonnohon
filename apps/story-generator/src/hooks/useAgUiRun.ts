@@ -57,6 +57,7 @@ export function useAgUiRun(
     const grammarDist          = storedInputs?.grammarDist          ?? store.grammarDist
     const topicText            = storedInputs?.topicText            ?? ''
     const englishDraft         = storedInputs?.englishDraft         ?? ''
+    const targetWordCount      = storedInputs?.targetWordCount      ?? 0
 
     // Build query string
     const params = new URLSearchParams({
@@ -70,10 +71,11 @@ export function useAgUiRun(
     if (steeringInstructions) {
       params.set('steeringInstructions', steeringInstructions)
     }
-    // Path B params: topic (phase 1) and englishDraft (phase 2)
+    // Path B params: topic (phase 1), englishDraft (phase 2), target_word_count (phase 1 only)
     if (pathMode === 'B') {
-      if (topicText)    params.set('topic', topicText)
-      if (englishDraft) params.set('englishDraft', englishDraft)
+      if (topicText)         params.set('topic', topicText)
+      if (englishDraft)      params.set('englishDraft', englishDraft)
+      if (targetWordCount > 0) params.set('target_word_count', String(targetWordCount))
     }
 
     const url = `/run_sse?${params.toString()}`

@@ -477,3 +477,81 @@ def test_suggest_topic_endpoint_enforces_cooldown(monkeypatch):
     # Immediate second request should be throttled
     r2 = client.post("/suggest-topic", json={"chapter": "Genki I Ch.3"})
     assert r2.status_code == 429
+
+
+# ---------------------------------------------------------------------------
+# Story 3.4: target_word_count in build_proposal_prompt and generate()
+# ---------------------------------------------------------------------------
+
+
+def test_build_proposal_prompt_with_target_word_count():
+    """build_proposal_prompt uses target_word_count in the length hint when non-zero."""
+    from story_generator.agent import build_proposal_prompt
+
+    prompt = build_proposal_prompt(5, "Ken at the park.", target_word_count=400)
+    assert "400" in prompt
+    assert "words" in prompt.lower()
+    # Should NOT contain the default hint
+    assert "150" not in prompt
+
+
+def test_build_proposal_prompt_default_length_hint():
+    """build_proposal_prompt uses the default length hint when target_word_count is 0."""
+    from story_generator.agent import build_proposal_prompt
+
+    prompt = build_proposal_prompt(5, "Ken at the park.", target_word_count=0)
+    # Default hint contains 150 or 300
+    assert "150" in prompt or "300" in prompt
+
+
+def test_path_b_phase1_passes_target_word_count(vocab_data, grammar_data):
+    """target_word_count flows from generate() through to build_proposal_prompt."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    captured_prompts: list[str] = []
+
+    def mock_client(model, contents, config):
+        captured_prompts.append(contents)
+        return SimpleNamespace(text="A short story about Ken.")
+
+    agent = StoryGeneratorAgent(vocab_data, grammar_data, gemini_client=mock_client)
+    events = _collect(agent.generate(
+        run_id="r-wc",
+        chapter="Genki I Ch.5",
+        path_mode="B",
+        topic="Ken at the park",
+        target_word_count=250,
+        cancel_event=None,
+    ))
+
+    # Should have emitted a proposal
+    finished = next(e for e in events if e["type"] == "RUN_FINISHED")
+    assert finished["resultType"] == "proposal"
+
+    # The prompt passed to Gemini should mention 250 words
+    assert len(captured_prompts) == 1
+    assert "250" in captured_prompts[0]
+
+
+def test_path_b_phase1_default_length_when_word_count_zero(vocab_data, grammar_data):
+    """target_word_count=0 uses default length hint in the prompt."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    captured_prompts: list[str] = []
+
+    def mock_client(model, contents, config):
+        captured_prompts.append(contents)
+        return SimpleNamespace(text="A short story.")
+
+    agent = StoryGeneratorAgent(vocab_data, grammar_data, gemini_client=mock_client)
+    _collect(agent.generate(
+        run_id="r-wc0",
+        chapter="Genki I Ch.5",
+        path_mode="B",
+        topic="Ken at the library",
+        target_word_count=0,
+        cancel_event=None,
+    ))
+
+    assert len(captured_prompts) == 1
+    assert "150" in captured_prompts[0] or "300" in captured_prompts[0]

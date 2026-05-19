@@ -5,9 +5,8 @@ import type { Phase, StoryLengthPreset } from '@/stores/authoringStore'
 /** localStorage key for the authoring session. */
 export const SESSION_KEY = 'nihonnohon-sg-session'
 
-/** Phases treated as crashed when found in a restored session — remapped on restore.
- *  'proposal' is stale until Story 3.4 adds proposalText to SessionState. */
-const STALE_PHASES = new Set<Phase>(['generating', 'cancelling', 'downloading', 'proposal'])
+/** Phases treated as crashed when found in a restored session — remapped on restore. */
+const STALE_PHASES = new Set<Phase>(['generating', 'cancelling', 'downloading'])
 
 /** Shape of the persisted session object. */
 interface SessionState {
@@ -24,6 +23,8 @@ interface SessionState {
   targetWordCount: number
   outputJson: string | null
   outputIsDirty: boolean
+  /** Path B English draft; present when phase was 'proposal'. */
+  proposalText: string | null
 }
 
 /** Map a restored phase: stale generation/cancel phases are treated as crashed. */
@@ -64,6 +65,13 @@ export function useSession(): void {
 
     const restoredPhase = mapRestoredPhase(session)
 
+    // Guard: proposal phase requires proposalText — without it, degrade gracefully
+    const proposalText: string | null = session.proposalText ?? null
+    const safePhase: Phase =
+      restoredPhase === 'proposal' && !proposalText
+        ? session.outputJson !== null ? 'output-clean' : 'idle'
+        : restoredPhase
+
     // Sanitize: outputIsDirty is meaningless without outputJson (one-way latch requires content)
     const restoredOutputIsDirty = session.outputJson !== null ? session.outputIsDirty : false
 
@@ -79,7 +87,7 @@ export function useSession(): void {
 
     // Batch-set the store in one atomic write
     useAuthoringStore.setState({
-      phase: restoredPhase,
+      phase: safePhase,
       inputText: session.inputText,
       topicText,
       chapterTarget: session.chapterTarget,
@@ -91,6 +99,7 @@ export function useSession(): void {
       targetWordCount,
       outputJson: session.outputJson,
       outputIsDirty: restoredOutputIsDirty,
+      proposalText,
     })
 
     // Show the restore banner when meaningful content was recovered
@@ -99,7 +108,8 @@ export function useSession(): void {
       session.inputText !== '' ||
       topicText !== '' ||
       session.chapterTarget !== '' ||
-      session.steeringInstructions !== ''
+      session.steeringInstructions !== '' ||
+      proposalText !== null
     if (hasContent) {
       useAuthoringStore.getState()._setSessionRestored(true)
     }
@@ -135,6 +145,7 @@ export function useSession(): void {
         targetWordCount: state.targetWordCount,
         outputJson: state.outputJson,
         outputIsDirty: state.outputIsDirty,
+        proposalText: state.proposalText,
       }
       try { localStorage.setItem(SESSION_KEY, JSON.stringify(sessionState)) } catch { /* quota or storage unavailable */ }
     }

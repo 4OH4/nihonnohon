@@ -542,4 +542,56 @@ describe('useAgUiRun — Path B URL params', () => {
     expect(params.get('englishDraft')).toBe('Ken goes to the library.')
     expect(url).toContain('pathMode=B')
   })
+
+  it('includes target_word_count in URL when non-zero in Path B phase 1', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setPathMode('B')
+    store.setChapterTarget('Genki I Ch.5')
+    store.setTopicText('My topic.')
+    store.setTargetWordCount(400)
+    store.generate()
+
+    renderHook(() => useAgUiRun(factory))
+
+    expect(factory).toHaveBeenCalledOnce()
+    const url: string = factory.mock.calls[0][0]
+    const params = new URLSearchParams(url.split('?')[1] ?? '')
+    expect(params.get('target_word_count')).toBe('400')
+  })
+
+  it('omits target_word_count from URL when targetWordCount is default (600) in Path B', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setPathMode('B')
+    store.setChapterTarget('Genki I Ch.5')
+    store.setTopicText('My topic.')
+    // Default targetWordCount is 600 (medium preset) — should still be included since > 0
+    store.generate()
+
+    renderHook(() => useAgUiRun(factory))
+
+    expect(factory).toHaveBeenCalledOnce()
+    const url: string = factory.mock.calls[0][0]
+    const params = new URLSearchParams(url.split('?')[1] ?? '')
+    // Default 600 > 0, so it IS included
+    expect(params.get('target_word_count')).toBe('600')
+  })
+
+  it('omits target_word_count from URL for Path A', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setInputText('A story.')
+    store.setChapterTarget('Genki I Ch.5')
+    store.generate()
+
+    renderHook(() => useAgUiRun(factory))
+
+    expect(factory).toHaveBeenCalledOnce()
+    const url: string = factory.mock.calls[0][0]
+    expect(url).not.toContain('target_word_count')
+  })
 })

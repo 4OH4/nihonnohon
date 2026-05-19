@@ -149,6 +149,7 @@ def build_proposal_prompt(
     chapter: int,
     topic: str,
     steering_instructions: str = "",
+    target_word_count: int = 0,
 ) -> str:
     """Build the Gemini prompt for Path B phase 1: topic → English story proposal."""
     steering_block = (
@@ -156,11 +157,12 @@ def build_proposal_prompt(
         if steering_instructions.strip()
         else ""
     )
+    length_hint = f"approximately {target_word_count} words" if target_word_count > 0 else "~150–300 words"
     return f"""You are a creative writing assistant helping to generate source material for a Japanese graded reader aimed at Genki I Chapter {chapter} learners.
 
 ## Task
 
-Write a short English story (~150-300 words) based on the topic below. The story will later be translated into Japanese, so:
+Write an English story of {length_hint} based on the topic below. The story will later be translated into Japanese, so:
 - Keep the vocabulary and concepts within reach of an early Japanese learner (simple daily life themes)
 - Use clear, concrete scenes and actions that translate naturally
 - Avoid idioms, cultural references, or complex abstractions that resist translation
@@ -248,6 +250,7 @@ class StoryGeneratorAgent:
         steering_instructions: str = "",
         temperature: float = 1.0,
         grammar_distribution: int = 1,
+        target_word_count: int = 0,
         cancel_event: asyncio.Event | None = None,
     ) -> AsyncGenerator[dict, None]:
         """Yield AG-UI event dicts per ADR-004.
@@ -273,6 +276,7 @@ class StoryGeneratorAgent:
                 topic=topic,
                 steering_instructions=steering_instructions,
                 temperature=temperature,
+                target_word_count=target_word_count,
                 cancel_event=cancel_event,
             ):
                 yield event
@@ -406,6 +410,7 @@ class StoryGeneratorAgent:
         topic: str,
         steering_instructions: str,
         temperature: float,
+        target_word_count: int = 0,
         cancel_event: asyncio.Event | None,
     ) -> AsyncGenerator[dict, None]:
         """Path B phase 1: topic → English story proposal.
@@ -424,7 +429,7 @@ class StoryGeneratorAgent:
             yield {"type": "ERROR", "code": "GENERATION_FAILED", "message": str(exc)}
             return
 
-        prompt = build_proposal_prompt(chapter_int, topic, steering_instructions)
+        prompt = build_proposal_prompt(chapter_int, topic, steering_instructions, target_word_count)
         logger.debug("Proposal prompt (%d chars):\n%s", len(prompt), prompt)
 
         try:
