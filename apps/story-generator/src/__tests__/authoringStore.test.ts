@@ -504,3 +504,52 @@ describe('authoringStore — setProposalText', () => {
     expect(useAuthoringStore.getState().phase).toBe('proposal')
   })
 })
+
+describe('authoringStore — agentStatus', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('_setAgentStatus sets agentStatus', () => {
+    useAuthoringStore.getState()._setAgentStatus('Planning the structure…')
+    expect(useAuthoringStore.getState().agentStatus).toBe('Planning the structure…')
+  })
+
+  it('generate() resets agentStatus to null', () => {
+    const store = useAuthoringStore.getState()
+    store.setInputText('Some text')
+    store.setChapterTarget('Genki I Ch.3')
+    store._setAgentStatus('Old hint')
+    store.generate()
+    expect(store.agentStatus).toBeNull()
+  })
+
+  it('_setOutputJson resets agentStatus to null', () => {
+    useAuthoringStore.getState()._setAgentStatus('Thinking…')
+    useAuthoringStore.getState()._setOutputJson('{"id":"x"}')
+    expect(useAuthoringStore.getState().agentStatus).toBeNull()
+  })
+
+  it('_setProposalText resets agentStatus to null', () => {
+    useAuthoringStore.getState()._setAgentStatus('Thinking…')
+    useAuthoringStore.getState()._setProposalText('A proposal.')
+    expect(useAuthoringStore.getState().agentStatus).toBeNull()
+  })
+
+  it('_setError resets agentStatus to null', () => {
+    useAuthoringStore.getState()._setAgentStatus('Thinking…')
+    useAuthoringStore.getState().generate()  // needed so _setError can transition
+    useAuthoringStore.getState()._setError('TIMEOUT', 'msg')
+    expect(useAuthoringStore.getState().agentStatus).toBeNull()
+  })
+
+  it('_resolveCancel resets agentStatus to null', () => {
+    useAuthoringStore.getState()._setAgentStatus('Thinking…')
+    useAuthoringStore.getState()._resolveCancel()
+    expect(useAuthoringStore.getState().agentStatus).toBeNull()
+  })
+
+  it('agentStatus is null in initial defaultState', () => {
+    expect(useAuthoringStore.getState().agentStatus).toBeNull()
+  })
+})

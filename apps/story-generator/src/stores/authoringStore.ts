@@ -67,6 +67,8 @@ interface AuthoringStore {
   storedInputs: StoredInputs | null
   /** True once the backend emits RUN_STARTED; reset on each new generate(). */
   agentRunStarted: boolean
+  /** Latest AGENT_STATUS message from the backend; null when not generating or cleared. */
+  agentStatus: string | null
 
   // Public actions
   generate: () => void
@@ -96,6 +98,7 @@ interface AuthoringStore {
   _setError: (code: string, message: string) => void
   _resolveCancel: () => void
   _markRunStarted: () => void
+  _setAgentStatus: (msg: string | null) => void
 
   /** Errors from the last save() validation run; empty when valid. */
   validationErrors: ValidationError[]
@@ -135,6 +138,7 @@ const defaultState = {
   runId: null,
   storedInputs: null,
   agentRunStarted: false,
+  agentStatus: null,
   validationErrors: [],
   downloadToastId: null,
   sessionRestored: false,
@@ -157,6 +161,7 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
       errorCode: null,
       errorMessage: null,
       agentRunStarted: false,
+      agentStatus: null,
       proposalApproved: false,    // reset so _setError won't restore to proposal on a new flow
       proposalText: null,         // clear stale draft; new proposal set by _setProposalText
       lastGenerationElapsedS: null, // clear stale elapsed; new time set on RUN_FINISHED
@@ -187,6 +192,7 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
       errorCode: null,
       errorMessage: null,
       agentRunStarted: false,
+      agentStatus: null,
       storedInputs: {
         inputText, chapterTarget, steeringInstructions, pathMode, temperature, grammarDist,
         topicText,
@@ -208,6 +214,7 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
       errorCode: null,
       errorMessage: null,
       agentRunStarted: false,
+      agentStatus: null,
       // storedInputs preserved — same snapshot reused for SSE URL params
     })
   },
@@ -277,11 +284,11 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
 
   _setOutputJson(v) {
     // Reset proposalApproved so _setError on any subsequent generation goes to 'error', not 'proposal'
-    set({ outputJson: v, phase: 'output-clean', runId: null, outputIsDirty: false, proposalApproved: false })
+    set({ outputJson: v, phase: 'output-clean', runId: null, outputIsDirty: false, proposalApproved: false, agentStatus: null })
   },
 
   _setProposalText(v) {
-    set({ proposalText: v, phase: 'proposal', runId: null })
+    set({ proposalText: v, phase: 'proposal', runId: null, agentStatus: null })
   },
 
   _markDirty() {
@@ -304,18 +311,22 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
     const { proposalApproved } = get()
     if (proposalApproved) {
       // Error during Japanese conversion — restore to proposal so the draft is preserved
-      set({ phase: 'proposal', errorCode: code, errorMessage: message, runId: null })
+      set({ phase: 'proposal', errorCode: code, errorMessage: message, runId: null, agentStatus: null })
     } else {
-      set({ phase: 'error', errorCode: code, errorMessage: message, runId: null })
+      set({ phase: 'error', errorCode: code, errorMessage: message, runId: null, agentStatus: null })
     }
   },
 
   _resolveCancel() {
-    set({ phase: 'idle', runId: null })
+    set({ phase: 'idle', runId: null, agentStatus: null })
   },
 
   _markRunStarted() {
     set({ agentRunStarted: true })
+  },
+
+  _setAgentStatus(msg) {
+    set({ agentStatus: msg })
   },
 
   _clearDownloadToast() {

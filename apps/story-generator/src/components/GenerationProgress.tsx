@@ -5,6 +5,14 @@ import { useAuthoringStore } from '@/stores/authoringStore'
 /** Phases where GenerationProgress is visible. */
 const ACTIVE_PHASES = new Set(['generating', 'cancelling', 'error'])
 
+/** Word-boundary truncation — cuts at the last space before `max` chars. */
+function truncateHint(msg: string, max = 80): string {
+  if (msg.length <= max) return msg
+  const cut = msg.slice(0, max)
+  const lastSpace = cut.lastIndexOf(' ')
+  return (lastSpace > 0 ? cut.slice(0, lastSpace) : cut) + '…'
+}
+
 /** Returns the human-readable error message for a given error code. */
 function getErrorMessage(code: string | null): string {
   switch (code) {
@@ -30,6 +38,7 @@ function getErrorMessage(code: string | null): string {
 export function GenerationProgress() {
   const phase           = useAuthoringStore(s => s.phase)
   const agentRunStarted = useAuthoringStore(s => s.agentRunStarted)
+  const agentStatus     = useAuthoringStore(s => s.agentStatus)
   const errorCode       = useAuthoringStore(s => s.errorCode)
   const runId           = useAuthoringStore(s => s.runId)
   const generate                   = useAuthoringStore(s => s.generate)
@@ -108,6 +117,13 @@ export function GenerationProgress() {
               <span className="text-xs text-muted tabular-nums">{elapsed}s</span>
             )}
           </div>
+
+          {/* Thinking hint — separate subordinate line; outside aria-live to avoid noisy announcements */}
+          {agentRunStarted && agentStatus && phase === 'generating' && (
+            <p className="text-xs text-muted truncate">
+              Thinking: {truncateHint(agentStatus)}
+            </p>
+          )}
 
           {/* Retry button — only in error phase */}
           {phase === 'error' && (

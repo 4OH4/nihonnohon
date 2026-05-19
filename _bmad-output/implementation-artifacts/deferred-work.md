@@ -1,5 +1,12 @@
 # Deferred Work
 
+## Deferred from: code review of supp-1-gemini-thinking-live-status (2026-05-19)
+
+- **Thought text forwarded verbatim to client with no sanitisation:** React escapes HTML so XSS is not a concern; Unicode bidirectional control characters are a cosmetic edge case. Acceptable for v1. [agent.py — both streaming loops]
+- **Hint disappears during cancelling phase:** The `phase === 'generating'` guard is intentional per spec; the hint disappearing on Stop is acceptable v1 UX. Revisit if UX feedback identifies this as jarring. [GenerationProgress.tsx:122]
+- **API key rotation staleness in `_get_stream_caller`:** Pre-existing identical pattern in `_get_caller`; both cache the client on first use. Not introduced by this story. [agent.py:_get_stream_caller]
+- **`AGENT_STATUS` yielded inside `try` — disconnect during streaming:** If the ASGI layer disconnects mid-stream, the yield raises and is caught by `except Exception`, emitting an ERROR event the disconnected client never receives. Pre-existing pattern for all yields in generate(); no regression. [agent.py]
+
 ## Deferred from: code review of 3-2-topic-input-suggest-topic-button-and-mode-activation (2026-05-18)
 
 - **`doSuggest` silently dropped if `isSuggesting` true when `handleConfirmReplace` fires:** Unreachable in normal UI flow (SuggestConfirm strip only opens when `isSuggesting === false`). Defensive: add AbortController or allow the second call to proceed when confirm was explicitly clicked. [TopicTextarea.tsx]

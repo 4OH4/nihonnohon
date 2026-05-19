@@ -617,3 +617,122 @@ describe('useAgUiRun — Path B URL params', () => {
     expect(url).not.toContain('target_word_count')
   })
 })
+
+// ─── AGENT_STATUS handling ───────────────────────────────────────────────────
+
+describe('useAgUiRun — AGENT_STATUS', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('AGENT_STATUS sets agentStatus in store after 500ms debounce', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_STARTED', runId: 'r1' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'Planning the structure…' })
+    })
+
+    // Before debounce fires — not yet set
+    expect(useAuthoringStore.getState().agentStatus).toBeNull()
+
+    act(() => { vi.advanceTimersByTime(500) })
+
+    expect(useAuthoringStore.getState().agentStatus).toBe('Planning the structure…')
+  })
+
+  it('rapid AGENT_STATUS events debounce to only the last message', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_STARTED', runId: 'r1' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'First thought' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'Second thought' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'Third thought' })
+    })
+
+    act(() => { vi.advanceTimersByTime(500) })
+
+    expect(useAuthoringStore.getState().agentStatus).toBe('Third thought')
+  })
+
+  it('agentStatus resets to null on RUN_FINISHED', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_STARTED', runId: 'r1' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'Thinking…' })
+    })
+    act(() => { vi.advanceTimersByTime(500) })
+    expect(useAuthoringStore.getState().agentStatus).toBe('Thinking…')
+
+    act(() => {
+      mockEs.emit({ type: 'TEXT_MESSAGE_CHUNK', delta: '{"id":"x"}' })
+      mockEs.emit({ type: 'RUN_FINISHED', resultType: 'story', content: '' })
+    })
+
+    expect(useAuthoringStore.getState().agentStatus).toBeNull()
+  })
+
+  it('agentStatus resets to null on ERROR', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_STARTED', runId: 'r1' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'Thinking…' })
+    })
+    act(() => { vi.advanceTimersByTime(500) })
+
+    act(() => {
+      mockEs.emit({ type: 'ERROR', code: 'GENERATION_FAILED', message: 'oops' })
+    })
+
+    expect(useAuthoringStore.getState().agentStatus).toBeNull()
+  })
+
+  it('agentStatus resets to null on RUN_CANCELLED', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_STARTED', runId: 'r1' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'Thinking…' })
+    })
+    act(() => { vi.advanceTimersByTime(500) })
+    expect(useAuthoringStore.getState().agentStatus).toBe('Thinking…')
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_CANCELLED', runId: 'r1' })
+    })
+
+    expect(useAuthoringStore.getState().agentStatus).toBeNull()
+  })
+
+  it('agentStatus debounce timer is cleared by clearTimers on RUN_FINISHED', () => {
+    const { mockEs, factory } = setupGenerating()
+    renderHook(() => useAgUiRun(factory))
+
+    act(() => {
+      mockEs.emit({ type: 'RUN_STARTED', runId: 'r1' })
+      mockEs.emit({ type: 'AGENT_STATUS', message: 'Thinking…' })
+      // RUN_FINISHED arrives before debounce fires
+      mockEs.emit({ type: 'TEXT_MESSAGE_CHUNK', delta: '{"id":"x"}' })
+      mockEs.emit({ type: 'RUN_FINISHED', resultType: 'story', content: '' })
+    })
+
+    // Advance past debounce — timer was cleared so agentStatus stays null
+    act(() => { vi.advanceTimersByTime(500) })
+
+    expect(useAuthoringStore.getState().agentStatus).toBeNull()
+  })
+})
