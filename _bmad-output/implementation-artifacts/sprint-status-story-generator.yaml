@@ -71,7 +71,7 @@ development_status:
   3-2-topic-input-suggest-topic-button-and-mode-activation: done
   3-3-english-proposal-review-and-convert-to-japanese: done
   3-4-story-length-settings-and-path-b-session-restore: done
-  epic-3-retrospective: optional
+  epic-3-retrospective: done
 
   # Epic 4: M2 — Agentic Calibration Quality
   epic-4: backlog
