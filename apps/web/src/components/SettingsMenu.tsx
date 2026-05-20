@@ -27,7 +27,7 @@ export function SettingsMenu() {
         <button
           type="button"
           aria-label="Settings"
-          className="px-3 py-1 rounded text-sm border bg-surface border-border text-muted"
+          className="px-3 py-2 rounded text-base text-muted"
         >
           ⚙
         </button>

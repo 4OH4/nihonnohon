@@ -108,9 +108,9 @@ describe('InfoPanel', () => {
     act(() => {
       useLookupStore.getState().lookup('たべる', hiraganaEntry, 's1')
     })
-    const { container } = render(<InfoPanel story={storyFixture} />)
-    // KanjiBreakdown returns null — its container div should not be present
-    expect(container.querySelector('.flex.gap-3')).toBeNull()
+    render(<InfoPanel story={storyFixture} />)
+    // KanjiBreakdown returns null — the labelled region should not be in the DOM
+    expect(screen.queryByLabelText('Kanji breakdown')).toBeNull()
   })
 
   it('not-found state shows muted "No entry for" message', () => {

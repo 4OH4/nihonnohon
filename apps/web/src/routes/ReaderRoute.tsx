@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils'
 import { AppBar } from '@/components/AppBar'
 import { InfoPanel } from '@/components/InfoPanel'
 import { ToolBar } from '@/components/ToolBar'
+import { SettingsMenu } from '@/components/SettingsMenu'
 import { SentenceBlock } from '@/components/SentenceBlock'
 import { VocabPanel } from '@/components/VocabPanel'
 import { GrammarPanel } from '@/components/GrammarPanel'
@@ -121,24 +122,59 @@ export function ReaderRoute() {
     }
   }, [activeTab]) // intentionally omits savedScrollTop — only fires when tab changes TO story
 
+  // Draggable desktop split: story column width as a percentage of the content area.
+  // Clamped to [30, 80] so neither panel can collapse below a usable size.
+  const contentAreaRef = useRef<HTMLDivElement>(null)
+  const [storyWidthPercent, setStoryWidthPercent] = useState(60)
+  const isDraggingRef = useRef(false)
+
+  const handleResizeStart = (e: React.MouseEvent) => {
+    e.preventDefault()
+    isDraggingRef.current = true
+  }
+
+  useEffect(() => {
+    const handleMove = (e: MouseEvent) => {
+      if (!isDraggingRef.current || !contentAreaRef.current) return
+      const rect = contentAreaRef.current.getBoundingClientRect()
+      const pct = ((e.clientX - rect.left) / rect.width) * 100
+      setStoryWidthPercent(Math.max(30, Math.min(80, pct)))
+    }
+    const handleUp = () => { isDraggingRef.current = false }
+    window.addEventListener('mousemove', handleMove)
+    window.addEventListener('mouseup', handleUp)
+    return () => {
+      window.removeEventListener('mousemove', handleMove)
+      window.removeEventListener('mouseup', handleUp)
+    }
+  }, [])
+
   return (
-    <div className="flex flex-col h-dvh bg-paper-bg">
-      <AppBar />
-      <InfoPanel story={story} />
-      <ToolBar language={story.language} />
+    <div
+      className="flex flex-col h-dvh bg-paper-bg"
+      style={{ '--story-font-size': TEXT_SIZE_VALUES[textSize] } as React.CSSProperties}
+    >
+      <AppBar rightSlot={<SettingsMenu />} />
+      <div className="flex items-stretch border-b border-border">
+        <InfoPanel story={story} />
+        <ToolBar language={story.language} />
+      </div>
 
       {/* Content area: single column on mobile, two-column on desktop (lg+) */}
-      <div className="flex-1 flex overflow-hidden">
+      <div ref={contentAreaRef} className="flex-1 flex overflow-hidden">
 
-        {/* Story column: full width on mobile (story tab), left column on desktop (always) */}
+        {/* Story column: full width on mobile (story tab), left column on desktop (resizable via splitter). */}
         <div
           ref={storyScrollRef}
           className={cn(
             'overflow-y-auto p-4 w-full',
             activeTab !== 'story' ? 'hidden lg:block' : 'block',
-            'lg:max-w-[65ch]',
+            'lg:max-w-none lg:shrink-0 lg:w-[var(--story-pct)]',
           )}
-          style={{ '--story-font-size': TEXT_SIZE_VALUES[textSize], fontSize: 'var(--story-font-size)' } as React.CSSProperties}
+          style={{
+            '--story-pct': `${storyWidthPercent}%`,
+            fontSize: 'var(--story-font-size)',
+          } as React.CSSProperties}
         >
           {story.sentences.map((sentence, i) => (
             <SentenceBlock
@@ -150,8 +186,17 @@ export function ReaderRoute() {
           ))}
         </div>
 
+        {/* Resize splitter: desktop-only, drag to adjust the story / right-panel split. */}
+        <div
+          role="separator"
+          aria-orientation="vertical"
+          aria-label="Resize reading area"
+          onMouseDown={handleResizeStart}
+          className="hidden lg:block w-1 shrink-0 cursor-col-resize bg-border hover:bg-accent active:bg-accent transition-colors"
+        />
+
         {/* Desktop right panel: Vocabulary/Grammar tabs — hidden on mobile */}
-        <div className="hidden lg:flex lg:flex-col lg:flex-1 lg:overflow-hidden lg:border-l lg:border-border">
+        <div className="hidden lg:flex lg:flex-col lg:flex-1 lg:overflow-hidden lg:min-w-0">
           <div className="flex border-b border-border bg-surface">
             {(['vocabulary', 'grammar'] as const).map(tab => (
               <button
@@ -169,7 +214,7 @@ export function ReaderRoute() {
               </button>
             ))}
           </div>
-          <div className="flex-1 overflow-y-auto">
+          <div className="flex-1 overflow-y-auto w-full">
             {activeTab === 'grammar'
               ? <GrammarPanel grammar={story.grammar} sentences={story.sentences} />
               : <VocabPanel keywords={story.keywords} vocabSupplement={story.vocabSupplement} />

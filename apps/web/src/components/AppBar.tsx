@@ -4,12 +4,14 @@ import { cn } from '@/lib/utils'
 interface AppBarProps {
   /** 'reader' shows the back link; 'library' shows logo only. Defaults to 'reader'. */
   variant?: 'reader' | 'library'
+  /** Optional content rendered in the right cell of the header grid. */
+  rightSlot?: React.ReactNode
 }
 
-/** Application header bar. Reader variant shows a back link; library variant shows logo only. */
-export function AppBar({ variant = 'reader' }: AppBarProps) {
+/** Application header bar. Three-column grid: back link | centred title | rightSlot. */
+export function AppBar({ variant = 'reader', rightSlot }: AppBarProps) {
   return (
-    <header className={cn('flex items-center justify-between bg-surface px-4 py-2 border-b border-border')}>
+    <header className={cn('grid grid-cols-3 items-center min-h-12 bg-surface px-4 py-1 border-b border-border')}>
       {variant === 'reader' ? (
         <Link
           to="/"
@@ -21,9 +23,10 @@ export function AppBar({ variant = 'reader' }: AppBarProps) {
       ) : (
         <span />
       )}
-      <span className="font-ja text-sm text-muted" lang="ja">
+      <span className="font-ja text-sm text-muted justify-self-center" lang="ja">
         日本の本
       </span>
+      <div className="flex justify-end">{rightSlot}</div>
     </header>
   )
 }

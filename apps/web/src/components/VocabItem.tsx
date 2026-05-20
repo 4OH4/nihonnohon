@@ -25,13 +25,13 @@ export function VocabItem({ entry }: { entry: VocabEntry }) {
         }
       }}
       className={cn(
-        'flex flex-col px-3 py-2 cursor-pointer rounded',
+        'grid grid-cols-[1fr_1fr_1fr] items-center gap-x-2 px-3 py-2 cursor-pointer rounded',
         isActive ? 'bg-accent-subtle' : 'hover:bg-accent-subtle',
       )}
     >
-      <span className="font-ja text-paper-text text-base" lang="ja">{entry.word}</span>
-      <span className="font-ja text-muted text-sm" lang="ja">{entry.reading}</span>
-      <span className="text-paper-text text-sm">{entry.meaning}</span>
+      <span className="font-ja text-paper-text" lang="ja">{entry.word}</span>
+      <span className="font-ja text-muted text-[0.85em]" lang="ja">{entry.reading}</span>
+      <span className="text-paper-text text-[0.8em]">{entry.meaning}</span>
     </div>
   )
 }

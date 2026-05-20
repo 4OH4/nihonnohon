@@ -23,7 +23,7 @@ export function InfoPanel({ story }: InfoPanelProps) {
 
   return (
     <div
-      className="min-h-[110px] max-h-[140px] overflow-y-auto bg-surface px-4 py-3"
+      className="flex-1 min-h-[90px] max-h-[120px] overflow-y-auto bg-surface px-4 py-2"
       aria-live="polite"
       aria-label="Word lookup panel"
     >
@@ -38,11 +38,19 @@ export function InfoPanel({ story }: InfoPanelProps) {
       )}
 
       {lookupState.status === 'found' && (
-        <div>
-          <p className="font-ja font-semibold" lang="ja">{lookupState.word}</p>
-          <p className="text-[1.125rem] text-paper-text">{lookupState.entry.meaning}</p>
-          <p className="text-[0.875rem] font-ja text-muted" lang="ja">{lookupState.entry.reading}</p>
-          <KanjiBreakdown word={lookupState.word} />
+        <div className="flex gap-8">
+          {/* Left: word + reading inline, meaning beneath */}
+          <div className="min-w-0">
+            <div className="flex items-baseline gap-2">
+              <span className="font-ja font-semibold text-paper-text" lang="ja">{lookupState.word}</span>
+              <span className="text-[0.875rem] font-ja text-muted" lang="ja">{lookupState.entry.reading}</span>
+            </div>
+            <p className="text-[1.125rem] text-paper-text">{lookupState.entry.meaning}</p>
+          </div>
+          {/* Dictionary detail column — vertical stack, ready for additional sections */}
+          <div className="flex flex-col gap-3 shrink-0">
+            <KanjiBreakdown word={lookupState.word} />
+          </div>
         </div>
       )}
 
