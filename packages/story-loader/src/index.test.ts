@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { describe, expect, it } from 'vitest'
 import { loadStory, LoaderError } from './index'
 import validV1 from './__fixtures__/valid-v1.json'

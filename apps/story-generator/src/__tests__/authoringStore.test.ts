@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 // Mock DOM-touching lib functions so store tests don't require a real DOM
 vi.mock('@/lib/validateStoryJson', () => ({
   validateStoryJson: vi.fn(() => []),

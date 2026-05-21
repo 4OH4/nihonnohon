@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { act, renderHook } from '@testing-library/react'
 import { useSession, SESSION_KEY } from '@/hooks/useSession'
 import { useAuthoringStore } from '@/stores/authoringStore'

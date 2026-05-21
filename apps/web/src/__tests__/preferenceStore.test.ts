@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { describe, it, expect, beforeEach } from 'vitest'
 import { usePreferenceStore } from '@/stores/preferenceStore'
 

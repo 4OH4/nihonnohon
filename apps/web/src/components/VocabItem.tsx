@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { cn } from '@/lib/utils'
 import { useLookupStore } from '@/stores/lookupStore'
 import type { VocabEntry } from '@nihonnohon/schema'

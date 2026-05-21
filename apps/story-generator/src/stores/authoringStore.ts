@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { create } from 'zustand'
 import { validateStoryJson, type ValidationError } from '@/lib/validateStoryJson'
 import { downloadStoryFile } from '@/lib/downloadStoryFile'

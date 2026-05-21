@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { useRef, useState, useEffect } from 'react'
 import { useLoaderData, useRouteError, isRouteErrorResponse, Link } from 'react-router-dom'
 import type { LoaderFunctionArgs } from 'react-router-dom'

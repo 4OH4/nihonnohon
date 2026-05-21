@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { renderHook, act } from '@testing-library/react'
 import { useAgUiRun } from '../hooks/useAgUiRun'
 import { useAuthoringStore } from '../stores/authoringStore'

@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { Link } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 import { DifficultyBadge } from '@/components/DifficultyBadge'

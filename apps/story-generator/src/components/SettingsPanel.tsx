@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { cn } from '@/lib/utils'
 import { useAuthoringStore, STORY_LENGTH_WORD_COUNTS, MAX_TARGET_WORD_COUNT } from '@/stores/authoringStore'
 import type { StoryLengthPreset } from '@/stores/authoringStore'

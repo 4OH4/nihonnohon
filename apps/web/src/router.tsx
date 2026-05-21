@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { LibraryRoute, loader as libraryLoader, LibraryError } from '@/routes/LibraryRoute'
 import { ReaderRoute, loader as readerLoader, ReaderError } from '@/routes/ReaderRoute'

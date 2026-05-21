@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 /** A single entry in the story manifest. */
 export interface ManifestEntry {
   id: string

@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { useEffect } from 'react'
 import { useLookupStore } from '@/stores/lookupStore'
 import { KanjiBreakdown } from '@/components/KanjiBreakdown'

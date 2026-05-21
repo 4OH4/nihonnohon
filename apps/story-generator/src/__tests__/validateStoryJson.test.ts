@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { validateStoryJson } from '@/lib/validateStoryJson'
 import { loadStory } from '@nihonnohon/story-loader'
 import validStory from './fixtures/valid-story.json'

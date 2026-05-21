@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 /** A single validation error produced by the client-side validation pipeline. */
 export interface ValidationError {
   rule: string

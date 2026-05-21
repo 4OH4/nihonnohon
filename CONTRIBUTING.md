@@ -131,3 +131,7 @@ Breaking changes to `story.v1.json` require:
 
 Non-breaking additions (new optional fields) do **not** require a version bump.
 `additionalProperties: false` must not be violated.
+
+## License
+
+This project is released under the [MIT License](./LICENSE). By contributing, you agree that your contributions will be licensed under the same terms.

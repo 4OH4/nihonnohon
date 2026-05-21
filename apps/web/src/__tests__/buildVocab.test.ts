@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 // @vitest-environment node
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'fs'

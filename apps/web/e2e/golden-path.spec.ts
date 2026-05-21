@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { test, expect } from '@playwright/test'
 
 // Runs on all 4 projects (chromium, firefox, webkit, mobile-safari / iPhone 14)

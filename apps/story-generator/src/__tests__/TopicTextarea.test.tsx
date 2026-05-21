@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { act, render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { TopicTextarea } from '../components/TopicTextarea'
 import { useAuthoringStore } from '../stores/authoringStore'

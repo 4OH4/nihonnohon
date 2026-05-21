@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { useAuthoringStore, selectCanSave } from '@/stores/authoringStore'

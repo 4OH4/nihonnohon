@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { test, expect, type Page } from '@playwright/test'
 import { readFileSync } from 'fs'
 import { join, dirname } from 'path'

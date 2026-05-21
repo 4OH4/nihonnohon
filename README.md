@@ -73,3 +73,9 @@ Comprehensive project documentation is in [`docs/`](./docs/):
 ## Development
 
 This project was designed and implemented using the **[BMAD Method](https://github.com/bmad-method)** with **[Claude Code](https://claude.ai/code)** — an AI-assisted development workflow covering product discovery, architecture, sprint planning, and iterative story implementation.
+
+---
+
+## License
+
+This project is released under the [MIT License](./LICENSE). Copyright (c) 2026 Rupert Thomas.

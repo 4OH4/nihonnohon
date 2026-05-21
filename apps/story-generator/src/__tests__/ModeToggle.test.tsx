@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { render, screen, fireEvent } from '@testing-library/react'
 import { ModeToggle } from '../components/ModeToggle'
 import { useAuthoringStore } from '../stores/authoringStore'

@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import Ajv from 'ajv'
 import schema from '@nihonnohon/schema/schemas/story.v1.json'
 import { LoaderError } from './errors'

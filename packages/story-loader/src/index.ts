@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import type { StoryModel } from '@nihonnohon/schema'
 import { LoaderError } from './errors'
 import { loadV1 } from './v1'

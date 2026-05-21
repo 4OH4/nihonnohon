@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import * as Popover from '@radix-ui/react-popover'
 import { cn } from '@/lib/utils'
 import { usePreferenceStore } from '@/stores/preferenceStore'
