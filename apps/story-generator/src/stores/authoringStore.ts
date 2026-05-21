@@ -5,6 +5,40 @@ import { create } from 'zustand'
 import { validateStoryJson, type ValidationError } from '@/lib/validateStoryJson'
 import { downloadStoryFile } from '@/lib/downloadStoryFile'
 
+export type LicensePreset = 'cc-by-4' | 'cc-by-nc-4' | 'other'
+
+/** Name and URL for each built-in license preset. */
+export const LICENSE_PRESETS: Record<Exclude<LicensePreset, 'other'>, { name: string; url: string }> = {
+  'cc-by-4':    { name: 'CC BY 4.0',    url: 'https://creativecommons.org/licenses/by/4.0/' },
+  'cc-by-nc-4': { name: 'CC BY-NC 4.0', url: 'https://creativecommons.org/licenses/by-nc/4.0/' },
+}
+
+interface AttribSettings {
+  attribAuthor: string
+  attribSource: string
+  attribLicense: LicensePreset
+  attribCustomLicenseName: string
+  attribCustomLicenseUrl: string
+}
+
+function injectAttribution(json: string, s: AttribSettings): string {
+  try {
+    const parsed = JSON.parse(json) as Record<string, unknown>
+    if (s.attribAuthor) parsed.author = s.attribAuthor
+    if (s.attribSource) parsed.source = s.attribSource
+    if (s.attribLicense !== 'other') {
+      parsed.license     = LICENSE_PRESETS[s.attribLicense].name
+      parsed.license_url = LICENSE_PRESETS[s.attribLicense].url
+    } else {
+      if (s.attribCustomLicenseName) parsed.license     = s.attribCustomLicenseName
+      if (s.attribCustomLicenseUrl)  parsed.license_url = s.attribCustomLicenseUrl
+    }
+    return JSON.stringify(parsed, null, 2)
+  } catch {
+    return json
+  }
+}
+
 export type { ValidationError }
 
 /** All phases of the authoring workflow. */
@@ -92,6 +126,18 @@ interface AuthoringStore {
   /** Update the English proposal text while in proposal phase. */
   setProposalText: (v: string) => void
 
+  // Attribution settings — persisted per session; injected into output JSON on generation complete
+  attribAuthor: string
+  attribSource: string
+  attribLicense: LicensePreset
+  attribCustomLicenseName: string
+  attribCustomLicenseUrl: string
+  setAttribAuthor: (v: string) => void
+  setAttribSource: (v: string) => void
+  setAttribLicense: (v: LicensePreset) => void
+  setAttribCustomLicenseName: (v: string) => void
+  setAttribCustomLicenseUrl: (v: string) => void
+
   // Internal actions — called by useAgUiRun or OutputPanel, not part of the public API
   _setOutputJson: (v: string) => void
   _setProposalText: (v: string) => void
@@ -146,6 +192,11 @@ const defaultState = {
   downloadToastId: null,
   sessionRestored: false,
   lastGenerationElapsedS: null,
+  attribAuthor: '',
+  attribSource: 'Generated using the 日本の本 AI Story Authoring Tool',
+  attribLicense: 'cc-by-4' as LicensePreset,
+  attribCustomLicenseName: '',
+  attribCustomLicenseUrl: '',
 }
 
 export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
@@ -275,6 +326,11 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   },
   setTemperature: (v) => set({ temperature: v }),
   setGrammarDist: (v) => set({ grammarDist: v }),
+  setAttribAuthor: (v) => set({ attribAuthor: v }),
+  setAttribSource: (v) => set({ attribSource: v }),
+  setAttribLicense: (v) => set({ attribLicense: v }),
+  setAttribCustomLicenseName: (v) => set({ attribCustomLicenseName: v }),
+  setAttribCustomLicenseUrl: (v) => set({ attribCustomLicenseUrl: v }),
   setProposalText: (v) => set({ proposalText: v }),
   setStoryLengthPreset(preset) {
     if (preset === 'custom') {
@@ -286,8 +342,9 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   setTargetWordCount: (v) => set({ storyLengthPreset: 'custom', targetWordCount: Math.min(v, MAX_TARGET_WORD_COUNT) }),
 
   _setOutputJson(v) {
+    const withAttrib = injectAttribution(v, get())
     // Reset proposalApproved so _setError on any subsequent generation goes to 'error', not 'proposal'
-    set({ outputJson: v, phase: 'output-clean', runId: null, outputIsDirty: false, proposalApproved: false, agentStatus: null })
+    set({ outputJson: withAttrib, phase: 'output-clean', runId: null, outputIsDirty: false, proposalApproved: false, agentStatus: null })
   },
 
   _setProposalText(v) {

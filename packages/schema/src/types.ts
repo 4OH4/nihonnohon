@@ -47,6 +47,7 @@ export interface StoryModel {
   grammar: string[] // story-level grammar point descriptions — NOT SentenceModel.grammar (number[])
   vocabSupplement: VocabSupplementEntry[]
   author?: string
+  source?: string
   license?: string
   licenseUrl?: string
   sentences: SentenceModel[]

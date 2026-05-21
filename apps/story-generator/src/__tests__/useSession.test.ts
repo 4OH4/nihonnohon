@@ -274,7 +274,7 @@ describe('useSession — subscription / persistence', () => {
     expect(stored).not.toBeNull()
     const parsed = JSON.parse(stored!)
     expect(parsed.phase).toBe('output-clean')
-    expect(parsed.outputJson).toBe('{"id":"x"}')
+    expect(JSON.parse(parsed.outputJson).id).toBe('x')
   })
 
   it('removes localStorage when store is cleared to default', async () => {

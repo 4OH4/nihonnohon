@@ -38,6 +38,7 @@ interface WireStory {
   grammar?: string[]
   vocab_supplement?: WireVocabEntry[]
   author?: string
+  source?: string
   license?: string
   license_url?: string
   metadata?: Record<string, unknown>
@@ -85,6 +86,7 @@ export function loadV1(raw: unknown): StoryModel {
     grammar: wire.grammar ?? [],
     vocabSupplement: (wire.vocab_supplement ?? []).map(mapVocabEntry),
     author: wire.author,
+    source: wire.source,
     license: wire.license,
     licenseUrl: wire.license_url,
     sentences: wire.sentences.map(mapSentence),

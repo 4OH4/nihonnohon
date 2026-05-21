@@ -79,7 +79,7 @@ describe('useAgUiRun — RUN_FINISHED mapping', () => {
     })
 
     // Store state assertions (synchronous — Zustand updates are immediate)
-    expect(useAuthoringStore.getState().outputJson).toBe('{"id":"test"}')
+    expect(JSON.parse(useAuthoringStore.getState().outputJson!).id).toBe('test')
     expect(useAuthoringStore.getState().phase).toBe('output-clean')
   })
 })
@@ -373,7 +373,7 @@ describe('useAgUiRun — stream close behaviour', () => {
     })
 
     expect(useAuthoringStore.getState().phase).toBe('output-clean')
-    expect(useAuthoringStore.getState().outputJson).toBe('{"id":"ok"}')
+    expect(JSON.parse(useAuthoringStore.getState().outputJson!).id).toBe('ok')
   })
 })
 
