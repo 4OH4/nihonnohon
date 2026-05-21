@@ -33,10 +33,12 @@ export function InfoPanel({ story }: InfoPanelProps) {
       {lookupState.status === 'idle' && (
         <div>
           <p className="font-semibold text-paper-text">{story.title}</p>
+          {story.author && (
+            <p className="text-sm text-muted">{story.author}</p>
+          )}
           {story.difficulty !== null && (
             <p className="text-sm text-muted">{story.difficulty}</p>
           )}
-          <p className="text-sm text-muted">{story.language}</p>
         </div>
       )}
 
