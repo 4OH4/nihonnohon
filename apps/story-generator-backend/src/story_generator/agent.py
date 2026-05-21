@@ -121,12 +121,13 @@ Respond with a single JSON object matching this exact structure:
 
 2. **vocab_keys values**:
    - Use the integer ID from the vocabulary list above if the token matches a listed word
-   - Use `null` for particles, punctuation, conjunctions, or any token not in the vocabulary list
+   - Use `null` (JSON null, no quotes) for particles, punctuation, conjunctions, or any token not in the vocabulary list
    - Supplemental vocabulary (words needed but NOT in the list) must appear in `vocab_supplement` with a unique integer `key` starting at 10000, and that same key used in `vocab_keys`
 
 3. **ruby values**:
    - Provide the hiragana reading for tokens that contain kanji
-   - Use `null` for tokens that are already hiragana, katakana, or punctuation
+   - Use `null` (JSON null, no quotes) for tokens that are already hiragana, katakana, or punctuation
+   - Never use the string `"null"` — only the bare JSON value `null`
 
 4. **sentence.id**: Use "s01", "s02", etc.
 
@@ -188,6 +189,27 @@ def _parse_chapter(chapter_str: str) -> int:
         return int(chapter_str.split("Ch.")[1])
     except (IndexError, ValueError) as exc:
         raise ValueError(f"Cannot parse chapter number from: {chapter_str!r}") from exc
+
+
+# ---------------------------------------------------------------------------
+# Post-processing
+# ---------------------------------------------------------------------------
+
+
+def _coerce_string_nulls(story_dict: dict) -> None:
+    """Replace string "null" with None in ruby and vocab_keys arrays, in-place.
+
+    Gemini occasionally emits ["null"] instead of [null] despite explicit prompt
+    instructions. Both arrays accept null elements; the string form passes JSON
+    parsing but breaks validation and the reader.
+    """
+    for sentence in story_dict.get("sentences") or []:
+        if not isinstance(sentence, dict):
+            continue
+        for key in ("ruby", "vocab_keys"):
+            arr = sentence.get(key)
+            if isinstance(arr, list):
+                sentence[key] = [None if v == "null" else v for v in arr]
 
 
 # ---------------------------------------------------------------------------
@@ -473,6 +495,11 @@ class StoryGeneratorAgent:
                 "message": f"Response is not valid JSON: {exc}",
             }
             return
+
+        # Coerce string "null" → None in ruby and vocab_keys arrays.
+        # Gemini occasionally outputs ["null"] instead of [null] despite prompt
+        # instructions; fix silently before validation so it never reaches the client.
+        _coerce_string_nulls(story_dict)
 
         # Validate before streaming — emit ERROR instead of RUN_FINISHED on failure
         result = validate(story_dict)

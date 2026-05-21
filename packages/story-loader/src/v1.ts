@@ -103,8 +103,11 @@ function mapSentence(s: WireSentence): SentenceModel {
   return {
     id: s.id,
     words: s.words,
-    ruby: s.ruby ?? Array<string | null>(wordCount).fill(null),
-    vocabKeys: s.vocab_keys ?? Array<number | null>(wordCount).fill(null),
+    // Coerce the string "null" produced by some LLM outputs to real null.
+    ruby: (s.ruby ?? Array<string | null>(wordCount).fill(null))
+      .map(v => (v === 'null' ? null : v)),
+    vocabKeys: (s.vocab_keys ?? Array<number | null>(wordCount).fill(null))
+      .map(v => (v === ('null' as unknown) ? null : v)),
     translation: s.translation ?? null,
     grammar: s.grammar ?? [],
     audioUrl: s.audio_url,
