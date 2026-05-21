@@ -21,6 +21,37 @@ _Author note: I've been learning Japanese for a couple of years now, and what I'
 
 ---
 
+## Reader App
+
+The reader app is a single-page web application deployed at [nihonnohon.vercel.app](https://nihonnohon.vercel.app). It is optimised for reading Japanese stories at a controlled difficulty level, with in-place linguistic support so you can stay in the flow of reading.
+
+<img src="resources/screenshot-reader.png" width="800" alt="Reader app screenshot" />
+
+**Library view** — browse the built-in story collection filtered by source textbook (Genki I/II, JLPT) and chapter. Each card shows the title, difficulty badge, and a short synopsis. You can also load your own `.json` story file from disk.
+
+**Reader view** — the story is split into sentence blocks and tokenised into individual words. Select any word to open an inline popover with its reading, English meaning, and the lesson where it was first introduced. The kanji breakdown panel lists each character with its Heisig keyword, and the grammar panel highlights the current sentence's relevant grammar points.
+
+Persistent preferences (furigana on/off, sentence translations, text size, word spacing) are saved across sessions. On desktop the vocabulary and grammar panels sit in a sidebar; on mobile they collapse into tabs.
+
+---
+
+## AI Story Authoring Tool
+
+The story authoring tool allows you to convert or generate stories with fine-grained control of the language difficulty. It is a separate app (currently local-only, frontend on port 5174, Python backend on port 8000) that uses Google Gemini to generate stories in the required JSON format. Run it from `apps/story-generator-backend/` with `make dev`.
+
+<img src="resources/screenshot-story-authoring-tool.png" width="800" alt="AI Story Authoring Tool screenshot" />
+
+Stories can be generated two ways:
+
+- **Path A — adapt existing text.** Paste a Japanese source text (e.g. a textbook passage) and the tool annotates it with vocabulary, furigana, grammar notes, and sentence translations to produce a ready-to-read story file.
+- **Path B — generate from a topic.** Describe a topic or scenario in English. The tool first proposes an English story draft for you to review and edit, then converts the approved draft into annotated Japanese at your chosen difficulty level.
+
+Both paths let you set the target chapter (e.g. _Genki I Ch. 6_), steer the output with free-text instructions, adjust the grammar complexity distribution, and — for Path B — pick a word-count preset (short ≈ 300 w, medium ≈ 600 w, long ≈ 1000 w). Generation is streamed token-by-token via AG-UI so you can watch the story being written in real time and cancel mid-run.
+
+The output JSON is validated against the shared `story.v1.json` schema before download. Attribution fields (author, source, license) are injected automatically.
+
+---
+
 ## Tech Stack
 
 | Layer | Technology |
@@ -48,12 +79,29 @@ _Author note: I've been learning Japanese for a couple of years now, and what I'
 
 ## Getting Started
 
+### Reader app
+
 ```bash
 pnpm install
 turbo dev
 ```
 
-The app runs at `http://localhost:5173`.
+The reader app runs at `http://localhost:5173`.
+
+### AI Story Authoring Tool
+
+The authoring tool requires a separate Python backend. From `apps/story-generator-backend/`:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env
+# Edit .env and add your GEMINI_API_KEY
+make dev
+```
+
+The frontend runs at `http://localhost:5174` and the backend API at `http://localhost:8000`.
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for the full setup, testing, and contribution guide.
 
