@@ -37,6 +37,9 @@ interface WireStory {
   keywords?: WireVocabEntry[]
   grammar?: string[]
   vocab_supplement?: WireVocabEntry[]
+  author?: string
+  license?: string
+  license_url?: string
   metadata?: Record<string, unknown>
   sentences: WireSentence[]
 }
@@ -81,6 +84,9 @@ export function loadV1(raw: unknown): StoryModel {
     keywords: (wire.keywords ?? []).map(mapVocabEntry),
     grammar: wire.grammar ?? [],
     vocabSupplement: (wire.vocab_supplement ?? []).map(mapVocabEntry),
+    author: wire.author,
+    license: wire.license,
+    licenseUrl: wire.license_url,
     sentences: wire.sentences.map(mapSentence),
     metadata: wire.metadata ?? {},
   }
