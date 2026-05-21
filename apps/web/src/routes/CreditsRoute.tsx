@@ -20,6 +20,31 @@ export function CreditsRoute() {
         <h1 className="text-paper-text text-xl font-semibold mb-6">Credits</h1>
 
         <section className="mb-8">
+          <h2 className="text-paper-text font-semibold mb-2">Open Source</h2>
+          <p className="text-muted text-sm leading-relaxed">
+            Nihon no Hon is open source, released under the{' '}
+            <a
+              href="https://github.com/4OH4/nihonnohon/blob/main/LICENSE"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              MIT License
+            </a>
+            . The source code is available on{' '}
+            <a
+              href="https://github.com/4OH4/nihonnohon"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              GitHub
+            </a>
+            .
+          </p>
+        </section>
+
+        <section className="mb-8">
           <h2 className="text-paper-text font-semibold mb-2">Vocabulary Data</h2>
           <p className="text-muted text-sm leading-relaxed">
             Vocabulary data is derived from{' '}
