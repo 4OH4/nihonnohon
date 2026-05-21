@@ -199,6 +199,7 @@ async function main(): Promise<void> {
   const rl = readline.createInterface({ input, output })
 
   const storiesPerChapter = await promptInt(rl, 'Stories per chapter', 1)
+  const lowestChapter     = await promptInt(rl, 'Lowest chapter', 1)
   const highestChapter    = await promptInt(rl, 'Highest chapter', 23)
   const author            = await prompt(rl, 'Author name', '')
   const licenseName       = await prompt(rl, 'License', 'CC BY 4.0')
@@ -221,8 +222,10 @@ async function main(): Promise<void> {
 
   mkdirSync(outputDir, { recursive: true })
 
-  const total = storiesPerChapter * highestChapter
-  console.log(`Will generate ${total} stories (${storiesPerChapter} × Ch.1–${highestChapter}).`)
+  const chapterCount = highestChapter - lowestChapter + 1
+  const total        = storiesPerChapter * chapterCount
+  const MAX_ATTEMPTS = 3
+  console.log(`Will generate ${total} stories (${storiesPerChapter} × Ch.${lowestChapter}–${highestChapter}, up to ${MAX_ATTEMPTS} attempts each).`)
   console.log(`Output → ${outputDir}\n`)
   console.log('Ctrl+C to cancel gracefully after the current story completes.\n')
   console.log('-'.repeat(60))
@@ -232,140 +235,143 @@ async function main(): Promise<void> {
   const startMs = Date.now()
   let storyIdx = 0
 
-  for (let chapter = 1; chapter <= highestChapter; chapter++) {
+  for (let chapter = lowestChapter; chapter <= highestChapter; chapter++) {
     const chapterStr = `Genki I Ch.${chapter}`
 
     for (let storyNum = 1; storyNum <= storiesPerChapter; storyNum++) {
       storyIdx++
       if (cancelled) break
 
-      const prefix = `[${storyIdx}/${total} — Ch.${chapter} story ${storyNum}]`
-      const t0 = Date.now()
+      let saved = false
 
-      // Step 1: suggest topic
-      process.stdout.write(`${prefix}  Suggesting topic...`)
-      let topic: string
-      try {
-        let resp = await fetch(`${backendUrl}/suggest-topic`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chapter: chapterStr }),
-          signal: AbortSignal.timeout(15_000),
-        })
-        if (resp.status === 429) {
-          process.stdout.write(' (cooldown, retrying in 3s...)')
-          await new Promise(r => setTimeout(r, 3_000))
-          resp = await fetch(`${backendUrl}/suggest-topic`, {
+      for (let attempt = 1; attempt <= MAX_ATTEMPTS && !saved && !cancelled; attempt++) {
+        const attemptTag = attempt > 1 ? ` [retry ${attempt - 1}/${MAX_ATTEMPTS - 1}]` : ''
+        const prefix = `[${storyIdx}/${total} — Ch.${chapter} story ${storyNum}${attemptTag}]`
+        const t0 = Date.now()
+
+        // Step 1: suggest topic
+        process.stdout.write(`${prefix}  Suggesting topic...`)
+        let topic: string
+        try {
+          let resp = await fetch(`${backendUrl}/suggest-topic`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ chapter: chapterStr }),
             signal: AbortSignal.timeout(15_000),
           })
+          if (resp.status === 429) {
+            process.stdout.write(' (cooldown, retrying in 3s...)')
+            await new Promise(r => setTimeout(r, 3_000))
+            resp = await fetch(`${backendUrl}/suggest-topic`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ chapter: chapterStr }),
+              signal: AbortSignal.timeout(15_000),
+            })
+          }
+          if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
+          const data = await resp.json() as { topic: string }
+          topic = data.topic?.trim() ?? ''
+          if (!topic) throw new Error('Empty topic returned')
+          process.stdout.write(`  "${topic.slice(0, 70)}"\n`)
+        } catch (e) {
+          process.stdout.write('\n')
+          console.log(`${prefix}  ✗ suggest-topic: ${e instanceof Error ? e.message : e}`)
+          continue
         }
-        if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
-        const data = await resp.json() as { topic: string }
-        topic = data.topic?.trim() ?? ''
-        if (!topic) throw new Error('Empty topic returned')
-        process.stdout.write(`  "${topic.slice(0, 70)}"\n`)
-      } catch (e) {
-        process.stdout.write('\n')
-        console.log(`${prefix}  ✗ suggest-topic: ${e instanceof Error ? e.message : e}`)
-        failed++
-        continue
-      }
 
-      // Step 2: phase 1 — English proposal
-      console.log(`${prefix}  Generating English story...`)
-      let proposalText: string
-      try {
-        const url1 = `${backendUrl}/run_sse?` + new URLSearchParams({
-          runId: crypto.randomUUID(),
-          chapter: chapterStr,
-          pathMode: 'B',
-          topic,
-          steeringInstructions: '',
-          temperature: String(temperature),
-          grammar_distribution: String(grammarDist),
-          target_word_count: String(targetWordCount),
-        }).toString()
+        // Step 2: phase 1 — English proposal
+        console.log(`${prefix}  Generating English story...`)
+        let proposalText: string
+        try {
+          const url1 = `${backendUrl}/run_sse?` + new URLSearchParams({
+            runId: crypto.randomUUID(),
+            chapter: chapterStr,
+            pathMode: 'B',
+            topic,
+            steeringInstructions: '',
+            temperature: String(temperature),
+            grammar_distribution: String(grammarDist),
+            target_word_count: String(targetWordCount),
+          }).toString()
 
-        const events1 = await streamSSE(url1)
-        const finished1 = events1.find(e => e.type === 'RUN_FINISHED' && e.resultType === 'proposal')
-        if (!finished1) {
-          const errEv = events1.find(e => e.type === 'ERROR')
-          throw new Error((errEv?.message as string | undefined) ?? 'no RUN_FINISHED(proposal) received')
+          const events1 = await streamSSE(url1)
+          const finished1 = events1.find(e => e.type === 'RUN_FINISHED' && e.resultType === 'proposal')
+          if (!finished1) {
+            const errEv = events1.find(e => e.type === 'ERROR')
+            throw new Error((errEv?.message as string | undefined) ?? 'no RUN_FINISHED(proposal) received')
+          }
+          proposalText = (finished1.content as string | undefined) ?? ''
+          if (!proposalText) throw new Error('Empty proposal content')
+        } catch (e) {
+          console.log(`${prefix}  ✗ phase 1: ${e instanceof Error ? e.message : e}`)
+          continue
         }
-        proposalText = (finished1.content as string | undefined) ?? ''
-        if (!proposalText) throw new Error('Empty proposal content')
-      } catch (e) {
-        console.log(`${prefix}  ✗ phase 1: ${e instanceof Error ? e.message : e}`)
-        failed++
-        continue
-      }
 
-      // Step 3: phase 2 — Japanese conversion
-      console.log(`${prefix}  Converting to Japanese...`)
-      let storyJsonRaw: string
-      try {
-        const url2 = `${backendUrl}/run_sse?` + new URLSearchParams({
-          runId: crypto.randomUUID(),
-          chapter: chapterStr,
-          pathMode: 'B',
-          englishDraft: proposalText,
-          steeringInstructions: '',
-          temperature: String(temperature),
-          grammar_distribution: String(grammarDist),
-        }).toString()
+        // Step 3: phase 2 — Japanese conversion
+        console.log(`${prefix}  Converting to Japanese...`)
+        let storyJsonRaw: string
+        try {
+          const url2 = `${backendUrl}/run_sse?` + new URLSearchParams({
+            runId: crypto.randomUUID(),
+            chapter: chapterStr,
+            pathMode: 'B',
+            englishDraft: proposalText,
+            steeringInstructions: '',
+            temperature: String(temperature),
+            grammar_distribution: String(grammarDist),
+          }).toString()
 
-        const events2 = await streamSSE(url2)
-        const finished2 = events2.find(e => e.type === 'RUN_FINISHED' && e.resultType === 'story')
-        if (!finished2) {
-          const errEv = events2.find(e => e.type === 'ERROR')
-          throw new Error((errEv?.message as string | undefined) ?? 'no RUN_FINISHED(story) received')
+          const events2 = await streamSSE(url2)
+          const finished2 = events2.find(e => e.type === 'RUN_FINISHED' && e.resultType === 'story')
+          if (!finished2) {
+            const errEv = events2.find(e => e.type === 'ERROR')
+            throw new Error((errEv?.message as string | undefined) ?? 'no RUN_FINISHED(story) received')
+          }
+          storyJsonRaw = (finished2.content as string | undefined) ?? ''
+          if (!storyJsonRaw) throw new Error('Empty story content')
+        } catch (e) {
+          console.log(`${prefix}  ✗ phase 2: ${e instanceof Error ? e.message : e}`)
+          continue
         }
-        storyJsonRaw = (finished2.content as string | undefined) ?? ''
-        if (!storyJsonRaw) throw new Error('Empty story content')
-      } catch (e) {
-        console.log(`${prefix}  ✗ phase 2: ${e instanceof Error ? e.message : e}`)
-        failed++
-        continue
-      }
 
-      // Step 4: inject attribution
-      const storyJson = injectAttribution(storyJsonRaw, author, licenseName)
+        // Step 4: inject attribution
+        const storyJson = injectAttribution(storyJsonRaw, author, licenseName)
 
-      // Step 5: 8-stage client-side validation
-      const validationErrors: ValidationError[] = validateStoryJson(storyJson)
-      if (validationErrors.length > 0) {
-        console.log(`${prefix}  ✗ validation failed (${validationErrors.length} error${validationErrors.length === 1 ? '' : 's'}):`)
-        for (const err of validationErrors.slice(0, 3)) {
-          const si = err.sentenceIndex !== undefined ? ` [sentence ${err.sentenceIndex}]` : ''
-          console.log(`     • ${err.rule}${si}: ${err.message}`)
+        // Step 5: 8-stage client-side validation
+        const validationErrors: ValidationError[] = validateStoryJson(storyJson)
+        if (validationErrors.length > 0) {
+          console.log(`${prefix}  ✗ validation failed (${validationErrors.length} error${validationErrors.length === 1 ? '' : 's'}):`)
+          for (const err of validationErrors.slice(0, 3)) {
+            const si = err.sentenceIndex !== undefined ? ` [sentence ${err.sentenceIndex}]` : ''
+            console.log(`     • ${err.rule}${si}: ${err.message}`)
+          }
+          continue
         }
-        failed++
-        continue
+
+        // Step 6: loadStory contract test (NFR11)
+        try {
+          loadStory(storyJson)
+        } catch (e) {
+          const msg = e instanceof LoaderError ? e.message : String(e)
+          console.log(`${prefix}  ✗ loadStory contract: ${msg}`)
+          continue
+        }
+
+        // Step 7: save
+        try {
+          const outPath = saveStory(storyJson, outputDir)
+          const elapsed = ((Date.now() - t0) / 1000).toFixed(0)
+          console.log(`${prefix}  ✓ ${outPath.split(/[\\/]/).pop()} (${elapsed}s)`)
+          saved = true
+        } catch (e) {
+          console.log(`${prefix}  ✗ save failed: ${e instanceof Error ? e.message : e}`)
+          continue
+        }
       }
 
-      // Step 6: loadStory contract test (NFR11)
-      try {
-        loadStory(storyJson)
-      } catch (e) {
-        const msg = e instanceof LoaderError ? e.message : String(e)
-        console.log(`${prefix}  ✗ loadStory contract: ${msg}`)
-        failed++
-        continue
-      }
-
-      // Step 7: save
-      try {
-        const outPath = saveStory(storyJson, outputDir)
-        const elapsed = ((Date.now() - t0) / 1000).toFixed(0)
-        console.log(`${prefix}  ✓ ${outPath.split(/[\\/]/).pop()} (${elapsed}s)`)
-        completed++
-      } catch (e) {
-        console.log(`${prefix}  ✗ save failed: ${e instanceof Error ? e.message : e}`)
-        failed++
-      }
+      if (saved) completed++
+      else failed++
     }
 
     if (cancelled) break
