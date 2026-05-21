@@ -1,0 +1,496 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch2-my-friend-sakura",
+  "title": "My Friend Sakura",
+  "title_ja": "私の友達、さくらさん",
+  "language": "ja",
+  "description": "A short story about a student's new friend, Sakura, in their Japanese class, using only Genki I Chapter 2 grammar and vocabulary.",
+  "difficulty": "Genki I Ch.2",
+  "grammar": [
+    "Ch1 1.1] Defining Identity (X は Y です)",
+    "Ch1 1.3] Connecting Nouns (Noun1 の Noun2)",
+    "Ch2 2.1] Demonstrative Pronouns (これ・それ・あれ)",
+    "Ch2 2.2] Specifying Objects (この・その・あの)",
+    "Ch2 2.3] Identifying Places (ここ・そこ・あそこ)",
+    "Ch2 2.5] Addition and Inclusion (Particle も)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "火曜日",
+      "hiragana": "かようび",
+      "translation": "Tuesday"
+    },
+    {
+      "key": 10001,
+      "word": "クラス",
+      "hiragana": "クラス",
+      "translation": "class"
+    },
+    {
+      "key": 10002,
+      "word": "コーヒー",
+      "hiragana": "コーヒー",
+      "translation": "coffee"
+    },
+    {
+      "key": 10003,
+      "word": "お茶",
+      "hiragana": "おちゃ",
+      "translation": "tea"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "さくら",
+        "さん",
+        "は",
+        "私",
+        "の",
+        "友達",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "わたし",
+        "null",
+        "ともだち",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        44,
+        null,
+        61,
+        null,
+        52,
+        null,
+        null
+      ],
+      "translation": "Sakura is my friend.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "さくら",
+        "さん",
+        "は",
+        "大学",
+        "生",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "だいがく",
+        "せい",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        44,
+        null,
+        50,
+        56,
+        null,
+        null
+      ],
+      "translation": "Sakura is a university student.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "私",
+        "も",
+        "大学",
+        "生",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "だいがく",
+        "せい",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        5,
+        50,
+        56,
+        null,
+        null
+      ],
+      "translation": "I am also a university student.",
+      "grammar": [
+        0,
+        5
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "さくら",
+        "さん",
+        "は",
+        "私",
+        "の",
+        "日本",
+        "語",
+        "の",
+        "クラス",
+        "の",
+        "学生",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "わたし",
+        "null",
+        "にほん",
+        "ご",
+        "null",
+        "null",
+        "null",
+        "がくせい",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        44,
+        null,
+        61,
+        null,
+        55,
+        39,
+        null,
+        10001,
+        null,
+        38,
+        null,
+        null
+      ],
+      "translation": "Sakura is a student of my Japanese class.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "私",
+        "の",
+        "日本",
+        "語",
+        "の",
+        "クラス",
+        "は",
+        "火曜日",
+        "の",
+        "午後",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "にほん",
+        "ご",
+        "null",
+        "null",
+        "null",
+        "かようび",
+        "null",
+        "ごご",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        55,
+        39,
+        null,
+        10001,
+        null,
+        10000,
+        null,
+        41,
+        null,
+        null
+      ],
+      "translation": "My Japanese class is Tuesday afternoon.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "この",
+        "先生",
+        "は",
+        "日本",
+        "語",
+        "の",
+        "先生",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "せんせい",
+        "null",
+        "にほん",
+        "ご",
+        "null",
+        "せんせい",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        95,
+        47,
+        null,
+        55,
+        39,
+        null,
+        47,
+        null,
+        null
+      ],
+      "translation": "This teacher is a Japanese language teacher.",
+      "grammar": [
+        0,
+        1,
+        3
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "大学",
+        "は",
+        "ここ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "だいがく",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        50,
+        null,
+        null,
+        null,
+        null
+      ],
+      "translation": "The university is here.",
+      "grammar": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "喫茶店",
+        "は",
+        "あそこ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "きっさてん",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        125,
+        null,
+        99,
+        null,
+        null
+      ],
+      "translation": "The cafe is over there.",
+      "grammar": [
+        0,
+        4
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "これ",
+        "は",
+        "お茶",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "おちゃ",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        91,
+        null,
+        10003,
+        null,
+        null
+      ],
+      "translation": "This is tea.",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "あれ",
+        "は",
+        "コーヒー",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        93,
+        null,
+        10002,
+        null,
+        null
+      ],
+      "translation": "That is coffee.",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "日本",
+        "語",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "にほん",
+        "ご",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        55,
+        39,
+        null,
+        null
+      ],
+      "translation": "It is Japanese.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "英語",
+        "も",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "えいご",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        37,
+        5,
+        null,
+        null
+      ],
+      "translation": "It is English too.",
+      "grammar": [
+        0,
+        5
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "さくら",
+        "さん",
+        "は",
+        "友達",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "ともだち",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        44,
+        null,
+        52,
+        null,
+        null
+      ],
+      "translation": "Sakura is a friend.",
+      "grammar": [
+        0
+      ]
+    }
+  ],
+  "author": "Rupert Thomas",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

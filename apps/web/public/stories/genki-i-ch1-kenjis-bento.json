@@ -1,0 +1,318 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch1-kenjis-bento",
+  "title": "Kenji's Bento",
+  "title_ja": "ケンジさん の べんとう",
+  "language": "ja",
+  "description": "This story introduces Kenji, a college student, and describes the contents of his bento box using basic identification and noun-linking grammar.",
+  "difficulty": "Genki I Ch.1",
+  "grammar": [
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch1 1.2] Basic Inquiry (Question Sentences)",
+    "[Ch1 1.3] Connecting Nouns (Noun1 の Noun2)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "ケンジ",
+      "hiragana": "けんじ",
+      "translation": "Kenji (name)"
+    },
+    {
+      "key": 10001,
+      "word": "べんとう",
+      "hiragana": "べんとう",
+      "translation": "bento box"
+    },
+    {
+      "key": 10002,
+      "word": "ごはん",
+      "hiragana": "ごはん",
+      "translation": "cooked rice"
+    },
+    {
+      "key": 10003,
+      "word": "たまご",
+      "hiragana": "たまご",
+      "translation": "egg"
+    },
+    {
+      "key": 10004,
+      "word": "ソーセージ",
+      "hiragana": "そーせーじ",
+      "translation": "sausage"
+    },
+    {
+      "key": 10005,
+      "word": "ブロッコリー",
+      "hiragana": "ぶろっこりー",
+      "translation": "broccoli"
+    },
+    {
+      "key": 10006,
+      "word": "いいえ",
+      "hiragana": "いいえ",
+      "translation": "no"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "ケンジ",
+        "さん",
+        "は",
+        "大学生",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "だいがくせい",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        83,
+        null,
+        null
+      ],
+      "translation": "Kenji is a college student.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "べんとう",
+        "は",
+        "ケンジ",
+        "さん",
+        "の",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        10000,
+        44,
+        null,
+        null,
+        null
+      ],
+      "translation": "The bento is Kenji's.",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "べんとう",
+        "の",
+        "ごはん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        10002,
+        null,
+        null
+      ],
+      "translation": "It is the bento's rice.",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "べんとう",
+        "の",
+        "たまご",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        10003,
+        null,
+        null
+      ],
+      "translation": "It is the bento's egg.",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "べんとう",
+        "の",
+        "ソーセージ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        10004,
+        null,
+        null
+      ],
+      "translation": "It is the bento's sausage.",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "べんとう",
+        "の",
+        "ブロッコリー",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        10005,
+        null,
+        null
+      ],
+      "translation": "It is the bento's broccoli.",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "ケンジ",
+        "さん",
+        "は",
+        "先生",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "せんせい",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        47,
+        null,
+        null,
+        null
+      ],
+      "translation": "Is Kenji a teacher?",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "いいえ",
+        "、",
+        "ケンジ",
+        "さん",
+        "は",
+        "大学生",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "だいがくせい",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10006,
+        null,
+        10000,
+        44,
+        null,
+        83,
+        null,
+        null
+      ],
+      "translation": "No, Kenji is a college student.",
+      "grammar": [
+        0
+      ]
+    }
+  ],
+  "author": "Rupert Thomas",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

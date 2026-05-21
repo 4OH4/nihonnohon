@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@types/node':
+        specifier: ^20.19.40
+        version: 20.19.40
       husky:
         specifier: ^9.0.0
         version: 9.1.7

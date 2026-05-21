@@ -1,0 +1,660 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch2-bookstore-items",
+  "title": "At the Bookstore",
+  "title_ja": "本屋です！",
+  "language": "ja",
+  "description": "A high school student and their friend Ken are at a bookstore. They describe the location, different books, and a pen, using basic Japanese grammar for identification and questions.",
+  "difficulty": "Genki I Ch.2",
+  "grammar": [
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch1 1.3] Connecting Nouns (Noun1 の Noun2)",
+    "[Ch2 2.1] Demonstrative Pronouns (これ・それ・あれ)",
+    "[Ch2 2.5] Addition and Inclusion (Particle も)",
+    "[Ch1 1.2] Basic Inquiry (Question Sentences)",
+    "[Ch2 2.3] Identifying Places (ここ・そこ・あそこ)",
+    "[Ch2 2.2] Specifying Objects (この・その・あの)",
+    "[Ch2 2.6] Negative Identity (～じゃないです)",
+    "[Ch2 2.4] Asking for Ownership (だれの + Noun)",
+    "[Ch2 2.7] Social Feedback (Particles ね and よ)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "本屋",
+      "hiragana": "ほんや",
+      "translation": "bookstore"
+    },
+    {
+      "key": 10001,
+      "word": "漫画",
+      "hiragana": "まんが",
+      "translation": "manga"
+    },
+    {
+      "key": 10002,
+      "word": "ケン",
+      "hiragana": "けん",
+      "translation": "Ken (name)"
+    },
+    {
+      "key": 10003,
+      "word": "ここ",
+      "hiragana": "ここ",
+      "translation": "here"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "私",
+        "は",
+        "高校生",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "こうこうせい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        80,
+        null,
+        null
+      ],
+      "translation": "I am a high school student.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "これ",
+        "は",
+        "私",
+        "の",
+        "友達",
+        "の",
+        "ケン",
+        "さん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "わたし",
+        null,
+        "ともだち",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        91,
+        null,
+        61,
+        null,
+        52,
+        null,
+        10002,
+        44,
+        null,
+        null
+      ],
+      "translation": "This is my friend Ken.",
+      "grammar": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "ケン",
+        "さん",
+        "も",
+        "高校生",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "こうこうせい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10002,
+        44,
+        null,
+        80,
+        null,
+        null
+      ],
+      "translation": "Ken is also a high school student.",
+      "grammar": [
+        0,
+        3
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "ここ",
+        "は",
+        "どこ",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        100,
+        null,
+        null,
+        null
+      ],
+      "translation": "Where are we?",
+      "grammar": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "ここ",
+        "は",
+        "本屋",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "ほんや",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        10000,
+        null,
+        null
+      ],
+      "translation": "This is a bookstore.",
+      "grammar": [
+        0,
+        5
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "この",
+        "本屋",
+        "は",
+        "図書館",
+        "じゃない",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "ほんや",
+        null,
+        "としょかん",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        10000,
+        null,
+        127,
+        null,
+        null,
+        null
+      ],
+      "translation": "This bookstore is not a library.",
+      "grammar": [
+        0,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "これ",
+        "は",
+        "何",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "なん",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        91,
+        null,
+        54,
+        null,
+        null,
+        null
+      ],
+      "translation": "What is this?",
+      "grammar": [
+        2,
+        4
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "これ",
+        "は",
+        "本",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "ほん",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        91,
+        null,
+        123,
+        null,
+        null
+      ],
+      "translation": "This is a book.",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "この",
+        "本",
+        "は",
+        "漫画",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "ほん",
+        null,
+        "まんが",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        123,
+        null,
+        10001,
+        null,
+        null
+      ],
+      "translation": "This book is a manga.",
+      "grammar": [
+        0,
+        6
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "あれ",
+        "は",
+        "辞書",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "じしょ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        93,
+        null,
+        114,
+        null,
+        null
+      ],
+      "translation": "That over there is a dictionary.",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "それ",
+        "は",
+        "日本",
+        "語",
+        "の",
+        "辞書",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "にほん",
+        null,
+        null,
+        "じしょ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        55,
+        39,
+        null,
+        114,
+        null,
+        null
+      ],
+      "translation": "It is a Japanese dictionary.",
+      "grammar": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "ケン",
+        "さん",
+        "は",
+        "あそこ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10002,
+        44,
+        null,
+        99,
+        null,
+        null
+      ],
+      "translation": "Ken is over there.",
+      "grammar": [
+        0,
+        5
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "それ",
+        "は",
+        "何",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "なん",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        54,
+        null,
+        null,
+        null
+      ],
+      "translation": "What is that?",
+      "grammar": [
+        2,
+        4
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "それ",
+        "は",
+        "ペン",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        121,
+        null,
+        null
+      ],
+      "translation": "That is a pen.",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "これ",
+        "は",
+        "だれ",
+        "の",
+        "ペン",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        91,
+        null,
+        101,
+        null,
+        121,
+        null,
+        null,
+        null
+      ],
+      "translation": "Whose pen is this?",
+      "grammar": [
+        1,
+        2,
+        4,
+        8
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "これ",
+        "は",
+        "ケン",
+        "さん",
+        "の",
+        "ペン",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        91,
+        null,
+        10002,
+        44,
+        null,
+        121,
+        null,
+        null
+      ],
+      "translation": "This is Ken's pen.",
+      "grammar": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "この",
+        "ペン",
+        "は",
+        "高い",
+        "です",
+        "ね",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "たかい",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        121,
+        null,
+        132,
+        null,
+        null,
+        null
+      ],
+      "translation": "This pen is expensive, right?",
+      "grammar": [
+        0,
+        6,
+        9
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "そうです",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null
+      ],
+      "vocab_keys": [
+        49,
+        null
+      ],
+      "translation": "That's right.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "どうも",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null
+      ],
+      "vocab_keys": [
+        138,
+        null
+      ],
+      "translation": "Thank you.",
+      "grammar": []
+    }
+  ],
+  "author": "Rupert Thomas",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

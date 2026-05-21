@@ -1,11 +1,56 @@
 [
   {
-    "id": "genki-i-ch6-tanaka-letter",
-    "filename": "genki-i-ch6-tanaka-letter.json",
-    "title": "A Letter from Mary",
-    "titleJa": "メアリーさんのてがみ",
-    "difficulty": "Genki I Ch.6",
-    "language": "Japanese",
-    "description": "Mary writes a letter about her daily routine as a university student in Japan."
+    "id": "genki-i-ch1-classroom-introduction",
+    "filename": "genki-i-ch1-classroom-introduction.json",
+    "title": "A New Student in Class",
+    "titleJa": "教室 の 学生",
+    "difficulty": "Genki I Ch.1",
+    "language": "ja",
+    "description": "This is a simple story about a classroom and the introduction of a new student, Yuki-san, adapted for Genki I Chapter 1 learners."
+  },
+  {
+    "id": "genki-i-ch1-kenjis-bento",
+    "filename": "genki-i-ch1-kenjis-bento.json",
+    "title": "Kenji's Bento",
+    "titleJa": "ケンジさん の べんとう",
+    "difficulty": "Genki I Ch.1",
+    "language": "ja",
+    "description": "This story introduces Kenji, a college student, and describes the contents of his bento box using basic identification and noun-linking grammar."
+  },
+  {
+    "id": "genki-i-ch1-my-japanese-high-school",
+    "filename": "genki-i-ch1-my-japanese-high-school.json",
+    "title": "My Japanese High School",
+    "titleJa": "わたしの日本の高校",
+    "difficulty": "Genki I Ch.1",
+    "language": "ja",
+    "description": "A student is getting ready for her first day at a Japanese high school, describing her identity and the items she has prepared."
+  },
+  {
+    "id": "genki-i-ch2-bookstore-items",
+    "filename": "genki-i-ch2-bookstore-items.json",
+    "title": "At the Bookstore",
+    "titleJa": "本屋です！",
+    "difficulty": "Genki I Ch.2",
+    "language": "ja",
+    "description": "A high school student and their friend Ken are at a bookstore. They describe the location, different books, and a pen, using basic Japanese grammar for identification and questions."
+  },
+  {
+    "id": "genki-i-ch2-my-friend-sakura",
+    "filename": "genki-i-ch2-my-friend-sakura.json",
+    "title": "My Friend Sakura",
+    "titleJa": "私の友達、さくらさん",
+    "difficulty": "Genki I Ch.2",
+    "language": "ja",
+    "description": "A short story about a student's new friend, Sakura, in their Japanese class, using only Genki I Chapter 2 grammar and vocabulary."
+  },
+  {
+    "id": "genki-i-ch2-my-school-walk",
+    "filename": "genki-i-ch2-my-school-walk.json",
+    "title": "My School Walk",
+    "titleJa": "わたしの高校",
+    "difficulty": "Genki I Ch.2",
+    "language": "ja",
+    "description": "A short story describing a student's walk to high school with a friend, focusing on identifying objects and places using Genki I Chapter 2 grammar and vocabulary."
   }
 ]

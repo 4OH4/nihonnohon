@@ -1,0 +1,626 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch2-my-school-walk",
+  "title": "My School Walk",
+  "title_ja": "わたしの高校",
+  "language": "ja",
+  "description": "A short story describing a student's walk to high school with a friend, focusing on identifying objects and places using Genki I Chapter 2 grammar and vocabulary.",
+  "difficulty": "Genki I Ch.2",
+  "grammar": [
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch1 1.2] Basic Inquiry (Question Sentences)",
+    "[Ch1 1.3] Connecting Nouns (Noun1 の Noun2)",
+    "[Ch2 2.1] Demonstrative Pronouns (これ・それ・あれ)",
+    "[Ch2 2.2] Specifying Objects (この・その・あの)",
+    "[Ch2 2.3] Identifying Places (ここ・そこ・あそこ)",
+    "[Ch2 2.4] Asking for Ownership (だれの + Noun)",
+    "[Ch2 2.5] Addition and Inclusion (Particle も)",
+    "[Ch2 2.6] Negative Identity (～じゃないです)",
+    "[Ch2 2.7] Social Feedback (Particles ね and よ)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "けんじ",
+      "hiragana": "けんじ",
+      "translation": "Kenji"
+    },
+    {
+      "key": 10001,
+      "word": "公園",
+      "hiragana": "こうえん",
+      "translation": "park"
+    },
+    {
+      "key": 10002,
+      "word": "花屋",
+      "hiragana": "はなや",
+      "translation": "flower shop"
+    },
+    {
+      "key": 10003,
+      "word": "バス停",
+      "hiragana": "バスてい",
+      "translation": "bus stop"
+    },
+    {
+      "key": 10004,
+      "word": "教室",
+      "hiragana": "きょうしつ",
+      "translation": "classroom"
+    },
+    {
+      "key": 10005,
+      "word": "ここ",
+      "hiragana": "ここ",
+      "translation": "here"
+    },
+    {
+      "key": 10006,
+      "word": "そこ",
+      "hiragana": "そこ",
+      "translation": "there"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "いま",
+        "、",
+        "ごぜん",
+        "はちじ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        36,
+        null,
+        42,
+        45,
+        null,
+        null
+      ],
+      "translation": "It is now 8:00 A.M.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "わたし",
+        "は",
+        "こうこうせい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        80,
+        null,
+        null
+      ],
+      "translation": "I am a high school student.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "けんじ",
+        "は",
+        "わたし",
+        "の",
+        "ともだち",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        61,
+        null,
+        52,
+        null,
+        null
+      ],
+      "translation": "Kenji is my friend.",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "これ",
+        "は",
+        "わたし",
+        "の",
+        "かばん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        91,
+        null,
+        61,
+        null,
+        110,
+        null,
+        null
+      ],
+      "translation": "This is my bag.",
+      "grammar": [
+        0,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "それ",
+        "は",
+        "けんじ",
+        "の",
+        "かばん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        10000,
+        null,
+        110,
+        null,
+        null
+      ],
+      "translation": "That is Kenji's bag.",
+      "grammar": [
+        0,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "あの",
+        "こうこう",
+        "は",
+        "どこ",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "こうこう",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        97,
+        40,
+        null,
+        100,
+        null,
+        null,
+        null
+      ],
+      "translation": "Where is that high school over there?",
+      "grammar": [
+        1,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "あそこ",
+        "は",
+        "こうこう",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "こうこう",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        99,
+        null,
+        40,
+        null,
+        null
+      ],
+      "translation": "Over there is the high school.",
+      "grammar": [
+        0,
+        5
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "あの",
+        "こうえん",
+        "は",
+        "どこ",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "こうえん",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        97,
+        10001,
+        null,
+        100,
+        null,
+        null,
+        null
+      ],
+      "translation": "Where is that park over there?",
+      "grammar": [
+        1,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "そこ",
+        "は",
+        "こうえん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "こうえん",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10006,
+        null,
+        10001,
+        null,
+        null
+      ],
+      "translation": "That place [near you] is a park.",
+      "grammar": [
+        0,
+        5
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "はなや",
+        "も",
+        "そこ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "はなや",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10002,
+        null,
+        10006,
+        null,
+        null
+      ],
+      "translation": "The flower shop is also there.",
+      "grammar": [
+        0,
+        5,
+        7
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "バスてい",
+        "も",
+        "そこ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "バスてい",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        10006,
+        null,
+        null
+      ],
+      "translation": "The bus stop is also there.",
+      "grammar": [
+        0,
+        5,
+        7
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "ここ",
+        "は",
+        "きっさてん",
+        "じゃ",
+        "ない",
+        "です",
+        "ね",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10005,
+        null,
+        125,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "translation": "This is not a cafe, right?",
+      "grammar": [
+        1,
+        5,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "はい",
+        "、",
+        "きっさてん",
+        "じゃ",
+        "ない",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        57,
+        null,
+        125,
+        null,
+        null,
+        null,
+        null
+      ],
+      "translation": "Yes, it is not a cafe.",
+      "grammar": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "ここ",
+        "は",
+        "きょうしつ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "きょうしつ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10005,
+        null,
+        10004,
+        null,
+        null
+      ],
+      "translation": "This is the classroom.",
+      "grammar": [
+        0,
+        5
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "だれ",
+        "の",
+        "くつ",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        101,
+        null,
+        111,
+        null,
+        null,
+        null
+      ],
+      "translation": "Whose shoes are these?",
+      "grammar": [
+        1,
+        2,
+        6
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "わたし",
+        "の",
+        "くつ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        111,
+        null,
+        null
+      ],
+      "translation": "They are my shoes.",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "けんじ",
+        "も",
+        "こうこうせい",
+        "です",
+        "よ",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        80,
+        null,
+        null,
+        null
+      ],
+      "translation": "Kenji is also a high school student, you know.",
+      "grammar": [
+        0,
+        7,
+        9
+      ]
+    }
+  ],
+  "author": "Rupert Thomas",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}
