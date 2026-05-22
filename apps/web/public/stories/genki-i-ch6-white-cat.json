@@ -1,0 +1,1570 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch6-white-cat",
+  "title": "The White Cat",
+  "title_ja": "白い猫",
+  "language": "ja",
+  "description": "A student encounters a mysterious cat with unusual eyes near their school gate after classes. The cat disappears without a trace, leaving the student wondering if they will ever see it again.",
+  "difficulty": "Genki I Ch.6",
+  "grammar": [
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch1 1.2] Basic Inquiry (Question Sentences)",
+    "[Ch1 1.3] Connecting Nouns (Noun1 の Noun2)",
+    "[Ch2 2.1] Demonstrative Pronouns (これ・それ・あれ)",
+    "[Ch2 2.2] Specifying Objects (この・その・あの)",
+    "[Ch2 2.3] Identifying Places (ここ・そこ・あそこ)",
+    "[Ch3 3.1] Verb Classes and Conjugation (～ます forms)",
+    "[Ch3 3.2] The Present Tense (habitual actions / future intent)",
+    "[Ch3 3.3] Sentence Logistics (Particles を, で, に, へ)",
+    "[Ch3 3.6] Frequency Adverbs (よく, ときどき, ぜんぜん, あまり)",
+    "[Ch4 4.1] Stating Existence (あります / います)",
+    "[Ch4 4.2] Positional Descriptions (location nouns with の)",
+    "[Ch4 4.3] Past Identity (Past Tense of です: ～でした)",
+    "[Ch4 4.4] Recounting Actions (Past Tense of Verbs: ～ました / ～ませんでした)",
+    "[Ch4 4.5] Connecting Items (Particle と)",
+    "[Ch5 5.1] Attribute Basics (Adjective Tenses: い-adjectives, な-adjectives)",
+    "[Ch5 5.2] Attribute History (Past Tense of Adjectives: ～かったです / 〜でした)",
+    "[Ch5 5.3] Modifying Nouns (Adjective + Noun)",
+    "[Ch6 6.1] Verb て-form",
+    "[Ch6 6.1] Verb て-form + います (for continuous actions or resulting states)",
+    "[Ch6 6.3] Adjective Linking (な-adjective + で, い-adjective + くて)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "門",
+      "hiragana": "もん",
+      "translation": "gate"
+    },
+    {
+      "key": 10001,
+      "word": "木",
+      "hiragana": "き",
+      "translation": "tree"
+    },
+    {
+      "key": 10002,
+      "word": "地面",
+      "hiragana": "じめん",
+      "translation": "ground"
+    },
+    {
+      "key": 10003,
+      "word": "変",
+      "hiragana": "へん",
+      "translation": "strange"
+    },
+    {
+      "key": 10004,
+      "word": "毛",
+      "hiragana": "け",
+      "translation": "fur"
+    },
+    {
+      "key": 10005,
+      "word": "真っ白",
+      "hiragana": "まっしろ",
+      "translation": "pure white"
+    },
+    {
+      "key": 10007,
+      "word": "目",
+      "hiragana": "め",
+      "translation": "eye"
+    },
+    {
+      "key": 10009,
+      "word": "青い",
+      "hiragana": "あおい",
+      "translation": "blue"
+    },
+    {
+      "key": 10010,
+      "word": "黄色い",
+      "hiragana": "きいろい",
+      "translation": "yellow"
+    },
+    {
+      "key": 10012,
+      "word": "おとなしい",
+      "hiragana": "おとなしい",
+      "translation": "calm"
+    },
+    {
+      "key": 10014,
+      "word": "音",
+      "hiragana": "おと",
+      "translation": "sound"
+    },
+    {
+      "key": 10016,
+      "word": "そして",
+      "hiragana": "そして",
+      "translation": "and then"
+    },
+    {
+      "key": 10017,
+      "word": "不思議",
+      "hiragana": "ふしぎ",
+      "translation": "mysterious"
+    },
+    {
+      "key": 10018,
+      "word": "一つ",
+      "hiragana": "ひとつ",
+      "translation": "one (thing)"
+    },
+    {
+      "key": 10019,
+      "word": "もう一つ",
+      "hiragana": "もうひとつ",
+      "translation": "another one (thing)"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "学校",
+        "から",
+        "帰り",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "がっこう",
+        "null",
+        "かえり",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        158,
+        null,
+        171,
+        null,
+        null
+      ],
+      "translation": "I returned from school.",
+      "grammar": [
+        6,
+        8,
+        13
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "午後",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "ごご",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        41,
+        null,
+        null
+      ],
+      "translation": "It was afternoon.",
+      "grammar": [
+        0,
+        12
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "私",
+        "は",
+        "家",
+        "に",
+        "帰り",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "いえ",
+        "null",
+        "かえり",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        155,
+        null,
+        171,
+        null,
+        null
+      ],
+      "translation": "I went home.",
+      "grammar": [
+        0,
+        6,
+        8,
+        13
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "門",
+        "が",
+        "あり",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "もん",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        229,
+        null,
+        null
+      ],
+      "translation": "There was a gate.",
+      "grammar": [
+        6,
+        10,
+        13
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "その",
+        "そば",
+        "に",
+        "、",
+        "大きい",
+        "木",
+        "が",
+        "あり",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "おおきい",
+        "き",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        96,
+        251,
+        null,
+        null,
+        278,
+        10001,
+        null,
+        229,
+        null,
+        null
+      ],
+      "translation": "Next to it, there was a big tree.",
+      "grammar": [
+        4,
+        8,
+        10,
+        11,
+        13,
+        17
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "門",
+        "の",
+        "そば",
+        "で",
+        "、",
+        "私",
+        "は",
+        "小さい",
+        "何か",
+        "を",
+        "見",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "もん",
+        "null",
+        "null",
+        "null",
+        "null",
+        "わたし",
+        "null",
+        "ちいさい",
+        "なにか",
+        "null",
+        "み",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        251,
+        null,
+        null,
+        61,
+        null,
+        283,
+        54,
+        null,
+        179,
+        null,
+        null
+      ],
+      "translation": "Near the gate, I saw something small.",
+      "grammar": [
+        2,
+        8,
+        11,
+        13,
+        17
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "それ",
+        "は",
+        "猫",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "ねこ",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        205,
+        null,
+        null
+      ],
+      "translation": "It was a cat.",
+      "grammar": [
+        0,
+        3,
+        12
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "猫",
+        "は",
+        "大きい",
+        "木",
+        "の",
+        "そば",
+        "に",
+        "座っ",
+        "て",
+        "い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "ねこ",
+        "null",
+        "おおきい",
+        "き",
+        "null",
+        "null",
+        "null",
+        "すわっ",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        205,
+        null,
+        278,
+        10001,
+        null,
+        251,
+        null,
+        335,
+        null,
+        235,
+        null,
+        null
+      ],
+      "translation": "The cat was sitting near the big tree.",
+      "grammar": [
+        2,
+        8,
+        11,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "猫",
+        "は",
+        "地面",
+        "の",
+        "何か",
+        "を",
+        "見",
+        "て",
+        "い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "ねこ",
+        "null",
+        "じめん",
+        "null",
+        "なにか",
+        "null",
+        "み",
+        "null",
+        "235",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        205,
+        null,
+        10002,
+        null,
+        54,
+        null,
+        179,
+        null,
+        235,
+        null,
+        null
+      ],
+      "translation": "The cat was looking at something on the ground.",
+      "grammar": [
+        2,
+        8,
+        11,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "この",
+        "猫",
+        "は",
+        "とても",
+        "きれい",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "ねこ",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        95,
+        205,
+        null,
+        307,
+        290,
+        null,
+        null
+      ],
+      "translation": "This cat was very beautiful.",
+      "grammar": [
+        0,
+        4,
+        12,
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "でも",
+        "、",
+        "とても",
+        "変",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "へん",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        192,
+        null,
+        307,
+        10003,
+        null,
+        null
+      ],
+      "translation": "But, it was very strange.",
+      "grammar": [
+        0,
+        12,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "猫",
+        "の",
+        "毛",
+        "は",
+        "真っ白",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "ねこ",
+        "null",
+        "け",
+        "null",
+        "まっしろ",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        205,
+        null,
+        10004,
+        null,
+        10005,
+        null,
+        null
+      ],
+      "translation": "The cat's fur was pure white.",
+      "grammar": [
+        0,
+        2,
+        12,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "でも",
+        "、",
+        "変",
+        "な",
+        "の",
+        "は",
+        "目",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "へん",
+        "null",
+        "null",
+        "null",
+        "め",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        192,
+        null,
+        10003,
+        null,
+        null,
+        null,
+        10007,
+        null,
+        null
+      ],
+      "translation": "But, the strange thing was its eyes.",
+      "grammar": [
+        0,
+        12,
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "目",
+        "の",
+        "一つ",
+        "は",
+        "青かった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "め",
+        "null",
+        "ひとつ",
+        "null",
+        "あおかった",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10007,
+        null,
+        10018,
+        null,
+        10009,
+        null,
+        null
+      ],
+      "translation": "One of its eyes was blue.",
+      "grammar": [
+        0,
+        2,
+        16,
+        17
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "そして",
+        "、",
+        "もう一つ",
+        "は",
+        "黄色かった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "もうひとつ",
+        "null",
+        "きいろかった",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10016,
+        null,
+        10019,
+        null,
+        10010,
+        null,
+        null
+      ],
+      "translation": "And then, another one was yellow.",
+      "grammar": [
+        0,
+        16,
+        17
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "私",
+        "は",
+        "猫",
+        "を",
+        "見",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "ねこ",
+        "null",
+        "み",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        205,
+        null,
+        179,
+        null,
+        null
+      ],
+      "translation": "I watched the cat.",
+      "grammar": [
+        0,
+        6,
+        8,
+        13
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "猫",
+        "は",
+        "とても",
+        "おとなしかっ",
+        "た",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "ねこ",
+        "null",
+        "null",
+        "おとなしかっ",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        205,
+        null,
+        307,
+        10012,
+        null,
+        null,
+        null
+      ],
+      "translation": "The cat was very calm.",
+      "grammar": [
+        0,
+        16,
+        17
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "猫",
+        "は",
+        "ゆっくり",
+        "私",
+        "を",
+        "見",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "ねこ",
+        "null",
+        "null",
+        "わたし",
+        "null",
+        "み",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        205,
+        null,
+        359,
+        61,
+        null,
+        179,
+        null,
+        null
+      ],
+      "translation": "The cat slowly looked at me.",
+      "grammar": [
+        0,
+        6,
+        8,
+        13
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "青い",
+        "目",
+        "と",
+        "黄色い",
+        "目",
+        "は",
+        "とても",
+        "大きかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "あおい",
+        "め",
+        "null",
+        "きいろい",
+        "め",
+        "null",
+        "null",
+        "おおきかった",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10009,
+        10007,
+        null,
+        10010,
+        10007,
+        null,
+        307,
+        278,
+        null,
+        null
+      ],
+      "translation": "The blue eye and the yellow eye were very big.",
+      "grammar": [
+        0,
+        14,
+        16,
+        17
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "音",
+        "を",
+        "し",
+        "ません",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "おと",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10014,
+        null,
+        181,
+        null,
+        null,
+        null
+      ],
+      "translation": "It did not make a sound.",
+      "grammar": [
+        6,
+        8,
+        13
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "私",
+        "は",
+        "ちょっと",
+        "前",
+        "に",
+        "行き",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "null",
+        "まえ",
+        "null",
+        "いき",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        188,
+        246,
+        null,
+        170,
+        null,
+        null
+      ],
+      "translation": "I went a little forward.",
+      "grammar": [
+        0,
+        6,
+        8,
+        13
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "猫",
+        "は",
+        "そこ",
+        "に",
+        "い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "ねこ",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        205,
+        null,
+        254,
+        null,
+        235,
+        null,
+        null
+      ],
+      "translation": "The cat was there.",
+      "grammar": [
+        0,
+        5,
+        8,
+        10,
+        13
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "それから",
+        "、",
+        "私",
+        "は",
+        "また",
+        "ちょっと",
+        "前",
+        "に",
+        "行き",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "わたし",
+        "null",
+        "null",
+        "null",
+        "まえ",
+        "null",
+        "いき",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        61,
+        null,
+        null,
+        188,
+        246,
+        null,
+        170,
+        null,
+        null
+      ],
+      "translation": "And then, I went a little forward again.",
+      "grammar": [
+        0,
+        6,
+        8,
+        13
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "猫",
+        "は",
+        "とても",
+        "ゆっくり",
+        "立ち",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "ねこ",
+        "null",
+        "null",
+        "null",
+        "たち",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        205,
+        null,
+        307,
+        359,
+        336,
+        null,
+        null
+      ],
+      "translation": "The cat stood up very slowly.",
+      "grammar": [
+        0,
+        6,
+        13
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "それから",
+        "、",
+        "音",
+        "を",
+        "し",
+        "ません",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "おと",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        10014,
+        null,
+        181,
+        null,
+        null,
+        null
+      ],
+      "translation": "And then, it did not make a sound.",
+      "grammar": [
+        6,
+        8,
+        13
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "そして",
+        "、",
+        "大きい",
+        "木",
+        "の",
+        "後ろ",
+        "に",
+        "行き",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "おおきい",
+        "き",
+        "null",
+        "うしろ",
+        "null",
+        "いき",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10016,
+        null,
+        278,
+        10001,
+        null,
+        247,
+        null,
+        170,
+        null,
+        null
+      ],
+      "translation": "And then, it went behind the big tree.",
+      "grammar": [
+        2,
+        6,
+        8,
+        11,
+        13,
+        17
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "私",
+        "は",
+        "待ち",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "まち",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        233,
+        null,
+        null
+      ],
+      "translation": "I waited.",
+      "grammar": [
+        0,
+        6,
+        13
+      ]
+    },
+    {
+      "id": "s28",
+      "words": [
+        "でも",
+        "、",
+        "猫",
+        "は",
+        "い",
+        "ません",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "ねこ",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        192,
+        null,
+        205,
+        null,
+        235,
+        null,
+        null,
+        null
+      ],
+      "translation": "But, the cat was not there.",
+      "grammar": [
+        0,
+        10,
+        13
+      ]
+    },
+    {
+      "id": "s29",
+      "words": [
+        "猫",
+        "は",
+        "ぜんぜん",
+        "い",
+        "ません",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "ねこ",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        205,
+        null,
+        186,
+        235,
+        null,
+        null,
+        null
+      ],
+      "translation": "The cat was not there at all.",
+      "grammar": [
+        0,
+        9,
+        10,
+        13
+      ]
+    },
+    {
+      "id": "s30",
+      "words": [
+        "私",
+        "は",
+        "木",
+        "に",
+        "行き",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "き",
+        "null",
+        "いき",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        10001,
+        null,
+        170,
+        null,
+        null
+      ],
+      "translation": "I went to the tree.",
+      "grammar": [
+        0,
+        6,
+        8,
+        13
+      ]
+    },
+    {
+      "id": "s31",
+      "words": [
+        "そして",
+        "、",
+        "木",
+        "の",
+        "後ろ",
+        "を",
+        "見",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "き",
+        "null",
+        "うしろ",
+        "null",
+        "み",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10016,
+        null,
+        10001,
+        null,
+        247,
+        null,
+        179,
+        null,
+        null
+      ],
+      "translation": "And then, I looked behind the tree.",
+      "grammar": [
+        2,
+        6,
+        8,
+        11,
+        13
+      ]
+    },
+    {
+      "id": "s32",
+      "words": [
+        "そこ",
+        "に",
+        "何も",
+        "あり",
+        "ません",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "なにも",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        254,
+        null,
+        54,
+        229,
+        null,
+        null,
+        null
+      ],
+      "translation": "There was nothing there.",
+      "grammar": [
+        5,
+        8,
+        10,
+        13
+      ]
+    },
+    {
+      "id": "s33",
+      "words": [
+        "とても",
+        "きれい",
+        "で",
+        "、",
+        "不思議",
+        "な",
+        "猫",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "ふしぎ",
+        "null",
+        "ねこ",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        307,
+        290,
+        null,
+        null,
+        10017,
+        null,
+        205,
+        null,
+        null
+      ],
+      "translation": "It was a very beautiful and mysterious cat.",
+      "grammar": [
+        0,
+        12,
+        15,
+        16,
+        17,
+        20
+      ]
+    },
+    {
+      "id": "s34",
+      "words": [
+        "私",
+        "は",
+        "よく",
+        "学校",
+        "の",
+        "そば",
+        "で",
+        "猫",
+        "を",
+        "見",
+        "ます",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "null",
+        "がっこう",
+        "null",
+        "null",
+        "null",
+        "ねこ",
+        "null",
+        "み",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        190,
+        158,
+        null,
+        251,
+        null,
+        205,
+        null,
+        179,
+        null,
+        null
+      ],
+      "translation": "I often see cats near the school.",
+      "grammar": [
+        0,
+        2,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "s35",
+      "words": [
+        "でも",
+        "、",
+        "こんな",
+        "猫",
+        "は",
+        "ぜんぜん",
+        "見",
+        "ません",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "ねこ",
+        "null",
+        "null",
+        "み",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        192,
+        null,
+        96,
+        205,
+        null,
+        186,
+        179,
+        null,
+        null,
+        null
+      ],
+      "translation": "But, I had never seen such a cat.",
+      "grammar": [
+        0,
+        4,
+        9,
+        13,
+        17
+      ]
+    },
+    {
+      "id": "s36",
+      "words": [
+        "明日",
+        "、",
+        "この",
+        "猫",
+        "を",
+        "見",
+        "ます",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        "あした",
+        "null",
+        "null",
+        "ねこ",
+        "null",
+        "み",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        160,
+        null,
+        95,
+        205,
+        null,
+        179,
+        null,
+        null,
+        null
+      ],
+      "translation": "Will I see this cat tomorrow?",
+      "grammar": [
+        1,
+        4,
+        6,
+        7,
+        8
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

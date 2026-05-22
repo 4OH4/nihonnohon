@@ -1,0 +1,1352 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch8-ramen-oishi",
+  "title": "Ramen Oishi",
+  "title_ja": "ラーメンおいしい",
+  "language": "ja",
+  "description": "Ken loves ramen from a popular shop, but the line is always long. One day, he decides to wait, and discovers why it's so popular.",
+  "difficulty": "Genki I Ch.8",
+  "grammar": [
+    "Defining Identity (X は Y です)",
+    "Connecting Nouns (Noun1 の Noun2)",
+    "Addition and Inclusion (Particle も)",
+    "Social Feedback (Particle ね)",
+    "The Present Tense (habitual, future intent)",
+    "Sentence Logistics (Particles を, で, に, へ)",
+    "Temporal Markers (Time References with に)",
+    "Stating Existence (あります)",
+    "Past Identity (Past Tense of です)",
+    "Recounting Actions (Past Tense of Verbs)",
+    "Connecting Items (Particle と)",
+    "Measuring Time (Duration)",
+    "Attribute Basics (Adjective Tenses)",
+    "Attribute History (Past Tense of Adjectives)",
+    "Modifying Nouns (Adjective + Noun)",
+    "Current Actions (～ている)",
+    "Resultant States (～ている for Change)",
+    "Complex Descriptions (Joining Phrases)",
+    "Purpose of Movement (Stem + に行く)",
+    "Sharing Thoughts (Short Form + と思います)",
+    "Emphasizing Subjects (Particle が)",
+    "Informal Language (Short Forms)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "ラーメンやさん",
+      "hiragana": "ラーメンやさん",
+      "translation": "ramen shop"
+    },
+    {
+      "key": 10001,
+      "word": "いつも",
+      "hiragana": "いつも",
+      "translation": "always"
+    },
+    {
+      "key": 10002,
+      "word": "せん",
+      "hiragana": "せん",
+      "translation": "line; queue"
+    },
+    {
+      "key": 10003,
+      "word": "ケンさん",
+      "hiragana": "ケンさん",
+      "translation": "Mr./Ms. Ken"
+    },
+    {
+      "key": 10004,
+      "word": "ある",
+      "hiragana": "ある",
+      "translation": "a certain; one (as in 'one day')"
+    },
+    {
+      "key": 10005,
+      "word": "もう",
+      "hiragana": "もう",
+      "translation": "already"
+    },
+    {
+      "key": 10006,
+      "word": "だめ",
+      "hiragana": "だめ",
+      "translation": "no good; impossible"
+    },
+    {
+      "key": 10007,
+      "word": "また",
+      "hiragana": "また",
+      "translation": "again"
+    },
+    {
+      "key": 10008,
+      "word": "まだ",
+      "hiragana": "まだ",
+      "translation": "still"
+    },
+    {
+      "key": 10009,
+      "word": "たぶん",
+      "hiragana": "たぶん",
+      "translation": "perhaps; maybe"
+    },
+    {
+      "key": 10010,
+      "word": "今度",
+      "hiragana": "こんど",
+      "translation": "this time"
+    },
+    {
+      "key": 10011,
+      "word": "一番",
+      "hiragana": "いちばん",
+      "translation": "most; number one"
+    },
+    {
+      "key": 10012,
+      "word": "動く",
+      "hiragana": "うごく",
+      "translation": "to move"
+    },
+    {
+      "key": 10013,
+      "word": "少し",
+      "hiragana": "すこし",
+      "translation": "a little"
+    },
+    {
+      "key": 10014,
+      "word": "やっと",
+      "hiragana": "やっと",
+      "translation": "finally"
+    },
+    {
+      "key": 10015,
+      "word": "店",
+      "hiragana": "みせ",
+      "translation": "shop; store"
+    },
+    {
+      "key": 10016,
+      "word": "カウンター",
+      "hiragana": "カウンター",
+      "translation": "counter"
+    },
+    {
+      "key": 10017,
+      "word": "注文する",
+      "hiragana": "ちゅうもんする",
+      "translation": "to order"
+    },
+    {
+      "key": 10018,
+      "word": "わあ",
+      "hiragana": "わあ",
+      "translation": "Wow!"
+    },
+    {
+      "key": 10019,
+      "word": "わけ",
+      "hiragana": "わけ",
+      "translation": "reason"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "まち",
+        "に",
+        "ラーメンやさん",
+        "が",
+        "あります。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        217,
+        null,
+        10000,
+        null,
+        229
+      ],
+      "translation": "There is a ramen shop down the street.",
+      "grammar": [
+        5,
+        7,
+        20
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "名前",
+        "は",
+        "「ラーメン",
+        "おいしい」",
+        "です。"
+      ],
+      "ruby": [
+        "なまえ",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        53,
+        null,
+        10000,
+        102,
+        null
+      ],
+      "translation": "Its name is \"Ramen Oishi.\"",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "毎日",
+        "、",
+        "たくさん",
+        "の",
+        "人",
+        "が",
+        "そこ",
+        "へ",
+        "行きます。"
+      ],
+      "ruby": [
+        "まいにち",
+        "null",
+        "null",
+        "null",
+        "ひと",
+        "null",
+        "null",
+        "null",
+        "いきます"
+      ],
+      "vocab_keys": [
+        168,
+        null,
+        239,
+        null,
+        207,
+        null,
+        254,
+        null,
+        170
+      ],
+      "translation": "Every day, many people go there.",
+      "grammar": [
+        4,
+        5,
+        20
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "いつも",
+        "、",
+        "せん",
+        "は",
+        "長い",
+        "です。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "ながい",
+        "null"
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        10002,
+        null,
+        386,
+        null
+      ],
+      "translation": "The line is always long.",
+      "grammar": [
+        12
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "ケンさん",
+        "は",
+        "ラーメンやさん",
+        "の",
+        "そば",
+        "に",
+        "住んでいます。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "すんでいます"
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        10000,
+        null,
+        251,
+        null,
+        396
+      ],
+      "translation": "Ken lives near the ramen shop.",
+      "grammar": [
+        1,
+        16
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "毎朝",
+        "、",
+        "長い",
+        "せん",
+        "を",
+        "見ます。"
+      ],
+      "ruby": [
+        "まいあさ",
+        "null",
+        "ながい",
+        "null",
+        "null",
+        "みます"
+      ],
+      "vocab_keys": [
+        159,
+        null,
+        386,
+        10002,
+        null,
+        179
+      ],
+      "translation": "He sees the long line every morning.",
+      "grammar": [
+        14,
+        5
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "毎晩",
+        "も",
+        "見ます。"
+      ],
+      "ruby": [
+        "まいばん",
+        "null",
+        "みます"
+      ],
+      "vocab_keys": [
+        169,
+        null,
+        179
+      ],
+      "translation": "He sees it every evening, too.",
+      "grammar": [
+        2
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "でも",
+        "、",
+        "せん",
+        "は",
+        "とても",
+        "長い",
+        "です。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "ながい",
+        "null"
+      ],
+      "vocab_keys": [
+        192,
+        null,
+        10002,
+        null,
+        307,
+        386,
+        null
+      ],
+      "translation": "But the line is always very, very long.",
+      "grammar": [
+        12
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "ある",
+        "土曜日",
+        "、",
+        "ケンさん",
+        "は",
+        "そこ",
+        "へ",
+        "行き",
+        "ました。"
+      ],
+      "ruby": [
+        "null",
+        "どようび",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "いき",
+        "null"
+      ],
+      "vocab_keys": [
+        10004,
+        166,
+        null,
+        10003,
+        null,
+        254,
+        null,
+        170,
+        null
+      ],
+      "translation": "One Saturday, Ken went there.",
+      "grammar": [
+        9,
+        5
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "十二時",
+        "でした。"
+      ],
+      "ruby": [
+        "じゅうにじ",
+        "null"
+      ],
+      "vocab_keys": [
+        45,
+        null
+      ],
+      "translation": "It was twelve o'clock.",
+      "grammar": [
+        8
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "たくさん",
+        "の",
+        "人",
+        "が",
+        "もう",
+        "待って",
+        "いました。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "ひと",
+        "null",
+        "null",
+        "まって",
+        "null"
+      ],
+      "vocab_keys": [
+        239,
+        null,
+        207,
+        null,
+        10005,
+        233,
+        null
+      ],
+      "translation": "Many people were already waiting.",
+      "grammar": [
+        15,
+        20
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "ケンさん",
+        "は",
+        "「",
+        "今日",
+        "は",
+        "だめ",
+        "だ。",
+        "」",
+        "と",
+        "思い",
+        "ました。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "きょう",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "おもい",
+        "null"
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        null,
+        162,
+        null,
+        10006,
+        null,
+        null,
+        null,
+        442,
+        null
+      ],
+      "translation": "Ken thought, \"Oh, no. I cannot wait today.\"",
+      "grammar": [
+        21,
+        19
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "家",
+        "へ",
+        "帰り",
+        "ました。"
+      ],
+      "ruby": [
+        "いえ",
+        "null",
+        "かえり",
+        "null"
+      ],
+      "vocab_keys": [
+        155,
+        null,
+        171,
+        null
+      ],
+      "translation": "He went home.",
+      "grammar": [
+        9,
+        5
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "日曜日",
+        "、",
+        "ケンさん",
+        "は",
+        "また",
+        "行き",
+        "ました。"
+      ],
+      "ruby": [
+        "にちようび",
+        "null",
+        "null",
+        "null",
+        "null",
+        "いき",
+        "null"
+      ],
+      "vocab_keys": [
+        167,
+        null,
+        10003,
+        null,
+        10007,
+        170,
+        null
+      ],
+      "translation": "On Sunday, Ken went again.",
+      "grammar": [
+        9
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "一時",
+        "に",
+        "行き",
+        "ました。"
+      ],
+      "ruby": [
+        "いちじ",
+        "null",
+        "いき",
+        "null"
+      ],
+      "vocab_keys": [
+        45,
+        null,
+        170,
+        null
+      ],
+      "translation": "He went at one o'clock.",
+      "grammar": [
+        6,
+        9
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "せん",
+        "は",
+        "まだ",
+        "長かった",
+        "です。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "ながかった",
+        "null"
+      ],
+      "vocab_keys": [
+        10002,
+        null,
+        10008,
+        386,
+        null
+      ],
+      "translation": "The line was still long.",
+      "grammar": [
+        13
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "男の",
+        "人",
+        "と",
+        "女の",
+        "人",
+        "と",
+        "子供",
+        "を",
+        "見",
+        "ました。"
+      ],
+      "ruby": [
+        "おとこの",
+        "ひと",
+        "null",
+        "おんなの",
+        "ひと",
+        "null",
+        "こども",
+        "null",
+        "み",
+        "null"
+      ],
+      "vocab_keys": [
+        365,
+        null,
+        null,
+        368,
+        null,
+        null,
+        200,
+        null,
+        179,
+        null
+      ],
+      "translation": "He saw a man, a woman, and a child.",
+      "grammar": [
+        10,
+        5,
+        9
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "みんな",
+        "待って",
+        "いました。"
+      ],
+      "ruby": [
+        "null",
+        "まって",
+        "null"
+      ],
+      "vocab_keys": [
+        455,
+        233,
+        null
+      ],
+      "translation": "They were waiting.",
+      "grammar": [
+        15
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "みんな",
+        "元気",
+        "でした。"
+      ],
+      "ruby": [
+        "null",
+        "げんき",
+        "null"
+      ],
+      "vocab_keys": [
+        455,
+        291,
+        null
+      ],
+      "translation": "They were happy.",
+      "grammar": [
+        8
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "ケンさん",
+        "は",
+        "「",
+        "たぶん",
+        "ラーメン",
+        "は",
+        "とても",
+        "おいしい",
+        "です。",
+        "」",
+        "と",
+        "思い",
+        "ました。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "おもい",
+        "null"
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        null,
+        10009,
+        10000,
+        null,
+        307,
+        102,
+        null,
+        null,
+        null,
+        442,
+        null
+      ],
+      "translation": "Ken thought, \"Maybe the ramen is very good.\"",
+      "grammar": [
+        19
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "今度",
+        "は",
+        "待ち",
+        "ました。"
+      ],
+      "ruby": [
+        "こんど",
+        "null",
+        "まち",
+        "null"
+      ],
+      "vocab_keys": [
+        10010,
+        null,
+        233,
+        null
+      ],
+      "translation": "He waited this time.",
+      "grammar": [
+        9
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "せん",
+        "の",
+        "一番",
+        "うしろ",
+        "に",
+        "立ち",
+        "ました。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "いちばん",
+        "null",
+        "null",
+        "たち",
+        "null"
+      ],
+      "vocab_keys": [
+        10002,
+        null,
+        10011,
+        247,
+        null,
+        336,
+        null
+      ],
+      "translation": "He stood at the end of the line.",
+      "grammar": [
+        1,
+        5,
+        9
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "十分",
+        "、",
+        "二十分",
+        "。"
+      ],
+      "ruby": [
+        "じゅっぷん",
+        "null",
+        "にじゅっぷん",
+        "null"
+      ],
+      "vocab_keys": [
+        221,
+        null,
+        null,
+        null
+      ],
+      "translation": "Ten minutes. Twenty minutes.",
+      "grammar": []
+    },
+    {
+      "id": "s24",
+      "words": [
+        "ゆっくり",
+        "、",
+        "せん",
+        "が",
+        "動き",
+        "ました。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "うごき",
+        "null"
+      ],
+      "vocab_keys": [
+        359,
+        null,
+        10002,
+        null,
+        10012,
+        null
+      ],
+      "translation": "Slowly, the line moved.",
+      "grammar": [
+        20,
+        9
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "前",
+        "の",
+        "人",
+        "と",
+        "少し",
+        "話し",
+        "ました。"
+      ],
+      "ruby": [
+        "まえ",
+        "null",
+        "ひと",
+        "null",
+        "null",
+        "はなし",
+        "null"
+      ],
+      "vocab_keys": [
+        246,
+        null,
+        207,
+        null,
+        10013,
+        174,
+        null
+      ],
+      "translation": "He talked a little with the person in front of him.",
+      "grammar": [
+        1,
+        10,
+        9
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "天気",
+        "は",
+        "よかった",
+        "です。"
+      ],
+      "ruby": [
+        "てんき",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        265,
+        null,
+        183,
+        null
+      ],
+      "translation": "The sun was warm.",
+      "grammar": [
+        13
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "やっと",
+        "、",
+        "三十分",
+        "ぐらい",
+        "後で",
+        "、",
+        "ケンさん",
+        "は",
+        "店",
+        "に",
+        "入り",
+        "ました。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "さんじゅっぷん",
+        "null",
+        "あとで",
+        "null",
+        "null",
+        "null",
+        "みせ",
+        "null",
+        "はいり",
+        "null"
+      ],
+      "vocab_keys": [
+        10014,
+        null,
+        null,
+        236,
+        353,
+        null,
+        10003,
+        null,
+        10015,
+        null,
+        340,
+        null
+      ],
+      "translation": "Finally, after almost thirty minutes, Ken entered the shop.",
+      "grammar": [
+        11,
+        6,
+        9
+      ]
+    },
+    {
+      "id": "s28",
+      "words": [
+        "小さくて",
+        "、",
+        "にぎやか",
+        "でした。"
+      ],
+      "ruby": [
+        "ちいさくて",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        283,
+        null,
+        296,
+        null
+      ],
+      "translation": "It was small but busy.",
+      "grammar": [
+        17
+      ]
+    },
+    {
+      "id": "s29",
+      "words": [
+        "カウンター",
+        "に",
+        "座り",
+        "ました。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "すわり",
+        "null"
+      ],
+      "vocab_keys": [
+        10016,
+        null,
+        335,
+        null
+      ],
+      "translation": "He sat at the counter.",
+      "grammar": [
+        5,
+        9
+      ]
+    },
+    {
+      "id": "s30",
+      "words": [
+        "ラーメン",
+        "を",
+        "注文",
+        "しました。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "ちゅうもん",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        10017,
+        null
+      ],
+      "translation": "He ordered ramen.",
+      "grammar": [
+        5,
+        9
+      ]
+    },
+    {
+      "id": "s31",
+      "words": [
+        "ラーメン",
+        "は",
+        "すぐ",
+        "来",
+        "ました。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "き",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        357,
+        180,
+        null
+      ],
+      "translation": "The ramen came quickly.",
+      "grammar": [
+        9
+      ]
+    },
+    {
+      "id": "s32",
+      "words": [
+        "ケンさん",
+        "は",
+        "ラーメン",
+        "を",
+        "食べ",
+        "ました。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "たべ",
+        "null"
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        10000,
+        null,
+        177,
+        null
+      ],
+      "translation": "Ken ate the ramen.",
+      "grammar": [
+        5,
+        9
+      ]
+    },
+    {
+      "id": "s33",
+      "words": [
+        "熱くて",
+        "、",
+        "とても",
+        "おいしかった",
+        "です。"
+      ],
+      "ruby": [
+        "あつくて",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        276,
+        null,
+        307,
+        102,
+        null
+      ],
+      "translation": "It was hot. It was delicious.",
+      "grammar": [
+        17,
+        13
+      ]
+    },
+    {
+      "id": "s34",
+      "words": [
+        "「",
+        "わあ",
+        "、",
+        "これ",
+        "は",
+        "とても",
+        "おいしい",
+        "ラーメン",
+        "です",
+        "ね。",
+        "」",
+        "と",
+        "思い",
+        "ました。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "おもい",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        10018,
+        null,
+        91,
+        null,
+        307,
+        102,
+        10000,
+        null,
+        null,
+        null,
+        null,
+        442,
+        null
+      ],
+      "translation": "\"Wow,\" he thought. \"This is very good ramen.\"",
+      "grammar": [
+        0,
+        3,
+        19
+      ]
+    },
+    {
+      "id": "s35",
+      "words": [
+        "長い",
+        "せん",
+        "の",
+        "わけ",
+        "が",
+        "わかり",
+        "ました。"
+      ],
+      "ruby": [
+        "ながい",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        386,
+        10002,
+        null,
+        10019,
+        null,
+        234,
+        null
+      ],
+      "translation": "He understood the reason for the long line.",
+      "grammar": [
+        1,
+        14,
+        20,
+        9
+      ]
+    },
+    {
+      "id": "s36",
+      "words": [
+        "ケンさん",
+        "は",
+        "また",
+        "すぐ",
+        "ラーメン",
+        "を",
+        "食べ",
+        "に",
+        "行く",
+        "と",
+        "思い",
+        "ます。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "たべ",
+        "null",
+        "いく",
+        "null",
+        "おもい",
+        "null"
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        10007,
+        357,
+        10000,
+        null,
+        177,
+        null,
+        170,
+        null,
+        442,
+        null
+      ],
+      "translation": "Ken thinks he will go to eat ramen again soon.",
+      "grammar": [
+        18,
+        21,
+        19,
+        4
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

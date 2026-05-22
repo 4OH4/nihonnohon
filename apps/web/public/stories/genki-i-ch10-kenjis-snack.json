@@ -1,0 +1,1501 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch10-kenjis-snack",
+  "title": "Kenji's After-School Snack",
+  "title_ja": "けんじさんの学校の後の食べ物",
+  "language": "ja",
+  "description": "Kenji finishes school and feels hungry. He decides to go to the convenience store to buy a sweet snack and juice, which he enjoys outside.",
+  "difficulty": "Genki I Ch.10",
+  "grammar": [
+    "Defining Identity (X は Y です)",
+    "Noun1 の Noun2",
+    "Demonstrative Pronouns (これ・それ・あれ)",
+    "Specifying Objects (この・その・あの)",
+    "Identifying Places (ここ・そこ・あそこ)",
+    "Addition and Inclusion (Particle も)",
+    "Verb Classes and Conjugation",
+    "Sentence Logistics (Particles を, で, に, へ)",
+    "Past Identity (Past Tense of です)",
+    "Recounting Actions (Past Tense of Verbs)",
+    "Connecting Items (Particle と)",
+    "Attribute Basics (Adjective Tenses)",
+    "Attribute History (Past Tense of Adjectives)",
+    "Modifying Nouns (Adjective + Noun)",
+    "Personal Preferences (好き / 嫌い)",
+    "Verb Linking (て-form)",
+    "Sequencing Actions (て-form for Activities)",
+    "Sharing Thoughts (Short Form + と思います)",
+    "Reporting Speech (Short Form + と言っていました)",
+    "Nominalized Verbs (Verb + のが好き)",
+    "Planned Future (～つもりだ)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "けんじさん",
+      "hiragana": "けんじさん",
+      "translation": "Kenji (person's name)"
+    },
+    {
+      "key": 10001,
+      "word": "彼",
+      "hiragana": "かれ",
+      "translation": "he"
+    },
+    {
+      "key": 10002,
+      "word": "入れる",
+      "hiragana": "いれる",
+      "translation": "to put in"
+    },
+    {
+      "key": 10003,
+      "word": "外",
+      "hiragana": "そと",
+      "translation": "outside"
+    },
+    {
+      "key": 10004,
+      "word": "お腹が空く",
+      "hiragana": "おなかがすく",
+      "translation": "to get hungry"
+    },
+    {
+      "key": 10005,
+      "word": "甘い",
+      "hiragana": "あまい",
+      "translation": "sweet"
+    },
+    {
+      "key": 10006,
+      "word": "ドア",
+      "hiragana": "ドア",
+      "translation": "door"
+    },
+    {
+      "key": 10007,
+      "word": "ポテトチップス",
+      "hiragana": "ポテトチップス",
+      "translation": "potato chips"
+    },
+    {
+      "key": 10008,
+      "word": "チョコレート",
+      "hiragana": "チョコレート",
+      "translation": "chocolate"
+    },
+    {
+      "key": 10009,
+      "word": "お握り",
+      "hiragana": "おにぎり",
+      "translation": "rice ball"
+    },
+    {
+      "key": 10010,
+      "word": "ジュース",
+      "hiragana": "ジュース",
+      "translation": "juice"
+    },
+    {
+      "key": 10011,
+      "word": "店員",
+      "hiragana": "てんいん",
+      "translation": "clerk"
+    },
+    {
+      "key": 10012,
+      "word": "ベンチ",
+      "hiragana": "ベンチ",
+      "translation": "bench"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "けんじさん",
+        "の",
+        "学校",
+        "は",
+        "終わり",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "けんじさん",
+        null,
+        "がっこう",
+        null,
+        "おわり",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        158,
+        null,
+        482,
+        null,
+        null
+      ],
+      "translation": "Kenji’s school day finished.",
+      "grammar": [
+        1,
+        9
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "彼",
+        "は",
+        "本",
+        "を",
+        "かばん",
+        "に",
+        "入れ",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "ほん",
+        null,
+        null,
+        null,
+        "いれ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        123,
+        null,
+        110,
+        null,
+        10002,
+        null,
+        null
+      ],
+      "translation": "He put his books into his bag.",
+      "grammar": [
+        7,
+        9
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "彼",
+        "は",
+        "学校",
+        "を",
+        "出",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "がっこう",
+        null,
+        "で",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        158,
+        null,
+        488,
+        null,
+        null
+      ],
+      "translation": "He walked out of the classroom.",
+      "grammar": [
+        7,
+        9
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "外",
+        "は",
+        "きれい",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "そと",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        290,
+        null,
+        null
+      ],
+      "translation": "The sun was bright outside.",
+      "grammar": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "けんじさん",
+        "は",
+        "少し",
+        "お腹が空き",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "けんじさん",
+        null,
+        null,
+        "おなかがすき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        188,
+        10004,
+        null,
+        null
+      ],
+      "translation": "Kenji felt a little hungry.",
+      "grammar": [
+        9
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "彼",
+        "は",
+        "何か",
+        "食べ物",
+        "を",
+        "思い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "なにか",
+        "たべもの",
+        null,
+        "おもい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        426,
+        262,
+        null,
+        442,
+        null,
+        null
+      ],
+      "translation": "He thought about snacks.",
+      "grammar": [
+        18,
+        9
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "彼",
+        "は",
+        "甘い",
+        "食べ物",
+        "が",
+        "好き",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "あまい",
+        "たべもの",
+        null,
+        "すき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        10005,
+        262,
+        null,
+        293,
+        null,
+        null
+      ],
+      "translation": "He wanted something sweet.",
+      "grammar": [
+        13,
+        14
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "「",
+        "コンビニ",
+        "に",
+        "行く",
+        "つもり",
+        "です",
+        "」",
+        "と",
+        "、",
+        "彼",
+        "は",
+        "決め",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "いく",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "かれ",
+        null,
+        "きめ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        375,
+        null,
+        170,
+        null,
+        null,
+        null,
+        null,
+        null,
+        10001,
+        null,
+        538,
+        null,
+        null
+      ],
+      "translation": "\"I will go to the convenience store,\" he decided.",
+      "grammar": [
+        20,
+        19,
+        9
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "コンビニ",
+        "は",
+        "学校",
+        "の",
+        "そば",
+        "に",
+        "あり",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "がっこう",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        375,
+        null,
+        158,
+        null,
+        251,
+        null,
+        229,
+        null,
+        null
+      ],
+      "translation": "The convenience store was near his school.",
+      "grammar": [
+        1,
+        3,
+        8
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "彼",
+        "は",
+        "歩いて",
+        "行き",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "あるいて",
+        "いき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        540,
+        170,
+        null,
+        null
+      ],
+      "translation": "He walked down the street.",
+      "grammar": [
+        9
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "たくさん",
+        "の",
+        "学生",
+        "も",
+        "家",
+        "に",
+        "帰り",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "がくせい",
+        null,
+        "いえ",
+        null,
+        "かえり",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        239,
+        null,
+        38,
+        5,
+        155,
+        null,
+        171,
+        null,
+        null
+      ],
+      "translation": "Many students were walking home too.",
+      "grammar": [
+        5,
+        7,
+        9
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "けんじさん",
+        "は",
+        "コンビニ",
+        "に",
+        "行く",
+        "の",
+        "が",
+        "好き",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "けんじさん",
+        null,
+        null,
+        null,
+        "いく",
+        null,
+        null,
+        "すき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        375,
+        null,
+        170,
+        null,
+        null,
+        293,
+        null,
+        null
+      ],
+      "translation": "Kenji liked going to the convenience store.",
+      "grammar": [
+        19,
+        8
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "彼",
+        "は",
+        "ドア",
+        "を",
+        "開けて",
+        "、",
+        "中",
+        "に",
+        "入り",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        null,
+        null,
+        "あけて",
+        null,
+        "なか",
+        null,
+        "はいり",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        10006,
+        null,
+        343,
+        null,
+        248,
+        null,
+        340,
+        null,
+        null
+      ],
+      "translation": "He opened the door and went inside.",
+      "grammar": [
+        15,
+        16,
+        9
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "コンビニ",
+        "は",
+        "涼しくて",
+        "、",
+        "きれい",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "すずしくて",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        375,
+        null,
+        530,
+        null,
+        290,
+        null,
+        null
+      ],
+      "translation": "The store was cool and bright.",
+      "grammar": [
+        16,
+        12
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "音楽",
+        "が",
+        "あり",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "おんがく",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        140,
+        null,
+        229,
+        null,
+        null
+      ],
+      "translation": "Music was playing quietly.",
+      "grammar": [
+        9
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "たくさん",
+        "の",
+        "食べ物",
+        "が",
+        "コンビニ",
+        "の",
+        "中",
+        "に",
+        "あり",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "たべもの",
+        null,
+        null,
+        null,
+        "なか",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        239,
+        null,
+        262,
+        null,
+        375,
+        null,
+        248,
+        null,
+        229,
+        null,
+        null
+      ],
+      "translation": "Many different kinds of snacks were on the shelves.",
+      "grammar": [
+        1,
+        3,
+        9
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "ポテトチップス",
+        "と",
+        "チョコレート",
+        "と",
+        "お握り",
+        "が",
+        "あり",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        "おにぎり",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10007,
+        null,
+        10008,
+        null,
+        10009,
+        null,
+        229,
+        null,
+        null
+      ],
+      "translation": "There were potato chips, chocolates, and rice balls.",
+      "grammar": [
+        10,
+        9
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "たくさん",
+        "の",
+        "飲み物",
+        "も",
+        "あり",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "のみもの",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        239,
+        null,
+        266,
+        5,
+        229,
+        null,
+        null
+      ],
+      "translation": "There were also many drinks.",
+      "grammar": [
+        5,
+        9
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "けんじさん",
+        "は",
+        "よく",
+        "見",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "けんじさん",
+        null,
+        null,
+        "み",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        190,
+        179,
+        null,
+        null
+      ],
+      "translation": "Kenji looked at the shelves carefully.",
+      "grammar": [
+        9
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "彼",
+        "は",
+        "新しい",
+        "チョコレート",
+        "を",
+        "見",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "あたらしい",
+        null,
+        null,
+        "み",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        274,
+        10008,
+        null,
+        179,
+        null,
+        null
+      ],
+      "translation": "He saw a new chocolate bar.",
+      "grammar": [
+        13,
+        9
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "それ",
+        "は",
+        "とても",
+        "おいしかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        307,
+        102,
+        null,
+        null
+      ],
+      "translation": "It looked very delicious.",
+      "grammar": [
+        2,
+        12
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "「",
+        "これ",
+        "、",
+        "いい",
+        "です",
+        "」",
+        "と",
+        "彼",
+        "は",
+        "思い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "かれ",
+        null,
+        "おもい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        91,
+        null,
+        183,
+        null,
+        null,
+        null,
+        10001,
+        null,
+        442,
+        null,
+        null
+      ],
+      "translation": "\"This one looks good,\" he thought.",
+      "grammar": [
+        2,
+        17,
+        9
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "彼",
+        "は",
+        "ジュース",
+        "も",
+        "思い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        null,
+        null,
+        "おもい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        10010,
+        5,
+        442,
+        null,
+        null
+      ],
+      "translation": "He also wanted a juice.",
+      "grammar": [
+        5,
+        9
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "彼",
+        "は",
+        "そこ",
+        "から",
+        "りんご",
+        "ジュース",
+        "を",
+        "取り",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "とり",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        254,
+        355,
+        527,
+        10010,
+        null,
+        232,
+        null,
+        null
+      ],
+      "translation": "He picked up an apple juice from the refrigerator.",
+      "grammar": [
+        2,
+        7,
+        9
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "彼",
+        "は",
+        "チョコレート",
+        "と",
+        "りんご",
+        "ジュース",
+        "を",
+        "店員さん",
+        "の",
+        "所",
+        "へ",
+        "持って",
+        "行き",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "てんいんさん",
+        null,
+        "ところ",
+        null,
+        "もって",
+        "いき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        10008,
+        null,
+        527,
+        10010,
+        null,
+        10011,
+        null,
+        423,
+        null,
+        352,
+        170,
+        null,
+        null
+      ],
+      "translation": "He took the chocolate bar and the apple juice to the counter.",
+      "grammar": [
+        10,
+        1,
+        7,
+        9
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "店員さん",
+        "は",
+        "「",
+        "いらっしゃいませ",
+        "」",
+        "と",
+        "言い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "てんいんさん",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "いい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10011,
+        null,
+        null,
+        133,
+        null,
+        null,
+        439,
+        null,
+        null
+      ],
+      "translation": "\"Hello,\" said the clerk.",
+      "grammar": [
+        19,
+        9
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "けんじさん",
+        "は",
+        "お金",
+        "を",
+        "払い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "けんじさん",
+        null,
+        "おかね",
+        null,
+        "はらい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        311,
+        null,
+        537,
+        null,
+        null
+      ],
+      "translation": "Kenji paid with his money.",
+      "grammar": [
+        7,
+        9
+      ]
+    },
+    {
+      "id": "s28",
+      "words": [
+        "店員さん",
+        "は",
+        "「",
+        "どうも",
+        "」",
+        "と",
+        "言い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "てんいんさん",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "いい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10011,
+        null,
+        null,
+        138,
+        null,
+        null,
+        439,
+        null,
+        null
+      ],
+      "translation": "\"Thank you very much,\" the clerk said.",
+      "grammar": [
+        19,
+        9
+      ]
+    },
+    {
+      "id": "s29",
+      "words": [
+        "けんじさん",
+        "は",
+        "食べ物",
+        "と",
+        "飲み物",
+        "を",
+        "かばん",
+        "に",
+        "持って",
+        "行き",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "けんじさん",
+        null,
+        "たべもの",
+        null,
+        "のみもの",
+        null,
+        null,
+        null,
+        "もって",
+        "いき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        262,
+        null,
+        266,
+        null,
+        110,
+        null,
+        352,
+        170,
+        null,
+        null
+      ],
+      "translation": "Kenji put his snack and juice into his bag.",
+      "grammar": [
+        10,
+        7,
+        9
+      ]
+    },
+    {
+      "id": "s30",
+      "words": [
+        "彼",
+        "は",
+        "コンビニ",
+        "を",
+        "出",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        null,
+        null,
+        "で",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        375,
+        null,
+        488,
+        null,
+        null
+      ],
+      "translation": "He walked out of the store.",
+      "grammar": [
+        7,
+        9
+      ]
+    },
+    {
+      "id": "s31",
+      "words": [
+        "彼",
+        "は",
+        "外",
+        "の",
+        "ベンチ",
+        "に",
+        "座り",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "そと",
+        null,
+        null,
+        null,
+        "すわり",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        10003,
+        null,
+        10012,
+        null,
+        335,
+        null,
+        null
+      ],
+      "translation": "He sat on a bench outside.",
+      "grammar": [
+        1,
+        7,
+        9
+      ]
+    },
+    {
+      "id": "s32",
+      "words": [
+        "彼",
+        "は",
+        "チョコレート",
+        "を",
+        "開けて",
+        "、",
+        "食べ",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        null,
+        null,
+        "あけて",
+        null,
+        "たべ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        10008,
+        null,
+        343,
+        null,
+        177,
+        null,
+        null
+      ],
+      "translation": "He opened the chocolate bar and ate it.",
+      "grammar": [
+        15,
+        16,
+        9
+      ]
+    },
+    {
+      "id": "s33",
+      "words": [
+        "それ",
+        "は",
+        "とても",
+        "おいしかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        307,
+        102,
+        null,
+        null
+      ],
+      "translation": "It was very good.",
+      "grammar": [
+        2,
+        12
+      ]
+    },
+    {
+      "id": "s34",
+      "words": [
+        "りんご",
+        "ジュース",
+        "も",
+        "飲み",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "のみ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        527,
+        10010,
+        5,
+        173,
+        null,
+        null
+      ],
+      "translation": "He drank the apple juice too.",
+      "grammar": [
+        5,
+        9
+      ]
+    },
+    {
+      "id": "s35",
+      "words": [
+        "学校",
+        "の",
+        "後",
+        "で",
+        "とても",
+        "いい",
+        "食べ物",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "がっこう",
+        null,
+        "あと",
+        null,
+        null,
+        null,
+        "たべもの",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        158,
+        null,
+        353,
+        null,
+        307,
+        183,
+        262,
+        null,
+        null
+      ],
+      "translation": "It was a perfect snack after school.",
+      "grammar": [
+        1,
+        8
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

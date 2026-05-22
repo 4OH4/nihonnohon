@@ -1,0 +1,1926 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch5-train-ride-to-school",
+  "title": "Ken's Train Ride to School",
+  "title_ja": "ケンさんの学校への電車",
+  "language": "ja",
+  "description": "Ken takes the train to school every day. He reads a book on the train, experiences a dark tunnel, and arrives at a busy station where he observes people before walking to his classroom.",
+  "difficulty": "Genki I Ch.5",
+  "grammar": [
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch2 2.5] Addition and Inclusion (Particle も)",
+    "[Ch3 3.2] The Present Tense",
+    "[Ch3 3.3] Sentence Logistics (Particles を, で, に, へ)",
+    "[Ch4 4.1] Stating Existence (あります / います)",
+    "[Ch4 4.2] Positional Descriptions",
+    "[Ch4 4.3] Past Identity (Past Tense of です)",
+    "[Ch4 4.4] Recounting Actions (Past Tense of Verbs)",
+    "[Ch5 5.1] Attribute Basics (Adjective Tenses)",
+    "[Ch5 5.2] Attribute History (Past Tense of Adjectives)",
+    "[Ch5 5.3] Modifying Nouns (Adjective + Noun)",
+    "[Ch5 5.4] Personal Preferences (好き / 嫌い)",
+    "[Ch2 2.2] Specifying Objects (この・その・あの)",
+    "[Ch3 3.6] Frequency Adverbs"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "電車",
+      "hiragana": "でんしゃ",
+      "translation": "train"
+    },
+    {
+      "key": 10001,
+      "word": "窓",
+      "hiragana": "まど",
+      "translation": "window"
+    },
+    {
+      "key": 10002,
+      "word": "座ります",
+      "hiragana": "すわります",
+      "translation": "to sit"
+    },
+    {
+      "key": 10003,
+      "word": "音",
+      "hiragana": "おと",
+      "translation": "sound"
+    },
+    {
+      "key": 10004,
+      "word": "言葉",
+      "hiragana": "ことば",
+      "translation": "word"
+    },
+    {
+      "key": 10005,
+      "word": "止まります",
+      "hiragana": "とまります",
+      "translation": "to stop"
+    },
+    {
+      "key": 10006,
+      "word": "違う",
+      "hiragana": "ちがう",
+      "translation": "different"
+    },
+    {
+      "key": 10007,
+      "word": "トンネル",
+      "hiragana": "トンネル",
+      "translation": "tunnel"
+    },
+    {
+      "key": 10008,
+      "word": "入ります",
+      "hiragana": "はいります",
+      "translation": "to enter"
+    },
+    {
+      "key": 10009,
+      "word": "電気",
+      "hiragana": "でんき",
+      "translation": "light; electricity"
+    },
+    {
+      "key": 10010,
+      "word": "明るい",
+      "hiragana": "あかるい",
+      "translation": "bright"
+    },
+    {
+      "key": 10011,
+      "word": "駅",
+      "hiragana": "えき",
+      "translation": "station"
+    },
+    {
+      "key": 10012,
+      "word": "女の人",
+      "hiragana": "おんなのひと",
+      "translation": "woman"
+    },
+    {
+      "key": 10013,
+      "word": "店",
+      "hiragana": "みせ",
+      "translation": "shop"
+    },
+    {
+      "key": 10014,
+      "word": "壁",
+      "hiragana": "かべ",
+      "translation": "wall"
+    },
+    {
+      "key": 10015,
+      "word": "席",
+      "hiragana": "せき",
+      "translation": "seat"
+    },
+    {
+      "key": 10016,
+      "word": "取ります",
+      "hiragana": "とります",
+      "translation": "to pick up; to take"
+    },
+    {
+      "key": 10017,
+      "word": "黒い",
+      "hiragana": "くろい",
+      "translation": "black"
+    },
+    {
+      "key": 10018,
+      "word": "ゆっくり",
+      "hiragana": "ゆっくり",
+      "translation": "slowly"
+    },
+    {
+      "key": 10019,
+      "word": "立ちます",
+      "hiragana": "たちます",
+      "translation": "to stand up"
+    },
+    {
+      "key": 10020,
+      "word": "ドア",
+      "hiragana": "ドア",
+      "translation": "door"
+    },
+    {
+      "key": 10021,
+      "word": "開きます",
+      "hiragana": "ひらきます",
+      "translation": "to open"
+    },
+    {
+      "key": 10022,
+      "word": "ホーム",
+      "hiragana": "ホーム",
+      "translation": "platform"
+    },
+    {
+      "key": 10023,
+      "word": "歩きます",
+      "hiragana": "あるきます",
+      "translation": "to walk"
+    },
+    {
+      "key": 10024,
+      "word": "出口",
+      "hiragana": "でぐち",
+      "translation": "exit"
+    },
+    {
+      "key": 10025,
+      "word": "花屋",
+      "hiragana": "はなや",
+      "translation": "flower shop"
+    },
+    {
+      "key": 10026,
+      "word": "花",
+      "hiragana": "はな",
+      "translation": "flower"
+    },
+    {
+      "key": 10027,
+      "word": "外",
+      "hiragana": "そと",
+      "translation": "outside"
+    },
+    {
+      "key": 10028,
+      "word": "空",
+      "hiragana": "そら",
+      "translation": "sky"
+    },
+    {
+      "key": 10029,
+      "word": "青い",
+      "hiragana": "あおい",
+      "translation": "blue"
+    },
+    {
+      "key": 10030,
+      "word": "太陽",
+      "hiragana": "たいよう",
+      "translation": "sun"
+    },
+    {
+      "key": 10031,
+      "word": "出ます",
+      "hiragana": "でます",
+      "translation": "to exit"
+    },
+    {
+      "key": 10032,
+      "word": "教室",
+      "hiragana": "きょうしつ",
+      "translation": "classroom"
+    },
+    {
+      "key": 10033,
+      "word": "うるさい",
+      "hiragana": "うるさい",
+      "translation": "loud"
+    },
+    {
+      "key": 10034,
+      "word": "すぐ",
+      "hiragana": "すぐ",
+      "translation": "soon"
+    },
+    {
+      "key": 10035,
+      "word": "暗い",
+      "hiragana": "くらい",
+      "translation": "dark"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "ケンさん",
+        "は",
+        "電車",
+        "に",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "でんしゃ",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        10000,
+        null,
+        235,
+        null
+      ],
+      "translation": "Ken was on the train.",
+      "grammar": [
+        4,
+        0
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "ケンさん",
+        "は",
+        "毎日",
+        "電車",
+        "で",
+        "学校",
+        "に",
+        "行きます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "まいにち",
+        "でんしゃ",
+        "null",
+        "がっこう",
+        "null",
+        "いきます",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        168,
+        10000,
+        null,
+        158,
+        null,
+        170,
+        null
+      ],
+      "translation": "Ken goes to school every day by train.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "ケンさん",
+        "は",
+        "たいてい",
+        "窓",
+        "の",
+        "そば",
+        "に",
+        "座ります",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "まど",
+        "null",
+        "null",
+        "null",
+        "すわります",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        187,
+        10001,
+        null,
+        251,
+        null,
+        10002,
+        null
+      ],
+      "translation": "He usually sat by the window.",
+      "grammar": [
+        2,
+        5,
+        13
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "今日",
+        "も",
+        "窓",
+        "の",
+        "そば",
+        "に",
+        "座ります",
+        "。"
+      ],
+      "ruby": [
+        "きょう",
+        "null",
+        "まど",
+        "null",
+        "null",
+        "null",
+        "すわります",
+        "null"
+      ],
+      "vocab_keys": [
+        162,
+        1,
+        10001,
+        null,
+        251,
+        null,
+        10002,
+        null
+      ],
+      "translation": "Today, he sat by the window, too.",
+      "grammar": [
+        2,
+        5
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "電車",
+        "は",
+        "とても",
+        "早い",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "でんしゃ",
+        "null",
+        "null",
+        "はやい",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        307,
+        184,
+        null,
+        null
+      ],
+      "translation": "The train is very fast.",
+      "grammar": [
+        8
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "音",
+        "は",
+        "うるさい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "おと",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        10033,
+        null,
+        null
+      ],
+      "translation": "It made a loud sound. (The sound is loud.)",
+      "grammar": [
+        8
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "ケンさん",
+        "は",
+        "本",
+        "を",
+        "見ます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "ほん",
+        "null",
+        "みます",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        123,
+        null,
+        179,
+        null
+      ],
+      "translation": "Ken looked at his book.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "日本語",
+        "の",
+        "本",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "にほんご",
+        "null",
+        "ほん",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        55,
+        null,
+        123,
+        null,
+        null
+      ],
+      "translation": "It was a Japanese book.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "ケンさん",
+        "は",
+        "日本語",
+        "の",
+        "本",
+        "が",
+        "好き",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "にほんご",
+        "null",
+        "ほん",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        55,
+        null,
+        123,
+        null,
+        293,
+        null,
+        null
+      ],
+      "translation": "He liked Japanese books.",
+      "grammar": [
+        11
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "ケンさん",
+        "は",
+        "ちょっと",
+        "読みます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "よみます",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        188,
+        175,
+        null
+      ],
+      "translation": "He read for a little while.",
+      "grammar": [
+        2,
+        13
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "ケンさん",
+        "は",
+        "言葉",
+        "を",
+        "見ます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "ことば",
+        "null",
+        "みます",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        10004,
+        null,
+        179,
+        null
+      ],
+      "translation": "He looked at the words.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "ケンさん",
+        "は",
+        "わかります",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        234,
+        null
+      ],
+      "translation": "He understood them.",
+      "grammar": [
+        2
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "それから",
+        "、",
+        "電車",
+        "は",
+        "止まります",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "でんしゃ",
+        "null",
+        "とまります",
+        "null"
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        10000,
+        null,
+        10005,
+        null
+      ],
+      "translation": "Then, the train stops.",
+      "grammar": [
+        2
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "音",
+        "は",
+        "違う",
+        "音",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "おと",
+        "null",
+        "ちがう",
+        "おと",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        10006,
+        10003,
+        null,
+        null
+      ],
+      "translation": "It made a different sound. (The sound is a different sound.)",
+      "grammar": [
+        0,
+        10
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "電車",
+        "は",
+        "暗い",
+        "トンネル",
+        "に",
+        "入ります",
+        "。"
+      ],
+      "ruby": [
+        "でんしゃ",
+        "null",
+        "くらい",
+        "null",
+        "null",
+        "はいります",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        10035,
+        10007,
+        null,
+        10008,
+        null
+      ],
+      "translation": "The train entered a dark tunnel.",
+      "grammar": [
+        2,
+        3,
+        10
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "電車",
+        "の",
+        "なか",
+        "の",
+        "電気",
+        "は",
+        "明るい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "でんしゃ",
+        "null",
+        "null",
+        "null",
+        "でんき",
+        "null",
+        "あかるい",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        248,
+        null,
+        10009,
+        null,
+        10010,
+        null,
+        null
+      ],
+      "translation": "The lights inside the train were bright.",
+      "grammar": [
+        8,
+        5
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "すぐ",
+        "、",
+        "電車",
+        "は",
+        "止まります",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "でんしゃ",
+        "null",
+        "とまります",
+        "null"
+      ],
+      "vocab_keys": [
+        10034,
+        null,
+        10000,
+        null,
+        10005,
+        null
+      ],
+      "translation": "Soon, the train stops.",
+      "grammar": [
+        2
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "大きい",
+        "駅",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "おおきい",
+        "えき",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        278,
+        10011,
+        null,
+        null
+      ],
+      "translation": "It was a big station.",
+      "grammar": [
+        6,
+        10
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "ケンさん",
+        "は",
+        "窓",
+        "を",
+        "見ます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "まど",
+        "null",
+        "みます",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        10001,
+        null,
+        179,
+        null
+      ],
+      "translation": "Ken looked out the window.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "駅",
+        "に",
+        "人",
+        "が",
+        "たくさん",
+        "います",
+        "。"
+      ],
+      "ruby": [
+        "えき",
+        "null",
+        "ひと",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10011,
+        null,
+        207,
+        null,
+        239,
+        235,
+        null
+      ],
+      "translation": "Many people were at the station.",
+      "grammar": [
+        4,
+        3
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "女",
+        "の",
+        "人",
+        "は",
+        "小さい",
+        "店",
+        "で",
+        "新聞",
+        "を",
+        "買います",
+        "。"
+      ],
+      "ruby": [
+        "おんな",
+        "null",
+        "ひと",
+        "null",
+        "ちいさい",
+        "みせ",
+        "null",
+        "しんぶん",
+        "null",
+        "かいます",
+        "null"
+      ],
+      "vocab_keys": [
+        10012,
+        null,
+        null,
+        null,
+        283,
+        10013,
+        null,
+        116,
+        null,
+        230,
+        null
+      ],
+      "translation": "A woman was buying a newspaper at a small shop.",
+      "grammar": [
+        2,
+        3,
+        10
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "学生",
+        "は",
+        "店",
+        "の",
+        "そば",
+        "で",
+        "話します",
+        "。"
+      ],
+      "ruby": [
+        "がくせい",
+        "null",
+        "みせ",
+        "null",
+        "null",
+        "null",
+        "はなします",
+        "null"
+      ],
+      "vocab_keys": [
+        38,
+        null,
+        10013,
+        null,
+        251,
+        null,
+        174,
+        null
+      ],
+      "translation": "Two students were talking near the shop.",
+      "grammar": [
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "電車",
+        "に",
+        "人",
+        "が",
+        "乗ります",
+        "。"
+      ],
+      "ruby": [
+        "でんしゃ",
+        "null",
+        "ひと",
+        "null",
+        "のります",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        207,
+        null,
+        301,
+        null
+      ],
+      "translation": "Some people were getting on the train.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "駅",
+        "に",
+        "人",
+        "が",
+        "たくさん",
+        "行きます",
+        "。"
+      ],
+      "ruby": [
+        "えき",
+        "null",
+        "ひと",
+        "null",
+        "null",
+        "いきます",
+        "null"
+      ],
+      "vocab_keys": [
+        10011,
+        null,
+        207,
+        null,
+        239,
+        170,
+        null
+      ],
+      "translation": "Many people were going to the station exit.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "ケンさん",
+        "は",
+        "壁",
+        "の",
+        "大きい",
+        "時計",
+        "を",
+        "見ます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "かべ",
+        "null",
+        "おおきい",
+        "とけい",
+        "null",
+        "みます",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        10014,
+        null,
+        278,
+        118,
+        null,
+        179,
+        null
+      ],
+      "translation": "Ken saw a large clock on the wall.",
+      "grammar": [
+        2,
+        3,
+        5,
+        10
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "時計",
+        "は",
+        "七",
+        "時",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "とけい",
+        "null",
+        "しち",
+        "じ",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        118,
+        null,
+        null,
+        45,
+        null,
+        null
+      ],
+      "translation": "The clock said seven o’clock.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "ケンさん",
+        "は",
+        "時計",
+        "を",
+        "見ます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "とけい",
+        "null",
+        "みます",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        118,
+        null,
+        179,
+        null
+      ],
+      "translation": "Ken checked his watch.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s28",
+      "words": [
+        "ケンさん",
+        "の",
+        "時計",
+        "も",
+        "七",
+        "時",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "とけい",
+        "null",
+        "しち",
+        "じ",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        118,
+        1,
+        null,
+        45,
+        null,
+        null
+      ],
+      "translation": "His watch also said seven o’clock.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s29",
+      "words": [
+        "大丈夫",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "だいじょうぶ",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        306,
+        null,
+        null
+      ],
+      "translation": "He was on time. (It's okay.)",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s30",
+      "words": [
+        "ケンさん",
+        "の",
+        "学校",
+        "は",
+        "この",
+        "駅",
+        "の",
+        "そば",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "がっこう",
+        "null",
+        "null",
+        "えき",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        158,
+        null,
+        95,
+        10011,
+        null,
+        251,
+        null,
+        null
+      ],
+      "translation": "Ken's school was near this station.",
+      "grammar": [
+        6,
+        5,
+        12
+      ]
+    },
+    {
+      "id": "s31",
+      "words": [
+        "今日",
+        "は",
+        "ケンさん",
+        "の",
+        "駅",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "きょう",
+        "null",
+        "null",
+        "null",
+        "えき",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        162,
+        null,
+        null,
+        null,
+        10011,
+        null,
+        null
+      ],
+      "translation": "It was his stop today. (Today is Ken's station.)",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s32",
+      "words": [
+        "ケンさん",
+        "は",
+        "席",
+        "の",
+        "かばん",
+        "を",
+        "取ります",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "せき",
+        "null",
+        "null",
+        "null",
+        "とります",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        10015,
+        null,
+        110,
+        null,
+        10016,
+        null
+      ],
+      "translation": "He picked up his bag from the seat. (Ken picks up the bag on the seat.)",
+      "grammar": [
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "id": "s33",
+      "words": [
+        "黒い",
+        "かばん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "くろい",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10017,
+        110,
+        null,
+        null
+      ],
+      "translation": "It was a black bag.",
+      "grammar": [
+        0,
+        10
+      ]
+    },
+    {
+      "id": "s34",
+      "words": [
+        "ゆっくり",
+        "立ちます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "たちます",
+        "null"
+      ],
+      "vocab_keys": [
+        10018,
+        10019,
+        null
+      ],
+      "translation": "He stood up slowly.",
+      "grammar": [
+        2
+      ]
+    },
+    {
+      "id": "s35",
+      "words": [
+        "電車",
+        "の",
+        "ドア",
+        "は",
+        "開きます",
+        "。"
+      ],
+      "ruby": [
+        "でんしゃ",
+        "null",
+        "null",
+        "null",
+        "ひらきます",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        10020,
+        null,
+        10021,
+        null
+      ],
+      "translation": "The train doors opened.",
+      "grammar": [
+        2,
+        5
+      ]
+    },
+    {
+      "id": "s36",
+      "words": [
+        "ケンさん",
+        "は",
+        "駅",
+        "を",
+        "出ます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "えき",
+        "null",
+        "でます",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        10011,
+        null,
+        10031,
+        null
+      ],
+      "translation": "Ken got off the train. (Ken exits the station.)",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s37",
+      "words": [
+        "ケンさん",
+        "は",
+        "ホーム",
+        "を",
+        "歩きます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "あるきます",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        10022,
+        null,
+        10023,
+        null
+      ],
+      "translation": "He walked on the platform.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s38",
+      "words": [
+        "ホーム",
+        "に",
+        "人",
+        "が",
+        "たくさん",
+        "います",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "ひと",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10022,
+        null,
+        207,
+        null,
+        239,
+        235,
+        null
+      ],
+      "translation": "Many people were on the platform.",
+      "grammar": [
+        4,
+        3
+      ]
+    },
+    {
+      "id": "s39",
+      "words": [
+        "ホーム",
+        "は",
+        "にぎやか",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10022,
+        null,
+        296,
+        null,
+        null
+      ],
+      "translation": "The platform was busy.",
+      "grammar": [
+        6
+      ]
+    },
+    {
+      "id": "s40",
+      "words": [
+        "ケンさん",
+        "は",
+        "駅",
+        "の",
+        "出口",
+        "に",
+        "歩きます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "えき",
+        "null",
+        "でぐち",
+        "null",
+        "あるきます",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        10011,
+        null,
+        10024,
+        null,
+        10023,
+        null
+      ],
+      "translation": "He walked towards the station exit.",
+      "grammar": [
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "id": "s41",
+      "words": [
+        "ケンさん",
+        "は",
+        "小さい",
+        "花屋",
+        "の",
+        "そば",
+        "を",
+        "歩きます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "ちいさい",
+        "はなや",
+        "null",
+        "null",
+        "null",
+        "あるきます",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        283,
+        10025,
+        null,
+        251,
+        null,
+        10023,
+        null
+      ],
+      "translation": "He walked past a small flower shop.",
+      "grammar": [
+        2,
+        3,
+        5,
+        10
+      ]
+    },
+    {
+      "id": "s42",
+      "words": [
+        "ケンさん",
+        "は",
+        "花",
+        "を",
+        "買いませんでした",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "はな",
+        "null",
+        "かいませんでした",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        10026,
+        null,
+        230,
+        null
+      ],
+      "translation": "He did not buy flowers.",
+      "grammar": [
+        7,
+        3
+      ]
+    },
+    {
+      "id": "s43",
+      "words": [
+        "外",
+        "の",
+        "空",
+        "は",
+        "青かった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "そと",
+        "null",
+        "そら",
+        "null",
+        "あおかった",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10027,
+        null,
+        10028,
+        null,
+        10029,
+        null,
+        null
+      ],
+      "translation": "The sky outside was blue.",
+      "grammar": [
+        9,
+        5
+      ]
+    },
+    {
+      "id": "s44",
+      "words": [
+        "太陽",
+        "は",
+        "明るい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "たいよう",
+        "null",
+        "あかるい",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10030,
+        null,
+        10010,
+        null,
+        null
+      ],
+      "translation": "The sun is bright.",
+      "grammar": [
+        8
+      ]
+    },
+    {
+      "id": "s45",
+      "words": [
+        "いい",
+        "朝",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "あさ",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        183,
+        159,
+        null,
+        null
+      ],
+      "translation": "It was a good morning.",
+      "grammar": [
+        6,
+        10
+      ]
+    },
+    {
+      "id": "s46",
+      "words": [
+        "ケンさん",
+        "は",
+        "元気",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "げんき",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        291,
+        null,
+        null
+      ],
+      "translation": "Ken was happy.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s47",
+      "words": [
+        "ケンさん",
+        "は",
+        "学校",
+        "が",
+        "好き",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "がっこう",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        158,
+        null,
+        293,
+        null,
+        null
+      ],
+      "translation": "He liked school.",
+      "grammar": [
+        11
+      ]
+    },
+    {
+      "id": "s48",
+      "words": [
+        "ケンさん",
+        "は",
+        "駅",
+        "を",
+        "出ます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "えき",
+        "null",
+        "でます",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        10011,
+        null,
+        10031,
+        null
+      ],
+      "translation": "He walked out of the station.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s49",
+      "words": [
+        "ケンさん",
+        "は",
+        "学校",
+        "に",
+        "歩きます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "がっこう",
+        "null",
+        "あるきます",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        158,
+        null,
+        10023,
+        null
+      ],
+      "translation": "He walked to school.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s50",
+      "words": [
+        "ケンさん",
+        "は",
+        "教室",
+        "に",
+        "勉強",
+        "し",
+        "に",
+        "行きます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "きょうしつ",
+        "null",
+        "べんきょう",
+        "null",
+        "null",
+        "いきます",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        10032,
+        null,
+        182,
+        null,
+        null,
+        170,
+        null
+      ],
+      "translation": "He went to his classroom to study.",
+      "grammar": [
+        2,
+        3
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

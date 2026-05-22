@@ -1,0 +1,1281 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch17-autumn-cafe",
+  "title": "My Autumn Cafe",
+  "title_ja": "私の秋の喫茶店",
+  "language": "ja",
+  "description": "This story describes a person's favorite cafe in autumn, focusing on the atmosphere, new seasonal menu items, and the joy of experiencing the season through food and scenery.",
+  "difficulty": "Genki I Ch.17",
+  "grammar": [
+    "Defining Identity (X は Y です)",
+    "Specifying Objects (この・その・あの)",
+    "Stating Existence (あります / います)",
+    "Past Tense of Verbs",
+    "Past Tense of Adjectives",
+    "Connecting Items (Particle と)",
+    "Complex Descriptions (Joining Phrases)",
+    "Sequencing Actions (て-form for Activities)",
+    "Reporting Speech (Short Form + と言っていました)",
+    "Nominalized Verbs (Verb + のが好き)",
+    "Describing Change (Adjective + なる)",
+    "Incomplete Lists (Particle や)",
+    "Visual Impressions (～そうです)",
+    "Question Sentences (か)",
+    "Temporal Markers (Time References)",
+    "Purpose of Movement (Stem + に行く)",
+    "Potential Verbs (可能動詞 - Potential Verbs)",
+    "Gifts (あげる / くれる / もらう)",
+    "Volitional Suggestions (意向形 - Volitional Form)",
+    "Temporal Context (～時)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "木",
+      "hiragana": "き",
+      "translation": "tree"
+    },
+    {
+      "key": 10001,
+      "word": "葉",
+      "hiragana": "は",
+      "translation": "leaf"
+    },
+    {
+      "key": 10002,
+      "word": "黄色い",
+      "hiragana": "きいろい",
+      "translation": "yellow"
+    },
+    {
+      "key": 10003,
+      "word": "パンプキンスパイスラテ",
+      "hiragana": "パンプキンスパイスラテ",
+      "translation": "Pumpkin Spice Latte"
+    },
+    {
+      "key": 10004,
+      "word": "メイプルピーカンケーキ",
+      "hiragana": "メイプルピーカンケーキ",
+      "translation": "Maple Pecan Cake"
+    },
+    {
+      "key": 10005,
+      "word": "マロンクリームドーナツ",
+      "hiragana": "マロンクリームドーナツ",
+      "translation": "Chestnut Cream Donut"
+    },
+    {
+      "key": 10006,
+      "word": "など",
+      "hiragana": "など",
+      "translation": "etc.; and so on"
+    },
+    {
+      "key": 10007,
+      "word": "考える",
+      "hiragana": "かんがえる",
+      "translation": "to think"
+    },
+    {
+      "key": 10008,
+      "word": "落ちる",
+      "hiragana": "おちる",
+      "translation": "to fall"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "私",
+        "の",
+        "一番",
+        "好き",
+        "な",
+        "喫茶店",
+        "は",
+        "、",
+        "この",
+        "町",
+        "に",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "いちばん",
+        "すき",
+        "null",
+        "きっさてん",
+        "null",
+        "null",
+        "null",
+        "まち",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        541,
+        293,
+        null,
+        125,
+        null,
+        null,
+        95,
+        216,
+        null,
+        229,
+        null
+      ],
+      "translation": "My favorite cafe is in this town.",
+      "grammar": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "秋",
+        "に",
+        "、",
+        "そこ",
+        "へ",
+        "行く",
+        "の",
+        "が",
+        "一番",
+        "好き",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "あき",
+        "null",
+        "null",
+        "null",
+        "null",
+        "いく",
+        "null",
+        "null",
+        "いちばん",
+        "すき",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        504,
+        null,
+        null,
+        254,
+        null,
+        170,
+        null,
+        null,
+        541,
+        293,
+        null,
+        null
+      ],
+      "translation": "I like going there the most in autumn.",
+      "grammar": [
+        14,
+        15,
+        9
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "このごろ",
+        "、",
+        "天気",
+        "は",
+        "涼しく",
+        "なりました",
+        "。",
+        "木",
+        "の",
+        "葉",
+        "は",
+        "、",
+        "赤く",
+        "なったり",
+        "黄色く",
+        "なったり",
+        "して",
+        "います",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "てんき",
+        "null",
+        "すずしく",
+        "null",
+        "null",
+        "き",
+        "null",
+        "は",
+        "null",
+        "null",
+        "あかく",
+        "null",
+        "きいろく",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        542,
+        null,
+        265,
+        null,
+        530,
+        10,
+        null,
+        10000,
+        null,
+        10001,
+        null,
+        null,
+        475,
+        11,
+        10002,
+        11,
+        6,
+        null,
+        null
+      ],
+      "translation": "These days, the weather has become cool. The tree leaves are turning red and yellow.",
+      "grammar": [
+        1,
+        10,
+        11,
+        6
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "今朝",
+        "、",
+        "喫茶店",
+        "まで",
+        "歩いて",
+        "行きました",
+        "。",
+        "空気",
+        "は",
+        "とても",
+        "よかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "けさ",
+        "null",
+        "きっさてん",
+        "null",
+        "あるいて",
+        "いきました",
+        "null",
+        "くうき",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        417,
+        null,
+        125,
+        310,
+        540,
+        170,
+        null,
+        416,
+        null,
+        307,
+        183,
+        null,
+        null
+      ],
+      "translation": "This morning, I walked to the cafe. The air was very nice.",
+      "grammar": [
+        3
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "喫茶店",
+        "に",
+        "着いた",
+        "時",
+        "、",
+        "大きく",
+        "て",
+        "きれい",
+        "な",
+        "広告",
+        "を",
+        "見ました",
+        "。"
+      ],
+      "ruby": [
+        "きっさてん",
+        "null",
+        "ついた",
+        "とき",
+        "null",
+        "おおきく",
+        "null",
+        "null",
+        "null",
+        "こうこく",
+        "null",
+        "みました",
+        "null"
+      ],
+      "vocab_keys": [
+        125,
+        null,
+        770,
+        223,
+        null,
+        278,
+        null,
+        290,
+        null,
+        646,
+        null,
+        179,
+        null
+      ],
+      "translation": "When I arrived at the cafe, I saw a big and clean advertisement.",
+      "grammar": [
+        14,
+        6,
+        7,
+        3
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "「",
+        "新しい",
+        "秋",
+        "の",
+        "メニュー",
+        "は",
+        "今日",
+        "から",
+        "です",
+        "！",
+        "」",
+        "と",
+        "、",
+        "書いて",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "あたらしい",
+        "あき",
+        "null",
+        "null",
+        "null",
+        "きょう",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "かいて",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        274,
+        504,
+        null,
+        106,
+        null,
+        162,
+        355,
+        null,
+        null,
+        null,
+        null,
+        null,
+        231,
+        229,
+        null
+      ],
+      "translation": "It said, \"The new autumn menu starts today!\"",
+      "grammar": [
+        0,
+        8,
+        2
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "ちょっと",
+        "嬉しく",
+        "なりました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "うれしく",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        188,
+        663,
+        10,
+        null
+      ],
+      "translation": "I became a little happy.",
+      "grammar": [
+        10
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "中",
+        "は",
+        "暖かく",
+        "て",
+        "、",
+        "とても",
+        "きれい",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "なか",
+        "null",
+        "あたたかく",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        248,
+        null,
+        528,
+        null,
+        null,
+        307,
+        290,
+        null,
+        null
+      ],
+      "translation": "Inside was warm and very clean.",
+      "grammar": [
+        7,
+        4
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "おいしい",
+        "コーヒー",
+        "と",
+        "甘い",
+        "お菓子",
+        "が",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "あまい",
+        "おかし",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        102,
+        150,
+        null,
+        613,
+        547,
+        null,
+        229,
+        null
+      ],
+      "translation": "There was delicious coffee and sweet snacks.",
+      "grammar": [
+        2,
+        5
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "私",
+        "は",
+        "大きい",
+        "窓",
+        "の",
+        "そば",
+        "に",
+        "座りました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "おおきい",
+        "まど",
+        "null",
+        "null",
+        "null",
+        "すわりました",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        278,
+        324,
+        null,
+        251,
+        null,
+        335,
+        null
+      ],
+      "translation": "I sat by the big window.",
+      "grammar": [
+        3
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "ここ",
+        "から",
+        "人",
+        "や",
+        "車",
+        "が",
+        "見えます",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "ひと",
+        "null",
+        "くるま",
+        "null",
+        "みえます",
+        "null"
+      ],
+      "vocab_keys": [
+        255,
+        355,
+        207,
+        null,
+        374,
+        null,
+        775,
+        null
+      ],
+      "translation": "From here, people and cars are visible.",
+      "grammar": [
+        11,
+        17
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "親切",
+        "な",
+        "人",
+        "が",
+        "笑って",
+        "、",
+        "新しい",
+        "秋",
+        "の",
+        "メニュー",
+        "を",
+        "くれました",
+        "。"
+      ],
+      "ruby": [
+        "しんせつ",
+        "null",
+        "ひと",
+        "null",
+        "わらって",
+        "null",
+        "あたらしい",
+        "あき",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        389,
+        null,
+        207,
+        null,
+        804,
+        null,
+        274,
+        504,
+        null,
+        106,
+        null,
+        726,
+        null
+      ],
+      "translation": "A kind person smiled and gave me the new autumn menu.",
+      "grammar": [
+        7,
+        17
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "私",
+        "は",
+        "すぐに",
+        "それ",
+        "を",
+        "開けました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "null",
+        "null",
+        "null",
+        "あけました",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        357,
+        92,
+        null,
+        343,
+        null
+      ],
+      "translation": "I opened it right away.",
+      "grammar": [
+        3
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "おいしい",
+        "物",
+        "が",
+        "たくさん",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "もの",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        102,
+        610,
+        null,
+        239,
+        229,
+        null
+      ],
+      "translation": "There were many delicious things.",
+      "grammar": [
+        2
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "パンプキンスパイスラテ",
+        "や",
+        "メイプルピーカンケーキ",
+        "や",
+        "マロンクリームドーナツ",
+        "など",
+        "が",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        10004,
+        null,
+        10005,
+        10006,
+        null,
+        229,
+        null
+      ],
+      "translation": "There were Pumpkin Spice Lattes, Maple Pecan Cakes, Chestnut Cream Donuts, and others.",
+      "grammar": [
+        11,
+        2
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "全部",
+        "とても",
+        "暖か",
+        "そう",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "ぜんぶ",
+        "null",
+        "あたたか",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        680,
+        307,
+        528,
+        null,
+        null,
+        null
+      ],
+      "translation": "Everything looked very warm.",
+      "grammar": [
+        12,
+        4
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "私",
+        "は",
+        "何",
+        "が",
+        "いい",
+        "か",
+        "、",
+        "ちょっと",
+        "考えました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "なに",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "かんがえました",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        54,
+        null,
+        183,
+        null,
+        null,
+        188,
+        10007,
+        null
+      ],
+      "translation": "I thought a little about what would be good.",
+      "grammar": [
+        13,
+        3
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "パンプキンスパイスラテ",
+        "と",
+        "メイプルピーカンケーキ",
+        "に",
+        "決めました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "きめました",
+        "null"
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        10004,
+        null,
+        538,
+        null
+      ],
+      "translation": "I decided on the Pumpkin Spice Latte and Maple Pecan Cake.",
+      "grammar": [
+        5,
+        3
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "親切",
+        "な",
+        "人",
+        "が",
+        "「",
+        "はい",
+        "」",
+        "と",
+        "言いました",
+        "。"
+      ],
+      "ruby": [
+        "しんせつ",
+        "null",
+        "ひと",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "いいました",
+        "null"
+      ],
+      "vocab_keys": [
+        389,
+        null,
+        207,
+        null,
+        null,
+        57,
+        null,
+        null,
+        439,
+        null
+      ],
+      "translation": "The kind person said, \"Yes.\"",
+      "grammar": [
+        3,
+        8
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "すぐ",
+        "、",
+        "私",
+        "の",
+        "飲み物",
+        "と",
+        "ケーキ",
+        "が",
+        "来ました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "わたし",
+        "null",
+        "のみもの",
+        "null",
+        "null",
+        "null",
+        "きました",
+        "null"
+      ],
+      "vocab_keys": [
+        357,
+        null,
+        61,
+        null,
+        266,
+        null,
+        645,
+        null,
+        180,
+        null
+      ],
+      "translation": "Soon, my drink and cake arrived.",
+      "grammar": [
+        3,
+        5
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "ラテ",
+        "は",
+        "熱く",
+        "て",
+        "、",
+        "甘く",
+        "て",
+        "、",
+        "とても",
+        "おいしかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "あつく",
+        "null",
+        "null",
+        "あまく",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        276,
+        null,
+        null,
+        613,
+        null,
+        null,
+        307,
+        102,
+        null,
+        null
+      ],
+      "translation": "The latte was hot, sweet, and very delicious.",
+      "grammar": [
+        6,
+        4
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "とても",
+        "嬉しかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "うれしかった",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        307,
+        663,
+        null,
+        null
+      ],
+      "translation": "It was very comforting.",
+      "grammar": [
+        4
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "ケーキ",
+        "は",
+        "甘く",
+        "て",
+        "、",
+        "とても",
+        "おいしかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "あまく",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        645,
+        null,
+        613,
+        null,
+        null,
+        307,
+        102,
+        null,
+        null
+      ],
+      "translation": "The cake was sweet and very delicious.",
+      "grammar": [
+        6,
+        4
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "私",
+        "は",
+        "ケーキ",
+        "を",
+        "ゆっくり",
+        "食べました",
+        "。",
+        "そして",
+        "、",
+        "ラテ",
+        "を",
+        "ゆっくり",
+        "飲みました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "null",
+        "null",
+        "null",
+        "たべました",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "のみました",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        645,
+        null,
+        359,
+        177,
+        null,
+        586,
+        null,
+        10003,
+        null,
+        359,
+        173,
+        null
+      ],
+      "translation": "I slowly ate the cake. And then, I slowly drank the latte.",
+      "grammar": [
+        3
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "窓",
+        "を",
+        "見ました",
+        "。"
+      ],
+      "ruby": [
+        "まど",
+        "null",
+        "みました",
+        "null"
+      ],
+      "vocab_keys": [
+        324,
+        null,
+        179,
+        null
+      ],
+      "translation": "I looked at the window.",
+      "grammar": [
+        3
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "木",
+        "から",
+        "たくさん",
+        "の",
+        "赤い",
+        "葉",
+        "が",
+        "落ちて",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        "き",
+        "null",
+        "null",
+        "null",
+        "あかい",
+        "は",
+        "null",
+        "おちて",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        355,
+        239,
+        null,
+        475,
+        10001,
+        null,
+        10008,
+        null,
+        null
+      ],
+      "translation": "Many red leaves were falling from the trees.",
+      "grammar": [
+        6
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "この",
+        "喫茶店",
+        "と",
+        "おいしい",
+        "秋",
+        "の",
+        "メニュー",
+        "は",
+        "、",
+        "この",
+        "季節",
+        "を",
+        "もっと",
+        "楽しく",
+        "します",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "きっさてん",
+        "null",
+        "null",
+        "あき",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "きせつ",
+        "null",
+        "null",
+        "たのしく",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        95,
+        125,
+        null,
+        102,
+        504,
+        null,
+        106,
+        null,
+        null,
+        95,
+        508,
+        null,
+        589,
+        282,
+        181,
+        null
+      ],
+      "translation": "This cafe and its delicious autumn menu make this season even more fun.",
+      "grammar": [
+        0,
+        1,
+        5,
+        10
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

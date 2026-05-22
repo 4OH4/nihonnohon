@@ -1,0 +1,405 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch1-identities-and-friends",
+  "title": "My Friends and I",
+  "title_ja": "わたしとともだち",
+  "language": "ja",
+  "description": "A student introduces themselves and their friends, stating their names, nationalities, and majors. This story uses only Genki I Chapter 1 vocabulary and grammar patterns.",
+  "difficulty": "Genki I Ch.1",
+  "grammar": [
+    "Defining Identity (X は Y です)",
+    "Basic Inquiry (Question Sentences)",
+    "Connecting Nouns (Noun1 の Noun2)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "けん",
+      "hiragana": "けん",
+      "translation": "Ken (person's name)"
+    },
+    {
+      "key": 10001,
+      "word": "さくら",
+      "hiragana": "さくら",
+      "translation": "Sakura (person's name)"
+    },
+    {
+      "key": 10002,
+      "word": "三",
+      "hiragana": "さん",
+      "translation": "three (number)"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "私",
+        "は",
+        "学生",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "がくせい",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        38,
+        null,
+        null
+      ],
+      "translation": "I am a student.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "私",
+        "は",
+        "大学生",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "だいがくせい",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        83,
+        null,
+        null
+      ],
+      "translation": "I am a college student.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "私",
+        "の",
+        "専門",
+        "は",
+        "歴史",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "せんもん",
+        "null",
+        "れきし",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        48,
+        null,
+        76,
+        null,
+        null
+      ],
+      "translation": "My major is history.",
+      "grammar": [
+        2,
+        0
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "私",
+        "の",
+        "友達",
+        "は",
+        "けん",
+        "さん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "ともだち",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        52,
+        null,
+        10000,
+        44,
+        null,
+        null
+      ],
+      "translation": "My friend is Ken-san.",
+      "grammar": [
+        2,
+        0
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "けん",
+        "さん",
+        "は",
+        "アメリカ",
+        "人",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "じん",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        62,
+        46,
+        null,
+        null
+      ],
+      "translation": "Ken-san is American.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "けん",
+        "さん",
+        "の",
+        "専門",
+        "は",
+        "科学",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "せんもん",
+        "null",
+        "かがく",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        48,
+        null,
+        68,
+        null,
+        null
+      ],
+      "translation": "Ken-san's major is science.",
+      "grammar": [
+        2,
+        0
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "さくら",
+        "さん",
+        "は",
+        "私",
+        "の",
+        "友達",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "わたし",
+        "null",
+        "ともだち",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10001,
+        44,
+        null,
+        61,
+        null,
+        52,
+        null,
+        null
+      ],
+      "translation": "Sakura-san is my friend.",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "さくら",
+        "さん",
+        "は",
+        "日本",
+        "人",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "にほん",
+        "じん",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10001,
+        44,
+        null,
+        55,
+        46,
+        null,
+        null
+      ],
+      "translation": "Sakura-san is Japanese.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "さくら",
+        "さん",
+        "は",
+        "高校生",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "こうこうせい",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10001,
+        44,
+        null,
+        80,
+        null,
+        null,
+        null
+      ],
+      "translation": "Is Sakura-san a high school student?",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "はい",
+        "、",
+        "そうです",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        57,
+        null,
+        49,
+        null
+      ],
+      "translation": "Yes, that's right.",
+      "grammar": []
+    },
+    {
+      "id": "s11",
+      "words": [
+        "今",
+        "は",
+        "午後",
+        "三",
+        "時",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "いま",
+        "null",
+        "ごご",
+        "さん",
+        "じ",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        36,
+        null,
+        41,
+        10002,
+        45,
+        null,
+        null
+      ],
+      "translation": "It is 3 P.M. now.",
+      "grammar": [
+        0
+      ]
+    }
+  ],
+  "author": "Rupert Thomas",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

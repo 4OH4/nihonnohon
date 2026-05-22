@@ -9,22 +9,22 @@
     "description": "This is a simple story about a classroom and the introduction of a new student, Yuki-san, adapted for Genki I Chapter 1 learners."
   },
   {
-    "id": "genki-i-ch1-kenjis-bento",
-    "filename": "genki-i-ch1-kenjis-bento.json",
-    "title": "Kenji's Bento",
-    "titleJa": "ケンジさん の べんとう",
+    "id": "genki-i-ch1-hana-festival",
+    "filename": "genki-i-ch1-hana-festival.json",
+    "title": "Hana and the Festival",
+    "titleJa": "はなさんとまつり",
     "difficulty": "Genki I Ch.1",
     "language": "ja",
-    "description": "This story introduces Kenji, a college student, and describes the contents of his bento box using basic identification and noun-linking grammar."
+    "description": "A student introduces their Japanese friend, Hana. They have a simple conversation about a Japanese festival, including its name, time, and what can be found there, using only Genki I Chapter 1 grammar and vocabulary."
   },
   {
-    "id": "genki-i-ch1-my-japanese-high-school",
-    "filename": "genki-i-ch1-my-japanese-high-school.json",
-    "title": "My Japanese High School",
-    "titleJa": "わたしの日本の高校",
+    "id": "genki-i-ch1-identities-and-friends",
+    "filename": "genki-i-ch1-identities-and-friends.json",
+    "title": "My Friends and I",
+    "titleJa": "わたしとともだち",
     "difficulty": "Genki I Ch.1",
     "language": "ja",
-    "description": "A student is getting ready for her first day at a Japanese high school, describing her identity and the items she has prepared."
+    "description": "A student introduces themselves and their friends, stating their names, nationalities, and majors. This story uses only Genki I Chapter 1 vocabulary and grammar patterns."
   },
   {
     "id": "genki-i-ch2-bookstore-items",
@@ -36,21 +36,228 @@
     "description": "A high school student and their friend Ken are at a bookstore. They describe the location, different books, and a pen, using basic Japanese grammar for identification and questions."
   },
   {
-    "id": "genki-i-ch2-my-friend-sakura",
-    "filename": "genki-i-ch2-my-friend-sakura.json",
-    "title": "My Friend Sakura",
-    "titleJa": "私の友達、さくらさん",
+    "id": "genki-i-ch2-new-student-hana",
+    "filename": "genki-i-ch2-new-student-hana.json",
+    "title": "Tanaka Hana, a Student",
+    "titleJa": "田中花さん、学生です",
     "difficulty": "Genki I Ch.2",
     "language": "ja",
-    "description": "A short story about a student's new friend, Sakura, in their Japanese class, using only Genki I Chapter 2 grammar and vocabulary."
+    "description": "A new student, Tanaka Hana, joins the class. The story introduces her, her teacher Ms. Sato, and a classmate Ken, focusing on identity and possessions within Genki I Chapter 2 grammar and vocabulary constraints."
   },
   {
-    "id": "genki-i-ch2-my-school-walk",
-    "filename": "genki-i-ch2-my-school-walk.json",
-    "title": "My School Walk",
-    "titleJa": "わたしの高校",
-    "difficulty": "Genki I Ch.2",
+    "id": "genki-i-ch3-green-letter-mystery",
+    "filename": "genki-i-ch3-green-letter-mystery.json",
+    "title": "The Green Letter Mystery",
+    "titleJa": "緑の手紙の謎",
+    "difficulty": "Genki I Ch.3",
     "language": "ja",
-    "description": "A short story describing a student's walk to high school with a friend, focusing on identifying objects and places using Genki I Chapter 2 grammar and vocabulary."
+    "description": "A student arrives at school early and discovers a strange, green letter inside their desk. The anonymous note proposes a meeting after school, leaving the student surprised and curious about its mysterious origin."
+  },
+  {
+    "id": "genki-i-ch5-train-ride-to-school",
+    "filename": "genki-i-ch5-train-ride-to-school.json",
+    "title": "Ken's Train Ride to School",
+    "titleJa": "ケンさんの学校への電車",
+    "difficulty": "Genki I Ch.5",
+    "language": "ja",
+    "description": "Ken takes the train to school every day. He reads a book on the train, experiences a dark tunnel, and arrives at a busy station where he observes people before walking to his classroom."
+  },
+  {
+    "id": "genki-i-ch6-white-cat",
+    "filename": "genki-i-ch6-white-cat.json",
+    "title": "The White Cat",
+    "titleJa": "白い猫",
+    "difficulty": "Genki I Ch.6",
+    "language": "ja",
+    "description": "A student encounters a mysterious cat with unusual eyes near their school gate after classes. The cat disappears without a trace, leaving the student wondering if they will ever see it again."
+  },
+  {
+    "id": "genki-i-ch7-convenience-store",
+    "filename": "genki-i-ch7-convenience-store.json",
+    "title": "Ken's Convenience Store Trip",
+    "titleJa": "ケンのコンビニ",
+    "difficulty": "Genki I Ch.7",
+    "language": "ja",
+    "description": "Ken, a student, often goes to a convenience store near his school with his friend Hiroshi. They buy snacks and drinks, which is a fun way to relax after school."
+  },
+  {
+    "id": "genki-i-ch7-onigiri-story",
+    "filename": "genki-i-ch7-onigiri-story.json",
+    "title": "Making Onigiri",
+    "titleJa": "おにぎり作り",
+    "difficulty": "Genki I Ch.7",
+    "language": "ja",
+    "description": "A short story about making and eating onigiri, perfect for Japanese learners studying with Genki I up to Chapter 7. It covers preparing rice, adding fillings like tuna and fish, and enjoying the delicious finished onigiri."
+  },
+  {
+    "id": "genki-i-ch8-ramen-oishi",
+    "filename": "genki-i-ch8-ramen-oishi.json",
+    "title": "Ramen Oishi",
+    "titleJa": "ラーメンおいしい",
+    "difficulty": "Genki I Ch.8",
+    "language": "ja",
+    "description": "Ken loves ramen from a popular shop, but the line is always long. One day, he decides to wait, and discovers why it's so popular."
+  },
+  {
+    "id": "genki-i-ch8-ramen-shop-opening",
+    "filename": "genki-i-ch8-ramen-shop-opening.json",
+    "title": "My Favorite Ramen Shop's New Opening",
+    "titleJa": "好きなラーメン屋の新しい店",
+    "difficulty": "Genki I Ch.8",
+    "language": "ja",
+    "description": "A person's favorite ramen shop opens a new location. They go with a friend to enjoy the delicious ramen."
+  },
+  {
+    "id": "genki-i-ch9-kenjis-first-bento",
+    "filename": "genki-i-ch9-kenjis-first-bento.json",
+    "title": "Kenji's First Bento",
+    "titleJa": "けんじさんが作ったお弁当",
+    "difficulty": "Genki I Ch.9",
+    "language": "ja",
+    "description": "Kenji decides to make his first bento for school. The story details his process of preparing ingredients, cooking, and carefully arranging his delicious meal."
+  },
+  {
+    "id": "genki-i-ch10-kenjis-snack",
+    "filename": "genki-i-ch10-kenjis-snack.json",
+    "title": "Kenji's After-School Snack",
+    "titleJa": "けんじさんの学校の後の食べ物",
+    "difficulty": "Genki I Ch.10",
+    "language": "ja",
+    "description": "Kenji finishes school and feels hungry. He decides to go to the convenience store to buy a sweet snack and juice, which he enjoys outside."
+  },
+  {
+    "id": "genki-i-ch12-white-cat",
+    "filename": "genki-i-ch12-white-cat.json",
+    "title": "The White Cat I See Every Morning",
+    "titleJa": "毎日見る白い猫",
+    "difficulty": "Genki I Ch.12",
+    "language": "ja",
+    "description": "A student describes their daily walk to school and the special white cat they often see along the way, whose presence brings them joy."
+  },
+  {
+    "id": "genki-i-ch13-bookstore-visit",
+    "filename": "genki-i-ch13-bookstore-visit.json",
+    "title": "Kenji's Favorite Bookstore",
+    "titleJa": "ケンジさんと好きな本屋",
+    "difficulty": "Genki I Ch.13",
+    "language": "ja",
+    "description": "Kenji loves his favorite bookstore. One Saturday, he decides to visit it, enjoy a coffee, and read a new book. This story describes his comforting experience."
+  },
+  {
+    "id": "genki-i-ch14-first-part-time-job",
+    "filename": "genki-i-ch14-first-part-time-job.json",
+    "title": "My First Part-Time Job",
+    "titleJa": "はじめてのアルバイト",
+    "difficulty": "Genki I Ch.14",
+    "language": "ja",
+    "description": "A high school student gets their first part-time job at a small ramen shop. They learn about working, making mistakes, and the kindness of their boss."
+  },
+  {
+    "id": "genki-i-ch15-yumis-bento-lunch",
+    "filename": "genki-i-ch15-yumis-bento-lunch.json",
+    "title": "Yumi's Bento Lunch",
+    "titleJa": "ゆみさんのお弁当",
+    "difficulty": "Genki I Ch.15",
+    "language": "ja",
+    "description": "Yumi is a high school student who loves the delicious bento lunches her mother always prepares for her. She enjoys eating lunch with her friends at school, who often admire her homemade meals."
+  },
+  {
+    "id": "genki-i-ch16-festival-story",
+    "filename": "genki-i-ch16-festival-story.json",
+    "title": "A Day at the Festival",
+    "titleJa": "お祭りの一日",
+    "difficulty": "Genki I Ch.16",
+    "language": "ja",
+    "description": "A short story about a friend and I visiting a festival, enjoying food, games, and the atmosphere, from afternoon until night."
+  },
+  {
+    "id": "genki-i-ch17-autumn-cafe",
+    "filename": "genki-i-ch17-autumn-cafe.json",
+    "title": "My Autumn Cafe",
+    "titleJa": "私の秋の喫茶店",
+    "difficulty": "Genki I Ch.17",
+    "language": "ja",
+    "description": "This story describes a person's favorite cafe in autumn, focusing on the atmosphere, new seasonal menu items, and the joy of experiencing the season through food and scenery."
+  },
+  {
+    "id": "genki-i-ch17-festival-fun",
+    "filename": "genki-i-ch17-festival-fun.json",
+    "title": "Festival Fun",
+    "titleJa": "楽しいお祭り",
+    "difficulty": "Genki I Ch.17",
+    "language": "ja",
+    "description": "This story describes a fun evening at a festival with a friend, enjoying food, games, and the lively atmosphere."
+  },
+  {
+    "id": "genki-i-ch18-festival-day",
+    "filename": "genki-i-ch18-festival-day.json",
+    "title": "A Fun Festival Day",
+    "titleJa": "お祭りの一日",
+    "difficulty": "Genki I Ch.18",
+    "language": "ja",
+    "description": "A friend and I go to a lively festival, enjoy food, try games, and have a happy day out."
+  },
+  {
+    "id": "genki-i-ch19-mystery-letter",
+    "filename": "genki-i-ch19-mystery-letter.json",
+    "title": "The Mystery Letter",
+    "titleJa": "なぞの手紙",
+    "difficulty": "Genki I Ch.19",
+    "language": "ja",
+    "description": "A student finds a mysterious, unnamed letter in their locker one morning, leading to a secret meeting invitation by an old cherry tree after school."
+  },
+  {
+    "id": "genki-i-ch19-okonomiyaki",
+    "filename": "genki-i-ch19-okonomiyaki.json",
+    "title": "My First Okonomiyaki",
+    "titleJa": "初めてのオコノミヤキ",
+    "difficulty": "Genki I Ch.19",
+    "language": "ja",
+    "description": "This story recounts a person's first experience making okonomiyaki, from buying ingredients to enjoying the delicious meal they prepared. It highlights the steps of cooking and the joy of a successful culinary endeavor."
+  },
+  {
+    "id": "genki-i-ch20-morning-walk",
+    "filename": "genki-i-ch20-morning-walk.json",
+    "title": "A Morning Walk with Coffee and Tea",
+    "titleJa": "コーヒーとお茶の毎朝",
+    "difficulty": "Genki I Ch.20",
+    "language": "ja",
+    "description": "This story is about a morning routine. Two friends walk to school, stopping at a convenience store for warm drinks before continuing their pleasant journey."
+  },
+  {
+    "id": "genki-i-ch21-omamori-story",
+    "filename": "genki-i-ch21-omamori-story.json",
+    "title": "The Lost Omamori",
+    "titleJa": "なくなったお守り",
+    "difficulty": "Genki I Ch.21",
+    "language": "ja",
+    "description": "Kenji loses his important good luck charm while walking home from school. Sakura, who is in the park, finds it and runs to return it to him."
+  },
+  {
+    "id": "genki-i-ch22-kyoto-garden",
+    "filename": "genki-i-ch22-kyoto-garden.json",
+    "title": "My Host Family's Kyoto Garden",
+    "titleJa": "ホストファミリーの京都の庭",
+    "difficulty": "Genki I Ch.22",
+    "language": "ja",
+    "description": "This story describes a student's host family home in Kyoto, focusing on the small, beautiful garden outside their living room. It highlights the tranquil atmosphere and the host mother's care for the plants."
+  },
+  {
+    "id": "genki-i-ch23-cats-many-stories",
+    "filename": "genki-i-ch23-cats-many-stories.json",
+    "title": "The Cat's Many Stories",
+    "titleJa": "猫のたくさんの話",
+    "difficulty": "Genki I Ch.23",
+    "language": "ja",
+    "description": "Every day, a person meets an old man in the park who tells amazing stories about his cat. The cat seems to live many different lives, from being a smart thief to a brave hunter, but always remains a quiet, fluffy companion."
+  },
+  {
+    "id": "genki-i-ch23-ramen-story",
+    "filename": "genki-i-ch23-ramen-story.json",
+    "title": "A New Ramen Shop",
+    "titleJa": "新しいラーメン屋",
+    "difficulty": "Genki I Ch.23",
+    "language": "ja",
+    "description": "Sato, Ken, and Mika decide to visit a new, popular ramen shop after school. They enjoy delicious ramen and make plans to return soon."
   }
 ]

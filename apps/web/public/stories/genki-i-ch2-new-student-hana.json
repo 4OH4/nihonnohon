@@ -1,0 +1,846 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch2-new-student-hana",
+  "title": "Tanaka Hana, a Student",
+  "title_ja": "田中花さん、学生です",
+  "language": "ja",
+  "description": "A new student, Tanaka Hana, joins the class. The story introduces her, her teacher Ms. Sato, and a classmate Ken, focusing on identity and possessions within Genki I Chapter 2 grammar and vocabulary constraints.",
+  "difficulty": "Genki I Ch.2",
+  "grammar": [
+    "Ch1 1.1] Defining Identity (X は Y です)",
+    "Ch1 1.2] Basic Inquiry (Question Sentences)",
+    "Ch1 1.3] Connecting Nouns (Noun1 の Noun2)",
+    "Ch2 2.1] Demonstrative Pronouns (これ・それ・あれ)",
+    "Ch2 2.2] Specifying Objects (この・その・あの)",
+    "Ch2 2.3] Identifying Places (ここ・そこ・あそこ)",
+    "Ch2 2.4] Asking for Ownership (だれの + Noun)",
+    "Ch2 2.5] Addition and Inclusion (Particle も)",
+    "Ch2 2.6] Negative Identity (～じゃないです)",
+    "Ch2 2.7] Social Feedback (Particles ね and よ)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "たなかはな",
+      "hiragana": "たなかはな",
+      "translation": "Tanaka Hana"
+    },
+    {
+      "key": 10001,
+      "word": "さとうせんせい",
+      "hiragana": "さとうせんせい",
+      "translation": "Ms. Sato"
+    },
+    {
+      "key": 10002,
+      "word": "ピンク",
+      "hiragana": "ピンク",
+      "translation": "pink"
+    },
+    {
+      "key": 10003,
+      "word": "ケン",
+      "hiragana": "ケン",
+      "translation": "Ken"
+    },
+    {
+      "key": 10004,
+      "word": "つくえ",
+      "hiragana": "つくえ",
+      "translation": "desk"
+    },
+    {
+      "key": 10005,
+      "word": "おおさかじん",
+      "hiragana": "おおさかじん",
+      "translation": "person from Osaka"
+    },
+    {
+      "key": 10006,
+      "word": "いいえ",
+      "hiragana": "いいえ",
+      "translation": "no"
+    },
+    {
+      "key": 10007,
+      "word": "あなた",
+      "hiragana": "あなた",
+      "translation": "you"
+    },
+    {
+      "key": 10008,
+      "word": "いい",
+      "hiragana": "いい",
+      "translation": "good"
+    },
+    {
+      "key": 10009,
+      "word": "たなか",
+      "hiragana": "たなか",
+      "translation": "Tanaka (surname)"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "これ",
+        "は",
+        "がくせい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        91,
+        null,
+        38,
+        null,
+        null
+      ],
+      "translation": "This is a student.",
+      "grammar": [
+        0,
+        3
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "なまえ",
+        "は",
+        "たなかはな",
+        "さん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        53,
+        null,
+        10000,
+        44,
+        null,
+        null
+      ],
+      "translation": "Her name is Tanaka Hana.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "さとうせんせい",
+        "は",
+        "せんせい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        47,
+        null,
+        null
+      ],
+      "translation": "Ms. Sato is a teacher.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "あれ",
+        "は",
+        "ピンク",
+        "の",
+        "かばん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        93,
+        null,
+        10002,
+        null,
+        110,
+        null,
+        null
+      ],
+      "translation": "That (over there) is a pink bag.",
+      "grammar": [
+        0,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "それ",
+        "は",
+        "たなかはな",
+        "さん",
+        "の",
+        "かばん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        10000,
+        44,
+        null,
+        110,
+        null,
+        null
+      ],
+      "translation": "That is Tanaka Hana's bag.",
+      "grammar": [
+        0,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "つくえ",
+        "は",
+        "あそこ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10004,
+        null,
+        99,
+        null,
+        null
+      ],
+      "translation": "The desk is over there.",
+      "grammar": [
+        0,
+        5
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "さとうせんせい",
+        "：",
+        "たなかはな",
+        "さん",
+        "、",
+        "あの",
+        "つくえ",
+        "は",
+        "だれ",
+        "の",
+        "つくえ",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        10000,
+        44,
+        null,
+        97,
+        10004,
+        null,
+        101,
+        null,
+        10004,
+        null,
+        null,
+        null
+      ],
+      "translation": "Ms. Sato: \"Tanaka Hana-san, whose desk is that one over there?\"",
+      "grammar": [
+        1,
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "たなかはな",
+        "さん",
+        "：",
+        "それ",
+        "は",
+        "ケン",
+        "さん",
+        "の",
+        "つくえ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        92,
+        null,
+        10003,
+        44,
+        null,
+        10004,
+        null,
+        null
+      ],
+      "translation": "Tanaka Hana: \"That is Ken's desk.\"",
+      "grammar": [
+        0,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "ケン",
+        "さん",
+        "は",
+        "ともだち",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10003,
+        44,
+        null,
+        52,
+        null,
+        null
+      ],
+      "translation": "Ken is a friend.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "さとうせんせい",
+        "：",
+        "たなかはな",
+        "さん",
+        "、",
+        "おおさかじん",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        10000,
+        44,
+        null,
+        10005,
+        null,
+        null,
+        null
+      ],
+      "translation": "Ms. Sato: \"Tanaka Hana-san, are you a person from Osaka?\"",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "たなかはな",
+        "さん",
+        "：",
+        "はい",
+        "、",
+        "わたし",
+        "は",
+        "おおさかじん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        57,
+        null,
+        61,
+        null,
+        10005,
+        null,
+        null
+      ],
+      "translation": "Tanaka Hana: \"Yes, I am a person from Osaka.\"",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "さとうせんせい",
+        "：",
+        "せんもん",
+        "は",
+        "なん",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        48,
+        null,
+        54,
+        null,
+        null,
+        null
+      ],
+      "translation": "Ms. Sato: \"What is your major?\"",
+      "grammar": [
+        1
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "たなかはな",
+        "さん",
+        "：",
+        "わたし",
+        "の",
+        "せんもん",
+        "は",
+        "ビジネス",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        61,
+        null,
+        48,
+        null,
+        74,
+        null,
+        null
+      ],
+      "translation": "Tanaka Hana: \"My major is business.\"",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "ケン",
+        "さん",
+        "：",
+        "あの",
+        "、",
+        "たなか",
+        "さん",
+        "、",
+        "これ",
+        "は",
+        "あなた",
+        "の",
+        "ノート",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10003,
+        44,
+        null,
+        35,
+        null,
+        10009,
+        44,
+        null,
+        91,
+        null,
+        10007,
+        null,
+        120,
+        null,
+        null,
+        null
+      ],
+      "translation": "Ken: \"Um, Tanaka-san, is this your notebook?\"",
+      "grammar": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "たなかはな",
+        "さん",
+        "：",
+        "いいえ",
+        "、",
+        "これ",
+        "は",
+        "わたし",
+        "の",
+        "ノート",
+        "じゃ",
+        "ない",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        10006,
+        null,
+        91,
+        null,
+        61,
+        null,
+        120,
+        null,
+        null,
+        null,
+        null
+      ],
+      "translation": "Tanaka Hana: \"No, this is not my notebook.\"",
+      "grammar": [
+        0,
+        2,
+        3,
+        8
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "たなかはな",
+        "さん",
+        "の",
+        "ほん",
+        "は",
+        "これ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        123,
+        null,
+        91,
+        null,
+        null
+      ],
+      "translation": "Tanaka Hana's book is this one.",
+      "grammar": [
+        0,
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "ケン",
+        "さん",
+        "も",
+        "がくせい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10003,
+        44,
+        null,
+        38,
+        null,
+        null
+      ],
+      "translation": "Ken is also a student.",
+      "grammar": [
+        0,
+        7
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "たなかはな",
+        "さん",
+        "は",
+        "わたし",
+        "の",
+        "ともだち",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        61,
+        null,
+        52,
+        null,
+        null
+      ],
+      "translation": "Tanaka Hana is my friend.",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "これ",
+        "は",
+        "いい",
+        "です",
+        "ね",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        91,
+        null,
+        10008,
+        null,
+        null,
+        null
+      ],
+      "translation": "This is good, isn't it?",
+      "grammar": [
+        0,
+        3,
+        9
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

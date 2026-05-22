@@ -1,0 +1,2064 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch13-bookstore-visit",
+  "title": "Kenji's Favorite Bookstore",
+  "title_ja": "ケンジさんと好きな本屋",
+  "language": "ja",
+  "description": "Kenji loves his favorite bookstore. One Saturday, he decides to visit it, enjoy a coffee, and read a new book. This story describes his comforting experience.",
+  "difficulty": "Genki I Ch.13",
+  "grammar": [
+    "Defining Identity (X は Y です)",
+    "Connecting Nouns (Noun1 の Noun2)",
+    "Specifying Objects (この・その・あの)",
+    "Particles を, で, に, へ",
+    "Temporal Markers (Time References)",
+    "Frequency Adverbs",
+    "Stating Existence (あります / います)",
+    "Positional Descriptions",
+    "Past Identity (Past Tense of です)",
+    "Recounting Actions (Past Tense of Verbs)",
+    "Connecting Items (Particle と)",
+    "Adjective Tenses",
+    "Modifying Nouns (Adjective + Noun)",
+    "Personal Preferences (好き / 嫌い)",
+    "Verb Linking (て-form)",
+    "Sequencing Actions (て-form for Activities)",
+    "Explaining Reasons (Particle から)",
+    "Current Actions (～ている)",
+    "Resultant States (～ている for Change)",
+    "Complex Descriptions (Joining Phrases)",
+    "Purpose of Movement (Stem + に行く)",
+    "Short Forms",
+    "Sharing Thoughts (Short Form + と思います)",
+    "Nominalized Verbs (Verb + のが好き)",
+    "Past Casual Style (Past Short Forms)",
+    "Personal Desires (～たい)",
+    "Listing Representative Actions (～たり... ～たりする)",
+    "Incomplete Lists (Particle や)",
+    "Listing Reasons (～し)",
+    "Tentative Attempt (～てみる)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "目",
+      "hiragana": "め",
+      "translation": "eye"
+    },
+    {
+      "key": 10001,
+      "word": "光",
+      "hiragana": "ひかり",
+      "translation": "light"
+    },
+    {
+      "key": 10002,
+      "word": "台所",
+      "hiragana": "だいどころ",
+      "translation": "kitchen"
+    },
+    {
+      "key": 10003,
+      "word": "音",
+      "hiragana": "おと",
+      "translation": "sound"
+    },
+    {
+      "key": 10004,
+      "word": "匂い",
+      "hiragana": "におい",
+      "translation": "smell; scent"
+    },
+    {
+      "key": 10005,
+      "word": "こと",
+      "hiragana": "こと",
+      "translation": "thing; matter"
+    },
+    {
+      "key": 10006,
+      "word": "遠い",
+      "hiragana": "とおい",
+      "translation": "far"
+    },
+    {
+      "key": 10007,
+      "word": "棚",
+      "hiragana": "たな",
+      "translation": "shelf"
+    },
+    {
+      "key": 10008,
+      "word": "角",
+      "hiragana": "かど",
+      "translation": "corner"
+    },
+    {
+      "key": 10009,
+      "word": "出す",
+      "hiragana": "だす",
+      "translation": "to serve; to put out"
+    },
+    {
+      "key": 10010,
+      "word": "紙",
+      "hiragana": "かみ",
+      "translation": "paper"
+    },
+    {
+      "key": 10011,
+      "word": "混じる",
+      "hiragana": "まじる",
+      "translation": "to be mixed (intransitive)"
+    },
+    {
+      "key": 10012,
+      "word": "組み合わせ",
+      "hiragana": "くみあわせ",
+      "translation": "combination"
+    },
+    {
+      "key": 10013,
+      "word": "日",
+      "hiragana": "ひ",
+      "translation": "day"
+    },
+    {
+      "key": 10014,
+      "word": "準備する",
+      "hiragana": "じゅんびする",
+      "translation": "to prepare"
+    },
+    {
+      "key": 10015,
+      "word": "ジャケット",
+      "hiragana": "ジャケット",
+      "translation": "jacket"
+    },
+    {
+      "key": 10016,
+      "word": "楽しむ",
+      "hiragana": "たのしむ",
+      "translation": "to enjoy"
+    },
+    {
+      "key": 10017,
+      "word": "空",
+      "hiragana": "そら",
+      "translation": "sky"
+    },
+    {
+      "key": 10018,
+      "word": "着く",
+      "hiragana": "つく",
+      "translation": "to arrive"
+    },
+    {
+      "key": 10019,
+      "word": "木",
+      "hiragana": "き",
+      "translation": "wood; tree"
+    },
+    {
+      "key": 10020,
+      "word": "ドア",
+      "hiragana": "ドア",
+      "translation": "door"
+    },
+    {
+      "key": 10021,
+      "word": "開く",
+      "hiragana": "あく",
+      "translation": "to open (intransitive)"
+    },
+    {
+      "key": 10022,
+      "word": "迎える",
+      "hiragana": "むかえる",
+      "translation": "to greet; to welcome"
+    },
+    {
+      "key": 10023,
+      "word": "人々",
+      "hiragana": "ひとびと",
+      "translation": "people"
+    },
+    {
+      "key": 10024,
+      "word": "テーブル",
+      "hiragana": "テーブル",
+      "translation": "table"
+    },
+    {
+      "key": 10025,
+      "word": "何人か",
+      "hiragana": "なんにんか",
+      "translation": "some people"
+    },
+    {
+      "key": 10026,
+      "word": "まず",
+      "hiragana": "まず",
+      "translation": "first of all"
+    },
+    {
+      "key": 10027,
+      "word": "少し",
+      "hiragana": "すこし",
+      "translation": "a little"
+    },
+    {
+      "key": 10028,
+      "word": "表紙",
+      "hiragana": "ひょうし",
+      "translation": "cover (of a book)"
+    },
+    {
+      "key": 10029,
+      "word": "小説",
+      "hiragana": "しょうせつ",
+      "translation": "novel"
+    },
+    {
+      "key": 10030,
+      "word": "注文する",
+      "hiragana": "ちゅうもんする",
+      "translation": "to order"
+    },
+    {
+      "key": 10031,
+      "word": "同じように",
+      "hiragana": "おなじように",
+      "translation": "just like"
+    },
+    {
+      "key": 10032,
+      "word": "椅子",
+      "hiragana": "いす",
+      "translation": "chair"
+    },
+    {
+      "key": 10033,
+      "word": "笑う",
+      "hiragana": "わらう",
+      "translation": "to smile"
+    },
+    {
+      "key": 10034,
+      "word": "完璧な",
+      "hiragana": "かんぺきな",
+      "translation": "perfect (な-adjective)"
+    },
+    {
+      "key": 10035,
+      "word": "彼",
+      "hiragana": "かれ",
+      "translation": "he; him"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "ケンジ",
+        "さん",
+        "は",
+        "ゆっくり",
+        "目",
+        "を",
+        "開け",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "ケンジ",
+        null,
+        null,
+        null,
+        "め",
+        null,
+        "あけ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        44,
+        null,
+        359,
+        10000,
+        null,
+        343,
+        null,
+        null
+      ],
+      "translation": "Kenji slowly opened his eyes.",
+      "grammar": [
+        0,
+        9
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "朝",
+        "の",
+        "光",
+        "は",
+        "彼",
+        "の",
+        "部屋",
+        "に",
+        "いっぱい",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "あさ",
+        null,
+        "ひかり",
+        null,
+        "かれ",
+        null,
+        "へや",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        159,
+        1,
+        10001,
+        null,
+        10035,
+        1,
+        270,
+        3,
+        null,
+        8,
+        null
+      ],
+      "translation": "The morning light filled his room.",
+      "grammar": [
+        1,
+        2,
+        3,
+        8
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "台所",
+        "から",
+        "小さい",
+        "音",
+        "が",
+        "し",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "だいどころ",
+        null,
+        null,
+        "おと",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10002,
+        16,
+        283,
+        10003,
+        null,
+        181,
+        null,
+        null
+      ],
+      "translation": "He heard a gentle sound from the kitchen.",
+      "grammar": [
+        3,
+        9
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "そして",
+        "、",
+        "匂い",
+        "が",
+        "し",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "におい",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        586,
+        null,
+        10004,
+        null,
+        181,
+        null,
+        null
+      ],
+      "translation": "Then, he smelled it.",
+      "grammar": [
+        9
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "暖か",
+        "くて",
+        "、",
+        "いい",
+        "コーヒー",
+        "の",
+        "匂い",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "あたたか",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "におい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        528,
+        null,
+        null,
+        183,
+        150,
+        1,
+        10004,
+        8,
+        null
+      ],
+      "translation": "A rich, warm aroma of freshly brewed coffee.",
+      "grammar": [
+        1,
+        8,
+        11,
+        19
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "お母さん",
+        "は",
+        "いつも",
+        "朝",
+        "に",
+        "コーヒー",
+        "を",
+        "作り",
+        "ます",
+        "。"
+      ],
+      "ruby": [
+        "おかあさん",
+        null,
+        null,
+        "あさ",
+        null,
+        null,
+        null,
+        "つくり",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        85,
+        null,
+        629,
+        159,
+        3,
+        150,
+        3,
+        444,
+        null,
+        null
+      ],
+      "translation": "His mother always made coffee in the morning.",
+      "grammar": [
+        0,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "この",
+        "匂い",
+        "は",
+        "よかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "におい",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        95,
+        10004,
+        null,
+        183,
+        null,
+        null
+      ],
+      "translation": "This smell was comforting.",
+      "grammar": [
+        2,
+        11
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "でも",
+        "、",
+        "ケンジ",
+        "さん",
+        "は",
+        "この",
+        "匂い",
+        "で",
+        "、",
+        "いつも",
+        "好き",
+        "な",
+        "本屋",
+        "の",
+        "こと",
+        "を",
+        "思い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "ケンジ",
+        null,
+        null,
+        null,
+        "におい",
+        null,
+        null,
+        null,
+        "すき",
+        null,
+        "ほんや",
+        null,
+        null,
+        null,
+        "おもい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        192,
+        null,
+        null,
+        44,
+        null,
+        95,
+        10004,
+        3,
+        null,
+        629,
+        293,
+        null,
+        215,
+        1,
+        10005,
+        null,
+        442,
+        null,
+        null
+      ],
+      "translation": "But for Kenji, this smell always brought his favorite bookstore to mind.",
+      "grammar": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        9,
+        13
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "彼",
+        "の",
+        "好き",
+        "な",
+        "本屋",
+        "は",
+        "町",
+        "に",
+        "あり",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "すき",
+        null,
+        "ほんや",
+        null,
+        "まち",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10035,
+        1,
+        293,
+        null,
+        215,
+        null,
+        216,
+        3,
+        6,
+        null,
+        null
+      ],
+      "translation": "His favorite bookstore was in the city.",
+      "grammar": [
+        1,
+        3,
+        6,
+        9,
+        13
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "駅",
+        "から",
+        "遠く",
+        "なかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "えき",
+        null,
+        "とおく",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        505,
+        16,
+        10006,
+        null,
+        null,
+        null
+      ],
+      "translation": "It wasn't far from the station.",
+      "grammar": [
+        8,
+        11
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "大きい",
+        "本屋",
+        "では",
+        "ありません",
+        "でしたが",
+        "、",
+        "彼",
+        "の",
+        "好き",
+        "な",
+        "本屋",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "おおきい",
+        "ほんや",
+        null,
+        null,
+        null,
+        null,
+        "かれ",
+        null,
+        "すき",
+        null,
+        "ほんや",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        278,
+        215,
+        null,
+        null,
+        null,
+        null,
+        10035,
+        1,
+        293,
+        null,
+        215,
+        8,
+        null
+      ],
+      "translation": "It wasn't a big bookstore, but it was his favorite.",
+      "grammar": [
+        1,
+        8,
+        12,
+        13
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "中",
+        "に",
+        "、",
+        "棚",
+        "に",
+        "たくさん",
+        "本",
+        "が",
+        "あり",
+        "ました",
+        "し",
+        "、",
+        "小さい",
+        "、",
+        "静か",
+        "な",
+        "喫茶店",
+        "も",
+        "あり",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "なか",
+        null,
+        null,
+        "たな",
+        null,
+        null,
+        "ほん",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "しずか",
+        null,
+        "きっさてん",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        248,
+        3,
+        null,
+        10007,
+        3,
+        239,
+        123,
+        null,
+        6,
+        null,
+        null,
+        null,
+        283,
+        null,
+        292,
+        null,
+        125,
+        2,
+        6,
+        null,
+        null
+      ],
+      "translation": "Inside, there were many books on the shelves, and there was also a small, quiet cafe.",
+      "grammar": [
+        3,
+        6,
+        9,
+        12,
+        13,
+        28
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "そこ",
+        "では",
+        "いつも",
+        "おいしい",
+        "熱い",
+        "コーヒー",
+        "や",
+        "いろいろ",
+        "な",
+        "お茶",
+        "を",
+        "出し",
+        "ます",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        "あつい",
+        null,
+        null,
+        null,
+        null,
+        "おちゃ",
+        null,
+        "だし",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        254,
+        3,
+        629,
+        102,
+        276,
+        150,
+        27,
+        668,
+        null,
+        149,
+        3,
+        10009,
+        null,
+        null
+      ],
+      "translation": "They always served delicious hot coffee and various teas there.",
+      "grammar": [
+        3,
+        4,
+        5,
+        11,
+        12,
+        13,
+        27
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "そこの",
+        "コーヒー",
+        "の",
+        "匂い",
+        "は",
+        "、",
+        "いつも",
+        "紙",
+        "や",
+        "古い",
+        "本",
+        "の",
+        "匂い",
+        "と",
+        "混じって",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "におい",
+        null,
+        null,
+        null,
+        "かみ",
+        null,
+        "ふるい",
+        "ほん",
+        null,
+        "におい",
+        null,
+        "まじって",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        254,
+        150,
+        1,
+        10004,
+        null,
+        null,
+        629,
+        10010,
+        27,
+        285,
+        123,
+        1,
+        10004,
+        10,
+        10011,
+        null,
+        null
+      ],
+      "translation": "The coffee smell there was always mixed with the scent of paper and old books.",
+      "grammar": [
+        1,
+        2,
+        6,
+        10,
+        12,
+        16,
+        17,
+        27
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "ケンジ",
+        "さん",
+        "は",
+        "この",
+        "組み合わせ",
+        "が",
+        "大好き",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "ケンジ",
+        null,
+        null,
+        null,
+        "くみあわせ",
+        null,
+        "だいすき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        44,
+        null,
+        95,
+        10012,
+        null,
+        295,
+        8,
+        null
+      ],
+      "translation": "Kenji loved this combination.",
+      "grammar": [
+        0,
+        2,
+        8,
+        13
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "彼",
+        "は",
+        "よく",
+        "そこ",
+        "で",
+        "本",
+        "を",
+        "読ん",
+        "だり",
+        "、",
+        "勉強",
+        "し",
+        "たり",
+        "し",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        null,
+        null,
+        null,
+        "ほん",
+        null,
+        "よん",
+        null,
+        null,
+        "べんきょう",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10035,
+        null,
+        190,
+        254,
+        3,
+        123,
+        3,
+        175,
+        null,
+        null,
+        182,
+        null,
+        null,
+        181,
+        null,
+        null
+      ],
+      "translation": "He often went there to read or study.",
+      "grammar": [
+        3,
+        5,
+        9,
+        14,
+        26
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "今日",
+        "は",
+        "土曜日",
+        "で",
+        "、",
+        "暇",
+        "な",
+        "日",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "きょう",
+        null,
+        "どようび",
+        null,
+        null,
+        "ひま",
+        null,
+        "ひ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        162,
+        null,
+        166,
+        19,
+        null,
+        298,
+        null,
+        10013,
+        8,
+        null
+      ],
+      "translation": "Today was Saturday, a free day.",
+      "grammar": [
+        0,
+        8,
+        19
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "ケンジ",
+        "さん",
+        "は",
+        "朝ごはん",
+        "を",
+        "食べ",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "ケンジ",
+        null,
+        null,
+        "あさごはん",
+        null,
+        "たべ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        44,
+        null,
+        147,
+        null,
+        177,
+        null,
+        null
+      ],
+      "translation": "Kenji finished his breakfast.",
+      "grammar": [
+        0,
+        3,
+        9
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "それから",
+        "、",
+        "早く",
+        "準備",
+        "し",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "はやく",
+        "じゅんび",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        546,
+        10014,
+        null,
+        null,
+        null
+      ],
+      "translation": "Then, he quickly got ready.",
+      "grammar": [
+        9
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "彼",
+        "は",
+        "好き",
+        "な",
+        "青い",
+        "ジャケット",
+        "を",
+        "着て",
+        "、",
+        "小さい",
+        "かばん",
+        "を",
+        "持ち",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "すき",
+        null,
+        "あおい",
+        null,
+        null,
+        "きて",
+        null,
+        null,
+        null,
+        null,
+        "もち",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10035,
+        null,
+        293,
+        null,
+        474,
+        10015,
+        null,
+        401,
+        null,
+        283,
+        110,
+        null,
+        341,
+        null,
+        null
+      ],
+      "translation": "He put on his favorite blue jacket and grabbed his small bag.",
+      "grammar": [
+        12,
+        14,
+        15
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "彼",
+        "は",
+        "本屋",
+        "に",
+        "行き",
+        "たい",
+        "と",
+        "思い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "ほんや",
+        null,
+        "いき",
+        null,
+        null,
+        "おもい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10035,
+        null,
+        215,
+        3,
+        170,
+        null,
+        10,
+        442,
+        null,
+        null
+      ],
+      "translation": "He felt a strong desire to visit the bookstore.",
+      "grammar": [
+        3,
+        9,
+        21,
+        22,
+        25
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "彼",
+        "は",
+        "駅",
+        "に",
+        "歩いて",
+        "行き",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "えき",
+        null,
+        "あるいて",
+        "いき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10035,
+        null,
+        505,
+        3,
+        540,
+        170,
+        null,
+        null
+      ],
+      "translation": "He walked to the station.",
+      "grammar": [
+        3,
+        9
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "秋",
+        "の",
+        "いい",
+        "空気",
+        "を",
+        "楽しみ",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "あき",
+        null,
+        null,
+        "くうき",
+        null,
+        "たのしみ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        504,
+        1,
+        183,
+        416,
+        null,
+        10016,
+        null,
+        null
+      ],
+      "translation": "He enjoyed the clear autumn air.",
+      "grammar": [
+        1,
+        3,
+        9,
+        12
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "空",
+        "は",
+        "青かった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "そら",
+        null,
+        "あおかった",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10017,
+        null,
+        474,
+        null,
+        null
+      ],
+      "translation": "The sky was bright blue.",
+      "grammar": [
+        0,
+        8,
+        11
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "駅",
+        "に",
+        "着いて",
+        "から",
+        "、",
+        "本屋",
+        "の",
+        "古い",
+        "木",
+        "の",
+        "ドア",
+        "が",
+        "開いて",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        "えき",
+        null,
+        "ついて",
+        null,
+        null,
+        "ほんや",
+        null,
+        "ふるい",
+        "き",
+        null,
+        null,
+        null,
+        "あいて",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        505,
+        3,
+        10018,
+        16,
+        null,
+        215,
+        1,
+        285,
+        10019,
+        1,
+        10020,
+        null,
+        10021,
+        null,
+        null
+      ],
+      "translation": "When he arrived, the bookstore's familiar wooden door was open.",
+      "grammar": [
+        1,
+        3,
+        15,
+        17,
+        20
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "中",
+        "に",
+        "入って",
+        "から",
+        "、",
+        "コーヒー",
+        "と",
+        "本",
+        "の",
+        "匂い",
+        "が",
+        "すぐ",
+        "彼",
+        "を",
+        "迎え",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "なか",
+        null,
+        "はいって",
+        null,
+        null,
+        null,
+        null,
+        "ほん",
+        null,
+        "におい",
+        null,
+        null,
+        "かれ",
+        null,
+        "むかえ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        248,
+        3,
+        340,
+        16,
+        null,
+        150,
+        10,
+        123,
+        1,
+        10004,
+        null,
+        357,
+        10035,
+        null,
+        10022,
+        null,
+        null
+      ],
+      "translation": "As he stepped inside, the comforting smell of coffee and books greeted him immediately.",
+      "grammar": [
+        1,
+        3,
+        10,
+        15,
+        20
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "彼",
+        "は",
+        "人々",
+        "が",
+        "静か",
+        "に",
+        "本",
+        "を",
+        "見て",
+        "いる",
+        "の",
+        "を",
+        "見",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "ひとびと",
+        null,
+        "しずか",
+        null,
+        "ほん",
+        null,
+        "みて",
+        null,
+        null,
+        null,
+        "み",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10035,
+        null,
+        10023,
+        null,
+        292,
+        null,
+        123,
+        null,
+        179,
+        null,
+        null,
+        null,
+        179,
+        null,
+        null
+      ],
+      "translation": "He saw people quietly browsing the shelves.",
+      "grammar": [
+        3,
+        9,
+        17,
+        19,
+        23
+      ]
+    },
+    {
+      "id": "s28",
+      "words": [
+        "何人か",
+        "喫茶店",
+        "の",
+        "テーブル",
+        "に",
+        "座って",
+        "、",
+        "本",
+        "を",
+        "読ん",
+        "だり",
+        "、",
+        "ゆっくり",
+        "話し",
+        "たり",
+        "して",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        "なんにんか",
+        "きっさてん",
+        null,
+        null,
+        null,
+        "すわって",
+        null,
+        "ほん",
+        null,
+        "よん",
+        null,
+        null,
+        null,
+        "はなし",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10025,
+        125,
+        1,
+        10024,
+        3,
+        335,
+        null,
+        123,
+        null,
+        175,
+        null,
+        null,
+        359,
+        174,
+        null,
+        181,
+        null,
+        null
+      ],
+      "translation": "Some sat at the cafe tables, reading or talking softly.",
+      "grammar": [
+        1,
+        3,
+        14,
+        15,
+        17,
+        26
+      ]
+    },
+    {
+      "id": "s29",
+      "words": [
+        "ケンジ",
+        "さん",
+        "は",
+        "まず",
+        "科学",
+        "の",
+        "本",
+        "の",
+        "ところ",
+        "に",
+        "行き",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "ケンジ",
+        null,
+        null,
+        null,
+        "かがく",
+        null,
+        "ほん",
+        null,
+        null,
+        null,
+        "いき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        44,
+        null,
+        10026,
+        68,
+        1,
+        123,
+        1,
+        423,
+        3,
+        170,
+        null,
+        null
+      ],
+      "translation": "Kenji walked to the science fiction section first.",
+      "grammar": [
+        1,
+        3,
+        9
+      ]
+    },
+    {
+      "id": "s30",
+      "words": [
+        "彼",
+        "は",
+        "少し",
+        "本",
+        "の",
+        "表紙",
+        "を",
+        "見",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "すこし",
+        "ほん",
+        null,
+        "ひょうし",
+        null,
+        "み",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10035,
+        null,
+        10027,
+        123,
+        1,
+        10028,
+        null,
+        179,
+        null,
+        null
+      ],
+      "translation": "He spent some time looking at the book covers.",
+      "grammar": [
+        1,
+        3,
+        9
+      ]
+    },
+    {
+      "id": "s31",
+      "words": [
+        "そして",
+        "、",
+        "読み",
+        "たい",
+        "新しい",
+        "小説",
+        "を",
+        "決め",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "よみ",
+        null,
+        "あたらしい",
+        "しょうせつ",
+        null,
+        "きめ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        586,
+        null,
+        175,
+        null,
+        274,
+        10029,
+        null,
+        538,
+        null,
+        null
+      ],
+      "translation": "Then he chose a new novel he wanted to read.",
+      "grammar": [
+        9,
+        12,
+        25
+      ]
+    },
+    {
+      "id": "s32",
+      "words": [
+        "彼",
+        "は",
+        "それ",
+        "を",
+        "小さい",
+        "喫茶店",
+        "に",
+        "持って行き",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        null,
+        null,
+        null,
+        "きっさてん",
+        null,
+        "もっていき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10035,
+        null,
+        92,
+        null,
+        283,
+        125,
+        3,
+        445,
+        null,
+        null
+      ],
+      "translation": "He took it to the small cafe.",
+      "grammar": [
+        2,
+        3,
+        9,
+        12
+      ]
+    },
+    {
+      "id": "s33",
+      "words": [
+        "いつも",
+        "と",
+        "同じように",
+        "熱い",
+        "コーヒー",
+        "を",
+        "注文",
+        "し",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "おなじように",
+        "あつい",
+        null,
+        null,
+        "ちゅうもん",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        629,
+        10,
+        10031,
+        276,
+        150,
+        null,
+        10030,
+        null,
+        null,
+        null
+      ],
+      "translation": "He ordered a hot coffee, just like always.",
+      "grammar": [
+        3,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "s34",
+      "words": [
+        "窓",
+        "の",
+        "そば",
+        "の",
+        "いい",
+        "椅子",
+        "に",
+        "座って",
+        "、",
+        "本",
+        "を",
+        "開けて",
+        "、",
+        "コーヒー",
+        "を",
+        "少し",
+        "飲んで",
+        "み",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "まど",
+        null,
+        null,
+        null,
+        null,
+        "いす",
+        null,
+        "すわって",
+        null,
+        "ほん",
+        null,
+        "あけて",
+        null,
+        null,
+        null,
+        "すこし",
+        "のんで",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        324,
+        1,
+        251,
+        1,
+        183,
+        10032,
+        3,
+        335,
+        null,
+        123,
+        null,
+        343,
+        null,
+        150,
+        null,
+        10027,
+        173,
+        null,
+        null,
+        null
+      ],
+      "translation": "Finding a comfortable chair by the window, he sat down, opened his book, and took a sip of his coffee.",
+      "grammar": [
+        1,
+        3,
+        7,
+        9,
+        12,
+        14,
+        15,
+        29
+      ]
+    },
+    {
+      "id": "s35",
+      "words": [
+        "彼",
+        "は",
+        "笑い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "わらい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10035,
+        null,
+        10033,
+        null,
+        null
+      ],
+      "translation": "He smiled.",
+      "grammar": [
+        0,
+        9
+      ]
+    },
+    {
+      "id": "s36",
+      "words": [
+        "これ",
+        "は",
+        "完璧な",
+        "土曜日",
+        "の",
+        "午後",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "かんぺきな",
+        "どようび",
+        null,
+        "ごご",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        91,
+        null,
+        10034,
+        166,
+        1,
+        41,
+        8,
+        null
+      ],
+      "translation": "This was the perfect Saturday afternoon.",
+      "grammar": [
+        0,
+        1,
+        8,
+        12
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

@@ -1,0 +1,1418 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch9-kenjis-first-bento",
+  "title": "Kenji's First Bento",
+  "title_ja": "けんじさんが作ったお弁当",
+  "language": "ja",
+  "description": "Kenji decides to make his first bento for school. The story details his process of preparing ingredients, cooking, and carefully arranging his delicious meal.",
+  "difficulty": "Genki I Ch.9",
+  "grammar": [
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch1 1.3] Connecting Nouns (Noun1 の Noun2)",
+    "[Ch2 2.2] Specifying Objects (この・その・あの)",
+    "[Ch2 2.5] Addition and Inclusion (Particle も)",
+    "[Ch3 3.2] The Present Tense",
+    "[Ch3 3.3] Sentence Logistics (Particles を, で, に, へ)",
+    "[Ch4 4.1] Stating Existence (あります / います)",
+    "[Ch4 4.2] Positional Descriptions",
+    "[Ch4 4.3] Past Identity (Past Tense of です)",
+    "[Ch4 4.4] Recounting Actions (Past Tense of Verbs)",
+    "[Ch4 4.5] Connecting Items (Particle と)",
+    "[Ch5 5.2] Attribute History (Past Tense of Adjectives)",
+    "[Ch5 5.3] Modifying Nouns (Adjective + Noun)",
+    "[Ch6 6.1] Verb Linking (て-form)",
+    "[Ch7 7.1] Current Actions (～ている)",
+    "[Ch7 7.4] Complex Descriptions (Joining Phrases)",
+    "[Ch8 8.3] Sharing Thoughts (Short Form + と思います)",
+    "[Ch8 8.6] Nominalized Verbs (Verb + のが好き)",
+    "[Ch9 9.1] Past Casual Style (Past Short Forms)",
+    "[Ch9 9.2] Relative Clauses (Noun Modification)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "けんじ",
+      "hiragana": "けんじ",
+      "translation": "Kenji (name)"
+    },
+    {
+      "key": 10001,
+      "word": "台所",
+      "hiragana": "だいどころ",
+      "translation": "kitchen"
+    },
+    {
+      "key": 10002,
+      "word": "冷蔵庫",
+      "hiragana": "れいぞうこ",
+      "translation": "refrigerator"
+    },
+    {
+      "key": 10003,
+      "word": "ブロッコリー",
+      "hiragana": "ブロッコリー",
+      "translation": "broccoli"
+    },
+    {
+      "key": 10004,
+      "word": "ニンジン",
+      "hiragana": "ニンジン",
+      "translation": "carrot"
+    },
+    {
+      "key": 10005,
+      "word": "たまご",
+      "hiragana": "たまご",
+      "translation": "egg"
+    },
+    {
+      "key": 10006,
+      "word": "棚",
+      "hiragana": "たな",
+      "translation": "cupboard"
+    },
+    {
+      "key": 10007,
+      "word": "まず",
+      "hiragana": "まず",
+      "translation": "first"
+    },
+    {
+      "key": 10008,
+      "word": "鍋",
+      "hiragana": "なべ",
+      "translation": "pot"
+    },
+    {
+      "key": 10009,
+      "word": "ほかの",
+      "hiragana": "ほかの",
+      "translation": "other"
+    },
+    {
+      "key": 10010,
+      "word": "煮る",
+      "hiragana": "にる",
+      "translation": "to boil (food)"
+    },
+    {
+      "key": 10011,
+      "word": "やわらかい",
+      "hiragana": "やわらかい",
+      "translation": "soft"
+    },
+    {
+      "key": 10012,
+      "word": "フライパン",
+      "hiragana": "フライパン",
+      "translation": "frying pan"
+    },
+    {
+      "key": 10013,
+      "word": "焼く",
+      "hiragana": "やく",
+      "translation": "to fry/grill"
+    },
+    {
+      "key": 10014,
+      "word": "お弁当箱",
+      "hiragana": "おべんとうばこ",
+      "translation": "bento box"
+    },
+    {
+      "key": 10015,
+      "word": "入れる",
+      "hiragana": "いれる",
+      "translation": "to put in"
+    },
+    {
+      "key": 10016,
+      "word": "置く",
+      "hiragana": "おく",
+      "translation": "to place/put"
+    },
+    {
+      "key": 10017,
+      "word": "別の",
+      "hiragana": "べつの",
+      "translation": "another; different"
+    },
+    {
+      "key": 10018,
+      "word": "さいごに",
+      "hiragana": "さいごに",
+      "translation": "finally"
+    },
+    {
+      "key": 10019,
+      "word": "彼",
+      "hiragana": "かれ",
+      "translation": "he"
+    },
+    {
+      "key": 10020,
+      "word": "ふた",
+      "hiragana": "ふた",
+      "translation": "lid"
+    },
+    {
+      "key": 10021,
+      "word": "楽しみ",
+      "hiragana": "たのしみ",
+      "translation": "looking forward to"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "いい",
+        "天気",
+        "の",
+        "午後",
+        "、",
+        "けんじ",
+        "さん",
+        "は",
+        "家",
+        "に",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "てんき",
+        null,
+        "ごご",
+        null,
+        null,
+        null,
+        null,
+        "いえ",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        183,
+        265,
+        null,
+        41,
+        null,
+        10000,
+        44,
+        null,
+        156,
+        null,
+        235,
+        null
+      ],
+      "translation": "On a clear afternoon, Kenji was at home.",
+      "grammar": [
+        1,
+        6
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "「",
+        "明日",
+        "、",
+        "学校",
+        "で",
+        "、",
+        "おいしい",
+        "お弁当",
+        "を",
+        "作ります",
+        "。",
+        "」",
+        "と",
+        "彼",
+        "は",
+        "思いました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "あした",
+        null,
+        "がっこう",
+        null,
+        null,
+        null,
+        "おべんとう",
+        null,
+        "つくります",
+        null,
+        null,
+        null,
+        "かれ",
+        null,
+        "おもいました",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        160,
+        null,
+        158,
+        null,
+        null,
+        102,
+        458,
+        null,
+        444,
+        null,
+        null,
+        null,
+        10019,
+        null,
+        442,
+        null
+      ],
+      "translation": "\"Tomorrow, I will make a delicious bento at school,\" he thought.",
+      "grammar": [
+        4,
+        5,
+        16
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "天気",
+        "は",
+        "とても",
+        "よかったです",
+        "。"
+      ],
+      "ruby": [
+        "てんき",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        265,
+        null,
+        307,
+        183,
+        null
+      ],
+      "translation": "The weather was very good.",
+      "grammar": [
+        11
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "まず",
+        "、",
+        "けんじ",
+        "さん",
+        "は",
+        "台所",
+        "に",
+        "行きました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "だいどころ",
+        null,
+        "いきました",
+        null
+      ],
+      "vocab_keys": [
+        10007,
+        null,
+        10000,
+        44,
+        null,
+        10001,
+        null,
+        170,
+        null
+      ],
+      "translation": "First, Kenji went into the kitchen.",
+      "grammar": [
+        5,
+        9
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "冷蔵庫",
+        "を",
+        "開けました",
+        "。"
+      ],
+      "ruby": [
+        "れいぞうこ",
+        null,
+        "あけました",
+        null
+      ],
+      "vocab_keys": [
+        10002,
+        null,
+        343,
+        null
+      ],
+      "translation": "He opened the refrigerator.",
+      "grammar": [
+        5,
+        9
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "たくさん",
+        "の",
+        "野菜",
+        "と",
+        "食べ物",
+        "が",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "やさい",
+        null,
+        "たべもの",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        239,
+        null,
+        107,
+        10,
+        262,
+        null,
+        229,
+        null
+      ],
+      "translation": "There were many vegetables and food items.",
+      "grammar": [
+        6,
+        10
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "赤い",
+        "トマト",
+        "と",
+        "青い",
+        "ブロッコリー",
+        "と",
+        "ニンジン",
+        "が",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        "あかい",
+        null,
+        null,
+        "あおい",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        475,
+        424,
+        10,
+        474,
+        10003,
+        10,
+        10004,
+        null,
+        229,
+        null
+      ],
+      "translation": "There were red tomatoes, green broccoli, and carrots.",
+      "grammar": [
+        12,
+        6,
+        10
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "たまご",
+        "も",
+        "みっつ",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10005,
+        3,
+        496,
+        229,
+        null
+      ],
+      "translation": "There were also three eggs.",
+      "grammar": [
+        3,
+        6
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "ご飯",
+        "が",
+        "棚",
+        "に",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        "ごはん",
+        null,
+        "たな",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        201,
+        null,
+        10006,
+        null,
+        229,
+        null
+      ],
+      "translation": "There was rice in the cupboard.",
+      "grammar": [
+        6,
+        5
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "水",
+        "も",
+        "いりました",
+        "。"
+      ],
+      "ruby": [
+        "みず",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        154,
+        3,
+        440,
+        null
+      ],
+      "translation": "He also needed water.",
+      "grammar": [
+        3,
+        9
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "けんじ",
+        "さん",
+        "は",
+        "鍋",
+        "で",
+        "ご飯",
+        "を",
+        "作りました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "なべ",
+        null,
+        "ごはん",
+        null,
+        "つくりました",
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        10008,
+        null,
+        201,
+        null,
+        444,
+        null
+      ],
+      "translation": "Kenji cooked rice in a pot.",
+      "grammar": [
+        9,
+        5
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "ご飯",
+        "を",
+        "ゆっくり",
+        "作って",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        "ごはん",
+        null,
+        null,
+        "つくって",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        201,
+        null,
+        359,
+        444,
+        null,
+        null
+      ],
+      "translation": "He was slowly cooking the rice.",
+      "grammar": [
+        13,
+        14,
+        5
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "それから",
+        "、",
+        "ほかの",
+        "食べ物",
+        "を",
+        "作りました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "たべもの",
+        null,
+        "つくりました",
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        10009,
+        262,
+        null,
+        444,
+        null
+      ],
+      "translation": "And then, he prepared other food.",
+      "grammar": [
+        9,
+        5
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "けんじ",
+        "さん",
+        "は",
+        "ブロッコリー",
+        "を",
+        "水",
+        "で",
+        "洗いました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "みず",
+        null,
+        "あらいました",
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        10003,
+        null,
+        154,
+        null,
+        438,
+        null
+      ],
+      "translation": "Kenji washed the broccoli with water.",
+      "grammar": [
+        9,
+        5
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "ニンジン",
+        "も",
+        "洗いました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "あらいました",
+        null
+      ],
+      "vocab_keys": [
+        10004,
+        3,
+        438,
+        null
+      ],
+      "translation": "He also washed the carrots.",
+      "grammar": [
+        3,
+        9
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "小さい",
+        "ニンジン",
+        "を",
+        "切りました",
+        "。"
+      ],
+      "ruby": [
+        "ちいさい",
+        null,
+        null,
+        "きりました",
+        null
+      ],
+      "vocab_keys": [
+        283,
+        10004,
+        null,
+        443,
+        null
+      ],
+      "translation": "He cut the small carrots.",
+      "grammar": [
+        12,
+        9,
+        5
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "青い",
+        "ブロッコリー",
+        "を",
+        "煮て",
+        "、",
+        "やわらかく",
+        "しました",
+        "。"
+      ],
+      "ruby": [
+        "あおい",
+        null,
+        null,
+        "にて",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        474,
+        10003,
+        null,
+        10010,
+        null,
+        10011,
+        181,
+        null
+      ],
+      "translation": "He boiled the green broccoli and made it soft.",
+      "grammar": [
+        12,
+        5,
+        13,
+        9
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "それから",
+        "、",
+        "小さい",
+        "フライパン",
+        "で",
+        "たまご",
+        "を",
+        "ふたつ",
+        "焼きました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "ちいさい",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "やきました",
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        283,
+        10012,
+        null,
+        10005,
+        null,
+        495,
+        10013,
+        null
+      ],
+      "translation": "Then, he fried two eggs in a small frying pan.",
+      "grammar": [
+        12,
+        9,
+        5
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "けんじ",
+        "さん",
+        "は",
+        "お弁当箱",
+        "を",
+        "持っていました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "おべんとうばこ",
+        null,
+        "もっていました",
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        10014,
+        null,
+        341,
+        null
+      ],
+      "translation": "Kenji had his bento box.",
+      "grammar": [
+        14,
+        9,
+        5
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "新しい",
+        "青い",
+        "お弁当箱",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "あたらしい",
+        "あおい",
+        "おべんとうばこ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        274,
+        474,
+        10014,
+        null,
+        null
+      ],
+      "translation": "It was a new, green bento box.",
+      "grammar": [
+        12,
+        8
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "白い",
+        "ご飯",
+        "を",
+        "ひとつ",
+        "の",
+        "所",
+        "に",
+        "入れました",
+        "。"
+      ],
+      "ruby": [
+        "しろい",
+        "ごはん",
+        null,
+        null,
+        null,
+        "ところ",
+        null,
+        "いれました",
+        null
+      ],
+      "vocab_keys": [
+        478,
+        201,
+        null,
+        494,
+        null,
+        423,
+        null,
+        10015,
+        null
+      ],
+      "translation": "He put the white rice into one section.",
+      "grammar": [
+        12,
+        9,
+        5,
+        1
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "それから",
+        "、",
+        "青い",
+        "ブロッコリー",
+        "を",
+        "ご飯",
+        "の",
+        "となり",
+        "に",
+        "置きました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "あおい",
+        null,
+        null,
+        "ごはん",
+        null,
+        null,
+        null,
+        "おきました",
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        474,
+        10003,
+        null,
+        201,
+        null,
+        252,
+        null,
+        10016,
+        null
+      ],
+      "translation": "Then, he placed the green broccoli next to the rice.",
+      "grammar": [
+        12,
+        5,
+        9,
+        7,
+        1
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "小さい",
+        "ニンジン",
+        "を",
+        "ブロッコリー",
+        "の",
+        "上",
+        "に",
+        "置きました",
+        "。"
+      ],
+      "ruby": [
+        "ちいさい",
+        null,
+        null,
+        null,
+        null,
+        "うえ",
+        null,
+        "おきました",
+        null
+      ],
+      "vocab_keys": [
+        283,
+        10004,
+        null,
+        10003,
+        null,
+        249,
+        null,
+        10016,
+        null
+      ],
+      "translation": "He placed the small carrots on top of the broccoli.",
+      "grammar": [
+        12,
+        5,
+        9,
+        7,
+        1
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "ふたつ",
+        "の",
+        "たまご",
+        "を",
+        "別の",
+        "所",
+        "に",
+        "置きました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        "べつの",
+        "ところ",
+        null,
+        "おきました",
+        null
+      ],
+      "vocab_keys": [
+        495,
+        null,
+        10005,
+        null,
+        10017,
+        423,
+        null,
+        10016,
+        null
+      ],
+      "translation": "He put the two eggs in another section.",
+      "grammar": [
+        5,
+        9,
+        1
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "さいごに",
+        "、",
+        "小さい",
+        "赤い",
+        "トマト",
+        "を",
+        "ふたつ",
+        "入れました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "ちいさい",
+        "あかい",
+        null,
+        null,
+        null,
+        "いれました",
+        null
+      ],
+      "vocab_keys": [
+        10018,
+        null,
+        283,
+        475,
+        424,
+        null,
+        495,
+        10015,
+        null
+      ],
+      "translation": "Finally, he added two small, red tomatoes.",
+      "grammar": [
+        12,
+        5,
+        9
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "けんじ",
+        "さん",
+        "は",
+        "作った",
+        "お弁当",
+        "を",
+        "見ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "つくった",
+        "おべんとう",
+        null,
+        "みました",
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        444,
+        458,
+        null,
+        179,
+        null
+      ],
+      "translation": "Kenji looked at the bento he had made.",
+      "grammar": [
+        18,
+        19,
+        9,
+        5
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "とても",
+        "きれい",
+        "な",
+        "色",
+        "で",
+        "、",
+        "とても",
+        "おいしかったです",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "いろ",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        307,
+        290,
+        null,
+        457,
+        null,
+        null,
+        307,
+        102,
+        null
+      ],
+      "translation": "It was very colorful and very delicious.",
+      "grammar": [
+        15,
+        11
+      ]
+    },
+    {
+      "id": "s28",
+      "words": [
+        "とても",
+        "楽しかったです",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        307,
+        282,
+        null
+      ],
+      "translation": "He was very happy.",
+      "grammar": [
+        11
+      ]
+    },
+    {
+      "id": "s29",
+      "words": [
+        "「",
+        "この",
+        "お弁当",
+        "は",
+        "大きくて",
+        "、",
+        "きれい",
+        "です",
+        "。",
+        "」",
+        "と",
+        "彼",
+        "は",
+        "思いました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "おべんとう",
+        null,
+        "おおきくて",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "かれ",
+        null,
+        "おもいました",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        95,
+        458,
+        null,
+        278,
+        null,
+        290,
+        null,
+        null,
+        null,
+        null,
+        10019,
+        null,
+        442,
+        null
+      ],
+      "translation": "\"This bento is big and beautiful,\" he thought.",
+      "grammar": [
+        2,
+        15,
+        0,
+        16
+      ]
+    },
+    {
+      "id": "s30",
+      "words": [
+        "けんじ",
+        "さん",
+        "は",
+        "お弁当箱",
+        "の",
+        "ふた",
+        "を",
+        "閉めました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "おべんとうばこ",
+        null,
+        null,
+        null,
+        "しめました",
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        44,
+        null,
+        10014,
+        null,
+        10020,
+        null,
+        347,
+        null
+      ],
+      "translation": "Kenji closed the lid of the bento box.",
+      "grammar": [
+        1,
+        5,
+        9
+      ]
+    },
+    {
+      "id": "s31",
+      "words": [
+        "お弁当",
+        "を",
+        "冷蔵庫",
+        "に",
+        "入れました",
+        "。"
+      ],
+      "ruby": [
+        "おべんとう",
+        null,
+        "れいぞうこ",
+        null,
+        "いれました",
+        null
+      ],
+      "vocab_keys": [
+        458,
+        null,
+        10002,
+        null,
+        10015,
+        null
+      ],
+      "translation": "He put the bento into the refrigerator.",
+      "grammar": [
+        5,
+        9
+      ]
+    },
+    {
+      "id": "s32",
+      "words": [
+        "明日",
+        "、",
+        "学校",
+        "で",
+        "お弁当",
+        "を",
+        "食べる",
+        "の",
+        "が",
+        "楽しみ",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "あした",
+        null,
+        "がっこう",
+        null,
+        "おべんとう",
+        null,
+        "たべる",
+        null,
+        null,
+        "たのしみ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        160,
+        null,
+        158,
+        null,
+        458,
+        null,
+        177,
+        null,
+        null,
+        10021,
+        null,
+        null
+      ],
+      "translation": "He was looking forward to eating the bento at school tomorrow.",
+      "grammar": [
+        17,
+        8,
+        5
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

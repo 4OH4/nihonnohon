@@ -1,0 +1,1514 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch14-first-part-time-job",
+  "title": "My First Part-Time Job",
+  "title_ja": "はじめてのアルバイト",
+  "language": "ja",
+  "description": "A high school student gets their first part-time job at a small ramen shop. They learn about working, making mistakes, and the kindness of their boss.",
+  "difficulty": "Genki I Ch.14",
+  "grammar": [
+    "Defining Identity (X は Y です)",
+    "Connecting Nouns (Noun1 の Noun2)",
+    "Demonstrative Pronouns (これ・それ・あれ)",
+    "Addition and Inclusion (Particle も)",
+    "Negative Identity (～じゃないです)",
+    "Social Feedback (Particles ね and よ)",
+    "Verb Classes and Conjugation",
+    "Sentence Logistics (Particles を, で, に, へ)",
+    "Temporal Markers (Time References)",
+    "Frequency Adverbs",
+    "Stating Existence (あります / います)",
+    "Positional Descriptions",
+    "Past Identity (Past Tense of です)",
+    "Recounting Actions (Past Tense of Verbs)",
+    "Connecting Items (Particle と)",
+    "Measuring Time (Duration)",
+    "Attribute Basics (Adjective Tenses)",
+    "Attribute History (Past Tense of Adjectives)",
+    "Modifying Nouns (Adjective + Noun)",
+    "Explaining Reasons (Particle から)",
+    "Current Actions (～ている)",
+    "Complex Descriptions (Joining Phrases)",
+    "Informal Language (Short Forms)",
+    "Sharing Thoughts (Short Form + と思います)",
+    "Reporting Speech (Short Form + と言っていました)",
+    "Negative Requests (～ないでください)",
+    "Nominalized Verbs (Verb + のが好き)",
+    "Emphasizing Subjects (Particle が)",
+    "Past Casual Style (Past Short Forms)",
+    "Relative Clauses (Noun Modification)",
+    "Describing Change (Adjective + なる)",
+    "Listing Representative Actions (～たり... ～たりする)",
+    "Incomplete Lists (Particle や)",
+    "Giving Explanations (～んです)",
+    "Stating Obligation (～なければいけません)",
+    "Listing Reasons (～し)",
+    "Visual Impressions (～そうです)",
+    "Tentative Attempt (～てみる)",
+    "Gifts (あげる / くれる / もらう)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "ラーメン",
+      "hiragana": "null",
+      "translation": "ramen"
+    },
+    {
+      "key": 10001,
+      "word": "じゅうごふん",
+      "hiragana": "じゅうごふん",
+      "translation": "fifteen minutes"
+    },
+    {
+      "key": 10002,
+      "word": "笑顔",
+      "hiragana": "えがお",
+      "translation": "smile"
+    },
+    {
+      "key": 10003,
+      "word": "その時",
+      "hiragana": "そのとき",
+      "translation": "at that time"
+    },
+    {
+      "key": 10004,
+      "word": "まず",
+      "hiragana": "null",
+      "translation": "first"
+    },
+    {
+      "key": 10005,
+      "word": "テーブル",
+      "hiragana": "null",
+      "translation": "table"
+    },
+    {
+      "key": 10006,
+      "word": "いす",
+      "hiragana": "null",
+      "translation": "chair"
+    },
+    {
+      "key": 10007,
+      "word": "ピッチャー",
+      "hiragana": "null",
+      "translation": "pitcher"
+    },
+    {
+      "key": 10008,
+      "word": "入れる",
+      "hiragana": "いれる",
+      "translation": "to put in, fill"
+    },
+    {
+      "key": 10009,
+      "word": "カウンター",
+      "hiragana": "null",
+      "translation": "counter"
+    },
+    {
+      "key": 10010,
+      "word": "置く",
+      "hiragana": "おく",
+      "translation": "to put, place"
+    },
+    {
+      "key": 10011,
+      "word": "お客さん",
+      "hiragana": "おきゃくさん",
+      "translation": "customer"
+    },
+    {
+      "key": 10012,
+      "word": "声",
+      "hiragana": "こえ",
+      "translation": "voice"
+    },
+    {
+      "key": 10013,
+      "word": "注文",
+      "hiragana": "ちゅうもん",
+      "translation": "order"
+    },
+    {
+      "key": 10014,
+      "word": "注文する",
+      "hiragana": "ちゅうもんする",
+      "translation": "to order"
+    },
+    {
+      "key": 10015,
+      "word": "ほとんどの人",
+      "hiragana": "ほとんどのひと",
+      "translation": "most people"
+    },
+    {
+      "key": 10016,
+      "word": "ぎょうざ",
+      "hiragana": "null",
+      "translation": "gyoza"
+    },
+    {
+      "key": 10017,
+      "word": "焼き飯",
+      "hiragana": "やきめし",
+      "translation": "fried rice"
+    },
+    {
+      "key": 10018,
+      "word": "湯気",
+      "hiragana": "ゆげ",
+      "translation": "steam"
+    },
+    {
+      "key": 10019,
+      "word": "スープ",
+      "hiragana": "null",
+      "translation": "broth"
+    },
+    {
+      "key": 10020,
+      "word": "匂い",
+      "hiragana": "におい",
+      "translation": "smell"
+    },
+    {
+      "key": 10021,
+      "word": "間違い",
+      "hiragana": "まちがい",
+      "translation": "mistake"
+    },
+    {
+      "key": 10022,
+      "word": "一度",
+      "hiragana": "いちど",
+      "translation": "once"
+    },
+    {
+      "key": 10023,
+      "word": "落とす",
+      "hiragana": "おとす",
+      "translation": "to drop"
+    },
+    {
+      "key": 10024,
+      "word": "捕まえる",
+      "hiragana": "つかまえる",
+      "translation": "to catch"
+    },
+    {
+      "key": 10025,
+      "word": "別の時",
+      "hiragana": "べつのとき",
+      "translation": "another time"
+    },
+    {
+      "key": 10026,
+      "word": "怒る",
+      "hiragana": "おこる",
+      "translation": "to get angry"
+    },
+    {
+      "key": 10027,
+      "word": "丁寧",
+      "hiragana": "ていねい",
+      "translation": "polite, careful"
+    },
+    {
+      "key": 10028,
+      "word": "はっきり",
+      "hiragana": "null",
+      "translation": "clearly"
+    },
+    {
+      "key": 10029,
+      "word": "半年",
+      "hiragana": "はんとし",
+      "translation": "half a year"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "私",
+        "の",
+        "はじめて",
+        "の",
+        "アルバイト",
+        "は",
+        "ちいさい",
+        "ラーメン",
+        "の",
+        "店",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "みせ",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        635,
+        null,
+        194,
+        null,
+        283,
+        10000,
+        null,
+        658,
+        null,
+        null
+      ],
+      "translation": "My first part-time job was at a small ramen shop.",
+      "grammar": [
+        0,
+        1,
+        12
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "それ",
+        "は",
+        "私",
+        "の",
+        "家",
+        "から",
+        "あまり",
+        "近くなかったです",
+        "。",
+        "たぶん",
+        "歩いて",
+        "じゅうごふん",
+        "ぐらい",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "わたし",
+        "null",
+        "いえ",
+        "null",
+        "null",
+        "ちかくなかったです",
+        "null",
+        "null",
+        "あるいて",
+        "null",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        61,
+        null,
+        155,
+        null,
+        185,
+        667,
+        null,
+        632,
+        540,
+        10001,
+        236,
+        null,
+        null
+      ],
+      "translation": "It was not far from my house, maybe a fifteen-minute walk.",
+      "grammar": [
+        2,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "その",
+        "店",
+        "は",
+        "古",
+        "い",
+        "し",
+        "、",
+        "いつも",
+        "暖かくて",
+        "、",
+        "いい",
+        "匂い",
+        "で",
+        "おいしかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "みせ",
+        "null",
+        "ふる",
+        "い",
+        "null",
+        "null",
+        "null",
+        "あたたかくて",
+        "null",
+        "null",
+        "におい",
+        "null",
+        "おいしかった",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        96,
+        658,
+        null,
+        285,
+        null,
+        null,
+        null,
+        629,
+        528,
+        null,
+        183,
+        10020,
+        null,
+        102,
+        null,
+        null
+      ],
+      "translation": "The shop was old, and it always felt warm and smelled delicious.",
+      "grammar": [
+        16,
+        17,
+        21,
+        32
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "大家さん",
+        "は",
+        "親切",
+        "な",
+        "おじいさん",
+        "でした",
+        "。",
+        "大きい",
+        "笑顔",
+        "が",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        "おおやさん",
+        "null",
+        "しんせつ",
+        "null",
+        "null",
+        "null",
+        "null",
+        "おおきい",
+        "えがお",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        694,
+        null,
+        389,
+        null,
+        638,
+        null,
+        null,
+        278,
+        10002,
+        null,
+        10,
+        null
+      ],
+      "translation": "The owner was a kind old man with a big smile.",
+      "grammar": [
+        0,
+        12,
+        16,
+        19
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "私",
+        "は",
+        "その時",
+        "、",
+        "高校生",
+        "でした",
+        "。",
+        "だから",
+        "、",
+        "仕事",
+        "が",
+        "ちょっと",
+        "緊張しました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        "null",
+        "そのとき",
+        "null",
+        "こうこうせい",
+        "null",
+        "null",
+        "null",
+        "null",
+        "しごと",
+        "null",
+        "null",
+        "きんちょうしました",
+        "null"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        10003,
+        null,
+        80,
+        null,
+        null,
+        238,
+        null,
+        77,
+        null,
+        188,
+        627,
+        null
+      ],
+      "translation": "I was a high school student then, and a little nervous about working.",
+      "grammar": [
+        0,
+        12,
+        13,
+        23
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "毎日",
+        "、",
+        "午後",
+        "五時",
+        "に",
+        "仕事",
+        "を",
+        "始めました",
+        "。"
+      ],
+      "ruby": [
+        "まいにち",
+        "null",
+        "ごご",
+        "ごじ",
+        "null",
+        "しごと",
+        "null",
+        "はじめました",
+        "null"
+      ],
+      "vocab_keys": [
+        168,
+        null,
+        41,
+        45,
+        null,
+        77,
+        null,
+        447,
+        null
+      ],
+      "translation": "Every day, I started my shift at five o'clock in the evening.",
+      "grammar": [
+        8,
+        7,
+        13
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "まず",
+        "、",
+        "全部",
+        "の",
+        "テーブル",
+        "と",
+        "いす",
+        "を",
+        "掃除しなければいけませんでした",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "ぜんぶ",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "そうじしなければいけませんでした",
+        "null"
+      ],
+      "vocab_keys": [
+        10004,
+        null,
+        680,
+        null,
+        10005,
+        null,
+        10006,
+        null,
+        450,
+        null
+      ],
+      "translation": "First, I had to clean all the tables and chairs.",
+      "grammar": [
+        1,
+        7,
+        14,
+        31
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "それから",
+        "、",
+        "水",
+        "の",
+        "ピッチャー",
+        "を",
+        "入れて",
+        "、",
+        "カウンター",
+        "の",
+        "上",
+        "に",
+        "置きました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "みず",
+        "null",
+        "null",
+        "null",
+        "いれて",
+        "null",
+        "null",
+        "null",
+        "うえ",
+        "null",
+        "おきました",
+        "null"
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        154,
+        null,
+        10007,
+        null,
+        10008,
+        null,
+        10009,
+        null,
+        249,
+        null,
+        10010,
+        null
+      ],
+      "translation": "Then, I filled the water pitchers and put them on the counter.",
+      "grammar": [
+        1,
+        7,
+        6
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "すぐ",
+        "、",
+        "お客さん",
+        "が",
+        "たくさん",
+        "来ました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "おきゃくさん",
+        "null",
+        "null",
+        "きました",
+        "null"
+      ],
+      "vocab_keys": [
+        357,
+        null,
+        10011,
+        null,
+        239,
+        180,
+        null
+      ],
+      "translation": "Soon, customers came.",
+      "grammar": [
+        13,
+        24
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "「",
+        "いらっしゃいませ",
+        "！」",
+        "と",
+        "大きい",
+        "声",
+        "で",
+        "言ってみました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "おおきい",
+        "こえ",
+        "null",
+        "いってみました",
+        "null"
+      ],
+      "vocab_keys": [
+        null,
+        133,
+        null,
+        null,
+        278,
+        10012,
+        null,
+        439,
+        null
+      ],
+      "translation": "\"Welcome!\" I tried saying loudly.",
+      "grammar": [
+        7,
+        23,
+        34
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "ちいさい",
+        "ノート",
+        "に",
+        "注文",
+        "を",
+        "書きました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "ちゅうもん",
+        "null",
+        "かきました",
+        "null"
+      ],
+      "vocab_keys": [
+        283,
+        120,
+        null,
+        10013,
+        null,
+        231,
+        null
+      ],
+      "translation": "I wrote orders on a small notepad.",
+      "grammar": [
+        7,
+        13,
+        18
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "ほとんどの人",
+        "は",
+        "ラーメン",
+        "を",
+        "注文しました",
+        "。",
+        "でも",
+        "、",
+        "ぎょうざ",
+        "や",
+        "焼き飯",
+        "を",
+        "注文する",
+        "人",
+        "も",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        "ほとんどのひと",
+        "null",
+        "null",
+        "null",
+        "ちゅうもんしました",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "やきめし",
+        "null",
+        "ちゅうもんする",
+        "ひと",
+        "null",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        10015,
+        null,
+        10000,
+        null,
+        10014,
+        null,
+        192,
+        null,
+        10016,
+        null,
+        10017,
+        null,
+        10014,
+        207,
+        2,
+        235,
+        null
+      ],
+      "translation": "Most people ordered ramen, of course, but some also ordered gyoza or fried rice.",
+      "grammar": [
+        13,
+        18,
+        2,
+        27,
+        30
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "熱い",
+        "ラーメン",
+        "の",
+        "お皿",
+        "を",
+        "テーブル",
+        "に",
+        "持っていく",
+        "の",
+        "が",
+        "私",
+        "の",
+        "仕事",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "あつい",
+        "null",
+        "null",
+        "おさら",
+        "null",
+        "null",
+        "null",
+        "もっていく",
+        "null",
+        "null",
+        "わたし",
+        "null",
+        "しごと",
+        "null",
+        "null"
+      ],
+      "vocab_keys": [
+        276,
+        10000,
+        null,
+        703,
+        null,
+        10005,
+        null,
+        445,
+        null,
+        null,
+        61,
+        null,
+        77,
+        null,
+        null
+      ],
+      "translation": "Bringing hot bowls of ramen to the tables was my main job.",
+      "grammar": [
+        1,
+        7,
+        13,
+        18,
+        25
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "湯気",
+        "が",
+        "出て",
+        "、",
+        "スープ",
+        "の",
+        "いい",
+        "匂い",
+        "は",
+        "いつも",
+        "お腹",
+        "が",
+        "すきました",
+        "。"
+      ],
+      "ruby": [
+        "ゆげ",
+        "null",
+        "でて",
+        "null",
+        "null",
+        "null",
+        "null",
+        "におい",
+        "null",
+        "null",
+        "おなか",
+        "null",
+        "すきました",
+        "null"
+      ],
+      "vocab_keys": [
+        10018,
+        null,
+        488,
+        null,
+        10019,
+        null,
+        183,
+        10020,
+        null,
+        629,
+        592,
+        null,
+        569,
+        null
+      ],
+      "translation": "The steam rose, and the rich smell of the broth always made my stomach rumble.",
+      "grammar": [
+        6,
+        1,
+        16,
+        24
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "時々",
+        "、",
+        "ちいさい",
+        "間違い",
+        "を",
+        "しました",
+        "。"
+      ],
+      "ruby": [
+        "ときどき",
+        "null",
+        "null",
+        "まちがい",
+        "null",
+        "しました",
+        "null"
+      ],
+      "vocab_keys": [
+        189,
+        null,
+        283,
+        10021,
+        null,
+        181,
+        null
+      ],
+      "translation": "Sometimes, I made small mistakes.",
+      "grammar": [
+        7,
+        13,
+        18
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "一度",
+        "、",
+        "お皿",
+        "を",
+        "落としそう",
+        "に",
+        "なりました",
+        "。",
+        "でも",
+        "、",
+        "すぐ",
+        "捕まえました",
+        "。"
+      ],
+      "ruby": [
+        "いちど",
+        "null",
+        "おさら",
+        "null",
+        "おとしそう",
+        "null",
+        "なりました",
+        "null",
+        "null",
+        "null",
+        "null",
+        "つかまえました",
+        "null"
+      ],
+      "vocab_keys": [
+        10022,
+        null,
+        703,
+        null,
+        10023,
+        null,
+        536,
+        null,
+        192,
+        null,
+        357,
+        10024,
+        null
+      ],
+      "translation": "Once, I almost dropped a bowl, but I caught it just in time.",
+      "grammar": [
+        7,
+        13,
+        29,
+        17,
+        33
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "別の時",
+        "に",
+        "、",
+        "お客さん",
+        "に",
+        "水",
+        "を",
+        "持っていく",
+        "の",
+        "を",
+        "忘れました",
+        "。"
+      ],
+      "ruby": [
+        "べつのとき",
+        "null",
+        "null",
+        "おきゃくさん",
+        "null",
+        "みず",
+        "null",
+        "もっていく",
+        "null",
+        "null",
+        "わすれました",
+        "null"
+      ],
+      "vocab_keys": [
+        10025,
+        null,
+        null,
+        10011,
+        null,
+        154,
+        null,
+        445,
+        null,
+        null,
+        350,
+        null
+      ],
+      "translation": "Another time, I forgot to bring water to a customer.",
+      "grammar": [
+        7,
+        13,
+        25
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "大家さん",
+        "は",
+        "全然",
+        "怒りませんでした",
+        "。"
+      ],
+      "ruby": [
+        "おおやさん",
+        "null",
+        "ぜんぜん",
+        "おこりませんでした",
+        "null"
+      ],
+      "vocab_keys": [
+        694,
+        null,
+        186,
+        10026,
+        null
+      ],
+      "translation": "The owner never got angry.",
+      "grammar": [
+        9,
+        13
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "大家さん",
+        "は",
+        "「",
+        "心配しないでください",
+        "。",
+        "みんな",
+        "間違い",
+        "を",
+        "します",
+        "よ",
+        "。",
+        "頑張ってください",
+        "。",
+        "」",
+        "と",
+        "言いました",
+        "。"
+      ],
+      "ruby": [
+        "おおやさん",
+        "null",
+        "null",
+        "しんぱいしないでください",
+        "null",
+        "null",
+        "まちがい",
+        "null",
+        "null",
+        "null",
+        "null",
+        "がんばってください",
+        "null",
+        "null",
+        "null",
+        "いいました",
+        "null"
+      ],
+      "vocab_keys": [
+        694,
+        null,
+        null,
+        628,
+        null,
+        492,
+        10021,
+        null,
+        181,
+        null,
+        null,
+        673,
+        null,
+        null,
+        null,
+        439,
+        null
+      ],
+      "translation": "He would just say, \"Don't worry, everyone makes mistakes. Just try your best.\"",
+      "grammar": [
+        23,
+        24,
+        2,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "大家さん",
+        "は",
+        "「",
+        "お皿",
+        "を",
+        "たくさん",
+        "丁寧",
+        "に",
+        "持って",
+        "ください",
+        "。",
+        "はっきり",
+        "話して",
+        "ください",
+        "。",
+        "」",
+        "と",
+        "教えてくれました",
+        "。"
+      ],
+      "ruby": [
+        "おおやさん",
+        "null",
+        "null",
+        "おさら",
+        "null",
+        "null",
+        "ていねい",
+        "null",
+        "もって",
+        "null",
+        "null",
+        "null",
+        "はなして",
+        "null",
+        "null",
+        "null",
+        "null",
+        "おしえてくれました",
+        "null"
+      ],
+      "vocab_keys": [
+        694,
+        null,
+        null,
+        703,
+        null,
+        239,
+        10027,
+        null,
+        341,
+        null,
+        null,
+        10028,
+        174,
+        null,
+        null,
+        null,
+        null,
+        344,
+        null
+      ],
+      "translation": "He taught me, \"Carry many bowls carefully. Speak clearly.\"",
+      "grammar": [
+        7,
+        23,
+        35
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "ラーメン",
+        "の",
+        "店",
+        "で",
+        "半年",
+        "ぐらい",
+        "働きました",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "みせ",
+        "null",
+        "はんとし",
+        "null",
+        "はたらきました",
+        "null"
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        658,
+        null,
+        10029,
+        236,
+        575,
+        null
+      ],
+      "translation": "I worked at the ramen shop for about six months.",
+      "grammar": [
+        1,
+        7,
+        13,
+        15
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "大変",
+        "な",
+        "仕事",
+        "だったんです",
+        "。",
+        "でも",
+        "、",
+        "たくさん",
+        "の",
+        "もの",
+        "を",
+        "知りました",
+        "。"
+      ],
+      "ruby": [
+        "たいへん",
+        "null",
+        "しごと",
+        "だったんです",
+        "null",
+        "null",
+        "null",
+        "null",
+        "null",
+        "もの",
+        "null",
+        "しりました",
+        "null"
+      ],
+      "vocab_keys": [
+        328,
+        null,
+        77,
+        null,
+        null,
+        192,
+        null,
+        239,
+        null,
+        610,
+        null,
+        393,
+        null
+      ],
+      "translation": "It was hard work, but I learned a lot of things.",
+      "grammar": [
+        16,
+        12,
+        13,
+        17,
+        31
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "責任",
+        "や",
+        "チームワーク",
+        "も",
+        "知りました",
+        "。"
+      ],
+      "ruby": [
+        "せきにん",
+        "null",
+        "null",
+        "null",
+        "しりました",
+        "null"
+      ],
+      "vocab_keys": [
+        576,
+        null,
+        578,
+        2,
+        393,
+        null
+      ],
+      "translation": "I learned about responsibility and teamwork.",
+      "grammar": [
+        13,
+        2,
+        30
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "大家さん",
+        "の",
+        "ラーメン",
+        "が",
+        "本当に",
+        "一番",
+        "おいしい",
+        "と",
+        "思いました",
+        "。"
+      ],
+      "ruby": [
+        "おおやさん",
+        "null",
+        "null",
+        "null",
+        "ほんとうに",
+        "いちばん",
+        "null",
+        "null",
+        "おもいました",
+        "null"
+      ],
+      "vocab_keys": [
+        694,
+        null,
+        10000,
+        null,
+        358,
+        541,
+        102,
+        null,
+        442,
+        null
+      ],
+      "translation": "I also learned that the owner's ramen truly was the best.",
+      "grammar": [
+        1,
+        23,
+        24
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "とても",
+        "いい",
+        "はじめて",
+        "の",
+        "仕事",
+        "でした",
+        "。",
+        "そして",
+        "、",
+        "今",
+        "も",
+        "よく",
+        "覚えています",
+        "。"
+      ],
+      "ruby": [
+        "null",
+        "null",
+        "null",
+        "null",
+        "しごと",
+        "null",
+        "null",
+        "null",
+        "null",
+        "いま",
+        "null",
+        "null",
+        "おぼえています",
+        "null"
+      ],
+      "vocab_keys": [
+        307,
+        183,
+        635,
+        null,
+        77,
+        null,
+        null,
+        586,
+        null,
+        36,
+        null,
+        190,
+        487,
+        null
+      ],
+      "translation": "It was a very good first job, and I still remember it fondly.",
+      "grammar": [
+        0,
+        1,
+        12,
+        21
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

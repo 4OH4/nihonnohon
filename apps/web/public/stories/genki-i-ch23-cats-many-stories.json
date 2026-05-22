@@ -1,0 +1,1900 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch23-cats-many-stories",
+  "title": "The Cat's Many Stories",
+  "title_ja": "猫のたくさんの話",
+  "language": "ja",
+  "description": "Every day, a person meets an old man in the park who tells amazing stories about his cat. The cat seems to live many different lives, from being a smart thief to a brave hunter, but always remains a quiet, fluffy companion.",
+  "difficulty": "Genki I Ch.23",
+  "grammar": [
+    "[Ch3 3.3] Sentence Logistics (Particles を, で, に, へ)",
+    "[Ch3 3.2] The Present Tense",
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch5 5.3] Modifying Nouns (Adjective + Noun)",
+    "[Ch7 7.1] Current Actions (～ている)",
+    "[Ch4 4.1] Stating Existence (あります / います)",
+    "[Ch7 7.4] Complex Descriptions (Joining Phrases)",
+    "[Ch4 4.4] Recounting Actions (Past Tense of Verbs)",
+    "[Ch6 6.3] Sequencing Actions (て-form for Activities)",
+    "[Ch8 8.4] Reporting Speech (Short Form + と言っていました)",
+    "[Ch2 2.7] Social Feedback (Particles ね and よ)",
+    "[Ch11 11.1] Personal Desires (～たい)",
+    "[Ch4 4.3] Past Identity (Past Tense of です)",
+    "[Ch5 5.1] Attribute Basics (Adjective Tenses)",
+    "[Ch13 13.1] Capability (可能動詞 - Potential Verbs)",
+    "[Ch8 8.3] Sharing Thoughts (Short Form + と思います)",
+    "[Ch8 8.1] Informal Language (Short Forms)",
+    "[Ch1 1.2] Basic Inquiry (Question Sentences)",
+    "[Ch13 13.3] Visual Impressions (～そうです)",
+    "[Ch9 9.2] Relative Clauses (Noun Modification)",
+    "[Ch17 17.5] Resemblance (～みたいです)",
+    "[Ch16 16.4] Temporal Context (～時)",
+    "[Ch11 11.3] Sharing Experiences (～ことがある)",
+    "[Ch12 12.1] Giving Explanations (～んです)",
+    "[Ch3 3.6] Frequency Adverbs",
+    "[Ch20 20.4] Embedded Questions (か / かどうか)",
+    "[Ch5 5.4] Personal Preferences (好き / 嫌い)",
+    "[Ch11 11.2] Listing Representative Actions (～たり... ～たりする)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "ベンチ",
+      "hiragana": "ベンチ",
+      "translation": "bench"
+    },
+    {
+      "key": 10001,
+      "word": "ふわふわ",
+      "hiragana": "ふわふわ",
+      "translation": "fluffy"
+    },
+    {
+      "key": 10002,
+      "word": "ひざ",
+      "hiragana": "ひざ",
+      "translation": "lap"
+    },
+    {
+      "key": 10003,
+      "word": "ある日",
+      "hiragana": "あるひ",
+      "translation": "one day"
+    },
+    {
+      "key": 10004,
+      "word": "焼き魚",
+      "hiragana": "やきざかな",
+      "translation": "grilled fish"
+    },
+    {
+      "key": 10005,
+      "word": "こんにちは",
+      "hiragana": "こんにちは",
+      "translation": "Hello"
+    },
+    {
+      "key": 10006,
+      "word": "すごい",
+      "hiragana": "すごい",
+      "translation": "amazing"
+    },
+    {
+      "key": 10007,
+      "word": "ハンター",
+      "hiragana": "ハンター",
+      "translation": "hunter"
+    },
+    {
+      "key": 10008,
+      "word": "茶色い",
+      "hiragana": "ちゃいろい",
+      "translation": "brown"
+    },
+    {
+      "key": 10009,
+      "word": "ねずみ",
+      "hiragana": "ねずみ",
+      "translation": "mouse"
+    },
+    {
+      "key": 10010,
+      "word": "動物",
+      "hiragana": "どうぶつ",
+      "translation": "animal"
+    },
+    {
+      "key": 10011,
+      "word": "全く",
+      "hiragana": "まったく",
+      "translation": "completely"
+    },
+    {
+      "key": 10012,
+      "word": "数日後",
+      "hiragana": "すうじつご",
+      "translation": "a few days later"
+    },
+    {
+      "key": 10013,
+      "word": "撫でる",
+      "hiragana": "なでる",
+      "translation": "stroke"
+    },
+    {
+      "key": 10014,
+      "word": "クラシック音楽",
+      "hiragana": "クラシックおんがく",
+      "translation": "classical music"
+    },
+    {
+      "key": 10015,
+      "word": "閉じる",
+      "hiragana": "とじる",
+      "translation": "close (eyes)"
+    },
+    {
+      "key": 10016,
+      "word": "メロディー",
+      "hiragana": "メロディー",
+      "translation": "melody"
+    },
+    {
+      "key": 10017,
+      "word": "平和な",
+      "hiragana": "へいわな",
+      "translation": "peaceful"
+    },
+    {
+      "key": 10018,
+      "word": "屋根",
+      "hiragana": "やね",
+      "translation": "roof"
+    },
+    {
+      "key": 10019,
+      "word": "冒険家",
+      "hiragana": "ぼうけんか",
+      "translation": "adventurer"
+    },
+    {
+      "key": 10020,
+      "word": "蛇口",
+      "hiragana": "じゃぐち",
+      "translation": "faucet"
+    },
+    {
+      "key": 10021,
+      "word": "鳥",
+      "hiragana": "とり",
+      "translation": "bird"
+    },
+    {
+      "key": 10022,
+      "word": "ドア",
+      "hiragana": "ドア",
+      "translation": "door"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "私",
+        "は",
+        "まいあさ",
+        "公園",
+        "を",
+        "歩き",
+        "ます",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        "こうえん",
+        null,
+        "あるき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        964,
+        209,
+        null,
+        987,
+        null,
+        null
+      ],
+      "translation": "Every morning, I walk in the park.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "そこ",
+        "は",
+        "木",
+        "が",
+        "たくさん",
+        "の",
+        "静か",
+        "な",
+        "ところ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "き",
+        null,
+        null,
+        null,
+        "しずか",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        254,
+        null,
+        1081,
+        null,
+        239,
+        null,
+        292,
+        null,
+        423,
+        null,
+        null
+      ],
+      "translation": "It is a quiet place with many trees.",
+      "grammar": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "毎日",
+        "、",
+        "おじいさん",
+        "が",
+        "ベンチ",
+        "に",
+        "座って",
+        "います",
+        "。"
+      ],
+      "ruby": [
+        "まいにち",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "すわって",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        168,
+        null,
+        638,
+        null,
+        10000,
+        null,
+        335,
+        null,
+        null
+      ],
+      "translation": "An old man sits on a bench there every day.",
+      "grammar": [
+        4,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "いつも",
+        "猫",
+        "が",
+        "います",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "ねこ",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        629,
+        205,
+        null,
+        235,
+        null
+      ],
+      "translation": "He always has a cat with him.",
+      "grammar": [
+        5,
+        4
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "その",
+        "猫",
+        "は",
+        "白く",
+        "て",
+        "、",
+        "とても",
+        "ふわふわ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "ねこ",
+        null,
+        "しろく",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        96,
+        205,
+        null,
+        478,
+        null,
+        null,
+        307,
+        10001,
+        null,
+        null
+      ],
+      "translation": "The cat is white and very fluffy.",
+      "grammar": [
+        6,
+        2,
+        13
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "たいてい",
+        "おじいさん",
+        "の",
+        "ひざ",
+        "で",
+        "寝て",
+        "います",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "ねて",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        187,
+        638,
+        null,
+        10002,
+        null,
+        178,
+        null,
+        null
+      ],
+      "translation": "It usually sleeps on his lap.",
+      "grammar": [
+        5,
+        4,
+        0
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "ある日",
+        "、",
+        "私",
+        "は",
+        "彼",
+        "の",
+        "そば",
+        "の",
+        "ベンチ",
+        "に",
+        "座り",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "あるひ",
+        null,
+        "わたし",
+        null,
+        "かれ",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "すわり",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        61,
+        null,
+        595,
+        null,
+        251,
+        null,
+        10000,
+        null,
+        335,
+        null,
+        null
+      ],
+      "translation": "One day, I sat on the bench near him.",
+      "grammar": [
+        7,
+        0
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "彼",
+        "は",
+        "私",
+        "を",
+        "見て",
+        "、",
+        "「",
+        "私",
+        "の",
+        "猫",
+        "は",
+        "とても",
+        "頭",
+        "が",
+        "いい",
+        "です",
+        "よ",
+        "」",
+        "と",
+        "言い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "わたし",
+        null,
+        "み",
+        null,
+        null,
+        "わたし",
+        null,
+        "ねこ",
+        null,
+        null,
+        "あたま",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "いい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        595,
+        null,
+        61,
+        null,
+        179,
+        null,
+        null,
+        61,
+        null,
+        205,
+        null,
+        307,
+        381,
+        null,
+        null,
+        null,
+        10,
+        null,
+        null,
+        439,
+        null,
+        null
+      ],
+      "translation": "He looked at me and said, \"My cat is very smart.\"",
+      "grammar": [
+        8,
+        9,
+        10,
+        2
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "「",
+        "きのう",
+        "、",
+        "自分",
+        "で",
+        "冷蔵庫",
+        "の",
+        "ドア",
+        "を",
+        "開け",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "じぶん",
+        null,
+        "れいぞうこ",
+        null,
+        null,
+        null,
+        "あけ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        218,
+        null,
+        820,
+        null,
+        886,
+        null,
+        10022,
+        null,
+        343,
+        null,
+        null
+      ],
+      "translation": "\"Yesterday, it opened the refrigerator door all by itself.",
+      "grammar": [
+        7,
+        0
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "中",
+        "の",
+        "焼き魚",
+        "を",
+        "とても",
+        "欲しがって",
+        "いました",
+        "よ",
+        "。」"
+      ],
+      "ruby": [
+        "なか",
+        null,
+        "やきざかな",
+        null,
+        null,
+        "ほしがって",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        248,
+        null,
+        10004,
+        null,
+        307,
+        720,
+        null,
+        10,
+        null
+      ],
+      "translation": "It really wanted the grilled fish inside!\"",
+      "grammar": [
+        11,
+        4,
+        10
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "私",
+        "は",
+        "笑い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "わらい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        804,
+        null,
+        null
+      ],
+      "translation": "I laughed.",
+      "grammar": [
+        7
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "それ",
+        "は",
+        "とても",
+        "面白い",
+        "話",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "おもしろい",
+        "はなし",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        307,
+        279,
+        932,
+        null,
+        null
+      ],
+      "translation": "That was a very funny story.",
+      "grammar": [
+        12,
+        3
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "猫",
+        "が",
+        "そんな",
+        "こと",
+        "を",
+        "できる",
+        "と",
+        "は",
+        "思い",
+        "ません",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "ねこ",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "おもい",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        205,
+        null,
+        1171,
+        1026,
+        null,
+        727,
+        null,
+        null,
+        442,
+        null,
+        null,
+        null
+      ],
+      "translation": "I never thought a cat could do that.",
+      "grammar": [
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "来週",
+        "、",
+        "また",
+        "彼",
+        "に",
+        "会いました",
+        "。"
+      ],
+      "ruby": [
+        "らいしゅう",
+        null,
+        null,
+        "かれ",
+        null,
+        "あいました",
+        null
+      ],
+      "vocab_keys": [
+        326,
+        null,
+        1016,
+        595,
+        null,
+        228,
+        null
+      ],
+      "translation": "The next week, I saw him again.",
+      "grammar": [
+        7,
+        0
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "私",
+        "は",
+        "彼",
+        "に",
+        "「",
+        "こんにちは",
+        "。今日",
+        "は",
+        "あなた",
+        "の",
+        "すごい",
+        "猫",
+        "は",
+        "何",
+        "を",
+        "して",
+        "います",
+        "か",
+        "」",
+        "と",
+        "言い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "かれ",
+        null,
+        null,
+        null,
+        "きょう",
+        null,
+        null,
+        null,
+        null,
+        "ねこ",
+        null,
+        "なに",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "いい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        595,
+        null,
+        null,
+        10005,
+        162,
+        null,
+        197,
+        null,
+        10006,
+        205,
+        null,
+        54,
+        null,
+        181,
+        null,
+        null,
+        null,
+        null,
+        439,
+        null,
+        null
+      ],
+      "translation": "\"Hello,\" I said, \"What is your amazing cat doing today?\"",
+      "grammar": [
+        9,
+        4,
+        17
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "彼",
+        "は",
+        "笑って",
+        "、",
+        "「",
+        "ああ",
+        "、",
+        "今日",
+        "私",
+        "の",
+        "猫",
+        "は",
+        "すごい",
+        "ハンター",
+        "です",
+        "よ",
+        "」",
+        "と",
+        "言い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "わらって",
+        null,
+        null,
+        null,
+        null,
+        "きょう",
+        "わたし",
+        null,
+        "ねこ",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "いい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        595,
+        null,
+        804,
+        null,
+        null,
+        null,
+        null,
+        162,
+        61,
+        null,
+        205,
+        null,
+        10006,
+        10007,
+        null,
+        10,
+        null,
+        null,
+        439,
+        null,
+        null
+      ],
+      "translation": "He smiled. \"Ah, today my cat is a great hunter,\" he told me.",
+      "grammar": [
+        8,
+        9,
+        10,
+        2
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "「",
+        "ゆうべ",
+        "、",
+        "庭",
+        "で",
+        "大きい",
+        "茶色い",
+        "ねずみ",
+        "を",
+        "捕り",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "にわ",
+        null,
+        "おおきい",
+        "ちゃいろい",
+        null,
+        null,
+        "とり",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        985,
+        null,
+        755,
+        null,
+        278,
+        10008,
+        10009,
+        null,
+        232,
+        null,
+        null
+      ],
+      "translation": "\"Last night, it caught a big, brown mouse in the garden.",
+      "grammar": [
+        7,
+        0
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "とても",
+        "うれしそう",
+        "に",
+        "ドア",
+        "に",
+        "持ってき",
+        "ました",
+        "よ",
+        "。」"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "もってき",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        307,
+        663,
+        null,
+        10022,
+        null,
+        352,
+        null,
+        10,
+        null
+      ],
+      "translation": "It brought it to the door, looking very happy!\"",
+      "grammar": [
+        18,
+        0,
+        10
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "私",
+        "は",
+        "とても",
+        "びっくり",
+        "しました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        307,
+        1067,
+        null,
+        null
+      ],
+      "translation": "I was very surprised.",
+      "grammar": [
+        7
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "冷蔵庫",
+        "を",
+        "開ける",
+        "猫",
+        "と",
+        "、",
+        "強い",
+        "ねずみ",
+        "ハンター",
+        "の",
+        "猫",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "れいぞうこ",
+        null,
+        "あける",
+        "ねこ",
+        null,
+        null,
+        "つよい",
+        null,
+        null,
+        null,
+        "ねこ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        886,
+        null,
+        343,
+        205,
+        null,
+        null,
+        844,
+        10009,
+        10007,
+        null,
+        205,
+        null,
+        null
+      ],
+      "translation": "A refrigerator-opening cat and a brave mouse-hunting cat!",
+      "grammar": [
+        19,
+        2
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "全く",
+        "違う",
+        "動物",
+        "みたい",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "まったく",
+        "ちがう",
+        "どうぶつ",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10011,
+        1153,
+        10010,
+        17,
+        null,
+        null
+      ],
+      "translation": "They seemed like completely different animals.",
+      "grammar": [
+        20,
+        12
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "数日後",
+        "、",
+        "また",
+        "彼",
+        "を",
+        "ベンチ",
+        "で",
+        "見つけ",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "すうじつご",
+        null,
+        null,
+        "かれ",
+        null,
+        null,
+        null,
+        "みつけ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10012,
+        null,
+        1016,
+        595,
+        null,
+        10000,
+        null,
+        1064,
+        null,
+        null
+      ],
+      "translation": "A few days later, I found him on the bench again.",
+      "grammar": [
+        7,
+        0
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "彼",
+        "は",
+        "白い",
+        "猫",
+        "を",
+        "ゆっくり",
+        "撫でて",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        "かれ",
+        null,
+        "しろい",
+        "ねこ",
+        null,
+        null,
+        "なでて",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        595,
+        null,
+        478,
+        205,
+        null,
+        359,
+        10013,
+        null,
+        null
+      ],
+      "translation": "He was gently stroking the white cat.",
+      "grammar": [
+        4,
+        0
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "「",
+        "この",
+        "猫",
+        "は",
+        "クラシック音楽",
+        "が",
+        "大好き",
+        "です",
+        "よ",
+        "」",
+        "と",
+        "優しく",
+        "言い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "ねこ",
+        null,
+        null,
+        null,
+        "だいすき",
+        null,
+        null,
+        null,
+        null,
+        "やさしく",
+        "いい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        95,
+        205,
+        null,
+        10014,
+        null,
+        295,
+        null,
+        10,
+        null,
+        null,
+        287,
+        439,
+        null,
+        null
+      ],
+      "translation": "\"This cat loves classical music,\" he said softly.",
+      "grammar": [
+        9,
+        11,
+        10
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "私",
+        "が",
+        "ピアノ",
+        "を",
+        "弾く",
+        "時",
+        "、",
+        "猫",
+        "は",
+        "私",
+        "の",
+        "そば",
+        "に",
+        "座って",
+        "、",
+        "長い",
+        "時間",
+        "よく",
+        "聞いて",
+        "います",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        null,
+        "ひく",
+        "とき",
+        null,
+        "ねこ",
+        null,
+        "わたし",
+        null,
+        null,
+        null,
+        "すわって",
+        null,
+        "ながい",
+        "じかん",
+        null,
+        "きいて",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        472,
+        null,
+        485,
+        223,
+        null,
+        205,
+        null,
+        61,
+        null,
+        251,
+        null,
+        335,
+        null,
+        386,
+        704,
+        190,
+        172,
+        null,
+        null
+      ],
+      "translation": "When I play the piano, it sits next to me and listens carefully for a long time.",
+      "grammar": [
+        21,
+        8,
+        4,
+        0
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "目",
+        "を",
+        "閉じる",
+        "こと",
+        "も",
+        "あり",
+        "ます",
+        "。」"
+      ],
+      "ruby": [
+        null,
+        null,
+        "とじる",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        379,
+        null,
+        10015,
+        1026,
+        null,
+        229,
+        null,
+        null
+      ],
+      "translation": "It even closes its eyes sometimes.",
+      "grammar": [
+        22
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "私",
+        "は",
+        "猫",
+        "が",
+        "きれい",
+        "な",
+        "メロディー",
+        "を",
+        "聞いて",
+        "いる",
+        "の",
+        "だと",
+        "思い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "ねこ",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "きいて",
+        null,
+        null,
+        null,
+        "おもい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        205,
+        null,
+        291,
+        null,
+        10016,
+        null,
+        172,
+        null,
+        null,
+        null,
+        442,
+        null,
+        null
+      ],
+      "translation": "I thought the cat was listening to a beautiful melody.",
+      "grammar": [
+        15,
+        16,
+        23
+      ]
+    },
+    {
+      "id": "s28",
+      "words": [
+        "平和",
+        "な",
+        "絵",
+        "みたい",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "へいわ",
+        null,
+        "え",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10017,
+        null,
+        740,
+        17,
+        null,
+        null
+      ],
+      "translation": "It was a peaceful image.",
+      "grammar": [
+        20,
+        12
+      ]
+    },
+    {
+      "id": "s29",
+      "words": [
+        "おじいさん",
+        "に",
+        "会う",
+        "時",
+        "、",
+        "いつも",
+        "新しい",
+        "猫",
+        "の",
+        "話",
+        "を",
+        "聞き",
+        "ます",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "あう",
+        "とき",
+        null,
+        null,
+        "あたらしい",
+        "ねこ",
+        null,
+        "はなし",
+        null,
+        "きき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        638,
+        null,
+        228,
+        223,
+        null,
+        629,
+        274,
+        205,
+        null,
+        932,
+        null,
+        172,
+        null,
+        null
+      ],
+      "translation": "Every time I meet the old man, I hear a new story about his cat.",
+      "grammar": [
+        21,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "s30",
+      "words": [
+        "時々",
+        "、",
+        "猫",
+        "は",
+        "怠け者",
+        "で",
+        "、",
+        "一日中",
+        "寝て",
+        "います",
+        "。"
+      ],
+      "ruby": [
+        "ときどき",
+        null,
+        "ねこ",
+        null,
+        "なまけもの",
+        null,
+        null,
+        "いちにちじゅう",
+        "ねて",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        189,
+        null,
+        205,
+        null,
+        929,
+        null,
+        null,
+        779,
+        178,
+        null,
+        null
+      ],
+      "translation": "Sometimes, the cat is lazy and sleeps all day.",
+      "grammar": [
+        24,
+        2,
+        4
+      ]
+    },
+    {
+      "id": "s31",
+      "words": [
+        "時々",
+        "、",
+        "隣",
+        "の",
+        "屋根",
+        "で",
+        "遊ぶ",
+        "冒険家",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "ときどき",
+        null,
+        "となり",
+        null,
+        "やね",
+        null,
+        "あそぶ",
+        "ぼうけんか",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        189,
+        null,
+        252,
+        null,
+        10018,
+        null,
+        329,
+        10019,
+        null,
+        null
+      ],
+      "translation": "Sometimes, it's an adventurer who plays on the neighbor's roof.",
+      "grammar": [
+        24,
+        19,
+        2
+      ]
+    },
+    {
+      "id": "s32",
+      "words": [
+        "時々",
+        "、",
+        "とても",
+        "興味",
+        "が",
+        "あって",
+        "、",
+        "蛇口",
+        "の",
+        "水",
+        "で",
+        "遊んで",
+        "います",
+        "。"
+      ],
+      "ruby": [
+        "ときどき",
+        null,
+        null,
+        "きょうみ",
+        null,
+        null,
+        null,
+        "じゃぐち",
+        null,
+        null,
+        null,
+        "あそんで",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        189,
+        null,
+        307,
+        621,
+        null,
+        null,
+        null,
+        10020,
+        null,
+        154,
+        null,
+        329,
+        null,
+        null
+      ],
+      "translation": "Sometimes, it is very curious and plays with water from the faucet.",
+      "grammar": [
+        24,
+        13,
+        4,
+        0
+      ]
+    },
+    {
+      "id": "s33",
+      "words": [
+        "次",
+        "は",
+        "どんな",
+        "話",
+        "を",
+        "聞く",
+        "か",
+        "、",
+        "分かり",
+        "ません",
+        "が",
+        "、",
+        "私",
+        "は",
+        "いつも",
+        "その",
+        "話",
+        "が",
+        "とても",
+        "好き",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "つぎ",
+        null,
+        null,
+        "はなし",
+        null,
+        "きく",
+        null,
+        null,
+        "わかり",
+        null,
+        null,
+        null,
+        "わたし",
+        null,
+        null,
+        null,
+        "はなし",
+        null,
+        null,
+        "すき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        318,
+        null,
+        308,
+        932,
+        null,
+        172,
+        null,
+        null,
+        234,
+        null,
+        405,
+        null,
+        61,
+        null,
+        629,
+        96,
+        932,
+        null,
+        307,
+        293,
+        null,
+        null
+      ],
+      "translation": "I don't know what story I will hear next, but I always like those stories very much.",
+      "grammar": [
+        25,
+        16,
+        26,
+        2
+      ]
+    },
+    {
+      "id": "s34",
+      "words": [
+        "猫",
+        "は",
+        "ただ",
+        "寝たり",
+        "、",
+        "鳥",
+        "を",
+        "見たり",
+        "して",
+        "います",
+        "。"
+      ],
+      "ruby": [
+        "ねこ",
+        null,
+        null,
+        "ねたり",
+        null,
+        "とり",
+        null,
+        "みたり",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        205,
+        null,
+        1139,
+        178,
+        null,
+        10021,
+        null,
+        179,
+        null,
+        null,
+        null
+      ],
+      "translation": "The cat just sleeps or looks at the birds.",
+      "grammar": [
+        27,
+        4
+      ]
+    },
+    {
+      "id": "s35",
+      "words": [
+        "全然",
+        "自分",
+        "の",
+        "すごい",
+        "話",
+        "は",
+        "しません",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "じぶん",
+        null,
+        null,
+        "はなし",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        186,
+        861,
+        null,
+        10006,
+        932,
+        null,
+        181,
+        null
+      ],
+      "translation": "It never tells its own amazing story.",
+      "grammar": [
+        1
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

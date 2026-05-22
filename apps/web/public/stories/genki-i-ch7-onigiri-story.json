@@ -1,0 +1,975 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch7-onigiri-story",
+  "title": "Making Onigiri",
+  "title_ja": "おにぎり作り",
+  "language": "ja",
+  "description": "A short story about making and eating onigiri, perfect for Japanese learners studying with Genki I up to Chapter 7. It covers preparing rice, adding fillings like tuna and fish, and enjoying the delicious finished onigiri.",
+  "difficulty": "Genki I Ch.7",
+  "grammar": [
+    "X は Y です",
+    "Noun1 の Noun2",
+    "Particle も",
+    "~ます forms",
+    "Particles を, で, に",
+    "Temporal markers (Time References)",
+    "あります / います",
+    "Positional descriptions",
+    "い-adjectives, な-adjectives",
+    "Modifying Nouns (Adjective + Noun)",
+    "Personal Preferences (好き / 嫌い)",
+    "Current Actions (~ている)",
+    "Complex Descriptions (Joining Phrases)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "おにぎり",
+      "hiragana": "おにぎり",
+      "translation": "onigiri (rice ball)"
+    },
+    {
+      "key": 10001,
+      "word": "作る",
+      "hiragana": "つくる",
+      "translation": "to make"
+    },
+    {
+      "key": 10002,
+      "word": "ボウル",
+      "hiragana": "ボウル",
+      "translation": "bowl"
+    },
+    {
+      "key": 10003,
+      "word": "ツナ",
+      "hiragana": "ツナ",
+      "translation": "tuna"
+    },
+    {
+      "key": 10004,
+      "word": "のり",
+      "hiragana": "のり",
+      "translation": "nori (seaweed)"
+    },
+    {
+      "key": 10005,
+      "word": "もう一つ",
+      "hiragana": "もうひとつ",
+      "translation": "one more"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "今日",
+        "、",
+        "おにぎり",
+        "を",
+        "作って",
+        "います",
+        "。"
+      ],
+      "ruby": [
+        "きょう",
+        null,
+        null,
+        null,
+        "つくって",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        162,
+        null,
+        10000,
+        null,
+        10001,
+        null,
+        null
+      ],
+      "translation": "Today, I am making onigiri.",
+      "grammar": [
+        3,
+        4,
+        11
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "私",
+        "は",
+        "おにぎり",
+        "が",
+        "大好き",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        null,
+        "だいすき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        10000,
+        null,
+        295,
+        null,
+        null
+      ],
+      "translation": "I love onigiri.",
+      "grammar": [
+        0,
+        10
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "おにぎり",
+        "は",
+        "昼ご飯",
+        "に",
+        "いい",
+        "食べ物",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "ひるごはん",
+        null,
+        null,
+        "たべもの",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        153,
+        null,
+        183,
+        262,
+        null,
+        null
+      ],
+      "translation": "Onigiri is good food for lunch.",
+      "grammar": [
+        0,
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "まず",
+        "、",
+        "ご飯",
+        "が",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "ごはん",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        201,
+        null,
+        null,
+        null
+      ],
+      "translation": "First, there is rice.",
+      "grammar": [
+        6
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "ご飯",
+        "は",
+        "熱い",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "ごはん",
+        null,
+        "あつい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        201,
+        null,
+        276,
+        null,
+        null
+      ],
+      "translation": "The rice is hot.",
+      "grammar": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "私",
+        "は",
+        "大きい",
+        "ボウル",
+        "を",
+        "使い",
+        "ます",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "おおきい",
+        null,
+        null,
+        "つかい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        278,
+        10002,
+        null,
+        338,
+        null,
+        null
+      ],
+      "translation": "I use a big bowl.",
+      "grammar": [
+        3,
+        9
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "大きい",
+        "ボウル",
+        "に",
+        "ご飯",
+        "が",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        "おおきい",
+        null,
+        null,
+        "ごはん",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        278,
+        10002,
+        null,
+        201,
+        null,
+        null,
+        null
+      ],
+      "translation": "Rice is in the big bowl.",
+      "grammar": [
+        4,
+        6,
+        7,
+        9
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "それから",
+        "、",
+        "ツナ",
+        "が",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        10003,
+        null,
+        null,
+        null
+      ],
+      "translation": "And then, there is tuna.",
+      "grammar": [
+        6
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "ツナ",
+        "が",
+        "大好き",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "だいすき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        295,
+        null,
+        null
+      ],
+      "translation": "I love tuna.",
+      "grammar": [
+        0,
+        10
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "魚",
+        "も",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        "さかな",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        103,
+        2,
+        null,
+        null
+      ],
+      "translation": "There is also fish.",
+      "grammar": [
+        2,
+        6
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "魚",
+        "も",
+        "おにぎり",
+        "に",
+        "いい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "さかな",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        103,
+        2,
+        10000,
+        null,
+        183,
+        null,
+        null
+      ],
+      "translation": "Fish is also good for onigiri.",
+      "grammar": [
+        0,
+        2,
+        4,
+        8
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "私",
+        "は",
+        "手",
+        "で",
+        "おにぎり",
+        "を",
+        "作り",
+        "ます",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "て",
+        null,
+        null,
+        null,
+        "つくり",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        null,
+        null,
+        10000,
+        null,
+        10001,
+        null,
+        null
+      ],
+      "translation": "I make onigiri by hand.",
+      "grammar": [
+        0,
+        3
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "おにぎり",
+        "の",
+        "中",
+        "に",
+        "ツナ",
+        "が",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "なか",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        1,
+        248,
+        null,
+        10003,
+        null,
+        null,
+        null
+      ],
+      "translation": "There is tuna inside the onigiri.",
+      "grammar": [
+        1,
+        4,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "のり",
+        "も",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10004,
+        2,
+        null,
+        null
+      ],
+      "translation": "There is nori too.",
+      "grammar": [
+        2,
+        6
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "のり",
+        "は",
+        "おにぎり",
+        "の",
+        "上",
+        "に",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        "うえ",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10004,
+        null,
+        10000,
+        1,
+        249,
+        null,
+        null,
+        null
+      ],
+      "translation": "Nori is on top of the onigiri.",
+      "grammar": [
+        0,
+        1,
+        4,
+        7
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "この",
+        "おにぎり",
+        "は",
+        "とても",
+        "いい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        95,
+        10000,
+        null,
+        307,
+        183,
+        null,
+        null
+      ],
+      "translation": "This onigiri is very good.",
+      "grammar": [
+        0,
+        9
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "私",
+        "は",
+        "もう一つ",
+        "おにぎり",
+        "を",
+        "作り",
+        "ます",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "もうひとつ",
+        null,
+        null,
+        "つくり",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        10005,
+        10000,
+        null,
+        10001,
+        null,
+        null
+      ],
+      "translation": "I make one more onigiri.",
+      "grammar": [
+        0,
+        3
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "この",
+        "おにぎり",
+        "の",
+        "中",
+        "に",
+        "魚",
+        "が",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "なか",
+        null,
+        "さかな",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        95,
+        10000,
+        1,
+        248,
+        null,
+        103,
+        null,
+        null,
+        null
+      ],
+      "translation": "There is fish inside this onigiri.",
+      "grammar": [
+        1,
+        4,
+        7
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "もう一つ",
+        "おにぎり",
+        "を",
+        "作り",
+        "ます",
+        "。"
+      ],
+      "ruby": [
+        "もうひとつ",
+        null,
+        null,
+        "つくり",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10005,
+        10000,
+        null,
+        10001,
+        null,
+        null
+      ],
+      "translation": "I make one more onigiri.",
+      "grammar": [
+        3
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "この",
+        "おにぎり",
+        "の",
+        "中",
+        "に",
+        "ツナ",
+        "が",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "なか",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        95,
+        10000,
+        1,
+        248,
+        null,
+        10003,
+        null,
+        null,
+        null
+      ],
+      "translation": "There is tuna inside this onigiri.",
+      "grammar": [
+        1,
+        4,
+        7
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "おいしい",
+        "おにぎり",
+        "が",
+        "たくさん",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        102,
+        10000,
+        null,
+        239,
+        null,
+        null
+      ],
+      "translation": "I have many delicious onigiri.",
+      "grammar": [
+        6,
+        9
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "とても",
+        "いい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        307,
+        183,
+        null,
+        null
+      ],
+      "translation": "They are very good.",
+      "grammar": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "今",
+        "、",
+        "昼ご飯",
+        "を",
+        "食べ",
+        "ます",
+        "。"
+      ],
+      "ruby": [
+        "いま",
+        null,
+        "ひるごはん",
+        null,
+        "たべ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        36,
+        null,
+        153,
+        null,
+        177,
+        null,
+        null
+      ],
+      "translation": "Now, I will eat lunch.",
+      "grammar": [
+        3,
+        5
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "おにぎり",
+        "は",
+        "熱くて",
+        "、",
+        "とても",
+        "おいしい",
+        "です",
+        "！"
+      ],
+      "ruby": [
+        null,
+        null,
+        "あつくて",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        276,
+        null,
+        307,
+        102,
+        null,
+        null
+      ],
+      "translation": "The onigiri is hot and very delicious!",
+      "grammar": [
+        0,
+        8,
+        12
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "おにぎり",
+        "を",
+        "作る",
+        "の",
+        "は",
+        "楽しい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "つくる",
+        null,
+        null,
+        "たのしい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        10001,
+        null,
+        null,
+        282,
+        null,
+        null
+      ],
+      "translation": "Making onigiri is fun.",
+      "grammar": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "食べる",
+        "の",
+        "も",
+        "楽しい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "たべる",
+        null,
+        null,
+        "たのしい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        177,
+        null,
+        2,
+        282,
+        null,
+        null
+      ],
+      "translation": "Eating is fun too.",
+      "grammar": [
+        0,
+        2,
+        8
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}
