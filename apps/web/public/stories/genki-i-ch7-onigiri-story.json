@@ -7,19 +7,19 @@
   "description": "A short story about making and eating onigiri, perfect for Japanese learners studying with Genki I up to Chapter 7. It covers preparing rice, adding fillings like tuna and fish, and enjoying the delicious finished onigiri.",
   "difficulty": "Genki I Ch.7",
   "grammar": [
-    "X は Y です",
-    "Noun1 の Noun2",
-    "Particle も",
-    "~ます forms",
-    "Particles を, で, に",
-    "Temporal markers (Time References)",
-    "あります / います",
-    "Positional descriptions",
-    "い-adjectives, な-adjectives",
-    "Modifying Nouns (Adjective + Noun)",
-    "Personal Preferences (好き / 嫌い)",
-    "Current Actions (~ている)",
-    "Complex Descriptions (Joining Phrases)"
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch1 1.3] Connecting Nouns (Noun1 の Noun2)",
+    "[Ch2 2.5] Addition and Inclusion (Particle も)",
+    "[Ch3 3.1] Verb Classes and Conjugation",
+    "[Ch3 3.3] Sentence Logistics (Particles を, で, に, へ)",
+    "[Ch3 3.4] Temporal Markers (Time References)",
+    "[Ch4 4.1] Stating Existence (あります / います)",
+    "[Ch4 4.2] Positional Descriptions",
+    "[Ch5 5.1] Attribute Basics (Adjective Tenses)",
+    "[Ch5 5.3] Modifying Nouns (Adjective + Noun)",
+    "[Ch5 5.4] Personal Preferences (好き / 嫌い)",
+    "[Ch7 7.1] Current Actions (～ている)",
+    "[Ch7 7.4] Complex Descriptions (Joining Phrases)"
   ],
   "vocab_supplement": [
     {
