@@ -25,7 +25,7 @@ _Author note: I've been learning Japanese for a couple of years now, and what I'
 
 The reader app is a single-page web application deployed at [nihonnohon.vercel.app](https://nihonnohon.vercel.app). It is optimised for reading Japanese stories at a controlled difficulty level, with in-place linguistic support so you can stay in the flow of reading.
 
-<img src="resources/screenshot-reader.png" width="800" alt="Reader app screenshot" />
+<img src="resources/screenshot-reader.png" width="600" alt="Reader app screenshot" style="border: 1px solid #d0d7de; border-radius: 4px;" />
 
 **Library view** — browse the built-in story collection filtered by source textbook (Genki I/II, JLPT) and chapter. Each card shows the title, difficulty badge, and a short synopsis. You can also load your own `.json` story file from disk.
 
@@ -39,7 +39,7 @@ Persistent preferences (furigana on/off, sentence translations, text size, word 
 
 The story authoring tool allows you to convert or generate stories with fine-grained control of the language difficulty. It is a separate app (currently local-only, frontend on port 5174, Python backend on port 8000) that uses Google Gemini to generate stories in the required JSON format. Run it from `apps/story-generator-backend/` with `make dev`.
 
-<img src="resources/screenshot-story-authoring-tool.png" width="800" alt="AI Story Authoring Tool screenshot" />
+<img src="resources/screenshot-story-authoring-tool.png" width="600" alt="AI Story Authoring Tool screenshot" style="border: 1px solid #d0d7de; border-radius: 4px;" />
 
 Stories can be generated two ways:
 
