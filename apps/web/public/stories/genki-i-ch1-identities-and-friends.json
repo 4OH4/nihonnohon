@@ -43,10 +43,10 @@
       ],
       "ruby": [
         "わたし",
-        "null",
+        null,
         "がくせい",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         61,
@@ -71,10 +71,10 @@
       ],
       "ruby": [
         "わたし",
-        "null",
+        null,
         "だいがくせい",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         61,
@@ -101,12 +101,12 @@
       ],
       "ruby": [
         "わたし",
-        "null",
+        null,
         "せんもん",
-        "null",
+        null,
         "れきし",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         61,
@@ -137,13 +137,13 @@
       ],
       "ruby": [
         "わたし",
-        "null",
+        null,
         "ともだち",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         61,
@@ -173,13 +173,13 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
         "じん",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         10000,
@@ -208,14 +208,14 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "せんもん",
-        "null",
+        null,
         "かがく",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         10000,
@@ -246,14 +246,14 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "わたし",
-        "null",
+        null,
         "ともだち",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         10001,
@@ -283,13 +283,13 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "にほん",
         "じん",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         10001,
@@ -317,13 +317,13 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "こうこうせい",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         10001,
@@ -349,10 +349,10 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         57,
@@ -376,12 +376,12 @@
       ],
       "ruby": [
         "いま",
-        "null",
+        null,
         "ごご",
         "さん",
         "じ",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         36,

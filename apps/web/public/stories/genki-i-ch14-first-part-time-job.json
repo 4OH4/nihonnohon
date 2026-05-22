@@ -51,7 +51,7 @@
     {
       "key": 10000,
       "word": "ラーメン",
-      "hiragana": "null",
+      "hiragana": "",
       "translation": "ramen"
     },
     {
@@ -75,25 +75,25 @@
     {
       "key": 10004,
       "word": "まず",
-      "hiragana": "null",
+      "hiragana": "",
       "translation": "first"
     },
     {
       "key": 10005,
       "word": "テーブル",
-      "hiragana": "null",
+      "hiragana": "",
       "translation": "table"
     },
     {
       "key": 10006,
       "word": "いす",
-      "hiragana": "null",
+      "hiragana": "",
       "translation": "chair"
     },
     {
       "key": 10007,
       "word": "ピッチャー",
-      "hiragana": "null",
+      "hiragana": "",
       "translation": "pitcher"
     },
     {
@@ -105,7 +105,7 @@
     {
       "key": 10009,
       "word": "カウンター",
-      "hiragana": "null",
+      "hiragana": "",
       "translation": "counter"
     },
     {
@@ -147,7 +147,7 @@
     {
       "key": 10016,
       "word": "ぎょうざ",
-      "hiragana": "null",
+      "hiragana": "",
       "translation": "gyoza"
     },
     {
@@ -165,7 +165,7 @@
     {
       "key": 10019,
       "word": "スープ",
-      "hiragana": "null",
+      "hiragana": "",
       "translation": "broth"
     },
     {
@@ -219,7 +219,7 @@
     {
       "key": 10028,
       "word": "はっきり",
-      "hiragana": "null",
+      "hiragana": "",
       "translation": "clearly"
     },
     {
@@ -248,17 +248,17 @@
       ],
       "ruby": [
         "わたし",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         "みせ",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         61,
@@ -301,21 +301,21 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
+        null,
+        null,
         "わたし",
-        "null",
+        null,
         "いえ",
-        "null",
-        "null",
+        null,
+        null,
         "ちかくなかったです",
-        "null",
-        "null",
+        null,
+        null,
         "あるいて",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         92,
@@ -363,22 +363,22 @@
         "。"
       ],
       "ruby": [
-        "null",
+        null,
         "みせ",
-        "null",
+        null,
         "ふる",
         "い",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "あたたかくて",
-        "null",
-        "null",
+        null,
+        null,
         "におい",
-        "null",
+        null,
         "おいしかった",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         96,
@@ -424,17 +424,17 @@
       ],
       "ruby": [
         "おおやさん",
-        "null",
+        null,
         "しんせつ",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
         "おおきい",
         "えがお",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         694,
@@ -478,19 +478,19 @@
       ],
       "ruby": [
         "わたし",
-        "null",
+        null,
         "そのとき",
-        "null",
+        null,
         "こうこうせい",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
         "しごと",
-        "null",
-        "null",
+        null,
+        null,
         "きんちょうしました",
-        "null"
+        null
       ],
       "vocab_keys": [
         61,
@@ -531,14 +531,14 @@
       ],
       "ruby": [
         "まいにち",
-        "null",
+        null,
         "ごご",
         "ごじ",
-        "null",
+        null,
         "しごと",
-        "null",
+        null,
         "はじめました",
-        "null"
+        null
       ],
       "vocab_keys": [
         168,
@@ -573,16 +573,16 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
+        null,
+        null,
         "ぜんぶ",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
+        null,
         "そうじしなければいけませんでした",
-        "null"
+        null
       ],
       "vocab_keys": [
         10004,
@@ -623,20 +623,20 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
+        null,
+        null,
         "みず",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "いれて",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "うえ",
-        "null",
+        null,
         "おきました",
-        "null"
+        null
       ],
       "vocab_keys": [
         305,
@@ -673,13 +673,13 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
+        null,
+        null,
         "おきゃくさん",
-        "null",
-        "null",
+        null,
+        null,
         "きました",
-        "null"
+        null
       ],
       "vocab_keys": [
         357,
@@ -710,15 +710,15 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
         "おおきい",
         "こえ",
-        "null",
+        null,
         "いってみました",
-        "null"
+        null
       ],
       "vocab_keys": [
         null,
@@ -750,13 +750,13 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "ちゅうもん",
-        "null",
+        null,
         "かきました",
-        "null"
+        null
       ],
       "vocab_keys": [
         283,
@@ -797,22 +797,22 @@
       ],
       "ruby": [
         "ほとんどのひと",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "ちゅうもんしました",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
+        null,
         "やきめし",
-        "null",
+        null,
         "ちゅうもんする",
         "ひと",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         10015,
@@ -863,20 +863,20 @@
       ],
       "ruby": [
         "あつい",
-        "null",
-        "null",
+        null,
+        null,
         "おさら",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "もっていく",
-        "null",
-        "null",
+        null,
+        null,
         "わたし",
-        "null",
+        null,
         "しごと",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         276,
@@ -924,19 +924,19 @@
       ],
       "ruby": [
         "ゆげ",
-        "null",
+        null,
         "でて",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
         "におい",
-        "null",
-        "null",
+        null,
+        null,
         "おなか",
-        "null",
+        null,
         "すきました",
-        "null"
+        null
       ],
       "vocab_keys": [
         10018,
@@ -975,12 +975,12 @@
       ],
       "ruby": [
         "ときどき",
-        "null",
-        "null",
+        null,
+        null,
         "まちがい",
-        "null",
+        null,
         "しました",
-        "null"
+        null
       ],
       "vocab_keys": [
         189,
@@ -1017,18 +1017,18 @@
       ],
       "ruby": [
         "いちど",
-        "null",
+        null,
         "おさら",
-        "null",
+        null,
         "おとしそう",
-        "null",
+        null,
         "なりました",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
         "つかまえました",
-        "null"
+        null
       ],
       "vocab_keys": [
         10022,
@@ -1072,17 +1072,17 @@
       ],
       "ruby": [
         "べつのとき",
-        "null",
-        "null",
+        null,
+        null,
         "おきゃくさん",
-        "null",
+        null,
         "みず",
-        "null",
+        null,
         "もっていく",
-        "null",
-        "null",
+        null,
+        null,
         "わすれました",
-        "null"
+        null
       ],
       "vocab_keys": [
         10025,
@@ -1116,10 +1116,10 @@
       ],
       "ruby": [
         "おおやさん",
-        "null",
+        null,
         "ぜんぜん",
         "おこりませんでした",
-        "null"
+        null
       ],
       "vocab_keys": [
         694,
@@ -1157,22 +1157,22 @@
       ],
       "ruby": [
         "おおやさん",
-        "null",
-        "null",
+        null,
+        null,
         "しんぱいしないでください",
-        "null",
-        "null",
+        null,
+        null,
         "まちがい",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
         "がんばってください",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "いいました",
-        "null"
+        null
       ],
       "vocab_keys": [
         694,
@@ -1227,24 +1227,24 @@
       ],
       "ruby": [
         "おおやさん",
-        "null",
-        "null",
+        null,
+        null,
         "おさら",
-        "null",
-        "null",
+        null,
+        null,
         "ていねい",
-        "null",
+        null,
         "もって",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "はなして",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
         "おしえてくれました",
-        "null"
+        null
       ],
       "vocab_keys": [
         694,
@@ -1287,14 +1287,14 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
+        null,
+        null,
         "みせ",
-        "null",
+        null,
         "はんとし",
-        "null",
+        null,
         "はたらきました",
-        "null"
+        null
       ],
       "vocab_keys": [
         10000,
@@ -1333,18 +1333,18 @@
       ],
       "ruby": [
         "たいへん",
-        "null",
+        null,
         "しごと",
         "だったんです",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
+        null,
         "もの",
-        "null",
+        null,
         "しりました",
-        "null"
+        null
       ],
       "vocab_keys": [
         328,
@@ -1382,11 +1382,11 @@
       ],
       "ruby": [
         "せきにん",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "しりました",
-        "null"
+        null
       ],
       "vocab_keys": [
         576,
@@ -1419,15 +1419,15 @@
       ],
       "ruby": [
         "おおやさん",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "ほんとうに",
         "いちばん",
-        "null",
-        "null",
+        null,
+        null,
         "おもいました",
-        "null"
+        null
       ],
       "vocab_keys": [
         694,
@@ -1467,20 +1467,20 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
         "しごと",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
         "いま",
-        "null",
-        "null",
+        null,
+        null,
         "おぼえています",
-        "null"
+        null
       ],
       "vocab_keys": [
         307,

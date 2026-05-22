@@ -56,13 +56,13 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         61,
@@ -89,11 +89,11 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         44,
@@ -117,11 +117,11 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         44,
@@ -145,11 +145,11 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         61,
@@ -174,12 +174,12 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         44,
@@ -204,10 +204,10 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         57,
@@ -229,12 +229,12 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         55,
@@ -259,10 +259,10 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         57,
@@ -284,12 +284,12 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         10000,
@@ -313,10 +313,10 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         10004,
@@ -337,9 +337,9 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         10001,
@@ -359,9 +359,9 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         10002,
@@ -381,9 +381,9 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         10003,

@@ -104,18 +104,18 @@
       ],
       "ruby": [
         "わたし",
-        "null",
+        null,
         "いちばん",
         "すき",
-        "null",
+        null,
         "きっさてん",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "まち",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         61,
@@ -157,17 +157,17 @@
       ],
       "ruby": [
         "あき",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
         "いく",
-        "null",
-        "null",
+        null,
+        null,
         "いちばん",
         "すき",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         504,
@@ -214,25 +214,25 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
+        null,
+        null,
         "てんき",
-        "null",
+        null,
         "すずしく",
-        "null",
-        "null",
+        null,
+        null,
         "き",
-        "null",
+        null,
         "は",
-        "null",
-        "null",
+        null,
+        null,
         "あかく",
-        "null",
+        null,
         "きいろく",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         542,
@@ -282,18 +282,18 @@
       ],
       "ruby": [
         "けさ",
-        "null",
+        null,
         "きっさてん",
-        "null",
+        null,
         "あるいて",
         "いきました",
-        "null",
+        null,
         "くうき",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         417,
@@ -334,18 +334,18 @@
       ],
       "ruby": [
         "きっさてん",
-        "null",
+        null,
         "ついた",
         "とき",
-        "null",
+        null,
         "おおきく",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "こうこく",
-        "null",
+        null,
         "みました",
-        "null"
+        null
       ],
       "vocab_keys": [
         125,
@@ -391,22 +391,22 @@
         "。"
       ],
       "ruby": [
-        "null",
+        null,
         "あたらしい",
         "あき",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "きょう",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         "かいて",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         null,
@@ -442,10 +442,10 @@
         "。"
       ],
       "ruby": [
-        "null",
+        null,
         "うれしく",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         188,
@@ -473,14 +473,14 @@
       ],
       "ruby": [
         "なか",
-        "null",
+        null,
         "あたたかく",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         248,
@@ -512,14 +512,14 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "あまい",
         "おかし",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         102,
@@ -552,14 +552,14 @@
       ],
       "ruby": [
         "わたし",
-        "null",
+        null,
         "おおきい",
         "まど",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "すわりました",
-        "null"
+        null
       ],
       "vocab_keys": [
         61,
@@ -590,14 +590,14 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
+        null,
+        null,
         "ひと",
-        "null",
+        null,
         "くるま",
-        "null",
+        null,
         "みえます",
-        "null"
+        null
       ],
       "vocab_keys": [
         255,
@@ -634,18 +634,18 @@
       ],
       "ruby": [
         "しんせつ",
-        "null",
+        null,
         "ひと",
-        "null",
+        null,
         "わらって",
-        "null",
+        null,
         "あたらしい",
         "あき",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         389,
@@ -681,12 +681,12 @@
       ],
       "ruby": [
         "わたし",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
         "あけました",
-        "null"
+        null
       ],
       "vocab_keys": [
         61,
@@ -713,12 +713,12 @@
         "。"
       ],
       "ruby": [
-        "null",
+        null,
         "もの",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         102,
@@ -747,15 +747,15 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         10003,
@@ -786,11 +786,11 @@
       ],
       "ruby": [
         "ぜんぶ",
-        "null",
+        null,
         "あたたか",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         680,
@@ -822,15 +822,15 @@
       ],
       "ruby": [
         "わたし",
-        "null",
+        null,
         "なに",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
+        null,
         "かんがえました",
-        "null"
+        null
       ],
       "vocab_keys": [
         61,
@@ -861,12 +861,12 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
         "きめました",
-        "null"
+        null
       ],
       "vocab_keys": [
         10003,
@@ -898,15 +898,15 @@
       ],
       "ruby": [
         "しんせつ",
-        "null",
+        null,
         "ひと",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
+        null,
         "いいました",
-        "null"
+        null
       ],
       "vocab_keys": [
         389,
@@ -941,16 +941,16 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
+        null,
+        null,
         "わたし",
-        "null",
+        null,
         "のみもの",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "きました",
-        "null"
+        null
       ],
       "vocab_keys": [
         357,
@@ -987,18 +987,18 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
+        null,
+        null,
         "あつく",
-        "null",
-        "null",
+        null,
+        null,
         "あまく",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         10003,
@@ -1029,10 +1029,10 @@
         "。"
       ],
       "ruby": [
-        "null",
+        null,
         "うれしかった",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         307,
@@ -1059,15 +1059,15 @@
         "。"
       ],
       "ruby": [
-        "null",
-        "null",
+        null,
+        null,
         "あまく",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null"
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
       ],
       "vocab_keys": [
         645,
@@ -1106,19 +1106,19 @@
       ],
       "ruby": [
         "わたし",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
         "たべました",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         "のみました",
-        "null"
+        null
       ],
       "vocab_keys": [
         61,
@@ -1151,9 +1151,9 @@
       ],
       "ruby": [
         "まど",
-        "null",
+        null,
         "みました",
-        "null"
+        null
       ],
       "vocab_keys": [
         324,
@@ -1182,15 +1182,15 @@
       ],
       "ruby": [
         "き",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
         "あかい",
         "は",
-        "null",
+        null,
         "おちて",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         10000,
@@ -1230,22 +1230,22 @@
         "。"
       ],
       "ruby": [
-        "null",
+        null,
         "きっさてん",
-        "null",
-        "null",
+        null,
+        null,
         "あき",
-        "null",
-        "null",
-        "null",
-        "null",
-        "null",
+        null,
+        null,
+        null,
+        null,
+        null,
         "きせつ",
-        "null",
-        "null",
+        null,
+        null,
         "たのしく",
-        "null",
-        "null"
+        null,
+        null
       ],
       "vocab_keys": [
         95,
