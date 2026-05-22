@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { render, screen, fireEvent, act } from '@testing-library/react'
 import { GenerationProgress } from '../components/GenerationProgress'
 import { useAuthoringStore } from '../stores/authoringStore'

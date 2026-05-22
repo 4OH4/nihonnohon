@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { useLookupStore } from '@/stores/lookupStore'
 import type { SentenceModel } from '@nihonnohon/schema'
 import { cn } from '@/lib/utils'
@@ -26,7 +29,7 @@ export function GrammarPanel({ grammar, sentences }: GrammarPanelProps) {
   }
 
   return (
-    <ul className="p-4 space-y-2">
+    <ul className="p-4 space-y-2" style={{ fontSize: 'var(--story-font-size)' }}>
       {grammar.map((point, i) => {
         const isHighlighted = selectedSentenceId !== null && highlightedIndices.has(i)
         const isMuted = selectedSentenceId !== null && !highlightedIndices.has(i)
@@ -35,7 +38,7 @@ export function GrammarPanel({ grammar, sentences }: GrammarPanelProps) {
           <li
             key={i}
             className={cn(
-              'px-3 py-2 rounded text-sm text-paper-text',
+              'px-3 py-2 rounded text-[0.8em] text-paper-text',
               isHighlighted && 'bg-accent-subtle border border-accent',
               isMuted && 'text-muted',
             )}

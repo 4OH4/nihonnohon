@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import Ajv from 'ajv'
 import schema from '@nihonnohon/schema/schemas/story.v1.json'
 import { LoaderError } from './errors'
@@ -34,6 +37,10 @@ interface WireStory {
   keywords?: WireVocabEntry[]
   grammar?: string[]
   vocab_supplement?: WireVocabEntry[]
+  author?: string
+  source?: string
+  license?: string
+  license_url?: string
   metadata?: Record<string, unknown>
   sentences: WireSentence[]
 }
@@ -78,6 +85,10 @@ export function loadV1(raw: unknown): StoryModel {
     keywords: (wire.keywords ?? []).map(mapVocabEntry),
     grammar: wire.grammar ?? [],
     vocabSupplement: (wire.vocab_supplement ?? []).map(mapVocabEntry),
+    author: wire.author,
+    source: wire.source,
+    license: wire.license,
+    licenseUrl: wire.license_url,
     sentences: wire.sentences.map(mapSentence),
     metadata: wire.metadata ?? {},
   }
@@ -92,8 +103,11 @@ function mapSentence(s: WireSentence): SentenceModel {
   return {
     id: s.id,
     words: s.words,
-    ruby: s.ruby ?? Array<string | null>(wordCount).fill(null),
-    vocabKeys: s.vocab_keys ?? Array<number | null>(wordCount).fill(null),
+    // Coerce the string "null" produced by some LLM outputs to real null.
+    ruby: (s.ruby ?? Array<string | null>(wordCount).fill(null))
+      .map(v => (v === 'null' ? null : v)),
+    vocabKeys: (s.vocab_keys ?? Array<number | null>(wordCount).fill(null))
+      .map(v => (v === ('null' as unknown) ? null : v)),
     translation: s.translation ?? null,
     grammar: s.grammar ?? [],
     audioUrl: s.audio_url,

@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 const DB_NAME = 'nihonnohon-local-stories'
 const STORE_NAME = 'stories'
 const DB_VERSION = 1

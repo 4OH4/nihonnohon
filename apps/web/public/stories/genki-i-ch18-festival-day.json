@@ -1,0 +1,1398 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch18-festival-day",
+  "title": "A Fun Festival Day",
+  "title_ja": "お祭りの一日",
+  "language": "ja",
+  "description": "A friend and I go to a lively festival, enjoy food, try games, and have a happy day out.",
+  "difficulty": "Genki I Ch.18",
+  "grammar": [
+    "[Ch1 1.3] Connecting Nouns (Noun1 の Noun2)",
+    "[Ch3 3.3] Sentence Logistics (Particles を, で, に, へ)",
+    "[Ch3 3.4] Temporal Markers (Time References)",
+    "[Ch4 4.3] Past Identity (Past Tense of です)",
+    "[Ch4 4.4] Recounting Actions (Past Tense of Verbs)",
+    "[Ch4 4.5] Connecting Items (Particle と)",
+    "[Ch5 5.2] Attribute History (Past Tense of Adjectives)",
+    "[Ch5 5.3] Modifying Nouns (Adjective + Noun)",
+    "[Ch6 6.1] Verb Linking (て-form)",
+    "[Ch6 6.3] Sequencing Actions (て-form for Activities)",
+    "[Ch7 7.1] Current Actions (～ている)",
+    "[Ch7 7.4] Complex Descriptions (Joining Phrases)",
+    "[Ch8 8.3] Sharing Thoughts (Short Form + と思います)",
+    "[Ch8 8.8] Indefinite References (何か / 何も)",
+    "[Ch9 9.3] Already and Not Yet (もう / まだ)",
+    "[Ch11 11.1] Personal Desires (～たい)",
+    "[Ch12 12.4] Formal Causality (Particle ので)",
+    "[Ch13 13.1] Capability (可能動詞 - Potential Verbs)",
+    "[Ch13 13.4] Tentative Attempt (～てみる)",
+    "[Ch14 14.3] Gifts (あげる / くれる / もらう)",
+    "[Ch17 17.6] Sequencing (前に / ～てから)",
+    "[Ch18 18.2] Resultant States (Intransitive + ている)",
+    "[Ch18 18.5] Simultaneous Actions (～ながら)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "お祭り",
+      "hiragana": "おまつり",
+      "translation": "festival"
+    },
+    {
+      "key": 10001,
+      "word": "焼きそば",
+      "hiragana": "やきそば",
+      "translation": "yakisoba"
+    },
+    {
+      "key": 10002,
+      "word": "たこ焼き",
+      "hiragana": "たこやき",
+      "translation": "takoyaki"
+    },
+    {
+      "key": 10003,
+      "word": "金魚",
+      "hiragana": "きんぎょ",
+      "translation": "goldfish"
+    },
+    {
+      "key": 10004,
+      "word": "金魚すくい",
+      "hiragana": "きんぎょすくい",
+      "translation": "goldfish scooping"
+    },
+    {
+      "key": 10005,
+      "word": "輪投げ",
+      "hiragana": "わなげ",
+      "translation": "ring toss"
+    },
+    {
+      "key": 10006,
+      "word": "輪",
+      "hiragana": "わ",
+      "translation": "ring"
+    },
+    {
+      "key": 10007,
+      "word": "ベンチ",
+      "hiragana": "ベンチ",
+      "translation": "bench"
+    },
+    {
+      "key": 10008,
+      "word": "ケン",
+      "hiragana": "ケン",
+      "translation": "Ken (name)"
+    },
+    {
+      "key": 10009,
+      "word": "何回も",
+      "hiragana": "なんかいも",
+      "translation": "many times"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "先週",
+        "の",
+        "土曜日",
+        "、",
+        "友達",
+        "の",
+        "ケン",
+        "さん",
+        "と",
+        "私",
+        "は",
+        "お祭り",
+        "に",
+        "行きました",
+        "。"
+      ],
+      "ruby": [
+        "せんしゅう",
+        null,
+        "どようび",
+        null,
+        "ともだち",
+        null,
+        null,
+        null,
+        null,
+        "わたし",
+        null,
+        "おまつり",
+        null,
+        "いきました",
+        null
+      ],
+      "vocab_keys": [
+        220,
+        null,
+        166,
+        null,
+        52,
+        null,
+        10008,
+        null,
+        240,
+        61,
+        null,
+        10000,
+        null,
+        170,
+        null
+      ],
+      "translation": "Last Saturday, my friend Ken and I went to a festival.",
+      "grammar": [
+        0,
+        1,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "きれい",
+        "な",
+        "午後",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "きれい",
+        null,
+        "ごご",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        290,
+        null,
+        41,
+        null,
+        null
+      ],
+      "translation": "It was a beautiful afternoon.",
+      "grammar": [
+        3,
+        7
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "私たち",
+        "は",
+        "二時",
+        "ごろ",
+        "、",
+        "駅",
+        "で",
+        "会いました",
+        "。"
+      ],
+      "ruby": [
+        "私たち",
+        null,
+        "にじ",
+        null,
+        null,
+        "えき",
+        null,
+        "あいました",
+        null
+      ],
+      "vocab_keys": [
+        732,
+        null,
+        45,
+        163,
+        null,
+        505,
+        null,
+        228,
+        null
+      ],
+      "translation": "We met at the station around two o'clock.",
+      "grammar": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "それから",
+        "、",
+        "私たち",
+        "は",
+        "歩いて",
+        "お祭り",
+        "に",
+        "行きました",
+        "。"
+      ],
+      "ruby": [
+        "それから",
+        null,
+        "私たち",
+        null,
+        "あるいて",
+        "おまつり",
+        null,
+        "いきました",
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        732,
+        null,
+        540,
+        10000,
+        null,
+        170,
+        null
+      ],
+      "translation": "From there, we walked to the festival.",
+      "grammar": [
+        1,
+        4
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "もう",
+        "たくさん",
+        "の",
+        "人",
+        "が",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        "もう",
+        "たくさん",
+        null,
+        "ひと",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        493,
+        239,
+        null,
+        207,
+        null,
+        235,
+        null
+      ],
+      "translation": "Many people were already there.",
+      "grammar": [
+        10,
+        14
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "そこ",
+        "に",
+        "、",
+        "食べ物",
+        "の",
+        "店",
+        "と",
+        "ゲーム",
+        "の",
+        "店",
+        "が",
+        "たくさん",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "たべもの",
+        null,
+        "みせ",
+        null,
+        null,
+        null,
+        "みせ",
+        null,
+        "たくさん",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        254,
+        null,
+        null,
+        262,
+        null,
+        658,
+        null,
+        142,
+        null,
+        658,
+        null,
+        239,
+        229,
+        null
+      ],
+      "translation": "There were many food stalls and game booths there.",
+      "grammar": [
+        0,
+        1,
+        5
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "まず",
+        "、",
+        "何か",
+        "食べました",
+        "。"
+      ],
+      "ruby": [
+        "まず",
+        null,
+        "なにか",
+        "たべました",
+        null
+      ],
+      "vocab_keys": [
+        915,
+        null,
+        426,
+        177,
+        null
+      ],
+      "translation": "First, we ate something.",
+      "grammar": [
+        4,
+        13
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "ケン",
+        "さん",
+        "は",
+        "焼きそば",
+        "を",
+        "買って",
+        "、",
+        "私",
+        "は",
+        "たこ焼き",
+        "を",
+        "買いました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "やきそば",
+        null,
+        "かって",
+        null,
+        "わたし",
+        null,
+        "たこやき",
+        null,
+        "かいました",
+        null
+      ],
+      "vocab_keys": [
+        10008,
+        null,
+        null,
+        10001,
+        null,
+        230,
+        null,
+        61,
+        null,
+        10002,
+        null,
+        230,
+        null
+      ],
+      "translation": "Ken bought yakisoba, and I bought takoyaki.",
+      "grammar": [
+        1,
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "私たち",
+        "は",
+        "店",
+        "の",
+        "そば",
+        "に",
+        "立って",
+        "、",
+        "食べ物",
+        "を",
+        "食べました",
+        "。"
+      ],
+      "ruby": [
+        "私たち",
+        null,
+        "みせ",
+        null,
+        null,
+        null,
+        "たって",
+        null,
+        "たべもの",
+        null,
+        "たべました",
+        null
+      ],
+      "vocab_keys": [
+        732,
+        null,
+        658,
+        null,
+        251,
+        null,
+        336,
+        null,
+        262,
+        null,
+        177,
+        null
+      ],
+      "translation": "We stood near a stall and ate our food.",
+      "grammar": [
+        0,
+        1,
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "とても",
+        "おいしく",
+        "て",
+        "、",
+        "暖かかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "とても",
+        null,
+        null,
+        null,
+        "あたたかかった",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        307,
+        102,
+        null,
+        null,
+        528,
+        null,
+        null
+      ],
+      "translation": "It was very delicious and warm.",
+      "grammar": [
+        6,
+        11
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "ご飯",
+        "を",
+        "食べて",
+        "から",
+        "、",
+        "もっと",
+        "歩きました",
+        "。"
+      ],
+      "ruby": [
+        "ごはん",
+        null,
+        "たべて",
+        null,
+        null,
+        "もっと",
+        "あるきました",
+        null
+      ],
+      "vocab_keys": [
+        201,
+        null,
+        177,
+        null,
+        null,
+        589,
+        540,
+        null
+      ],
+      "translation": "After eating, we walked around more.",
+      "grammar": [
+        1,
+        4,
+        20
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "町",
+        "は",
+        "とても",
+        "賑やか",
+        "で",
+        "、",
+        "きれい",
+        "な",
+        "色",
+        "が",
+        "たくさん",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        "まち",
+        null,
+        "とても",
+        "にぎやか",
+        null,
+        null,
+        "きれい",
+        null,
+        "いろ",
+        null,
+        "たくさん",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        216,
+        null,
+        307,
+        296,
+        null,
+        null,
+        290,
+        null,
+        457,
+        null,
+        239,
+        229,
+        null
+      ],
+      "translation": "The town was very lively, and there were many colorful things.",
+      "grammar": [
+        1,
+        8,
+        11
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "音楽",
+        "が",
+        "して",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        "おんがく",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        140,
+        null,
+        181,
+        235,
+        null
+      ],
+      "translation": "Music played.",
+      "grammar": [
+        1,
+        10
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "ケン",
+        "さん",
+        "は",
+        "ゲーム",
+        "の",
+        "店",
+        "を",
+        "見ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "みせ",
+        null,
+        "みました",
+        null
+      ],
+      "vocab_keys": [
+        10008,
+        null,
+        null,
+        142,
+        null,
+        658,
+        null,
+        179,
+        null
+      ],
+      "translation": "Ken saw a game booth.",
+      "grammar": [
+        0,
+        1,
+        4
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "それ",
+        "は",
+        "金魚",
+        "すくい",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "きんぎょ",
+        "すくい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        10003,
+        10004,
+        null,
+        null
+      ],
+      "translation": "It was a goldfish scooping game.",
+      "grammar": [
+        3
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "ケン",
+        "さん",
+        "は",
+        "それ",
+        "を",
+        "やって",
+        "みたかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10008,
+        null,
+        null,
+        92,
+        null,
+        302,
+        13,
+        null,
+        null
+      ],
+      "translation": "Ken wanted to try it.",
+      "grammar": [
+        1,
+        15,
+        18
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "ケン",
+        "さん",
+        "は",
+        "何回も",
+        "やり",
+        "ました",
+        "が",
+        "、",
+        "金魚",
+        "を",
+        "取る",
+        "こと",
+        "が",
+        "でき",
+        "ません",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "なんかいも",
+        null,
+        null,
+        null,
+        null,
+        "きんぎょ",
+        null,
+        "とる",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10008,
+        null,
+        null,
+        10009,
+        302,
+        null,
+        405,
+        null,
+        10003,
+        null,
+        232,
+        null,
+        null,
+        727,
+        null,
+        null,
+        null
+      ],
+      "translation": "He tried many times, but he could not catch a goldfish.",
+      "grammar": [
+        1,
+        4,
+        8,
+        17
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "私",
+        "は",
+        "ちょっと",
+        "笑いました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        "わらいました",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        188,
+        804,
+        null
+      ],
+      "translation": "I laughed a little.",
+      "grammar": [
+        4
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "それから",
+        "、",
+        "私",
+        "は",
+        "他の",
+        "ゲーム",
+        "を",
+        "やって",
+        "みました",
+        "。"
+      ],
+      "ruby": [
+        "それから",
+        null,
+        "わたし",
+        null,
+        "ほかの",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        61,
+        null,
+        822,
+        142,
+        null,
+        302,
+        13,
+        null
+      ],
+      "translation": "Then, I tried a different game.",
+      "grammar": [
+        1,
+        4,
+        18
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "それ",
+        "は",
+        "輪投げ",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "わなげ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        10005,
+        null,
+        null
+      ],
+      "translation": "It was a ring toss game.",
+      "grammar": [
+        3
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "私",
+        "は",
+        "輪",
+        "を",
+        "三つ",
+        "使いました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "わ",
+        null,
+        "みっつ",
+        "つかいました",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        10006,
+        null,
+        496,
+        338,
+        null
+      ],
+      "translation": "I used three rings.",
+      "grammar": [
+        1,
+        4
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "一つ",
+        "は",
+        "良かった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "ひとつ",
+        null,
+        "よかった",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        494,
+        null,
+        183,
+        null,
+        null
+      ],
+      "translation": "One was good.",
+      "grammar": [
+        6
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "私",
+        "は",
+        "小さい",
+        "おもちゃ",
+        "の",
+        "車",
+        "を",
+        "もらいました",
+        "！"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "ちいさい",
+        null,
+        null,
+        "くるま",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        283,
+        550,
+        null,
+        374,
+        null,
+        486,
+        null
+      ],
+      "translation": "I won a little toy car!",
+      "grammar": [
+        0,
+        1,
+        4,
+        7,
+        19
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "ケン",
+        "さん",
+        "は",
+        "「",
+        "良かった",
+        "ね",
+        "！",
+        "」",
+        "と",
+        "言いました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        "よかった",
+        null,
+        null,
+        null,
+        null,
+        "いいました",
+        null
+      ],
+      "vocab_keys": [
+        10008,
+        null,
+        null,
+        null,
+        183,
+        null,
+        null,
+        null,
+        null,
+        439,
+        null
+      ],
+      "translation": "Ken said, \"Good job!\"",
+      "grammar": [
+        4,
+        12
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "後で",
+        "、",
+        "ちょっと",
+        "暑かった",
+        "ので",
+        "、",
+        "冷たい",
+        "飲み物",
+        "を",
+        "買いました",
+        "。"
+      ],
+      "ruby": [
+        "あとで",
+        null,
+        null,
+        "あつかった",
+        null,
+        null,
+        "つめたい",
+        "のみもの",
+        null,
+        "かいました",
+        null
+      ],
+      "vocab_keys": [
+        353,
+        null,
+        188,
+        275,
+        null,
+        null,
+        531,
+        266,
+        null,
+        230,
+        null
+      ],
+      "translation": "Later, we bought some cool drinks because the day was a bit warm.",
+      "grammar": [
+        1,
+        4,
+        7,
+        16
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "私たち",
+        "は",
+        "ベンチ",
+        "に",
+        "座って",
+        "、",
+        "人",
+        "を",
+        "見ました",
+        "。"
+      ],
+      "ruby": [
+        "私たち",
+        null,
+        null,
+        null,
+        "すわって",
+        null,
+        "ひと",
+        null,
+        "みました",
+        null
+      ],
+      "vocab_keys": [
+        732,
+        null,
+        10007,
+        null,
+        335,
+        null,
+        207,
+        null,
+        179,
+        null
+      ],
+      "translation": "We sat on a bench and watched the people.",
+      "grammar": [
+        1,
+        4,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "子供",
+        "たち",
+        "は",
+        "笑い",
+        "ながら",
+        "遊んで",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        "こども",
+        null,
+        null,
+        "わらい",
+        null,
+        "あそんで",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        200,
+        null,
+        null,
+        804,
+        null,
+        329,
+        235,
+        null
+      ],
+      "translation": "Children were running and laughing.",
+      "grammar": [
+        10,
+        22
+      ]
+    },
+    {
+      "id": "s28",
+      "words": [
+        "家族",
+        "は",
+        "写真",
+        "を",
+        "撮って",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        "かぞく",
+        null,
+        "しゃしん",
+        null,
+        "とって",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        370,
+        null,
+        202,
+        null,
+        232,
+        235,
+        null
+      ],
+      "translation": "Some families were taking pictures.",
+      "grammar": [
+        1,
+        10
+      ]
+    },
+    {
+      "id": "s29",
+      "words": [
+        "八時",
+        "ごろ",
+        "、",
+        "私たち",
+        "は",
+        "家",
+        "に",
+        "帰る",
+        "ことに",
+        "しました",
+        "。"
+      ],
+      "ruby": [
+        "はちじ",
+        null,
+        null,
+        "私たち",
+        null,
+        "うち",
+        null,
+        "かえる",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        45,
+        163,
+        null,
+        732,
+        null,
+        156,
+        null,
+        171,
+        null,
+        776,
+        null
+      ],
+      "translation": "Around eight o'clock, we decided to go home.",
+      "grammar": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "id": "s30",
+      "words": [
+        "私たち",
+        "は",
+        "ちょっと",
+        "疲れ",
+        "て",
+        "いました",
+        "が",
+        "、",
+        "とても",
+        "楽しかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "私たち",
+        null,
+        null,
+        "つかれ",
+        null,
+        null,
+        null,
+        null,
+        "とても",
+        "たのしかった",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        732,
+        null,
+        188,
+        576,
+        null,
+        235,
+        405,
+        null,
+        307,
+        282,
+        null,
+        null
+      ],
+      "translation": "We were a little tired, but very happy.",
+      "grammar": [
+        6,
+        8,
+        11,
+        21
+      ]
+    },
+    {
+      "id": "s31",
+      "words": [
+        "本当",
+        "に",
+        "楽しい",
+        "お祭り",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "ほんとう",
+        null,
+        "たのしい",
+        "おまつり",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        914,
+        null,
+        282,
+        10000,
+        null,
+        null
+      ],
+      "translation": "It was a really fun festival.",
+      "grammar": [
+        3,
+        7
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

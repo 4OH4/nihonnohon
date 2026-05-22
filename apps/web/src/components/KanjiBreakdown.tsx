@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { lookupKanji } from '@/services/kanjiService'
 import type { KanjiEntry } from '@nihonnohon/schema'
 

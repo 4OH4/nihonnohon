@@ -10,12 +10,15 @@
     "test:e2e": "turbo test:e2e",
     "build-vocab": "tsx scripts/build-vocab.ts",
     "build-kanji": "tsx scripts/build-kanji.ts",
+    "build-manifest": "tsx scripts/build-manifest.ts",
+    "bulk-generate": "tsx scripts/bulk_generate.ts",
     "prepare": "husky"
   },
   "devDependencies": {
+    "@types/node": "^20.19.40",
     "husky": "^9.0.0",
-    "turbo": "^2.9.12",
-    "tsx": "^4.0.0"
+    "tsx": "^4.0.0",
+    "turbo": "^2.9.12"
   },
   "packageManager": "pnpm@11.0.9",
   "pnpm": {}

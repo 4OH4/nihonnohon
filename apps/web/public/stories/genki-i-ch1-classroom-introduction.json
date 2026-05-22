@@ -1,0 +1,721 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch1-classroom-introduction",
+  "title": "A New Student in Class",
+  "title_ja": "教室 の 学生",
+  "language": "ja",
+  "description": "This is a simple story about a classroom and the introduction of a new student, Yuki-san, adapted for Genki I Chapter 1 learners.",
+  "difficulty": "Genki I Ch.1",
+  "grammar": [
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch1 1.3] Connecting Nouns (Noun1 の Noun2)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "ここ",
+      "hiragana": "ここ",
+      "translation": "here"
+    },
+    {
+      "key": 10001,
+      "word": "教室",
+      "hiragana": "きょうしつ",
+      "translation": "classroom"
+    },
+    {
+      "key": 10002,
+      "word": "本",
+      "hiragana": "ほん",
+      "translation": "book"
+    },
+    {
+      "key": 10003,
+      "word": "ノート",
+      "hiragana": "ノート",
+      "translation": "notebook"
+    },
+    {
+      "key": 10004,
+      "word": "机",
+      "hiragana": "つくえ",
+      "translation": "desk"
+    },
+    {
+      "key": 10005,
+      "word": "上",
+      "hiragana": "うえ",
+      "translation": "on; above"
+    },
+    {
+      "key": 10006,
+      "word": "田中",
+      "hiragana": "たなか",
+      "translation": "Tanaka (name)"
+    },
+    {
+      "key": 10007,
+      "word": "おはようございます",
+      "hiragana": "おはようございます",
+      "translation": "Good morning"
+    },
+    {
+      "key": 10008,
+      "word": "皆さん",
+      "hiragana": "みなさん",
+      "translation": "everyone"
+    },
+    {
+      "key": 10009,
+      "word": "ゆき",
+      "hiragana": "ゆき",
+      "translation": "Yuki (name)"
+    },
+    {
+      "key": 10010,
+      "word": "リュック",
+      "hiragana": "リュック",
+      "translation": "backpack"
+    },
+    {
+      "key": 10011,
+      "word": "赤",
+      "hiragana": "あか",
+      "translation": "red (color)"
+    },
+    {
+      "key": 10012,
+      "word": "ペンケース",
+      "hiragana": "ペンケース",
+      "translation": "pencil case"
+    },
+    {
+      "key": 10013,
+      "word": "はじめまして",
+      "hiragana": "はじめまして",
+      "translation": "Nice to meet you"
+    },
+    {
+      "key": 10014,
+      "word": "これ",
+      "hiragana": "これ",
+      "translation": "this"
+    },
+    {
+      "key": 10015,
+      "word": "窓",
+      "hiragana": "まど",
+      "translation": "window"
+    },
+    {
+      "key": 10016,
+      "word": "そば",
+      "hiragana": "そば",
+      "translation": "by; next to"
+    },
+    {
+      "key": 10017,
+      "word": "椅子",
+      "hiragana": "いす",
+      "translation": "chair"
+    },
+    {
+      "key": 10018,
+      "word": "あきら",
+      "hiragana": "あきら",
+      "translation": "Akira (name)"
+    },
+    {
+      "key": 10019,
+      "word": "授業",
+      "hiragana": "じゅぎょう",
+      "translation": "lesson"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "いま",
+        "は",
+        "午前",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "ごぜん",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        36,
+        null,
+        42,
+        null,
+        null
+      ],
+      "translation": "It is A.M. now.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "ここ",
+        "は",
+        "教室",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "きょうしつ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        10001,
+        null,
+        null
+      ],
+      "translation": "This is the classroom.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "学生",
+        "さん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "がくせい",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        38,
+        44,
+        null,
+        null
+      ],
+      "translation": "There are students.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "本",
+        "と",
+        "ノート",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "ほん",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10002,
+        null,
+        10003,
+        null,
+        null
+      ],
+      "translation": "There are books and notebooks.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "本",
+        "は",
+        "机",
+        "の",
+        "上",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "ほん",
+        null,
+        "つくえ",
+        null,
+        "うえ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10002,
+        null,
+        10004,
+        null,
+        10005,
+        null,
+        null
+      ],
+      "translation": "The books are on the desk.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "田中",
+        "先生",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "たなか",
+        "せんせい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10006,
+        47,
+        null,
+        null
+      ],
+      "translation": "This is Mr. Tanaka, the teacher.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "田中",
+        "先生",
+        "は",
+        "先生",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "たなか",
+        "せんせい",
+        null,
+        "せんせい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10006,
+        47,
+        null,
+        47,
+        null,
+        null
+      ],
+      "translation": "Mr. Tanaka is a teacher.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "皆さん",
+        "、",
+        "おはようございます",
+        "。"
+      ],
+      "ruby": [
+        "みなさん",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10008,
+        null,
+        10007,
+        null
+      ],
+      "translation": "Good morning, everyone.",
+      "grammar": []
+    },
+    {
+      "id": "s09",
+      "words": [
+        "ゆき",
+        "さん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10009,
+        44,
+        null,
+        null
+      ],
+      "translation": "This is Ms. Yuki.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "ゆき",
+        "さん",
+        "は",
+        "学生",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "がくせい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10009,
+        44,
+        null,
+        38,
+        null,
+        null
+      ],
+      "translation": "Yuki is a student.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "ゆき",
+        "さん",
+        "の",
+        "リュック",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10009,
+        44,
+        null,
+        10010,
+        null,
+        null
+      ],
+      "translation": "It is Yuki's backpack.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "赤",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "あか",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10011,
+        null,
+        null
+      ],
+      "translation": "It is red.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "ペンケース",
+        "も",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10012,
+        null,
+        null,
+        null
+      ],
+      "translation": "There is also a pencil case.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "私",
+        "の",
+        "名前",
+        "は",
+        "ゆき",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "なまえ",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        53,
+        null,
+        10009,
+        null,
+        null
+      ],
+      "translation": "My name is Yuki.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "はじめまして",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10013,
+        null
+      ],
+      "translation": "Nice to meet you.",
+      "grammar": []
+    },
+    {
+      "id": "s16",
+      "words": [
+        "これ",
+        "は",
+        "机",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "つくえ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10014,
+        null,
+        10004,
+        null,
+        null
+      ],
+      "translation": "This is a desk.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "窓",
+        "の",
+        "そば",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "まど",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10015,
+        null,
+        10016,
+        null,
+        null
+      ],
+      "translation": "It is by the window.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "椅子",
+        "も",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "いす",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10017,
+        null,
+        null,
+        null
+      ],
+      "translation": "There is also a chair.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "あきら",
+        "さん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10018,
+        44,
+        null,
+        null
+      ],
+      "translation": "This is Mr. Akira.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "あきら",
+        "さん",
+        "は",
+        "友達",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "ともだち",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10018,
+        44,
+        null,
+        52,
+        null,
+        null
+      ],
+      "translation": "Akira is a friend.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "田中",
+        "先生",
+        "の",
+        "授業",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "たなか",
+        "せんせい",
+        null,
+        "じゅぎょう",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10006,
+        47,
+        null,
+        10019,
+        null,
+        null
+      ],
+      "translation": "It is Mr. Tanaka's lesson.",
+      "grammar": [
+        0,
+        1
+      ]
+    }
+  ],
+  "author": "Rupert Thomas",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

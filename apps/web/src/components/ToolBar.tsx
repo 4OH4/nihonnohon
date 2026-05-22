@@ -1,7 +1,9 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { cn } from '@/lib/utils'
 import { usePreferenceStore } from '@/stores/preferenceStore'
 import { useShallow } from 'zustand/react/shallow'
-import { SettingsMenu } from '@/components/SettingsMenu'
 
 interface ToolBarProps {
   language: string
@@ -21,7 +23,7 @@ export function ToolBar({ language }: ToolBarProps) {
   const rubyLabel = language === 'Japanese' ? 'ルビ' : 'Ruby'
 
   return (
-    <div role="toolbar" aria-label="Reading controls" className="flex gap-2 px-4 py-2 bg-surface border-b border-border">
+    <div role="toolbar" aria-label="Reading controls" className="flex flex-col gap-2 px-3 py-3 justify-center bg-surface">
       <button
         type="button"
         aria-pressed={rubyVisible}
@@ -48,7 +50,6 @@ export function ToolBar({ language }: ToolBarProps) {
       >
         Trans
       </button>
-      <SettingsMenu />
     </div>
   )
 }

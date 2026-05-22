@@ -1,0 +1,1427 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch19-okonomiyaki",
+  "title": "My First Okonomiyaki",
+  "title_ja": "初めてのオコノミヤキ",
+  "language": "ja",
+  "description": "This story recounts a person's first experience making okonomiyaki, from buying ingredients to enjoying the delicious meal they prepared. It highlights the steps of cooking and the joy of a successful culinary endeavor.",
+  "difficulty": "Genki I Ch.19",
+  "grammar": [
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch4 4.3] Past Identity (Past Tense of です)",
+    "[Ch4 4.4] Recounting Actions (Past Tense of Verbs)",
+    "[Ch5 5.2] Attribute History (Past Tense of Adjectives)",
+    "[Ch4 4.5] Connecting Items (Particle と)",
+    "[Ch2 2.5] Addition and Inclusion (Particle も)",
+    "[Ch3 3.3] Sentence Logistics (Particles を, で, に, へ)",
+    "[Ch6 6.1] Verb Linking (て-form)",
+    "[Ch6 6.3] Sequencing Actions (て-form for Activities)",
+    "[Ch7 7.4] Complex Descriptions (Joining Phrases)",
+    "[Ch7 7.5] Purpose of Movement (Stem + に行く)",
+    "[Ch8 8.6] Nominalized Verbs (Verb + のが好き)",
+    "[Ch9 9.2] Relative Clauses (Noun Modification)",
+    "[Ch13 13.3] Visual Impressions (～そうです)",
+    "[Ch13 13.4] Tentative Attempt (～てみる)",
+    "[Ch16 16.4] Temporal Context (～時)",
+    "[Ch11 11.1] Personal Desires (～たい)",
+    "[Ch18 18.5] Simultaneous Actions (～ながら)",
+    "[Ch5 5.3] Modifying Nouns (Adjective + Noun)",
+    "[Ch1 1.3] Connecting Nouns (Noun1 の Noun2)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "オコノミヤキ",
+      "hiragana": "おこのみやき",
+      "translation": "Okonomiyaki"
+    },
+    {
+      "key": 10001,
+      "word": "ざいりょう",
+      "hiragana": "ざいりょう",
+      "translation": "ingredients"
+    },
+    {
+      "key": 10002,
+      "word": "キャベツ",
+      "hiragana": "キャベツ",
+      "translation": "cabbage"
+    },
+    {
+      "key": 10003,
+      "word": "こむぎこ",
+      "hiragana": "こむぎこ",
+      "translation": "flour"
+    },
+    {
+      "key": 10004,
+      "word": "たまご",
+      "hiragana": "たまご",
+      "translation": "egg"
+    },
+    {
+      "key": 10005,
+      "word": "ぶたにく",
+      "hiragana": "ぶたにく",
+      "translation": "pork"
+    },
+    {
+      "key": 10006,
+      "word": "オコノミヤキソース",
+      "hiragana": "おこのみやきソース",
+      "translation": "Okonomiyaki sauce"
+    },
+    {
+      "key": 10007,
+      "word": "マヨネーズ",
+      "hiragana": "マヨネーズ",
+      "translation": "mayonnaise"
+    },
+    {
+      "key": 10008,
+      "word": "ボウル",
+      "hiragana": "ボウル",
+      "translation": "bowl"
+    },
+    {
+      "key": 10009,
+      "word": "まぜる",
+      "hiragana": "まぜる",
+      "translation": "to mix"
+    },
+    {
+      "key": 10010,
+      "word": "また",
+      "hiragana": "また",
+      "translation": "again"
+    },
+    {
+      "key": 10011,
+      "word": "生地",
+      "hiragana": "きじ",
+      "translation": "batter"
+    },
+    {
+      "key": 10012,
+      "word": "フライパン",
+      "hiragana": "フライパン",
+      "translation": "frying pan"
+    },
+    {
+      "key": 10013,
+      "word": "あたためる",
+      "hiragana": "あたためる",
+      "translation": "to heat"
+    },
+    {
+      "key": 10014,
+      "word": "油",
+      "hiragana": "あぶら",
+      "translation": "oil"
+    },
+    {
+      "key": 10015,
+      "word": "丸い",
+      "hiragana": "まるい",
+      "translation": "round"
+    },
+    {
+      "key": 10016,
+      "word": "形",
+      "hiragana": "かたち",
+      "translation": "shape"
+    },
+    {
+      "key": 10017,
+      "word": "薄い",
+      "hiragana": "うすい",
+      "translation": "thin"
+    },
+    {
+      "key": 10018,
+      "word": "乗せる",
+      "hiragana": "のせる",
+      "translation": "to place on top"
+    },
+    {
+      "key": 10019,
+      "word": "におい",
+      "hiragana": "におい",
+      "translation": "smell"
+    },
+    {
+      "key": 10020,
+      "word": "焼く",
+      "hiragana": "やく",
+      "translation": "to cook/grill"
+    },
+    {
+      "key": 10021,
+      "word": "何分か",
+      "hiragana": "なんぷんか",
+      "translation": "several minutes"
+    },
+    {
+      "key": 10022,
+      "word": "ひっくり返す",
+      "hiragana": "ひっくりかえす",
+      "translation": "to flip"
+    },
+    {
+      "key": 10023,
+      "word": "もう一方",
+      "hiragana": "もういっぽう",
+      "translation": "the other side"
+    },
+    {
+      "key": 10024,
+      "word": "最後",
+      "hiragana": "さいご",
+      "translation": "finally"
+    },
+    {
+      "key": 10025,
+      "word": "最高",
+      "hiragana": "さいこう",
+      "translation": "the best"
+    },
+    {
+      "key": 10026,
+      "word": "かける",
+      "hiragana": "かける",
+      "translation": "to pour (sauce etc.)"
+    },
+    {
+      "key": 10027,
+      "word": "ジグザグ",
+      "hiragana": "ジグザグ",
+      "translation": "zig-zag"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "きのう",
+        "、",
+        "はじめて",
+        "オコノミヤキ",
+        "を",
+        "つくって",
+        "みました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "作って",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        218,
+        null,
+        635,
+        10000,
+        null,
+        444,
+        179,
+        null
+      ],
+      "translation": "Yesterday, I finally tried making okonomiyaki for the first time.",
+      "grammar": [
+        2,
+        7,
+        14,
+        6
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "とても",
+        "うれしかっ",
+        "たです",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        307,
+        663,
+        null,
+        null
+      ],
+      "translation": "I was very happy.",
+      "grammar": [
+        3
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "まず",
+        "、",
+        "スーパー",
+        "へ",
+        "ざいりょう",
+        "を",
+        "買い",
+        "に",
+        "行き",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "買い",
+        null,
+        "行き",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        915,
+        null,
+        210,
+        null,
+        10001,
+        null,
+        230,
+        null,
+        170,
+        null,
+        null
+      ],
+      "translation": "First, I went to the supermarket to buy ingredients.",
+      "grammar": [
+        6,
+        2,
+        10
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "キャベツ",
+        "と",
+        "こむぎこ",
+        "と",
+        "たまご",
+        "と",
+        "ぶたにく",
+        "を",
+        "買い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "買い",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10002,
+        null,
+        10003,
+        null,
+        10004,
+        null,
+        10005,
+        null,
+        230,
+        null,
+        null
+      ],
+      "translation": "I bought cabbage, flour, eggs, and pork.",
+      "grammar": [
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "それから",
+        "、",
+        "オコノミヤキソース",
+        "と",
+        "マヨネーズ",
+        "も",
+        "買い",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "買い",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        10006,
+        null,
+        10007,
+        null,
+        230,
+        null,
+        null
+      ],
+      "translation": "After that, I also bought okonomiyaki sauce and mayonnaise.",
+      "grammar": [
+        2,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "家",
+        "に",
+        "帰っ",
+        "た",
+        "とき",
+        "、",
+        "料理",
+        "し",
+        "始め",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "いえ",
+        null,
+        "帰っ",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "始め",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        155,
+        null,
+        171,
+        null,
+        223,
+        null,
+        451,
+        null,
+        447,
+        null,
+        null
+      ],
+      "translation": "When I came home, I started cooking.",
+      "grammar": [
+        2,
+        6,
+        15
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "キャベツ",
+        "を",
+        "洗っ",
+        "て",
+        "、",
+        "小さく",
+        "切り",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "洗っ",
+        null,
+        null,
+        null,
+        "切り",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10002,
+        null,
+        438,
+        null,
+        null,
+        283,
+        443,
+        null,
+        null
+      ],
+      "translation": "I washed the cabbage and chopped it into small pieces.",
+      "grammar": [
+        8,
+        2,
+        6
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "それから",
+        "、",
+        "こむぎこ",
+        "と",
+        "たまご",
+        "と",
+        "水",
+        "を",
+        "大きい",
+        "ボウル",
+        "に",
+        "入れ",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "入れ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        10003,
+        null,
+        10004,
+        null,
+        154,
+        null,
+        278,
+        10008,
+        null,
+        807,
+        null,
+        null
+      ],
+      "translation": "Then, I put the flour, eggs, and water into a big bowl.",
+      "grammar": [
+        8,
+        2,
+        4,
+        6,
+        18
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "よく",
+        "混ぜ",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "混ぜ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        190,
+        10009,
+        null,
+        null
+      ],
+      "translation": "I mixed everything well.",
+      "grammar": [
+        2
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "その",
+        "あと",
+        "、",
+        "切っ",
+        "た",
+        "キャベツ",
+        "を",
+        "ボウル",
+        "に",
+        "入れ",
+        "て",
+        "、",
+        "また",
+        "混ぜ",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "切っ",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "入れ",
+        null,
+        null,
+        null,
+        "混ぜ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        96,
+        583,
+        null,
+        443,
+        null,
+        10002,
+        null,
+        10008,
+        null,
+        807,
+        null,
+        null,
+        10010,
+        10009,
+        null,
+        null
+      ],
+      "translation": "After that, I added the chopped cabbage into the bowl and mixed it again.",
+      "grammar": [
+        8,
+        2,
+        12,
+        6
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "生地",
+        "は",
+        "とても",
+        "よさそう",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "きじ",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10011,
+        null,
+        307,
+        183,
+        null,
+        null
+      ],
+      "translation": "The batter looked very good.",
+      "grammar": [
+        1,
+        13
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "次",
+        "に",
+        "、",
+        "ストーブ",
+        "の",
+        "上",
+        "で",
+        "フライパン",
+        "を",
+        "あたため",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "つぎ",
+        null,
+        null,
+        null,
+        null,
+        "うえ",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        318,
+        null,
+        null,
+        834,
+        null,
+        249,
+        null,
+        10012,
+        null,
+        10013,
+        null,
+        null
+      ],
+      "translation": "Next, I heated a frying pan on the stove.",
+      "grammar": [
+        2,
+        19,
+        6
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "フライパン",
+        "に",
+        "油",
+        "を",
+        "ちょっと",
+        "入れ",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "あぶら",
+        null,
+        null,
+        "入れ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10012,
+        null,
+        10014,
+        null,
+        188,
+        807,
+        null,
+        null
+      ],
+      "translation": "I put a little oil in the pan.",
+      "grammar": [
+        2,
+        6
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "それから",
+        "、",
+        "熱い",
+        "フライパン",
+        "に",
+        "生地",
+        "を",
+        "ちょっと",
+        "入れ",
+        "て",
+        "、",
+        "丸い",
+        "形",
+        "に",
+        "し",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "きじ",
+        null,
+        null,
+        "入れ",
+        null,
+        null,
+        "まるい",
+        "かたち",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        276,
+        10012,
+        null,
+        10011,
+        null,
+        188,
+        807,
+        null,
+        null,
+        10015,
+        10016,
+        null,
+        181,
+        null,
+        null
+      ],
+      "translation": "Then, I poured some of the batter into the hot pan to make a round shape.",
+      "grammar": [
+        8,
+        2,
+        6,
+        18
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "生地",
+        "の",
+        "上",
+        "に",
+        "薄い",
+        "ぶたにく",
+        "を",
+        "乗せ",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        "きじ",
+        null,
+        "うえ",
+        null,
+        "うすい",
+        null,
+        null,
+        "乗せ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10011,
+        null,
+        249,
+        null,
+        10017,
+        10005,
+        null,
+        10018,
+        null,
+        null
+      ],
+      "translation": "On top of the batter, I placed thin slices of pork.",
+      "grammar": [
+        2,
+        19,
+        6,
+        18
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "もう",
+        "いい",
+        "におい",
+        "が",
+        "し",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        493,
+        183,
+        10019,
+        null,
+        181,
+        null,
+        null
+      ],
+      "translation": "It smelled good already.",
+      "grammar": [
+        2
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "何分か",
+        "焼き",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "焼き",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10021,
+        10020,
+        null,
+        null
+      ],
+      "translation": "I cooked it for several minutes.",
+      "grammar": [
+        2
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "ひっくり返す",
+        "の",
+        "は",
+        "ちょっと",
+        "難しかっ",
+        "たです",
+        "が",
+        "、",
+        "気をつけ",
+        "ながら",
+        "やり",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "気をつけ",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10022,
+        null,
+        null,
+        188,
+        286,
+        null,
+        405,
+        null,
+        772,
+        null,
+        302,
+        null,
+        null
+      ],
+      "translation": "Flipping it was a little difficult, but I did it carefully.",
+      "grammar": [
+        11,
+        3,
+        2,
+        17
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "今",
+        "、",
+        "ぶたにく",
+        "は",
+        "下",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        "した",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        36,
+        null,
+        10005,
+        null,
+        250,
+        null,
+        null
+      ],
+      "translation": "Now, the pork was on the bottom.",
+      "grammar": [
+        1
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "もう一方",
+        "も",
+        "何分か",
+        "焼き",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "焼き",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10023,
+        null,
+        10021,
+        10020,
+        null,
+        null
+      ],
+      "translation": "I cooked the other side for a few more minutes.",
+      "grammar": [
+        2,
+        5
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "できた",
+        "とき",
+        "、",
+        "オコノミヤキ",
+        "を",
+        "皿",
+        "に",
+        "乗せ",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "さら",
+        null,
+        "乗せ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        727,
+        223,
+        null,
+        10000,
+        null,
+        703,
+        null,
+        10018,
+        null,
+        null
+      ],
+      "translation": "When it was ready, I put the okonomiyaki on a plate.",
+      "grammar": [
+        2,
+        15,
+        6
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "最後",
+        "に",
+        "、",
+        "最高",
+        "でした",
+        "！"
+      ],
+      "ruby": [
+        "さいご",
+        null,
+        null,
+        "さいこう",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10024,
+        null,
+        null,
+        10025,
+        null,
+        null
+      ],
+      "translation": "Finally, it was the best!",
+      "grammar": [
+        1
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "オコノミヤキソース",
+        "を",
+        "たくさん",
+        "かけ",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10006,
+        null,
+        239,
+        10026,
+        null,
+        null
+      ],
+      "translation": "I put plenty of okonomiyaki sauce on top.",
+      "grammar": [
+        2,
+        6
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "それから",
+        "、",
+        "マヨネーズ",
+        "を",
+        "ジグザグ",
+        "に",
+        "かけ",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        10007,
+        null,
+        10027,
+        null,
+        10026,
+        null,
+        null
+      ],
+      "translation": "Then, I added mayonnaise in a zig-zag pattern.",
+      "grammar": [
+        8,
+        2,
+        6
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "はじめて",
+        "食べ",
+        "ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "食べ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        635,
+        177,
+        null,
+        null
+      ],
+      "translation": "I took my first bite.",
+      "grammar": [
+        2
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "わあ",
+        "、",
+        "とても",
+        "おいしかっ",
+        "たです",
+        "！"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        307,
+        102,
+        null,
+        null
+      ],
+      "translation": "Wow, it was so delicious!",
+      "grammar": [
+        3
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "あたたかく",
+        "て",
+        "、",
+        "おいしかっ",
+        "たです",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        528,
+        null,
+        null,
+        102,
+        null,
+        null
+      ],
+      "translation": "It was warm and delicious.",
+      "grammar": [
+        9,
+        3
+      ]
+    },
+    {
+      "id": "s28",
+      "words": [
+        "とても",
+        "うれしかっ",
+        "たです",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        307,
+        663,
+        null,
+        null
+      ],
+      "translation": "I felt very happy.",
+      "grammar": [
+        3
+      ]
+    },
+    {
+      "id": "s29",
+      "words": [
+        "オコノミヤキ",
+        "を",
+        "作る",
+        "の",
+        "は",
+        "楽しかっ",
+        "たです",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "つくる",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        444,
+        null,
+        null,
+        282,
+        null,
+        null
+      ],
+      "translation": "Making okonomiyaki was fun.",
+      "grammar": [
+        11,
+        3
+      ]
+    },
+    {
+      "id": "s30",
+      "words": [
+        "食べる",
+        "の",
+        "は",
+        "もっと",
+        "よかっ",
+        "たです",
+        "。"
+      ],
+      "ruby": [
+        "たべる",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        177,
+        null,
+        null,
+        589,
+        183,
+        null,
+        null
+      ],
+      "translation": "Eating it was even better.",
+      "grammar": [
+        11,
+        3
+      ]
+    },
+    {
+      "id": "s31",
+      "words": [
+        "また",
+        "すぐ",
+        "作り",
+        "たいです",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "作り",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10010,
+        357,
+        444,
+        null,
+        null
+      ],
+      "translation": "I want to make it again soon.",
+      "grammar": [
+        16
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

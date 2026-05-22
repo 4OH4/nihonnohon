@@ -1,0 +1,1574 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch19-mystery-letter",
+  "title": "The Mystery Letter",
+  "title_ja": "なぞの手紙",
+  "language": "ja",
+  "description": "A student finds a mysterious, unnamed letter in their locker one morning, leading to a secret meeting invitation by an old cherry tree after school.",
+  "difficulty": "Genki I Ch.19",
+  "grammar": [
+    "[Ch4 4.4] Recounting Actions (Past Tense of Verbs)",
+    "[Ch3 3.3] Sentence Logistics (Particles を, で, に, へ)",
+    "[Ch3 3.4] Temporal Markers (Time References)",
+    "[Ch4 4.1] Stating Existence (あります / います)",
+    "[Ch4 4.2] Positional Descriptions",
+    "[Ch5 5.2] Attribute History (Past Tense of Adjectives)",
+    "[Ch5 5.3] Modifying Nouns (Adjective + Noun)",
+    "[Ch6 6.1] Verb Linking (て-form)",
+    "[Ch6 6.3] Sequencing Actions (て-form for Activities)",
+    "[Ch7 7.2] Resultant States (～ている for Change)",
+    "[Ch8 8.3] Sharing Thoughts (Short Form + と思います)",
+    "[Ch8 8.5] Negative Requests (～ないでください)",
+    "[Ch8 8.8] Indefinite References (何か / 何も)",
+    "[Ch4 4.5] Connecting Items (Particle と)",
+    "[Ch4 4.3] Past Identity (Past Tense of です)",
+    "[Ch1 1.2] Basic Inquiry (Question Sentences)",
+    "[Ch2 2.5] Addition and Inclusion (Particle も)",
+    "[Ch2 2.2] Specifying Objects (この・その・あの)",
+    "[Ch5 5.5] Making Suggestions (～ましょう / ～ましょうか)",
+    "[Ch7 7.3] Describing Appearance (X は Y が Adjective)",
+    "[Ch16 16.4] Temporal Context (～時)",
+    "[Ch10 10.3] Noun Replacement (Adjective + の)",
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch2 2.6] Negative Identity (～じゃないです)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "空",
+      "hiragana": "そら",
+      "translation": "sky"
+    },
+    {
+      "key": 10001,
+      "word": "ロッカー",
+      "hiragana": "ろっかー",
+      "translation": "locker"
+    },
+    {
+      "key": 10002,
+      "word": "ドア",
+      "hiragana": "どあ",
+      "translation": "door"
+    },
+    {
+      "key": 10003,
+      "word": "違う",
+      "hiragana": "ちがう",
+      "translation": "different"
+    },
+    {
+      "key": 10004,
+      "word": "封筒",
+      "hiragana": "ふうとう",
+      "translation": "envelope"
+    },
+    {
+      "key": 10005,
+      "word": "住所",
+      "hiragana": "じゅうしょ",
+      "translation": "address"
+    },
+    {
+      "key": 10006,
+      "word": "周り",
+      "hiragana": "まわり",
+      "translation": "around"
+    },
+    {
+      "key": 10007,
+      "word": "少し",
+      "hiragana": "すこし",
+      "translation": "a little"
+    },
+    {
+      "key": 10008,
+      "word": "だけ",
+      "hiragana": "だけ",
+      "translation": "only"
+    },
+    {
+      "key": 10009,
+      "word": "桜",
+      "hiragana": "さくら",
+      "translation": "cherry (blossom)"
+    },
+    {
+      "key": 10010,
+      "word": "木",
+      "hiragana": "き",
+      "translation": "tree"
+    },
+    {
+      "key": 10011,
+      "word": "大切",
+      "hiragana": "たいせつ",
+      "translation": "important"
+    },
+    {
+      "key": 10012,
+      "word": "一度",
+      "hiragana": "いちど",
+      "translation": "once, one time"
+    },
+    {
+      "key": 10013,
+      "word": "ジム",
+      "hiragana": "じむ",
+      "translation": "gym"
+    },
+    {
+      "key": 10014,
+      "word": "変",
+      "hiragana": "へん",
+      "translation": "strange, suspicious"
+    },
+    {
+      "key": 10015,
+      "word": "謎",
+      "hiragana": "なぞ",
+      "translation": "mystery"
+    },
+    {
+      "key": 10016,
+      "word": "水色",
+      "hiragana": "みずいろ",
+      "translation": "light blue"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "今朝",
+        "、",
+        "私",
+        "は",
+        "早く",
+        "起きました",
+        "。"
+      ],
+      "ruby": [
+        "けさ",
+        null,
+        "わたし",
+        null,
+        "はやく",
+        "おきました",
+        null
+      ],
+      "vocab_keys": [
+        417,
+        null,
+        61,
+        null,
+        184,
+        176,
+        null
+      ],
+      "translation": "This morning, I woke up early.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "朝御飯",
+        "を",
+        "食べて",
+        "、",
+        "学校",
+        "へ",
+        "行きました",
+        "。"
+      ],
+      "ruby": [
+        "あさごはん",
+        null,
+        "たべて",
+        null,
+        "がっこう",
+        null,
+        "いきました",
+        null
+      ],
+      "vocab_keys": [
+        147,
+        null,
+        177,
+        null,
+        158,
+        null,
+        170,
+        null
+      ],
+      "translation": "I ate breakfast and went to school.",
+      "grammar": [
+        0,
+        1,
+        8
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "空",
+        "は",
+        "青くて",
+        "きれいでした",
+        "。"
+      ],
+      "ruby": [
+        "そら",
+        null,
+        "あおくて",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        474,
+        290,
+        null
+      ],
+      "translation": "The sky was blue and beautiful.",
+      "grammar": [
+        5,
+        7
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "学校",
+        "に",
+        "着いた",
+        "時",
+        "、",
+        "ロッカー",
+        "へ",
+        "行きました",
+        "。"
+      ],
+      "ruby": [
+        "がっこう",
+        null,
+        "ついた",
+        "とき",
+        null,
+        "ろっかー",
+        null,
+        "いきました",
+        null
+      ],
+      "vocab_keys": [
+        158,
+        null,
+        770,
+        223,
+        null,
+        10001,
+        null,
+        170,
+        null
+      ],
+      "translation": "When I arrived at school, I went to my locker.",
+      "grammar": [
+        0,
+        1,
+        20
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "ドア",
+        "を",
+        "開けました",
+        "。"
+      ],
+      "ruby": [
+        "どあ",
+        null,
+        "あけました",
+        null
+      ],
+      "vocab_keys": [
+        10002,
+        null,
+        343,
+        null
+      ],
+      "translation": "I opened the door.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "教科書",
+        "と",
+        "ノート",
+        "が",
+        "中",
+        "に",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        "きょうかしょ",
+        null,
+        null,
+        null,
+        "なか",
+        null,
+        "ありました",
+        null
+      ],
+      "vocab_keys": [
+        315,
+        null,
+        120,
+        null,
+        248,
+        null,
+        229,
+        null
+      ],
+      "translation": "Textbooks and notebooks were inside.",
+      "grammar": [
+        3,
+        4,
+        13
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "それから",
+        "、",
+        "何か",
+        "違う",
+        "もの",
+        "を",
+        "見ました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "なにか",
+        "ちがう",
+        "もの",
+        null,
+        "みました",
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        426,
+        10003,
+        610,
+        null,
+        179,
+        null
+      ],
+      "translation": "Then, I saw something different.",
+      "grammar": [
+        0,
+        1,
+        12
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "小さい",
+        "封筒",
+        "が",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        "ちいさい",
+        "ふうとう",
+        null,
+        "ありました",
+        null
+      ],
+      "vocab_keys": [
+        283,
+        10004,
+        null,
+        229,
+        null
+      ],
+      "translation": "There was a small envelope.",
+      "grammar": [
+        3,
+        6
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "水色",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "みずいろ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10016,
+        null,
+        null
+      ],
+      "translation": "It was light blue.",
+      "grammar": [
+        14
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "前",
+        "に",
+        "名前",
+        "が",
+        "ありません",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "まえ",
+        null,
+        "なまえ",
+        null,
+        "ありません",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        246,
+        null,
+        53,
+        null,
+        229,
+        null,
+        null
+      ],
+      "translation": "There was no name on the front.",
+      "grammar": [
+        3,
+        4,
+        0
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "住所",
+        "も",
+        "ありません",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "じゅうしょ",
+        null,
+        "ありません",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10005,
+        null,
+        229,
+        null,
+        null
+      ],
+      "translation": "There was no address either.",
+      "grammar": [
+        3,
+        16,
+        0
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "それ",
+        "を",
+        "持ちました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "もちました",
+        null
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        341,
+        null
+      ],
+      "translation": "I picked it up.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "ちょっと",
+        "大きかったです",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "おおきかったです",
+        null
+      ],
+      "vocab_keys": [
+        188,
+        278,
+        null
+      ],
+      "translation": "It felt a little big.",
+      "grammar": [
+        5
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "「",
+        "これ",
+        "は",
+        "何",
+        "です",
+        "か",
+        "。」",
+        "と",
+        "思いました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "これ",
+        null,
+        "なに",
+        null,
+        null,
+        null,
+        null,
+        "おもいました",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        91,
+        null,
+        54,
+        null,
+        null,
+        null,
+        null,
+        442,
+        null
+      ],
+      "translation": "\"What is this?\" I thought.",
+      "grammar": [
+        10,
+        15
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "周り",
+        "を",
+        "見ました",
+        "が",
+        "、",
+        "誰",
+        "も",
+        "私",
+        "の",
+        "ロッカー",
+        "の",
+        "そば",
+        "に",
+        "いません",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "まわり",
+        null,
+        "みました",
+        null,
+        null,
+        "だれ",
+        null,
+        "わたし",
+        null,
+        "ろっかー",
+        null,
+        null,
+        null,
+        "いません",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10006,
+        null,
+        179,
+        null,
+        null,
+        101,
+        null,
+        61,
+        null,
+        10001,
+        null,
+        251,
+        null,
+        235,
+        null,
+        null
+      ],
+      "translation": "I looked around, but no one was near my locker.",
+      "grammar": [
+        0,
+        1,
+        16,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "封筒",
+        "を",
+        "開けました",
+        "。"
+      ],
+      "ruby": [
+        "ふうとう",
+        null,
+        "あけました",
+        null
+      ],
+      "vocab_keys": [
+        10004,
+        null,
+        343,
+        null
+      ],
+      "translation": "I opened the envelope.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "中",
+        "に",
+        "白い",
+        "紙",
+        "が",
+        "一枚",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        "なか",
+        null,
+        "しろい",
+        "かみ",
+        null,
+        "いちまい",
+        "ありました",
+        null
+      ],
+      "vocab_keys": [
+        248,
+        null,
+        478,
+        828,
+        null,
+        310,
+        229,
+        null
+      ],
+      "translation": "Inside was a piece of white paper.",
+      "grammar": [
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "紙",
+        "を",
+        "出しました",
+        "。"
+      ],
+      "ruby": [
+        "かみ",
+        null,
+        "だしました",
+        null
+      ],
+      "vocab_keys": [
+        828,
+        null,
+        799,
+        null
+      ],
+      "translation": "I took out the paper.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "言葉",
+        "が",
+        "少し",
+        "だけ",
+        "書いて",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        "ことば",
+        null,
+        "すこし",
+        null,
+        "かいて",
+        "ありました",
+        null
+      ],
+      "vocab_keys": [
+        648,
+        null,
+        10007,
+        10008,
+        231,
+        229,
+        null
+      ],
+      "translation": "There were only a few words written.",
+      "grammar": [
+        3,
+        7
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "「",
+        "今日",
+        "、",
+        "学校",
+        "の",
+        "後",
+        "で",
+        "、",
+        "古い",
+        "桜",
+        "の",
+        "木",
+        "の",
+        "そば",
+        "で",
+        "会いましょう",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "きょう",
+        null,
+        "がっこう",
+        null,
+        "あと",
+        null,
+        null,
+        "ふるい",
+        "さくら",
+        null,
+        "き",
+        null,
+        null,
+        null,
+        "あいましょう",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        162,
+        null,
+        158,
+        null,
+        583,
+        null,
+        null,
+        285,
+        10009,
+        null,
+        10010,
+        null,
+        251,
+        null,
+        228,
+        null
+      ],
+      "translation": "\"Today, after school, let's meet by the old cherry tree.",
+      "grammar": [
+        1,
+        2,
+        4,
+        6,
+        18
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "あなた",
+        "に",
+        "大切",
+        "な",
+        "こと",
+        "が",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "たいせつ",
+        null,
+        null,
+        null,
+        "あります",
+        null
+      ],
+      "vocab_keys": [
+        197,
+        null,
+        10011,
+        null,
+        610,
+        null,
+        229,
+        null
+      ],
+      "translation": "I have something important to tell you.",
+      "grammar": [
+        3,
+        6,
+        21
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "誰",
+        "に",
+        "も",
+        "言わないでください",
+        "。」",
+        "と",
+        "書いて",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        "だれ",
+        null,
+        null,
+        "いわないでください",
+        null,
+        null,
+        "かいて",
+        "ありました",
+        null
+      ],
+      "vocab_keys": [
+        101,
+        null,
+        null,
+        439,
+        null,
+        null,
+        231,
+        229,
+        null
+      ],
+      "translation": "Don't tell anyone.\" It was written.",
+      "grammar": [
+        3,
+        7,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "私",
+        "は",
+        "もう",
+        "一度",
+        "手紙",
+        "を",
+        "読みました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        "いちど",
+        "てがみ",
+        null,
+        "よみました",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        493,
+        10012,
+        204,
+        null,
+        175,
+        null
+      ],
+      "translation": "I read the letter once again.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "「",
+        "古い",
+        "桜",
+        "の",
+        "木",
+        "？",
+        "」",
+        "私",
+        "は",
+        "その",
+        "木",
+        "を",
+        "知って",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "ふるい",
+        "さくら",
+        null,
+        "き",
+        null,
+        null,
+        "わたし",
+        null,
+        null,
+        "き",
+        null,
+        "しって",
+        "いました",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        285,
+        10009,
+        null,
+        10010,
+        null,
+        null,
+        61,
+        null,
+        96,
+        10010,
+        null,
+        393,
+        235,
+        null
+      ],
+      "translation": "\"The old cherry tree?\" I knew that tree.",
+      "grammar": [
+        6,
+        9,
+        17
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "それ",
+        "は",
+        "学校",
+        "の",
+        "ジム",
+        "の",
+        "後ろ",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "がっこう",
+        null,
+        "じむ",
+        null,
+        "うしろ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        158,
+        null,
+        10013,
+        null,
+        247,
+        null,
+        null
+      ],
+      "translation": "It was behind the school gym.",
+      "grammar": [
+        2,
+        4,
+        14,
+        22
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "「",
+        "誰",
+        "が",
+        "この",
+        "手紙",
+        "を",
+        "書きました",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "だれ",
+        null,
+        null,
+        "てがみ",
+        null,
+        "かきました",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        101,
+        null,
+        95,
+        204,
+        null,
+        231,
+        null,
+        null
+      ],
+      "translation": "\"Who sent this letter?",
+      "grammar": [
+        0,
+        1,
+        15,
+        17
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "友達",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        "ともだち",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        52,
+        null,
+        null,
+        null
+      ],
+      "translation": "Was it a friend?",
+      "grammar": [
+        15,
+        22
+      ]
+    },
+    {
+      "id": "s28",
+      "words": [
+        "新しい",
+        "学生",
+        "です",
+        "か",
+        "。」"
+      ],
+      "ruby": [
+        "あたらしい",
+        "がくせい",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        274,
+        38,
+        null,
+        null,
+        null
+      ],
+      "translation": "Was it a new student?\"",
+      "grammar": [
+        6,
+        15,
+        22
+      ]
+    },
+    {
+      "id": "s29",
+      "words": [
+        "私",
+        "は",
+        "知りませんでした",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "しりませんでした",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        395,
+        null
+      ],
+      "translation": "I did not know.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s30",
+      "words": [
+        "手紙",
+        "を",
+        "封筒",
+        "に",
+        "入れました",
+        "。"
+      ],
+      "ruby": [
+        "てがみ",
+        null,
+        "ふうとう",
+        null,
+        "いれました",
+        null
+      ],
+      "vocab_keys": [
+        204,
+        null,
+        10004,
+        null,
+        807,
+        null
+      ],
+      "translation": "I put the letter back in the envelope.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s31",
+      "words": [
+        "それから",
+        "、",
+        "封筒",
+        "を",
+        "私",
+        "の",
+        "カバン",
+        "の",
+        "中",
+        "に",
+        "入れました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "ふうとう",
+        null,
+        "わたし",
+        null,
+        null,
+        null,
+        "なか",
+        null,
+        "いれました",
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        10004,
+        null,
+        61,
+        null,
+        110,
+        null,
+        248,
+        null,
+        807,
+        null
+      ],
+      "translation": "Then, I put the envelope inside my backpack.",
+      "grammar": [
+        0,
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "id": "s32",
+      "words": [
+        "午前",
+        "中",
+        "、",
+        "授業",
+        "中",
+        "に",
+        "手紙",
+        "の",
+        "こと",
+        "を",
+        "思いました",
+        "。"
+      ],
+      "ruby": [
+        "ごぜん",
+        "ちゅう",
+        null,
+        "じゅぎょう",
+        "ちゅう",
+        null,
+        "てがみ",
+        null,
+        null,
+        null,
+        "おもいました",
+        null
+      ],
+      "vocab_keys": [
+        42,
+        null,
+        null,
+        558,
+        null,
+        null,
+        204,
+        null,
+        610,
+        null,
+        442,
+        null
+      ],
+      "translation": "All morning, during classes, I thought about the letter.",
+      "grammar": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "id": "s33",
+      "words": [
+        "私",
+        "の",
+        "友達",
+        "は",
+        "何",
+        "も",
+        "知りませんでした",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "ともだち",
+        null,
+        "なに",
+        null,
+        "しりませんでした",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        52,
+        null,
+        54,
+        null,
+        395,
+        null
+      ],
+      "translation": "My friends did not seem to know anything.",
+      "grammar": [
+        0,
+        2,
+        16,
+        11
+      ]
+    },
+    {
+      "id": "s34",
+      "words": [
+        "みんな",
+        "の",
+        "顔",
+        "を",
+        "見ました",
+        "が",
+        "、",
+        "誰",
+        "も",
+        "変",
+        "な",
+        "人",
+        "では",
+        "ありません",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "かお",
+        null,
+        "みました",
+        null,
+        null,
+        "だれ",
+        null,
+        "へん",
+        null,
+        "ひと",
+        null,
+        "ありません",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        492,
+        null,
+        507,
+        null,
+        179,
+        null,
+        null,
+        101,
+        null,
+        10014,
+        null,
+        207,
+        null,
+        null,
+        null,
+        null
+      ],
+      "translation": "I looked at everyone's faces, but no one looked suspicious.",
+      "grammar": [
+        0,
+        1,
+        2,
+        16,
+        23
+      ]
+    },
+    {
+      "id": "s35",
+      "words": [
+        "手紙",
+        "は",
+        "謎",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "てがみ",
+        null,
+        "なぞ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        204,
+        null,
+        10015,
+        null,
+        null
+      ],
+      "translation": "The letter was a mystery.",
+      "grammar": [
+        14,
+        22
+      ]
+    },
+    {
+      "id": "s36",
+      "words": [
+        "学校",
+        "の",
+        "後",
+        "で",
+        "、",
+        "桜",
+        "の",
+        "木",
+        "へ",
+        "行きます",
+        "。"
+      ],
+      "ruby": [
+        "がっこう",
+        null,
+        "あと",
+        null,
+        null,
+        "さくら",
+        null,
+        "き",
+        null,
+        "いきます",
+        null
+      ],
+      "vocab_keys": [
+        158,
+        null,
+        583,
+        null,
+        null,
+        10009,
+        null,
+        10010,
+        null,
+        170,
+        null
+      ],
+      "translation": "After school, I will go to the cherry tree.",
+      "grammar": [
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "id": "s37",
+      "words": [
+        "ちょっと",
+        "緊張",
+        "して",
+        "いました",
+        "が",
+        "、",
+        "とても",
+        "興味",
+        "が",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "きんちょう",
+        null,
+        "いました",
+        null,
+        null,
+        null,
+        "きょうみ",
+        null,
+        "ありました",
+        null
+      ],
+      "vocab_keys": [
+        188,
+        627,
+        null,
+        235,
+        null,
+        null,
+        307,
+        621,
+        null,
+        229,
+        null
+      ],
+      "translation": "I was a little nervous, but also very curious.",
+      "grammar": [
+        7,
+        9,
+        3,
+        19
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

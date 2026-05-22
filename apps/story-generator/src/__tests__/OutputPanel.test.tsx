@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 // Mock DOM-touching lib functions used by save() inside the store
 vi.mock('@/lib/validateStoryJson', () => ({
   validateStoryJson: vi.fn(() => []),
@@ -51,7 +54,7 @@ describe('OutputPanel', () => {
     reachOutputClean('{"key":"value"}')
     render(<OutputPanel />)
     const ta = screen.getByLabelText(/generated story json/i)
-    expect(ta).toHaveValue('{"key":"value"}')
+    expect(ta).toHaveValue(useAuthoringStore.getState().outputJson!)
   })
 
   it('textarea change moves phase to output-dirty and syncs outputJson to store', () => {

@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { defineConfig, devices } from '@playwright/test'
 
 export default defineConfig({

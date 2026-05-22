@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { AppBar } from '@/components/AppBar'
@@ -15,6 +18,31 @@ export function CreditsRoute() {
       <AppBar variant="library" />
       <main className="flex-1 p-6 max-w-2xl mx-auto w-full">
         <h1 className="text-paper-text text-xl font-semibold mb-6">Credits</h1>
+
+        <section className="mb-8">
+          <h2 className="text-paper-text font-semibold mb-2">Open Source</h2>
+          <p className="text-muted text-sm leading-relaxed">
+            Nihon no Hon is open source, released under the{' '}
+            <a
+              href="https://github.com/4OH4/nihonnohon/blob/main/LICENSE"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              MIT License
+            </a>
+            . The source code is available on{' '}
+            <a
+              href="https://github.com/4OH4/nihonnohon"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              GitHub
+            </a>
+            .
+          </p>
+        </section>
 
         <section className="mb-8">
           <h2 className="text-paper-text font-semibold mb-2">Vocabulary Data</h2>

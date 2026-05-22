@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import type { KanjiEntry } from '@nihonnohon/schema'
 
 let kanjiMap: Map<string, KanjiEntry> | null = null

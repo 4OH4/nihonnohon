@@ -1,0 +1,1756 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch20-morning-walk",
+  "title": "A Morning Walk with Coffee and Tea",
+  "title_ja": "コーヒーとお茶の毎朝",
+  "language": "ja",
+  "description": "This story is about a morning routine. Two friends walk to school, stopping at a convenience store for warm drinks before continuing their pleasant journey.",
+  "difficulty": "Genki I Ch.20",
+  "grammar": [
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch2 2.5] Addition and Inclusion (Particle も)",
+    "[Ch3 3.1] Verb Classes and Conjugation",
+    "[Ch3 3.3] Sentence Logistics (Particles を, で, に, へ)",
+    "[Ch3 3.6] Frequency Adverbs",
+    "[Ch4 4.1] Stating Existence (あります / います)",
+    "[Ch4 4.5] Connecting Items (Particle と)",
+    "[Ch5 5.1] Attribute Basics (Adjective Tenses)",
+    "[Ch5 5.4] Personal Preferences (好き / 嫌い)",
+    "[Ch6 6.1] Verb Linking (て-form)",
+    "[Ch6 6.3] Sequencing Actions (て-form for Activities)",
+    "[Ch7 7.4] Complex Descriptions (Joining Phrases)",
+    "[Ch8 8.3] Sharing Thoughts (Short Form + と思います)",
+    "[Ch8 8.4] Reporting Speech (Short Form + と言っていました)",
+    "[Ch8 8.8] Indefinite References (何か / 何も)",
+    "[Ch10 10.5] Describing Change (Adjective + なる)",
+    "[Ch15 15.2] Firm Intentions (Volitional + と思っています)",
+    "[Ch18 18.4] Natural Consequence (～と)",
+    "[Ch18 18.5] Simultaneous Actions (～ながら)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "コーヒーメーカー",
+      "hiragana": "コーヒーメーカー",
+      "translation": "coffee maker"
+    },
+    {
+      "key": 10001,
+      "word": "まっすぐ",
+      "hiragana": "まっすぐ",
+      "translation": "directly; straight"
+    },
+    {
+      "key": 10002,
+      "word": "セルフサービス",
+      "hiragana": "セルフサービス",
+      "translation": "self-service"
+    },
+    {
+      "key": 10003,
+      "word": "機械",
+      "hiragana": "きかい",
+      "translation": "machine"
+    },
+    {
+      "key": 10004,
+      "word": "ボタン",
+      "hiragana": "ボタン",
+      "translation": "button"
+    },
+    {
+      "key": 10005,
+      "word": "置く",
+      "hiragana": "おく",
+      "translation": "to put; to place"
+    },
+    {
+      "key": 10006,
+      "word": "レジ",
+      "hiragana": "レジ",
+      "translation": "cash register; counter"
+    },
+    {
+      "key": 10007,
+      "word": "店員",
+      "hiragana": "てんいん",
+      "translation": "clerk"
+    },
+    {
+      "key": 10008,
+      "word": "丁寧に",
+      "hiragana": "ていねいに",
+      "translation": "carefully; politely"
+    },
+    {
+      "key": 10009,
+      "word": "ふた",
+      "hiragana": "ふた",
+      "translation": "lid"
+    },
+    {
+      "key": 10010,
+      "word": "気持ちがいい",
+      "hiragana": "きもちがいい",
+      "translation": "feels good; pleasant"
+    },
+    {
+      "key": 10011,
+      "word": "湯気",
+      "hiragana": "ゆげ",
+      "translation": "steam"
+    },
+    {
+      "key": 10012,
+      "word": "体",
+      "hiragana": "からだ",
+      "translation": "body"
+    },
+    {
+      "key": 10013,
+      "word": "味",
+      "hiragana": "あじ",
+      "translation": "taste"
+    },
+    {
+      "key": 10014,
+      "word": "会話する",
+      "hiragana": "かいわする",
+      "translation": "to converse; to talk"
+    },
+    {
+      "key": 10015,
+      "word": "～にとって",
+      "hiragana": "～にとって",
+      "translation": "for (someone); to (someone)"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "毎朝",
+        "、",
+        "友達",
+        "の",
+        "マヤ",
+        "さんと",
+        "学校",
+        "へ",
+        "歩いて",
+        "行きます",
+        "。"
+      ],
+      "ruby": [
+        "まいあさ",
+        null,
+        "ともだち",
+        null,
+        null,
+        null,
+        "がっこう",
+        null,
+        "あるいて",
+        "いきます",
+        null
+      ],
+      "vocab_keys": [
+        964,
+        null,
+        52,
+        null,
+        null,
+        240,
+        158,
+        null,
+        540,
+        170,
+        null
+      ],
+      "translation": "Every morning, I walk to school with my friend, Maya.",
+      "grammar": [
+        2,
+        3,
+        6
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "学校",
+        "は",
+        "うち",
+        "から",
+        "あまり",
+        "近くない",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "がっこう",
+        null,
+        "うち",
+        null,
+        null,
+        "ちかくない",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        158,
+        null,
+        156,
+        null,
+        185,
+        667,
+        null,
+        null
+      ],
+      "translation": "The school is not very far from our homes.",
+      "grammar": [
+        0,
+        7
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "私たち",
+        "は",
+        "毎日",
+        "一緒に",
+        "歩きます",
+        "。"
+      ],
+      "ruby": [
+        "わたしたち",
+        null,
+        "まいにち",
+        "いっしょに",
+        "あるきます",
+        null
+      ],
+      "vocab_keys": [
+        732,
+        null,
+        168,
+        304,
+        987,
+        null
+      ],
+      "translation": "We walk together every day.",
+      "grammar": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "朝",
+        "の",
+        "空気",
+        "は",
+        "よく",
+        "涼しい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "あさ",
+        null,
+        "くうき",
+        null,
+        null,
+        "すずしい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        159,
+        null,
+        416,
+        null,
+        190,
+        530,
+        null,
+        null
+      ],
+      "translation": "The air in the morning is often cool.",
+      "grammar": [
+        0,
+        4,
+        7
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "時々",
+        "、",
+        "とても",
+        "寒い",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "ときどき",
+        null,
+        null,
+        "さむい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        189,
+        null,
+        307,
+        281,
+        null,
+        null
+      ],
+      "translation": "Sometimes it is very cold.",
+      "grammar": [
+        4,
+        7
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "マヤ",
+        "さん",
+        "は",
+        "いつも",
+        "何か",
+        "暖かい",
+        "飲み物",
+        "を",
+        "飲む",
+        "の",
+        "が",
+        "好き",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        "なにか",
+        "あたたかい",
+        "のみもの",
+        null,
+        "のむ",
+        null,
+        null,
+        "すき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        44,
+        null,
+        629,
+        426,
+        528,
+        266,
+        null,
+        173,
+        null,
+        null,
+        293,
+        null,
+        null
+      ],
+      "translation": "Maya always likes to drink something warm.",
+      "grammar": [
+        0,
+        4,
+        8,
+        14
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "「",
+        "これ",
+        "を",
+        "飲む",
+        "と",
+        "、",
+        "元気",
+        "に",
+        "なります",
+        "」",
+        "と",
+        "マヤ",
+        "さん",
+        "は",
+        "言います",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "のむ",
+        null,
+        null,
+        "げんき",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "いいます",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        91,
+        null,
+        173,
+        null,
+        null,
+        291,
+        null,
+        536,
+        null,
+        null,
+        null,
+        44,
+        null,
+        439,
+        null
+      ],
+      "translation": "She says, \"This makes me feel warm and ready for the day.\"",
+      "grammar": [
+        13,
+        15,
+        17
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "学校",
+        "の",
+        "道",
+        "に",
+        "コンビニ",
+        "が",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        "がっこう",
+        null,
+        "みち",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        158,
+        null,
+        792,
+        null,
+        375,
+        null,
+        229,
+        null
+      ],
+      "translation": "There is a convenience store on the way to school.",
+      "grammar": [
+        5
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "大きい",
+        "店",
+        "で",
+        "、",
+        "明るい",
+        "電気",
+        "が",
+        "たくさん",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        "おおきい",
+        "みせ",
+        null,
+        null,
+        "あかるい",
+        "でんき",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        278,
+        658,
+        null,
+        null,
+        888,
+        320,
+        null,
+        239,
+        229,
+        null
+      ],
+      "translation": "It is a big store with many bright lights.",
+      "grammar": [
+        0,
+        7,
+        11
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "マヤ",
+        "さん",
+        "は",
+        "いつも",
+        "そこ",
+        "へ",
+        "寄ります",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "よります",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        44,
+        null,
+        629,
+        254,
+        null,
+        952,
+        null
+      ],
+      "translation": "Maya always stops there.",
+      "grammar": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "店",
+        "の",
+        "中",
+        "に",
+        "入ります",
+        "。"
+      ],
+      "ruby": [
+        "みせ",
+        null,
+        "なか",
+        null,
+        "はいります",
+        null
+      ],
+      "vocab_keys": [
+        658,
+        null,
+        248,
+        null,
+        340,
+        null
+      ],
+      "translation": "She goes inside the store.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "私",
+        "は",
+        "よく",
+        "店",
+        "の",
+        "前",
+        "で",
+        "彼女",
+        "を",
+        "待ちます",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        "みせ",
+        null,
+        "まえ",
+        null,
+        "かのじょ",
+        null,
+        "まちます",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        190,
+        658,
+        null,
+        246,
+        null,
+        594,
+        null,
+        233,
+        null
+      ],
+      "translation": "I often wait for her near the entrance.",
+      "grammar": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "彼女",
+        "は",
+        "まっすぐ",
+        "コーヒーメーカー",
+        "の",
+        "ところ",
+        "へ",
+        "歩いて",
+        "行きます",
+        "。"
+      ],
+      "ruby": [
+        "かのじょ",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "あるいて",
+        "いきます",
+        null
+      ],
+      "vocab_keys": [
+        594,
+        null,
+        10001,
+        10000,
+        null,
+        423,
+        null,
+        540,
+        170,
+        null
+      ],
+      "translation": "She walks directly to the coffee machine.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "それ",
+        "は",
+        "セルフサービス",
+        "の",
+        "機械",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        "きかい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        10002,
+        null,
+        10003,
+        null,
+        null
+      ],
+      "translation": "It is a self-service machine.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "彼女",
+        "は",
+        "熱い",
+        "コーヒー",
+        "の",
+        "ボタン",
+        "を",
+        "押します",
+        "。"
+      ],
+      "ruby": [
+        "かのじょ",
+        null,
+        "あつい",
+        null,
+        null,
+        null,
+        null,
+        "おします",
+        null
+      ],
+      "vocab_keys": [
+        594,
+        null,
+        276,
+        150,
+        null,
+        10004,
+        null,
+        893,
+        null
+      ],
+      "translation": "She presses the button for hot coffee.",
+      "grammar": [
+        2,
+        3,
+        7
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "コップ",
+        "を",
+        "取って",
+        "、",
+        "機械",
+        "の",
+        "下",
+        "に",
+        "置いて",
+        "、",
+        "待ちます",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "とって",
+        null,
+        "きかい",
+        null,
+        "した",
+        null,
+        "おいて",
+        null,
+        "まちます",
+        null
+      ],
+      "vocab_keys": [
+        702,
+        null,
+        572,
+        null,
+        10003,
+        null,
+        250,
+        null,
+        10005,
+        null,
+        233,
+        null
+      ],
+      "translation": "She takes a cup, puts it under the machine, and waits.",
+      "grammar": [
+        3,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "それから",
+        "、",
+        "レジ",
+        "へ",
+        "持って",
+        "行きます",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        "もって",
+        "いきます",
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        10006,
+        null,
+        445,
+        170,
+        null
+      ],
+      "translation": "Then she takes it to the counter.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "コーヒー",
+        "の",
+        "お金",
+        "を",
+        "払います",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "おかね",
+        null,
+        "はらいます",
+        null
+      ],
+      "vocab_keys": [
+        150,
+        null,
+        311,
+        null,
+        537,
+        null
+      ],
+      "translation": "She pays for her coffee.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "店員",
+        "さん",
+        "は",
+        "いつも",
+        "「",
+        "ありがとう",
+        "」",
+        "と",
+        "言います",
+        "。"
+      ],
+      "ruby": [
+        "てんいん",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "いいます",
+        null
+      ],
+      "vocab_keys": [
+        10007,
+        44,
+        null,
+        629,
+        null,
+        null,
+        null,
+        null,
+        439,
+        null
+      ],
+      "translation": "The clerk always says, \"Thank you.\"",
+      "grammar": [
+        0,
+        4,
+        13
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "それから",
+        "、",
+        "マヤ",
+        "さん",
+        "は",
+        "店",
+        "を",
+        "出ます",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "みせ",
+        null,
+        "でます",
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        null,
+        44,
+        null,
+        658,
+        null,
+        488,
+        null
+      ],
+      "translation": "Then Maya comes out of the store.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "彼女",
+        "は",
+        "コーヒー",
+        "の",
+        "コップ",
+        "の",
+        "ふた",
+        "を",
+        "丁寧に",
+        "開けます",
+        "。"
+      ],
+      "ruby": [
+        "かのじょ",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "ていねいに",
+        "あけます",
+        null
+      ],
+      "vocab_keys": [
+        594,
+        null,
+        150,
+        null,
+        702,
+        null,
+        10009,
+        null,
+        10008,
+        343,
+        null
+      ],
+      "translation": "She opens the lid of her coffee cup carefully.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "そして",
+        "、",
+        "コーヒー",
+        "を",
+        "飲みます",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        "のみます",
+        null
+      ],
+      "vocab_keys": [
+        586,
+        null,
+        150,
+        null,
+        173,
+        null
+      ],
+      "translation": "And then, she drinks the coffee.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "「",
+        "ああ",
+        "、",
+        "これ",
+        "は",
+        "美味しい",
+        "です",
+        "」",
+        "と",
+        "彼女",
+        "は",
+        "いつも",
+        "嬉しい",
+        "顔",
+        "で",
+        "言います",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "おいしい",
+        null,
+        null,
+        null,
+        "かのじょ",
+        null,
+        null,
+        "うれしい",
+        "かお",
+        null,
+        "いいます",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        null,
+        91,
+        null,
+        102,
+        null,
+        null,
+        null,
+        594,
+        null,
+        629,
+        663,
+        507,
+        null,
+        439,
+        null
+      ],
+      "translation": "\"Ah, this is so good,\" she always says with a happy face.",
+      "grammar": [
+        0,
+        4,
+        7,
+        13
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "彼女",
+        "は",
+        "暖かい",
+        "コップ",
+        "を",
+        "持ちます",
+        "。"
+      ],
+      "ruby": [
+        "かのじょ",
+        null,
+        "あたたかい",
+        null,
+        null,
+        "もちます",
+        null
+      ],
+      "vocab_keys": [
+        594,
+        null,
+        528,
+        702,
+        null,
+        341,
+        null
+      ],
+      "translation": "She holds the warm cup.",
+      "grammar": [
+        2,
+        3,
+        7
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "寒い",
+        "空気",
+        "の",
+        "中",
+        "で",
+        "、",
+        "熱い",
+        "コップ",
+        "は",
+        "気持ちがいい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "さむい",
+        "くうき",
+        null,
+        "なか",
+        null,
+        null,
+        "あつい",
+        null,
+        null,
+        "きもちがいい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        281,
+        416,
+        null,
+        248,
+        null,
+        null,
+        276,
+        702,
+        null,
+        10010,
+        null,
+        null
+      ],
+      "translation": "In the cold air, the hot cup feels good.",
+      "grammar": [
+        0,
+        3,
+        7
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "熱い",
+        "コーヒー",
+        "は",
+        "湯気",
+        "が",
+        "出ます",
+        "。"
+      ],
+      "ruby": [
+        "あつい",
+        null,
+        null,
+        "ゆげ",
+        null,
+        "でます",
+        null
+      ],
+      "vocab_keys": [
+        276,
+        150,
+        null,
+        10011,
+        null,
+        488,
+        null
+      ],
+      "translation": "Hot coffee emits steam.",
+      "grammar": [
+        2,
+        7
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "「",
+        "熱い",
+        "コーヒー",
+        "を",
+        "飲む",
+        "と",
+        "、",
+        "体",
+        "が",
+        "暖かく",
+        "なって",
+        "、",
+        "元気",
+        "に",
+        "なります",
+        "」",
+        "と",
+        "マヤ",
+        "さん",
+        "は",
+        "言います",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "あつい",
+        null,
+        null,
+        "のむ",
+        null,
+        null,
+        "からだ",
+        null,
+        "あたたかく",
+        null,
+        null,
+        "げんき",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "いいます",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        276,
+        150,
+        null,
+        173,
+        null,
+        null,
+        10012,
+        null,
+        528,
+        536,
+        null,
+        291,
+        null,
+        536,
+        null,
+        null,
+        null,
+        44,
+        null,
+        439,
+        null
+      ],
+      "translation": "Maya says, \"When I drink hot coffee, my body gets warm and I feel energetic.\"",
+      "grammar": [
+        13,
+        15,
+        17
+      ]
+    },
+    {
+      "id": "s28",
+      "words": [
+        "彼女",
+        "は",
+        "本当に",
+        "この",
+        "味",
+        "が",
+        "好き",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "かのじょ",
+        null,
+        "ほんとうに",
+        null,
+        "あじ",
+        null,
+        "すき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        594,
+        null,
+        914,
+        95,
+        10013,
+        null,
+        293,
+        null,
+        null
+      ],
+      "translation": "She really likes this taste.",
+      "grammar": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "s29",
+      "words": [
+        "私たち",
+        "は",
+        "また",
+        "学校",
+        "へ",
+        "歩いて",
+        "行きます",
+        "。"
+      ],
+      "ruby": [
+        "わたしたち",
+        null,
+        null,
+        "がっこう",
+        null,
+        "あるいて",
+        "いきます",
+        null
+      ],
+      "vocab_keys": [
+        732,
+        null,
+        1016,
+        158,
+        null,
+        540,
+        170,
+        null
+      ],
+      "translation": "We continue walking to school.",
+      "grammar": [
+        2,
+        3
+      ]
+    },
+    {
+      "id": "s30",
+      "words": [
+        "私たち",
+        "は",
+        "話しながら",
+        "、",
+        "マヤ",
+        "さん",
+        "は",
+        "コーヒー",
+        "を",
+        "ゆっくり",
+        "飲みます",
+        "。"
+      ],
+      "ruby": [
+        "わたしたち",
+        null,
+        "はな",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "のみます",
+        null
+      ],
+      "vocab_keys": [
+        732,
+        null,
+        174,
+        null,
+        null,
+        44,
+        null,
+        150,
+        null,
+        359,
+        173,
+        null
+      ],
+      "translation": "As we talk, Maya slowly drinks her coffee.",
+      "grammar": [
+        2,
+        3,
+        18
+      ]
+    },
+    {
+      "id": "s31",
+      "words": [
+        "私",
+        "は",
+        "たいてい",
+        "うち",
+        "から",
+        "暖かい",
+        "お茶",
+        "を",
+        "持って",
+        "行きます",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        "うち",
+        null,
+        "あたたかい",
+        "おちゃ",
+        null,
+        "もって",
+        "いきます",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        187,
+        156,
+        null,
+        528,
+        149,
+        null,
+        445,
+        170,
+        null
+      ],
+      "translation": "I usually bring warm tea from home.",
+      "grammar": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s32",
+      "words": [
+        "私",
+        "の",
+        "お茶",
+        "も",
+        "いい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "おちゃ",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        149,
+        2,
+        183,
+        null,
+        null
+      ],
+      "translation": "My tea is also good.",
+      "grammar": [
+        0,
+        1,
+        7
+      ]
+    },
+    {
+      "id": "s33",
+      "words": [
+        "時々",
+        "、",
+        "コーヒー",
+        "も",
+        "買おう",
+        "と",
+        "思います",
+        "。"
+      ],
+      "ruby": [
+        "ときどき",
+        null,
+        null,
+        null,
+        "かおう",
+        null,
+        "おもいます",
+        null
+      ],
+      "vocab_keys": [
+        189,
+        null,
+        150,
+        2,
+        230,
+        null,
+        442,
+        null
+      ],
+      "translation": "Sometimes I think about buying coffee too.",
+      "grammar": [
+        4,
+        12,
+        16
+      ]
+    },
+    {
+      "id": "s34",
+      "words": [
+        "でも",
+        "、",
+        "私",
+        "の",
+        "お茶",
+        "が",
+        "とても",
+        "好き",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "わたし",
+        null,
+        "おちゃ",
+        null,
+        null,
+        "すき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        192,
+        null,
+        61,
+        null,
+        149,
+        null,
+        307,
+        293,
+        null,
+        null
+      ],
+      "translation": "But I like my tea very much.",
+      "grammar": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "s35",
+      "words": [
+        "私たち",
+        "に",
+        "とって",
+        "、",
+        "いい",
+        "時間",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたしたち",
+        null,
+        null,
+        null,
+        null,
+        "じかん",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        732,
+        null,
+        10015,
+        null,
+        183,
+        704,
+        null,
+        null
+      ],
+      "translation": "It is a nice routine for us.",
+      "grammar": [
+        0,
+        7
+      ]
+    },
+    {
+      "id": "s36",
+      "words": [
+        "毎朝",
+        "、",
+        "マヤ",
+        "さん",
+        "は",
+        "熱い",
+        "コーヒー",
+        "を",
+        "飲みます",
+        "。",
+        "私",
+        "は",
+        "暖かい",
+        "お茶",
+        "を",
+        "飲みます",
+        "。"
+      ],
+      "ruby": [
+        "まいあさ",
+        null,
+        null,
+        null,
+        null,
+        "あつい",
+        null,
+        null,
+        "のみます",
+        null,
+        "わたし",
+        null,
+        "あたたかい",
+        "おちゃ",
+        null,
+        "のみます",
+        null
+      ],
+      "vocab_keys": [
+        964,
+        null,
+        null,
+        44,
+        null,
+        276,
+        150,
+        null,
+        173,
+        null,
+        61,
+        null,
+        528,
+        149,
+        null,
+        173,
+        null
+      ],
+      "translation": "Every morning, Maya has her hot coffee, and I have my warm tea.",
+      "grammar": [
+        2,
+        3,
+        4,
+        7
+      ]
+    },
+    {
+      "id": "s37",
+      "words": [
+        "私たち",
+        "は",
+        "一緒に",
+        "学校",
+        "に",
+        "着きます",
+        "。"
+      ],
+      "ruby": [
+        "わたしたち",
+        null,
+        "いっしょに",
+        "がっこう",
+        null,
+        "つきます",
+        null
+      ],
+      "vocab_keys": [
+        732,
+        null,
+        304,
+        158,
+        null,
+        770,
+        null
+      ],
+      "translation": "We arrive at school together.",
+      "grammar": [
+        2,
+        3
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { render, screen } from '@testing-library/react'
 import { ScopeChip } from '../components/ScopeChip'
 

@@ -1,0 +1,403 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch1-hana-festival",
+  "title": "Hana and the Festival",
+  "title_ja": "はなさんとまつり",
+  "language": "ja",
+  "description": "A student introduces their Japanese friend, Hana. They have a simple conversation about a Japanese festival, including its name, time, and what can be found there, using only Genki I Chapter 1 grammar and vocabulary.",
+  "difficulty": "Genki I Ch.1",
+  "grammar": [
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch1 1.2] Basic Inquiry (Question Sentences)",
+    "[Ch1 1.3] Connecting Nouns (Noun1 の Noun2)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "まつり",
+      "hiragana": "まつり",
+      "translation": "festival"
+    },
+    {
+      "key": 10001,
+      "word": "やきそば",
+      "hiragana": "やきそば",
+      "translation": "yakisoba"
+    },
+    {
+      "key": 10002,
+      "word": "おんがく",
+      "hiragana": "おんがく",
+      "translation": "music"
+    },
+    {
+      "key": 10003,
+      "word": "ダンス",
+      "hiragana": "ダンス",
+      "translation": "dance"
+    },
+    {
+      "key": 10004,
+      "word": "ご",
+      "hiragana": "ご",
+      "translation": "five (number)"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "わたし",
+        "の",
+        "ともだち",
+        "は",
+        "はなさん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        52,
+        null,
+        44,
+        null,
+        null
+      ],
+      "translation": "My friend is Hana.",
+      "grammar": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "はなさん",
+        "は",
+        "にほんじん",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        44,
+        null,
+        46,
+        null,
+        null
+      ],
+      "translation": "Hana is Japanese.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "はなさん",
+        "は",
+        "がくせい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        44,
+        null,
+        38,
+        null,
+        null
+      ],
+      "translation": "Hana is a student.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "わたし",
+        "も",
+        "がくせい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        38,
+        null,
+        null
+      ],
+      "translation": "I am also a student.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "はなさん",
+        "、",
+        "まつり",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        44,
+        null,
+        10000,
+        null,
+        null,
+        null
+      ],
+      "translation": "Hana, is it a festival?",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "はい",
+        "、",
+        "そうです",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        57,
+        null,
+        49,
+        null
+      ],
+      "translation": "Yes, that's right.",
+      "grammar": []
+    },
+    {
+      "id": "s07",
+      "words": [
+        "にほん",
+        "の",
+        "まつり",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        55,
+        null,
+        10000,
+        null,
+        null,
+        null
+      ],
+      "translation": "Is it a Japanese festival?",
+      "grammar": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "はい",
+        "、",
+        "そうです",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        57,
+        null,
+        49,
+        null
+      ],
+      "translation": "Yes, that's right.",
+      "grammar": []
+    },
+    {
+      "id": "s09",
+      "words": [
+        "まつり",
+        "は",
+        "なんじ",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        45,
+        null,
+        null,
+        null
+      ],
+      "translation": "What time is the festival?",
+      "grammar": [
+        1
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "ご",
+        "じ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10004,
+        45,
+        null,
+        null
+      ],
+      "translation": "It is five o'clock.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "やきそば",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        null
+      ],
+      "translation": "It's yakisoba.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "おんがく",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10002,
+        null,
+        null
+      ],
+      "translation": "It's music.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "ダンス",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        null
+      ],
+      "translation": "It's dance.",
+      "grammar": [
+        0
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

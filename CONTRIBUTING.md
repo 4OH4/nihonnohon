@@ -14,6 +14,8 @@
 
 ## Development
 
+### Reader app
+
 Start the development server from the repo root:
 
 ```bash
@@ -25,6 +27,28 @@ The app is available at `http://localhost:5173`.
 **Important:** Always use `turbo dev` from the repo root, not `pnpm dev` from inside `apps/web`.
 The Turborepo pipeline ensures packages are built and `vocab.json` is generated before the
 dev server starts.
+
+### AI Story Authoring Tool
+
+The authoring tool has a React frontend and a Python (Google ADK) backend that must both be running. From `apps/story-generator-backend/`:
+
+```bash
+# First-time setup
+python -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env
+# Edit .env and add your GEMINI_API_KEY
+
+# Start both services (backend :8000, frontend :5174)
+make dev
+```
+
+To run only the backend tests:
+
+```bash
+pytest
+```
 
 ## Pre-commit hook
 
@@ -83,17 +107,34 @@ The artifact is only uploaded when the E2E step fails, so it won't appear on gre
 
 ## Where does code go?
 
+### Reader app (`apps/web`)
+
 | Code type | Location |
 |-----------|----------|
-| Shared TypeScript types | `packages/schema/src/types.ts` |
-| Story JSON schema | `packages/schema/schemas/story.v1.json` |
-| Story loading & validation | `packages/story-loader/src/` |
 | React components | `apps/web/src/components/` |
 | Route-level components | `apps/web/src/routes/` |
 | Zustand stores | `apps/web/src/stores/` |
 | Data services (vocab, kanji) | `apps/web/src/services/` |
 | Pure utilities (no side effects) | `apps/web/src/utils/` |
 | App-local TypeScript types | `apps/web/src/types.ts` |
+
+### Story Authoring Tool
+
+| Code type | Location |
+|-----------|----------|
+| React components | `apps/story-generator/src/components/` |
+| Zustand authoring store | `apps/story-generator/src/stores/authoringStore.ts` |
+| AG-UI / backend hooks | `apps/story-generator/src/hooks/` |
+| FastAPI app & ADK agent | `apps/story-generator-backend/src/story_generator/` |
+| Auto-generated Pydantic models | `apps/story-generator-backend/src/story_generator/models.py` |
+
+### Shared packages
+
+| Code type | Location |
+|-----------|----------|
+| Shared TypeScript types | `packages/schema/src/types.ts` |
+| Story JSON schema | `packages/schema/schemas/story.v1.json` |
+| Story loading & validation | `packages/story-loader/src/` |
 | ADRs and project docs | `docs/` |
 
 ## Package conventions
@@ -116,7 +157,8 @@ To add a story to the built-in library:
 Story JSON must conform to `packages/schema/schemas/story.v1.json`. Validate with:
 
 ```bash
-python apps/story-generator/src/story_generator/validator.py path/to/story.json
+# Requires jsonschema — available in the story-generator-backend venv
+python -m jsonschema -i path/to/story.json packages/schema/schemas/story.v1.json
 ```
 
 ## Schema version bump contract
@@ -131,3 +173,7 @@ Breaking changes to `story.v1.json` require:
 
 Non-breaking additions (new optional fields) do **not** require a version bump.
 `additionalProperties: false` must not be violated.
+
+## License
+
+This project is released under the [MIT License](./LICENSE). By contributing, you agree that your contributions will be licensed under the same terms.

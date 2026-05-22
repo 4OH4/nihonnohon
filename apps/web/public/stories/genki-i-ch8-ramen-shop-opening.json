@@ -1,0 +1,1596 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch8-ramen-shop-opening",
+  "title": "My Favorite Ramen Shop's New Opening",
+  "title_ja": "好きなラーメン屋の新しい店",
+  "language": "ja",
+  "description": "A person's favorite ramen shop opens a new location. They go with a friend to enjoy the delicious ramen.",
+  "difficulty": "Genki I Ch.8",
+  "grammar": [
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch1 1.3] Connecting Nouns (Noun1 の Noun2)",
+    "[Ch2 2.5] Addition and Inclusion (Particle も)",
+    "[Ch3 3.2] The Present Tense",
+    "[Ch3 3.3] Sentence Logistics (Particles を, で, に, へ)",
+    "[Ch3 3.4] Temporal Markers (Time References)",
+    "[Ch4 4.1] Stating Existence (あります / います)",
+    "[Ch4 4.2] Positional Descriptions",
+    "[Ch4 4.3] Past Identity (Past Tense of です)",
+    "[Ch4 4.4] Recounting Actions (Past Tense of Verbs)",
+    "[Ch4 4.5] Connecting Items (Particle と)",
+    "[Ch4 4.6] Measuring Time (Duration)",
+    "[Ch5 5.1] Attribute Basics (Adjective Tenses)",
+    "[Ch5 5.2] Attribute History (Past Tense of Adjectives)",
+    "[Ch5 5.4] Personal Preferences (好き / 嫌い)",
+    "[Ch6 6.3] Sequencing Actions (て-form for Activities)",
+    "[Ch7 7.1] Current Actions (～ている)",
+    "[Ch8 8.1] Informal Language (Short Forms)",
+    "[Ch8 8.3] Sharing Thoughts (Short Form + と思います)",
+    "[Ch8 8.4] Reporting Speech (Short Form + と言っていました)",
+    "[Ch8 8.7] Emphasizing Subjects (Particle が)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "一番",
+      "hiragana": "いちばん",
+      "translation": "most; best"
+    },
+    {
+      "key": 10001,
+      "word": "ラーメン屋",
+      "hiragana": "ラーメンや",
+      "translation": "ramen shop"
+    },
+    {
+      "key": 10002,
+      "word": "日",
+      "hiragana": "ひ",
+      "translation": "day"
+    },
+    {
+      "key": 10003,
+      "word": "店",
+      "hiragana": "みせ",
+      "translation": "shop; store"
+    },
+    {
+      "key": 10004,
+      "word": "オープン",
+      "hiragana": "オープン",
+      "translation": "opening"
+    },
+    {
+      "key": 10005,
+      "word": "八時",
+      "hiragana": "はちじ",
+      "translation": "8 o'clock"
+    },
+    {
+      "key": 10006,
+      "word": "十一時",
+      "hiragana": "じゅういちじ",
+      "translation": "11 o'clock"
+    },
+    {
+      "key": 10007,
+      "word": "十時半",
+      "hiragana": "じゅうじはん",
+      "translation": "10:30"
+    },
+    {
+      "key": 10008,
+      "word": "もう",
+      "hiragana": "もう",
+      "translation": "already"
+    },
+    {
+      "key": 10009,
+      "word": "三十分",
+      "hiragana": "さんじゅっぷん",
+      "translation": "thirty minutes"
+    },
+    {
+      "key": 10010,
+      "word": "しょうゆラーメン",
+      "hiragana": "しょうゆラーメン",
+      "translation": "soy sauce ramen"
+    },
+    {
+      "key": 10011,
+      "word": "みそラーメン",
+      "hiragana": "みそラーメン",
+      "translation": "miso ramen"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "私",
+        "の",
+        "一番",
+        "好き",
+        "な",
+        "ラーメン屋",
+        "は",
+        "「ラーメン一番」",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "いちばん",
+        "すき",
+        null,
+        "ラーメンや",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        10000,
+        293,
+        null,
+        10001,
+        null,
+        null,
+        null,
+        null
+      ],
+      "translation": "My favorite ramen shop is called \"Ramen Ichiban.\"",
+      "grammar": [
+        0,
+        1,
+        14
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "ラーメン",
+        "は",
+        "とても",
+        "おいしい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        307,
+        102,
+        null,
+        null
+      ],
+      "translation": "Their ramen is very delicious.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "私",
+        "は",
+        "よく",
+        "食べ",
+        "ます",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        "たべ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        190,
+        177,
+        null,
+        null
+      ],
+      "translation": "I eat there often.",
+      "grammar": [
+        0,
+        3
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "今日",
+        "は",
+        "いい",
+        "日",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "きょう",
+        null,
+        null,
+        "ひ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        162,
+        null,
+        183,
+        10002,
+        null,
+        null
+      ],
+      "translation": "Today is a good day.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "「ラーメン一番」",
+        "は",
+        "新しい",
+        "店",
+        "を",
+        "オープン",
+        "し",
+        "ます",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "あたらしい",
+        "みせ",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        274,
+        10003,
+        null,
+        10004,
+        181,
+        null,
+        null
+      ],
+      "translation": "Ramen Ichiban is opening a new shop.",
+      "grammar": [
+        0,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "新しい",
+        "店",
+        "は",
+        "私",
+        "の",
+        "家",
+        "の",
+        "そば",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "あたらしい",
+        "みせ",
+        null,
+        "わたし",
+        null,
+        "いえ",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        274,
+        10003,
+        null,
+        61,
+        null,
+        155,
+        null,
+        251,
+        null,
+        null
+      ],
+      "translation": "The new shop is near my house.",
+      "grammar": [
+        0,
+        1,
+        7
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "私",
+        "は",
+        "とても",
+        "いい",
+        "と",
+        "思い",
+        "ます",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        null,
+        null,
+        "おもい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        307,
+        183,
+        null,
+        442,
+        null,
+        null
+      ],
+      "translation": "I think it is very good.",
+      "grammar": [
+        0,
+        18
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "今朝",
+        "、",
+        "早く",
+        "起き",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "けさ",
+        null,
+        "はや",
+        "おき",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        417,
+        null,
+        184,
+        176,
+        null,
+        null,
+        null
+      ],
+      "translation": "This morning, I woke up early.",
+      "grammar": [
+        9
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "時計",
+        "を",
+        "見",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "とけい",
+        null,
+        "み",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        118,
+        null,
+        179,
+        null,
+        null,
+        null
+      ],
+      "translation": "I looked at the clock.",
+      "grammar": [
+        4,
+        9
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "八時",
+        "でし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "はちじ",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10005,
+        null,
+        null,
+        null
+      ],
+      "translation": "It was 8 o'clock.",
+      "grammar": [
+        8
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "新しい",
+        "店",
+        "は",
+        "十一時",
+        "に",
+        "オープン",
+        "し",
+        "ます",
+        "。"
+      ],
+      "ruby": [
+        "あたらしい",
+        "みせ",
+        null,
+        "じゅういちじ",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        274,
+        10003,
+        null,
+        10006,
+        null,
+        10004,
+        181,
+        null,
+        null
+      ],
+      "translation": "The new shop opens at 11 o'clock.",
+      "grammar": [
+        0,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "私",
+        "は",
+        "早く",
+        "出かけ",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "はや",
+        "でかけ",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        184,
+        303,
+        null,
+        null,
+        null
+      ],
+      "translation": "I went out early.",
+      "grammar": [
+        0,
+        9
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "昨日",
+        "、",
+        "友達",
+        "の",
+        "ケンさん",
+        "に",
+        "話",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "きのう",
+        null,
+        "ともだち",
+        null,
+        null,
+        null,
+        "はなし",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        218,
+        null,
+        52,
+        null,
+        null,
+        null,
+        174,
+        null,
+        null,
+        null
+      ],
+      "translation": "Yesterday, I told my friend, Ken.",
+      "grammar": [
+        1,
+        4,
+        9
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "ケンさん",
+        "も",
+        "ラーメン一番",
+        "が",
+        "好き",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        "すき",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        2,
+        null,
+        null,
+        293,
+        null,
+        null
+      ],
+      "translation": "Ken also likes Ramen Ichiban.",
+      "grammar": [
+        0,
+        2,
+        14
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "ケンさん",
+        "は",
+        "「そこ",
+        "に",
+        "行く",
+        "」",
+        "と",
+        "言い",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        "いく",
+        null,
+        null,
+        "いい",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        254,
+        null,
+        170,
+        null,
+        null,
+        439,
+        null,
+        null,
+        null
+      ],
+      "translation": "Ken said, \"I will go there.\"",
+      "grammar": [
+        0,
+        4,
+        17,
+        19
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "私",
+        "は",
+        "十時半",
+        "ごろ",
+        "、",
+        "家",
+        "を",
+        "出かけ",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "じゅうじはん",
+        null,
+        null,
+        "いえ",
+        null,
+        "でかけ",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        10007,
+        163,
+        null,
+        155,
+        null,
+        303,
+        null,
+        null,
+        null
+      ],
+      "translation": "I left my house around 10:30.",
+      "grammar": [
+        0,
+        4,
+        9
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "古い",
+        "店",
+        "は",
+        "学校",
+        "の",
+        "そば",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "ふるい",
+        "みせ",
+        null,
+        "がっこう",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        285,
+        10003,
+        null,
+        158,
+        null,
+        251,
+        null,
+        null
+      ],
+      "translation": "The old shop is near the school.",
+      "grammar": [
+        0,
+        1,
+        7
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "新しい",
+        "店",
+        "は",
+        "公園",
+        "の",
+        "そば",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "あたらしい",
+        "みせ",
+        null,
+        "こうえん",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        274,
+        10003,
+        null,
+        209,
+        null,
+        251,
+        null,
+        null
+      ],
+      "translation": "The new shop is near the park.",
+      "grammar": [
+        0,
+        1,
+        7
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "私",
+        "は",
+        "公園",
+        "に",
+        "行き",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "こうえん",
+        null,
+        "いき",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        209,
+        null,
+        170,
+        null,
+        null,
+        null
+      ],
+      "translation": "I went to the park.",
+      "grammar": [
+        4,
+        9
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "いい",
+        "天気",
+        "でし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "てんき",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        183,
+        265,
+        null,
+        null,
+        null
+      ],
+      "translation": "It was good weather.",
+      "grammar": [
+        8
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "もう",
+        "たくさん",
+        "人",
+        "が",
+        "い",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "ひと",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10008,
+        239,
+        207,
+        null,
+        235,
+        null,
+        null,
+        null
+      ],
+      "translation": "Many people were already there.",
+      "grammar": [
+        6,
+        20
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "新しい",
+        "店",
+        "の",
+        "前",
+        "に",
+        "ケンさん",
+        "が",
+        "待って",
+        "い",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "あたらしい",
+        "みせ",
+        null,
+        "まえ",
+        null,
+        null,
+        null,
+        "まって",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        274,
+        10003,
+        null,
+        246,
+        null,
+        null,
+        null,
+        233,
+        235,
+        null,
+        null,
+        null
+      ],
+      "translation": "Ken was waiting in front of the new shop.",
+      "grammar": [
+        1,
+        4,
+        7,
+        16,
+        20
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "私",
+        "と",
+        "ケンさん",
+        "は",
+        "三十分",
+        "ぐらい",
+        "待ち",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        null,
+        "さんじゅっぷん",
+        null,
+        "まち",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        null,
+        null,
+        10009,
+        236,
+        233,
+        null,
+        null,
+        null
+      ],
+      "translation": "Ken and I waited for about thirty minutes.",
+      "grammar": [
+        4,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "新しい",
+        "店",
+        "が",
+        "オープン",
+        "し",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "あたらしい",
+        "みせ",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        274,
+        10003,
+        null,
+        10004,
+        181,
+        null,
+        null,
+        null
+      ],
+      "translation": "The new shop opened.",
+      "grammar": [
+        3,
+        9,
+        20
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "私",
+        "と",
+        "ケンさん",
+        "は",
+        "ゆっくり",
+        "中",
+        "に",
+        "入り",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        null,
+        null,
+        "なか",
+        null,
+        "はいり",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        null,
+        null,
+        359,
+        248,
+        null,
+        340,
+        null,
+        null,
+        null
+      ],
+      "translation": "Ken and I slowly went inside.",
+      "grammar": [
+        4,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "新しい",
+        "店",
+        "は",
+        "とても",
+        "きれい",
+        "でし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "あたらしい",
+        "みせ",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        274,
+        10003,
+        null,
+        307,
+        290,
+        null,
+        null,
+        null
+      ],
+      "translation": "The new shop was very clean.",
+      "grammar": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "店",
+        "は",
+        "大きかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "みせ",
+        null,
+        "おおきかった",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10003,
+        null,
+        278,
+        null,
+        null
+      ],
+      "translation": "The shop was big.",
+      "grammar": [
+        0,
+        13
+      ]
+    },
+    {
+      "id": "s28",
+      "words": [
+        "私",
+        "と",
+        "ケンさん",
+        "は",
+        "小さい",
+        "ところ",
+        "に",
+        "座り",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        null,
+        "ちいさい",
+        null,
+        null,
+        "すわり",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        null,
+        null,
+        283,
+        423,
+        null,
+        335,
+        null,
+        null,
+        null
+      ],
+      "translation": "Ken and I sat at a small place.",
+      "grammar": [
+        4,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "s29",
+      "words": [
+        "私",
+        "は",
+        "好き",
+        "な",
+        "しょうゆラーメン",
+        "を",
+        "言い",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "すき",
+        null,
+        null,
+        null,
+        "いい",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        293,
+        null,
+        10010,
+        null,
+        439,
+        null,
+        null,
+        null
+      ],
+      "translation": "I asked for my favorite shoyu ramen.",
+      "grammar": [
+        0,
+        4,
+        9,
+        14
+      ]
+    },
+    {
+      "id": "s30",
+      "words": [
+        "ケンさん",
+        "は",
+        "好き",
+        "な",
+        "みそラーメン",
+        "を",
+        "言い",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "すき",
+        null,
+        null,
+        null,
+        "いい",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        293,
+        null,
+        10011,
+        null,
+        439,
+        null,
+        null,
+        null
+      ],
+      "translation": "Ken asked for his favorite miso ramen.",
+      "grammar": [
+        0,
+        4,
+        9,
+        14
+      ]
+    },
+    {
+      "id": "s31",
+      "words": [
+        "ラーメン",
+        "は",
+        "すぐ",
+        "来",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "き",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        357,
+        180,
+        null,
+        null,
+        null
+      ],
+      "translation": "The ramen arrived quickly.",
+      "grammar": [
+        0,
+        9
+      ]
+    },
+    {
+      "id": "s32",
+      "words": [
+        "私",
+        "は",
+        "箸",
+        "を",
+        "持ち",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "はし",
+        null,
+        "もち",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        429,
+        null,
+        341,
+        null,
+        null,
+        null
+      ],
+      "translation": "I picked up my chopsticks.",
+      "grammar": [
+        0,
+        4,
+        9
+      ]
+    },
+    {
+      "id": "s33",
+      "words": [
+        "ラーメン",
+        "は",
+        "とても",
+        "おいしかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        307,
+        102,
+        null,
+        null
+      ],
+      "translation": "The ramen was very delicious.",
+      "grammar": [
+        0,
+        13
+      ]
+    },
+    {
+      "id": "s34",
+      "words": [
+        "古い",
+        "店",
+        "の",
+        "ラーメン",
+        "も",
+        "おいしかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "ふるい",
+        "みせ",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        285,
+        10003,
+        null,
+        null,
+        2,
+        102,
+        null,
+        null
+      ],
+      "translation": "The old shop's ramen was also delicious.",
+      "grammar": [
+        0,
+        1,
+        2,
+        13
+      ]
+    },
+    {
+      "id": "s35",
+      "words": [
+        "ケンさん",
+        "も",
+        "「ラーメン",
+        "は",
+        "とても",
+        "おいしい",
+        "」",
+        "と",
+        "言い",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "いい",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        2,
+        null,
+        null,
+        307,
+        102,
+        null,
+        null,
+        439,
+        null,
+        null,
+        null
+      ],
+      "translation": "Ken also said, \"The ramen is very delicious.\"",
+      "grammar": [
+        0,
+        2,
+        9,
+        17,
+        19
+      ]
+    },
+    {
+      "id": "s36",
+      "words": [
+        "私",
+        "と",
+        "ケンさん",
+        "は",
+        "たくさん",
+        "食べ",
+        "まし",
+        "た",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        null,
+        null,
+        "たべ",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        null,
+        null,
+        239,
+        177,
+        null,
+        null,
+        null
+      ],
+      "translation": "Ken and I ate a lot.",
+      "grammar": [
+        4,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "s37",
+      "words": [
+        "とても",
+        "よかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        307,
+        183,
+        null,
+        null
+      ],
+      "translation": "It was very good.",
+      "grammar": [
+        0,
+        13
+      ]
+    },
+    {
+      "id": "s38",
+      "words": [
+        "新しい",
+        "ラーメン一番",
+        "は",
+        "いい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "あたらしい",
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        274,
+        null,
+        null,
+        183,
+        null,
+        null
+      ],
+      "translation": "The new Ramen Ichiban is great!",
+      "grammar": [
+        0
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

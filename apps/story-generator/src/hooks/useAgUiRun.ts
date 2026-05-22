@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { useEffect, useRef } from 'react'
 import { useAuthoringStore } from '@/stores/authoringStore'
 import timeouts from '../../../../config/timeouts.json'

@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { render, screen, fireEvent, act, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
@@ -63,7 +66,7 @@ import { getStory } from '@/services/indexedDbService'
 //   - InfoPanel idle state shows story title
 //   - word tap updates InfoPanel to found state
 //   - Escape key resets InfoPanel to idle
-//   - ToolBar has exactly 3 interactive controls (UPDATED from 2 — Story 4.3)
+//   - ToolBar has exactly 2 interactive controls (UPDATED from 3 — Supp-2: Settings moved to AppBar)
 //   - ルビ label is "ルビ" for Japanese, "Ruby" otherwise
 //   - ruby toggle uses visibility:hidden not display:none
 //   - Trans toggle shows translations
@@ -90,7 +93,7 @@ import { getStory } from '@/services/indexedDbService'
 //   - ReaderError renders "not available on this device" for status 410
 //
 // NEW (Story 4.3):
-//   - ToolBar has exactly 3 controls (updated from 2)
+//   - ToolBar has exactly 2 controls (updated from 3 — Supp-2)
 //   - SettingsMenu opens with spacing and text size controls
 //   - A+ sets textSize to 'large' in preferenceStore
 //   - Bottom tab bar renders Story/Vocabulary/Grammar tabs
@@ -211,11 +214,11 @@ describe('ReaderRoute', () => {
     expect(useLookupStore.getState().lookupState.status).toBe('idle')
   })
 
-  it('ToolBar has exactly 3 interactive controls', () => {
+  it('ToolBar has exactly 2 interactive controls', () => {
     renderRoute()
     const toolbar = screen.getByRole('toolbar')
     const buttons = within(toolbar).getAllByRole('button')
-    expect(buttons).toHaveLength(3)
+    expect(buttons).toHaveLength(2)
   })
 
   it('ルビ label is "ルビ" when story language is Japanese', () => {
@@ -284,9 +287,11 @@ describe('ReaderRoute', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
     fireEvent.click(screen.getByRole('button', { name: 'Larger text' }))
     expect(usePreferenceStore.getState().textSize).toBe('large')
-    // Verify the CSS custom property is set on the story container
+    // --story-font-size is now defined on the outer ReaderRoute container (.h-dvh) so it
+    // cascades to the vocab/grammar panels too. Locate it by walking up from the story column.
     const storyContainer = screen.getAllByRole('group')[0].parentElement as HTMLElement
-    expect(storyContainer.style.getPropertyValue('--story-font-size')).toBe('1.5rem')
+    const outerContainer = storyContainer.closest('.h-dvh') as HTMLElement
+    expect(outerContainer.style.getPropertyValue('--story-font-size')).toBe('1.5rem')
   })
 
   it('renders bottom tab bar with Story, Vocabulary, Grammar tabs', () => {

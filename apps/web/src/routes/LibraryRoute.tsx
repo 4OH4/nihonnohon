@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { useState, useMemo, useRef, useEffect } from 'react'
 import { useLoaderData, useRevalidator, useNavigate, Link } from 'react-router-dom'
 import { loadStory, LoaderError } from '@nihonnohon/story-loader'

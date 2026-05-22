@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import type { VocabEntry } from '@nihonnohon/schema'
 
 let vocabMap: Map<number, VocabEntry> | null = null

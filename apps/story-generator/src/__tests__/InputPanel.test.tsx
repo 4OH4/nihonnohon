@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { act, render, screen, fireEvent } from '@testing-library/react'
 import { InputPanel } from '../components/InputPanel'
 import { useAuthoringStore } from '../stores/authoringStore'

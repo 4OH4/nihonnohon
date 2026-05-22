@@ -1,0 +1,1715 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch7-convenience-store",
+  "title": "Ken's Convenience Store Trip",
+  "title_ja": "ケンのコンビニ",
+  "language": "ja",
+  "description": "Ken, a student, often goes to a convenience store near his school with his friend Hiroshi. They buy snacks and drinks, which is a fun way to relax after school.",
+  "difficulty": "Genki I Ch.7",
+  "grammar": [
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch1 1.3] Connecting Nouns (Noun1 の Noun2)",
+    "[Ch2 2.5] Addition and Inclusion (Particle も)",
+    "[Ch3 3.2] The Present Tense",
+    "[Ch3 3.3] Sentence Logistics (Particles を, で, に, へ)",
+    "[Ch3 3.6] Frequency Adverbs",
+    "[Ch4 4.1] Stating Existence (あります / います)",
+    "[Ch4 4.2] Positional Descriptions",
+    "[Ch4 4.5] Connecting Items (Particle と)",
+    "[Ch5 5.1] Attribute Basics (Adjective Tenses)",
+    "[Ch5 5.3] Modifying Nouns (Adjective + Noun)",
+    "[Ch5 5.4] Personal Preferences (好き / 嫌い)",
+    "[Ch6 6.1] Verb Linking (て-form)",
+    "[Ch6 6.3] Sequencing Actions (て-form for Activities)",
+    "[Ch6 6.6] Explaining Reasons (Particle から)",
+    "[Ch4 4.6] Measuring Time (Duration)",
+    "[Ch2 2.3] Identifying Places (ここ・そこ・あそこ)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10001,
+      "word": "五分",
+      "hiragana": "ごふん",
+      "translation": "five minutes"
+    },
+    {
+      "key": 10003,
+      "word": "冷蔵庫",
+      "hiragana": "れいぞうこ",
+      "translation": "refrigerator"
+    },
+    {
+      "key": 10004,
+      "word": "お菓子",
+      "hiragana": "おかし",
+      "translation": "snack"
+    },
+    {
+      "key": 10005,
+      "word": "ポテトチップス",
+      "hiragana": "ぽてとちっぷす",
+      "translation": "potato chips"
+    },
+    {
+      "key": 10006,
+      "word": "クッキー",
+      "hiragana": "くっきー",
+      "translation": "cookie"
+    },
+    {
+      "key": 10007,
+      "word": "チョコレート",
+      "hiragana": "ちょこれーと",
+      "translation": "chocolate"
+    },
+    {
+      "key": 10008,
+      "word": "おにぎり",
+      "hiragana": "おにぎり",
+      "translation": "rice ball"
+    },
+    {
+      "key": 10009,
+      "word": "いろいろな",
+      "hiragana": "いろいろな",
+      "translation": "various"
+    },
+    {
+      "key": 10010,
+      "word": "物",
+      "hiragana": "もの",
+      "translation": "thing"
+    },
+    {
+      "key": 10011,
+      "word": "終わる",
+      "hiragana": "おわる",
+      "translation": "to finish"
+    },
+    {
+      "key": 10014,
+      "word": "言う",
+      "hiragana": "いう",
+      "translation": "to say"
+    },
+    {
+      "key": 10016,
+      "word": "見える",
+      "hiragana": "みえる",
+      "translation": "to be visible"
+    },
+    {
+      "key": 10017,
+      "word": "店員",
+      "hiragana": "てんいん",
+      "translation": "cashier"
+    },
+    {
+      "key": 10018,
+      "word": "笑う",
+      "hiragana": "わらう",
+      "translation": "to smile"
+    },
+    {
+      "key": 10019,
+      "word": "冷たい",
+      "hiragana": "つめたい",
+      "translation": "cold (for objects)"
+    },
+    {
+      "key": 10020,
+      "word": "オレンジジュース",
+      "hiragana": "おれんじじゅーす",
+      "translation": "orange juice"
+    },
+    {
+      "key": 10021,
+      "word": "取る",
+      "hiragana": "とる",
+      "translation": "to take; to pick up"
+    },
+    {
+      "key": 10022,
+      "word": "選ぶ",
+      "hiragana": "えらぶ",
+      "translation": "to choose"
+    },
+    {
+      "key": 10023,
+      "word": "レジ",
+      "hiragana": "れじ",
+      "translation": "cash register; counter"
+    },
+    {
+      "key": 10024,
+      "word": "スキャンする",
+      "hiragana": "すきゃんする",
+      "translation": "to scan"
+    },
+    {
+      "key": 10025,
+      "word": "出す",
+      "hiragana": "だす",
+      "translation": "to take out"
+    },
+    {
+      "key": 10027,
+      "word": "おつり",
+      "hiragana": "おつり",
+      "translation": "change"
+    },
+    {
+      "key": 10028,
+      "word": "レシート",
+      "hiragana": "れしーと",
+      "translation": "receipt"
+    },
+    {
+      "key": 10029,
+      "word": "払う",
+      "hiragana": "はらう",
+      "translation": "to pay"
+    },
+    {
+      "key": 10030,
+      "word": "店",
+      "hiragana": "みせ",
+      "translation": "store"
+    },
+    {
+      "key": 10031,
+      "word": "出る",
+      "hiragana": "でる",
+      "translation": "to leave (a place)"
+    },
+    {
+      "key": 10032,
+      "word": "甘い",
+      "hiragana": "あまい",
+      "translation": "sweet"
+    },
+    {
+      "key": 10033,
+      "word": "野球",
+      "hiragana": "やきゅう",
+      "translation": "baseball"
+    },
+    {
+      "key": 10034,
+      "word": "練習",
+      "hiragana": "れんしゅう",
+      "translation": "practice"
+    },
+    {
+      "key": 10035,
+      "word": "所",
+      "hiragana": "ところ",
+      "translation": "place; section"
+    },
+    {
+      "key": 10036,
+      "word": "三百八十",
+      "hiragana": "さんびゃくはちじゅう",
+      "translation": "three hundred eighty"
+    },
+    {
+      "key": 10037,
+      "word": "あげる",
+      "hiragana": "あげる",
+      "translation": "to give (to others)"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "私",
+        "の",
+        "名前",
+        "は",
+        "ケン",
+        "です",
+        "。",
+        "私",
+        "は",
+        "学生",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "なまえ",
+        null,
+        null,
+        null,
+        null,
+        "わたし",
+        null,
+        "がくせい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        53,
+        null,
+        null,
+        null,
+        null,
+        61,
+        null,
+        38,
+        null,
+        null
+      ],
+      "translation": "My name is Ken. I am a student.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "毎日",
+        "、",
+        "学校",
+        "の",
+        "あとで",
+        "、",
+        "私",
+        "は",
+        "よく",
+        "コンビニ",
+        "へ",
+        "行きます",
+        "。"
+      ],
+      "ruby": [
+        "まいにち",
+        null,
+        "がっこう",
+        null,
+        "あとで",
+        null,
+        "わたし",
+        null,
+        null,
+        null,
+        null,
+        "いきます",
+        null
+      ],
+      "vocab_keys": [
+        168,
+        null,
+        158,
+        null,
+        353,
+        null,
+        61,
+        null,
+        190,
+        375,
+        null,
+        170,
+        null
+      ],
+      "translation": "Every day, after school, I often go to the convenience store.",
+      "grammar": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "コンビニ",
+        "は",
+        "私",
+        "の",
+        "学校",
+        "の",
+        "そば",
+        "です",
+        "。",
+        "五分",
+        "ぐらい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "わたし",
+        null,
+        "がっこう",
+        null,
+        null,
+        null,
+        null,
+        "ごふん",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        375,
+        null,
+        61,
+        null,
+        158,
+        null,
+        251,
+        null,
+        null,
+        10001,
+        236,
+        null,
+        null
+      ],
+      "translation": "The convenience store is very close to my school, just a five-minute walk.",
+      "grammar": [
+        0,
+        1,
+        7,
+        15
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "私",
+        "は",
+        "たいてい",
+        "友達",
+        "の",
+        "ひろし",
+        "さん",
+        "と",
+        "行きます",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        "ともだち",
+        null,
+        null,
+        null,
+        null,
+        "いきます",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        187,
+        52,
+        null,
+        null,
+        null,
+        8,
+        170,
+        null
+      ],
+      "translation": "I usually go there with my friend, Hiroshi.",
+      "grammar": [
+        3,
+        4,
+        8
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "コンビニ",
+        "は",
+        "とても",
+        "きれい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        375,
+        null,
+        307,
+        290,
+        null,
+        null
+      ],
+      "translation": "The convenience store is always bright inside.",
+      "grammar": [
+        9
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "大きい",
+        "冷蔵庫",
+        "に",
+        "、",
+        "たくさん",
+        "飲み物",
+        "が",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        "おおきい",
+        "れいぞうこ",
+        null,
+        null,
+        null,
+        "のみもの",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        278,
+        10003,
+        null,
+        null,
+        239,
+        266,
+        null,
+        229,
+        null
+      ],
+      "translation": "Many colorful drinks are in the large refrigerator.",
+      "grammar": [
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "お菓子",
+        "も",
+        "たくさん",
+        "あります",
+        "。",
+        "ポテトチップス",
+        "と",
+        "クッキー",
+        "と",
+        "チョコレート",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "おかし",
+        null,
+        null,
+        null,
+        null,
+        "ぽてとちっぷす",
+        null,
+        "くっきー",
+        null,
+        "ちょこれーと",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10004,
+        null,
+        239,
+        229,
+        null,
+        10005,
+        8,
+        10006,
+        8,
+        10007,
+        null,
+        null
+      ],
+      "translation": "There are also many snacks, like potato chips, cookies, and chocolate bars.",
+      "grammar": [
+        2,
+        6,
+        8
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "新しい",
+        "おにぎり",
+        "も",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        "あたらしい",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        274,
+        10008,
+        null,
+        229,
+        null
+      ],
+      "translation": "Fresh rice balls are in another cool section.",
+      "grammar": [
+        2,
+        6,
+        10
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "私",
+        "は",
+        "いろいろな",
+        "物",
+        "が",
+        "好き",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "いろいろな",
+        "もの",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        10009,
+        10010,
+        null,
+        293,
+        null,
+        null
+      ],
+      "translation": "I like looking at all the different things.",
+      "grammar": [
+        11
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "今日",
+        "は",
+        "、",
+        "クラス",
+        "が",
+        "終わります",
+        "。"
+      ],
+      "ruby": [
+        "きょう",
+        null,
+        null,
+        null,
+        null,
+        "おわります",
+        null
+      ],
+      "vocab_keys": [
+        162,
+        null,
+        null,
+        196,
+        null,
+        10011,
+        null
+      ],
+      "translation": "Today, classes finish.",
+      "grammar": [
+        3
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "鞄",
+        "を",
+        "持って",
+        "、",
+        "先生",
+        "に",
+        "「",
+        "さようなら",
+        "」",
+        "と",
+        "私",
+        "は",
+        "言います",
+        "。"
+      ],
+      "ruby": [
+        "かばん",
+        null,
+        "もって",
+        null,
+        "せんせい",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "わたし",
+        null,
+        "いいます",
+        null
+      ],
+      "vocab_keys": [
+        110,
+        null,
+        341,
+        null,
+        47,
+        null,
+        null,
+        null,
+        null,
+        null,
+        61,
+        null,
+        10014,
+        null
+      ],
+      "translation": "I pack my bag and say goodbye to my teacher.",
+      "grammar": [
+        3,
+        4,
+        12,
+        13
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "それから",
+        "、",
+        "ひろし",
+        "さん",
+        "と",
+        "出かけます",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "でかけます",
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        null,
+        null,
+        8,
+        303,
+        null
+      ],
+      "translation": "Then I walk out with Hiroshi.",
+      "grammar": [
+        3,
+        4,
+        8
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "天気",
+        "は",
+        "いい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "てんき",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        265,
+        null,
+        183,
+        null,
+        null
+      ],
+      "translation": "The sun is shining.",
+      "grammar": [
+        9
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "ケン",
+        "と",
+        "ひろし",
+        "さん",
+        "は",
+        "宿題",
+        "を",
+        "話します",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "しゅくだい",
+        null,
+        "はなします",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        8,
+        null,
+        null,
+        null,
+        261,
+        null,
+        174,
+        null
+      ],
+      "translation": "We talk about our homework as we walk along the street.",
+      "grammar": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "コンビニ",
+        "が",
+        "すぐに",
+        "見えます",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "みえます",
+        null
+      ],
+      "vocab_keys": [
+        375,
+        null,
+        357,
+        10016,
+        null
+      ],
+      "translation": "The store quickly appears.",
+      "grammar": [
+        3
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "ケン",
+        "と",
+        "ひろし",
+        "さん",
+        "は",
+        "中",
+        "へ",
+        "入ります",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "なか",
+        null,
+        "はいります",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        8,
+        null,
+        null,
+        null,
+        248,
+        null,
+        340,
+        null
+      ],
+      "translation": "We step inside.",
+      "grammar": [
+        3,
+        4,
+        16
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "私",
+        "は",
+        "店員",
+        "に",
+        "「",
+        "こんにちは",
+        "！",
+        "」",
+        "と",
+        "言います",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "てんいん",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "いいます",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        10017,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        10014,
+        null
+      ],
+      "translation": "\"Hello!\" I say to the cashier.",
+      "grammar": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "店員",
+        "は",
+        "笑います",
+        "。"
+      ],
+      "ruby": [
+        "てんいん",
+        null,
+        "わらいます",
+        null
+      ],
+      "vocab_keys": [
+        10017,
+        null,
+        10018,
+        null
+      ],
+      "translation": "She smiles.",
+      "grammar": [
+        3
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "私",
+        "は",
+        "飲み物",
+        "の",
+        "所",
+        "へ",
+        "行って",
+        "、",
+        "冷たい",
+        "オレンジジュース",
+        "を",
+        "取ります",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "のみもの",
+        null,
+        "ところ",
+        null,
+        "いって",
+        null,
+        "つめたい",
+        "おれんじじゅーす",
+        null,
+        "とります",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        266,
+        null,
+        10035,
+        null,
+        170,
+        null,
+        10019,
+        10020,
+        null,
+        10021,
+        null
+      ],
+      "translation": "I go to the drink section and pick up a cold orange juice.",
+      "grammar": [
+        3,
+        4,
+        12,
+        13,
+        10
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "それから",
+        "、",
+        "お菓子",
+        "の",
+        "所",
+        "を",
+        "見て",
+        "、",
+        "小さい",
+        "チョコレート",
+        "を",
+        "選びます",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "おかし",
+        null,
+        "ところ",
+        null,
+        "みて",
+        null,
+        "ちいさい",
+        "ちょこれーと",
+        null,
+        "えらびます",
+        null
+      ],
+      "vocab_keys": [
+        305,
+        null,
+        10004,
+        null,
+        10035,
+        null,
+        179,
+        null,
+        283,
+        10007,
+        null,
+        10022,
+        null
+      ],
+      "translation": "Then I look at the snack aisle and choose a small chocolate bar.",
+      "grammar": [
+        3,
+        4,
+        12,
+        13,
+        10
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "ひろし",
+        "さん",
+        "は",
+        "おにぎり",
+        "を",
+        "取ります",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "とります",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        null,
+        10008,
+        null,
+        10021,
+        null
+      ],
+      "translation": "Hiroshi picks out a tuna rice ball.",
+      "grammar": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "ケン",
+        "と",
+        "ひろし",
+        "さん",
+        "は",
+        "レジ",
+        "へ",
+        "行きます",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "いきます",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        8,
+        null,
+        null,
+        null,
+        10023,
+        null,
+        170,
+        null
+      ],
+      "translation": "We walk to the counter.",
+      "grammar": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "店員",
+        "は",
+        "ケン",
+        "と",
+        "ひろし",
+        "さん",
+        "の",
+        "物",
+        "を",
+        "スキャン",
+        "します",
+        "。"
+      ],
+      "ruby": [
+        "てんいん",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "もの",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10017,
+        null,
+        null,
+        8,
+        null,
+        null,
+        null,
+        10010,
+        null,
+        10024,
+        181,
+        null
+      ],
+      "translation": "The cashier scans our items.",
+      "grammar": [
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "「",
+        "三百八十",
+        "円",
+        "です",
+        "。",
+        "」",
+        "と",
+        "店員",
+        "は",
+        "言います",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "さんびゃくはちじゅう",
+        "えん",
+        null,
+        null,
+        null,
+        null,
+        "てんいん",
+        null,
+        "いいます",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        10036,
+        131,
+        null,
+        null,
+        null,
+        null,
+        10017,
+        null,
+        10014,
+        null
+      ],
+      "translation": "\"That will be 380 yen,\" she says.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "私",
+        "は",
+        "財布",
+        "を",
+        "出して",
+        "、",
+        "お金",
+        "を",
+        "あげます",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "さいふ",
+        null,
+        "だして",
+        null,
+        "おかね",
+        null,
+        "あげます",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        112,
+        null,
+        10025,
+        null,
+        311,
+        null,
+        10037,
+        null
+      ],
+      "translation": "I take my wallet out and give her the money.",
+      "grammar": [
+        3,
+        4,
+        12,
+        13
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "店員",
+        "は",
+        "私",
+        "に",
+        "、",
+        "おつり",
+        "と",
+        "レシート",
+        "を",
+        "あげます",
+        "。"
+      ],
+      "ruby": [
+        "てんいん",
+        null,
+        "わたし",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "あげます",
+        null
+      ],
+      "vocab_keys": [
+        10017,
+        null,
+        61,
+        null,
+        null,
+        10027,
+        8,
+        10028,
+        null,
+        10037,
+        null
+      ],
+      "translation": "She gives me the change and a receipt.",
+      "grammar": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "「",
+        "どうも",
+        "！",
+        "」",
+        "と",
+        "私",
+        "は",
+        "言います",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "わたし",
+        null,
+        "いいます",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        138,
+        null,
+        null,
+        null,
+        61,
+        null,
+        10014,
+        null
+      ],
+      "translation": "\"Thank you!\" I say.",
+      "grammar": [
+        3
+      ]
+    },
+    {
+      "id": "s28",
+      "words": [
+        "ひろし",
+        "さん",
+        "は",
+        "おにぎり",
+        "の",
+        "お金",
+        "を",
+        "払います",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "おかね",
+        null,
+        "はらいます",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        null,
+        10008,
+        null,
+        311,
+        null,
+        10029,
+        null
+      ],
+      "translation": "Hiroshi pays for his rice ball.",
+      "grammar": [
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s29",
+      "words": [
+        "ケン",
+        "と",
+        "ひろし",
+        "さん",
+        "は",
+        "店",
+        "を",
+        "出ます",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "みせ",
+        null,
+        "でます",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        8,
+        null,
+        null,
+        null,
+        10030,
+        null,
+        10031,
+        null
+      ],
+      "translation": "We leave the store.",
+      "grammar": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s30",
+      "words": [
+        "お菓子",
+        "を",
+        "開けて",
+        "、",
+        "家",
+        "へ",
+        "帰ります",
+        "。",
+        "帰る",
+        "とき",
+        "、",
+        "食べます",
+        "。"
+      ],
+      "ruby": [
+        "おかし",
+        null,
+        "あけて",
+        null,
+        "うち",
+        null,
+        "かえります",
+        null,
+        "かえる",
+        "とき",
+        null,
+        "たべます",
+        null
+      ],
+      "vocab_keys": [
+        10004,
+        null,
+        343,
+        null,
+        156,
+        null,
+        171,
+        null,
+        171,
+        223,
+        null,
+        177,
+        null
+      ],
+      "translation": "We open our snacks and eat them as we walk home.",
+      "grammar": [
+        3,
+        4,
+        8,
+        12,
+        13
+      ]
+    },
+    {
+      "id": "s31",
+      "words": [
+        "冷たい",
+        "オレンジジュース",
+        "は",
+        "学校",
+        "の",
+        "あとで",
+        "おいしい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "つめたい",
+        "おれんじじゅーす",
+        null,
+        "がっこう",
+        null,
+        "あとで",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10019,
+        10020,
+        null,
+        158,
+        null,
+        353,
+        102,
+        null,
+        null
+      ],
+      "translation": "The orange juice is cold and delicious after school.",
+      "grammar": [
+        1,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "s32",
+      "words": [
+        "チョコレート",
+        "は",
+        "甘い",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "ちょこれーと",
+        null,
+        "あまい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10007,
+        null,
+        10032,
+        null,
+        null
+      ],
+      "translation": "The chocolate is sweet.",
+      "grammar": [
+        9
+      ]
+    },
+    {
+      "id": "s33",
+      "words": [
+        "ひろし",
+        "さん",
+        "は",
+        "おにぎり",
+        "が",
+        "好き",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        null,
+        null,
+        10008,
+        null,
+        293,
+        null,
+        null
+      ],
+      "translation": "Hiroshi enjoys his rice ball.",
+      "grammar": [
+        11
+      ]
+    },
+    {
+      "id": "s34",
+      "words": [
+        "ケン",
+        "と",
+        "ひろし",
+        "さん",
+        "は",
+        "野球",
+        "の",
+        "練習",
+        "を",
+        "話します",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "やきゅう",
+        null,
+        "れんしゅう",
+        null,
+        "はなします",
+        null
+      ],
+      "vocab_keys": [
+        null,
+        8,
+        null,
+        null,
+        null,
+        10033,
+        null,
+        10034,
+        null,
+        174,
+        null
+      ],
+      "translation": "We talk about baseball practice.",
+      "grammar": [
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "s35",
+      "words": [
+        "コンビニ",
+        "は",
+        "楽しい",
+        "です",
+        "。",
+        "いい",
+        "休み",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "たのしい",
+        null,
+        null,
+        null,
+        "やすみ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        375,
+        null,
+        282,
+        null,
+        null,
+        183,
+        272,
+        null,
+        null
+      ],
+      "translation": "Going to the convenience store is a simple pleasure. It is a good way to relax.",
+      "grammar": [
+        0,
+        9
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

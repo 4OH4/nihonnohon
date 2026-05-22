@@ -45,6 +45,22 @@
       "type": "array",
       "items": { "$ref": "#/$defs/vocabEntry" }
     },
+    "author": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1
+    },
+    "license_url": {
+      "type": "string",
+      "minLength": 1
+    },
     "metadata": {
       "type": "object",
       "additionalProperties": true

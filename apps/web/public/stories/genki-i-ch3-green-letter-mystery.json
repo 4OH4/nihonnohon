@@ -1,0 +1,1539 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch3-green-letter-mystery",
+  "title": "The Green Letter Mystery",
+  "title_ja": "緑の手紙の謎",
+  "language": "ja",
+  "description": "A student arrives at school early and discovers a strange, green letter inside their desk. The anonymous note proposes a meeting after school, leaving the student surprised and curious about its mysterious origin.",
+  "difficulty": "Genki I Ch.3",
+  "grammar": [
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch1 1.2] Basic Inquiry (Question Sentences)",
+    "[Ch1 1.3] Connecting Nouns (Noun1 の Noun2)",
+    "[Ch2 2.1] Demonstrative Pronouns (これ・それ・あれ)",
+    "[Ch2 2.2] Specifying Objects (この・その・あの)",
+    "[Ch2 2.3] Identifying Places (ここ・そこ・あそこ)",
+    "[Ch2 2.4] Asking for Ownership (だれの + Noun)",
+    "[Ch2 2.5] Addition and Inclusion (Particle も)",
+    "[Ch2 2.6] Negative Identity (～じゃないです)",
+    "[Ch3 3.1] Verb Classes and Conjugation",
+    "[Ch3 3.2] The Present Tense",
+    "[Ch3 3.3] Sentence Logistics (Particles を, で, に, へ)",
+    "[Ch3 3.4] Temporal Markers (Time References)",
+    "[Ch3 3.6] Frequency Adverbs"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "教室",
+      "hiragana": "きょうしつ",
+      "translation": "classroom"
+    },
+    {
+      "key": 10001,
+      "word": "机",
+      "hiragana": "つくえ",
+      "translation": "desk"
+    },
+    {
+      "key": 10002,
+      "word": "窓",
+      "hiragana": "まど",
+      "translation": "window"
+    },
+    {
+      "key": 10003,
+      "word": "壁",
+      "hiragana": "かべ",
+      "translation": "wall"
+    },
+    {
+      "key": 10004,
+      "word": "椅子",
+      "hiragana": "いす",
+      "translation": "chair"
+    },
+    {
+      "key": 10005,
+      "word": "いつも",
+      "hiragana": "いつも",
+      "translation": "always"
+    },
+    {
+      "key": 10006,
+      "word": "中",
+      "hiragana": "なか",
+      "translation": "inside"
+    },
+    {
+      "key": 10007,
+      "word": "何か",
+      "hiragana": "なにか",
+      "translation": "something"
+    },
+    {
+      "key": 10008,
+      "word": "手紙",
+      "hiragana": "てがみ",
+      "translation": "letter"
+    },
+    {
+      "key": 10009,
+      "word": "変",
+      "hiragana": "へん",
+      "translation": "strange"
+    },
+    {
+      "key": 10010,
+      "word": "緑",
+      "hiragana": "みどり",
+      "translation": "green"
+    },
+    {
+      "key": 10011,
+      "word": "びっくり",
+      "hiragana": "びっくり",
+      "translation": "surprised"
+    },
+    {
+      "key": 10012,
+      "word": "紙",
+      "hiragana": "かみ",
+      "translation": "paper"
+    },
+    {
+      "key": 10013,
+      "word": "白い",
+      "hiragana": "しろい",
+      "translation": "white"
+    },
+    {
+      "key": 10014,
+      "word": "小さい",
+      "hiragana": "ちいさい",
+      "translation": "small"
+    },
+    {
+      "key": 10015,
+      "word": "短い",
+      "hiragana": "みじかい",
+      "translation": "short"
+    },
+    {
+      "key": 10016,
+      "word": "放課後",
+      "hiragana": "ほうかご",
+      "translation": "after school"
+    },
+    {
+      "key": 10017,
+      "word": "木",
+      "hiragana": "き",
+      "translation": "tree"
+    },
+    {
+      "key": 10018,
+      "word": "絵",
+      "hiragana": "え",
+      "translation": "drawing"
+    },
+    {
+      "key": 10019,
+      "word": "山田さん",
+      "hiragana": "やまださん",
+      "translation": "Mr./Ms. Yamada"
+    },
+    {
+      "key": 10020,
+      "word": "田中さん",
+      "hiragana": "たなかさん",
+      "translation": "Mr./Ms. Tanaka"
+    },
+    {
+      "key": 10021,
+      "word": "鈴木さん",
+      "hiragana": "すずきさん",
+      "translation": "Mr./Ms. Suzuki"
+    },
+    {
+      "key": 10022,
+      "word": "みんな",
+      "hiragana": "みんな",
+      "translation": "everyone"
+    },
+    {
+      "key": 10023,
+      "word": "忙しい",
+      "hiragana": "いそがしい",
+      "translation": "busy"
+    },
+    {
+      "key": 10024,
+      "word": "知る",
+      "hiragana": "しる",
+      "translation": "to know"
+    },
+    {
+      "key": 10025,
+      "word": "時",
+      "hiragana": "とき",
+      "translation": "time"
+    },
+    {
+      "key": 10026,
+      "word": "ベル",
+      "hiragana": "ベル",
+      "translation": "bell"
+    },
+    {
+      "key": 10027,
+      "word": "大きい",
+      "hiragana": "おおきい",
+      "translation": "big"
+    },
+    {
+      "key": 10028,
+      "word": "建物",
+      "hiragana": "たてもの",
+      "translation": "building"
+    },
+    {
+      "key": 10029,
+      "word": "二階",
+      "hiragana": "にかい",
+      "translation": "second floor"
+    },
+    {
+      "key": 10030,
+      "word": "ゆっくり",
+      "hiragana": "ゆっくり",
+      "translation": "slowly; carefully"
+    },
+    {
+      "key": 10031,
+      "word": "近く",
+      "hiragana": "ちかく",
+      "translation": "near"
+    },
+    {
+      "key": 10032,
+      "word": "あります",
+      "hiragana": "あります",
+      "translation": "to exist (inanimate)"
+    },
+    {
+      "key": 10033,
+      "word": "ありません",
+      "hiragana": "ありません",
+      "translation": "not to exist (inanimate)"
+    },
+    {
+      "key": 10034,
+      "word": "鳴る",
+      "hiragana": "なる",
+      "translation": "to ring"
+    },
+    {
+      "key": 10035,
+      "word": "始まる",
+      "hiragana": "はじまる",
+      "translation": "to begin"
+    },
+    {
+      "key": 10036,
+      "word": "考える",
+      "hiragana": "かんがえる",
+      "translation": "to think"
+    },
+    {
+      "key": 10037,
+      "word": "所",
+      "hiragana": "ところ",
+      "translation": "place"
+    },
+    {
+      "key": 10038,
+      "word": "とても",
+      "hiragana": "とても",
+      "translation": "very"
+    },
+    {
+      "key": 10039,
+      "word": "それから",
+      "hiragana": "それから",
+      "translation": "then; after that"
+    },
+    {
+      "key": 10040,
+      "word": "会う",
+      "hiragana": "あう",
+      "translation": "to meet"
+    },
+    {
+      "key": 10041,
+      "word": "色",
+      "hiragana": "いろ",
+      "translation": "color"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "今日",
+        "、",
+        "私",
+        "は",
+        "学校",
+        "へ",
+        "ちょっと",
+        "早く",
+        "来ます",
+        "。"
+      ],
+      "ruby": [
+        "きょう",
+        null,
+        "わたし",
+        null,
+        "がっこう",
+        null,
+        null,
+        "はやく",
+        "きます",
+        null
+      ],
+      "vocab_keys": [
+        162,
+        null,
+        61,
+        null,
+        158,
+        null,
+        188,
+        184,
+        180,
+        null
+      ],
+      "translation": "Today, I come to school a little early.",
+      "grammar": [
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "学校",
+        "は",
+        "とても",
+        "大きい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "がっこう",
+        null,
+        null,
+        "おおきい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        158,
+        null,
+        10038,
+        10027,
+        null,
+        null
+      ],
+      "translation": "The school is very big.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "私",
+        "は",
+        "ゆっくり",
+        "教室",
+        "へ",
+        "行きます",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        "きょうしつ",
+        null,
+        "いきます",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        10030,
+        10000,
+        null,
+        170,
+        null
+      ],
+      "translation": "I go slowly to the classroom.",
+      "grammar": [
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "教室",
+        "は",
+        "二階",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "きょうしつ",
+        null,
+        "にかい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        10029,
+        null,
+        null
+      ],
+      "translation": "The classroom is on the second floor.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "私",
+        "の",
+        "机",
+        "は",
+        "、",
+        "窓",
+        "と",
+        "壁",
+        "の",
+        "近く",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "つくえ",
+        null,
+        null,
+        "まど",
+        null,
+        "かべ",
+        null,
+        "ちかく",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        10001,
+        null,
+        null,
+        10002,
+        null,
+        10003,
+        null,
+        10031,
+        null,
+        null
+      ],
+      "translation": "My desk is near the window and the wall.",
+      "grammar": [
+        2,
+        0
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "いつも",
+        "、",
+        "私",
+        "は",
+        "ここ",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "わたし",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10005,
+        null,
+        61,
+        null,
+        99,
+        null,
+        null
+      ],
+      "translation": "I am always here.",
+      "grammar": [
+        0,
+        5,
+        13
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "私",
+        "の",
+        "カバン",
+        "は",
+        "椅子",
+        "の",
+        "近く",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        null,
+        "いす",
+        null,
+        "ちかく",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        110,
+        null,
+        10004,
+        null,
+        10031,
+        null,
+        null
+      ],
+      "translation": "My bag is near the chair.",
+      "grammar": [
+        2,
+        0
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "それから",
+        "、",
+        "机",
+        "を",
+        "よく",
+        "見ます",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "つくえ",
+        null,
+        null,
+        "みます",
+        null
+      ],
+      "vocab_keys": [
+        10039,
+        null,
+        10001,
+        null,
+        190,
+        179,
+        null
+      ],
+      "translation": "Then, I look closely at my desk.",
+      "grammar": [
+        9,
+        10,
+        11,
+        13
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "机",
+        "の",
+        "中",
+        "に",
+        "何か",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        "つくえ",
+        null,
+        "なか",
+        null,
+        "なにか",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        10006,
+        null,
+        10007,
+        10032,
+        null
+      ],
+      "translation": "There is something inside my desk.",
+      "grammar": [
+        2,
+        11
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "これ",
+        "は",
+        "私",
+        "の",
+        "本",
+        "じゃないです",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "わたし",
+        null,
+        "ほん",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        91,
+        null,
+        61,
+        null,
+        123,
+        null,
+        null
+      ],
+      "translation": "This is not my book.",
+      "grammar": [
+        0,
+        2,
+        3,
+        8
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "えんぴつ",
+        "も",
+        "じゃないです",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        108,
+        null,
+        null,
+        null
+      ],
+      "translation": "It is not my pencil, either.",
+      "grammar": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "これ",
+        "は",
+        "手紙",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "てがみ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        91,
+        null,
+        10008,
+        null,
+        null
+      ],
+      "translation": "This is a letter.",
+      "grammar": [
+        0,
+        3
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "手紙",
+        "は",
+        "とても",
+        "変",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "てがみ",
+        null,
+        null,
+        "へん",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10008,
+        null,
+        10038,
+        10009,
+        null,
+        null
+      ],
+      "translation": "The letter is very strange.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "緑",
+        "の",
+        "色",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "みどり",
+        null,
+        "いろ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10010,
+        null,
+        10041,
+        null,
+        null
+      ],
+      "translation": "It is green.",
+      "grammar": [
+        2,
+        0
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "名前",
+        "は",
+        "ありません",
+        "。"
+      ],
+      "ruby": [
+        "なまえ",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        53,
+        null,
+        10033,
+        null
+      ],
+      "translation": "There is no name.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "だれ",
+        "の",
+        "手紙",
+        "です",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "てがみ",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        101,
+        null,
+        10008,
+        null,
+        null,
+        null
+      ],
+      "translation": "Whose letter is this?",
+      "grammar": [
+        1,
+        2,
+        6
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "私",
+        "は",
+        "びっくり",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        10011,
+        null,
+        null
+      ],
+      "translation": "I am surprised.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "私",
+        "は",
+        "この",
+        "手紙",
+        "を",
+        "よく",
+        "見ます",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        "てがみ",
+        null,
+        null,
+        "みます",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        95,
+        10008,
+        null,
+        190,
+        179,
+        null
+      ],
+      "translation": "I look at this letter closely.",
+      "grammar": [
+        4,
+        9,
+        10,
+        11,
+        13
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "紙",
+        "は",
+        "白い",
+        "です",
+        "。",
+        "小さい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "かみ",
+        null,
+        "しろい",
+        null,
+        null,
+        "ちいさい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10012,
+        null,
+        10013,
+        null,
+        null,
+        10014,
+        null,
+        null
+      ],
+      "translation": "The paper is white. It is small.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "私",
+        "は",
+        "手紙",
+        "を",
+        "読みます",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "てがみ",
+        null,
+        "よみます",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        10008,
+        null,
+        175,
+        null
+      ],
+      "translation": "I read the letter.",
+      "grammar": [
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "とても",
+        "短い",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "みじかい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10038,
+        10015,
+        null,
+        null
+      ],
+      "translation": "It is very short.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "「",
+        "放課後",
+        "、",
+        "大きい",
+        "木",
+        "の",
+        "近く",
+        "で",
+        "会います",
+        "。",
+        "」"
+      ],
+      "ruby": [
+        null,
+        "ほうかご",
+        null,
+        "おおきい",
+        "き",
+        null,
+        "ちかく",
+        null,
+        "あいます",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        null,
+        10016,
+        null,
+        10027,
+        10017,
+        null,
+        10031,
+        null,
+        10040,
+        null,
+        null
+      ],
+      "translation": "\"After school, I will meet by the big tree.\"",
+      "grammar": [
+        2,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "名前",
+        "は",
+        "ありません",
+        "。",
+        "絵",
+        "も",
+        "ありません",
+        "。"
+      ],
+      "ruby": [
+        "なまえ",
+        null,
+        null,
+        null,
+        "え",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        53,
+        null,
+        10033,
+        null,
+        10018,
+        null,
+        10033,
+        null
+      ],
+      "translation": "There is no name. There is no drawing, either.",
+      "grammar": [
+        0,
+        7
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "私",
+        "は",
+        "教室",
+        "を",
+        "見ます",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "きょうしつ",
+        null,
+        "みます",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        10000,
+        null,
+        179,
+        null
+      ],
+      "translation": "I look at the classroom.",
+      "grammar": [
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "友達",
+        "の",
+        "山田さん",
+        "は",
+        "本",
+        "を",
+        "読みます",
+        "。"
+      ],
+      "ruby": [
+        "ともだち",
+        null,
+        "やまださん",
+        null,
+        "ほん",
+        null,
+        "よみます",
+        null
+      ],
+      "vocab_keys": [
+        52,
+        null,
+        10019,
+        null,
+        123,
+        null,
+        175,
+        null
+      ],
+      "translation": "My friend, Yamada-san, reads a book.",
+      "grammar": [
+        0,
+        2,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "友達",
+        "の",
+        "田中さん",
+        "は",
+        "鈴木さん",
+        "と",
+        "話します",
+        "。"
+      ],
+      "ruby": [
+        "ともだち",
+        null,
+        "たなかさん",
+        null,
+        "すずきさん",
+        null,
+        "はなします",
+        null
+      ],
+      "vocab_keys": [
+        52,
+        null,
+        10020,
+        null,
+        10021,
+        null,
+        174,
+        null
+      ],
+      "translation": "My friend, Tanaka-san, talks with Suzuki-san.",
+      "grammar": [
+        0,
+        2,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "みんな",
+        "忙しい",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "いそがしい",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10022,
+        10023,
+        null,
+        null
+      ],
+      "translation": "Everyone is busy.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s28",
+      "words": [
+        "だれ",
+        "も",
+        "私",
+        "を",
+        "見ません",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "わたし",
+        null,
+        "みません",
+        null
+      ],
+      "vocab_keys": [
+        101,
+        null,
+        61,
+        null,
+        179,
+        null
+      ],
+      "translation": "No one looks at me.",
+      "grammar": [
+        7,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "s29",
+      "words": [
+        "私",
+        "は",
+        "よく",
+        "知りません",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        "しりません",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        190,
+        10024,
+        null
+      ],
+      "translation": "I really do not know.",
+      "grammar": [
+        9,
+        10,
+        13
+      ]
+    },
+    {
+      "id": "s30",
+      "words": [
+        "とても",
+        "変",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "へん",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10038,
+        10009,
+        null,
+        null
+      ],
+      "translation": "It is very strange.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s31",
+      "words": [
+        "手紙",
+        "は",
+        "カバン",
+        "の",
+        "中",
+        "に",
+        "あります",
+        "。"
+      ],
+      "ruby": [
+        "てがみ",
+        null,
+        null,
+        null,
+        "なか",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10008,
+        null,
+        110,
+        null,
+        10006,
+        null,
+        10032,
+        null
+      ],
+      "translation": "The letter is in my bag.",
+      "grammar": [
+        0,
+        2,
+        11
+      ]
+    },
+    {
+      "id": "s32",
+      "words": [
+        "その",
+        "時",
+        "、",
+        "ベル",
+        "が",
+        "鳴ります",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        "なります",
+        null
+      ],
+      "vocab_keys": [
+        96,
+        10025,
+        null,
+        10026,
+        null,
+        10034,
+        null
+      ],
+      "translation": "Just then, the bell rings.",
+      "grammar": [
+        4,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "s33",
+      "words": [
+        "先生",
+        "は",
+        "教室",
+        "へ",
+        "来ます",
+        "。"
+      ],
+      "ruby": [
+        "せんせい",
+        null,
+        "きょうしつ",
+        null,
+        "きます",
+        null
+      ],
+      "vocab_keys": [
+        47,
+        null,
+        10000,
+        null,
+        180,
+        null
+      ],
+      "translation": "The teacher comes to the classroom.",
+      "grammar": [
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "s34",
+      "words": [
+        "クラス",
+        "が",
+        "始まります",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "はじまります",
+        null
+      ],
+      "vocab_keys": [
+        10027,
+        null,
+        10035,
+        null
+      ],
+      "translation": "Class begins.",
+      "grammar": [
+        9,
+        10
+      ]
+    },
+    {
+      "id": "s35",
+      "words": [
+        "でも",
+        "、",
+        "私",
+        "は",
+        "手紙",
+        "を",
+        "考えます",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "わたし",
+        null,
+        "てがみ",
+        null,
+        "かんがえます",
+        null
+      ],
+      "vocab_keys": [
+        192,
+        null,
+        61,
+        null,
+        10008,
+        null,
+        10036,
+        null
+      ],
+      "translation": "But I think about the letter.",
+      "grammar": [
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": "s36",
+      "words": [
+        "放課後",
+        "、",
+        "大きい",
+        "木",
+        "の",
+        "所",
+        "で",
+        "何",
+        "が",
+        "あります",
+        "か",
+        "。"
+      ],
+      "ruby": [
+        "ほうかご",
+        null,
+        "おおきい",
+        "き",
+        null,
+        "ところ",
+        null,
+        "なに",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10016,
+        null,
+        10027,
+        10017,
+        null,
+        10037,
+        null,
+        54,
+        null,
+        10032,
+        null,
+        null
+      ],
+      "translation": "What will be at the big tree after school?",
+      "grammar": [
+        1,
+        2,
+        11,
+        12
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

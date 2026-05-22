@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { render, screen, act } from '@testing-library/react'
 import { BackendStatus } from '../components/BackendStatus'
 

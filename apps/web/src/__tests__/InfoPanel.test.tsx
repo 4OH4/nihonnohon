@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { describe, it, expect, afterEach } from 'vitest'
 import { render, screen, act } from '@testing-library/react'
 import { InfoPanel } from '@/components/InfoPanel'
@@ -11,9 +14,10 @@ const storyFixture: StoryModel = {
   id: 'test-story',
   title: 'Test Story',
   titleJa: 'テスト',
-  language: 'Japanese',
+  language: 'ja',
   difficulty: 'Genki I Ch.6',
   description: 'A test story.',
+  author: 'Test Author',
   keywords: [],
   grammar: [],
   vocabSupplement: [],
@@ -22,6 +26,7 @@ const storyFixture: StoryModel = {
 }
 
 const storyNoDifficulty: StoryModel = { ...storyFixture, difficulty: null }
+const storyNoAuthor: StoryModel = { ...storyFixture, author: undefined }
 
 const vocabEntry: VocabEntry = {
   id: 42,
@@ -61,18 +66,25 @@ afterEach(() => {
 })
 
 describe('InfoPanel', () => {
-  it('idle state shows story title, difficulty, and language', () => {
+  it('idle state shows story title, author, and difficulty', () => {
     render(<InfoPanel story={storyFixture} />)
     expect(screen.getByText('Test Story')).toBeInTheDocument()
+    expect(screen.getByText('Test Author')).toBeInTheDocument()
     expect(screen.getByText('Genki I Ch.6')).toBeInTheDocument()
-    expect(screen.getByText('Japanese')).toBeInTheDocument()
+    expect(screen.queryByText('ja')).toBeNull()
+  })
+
+  it('idle state omits author when story.author is absent', () => {
+    render(<InfoPanel story={storyNoAuthor} />)
+    expect(screen.getByText('Test Story')).toBeInTheDocument()
+    expect(screen.queryByText('Test Author')).toBeNull()
+    expect(screen.getByText('Genki I Ch.6')).toBeInTheDocument()
   })
 
   it('idle state omits difficulty when story.difficulty is null', () => {
     render(<InfoPanel story={storyNoDifficulty} />)
     expect(screen.getByText('Test Story')).toBeInTheDocument()
     expect(screen.queryByText('Genki I Ch.6')).toBeNull()
-    expect(screen.getByText('Japanese')).toBeInTheDocument()
   })
 
   it('panel has aria-live="polite" and aria-label="Word lookup panel"', () => {
@@ -108,9 +120,9 @@ describe('InfoPanel', () => {
     act(() => {
       useLookupStore.getState().lookup('たべる', hiraganaEntry, 's1')
     })
-    const { container } = render(<InfoPanel story={storyFixture} />)
-    // KanjiBreakdown returns null — its container div should not be present
-    expect(container.querySelector('.flex.gap-3')).toBeNull()
+    render(<InfoPanel story={storyFixture} />)
+    // KanjiBreakdown returns null — the labelled region should not be in the DOM
+    expect(screen.queryByLabelText('Kanji breakdown')).toBeNull()
   })
 
   it('not-found state shows muted "No entry for" message', () => {

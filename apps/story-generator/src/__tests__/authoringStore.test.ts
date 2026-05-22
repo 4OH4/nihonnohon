@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 // Mock DOM-touching lib functions so store tests don't require a real DOM
 vi.mock('@/lib/validateStoryJson', () => ({
   validateStoryJson: vi.fn(() => []),
@@ -157,7 +160,7 @@ describe('authoringStore — rerun()', () => {
 
   it('clears outputJson', () => {
     reachOutputClean()
-    expect(useAuthoringStore.getState().outputJson).toBe('{}')
+    expect(useAuthoringStore.getState().outputJson).not.toBeNull()
     useAuthoringStore.getState().rerun()
     expect(useAuthoringStore.getState().outputJson).toBeNull()
   })
@@ -256,10 +259,11 @@ describe('authoringStore — save()', () => {
   })
 
   it('calls downloadStoryFile with story id when validation passes', () => {
-    const json = JSON.stringify({ id: 'test-story', schema_version: '1' })
-    useAuthoringStore.getState()._setOutputJson(json)
+    const inputJson = JSON.stringify({ id: 'test-story', schema_version: '1' })
+    useAuthoringStore.getState()._setOutputJson(inputJson)
+    const enriched = useAuthoringStore.getState().outputJson!
     useAuthoringStore.getState().save()
-    expect(downloadStoryFile).toHaveBeenCalledWith('test-story', json)
+    expect(downloadStoryFile).toHaveBeenCalledWith('test-story', enriched)
   })
 
   it('sets downloadToastId to the story id on success', () => {

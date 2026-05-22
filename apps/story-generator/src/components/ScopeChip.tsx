@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { cn } from '@/lib/utils'
 
 /** Cumulative curriculum scope for one Genki chapter. */

@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { useEffect, useRef } from 'react'
 import { useAuthoringStore, STORY_LENGTH_WORD_COUNTS } from '@/stores/authoringStore'
 import type { Phase, StoryLengthPreset } from '@/stores/authoringStore'

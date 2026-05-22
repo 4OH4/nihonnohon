@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { VocabItem } from '@/components/VocabItem'
 import type { VocabEntry, VocabSupplementEntry } from '@nihonnohon/schema'
 
@@ -34,7 +37,7 @@ export function VocabPanel({ keywords, vocabSupplement }: VocabPanelProps) {
   }
 
   return (
-    <div className="flex flex-col">
+    <div style={{ fontSize: 'var(--story-font-size)' }}>
       {combined.map((entry) => (
         <VocabItem key={entry.id} entry={entry} />
       ))}

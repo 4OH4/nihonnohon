@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { useShallow } from 'zustand/react/shallow'
 import { cn } from '@/lib/utils'
 import { useLookupStore } from '@/stores/lookupStore'

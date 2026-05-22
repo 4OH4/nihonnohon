@@ -1,6 +1,9 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { cn } from '@/lib/utils'
 import { useAuthoringStore, STORY_LENGTH_WORD_COUNTS, MAX_TARGET_WORD_COUNT } from '@/stores/authoringStore'
-import type { StoryLengthPreset } from '@/stores/authoringStore'
+import type { StoryLengthPreset, LicensePreset } from '@/stores/authoringStore'
 import {
   Sheet,
   SheetContent,
@@ -34,15 +37,25 @@ const PRESET_LABELS: Record<StoryLengthPreset, string> = {
  * Controls: temperature, grammar distribution, story length (Path B only).
  */
 export function SettingsPanel({ open, onClose }: SettingsPanelProps) {
-  const temperature          = useAuthoringStore(s => s.temperature)
-  const grammarDist          = useAuthoringStore(s => s.grammarDist)
-  const pathMode             = useAuthoringStore(s => s.pathMode)
-  const storyLengthPreset    = useAuthoringStore(s => s.storyLengthPreset)
-  const targetWordCount      = useAuthoringStore(s => s.targetWordCount)
-  const setTemperature       = useAuthoringStore(s => s.setTemperature)
-  const setGrammarDist       = useAuthoringStore(s => s.setGrammarDist)
-  const setStoryLengthPreset = useAuthoringStore(s => s.setStoryLengthPreset)
-  const setTargetWordCount   = useAuthoringStore(s => s.setTargetWordCount)
+  const temperature              = useAuthoringStore(s => s.temperature)
+  const grammarDist              = useAuthoringStore(s => s.grammarDist)
+  const pathMode                 = useAuthoringStore(s => s.pathMode)
+  const storyLengthPreset        = useAuthoringStore(s => s.storyLengthPreset)
+  const targetWordCount          = useAuthoringStore(s => s.targetWordCount)
+  const attribAuthor             = useAuthoringStore(s => s.attribAuthor)
+  const attribSource             = useAuthoringStore(s => s.attribSource)
+  const attribLicense            = useAuthoringStore(s => s.attribLicense)
+  const attribCustomLicenseName  = useAuthoringStore(s => s.attribCustomLicenseName)
+  const attribCustomLicenseUrl   = useAuthoringStore(s => s.attribCustomLicenseUrl)
+  const setTemperature           = useAuthoringStore(s => s.setTemperature)
+  const setGrammarDist           = useAuthoringStore(s => s.setGrammarDist)
+  const setStoryLengthPreset     = useAuthoringStore(s => s.setStoryLengthPreset)
+  const setTargetWordCount       = useAuthoringStore(s => s.setTargetWordCount)
+  const setAttribAuthor          = useAuthoringStore(s => s.setAttribAuthor)
+  const setAttribSource          = useAuthoringStore(s => s.setAttribSource)
+  const setAttribLicense         = useAuthoringStore(s => s.setAttribLicense)
+  const setAttribCustomLicenseName = useAuthoringStore(s => s.setAttribCustomLicenseName)
+  const setAttribCustomLicenseUrl  = useAuthoringStore(s => s.setAttribCustomLicenseUrl)
 
   const lengthEnabled = pathMode === 'B'
 
@@ -63,12 +76,12 @@ export function SettingsPanel({ open, onClose }: SettingsPanelProps) {
 
   return (
     <Sheet open={open} onOpenChange={v => !v && onClose()}>
-      <SheetContent side="right" className="w-80 bg-surface border-l border-border">
+      <SheetContent side="right" className="w-[400px] bg-surface border-l border-border flex flex-col">
         <SheetHeader>
           <SheetTitle className="text-paper-text">Generation Settings</SheetTitle>
         </SheetHeader>
 
-        <div className="mt-6 space-y-8 px-1">
+        <div className="mt-6 space-y-8 pl-1 pr-[18px] flex-1 overflow-y-auto pb-6">
           {/* Temperature */}
           <section>
             <label className="block text-sm font-medium text-paper-text mb-3">
@@ -180,6 +193,95 @@ export function SettingsPanel({ open, onClose }: SettingsPanelProps) {
                 Available in Generate from topic mode
               </p>
             )}
+          </section>
+
+          <div className="border-t border-border" />
+
+          {/* Attribution */}
+          <section>
+            <label className="block text-sm font-medium text-paper-text mb-1">
+              Attribution
+            </label>
+            <p className="text-xs text-muted mb-4">
+              Added to each generated story file.
+            </p>
+            <div className="space-y-3">
+              <div>
+                <label className="block text-xs text-muted mb-1">Author</label>
+                <input
+                  type="text"
+                  value={attribAuthor}
+                  onChange={e => setAttribAuthor(e.target.value)}
+                  placeholder="Leave blank to omit"
+                  className={cn(
+                    'w-full px-2 py-1 text-sm border border-border rounded',
+                    'text-paper-text bg-surface placeholder:text-muted',
+                    'focus-visible:ring-2 ring-accent outline-none',
+                  )}
+                />
+              </div>
+              <div>
+                <label className="block text-xs text-muted mb-1">Source</label>
+                <input
+                  type="text"
+                  value={attribSource}
+                  onChange={e => setAttribSource(e.target.value)}
+                  className={cn(
+                    'w-full px-2 py-1 text-sm border border-border rounded',
+                    'text-paper-text bg-surface placeholder:text-muted',
+                    'focus-visible:ring-2 ring-accent outline-none',
+                  )}
+                />
+              </div>
+              <div>
+                <label className="block text-xs text-muted mb-1">License</label>
+                <select
+                  value={attribLicense}
+                  onChange={e => setAttribLicense(e.target.value as LicensePreset)}
+                  className={cn(
+                    'w-full px-2 py-1 text-sm border border-border rounded',
+                    'text-paper-text bg-surface',
+                    'focus-visible:ring-2 ring-accent outline-none',
+                  )}
+                >
+                  <option value="cc-by-4">CC BY 4.0</option>
+                  <option value="cc-by-nc-4">CC BY-NC 4.0 (Non-Commercial)</option>
+                  <option value="other">Other...</option>
+                </select>
+              </div>
+              {attribLicense === 'other' && (
+                <>
+                  <div>
+                    <label className="block text-xs text-muted mb-1">License name</label>
+                    <input
+                      type="text"
+                      value={attribCustomLicenseName}
+                      onChange={e => setAttribCustomLicenseName(e.target.value)}
+                      placeholder="e.g. All Rights Reserved"
+                      className={cn(
+                        'w-full px-2 py-1 text-sm border border-border rounded',
+                        'text-paper-text bg-surface placeholder:text-muted',
+                        'focus-visible:ring-2 ring-accent outline-none',
+                      )}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs text-muted mb-1">License URL</label>
+                    <input
+                      type="text"
+                      value={attribCustomLicenseUrl}
+                      onChange={e => setAttribCustomLicenseUrl(e.target.value)}
+                      placeholder="https://..."
+                      className={cn(
+                        'w-full px-2 py-1 text-sm border border-border rounded',
+                        'text-paper-text bg-surface placeholder:text-muted',
+                        'focus-visible:ring-2 ring-accent outline-none',
+                      )}
+                    />
+                  </div>
+                </>
+              )}
+            </div>
           </section>
         </div>
       </SheetContent>

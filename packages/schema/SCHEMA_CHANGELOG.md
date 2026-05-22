@@ -8,7 +8,7 @@ Initial schema version. Establishes the core story format contract.
 
 Required: `schema_version`, `id`, `title`, `title_ja`, `language`, `description`, `sentences`
 
-Optional: `difficulty`, `keywords`, `grammar`, `vocab_supplement`, `metadata`
+Optional: `difficulty`, `keywords`, `grammar`, `vocab_supplement`, `author`, `source`, `license`, `license_url`, `metadata`
 
 ### Sentence-level fields
 

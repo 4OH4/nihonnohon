@@ -1,0 +1,1193 @@
+{
+  "schema_version": "1",
+  "id": "genki-i-ch22-kyoto-garden",
+  "title": "My Host Family's Kyoto Garden",
+  "title_ja": "ホストファミリーの京都の庭",
+  "language": "ja",
+  "description": "This story describes a student's host family home in Kyoto, focusing on the small, beautiful garden outside their living room. It highlights the tranquil atmosphere and the host mother's care for the plants.",
+  "difficulty": "Genki I Ch.22",
+  "grammar": [
+    "[Ch7 7.2] Resultant States (～ている for Change)",
+    "[Ch5 5.2] Attribute History (Past Tense of Adjectives)",
+    "[Ch4 4.3] Past Identity (Past Tense of です)",
+    "[Ch5 5.4] Personal Preferences (好き / 嫌い)",
+    "[Ch4 4.1] Stating Existence (あります / います)",
+    "[Ch4 4.2] Positional Descriptions",
+    "[Ch6 6.3] Sequencing Actions (て-form for Activities)",
+    "[Ch4 4.4] Recounting Actions (Past Tense of Verbs)",
+    "[Ch3 3.3] Sentence Logistics (Particles を, で, に, へ)",
+    "[Ch1 1.1] Defining Identity (X は Y です)",
+    "[Ch5 5.1] Attribute Basics (Adjective Tenses)",
+    "[Ch6 6.1] Verb Linking (て-form)",
+    "[Ch7 7.1] Current Actions (～ている)",
+    "[Ch2 2.5] Addition and Inclusion (Particle も)",
+    "[Ch16 16.4] Temporal Context (～時)",
+    "[Ch18 18.5] Simultaneous Actions (～ながら)",
+    "[Ch22 22.5] Contrary Outcomes (～のに)",
+    "[Ch21 21.4] Manipulating Attributes (Adjective + する)",
+    "[Ch22 22.1] Causative Control (使役形 - Causative Sentences)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "京都",
+      "hiragana": "きょうと",
+      "translation": "Kyoto"
+    },
+    {
+      "key": 10001,
+      "word": "特に",
+      "hiragana": "とくに",
+      "translation": "especially"
+    },
+    {
+      "key": 10002,
+      "word": "リビングルーム",
+      "hiragana": "リビングルーム",
+      "translation": "living room"
+    },
+    {
+      "key": 10003,
+      "word": "メートル",
+      "hiragana": "メートル",
+      "translation": "meter"
+    },
+    {
+      "key": 10004,
+      "word": "緑",
+      "hiragana": "みどり",
+      "translation": "green color"
+    },
+    {
+      "key": 10005,
+      "word": "植物",
+      "hiragana": "しょくぶつ",
+      "translation": "plant"
+    },
+    {
+      "key": 10006,
+      "word": "なめらかな",
+      "hiragana": "なめらかな",
+      "translation": "smooth"
+    },
+    {
+      "key": 10007,
+      "word": "灰色",
+      "hiragana": "はいいろ",
+      "translation": "gray"
+    },
+    {
+      "key": 10008,
+      "word": "石",
+      "hiragana": "いし",
+      "translation": "stone"
+    },
+    {
+      "key": 10009,
+      "word": "松の木",
+      "hiragana": "まつのき",
+      "translation": "pine tree"
+    },
+    {
+      "key": 10010,
+      "word": "苔",
+      "hiragana": "こけ",
+      "translation": "moss"
+    },
+    {
+      "key": 10011,
+      "word": "覆う",
+      "hiragana": "おおう",
+      "translation": "to cover"
+    },
+    {
+      "key": 10012,
+      "word": "それら",
+      "hiragana": "それら",
+      "translation": "they (inanimate plural)"
+    },
+    {
+      "key": 10013,
+      "word": "柔らかい",
+      "hiragana": "やわらかい",
+      "translation": "soft"
+    },
+    {
+      "key": 10014,
+      "word": "ホストマザー",
+      "hiragana": "ホストマザー",
+      "translation": "host mother"
+    },
+    {
+      "key": 10015,
+      "word": "葉っぱ",
+      "hiragana": "はっぱ",
+      "translation": "leaf"
+    },
+    {
+      "key": 10016,
+      "word": "床",
+      "hiragana": "ゆか",
+      "translation": "floor"
+    },
+    {
+      "key": 10017,
+      "word": "平和",
+      "hiragana": "へいわ",
+      "translation": "peaceful"
+    },
+    {
+      "key": 10018,
+      "word": "いくつか",
+      "hiragana": "いくつか",
+      "translation": "some; several"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "私",
+        "の",
+        "ホストファミリー",
+        "は",
+        "京都",
+        "の",
+        "家",
+        "に",
+        "住んで",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        null,
+        "きょうと",
+        null,
+        "いえ",
+        null,
+        "すんで",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        563,
+        null,
+        10000,
+        null,
+        155,
+        null,
+        396,
+        null,
+        null
+      ],
+      "translation": "My host family lived in a house in Kyoto.",
+      "grammar": [
+        0,
+        8
+      ]
+    },
+    {
+      "id": "s02",
+      "words": [
+        "家",
+        "は",
+        "あまり",
+        "大きくなかった",
+        "です",
+        "が",
+        "とても",
+        "暖かかった",
+        "です",
+        "。"
+      ],
+      "ruby": [
+        "いえ",
+        null,
+        null,
+        "おおきくなかった",
+        null,
+        null,
+        null,
+        "あたたかかった",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        155,
+        null,
+        185,
+        278,
+        null,
+        405,
+        307,
+        528,
+        null,
+        null
+      ],
+      "translation": "The house was not very large, but it felt very warm.",
+      "grammar": [
+        1,
+        2,
+        9
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "私",
+        "は",
+        "その",
+        "家",
+        "が",
+        "とても",
+        "好きでした",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        "いえ",
+        null,
+        null,
+        "すきでした",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        96,
+        155,
+        null,
+        307,
+        293,
+        null
+      ],
+      "translation": "I liked their house very much.",
+      "grammar": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "特に",
+        "、",
+        "小さい",
+        "庭",
+        "が",
+        "好きでした",
+        "。"
+      ],
+      "ruby": [
+        "とくに",
+        null,
+        "ちいさい",
+        "にわ",
+        null,
+        "すきでした",
+        null
+      ],
+      "vocab_keys": [
+        10001,
+        null,
+        283,
+        755,
+        null,
+        293,
+        null
+      ],
+      "translation": "Especially, I liked the small garden.",
+      "grammar": [
+        3,
+        2
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "庭",
+        "は",
+        "リビングルーム",
+        "の",
+        "すぐ",
+        "外",
+        "に",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        "にわ",
+        null,
+        null,
+        null,
+        null,
+        "そと",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        755,
+        null,
+        10002,
+        null,
+        357,
+        878,
+        null,
+        229,
+        null
+      ],
+      "translation": "The garden was just outside the living room.",
+      "grammar": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "毎朝",
+        "、",
+        "私",
+        "は",
+        "朝ごはん",
+        "を",
+        "食べて",
+        "庭",
+        "を",
+        "見ました",
+        "。"
+      ],
+      "ruby": [
+        "まいあさ",
+        null,
+        "わたし",
+        null,
+        "あさごはん",
+        null,
+        "たべて",
+        "にわ",
+        null,
+        "みました",
+        "。"
+      ],
+      "vocab_keys": [
+        964,
+        null,
+        61,
+        null,
+        147,
+        null,
+        177,
+        755,
+        null,
+        179,
+        null
+      ],
+      "translation": "Every morning, I ate breakfast and looked at the garden.",
+      "grammar": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "小さかった",
+        "です",
+        "。",
+        "たぶん",
+        "３",
+        "メートル",
+        "ぐらい",
+        "と",
+        "２",
+        "メートル",
+        "ぐらい",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "ちいさかった",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        283,
+        null,
+        null,
+        632,
+        null,
+        10003,
+        236,
+        null,
+        null,
+        10003,
+        236,
+        null,
+        null
+      ],
+      "translation": "It was small. Maybe it was three meters by two meters.",
+      "grammar": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "でも",
+        "とても",
+        "きれいでした",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        192,
+        307,
+        290,
+        null
+      ],
+      "translation": "But it was very beautiful.",
+      "grammar": [
+        2,
+        10
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "そこ",
+        "には",
+        "たくさん",
+        "緑",
+        "の",
+        "植物",
+        "と",
+        "色",
+        "の",
+        "花",
+        "が",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "みどり",
+        null,
+        "しょくぶつ",
+        null,
+        "いろ",
+        null,
+        "はな",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        254,
+        null,
+        239,
+        10004,
+        null,
+        10005,
+        null,
+        457,
+        null,
+        604,
+        null,
+        229,
+        null
+      ],
+      "translation": "There were many green plants and colorful flowers there.",
+      "grammar": [
+        4
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "小さい",
+        "赤い",
+        "花",
+        "が",
+        "なめらかな",
+        "灰色",
+        "の",
+        "石",
+        "の",
+        "となり",
+        "に",
+        "咲きました",
+        "。"
+      ],
+      "ruby": [
+        "ちいさい",
+        "あかい",
+        "はな",
+        null,
+        null,
+        "はいいろ",
+        null,
+        "いし",
+        null,
+        null,
+        null,
+        "さきました",
+        null
+      ],
+      "vocab_keys": [
+        283,
+        475,
+        604,
+        null,
+        10006,
+        10007,
+        null,
+        10008,
+        null,
+        252,
+        null,
+        898,
+        null
+      ],
+      "translation": "Small red flowers grew next to smooth gray stones.",
+      "grammar": [
+        5,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "一つ",
+        "の",
+        "角",
+        "に",
+        "小さい",
+        "松の木",
+        "が",
+        "ありました",
+        "。"
+      ],
+      "ruby": [
+        "ひとつ",
+        null,
+        "かど",
+        null,
+        "ちいさい",
+        "まつのき",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        494,
+        null,
+        973,
+        null,
+        283,
+        10009,
+        null,
+        229,
+        null
+      ],
+      "translation": "In one corner, there was a small pine tree.",
+      "grammar": [
+        4,
+        5,
+        8
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "その",
+        "木",
+        "は",
+        "古かった",
+        "です",
+        "が",
+        "とても",
+        "強く",
+        "見えました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        "き",
+        null,
+        "ふるかった",
+        null,
+        null,
+        null,
+        "つよく",
+        "みえました",
+        null
+      ],
+      "vocab_keys": [
+        96,
+        1081,
+        null,
+        285,
+        null,
+        405,
+        307,
+        844,
+        775,
+        null
+      ],
+      "translation": "The tree was old, but it looked very strong.",
+      "grammar": [
+        1,
+        7
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "緑",
+        "の",
+        "苔",
+        "が",
+        "いくつか",
+        "の",
+        "石",
+        "を",
+        "覆って",
+        "いました",
+        "。"
+      ],
+      "ruby": [
+        "みどり",
+        null,
+        "こけ",
+        null,
+        null,
+        null,
+        "いし",
+        null,
+        "おおって",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        10004,
+        null,
+        10010,
+        null,
+        10018,
+        null,
+        10008,
+        null,
+        10011,
+        235,
+        null
+      ],
+      "translation": "Green moss covered some stones.",
+      "grammar": [
+        12,
+        12
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "それら",
+        "は",
+        "とても",
+        "柔らかく",
+        "見えました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        null,
+        "やわらかく",
+        "みえました",
+        null
+      ],
+      "vocab_keys": [
+        10012,
+        null,
+        307,
+        10013,
+        775,
+        null
+      ],
+      "translation": "They looked very soft.",
+      "grammar": [
+        7
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "時々",
+        "、",
+        "私",
+        "の",
+        "ホストマザー",
+        "田中",
+        "さん",
+        "が",
+        "庭",
+        "に",
+        "行きました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "わたし",
+        null,
+        null,
+        "たなか",
+        null,
+        null,
+        "にわ",
+        null,
+        "いきました",
+        null
+      ],
+      "vocab_keys": [
+        189,
+        null,
+        61,
+        null,
+        10014,
+        null,
+        44,
+        null,
+        755,
+        null,
+        170,
+        null
+      ],
+      "translation": "Sometimes, my host mother, Mrs. Tanaka, went into the garden.",
+      "grammar": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "彼女",
+        "は",
+        "植物",
+        "に",
+        "水",
+        "を",
+        "やりました",
+        "。"
+      ],
+      "ruby": [
+        "かのじょ",
+        null,
+        "しょくぶつ",
+        null,
+        "みず",
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        594,
+        null,
+        10005,
+        null,
+        154,
+        null,
+        302,
+        null
+      ],
+      "translation": "She watered the plants.",
+      "grammar": [
+        7,
+        8
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "葉っぱ",
+        "も",
+        "切りました",
+        "。"
+      ],
+      "ruby": [
+        "はっぱ",
+        null,
+        "きりました",
+        null
+      ],
+      "vocab_keys": [
+        10015,
+        null,
+        443,
+        null
+      ],
+      "translation": "She also trimmed the leaves.",
+      "grammar": [
+        13,
+        7
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "彼女",
+        "は",
+        "そこ",
+        "で",
+        "仕事",
+        "を",
+        "する",
+        "時",
+        "いつも",
+        "笑いました",
+        "。"
+      ],
+      "ruby": [
+        "かのじょ",
+        null,
+        null,
+        null,
+        "しごと",
+        null,
+        null,
+        "とき",
+        null,
+        "わらいました",
+        null
+      ],
+      "vocab_keys": [
+        594,
+        null,
+        254,
+        null,
+        77,
+        null,
+        181,
+        223,
+        629,
+        804,
+        null
+      ],
+      "translation": "She always smiled when she worked there.",
+      "grammar": [
+        14,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "夕方",
+        "、",
+        "私",
+        "は",
+        "よく",
+        "リビングルーム",
+        "の",
+        "床",
+        "に",
+        "座りながら",
+        "庭",
+        "を",
+        "見ました",
+        "。"
+      ],
+      "ruby": [
+        "ゆうがた",
+        null,
+        "わたし",
+        null,
+        null,
+        null,
+        null,
+        "ゆか",
+        null,
+        "すわりながら",
+        "にわ",
+        null,
+        "みました",
+        null
+      ],
+      "vocab_keys": [
+        883,
+        null,
+        61,
+        null,
+        190,
+        10002,
+        null,
+        10016,
+        null,
+        335,
+        755,
+        null,
+        179,
+        null
+      ],
+      "translation": "In the evenings, I often sat on the living room floor and looked at the garden.",
+      "grammar": [
+        15,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "私",
+        "は",
+        "お茶",
+        "を",
+        "飲んで",
+        "そこ",
+        "で",
+        "のんびりしました",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        "おちゃ",
+        null,
+        "のんで",
+        null,
+        null,
+        null,
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        149,
+        null,
+        173,
+        254,
+        null,
+        1128,
+        null
+      ],
+      "translation": "I drank green tea and relaxed there.",
+      "grammar": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "庭",
+        "は",
+        "とても",
+        "静かな",
+        "所",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "にわ",
+        null,
+        null,
+        "しずかな",
+        "ところ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        755,
+        null,
+        307,
+        292,
+        423,
+        null,
+        null
+      ],
+      "translation": "The garden was a very quiet place.",
+      "grammar": [
+        2,
+        10
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "外",
+        "の",
+        "町",
+        "が",
+        "忙しい",
+        "のに",
+        "、",
+        "庭",
+        "は",
+        "平和",
+        "でした",
+        "。"
+      ],
+      "ruby": [
+        "そと",
+        null,
+        "まち",
+        null,
+        "いそがしい",
+        null,
+        null,
+        "にわ",
+        null,
+        "へいわ",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        878,
+        null,
+        216,
+        null,
+        277,
+        null,
+        null,
+        755,
+        null,
+        10017,
+        null,
+        null
+      ],
+      "translation": "Even when the city outside was busy, the garden felt peaceful.",
+      "grammar": [
+        16,
+        2,
+        10
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "それ",
+        "は",
+        "私",
+        "を",
+        "とても",
+        "幸せに",
+        "させて",
+        "静かに",
+        "させました",
+        "。"
+      ],
+      "ruby": [
+        null,
+        null,
+        "わたし",
+        null,
+        null,
+        "しあわせに",
+        null,
+        "しずかに",
+        null,
+        null
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        61,
+        null,
+        307,
+        669,
+        null,
+        292,
+        null,
+        null
+      ],
+      "translation": "It made me feel very happy and calm.",
+      "grammar": [
+        17,
+        18
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "私",
+        "は",
+        "ホストファミリー",
+        "の",
+        "きれいな",
+        "小さい",
+        "庭",
+        "が",
+        "本当に",
+        "大好きでした",
+        "。"
+      ],
+      "ruby": [
+        "わたし",
+        null,
+        null,
+        null,
+        null,
+        "ちいさい",
+        "にわ",
+        null,
+        "ほんとうに",
+        "だいすきでした",
+        null
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        563,
+        null,
+        290,
+        283,
+        755,
+        null,
+        914,
+        295,
+        null
+      ],
+      "translation": "I really liked my host family's beautiful small garden.",
+      "grammar": [
+        3,
+        2
+      ]
+    }
+  ],
+  "author": "Rupert T",
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

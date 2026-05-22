@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 

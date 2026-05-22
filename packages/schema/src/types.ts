@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Rupert Thomas
+// SPDX-License-Identifier: MIT
+
 export interface VocabEntry {
   id: number
   word: string
@@ -43,6 +46,10 @@ export interface StoryModel {
   keywords: VocabSupplementEntry[]
   grammar: string[] // story-level grammar point descriptions — NOT SentenceModel.grammar (number[])
   vocabSupplement: VocabSupplementEntry[]
+  author?: string
+  source?: string
+  license?: string
+  licenseUrl?: string
   sentences: SentenceModel[]
   metadata: Record<string, unknown>
 }
