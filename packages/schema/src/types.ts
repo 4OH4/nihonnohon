@@ -1,6 +1,18 @@
 // Copyright (c) 2026 Rupert Thomas
 // SPDX-License-Identifier: MIT
 
+/** A single text+ruby segment within a parsed word. ruby is null for unannotated text. */
+export interface WordSegment {
+  text: string
+  ruby: string | null
+}
+
+/** A word parsed from an inline-annotated string. surface is always the clean plain text. */
+export interface ParsedWord {
+  surface: string
+  segments: WordSegment[]
+}
+
 export interface VocabEntry {
   id: number
   word: string
@@ -27,8 +39,8 @@ export interface VocabSupplementEntry {
 
 export interface SentenceModel {
   id: string
-  words: string[]
-  ruby: (string | null)[]
+  tokens: ParsedWord[]
+  /** Parallel to tokens[] — one entry per token. */
   vocabKeys: (number | null)[]
   translation: string | null
   grammar: number[] // indices into StoryModel.grammar (string[])

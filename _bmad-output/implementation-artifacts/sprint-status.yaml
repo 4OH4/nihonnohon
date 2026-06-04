@@ -83,7 +83,7 @@ development_status:
   # ADR: docs/adr/005-inline-furigana-format.md
   supp-epic-1: in-progress
   se1-1-inline-ruby-parser-and-v2-schema: done
-  se1-2-internal-type-changes: backlog
+  se1-2-internal-type-changes: done
   se1-3-loader-v2-and-v1-shim: backlog
   se1-4-reader-ui-per-segment-rendering: backlog
   se1-5-story-generator-backend-v2-format: backlog

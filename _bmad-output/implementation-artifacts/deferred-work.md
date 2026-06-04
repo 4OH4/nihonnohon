@@ -1,5 +1,9 @@
 # Deferred Work
 
+## Deferred from: code review of se1-2-internal-type-changes (2026-06-04)
+
+- **`parseInlineRuby` orphan-bracket handler silently discards bracket content:** An orphan `[` outside kanji context causes the bracket and its contents to be discarded from `surface`, so `token.surface` diverges from the original input string. Pre-existing from se1-1. [`parseInlineRuby.ts:68-70`]
+
 ## Deferred from: code review of se1-1-inline-ruby-parser-and-v2-schema (2026-06-04)
 
 - **CJK Extension A (U+3400–U+4DBF) excluded from `isKanji`:** No kyouiku/joyo kanji fall in this block; spec explicitly defines range as 0x4E00–0x9FFF. Revisit if classical/rare character support is needed. [`parseInlineRuby.ts:19`]
