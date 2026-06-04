@@ -124,7 +124,7 @@ describe('WordToken', () => {
 
   // Per-segment rendering tests
 
-  it('renders per-segment ruby: kanji block with okurigana', () => {
+  it('renders per-segment ruby: kanji block with okurigana grouped inside ruby', () => {
     const token: ParsedWord = {
       surface: '食べる',
       segments: [{ text: '食', ruby: 'た' }, { text: 'べる', ruby: null }],
@@ -135,10 +135,11 @@ describe('WordToken', () => {
     const rubies = container.querySelectorAll('ruby')
     expect(rubies).toHaveLength(1)
     expect(rubies[0].querySelector('rt')!.textContent).toBe('た')
-    expect(container.querySelector('[role="button"]')!.textContent).toContain('べる')
+    // okurigana is grouped inside the ruby element for correct annotation distribution
+    expect(rubies[0].lastChild?.textContent).toBe('べる')
   })
 
-  it('renders per-segment ruby: two annotated kanji with interleaved kana', () => {
+  it('renders per-segment ruby: two annotated kanji with interleaved kana grouped inside each ruby', () => {
     const token: ParsedWord = {
       surface: '付け加える',
       segments: [
@@ -154,7 +155,9 @@ describe('WordToken', () => {
     const rubies = container.querySelectorAll('ruby')
     expect(rubies).toHaveLength(2)
     expect(rubies[0].querySelector('rt')!.textContent).toBe('つ')
+    expect(rubies[0].lastChild?.textContent).toBe('け')   // け grouped inside first ruby
     expect(rubies[1].querySelector('rt')!.textContent).toBe('くわ')
+    expect(rubies[1].lastChild?.textContent).toBe('える') // える grouped inside second ruby
   })
 
   it('renders whole-word annotation as single ruby element (jukujikun)', () => {

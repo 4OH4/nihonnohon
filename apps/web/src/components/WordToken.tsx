@@ -41,6 +41,29 @@ export function WordToken({ token, vocabKey, sentenceId, supplementEntry }: Word
     lookup(token.surface, entry, sentenceId)
   }
 
+  // Group each annotated segment with its immediately-following unannotated segment (okurigana)
+  // inside one <ruby> element, so the browser distributes the annotation over the full word unit.
+  const renderedSegments: JSX.Element[] = []
+  let i = 0
+  while (i < token.segments.length) {
+    const seg = token.segments[i]
+    if (seg.ruby !== null) {
+      const next = token.segments[i + 1]
+      const trailer = next?.ruby === null ? next.text : null
+      renderedSegments.push(
+        <ruby key={i}>
+          {seg.text}
+          <rt className={cn(!rubyVisible && 'invisible')}>{seg.ruby}</rt>
+          {trailer}
+        </ruby>
+      )
+      i += trailer !== null ? 2 : 1
+    } else {
+      renderedSegments.push(<span key={i}>{seg.text}</span>)
+      i++
+    }
+  }
+
   return (
     <span
       role="button"
@@ -58,17 +81,7 @@ export function WordToken({ token, vocabKey, sentenceId, supplementEntry }: Word
         if (e.key === 'Enter' || e.key === ' ') handleActivate(e)
       }}
     >
-      {/* Render each segment: annotated segments get <ruby>, plain segments get <span> */}
-      {token.segments.map((seg, i) =>
-        seg.ruby !== null ? (
-          <ruby key={i}>
-            {seg.text}
-            <rt className={cn(!rubyVisible && 'invisible')}>{seg.ruby}</rt>
-          </ruby>
-        ) : (
-          <span key={i}>{seg.text}</span>
-        )
-      )}
+      {renderedSegments}
     </span>
   )
 }
