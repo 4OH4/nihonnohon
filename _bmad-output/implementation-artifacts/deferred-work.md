@@ -1,5 +1,13 @@
 # Deferred Work
 
+## Deferred from: code review of se2-1-enrichment-module (2026-06-04)
+
+- **`_pos_code` empty `conj_type` → silent v1 fallback:** SudachiPy returning `""` for 活用型 on dictionary-form verb tokens causes silent v1 label; consider a warning or `""` → explicit unknown code. [`enrichment.py`]
+- **`_annotate_morpheme` theoretical empty kanji_reading:** If `reading_hira` is shorter than `surface` (cannot occur with valid SudachiPy output), `kanji_reading` becomes `""` producing `食[]べ`. Add an assertion guard if input validation is introduced upstream. [`enrichment.py`]
+- **`enrich_sentence` imports `sudachipy` inside method:** `import sudachipy` and `sudachipy.SplitMode.C` inside the loop body on every call; move import to module level or constructor. [`enrichment.py`]
+- **`lookup_gloss` `str(Gloss)` format not verified:** `str(glosses[0])` relies on Jamdict's `Gloss.__str__` which may include language tags or metadata. Confirm format is clean English only. [`enrichment.py`]
+- **`_dominant_pos` and `_derive_dictionary_form` duplicate `_AUXILIARY_POS` filtering:** Both independently build `content` list. Consider extracting `_content_morphemes(morphemes)` helper to keep in sync. [`enrichment.py`]
+
 ## Deferred from: code review of se1-6-story-generator-frontend-v2-compatibility (2026-06-04)
 
 - **No test asserts `schema_version: "1"` still accepted:** Stage 2 test suite covers `"2"` (accepted) and `"3"` (rejected) but not the `!== '1'` branch. Add `it('accepts "1" as a valid schema_version')` to the Stage 2 suite. [`apps/story-generator/src/__tests__/validateStoryJson.test.ts`]
