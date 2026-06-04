@@ -1,5 +1,20 @@
 # Schema Changelog
 
+## Version 2 — additive update (2026-06-04)
+
+### Additive change to `vocabEntry`
+
+Two optional fields added to the `vocabEntry` object (used by `vocab_supplement` and `keywords`):
+
+- `pos` (string, optional) — compact POS code from SudachiPy enrichment pipeline
+  (e.g. `"n"`, `"v1"`, `"v5"`, `"v-irr"`, `"adj-i"`, `"adj-na"`, `"adv"`, `"prt"`)
+- `dictionary_form` (string, optional) — base/lemma form from SudachiPy
+
+Both fields are absent on stories generated before the enrichment pipeline (se2-1/se2-2).
+Existing stories without these fields remain valid — `schema_version` is unchanged at `"2"`.
+
+---
+
 ## Version 2
 
 Introduced inline furigana annotation. See ADR 005 (`docs/adr/005-inline-furigana-format.md`)

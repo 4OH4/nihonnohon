@@ -35,6 +35,8 @@ export interface VocabSupplementEntry {
   word: string
   hiragana: string
   translation: string
+  pos?: string
+  dictionaryForm?: string
 }
 
 export interface SentenceModel {

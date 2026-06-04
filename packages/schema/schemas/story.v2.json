@@ -80,7 +80,9 @@
         "key": { "type": "integer", "minimum": 0 },
         "word": { "type": "string" },
         "hiragana": { "type": "string" },
-        "translation": { "type": "string" }
+        "translation": { "type": "string" },
+        "pos": { "type": "string" },
+        "dictionary_form": { "type": "string" }
       }
     },
     "sentence": {

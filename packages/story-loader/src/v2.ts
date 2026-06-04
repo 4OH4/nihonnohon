@@ -15,6 +15,8 @@ interface WireVocabEntry {
   word: string
   hiragana: string
   translation: string
+  pos?: string
+  dictionary_form?: string
 }
 
 interface WireSentence {
@@ -90,7 +92,14 @@ export function loadV2(raw: unknown): StoryModel {
 }
 
 function mapVocabEntry(e: WireVocabEntry): VocabSupplementEntry {
-  return { key: e.key!, word: e.word, hiragana: e.hiragana, translation: e.translation }
+  return {
+    key: e.key!,
+    word: e.word,
+    hiragana: e.hiragana,
+    translation: e.translation,
+    ...(e.pos !== undefined && { pos: e.pos }),
+    ...(e.dictionary_form !== undefined && { dictionaryForm: e.dictionary_form }),
+  }
 }
 
 function mapSentence(s: WireSentence): SentenceModel {

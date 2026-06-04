@@ -1,5 +1,11 @@
 # Deferred Work
 
+## Deferred from: code review of se2-3-schema-and-type-updates (2026-06-04)
+
+- **`pos: ""` schema allows empty string:** `"type": "string"` has no `minLength:1` on the `pos` property; `""` is a valid sentinel for "unknown POS" in the enrichment pipeline but causes `if (entry.pos)` to treat it as absent. Consider `minLength:1` with an explicit "unknown" code if a stricter contract is needed later. [`packages/schema/schemas/story.v2.json`]
+- **`keywords`/`vocabSupplement` share `VocabSupplementEntry`:** Both arrays are typed with the same interface; `pos`/`dictionaryForm` can silently appear on keyword entries. If these collections need divergent shapes in future, consider separate interfaces. [`packages/schema/src/types.ts`]
+- **`key: e.key!` non-null assertion:** Pre-existing pattern in `mapVocabEntry`; AJV validates `key` as required so the assertion is safe, but an explicit `?? 0` fallback would be clearer. [`packages/story-loader/src/v2.ts`]
+
 ## Deferred from: code review of se2-2-updated-generation-pipeline (2026-06-04)
 
 - **`_lookup_genki_id` falsy-zero pattern:** `or` chain would misclassify row ID 0 as not-found; safe with IDs 1–1172 but latent. Prefer `if (v := ...) is not None` pattern when revisiting. [`enrichment.py:_lookup_genki_id`]
