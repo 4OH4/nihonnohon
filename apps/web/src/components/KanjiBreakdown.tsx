@@ -20,8 +20,8 @@ export function KanjiBreakdown({ word }: KanjiBreakdownProps) {
     <div className="flex gap-3 overflow-x-auto" tabIndex={0} aria-label="Kanji breakdown">
       {entries.map(({ char, entry }, i) => (
         <div key={char + i} className="flex flex-col items-center shrink-0">
-          <span className="font-ja text-xl" lang="ja">{char}</span>
-          <span className="text-xs text-muted">{entry.kw ?? entry.m[0] ?? ''}</span>
+          <span className="font-ja text-[1.25em]" lang="ja">{char}</span>
+          <span className="text-[0.75em] text-muted">{entry.kw ?? entry.m[0] ?? ''}</span>
         </div>
       ))}
     </div>

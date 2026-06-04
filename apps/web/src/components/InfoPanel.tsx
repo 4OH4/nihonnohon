@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Rupert Thomas
 // SPDX-License-Identifier: MIT
 
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useLookupStore } from '@/stores/lookupStore'
 import { KanjiBreakdown } from '@/components/KanjiBreakdown'
 import type { StoryModel } from '@nihonnohon/schema'
@@ -27,6 +27,7 @@ export function InfoPanel({ story }: InfoPanelProps) {
   return (
     <div
       className="flex-1 min-h-[90px] max-h-[120px] overflow-y-auto bg-surface px-4 py-2"
+      style={{ fontSize: 'var(--story-font-size)' } as React.CSSProperties}
       aria-live="polite"
       aria-label="Word lookup panel"
     >
@@ -34,10 +35,10 @@ export function InfoPanel({ story }: InfoPanelProps) {
         <div>
           <p className="font-semibold text-paper-text">{story.title}</p>
           {story.author && (
-            <p className="text-sm text-muted">{story.author}</p>
+            <p className="text-[0.875em] text-muted">{story.author}</p>
           )}
           {story.difficulty !== null && (
-            <p className="text-sm text-muted">{story.difficulty}</p>
+            <p className="text-[0.875em] text-muted">{story.difficulty}</p>
           )}
         </div>
       )}
@@ -48,9 +49,9 @@ export function InfoPanel({ story }: InfoPanelProps) {
           <div className="min-w-0">
             <div className="flex items-baseline gap-2">
               <span className="font-ja font-semibold text-paper-text" lang="ja">{lookupState.word}</span>
-              <span className="text-[0.875rem] font-ja text-muted" lang="ja">{lookupState.entry.reading}</span>
+              <span className="text-[0.875em] font-ja text-muted" lang="ja">{lookupState.entry.reading}</span>
             </div>
-            <p className="text-[1.125rem] text-paper-text">{lookupState.entry.meaning}</p>
+            <p className="text-paper-text">{lookupState.entry.meaning}</p>
           </div>
           {/* Dictionary detail column — vertical stack, ready for additional sections */}
           <div className="flex flex-col gap-3 shrink-0">
