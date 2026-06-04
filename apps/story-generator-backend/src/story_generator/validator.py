@@ -25,8 +25,9 @@ _REQUIRED_FIELDS = frozenset(
     {"schema_version", "id", "title", "title_ja", "language", "description", "sentences"}
 )
 
-# Kanji Unicode ranges: CJK Unified Ideographs, Extension A, Compatibility Ideographs, Extension B
-_KANJI_RE = re.compile(r"[一-鿿㐀-䶿豈-﫿\U00020000-\U0002A6DF]")
+# Kanji Unicode ranges: CJK Unified Ideographs, Extension A, Compatibility Ideographs, Extension B,
+# plus ideographic iteration marks 々〻〃 (U+3005, U+303B, U+3003) — matches TypeScript isKanji().
+_KANJI_RE = re.compile(r"[一-鿿㐀-䶿豈-﫿\U00020000-\U0002A6DF々〻〃]")
 
 
 def _is_kanji(ch: str) -> bool:

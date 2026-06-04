@@ -101,6 +101,18 @@ def test_validate_bracket_not_preceded_by_kanji_fails():
     ), [e.message for e in result.errors]
 
 
+def test_validate_iteration_mark_kanji_passes():
+    """々 (ideographic iteration mark) is treated as kanji, so 時々[ときどき] is valid."""
+    story = _minimal_story(sentences=[
+        {"id": "s01", "words": ["時々[ときどき]"], "vocab_keys": [None]},
+    ])
+    result = validate(story)
+    assert not any(
+        e.code == "VALIDATION_ERROR" and "時々" in e.message
+        for e in result.errors
+    ), [e.message for e in result.errors]
+
+
 def test_validate_empty_string_word_does_not_crash():
     """An empty string in words does not cause validate() to raise — no bracket error added."""
     story = _minimal_story(sentences=[
