@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-05-11
-last_updated: 2026-06-04
+last_updated: 2026-06-04  # se1-4 created ready-for-dev
 # v1 complete: all epics done, retrospective closed
 # supp-epic-1 (furigana rework) in progress
 project: nihonnohon
@@ -85,7 +85,7 @@ development_status:
   se1-1-inline-ruby-parser-and-v2-schema: done
   se1-2-internal-type-changes: done
   se1-3-loader-v2-and-v1-shim: done
-  se1-4-reader-ui-per-segment-rendering: backlog
+  se1-4-reader-ui-per-segment-rendering: done
   se1-5-story-generator-backend-v2-format: backlog
   se1-6-story-generator-frontend-v2-compatibility: backlog
   se1-7-migrate-story-files-to-v2: backlog

@@ -117,16 +117,22 @@ const baseStory: StoryModel = {
   sentences: [
     {
       id: 's1',
-      words: ['食べる', 'は', '楽しい'],
-      ruby: ['たべる', null, 'たのしい'],
+      tokens: [
+        { surface: '食べる',   segments: [{ text: '食べる',   ruby: 'たべる' }] },
+        { surface: 'は',       segments: [{ text: 'は',       ruby: null }] },
+        { surface: '楽しい',   segments: [{ text: '楽しい',   ruby: 'たのしい' }] },
+      ],
       vocabKeys: [1, null, null],
       translation: 'Eating is fun.',
       grammar: [],
     },
     {
       id: 's2',
-      words: ['日本語', 'を', '勉強します'],
-      ruby: ['にほんご', null, 'べんきょうします'],
+      tokens: [
+        { surface: '日本語',     segments: [{ text: '日本語',     ruby: 'にほんご' }] },
+        { surface: 'を',         segments: [{ text: 'を',         ruby: null }] },
+        { surface: '勉強します', segments: [{ text: '勉強します', ruby: 'べんきょうします' }] },
+      ],
       vocabKeys: [null, null, 2],
       translation: 'I study Japanese.',
       grammar: [],
@@ -259,8 +265,7 @@ describe('ReaderRoute', () => {
       ],
       sentences: [{
         id: 's1',
-        words: ['食べる'],
-        ruby: ['たべる'],
+        tokens: [{ surface: '食べる', segments: [{ text: '食べる', ruby: 'たべる' }] }],
         vocabKeys: [1],
         translation: null,
         grammar: [],
@@ -323,8 +328,7 @@ describe('ReaderRoute', () => {
       ],
       sentences: [{
         id: 's1',
-        words: ['まいあさ'],
-        ruby: [null],
+        tokens: [{ surface: 'まいあさ', segments: [{ text: 'まいあさ', ruby: null }] }],
         vocabKeys: [null],
         translation: null,
         grammar: [],

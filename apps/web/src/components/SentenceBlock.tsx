@@ -35,20 +35,19 @@ export function SentenceBlock({ sentence, sentenceIndex, supplementMap }: Senten
       aria-label={`Sentence ${sentenceIndex + 1}`}
       onClick={() => selectSentence(sentence.id)}
       className={cn(
-        'flex flex-wrap py-2 px-1 rounded',
+        'flex flex-wrap items-baseline py-2 px-1 rounded',
         'transition-[gap,background-color] duration-150',
         spacingVisible ? 'gap-x-2' : 'gap-x-0',
         isSelected && 'bg-accent-subtle',
       )}
     >
-      {sentence.words.map((word, i) => (
+      {sentence.tokens.map((token, i) => (
         <WordToken
           key={i}
-          word={word}
-          ruby={sentence.ruby[i] ?? null}
+          token={token}
           vocabKey={sentence.vocabKeys[i] ?? null}
           sentenceId={sentence.id}
-          supplementEntry={supplementMap?.get(word) ?? null}
+          supplementEntry={supplementMap?.get(token.surface) ?? null}
         />
       ))}
       {transVisible && sentence.translation !== null && (
