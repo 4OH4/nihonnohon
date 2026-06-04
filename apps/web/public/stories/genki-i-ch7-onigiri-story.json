@@ -26,37 +26,49 @@
       "key": 10000,
       "word": "おにぎり",
       "hiragana": "おにぎり",
-      "translation": "onigiri (rice ball)"
+      "translation": "onigiri (rice ball)",
+      "pos": "n",
+      "dictionary_form": "おにぎり"
     },
     {
       "key": 10001,
       "word": "作る",
       "hiragana": "つくる",
-      "translation": "to make"
+      "translation": "to make",
+      "pos": "v5",
+      "dictionary_form": "作る"
     },
     {
       "key": 10002,
       "word": "ボウル",
       "hiragana": "ボウル",
-      "translation": "bowl"
+      "translation": "bowl",
+      "pos": "n",
+      "dictionary_form": "ボウル"
     },
     {
       "key": 10003,
       "word": "ツナ",
       "hiragana": "ツナ",
-      "translation": "tuna"
+      "translation": "tuna",
+      "pos": "n",
+      "dictionary_form": "ツナ"
     },
     {
       "key": 10004,
       "word": "のり",
       "hiragana": "のり",
-      "translation": "nori (seaweed)"
+      "translation": "nori (seaweed)",
+      "pos": "n",
+      "dictionary_form": "のり"
     },
     {
       "key": 10005,
       "word": "もう一つ",
       "hiragana": "もうひとつ",
-      "translation": "one more"
+      "translation": "one more",
+      "pos": "adv",
+      "dictionary_form": "もう"
     }
   ],
   "sentences": [

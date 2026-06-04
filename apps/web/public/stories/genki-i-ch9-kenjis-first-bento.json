@@ -33,133 +33,177 @@
       "key": 10000,
       "word": "けんじ",
       "hiragana": "けんじ",
-      "translation": "Kenji (name)"
+      "translation": "Kenji (name)",
+      "pos": "n",
+      "dictionary_form": "けんじ"
     },
     {
       "key": 10001,
       "word": "台所",
       "hiragana": "だいどころ",
-      "translation": "kitchen"
+      "translation": "kitchen",
+      "pos": "n",
+      "dictionary_form": "台所"
     },
     {
       "key": 10002,
       "word": "冷蔵庫",
       "hiragana": "れいぞうこ",
-      "translation": "refrigerator"
+      "translation": "refrigerator",
+      "pos": "n",
+      "dictionary_form": "冷蔵庫"
     },
     {
       "key": 10003,
       "word": "ブロッコリー",
       "hiragana": "ブロッコリー",
-      "translation": "broccoli"
+      "translation": "broccoli",
+      "pos": "n",
+      "dictionary_form": "ブロッコリー"
     },
     {
       "key": 10004,
       "word": "ニンジン",
       "hiragana": "ニンジン",
-      "translation": "carrot"
+      "translation": "carrot",
+      "pos": "n",
+      "dictionary_form": "ニンジン"
     },
     {
       "key": 10005,
       "word": "たまご",
       "hiragana": "たまご",
-      "translation": "egg"
+      "translation": "egg",
+      "pos": "n",
+      "dictionary_form": "たまご"
     },
     {
       "key": 10006,
       "word": "棚",
       "hiragana": "たな",
-      "translation": "cupboard"
+      "translation": "cupboard",
+      "pos": "n",
+      "dictionary_form": "棚"
     },
     {
       "key": 10007,
       "word": "まず",
       "hiragana": "まず",
-      "translation": "first"
+      "translation": "first",
+      "pos": "adv",
+      "dictionary_form": "まず"
     },
     {
       "key": 10008,
       "word": "鍋",
       "hiragana": "なべ",
-      "translation": "pot"
+      "translation": "pot",
+      "pos": "n",
+      "dictionary_form": "鍋"
     },
     {
       "key": 10009,
       "word": "ほかの",
       "hiragana": "ほかの",
-      "translation": "other"
+      "translation": "other",
+      "pos": "n",
+      "dictionary_form": "ほか"
     },
     {
       "key": 10010,
       "word": "煮る",
       "hiragana": "にる",
-      "translation": "to boil (food)"
+      "translation": "to boil (food)",
+      "pos": "v1",
+      "dictionary_form": "煮る"
     },
     {
       "key": 10011,
       "word": "やわらかい",
       "hiragana": "やわらかい",
-      "translation": "soft"
+      "translation": "soft",
+      "pos": "adj-i",
+      "dictionary_form": "やわらかい"
     },
     {
       "key": 10012,
       "word": "フライパン",
       "hiragana": "フライパン",
-      "translation": "frying pan"
+      "translation": "frying pan",
+      "pos": "n",
+      "dictionary_form": "フライパン"
     },
     {
       "key": 10013,
       "word": "焼く",
       "hiragana": "やく",
-      "translation": "to fry/grill"
+      "translation": "to fry/grill",
+      "pos": "v5",
+      "dictionary_form": "焼く"
     },
     {
       "key": 10014,
       "word": "お弁当箱",
       "hiragana": "おべんとうばこ",
-      "translation": "bento box"
+      "translation": "bento box",
+      "pos": "pref",
+      "dictionary_form": "お"
     },
     {
       "key": 10015,
       "word": "入れる",
       "hiragana": "いれる",
-      "translation": "to put in"
+      "translation": "to put in",
+      "pos": "v1",
+      "dictionary_form": "入れる"
     },
     {
       "key": 10016,
       "word": "置く",
       "hiragana": "おく",
-      "translation": "to place/put"
+      "translation": "to place/put",
+      "pos": "v5",
+      "dictionary_form": "置く"
     },
     {
       "key": 10017,
       "word": "別の",
       "hiragana": "べつの",
-      "translation": "another; different"
+      "translation": "another; different",
+      "pos": "n",
+      "dictionary_form": "別"
     },
     {
       "key": 10018,
       "word": "さいごに",
       "hiragana": "さいごに",
-      "translation": "finally"
+      "translation": "finally",
+      "pos": "n",
+      "dictionary_form": "さいご"
     },
     {
       "key": 10019,
       "word": "彼",
       "hiragana": "かれ",
-      "translation": "he"
+      "translation": "he",
+      "pos": "pron",
+      "dictionary_form": "彼"
     },
     {
       "key": 10020,
       "word": "ふた",
       "hiragana": "ふた",
-      "translation": "lid"
+      "translation": "lid",
+      "pos": "n",
+      "dictionary_form": "ふた"
     },
     {
       "key": 10021,
       "word": "楽しみ",
       "hiragana": "たのしみ",
-      "translation": "looking forward to"
+      "translation": "looking forward to",
+      "pos": "n",
+      "dictionary_form": "楽しみ"
     }
   ],
   "sentences": [

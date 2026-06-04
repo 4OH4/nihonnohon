@@ -46,211 +46,279 @@
       "key": 10000,
       "word": "歩く",
       "hiragana": "あるく",
-      "translation": "to walk"
+      "translation": "to walk",
+      "pos": "v5",
+      "dictionary_form": "歩く"
     },
     {
       "key": 10001,
       "word": "十五分",
       "hiragana": "じゅうごふん",
-      "translation": "fifteen minutes"
+      "translation": "fifteen minutes",
+      "pos": "n",
+      "dictionary_form": "十五"
     },
     {
       "key": 10002,
       "word": "ふわふわ",
       "hiragana": "ふわふわ",
-      "translation": "fluffy"
+      "translation": "fluffy",
+      "pos": "adv",
+      "dictionary_form": "ふわふわ"
     },
     {
       "key": 10003,
       "word": "毛",
       "hiragana": "け",
-      "translation": "fur"
+      "translation": "fur",
+      "pos": "n",
+      "dictionary_form": "毛"
     },
     {
       "key": 10004,
       "word": "黄色い",
       "hiragana": "きいろい",
-      "translation": "yellow"
+      "translation": "yellow",
+      "pos": "adj-i",
+      "dictionary_form": "黄色い"
     },
     {
       "key": 10005,
       "word": "石",
       "hiragana": "いし",
-      "translation": "stone"
+      "translation": "stone",
+      "pos": "n",
+      "dictionary_form": "石"
     },
     {
       "key": 10006,
       "word": "壁",
       "hiragana": "かべ",
-      "translation": "wall"
+      "translation": "wall",
+      "pos": "n",
+      "dictionary_form": "壁"
     },
     {
       "key": 10007,
       "word": "灰色",
       "hiragana": "はいいろ",
-      "translation": "gray"
+      "translation": "gray",
+      "pos": "n",
+      "dictionary_form": "灰色"
     },
     {
       "key": 10008,
       "word": "通り",
       "hiragana": "とおり",
-      "translation": "street"
+      "translation": "street",
+      "pos": "n",
+      "dictionary_form": "通り"
     },
     {
       "key": 10009,
       "word": "他の",
       "hiragana": "ほかの",
-      "translation": "other"
+      "translation": "other",
+      "pos": "n",
+      "dictionary_form": "他"
     },
     {
       "key": 10010,
       "word": "緑",
       "hiragana": "みどり",
-      "translation": "green"
+      "translation": "green",
+      "pos": "n",
+      "dictionary_form": "緑"
     },
     {
       "key": 10011,
       "word": "茂み",
       "hiragana": "しげみ",
-      "translation": "bush"
+      "translation": "bush",
+      "pos": "n",
+      "dictionary_form": "茂み"
     },
     {
       "key": 10012,
       "word": "体",
       "hiragana": "からだ",
-      "translation": "body"
+      "translation": "body",
+      "pos": "n",
+      "dictionary_form": "体"
     },
     {
       "key": 10013,
       "word": "起こす",
       "hiragana": "おこす",
-      "translation": "to wake up"
+      "translation": "to wake up",
+      "pos": "v5",
+      "dictionary_form": "起こす"
     },
     {
       "key": 10014,
       "word": "ある日",
       "hiragana": "あるひ",
-      "translation": "one day"
+      "translation": "one day",
+      "dictionary_form": "ある"
     },
     {
       "key": 10015,
       "word": "ストレッチ",
       "hiragana": "ストレッチ",
-      "translation": "stretch"
+      "translation": "stretch",
+      "pos": "n",
+      "dictionary_form": "ストレッチ"
     },
     {
       "key": 10016,
       "word": "前足",
       "hiragana": "まえあし",
-      "translation": "front paw"
+      "translation": "front paw",
+      "pos": "n",
+      "dictionary_form": "前足"
     },
     {
       "key": 10017,
       "word": "伸ばす",
       "hiragana": "のばす",
-      "translation": "to stretch (transitive)"
+      "translation": "to stretch (transitive)",
+      "pos": "v5",
+      "dictionary_form": "伸ばす"
     },
     {
       "key": 10018,
       "word": "後ろ足",
       "hiragana": "うしろあし",
-      "translation": "back leg"
+      "translation": "back leg",
+      "pos": "n",
+      "dictionary_form": "後ろ足"
     },
     {
       "key": 10019,
       "word": "あくび",
       "hiragana": "あくび",
-      "translation": "yawn"
+      "translation": "yawn",
+      "pos": "n",
+      "dictionary_form": "あくび"
     },
     {
       "key": 10020,
       "word": "口",
       "hiragana": "くち",
-      "translation": "mouth"
+      "translation": "mouth",
+      "pos": "n",
+      "dictionary_form": "口"
     },
     {
       "key": 10021,
       "word": "ピンク",
       "hiragana": "ピンク",
-      "translation": "pink"
+      "translation": "pink",
+      "pos": "n",
+      "dictionary_form": "ピンク"
     },
     {
       "key": 10022,
       "word": "瞬き",
       "hiragana": "まばたき",
-      "translation": "blink"
+      "translation": "blink",
+      "pos": "n",
+      "dictionary_form": "瞬き"
     },
     {
       "key": 10023,
       "word": "動く",
       "hiragana": "うごく",
-      "translation": "to move"
+      "translation": "to move",
+      "pos": "v5",
+      "dictionary_form": "動く"
     },
     {
       "key": 10024,
       "word": "触る",
       "hiragana": "さわる",
-      "translation": "to touch"
+      "translation": "to touch",
+      "pos": "v5",
+      "dictionary_form": "触る"
     },
     {
       "key": 10025,
       "word": "ただ",
       "hiragana": "ただ",
-      "translation": "just; only"
+      "translation": "just; only",
+      "pos": "conj",
+      "dictionary_form": "ただ"
     },
     {
       "key": 10026,
       "word": "そっと",
       "hiragana": "そっと",
-      "translation": "quietly"
+      "translation": "quietly",
+      "pos": "adv",
+      "dictionary_form": "そっと"
     },
     {
       "key": 10027,
       "word": "おはようございます",
       "hiragana": "おはようございます",
-      "translation": "Good morning"
+      "translation": "Good morning",
+      "dictionary_form": "おはようございます"
     },
     {
       "key": 10028,
       "word": "かご",
       "hiragana": "かご",
-      "translation": "basket"
+      "translation": "basket",
+      "pos": "n",
+      "dictionary_form": "かご"
     },
     {
       "key": 10029,
       "word": "こと",
       "hiragana": "こと",
-      "translation": "thing (abstract)"
+      "translation": "thing (abstract)",
+      "pos": "n",
+      "dictionary_form": "こと"
     },
     {
       "key": 10030,
       "word": "手",
       "hiragana": "て",
-      "translation": "hand"
+      "translation": "hand",
+      "pos": "n",
+      "dictionary_form": "手"
     },
     {
       "key": 10031,
       "word": "振る",
       "hiragana": "ふる",
-      "translation": "to wave"
+      "translation": "to wave",
+      "pos": "v5",
+      "dictionary_form": "振る"
     },
     {
       "key": 10032,
       "word": "探す",
       "hiragana": "さがす",
-      "translation": "to look for"
+      "translation": "to look for",
+      "pos": "v5",
+      "dictionary_form": "探す"
     },
     {
       "key": 10033,
       "word": "お守り",
       "hiragana": "おまもり",
-      "translation": "good luck charm"
+      "translation": "good luck charm",
+      "pos": "n",
+      "dictionary_form": "お守り"
     },
     {
       "key": 10034,
       "word": "また",
       "hiragana": "また",
-      "translation": "again"
+      "translation": "again",
+      "pos": "conj",
+      "dictionary_form": "また"
     }
   ],
   "sentences": [

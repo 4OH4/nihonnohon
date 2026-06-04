@@ -43,217 +43,288 @@
       "key": 10000,
       "word": "目",
       "hiragana": "め",
-      "translation": "eye"
+      "translation": "eye",
+      "pos": "n",
+      "dictionary_form": "目"
     },
     {
       "key": 10001,
       "word": "光",
       "hiragana": "ひかり",
-      "translation": "light"
+      "translation": "light",
+      "pos": "n",
+      "dictionary_form": "光"
     },
     {
       "key": 10002,
       "word": "台所",
       "hiragana": "だいどころ",
-      "translation": "kitchen"
+      "translation": "kitchen",
+      "pos": "n",
+      "dictionary_form": "台所"
     },
     {
       "key": 10003,
       "word": "音",
       "hiragana": "おと",
-      "translation": "sound"
+      "translation": "sound",
+      "pos": "n",
+      "dictionary_form": "音"
     },
     {
       "key": 10004,
       "word": "匂い",
       "hiragana": "におい",
-      "translation": "smell; scent"
+      "translation": "smell; scent",
+      "pos": "n",
+      "dictionary_form": "匂い"
     },
     {
       "key": 10005,
       "word": "こと",
       "hiragana": "こと",
-      "translation": "thing; matter"
+      "translation": "thing; matter",
+      "pos": "n",
+      "dictionary_form": "こと"
     },
     {
       "key": 10006,
       "word": "遠い",
       "hiragana": "とおい",
-      "translation": "far"
+      "translation": "far",
+      "pos": "adj-i",
+      "dictionary_form": "遠い"
     },
     {
       "key": 10007,
       "word": "棚",
       "hiragana": "たな",
-      "translation": "shelf"
+      "translation": "shelf",
+      "pos": "n",
+      "dictionary_form": "棚"
     },
     {
       "key": 10008,
       "word": "角",
       "hiragana": "かど",
-      "translation": "corner"
+      "translation": "corner",
+      "pos": "n",
+      "dictionary_form": "角"
     },
     {
       "key": 10009,
       "word": "出す",
       "hiragana": "だす",
-      "translation": "to serve; to put out"
+      "translation": "to serve; to put out",
+      "pos": "v5",
+      "dictionary_form": "出す"
     },
     {
       "key": 10010,
       "word": "紙",
       "hiragana": "かみ",
-      "translation": "paper"
+      "translation": "paper",
+      "pos": "n",
+      "dictionary_form": "紙"
     },
     {
       "key": 10011,
       "word": "混じる",
       "hiragana": "まじる",
-      "translation": "to be mixed (intransitive)"
+      "translation": "to be mixed (intransitive)",
+      "pos": "v1",
+      "dictionary_form": "混じる"
     },
     {
       "key": 10012,
       "word": "組み合わせ",
       "hiragana": "くみあわせ",
-      "translation": "combination"
+      "translation": "combination",
+      "pos": "n",
+      "dictionary_form": "組み合わせ"
     },
     {
       "key": 10013,
       "word": "日",
       "hiragana": "ひ",
-      "translation": "day"
+      "translation": "day",
+      "pos": "n",
+      "dictionary_form": "日"
     },
     {
       "key": 10014,
       "word": "準備する",
       "hiragana": "じゅんびする",
-      "translation": "to prepare"
+      "translation": "to prepare",
+      "pos": "v-irr",
+      "dictionary_form": "準備する"
     },
     {
       "key": 10015,
       "word": "ジャケット",
       "hiragana": "ジャケット",
-      "translation": "jacket"
+      "translation": "jacket",
+      "pos": "n",
+      "dictionary_form": "ジャケット"
     },
     {
       "key": 10016,
       "word": "楽しむ",
       "hiragana": "たのしむ",
-      "translation": "to enjoy"
+      "translation": "to enjoy",
+      "pos": "v5",
+      "dictionary_form": "楽しむ"
     },
     {
       "key": 10017,
       "word": "空",
       "hiragana": "そら",
-      "translation": "sky"
+      "translation": "sky",
+      "pos": "n",
+      "dictionary_form": "空"
     },
     {
       "key": 10018,
       "word": "着く",
       "hiragana": "つく",
-      "translation": "to arrive"
+      "translation": "to arrive",
+      "pos": "v5",
+      "dictionary_form": "着く"
     },
     {
       "key": 10019,
       "word": "木",
       "hiragana": "き",
-      "translation": "wood; tree"
+      "translation": "wood; tree",
+      "pos": "n",
+      "dictionary_form": "木"
     },
     {
       "key": 10020,
       "word": "ドア",
       "hiragana": "ドア",
-      "translation": "door"
+      "translation": "door",
+      "pos": "n",
+      "dictionary_form": "ドア"
     },
     {
       "key": 10021,
       "word": "開く",
       "hiragana": "あく",
-      "translation": "to open (intransitive)"
+      "translation": "to open (intransitive)",
+      "pos": "v5",
+      "dictionary_form": "開く"
     },
     {
       "key": 10022,
       "word": "迎える",
       "hiragana": "むかえる",
-      "translation": "to greet; to welcome"
+      "translation": "to greet; to welcome",
+      "pos": "v1",
+      "dictionary_form": "迎える"
     },
     {
       "key": 10023,
       "word": "人々",
       "hiragana": "ひとびと",
-      "translation": "people"
+      "translation": "people",
+      "pos": "n",
+      "dictionary_form": "人々"
     },
     {
       "key": 10024,
       "word": "テーブル",
       "hiragana": "テーブル",
-      "translation": "table"
+      "translation": "table",
+      "pos": "n",
+      "dictionary_form": "テーブル"
     },
     {
       "key": 10025,
       "word": "何人か",
       "hiragana": "なんにんか",
-      "translation": "some people"
+      "translation": "some people",
+      "pos": "n",
+      "dictionary_form": "何人"
     },
     {
       "key": 10026,
       "word": "まず",
       "hiragana": "まず",
-      "translation": "first of all"
+      "translation": "first of all",
+      "pos": "adv",
+      "dictionary_form": "まず"
     },
     {
       "key": 10027,
       "word": "少し",
       "hiragana": "すこし",
-      "translation": "a little"
+      "translation": "a little",
+      "pos": "adv",
+      "dictionary_form": "少し"
     },
     {
       "key": 10028,
       "word": "表紙",
       "hiragana": "ひょうし",
-      "translation": "cover (of a book)"
+      "translation": "cover (of a book)",
+      "pos": "n",
+      "dictionary_form": "表紙"
     },
     {
       "key": 10029,
       "word": "小説",
       "hiragana": "しょうせつ",
-      "translation": "novel"
+      "translation": "novel",
+      "pos": "n",
+      "dictionary_form": "小説"
     },
     {
       "key": 10030,
       "word": "注文する",
       "hiragana": "ちゅうもんする",
-      "translation": "to order"
+      "translation": "to order",
+      "pos": "v-irr",
+      "dictionary_form": "注文する"
     },
     {
       "key": 10031,
       "word": "同じように",
       "hiragana": "おなじように",
-      "translation": "just like"
+      "translation": "just like",
+      "dictionary_form": "同じ"
     },
     {
       "key": 10032,
       "word": "椅子",
       "hiragana": "いす",
-      "translation": "chair"
+      "translation": "chair",
+      "pos": "n",
+      "dictionary_form": "椅子"
     },
     {
       "key": 10033,
       "word": "笑う",
       "hiragana": "わらう",
-      "translation": "to smile"
+      "translation": "to smile",
+      "pos": "v5",
+      "dictionary_form": "笑う"
     },
     {
       "key": 10034,
       "word": "完璧な",
       "hiragana": "かんぺきな",
-      "translation": "perfect (な-adjective)"
+      "translation": "perfect (な-adjective)",
+      "pos": "n",
+      "dictionary_form": "完璧"
     },
     {
       "key": 10035,
       "word": "彼",
       "hiragana": "かれ",
-      "translation": "he; him"
+      "translation": "he; him",
+      "pos": "pron",
+      "dictionary_form": "彼"
     }
   ],
   "sentences": [

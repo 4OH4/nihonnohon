@@ -23,7 +23,7 @@ export const useLookupStore = create<LookupStoreState>()((set) => ({
   lookup: (word, entry, sentenceId, pos) =>
     set({
       lookupState: entry !== null
-        ? { status: 'found', word, entry, ...(pos !== undefined && { pos }) }
+        ? { status: 'found', word, entry, ...(pos ? { pos } : {}) }
         : { status: 'not-found', word },
       selectedSentenceId: sentenceId,
     }),

@@ -36,61 +36,81 @@
       "key": 10000,
       "word": "お祭り",
       "hiragana": "おまつり",
-      "translation": "festival"
+      "translation": "festival",
+      "pos": "n",
+      "dictionary_form": "お祭り"
     },
     {
       "key": 10001,
       "word": "焼きそば",
       "hiragana": "やきそば",
-      "translation": "yakisoba"
+      "translation": "yakisoba",
+      "pos": "n",
+      "dictionary_form": "焼きそば"
     },
     {
       "key": 10002,
       "word": "たこ焼き",
       "hiragana": "たこやき",
-      "translation": "takoyaki"
+      "translation": "takoyaki",
+      "pos": "n",
+      "dictionary_form": "たこ焼き"
     },
     {
       "key": 10003,
       "word": "金魚",
       "hiragana": "きんぎょ",
-      "translation": "goldfish"
+      "translation": "goldfish",
+      "pos": "n",
+      "dictionary_form": "金魚"
     },
     {
       "key": 10004,
       "word": "金魚すくい",
       "hiragana": "きんぎょすくい",
-      "translation": "goldfish scooping"
+      "translation": "goldfish scooping",
+      "pos": "n",
+      "dictionary_form": "金魚すくい"
     },
     {
       "key": 10005,
       "word": "輪投げ",
       "hiragana": "わなげ",
-      "translation": "ring toss"
+      "translation": "ring toss",
+      "pos": "n",
+      "dictionary_form": "輪投げ"
     },
     {
       "key": 10006,
       "word": "輪",
       "hiragana": "わ",
-      "translation": "ring"
+      "translation": "ring",
+      "pos": "n",
+      "dictionary_form": "輪"
     },
     {
       "key": 10007,
       "word": "ベンチ",
       "hiragana": "ベンチ",
-      "translation": "bench"
+      "translation": "bench",
+      "pos": "n",
+      "dictionary_form": "ベンチ"
     },
     {
       "key": 10008,
       "word": "ケン",
       "hiragana": "ケン",
-      "translation": "Ken (name)"
+      "translation": "Ken (name)",
+      "pos": "n",
+      "dictionary_form": "ケン"
     },
     {
       "key": 10009,
       "word": "何回も",
       "hiragana": "なんかいも",
-      "translation": "many times"
+      "translation": "many times",
+      "pos": "n",
+      "dictionary_form": "何回"
     }
   ],
   "sentences": [

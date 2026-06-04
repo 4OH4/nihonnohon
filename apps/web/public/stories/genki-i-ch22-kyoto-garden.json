@@ -32,115 +32,153 @@
       "key": 10000,
       "word": "京都",
       "hiragana": "きょうと",
-      "translation": "Kyoto"
+      "translation": "Kyoto",
+      "pos": "n",
+      "dictionary_form": "京都"
     },
     {
       "key": 10001,
       "word": "特に",
       "hiragana": "とくに",
-      "translation": "especially"
+      "translation": "especially",
+      "pos": "adv",
+      "dictionary_form": "特に"
     },
     {
       "key": 10002,
       "word": "リビングルーム",
       "hiragana": "リビングルーム",
-      "translation": "living room"
+      "translation": "living room",
+      "pos": "n",
+      "dictionary_form": "リビングルーム"
     },
     {
       "key": 10003,
       "word": "メートル",
       "hiragana": "メートル",
-      "translation": "meter"
+      "translation": "meter",
+      "pos": "n",
+      "dictionary_form": "メートル"
     },
     {
       "key": 10004,
       "word": "緑",
       "hiragana": "みどり",
-      "translation": "green color"
+      "translation": "green color",
+      "pos": "n",
+      "dictionary_form": "緑"
     },
     {
       "key": 10005,
       "word": "植物",
       "hiragana": "しょくぶつ",
-      "translation": "plant"
+      "translation": "plant",
+      "pos": "n",
+      "dictionary_form": "植物"
     },
     {
       "key": 10006,
       "word": "なめらかな",
       "hiragana": "なめらかな",
-      "translation": "smooth"
+      "translation": "smooth",
+      "pos": "adj-na",
+      "dictionary_form": "なめらか"
     },
     {
       "key": 10007,
       "word": "灰色",
       "hiragana": "はいいろ",
-      "translation": "gray"
+      "translation": "gray",
+      "pos": "n",
+      "dictionary_form": "灰色"
     },
     {
       "key": 10008,
       "word": "石",
       "hiragana": "いし",
-      "translation": "stone"
+      "translation": "stone",
+      "pos": "n",
+      "dictionary_form": "石"
     },
     {
       "key": 10009,
       "word": "松の木",
       "hiragana": "まつのき",
-      "translation": "pine tree"
+      "translation": "pine tree",
+      "pos": "n",
+      "dictionary_form": "松"
     },
     {
       "key": 10010,
       "word": "苔",
       "hiragana": "こけ",
-      "translation": "moss"
+      "translation": "moss",
+      "pos": "n",
+      "dictionary_form": "苔"
     },
     {
       "key": 10011,
       "word": "覆う",
       "hiragana": "おおう",
-      "translation": "to cover"
+      "translation": "to cover",
+      "pos": "v5",
+      "dictionary_form": "覆う"
     },
     {
       "key": 10012,
       "word": "それら",
       "hiragana": "それら",
-      "translation": "they (inanimate plural)"
+      "translation": "they (inanimate plural)",
+      "pos": "pron",
+      "dictionary_form": "それ"
     },
     {
       "key": 10013,
       "word": "柔らかい",
       "hiragana": "やわらかい",
-      "translation": "soft"
+      "translation": "soft",
+      "pos": "adj-i",
+      "dictionary_form": "柔らかい"
     },
     {
       "key": 10014,
       "word": "ホストマザー",
       "hiragana": "ホストマザー",
-      "translation": "host mother"
+      "translation": "host mother",
+      "pos": "n",
+      "dictionary_form": "ホスト"
     },
     {
       "key": 10015,
       "word": "葉っぱ",
       "hiragana": "はっぱ",
-      "translation": "leaf"
+      "translation": "leaf",
+      "pos": "n",
+      "dictionary_form": "葉っぱ"
     },
     {
       "key": 10016,
       "word": "床",
       "hiragana": "ゆか",
-      "translation": "floor"
+      "translation": "floor",
+      "pos": "n",
+      "dictionary_form": "床"
     },
     {
       "key": 10017,
       "word": "平和",
       "hiragana": "へいわ",
-      "translation": "peaceful"
+      "translation": "peaceful",
+      "pos": "n",
+      "dictionary_form": "平和"
     },
     {
       "key": 10018,
       "word": "いくつか",
       "hiragana": "いくつか",
-      "translation": "some; several"
+      "translation": "some; several",
+      "pos": "n",
+      "dictionary_form": "いくつ"
     }
   ],
   "sentences": [

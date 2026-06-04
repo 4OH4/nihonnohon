@@ -2,23 +2,12 @@
 // SPDX-License-Identifier: MIT
 
 import { VocabItem } from '@/components/VocabItem'
+import { supplementToVocabEntry } from '@/lib/vocabAdapter'
 import type { VocabEntry, VocabSupplementEntry } from '@nihonnohon/schema'
 
 /** Converts VocabSupplementEntry items to display-ready pairs preserving the original pos. */
-function toVocabItems(
-  items: VocabSupplementEntry[],
-  idOffset: number,
-): Array<{ entry: VocabEntry; pos?: string }> {
-  return items.map((e, i) => ({
-    entry: {
-      id: -(idOffset + i + 1),
-      word: e.word,
-      reading: e.hiragana,
-      meaning: e.translation,
-      lesson: 'supplement',
-    },
-    pos: e.pos,
-  }))
+function toVocabItems(items: VocabSupplementEntry[]): Array<{ entry: VocabEntry; pos?: string }> {
+  return items.map(e => ({ entry: supplementToVocabEntry(e), pos: e.pos }))
 }
 
 interface VocabPanelProps {
@@ -30,8 +19,8 @@ interface VocabPanelProps {
 
 /** Unified vocabulary panel — keywords first, then supplement; empty state when both absent. */
 export function VocabPanel({ keywords, vocabSupplement }: VocabPanelProps) {
-  const keywordItems = toVocabItems(keywords ?? [], 0)
-  const supplementItems = toVocabItems(vocabSupplement, keywordItems.length)
+  const keywordItems = toVocabItems(keywords ?? [])
+  const supplementItems = toVocabItems(vocabSupplement)
   const combined = [...keywordItems, ...supplementItems]
 
   if (combined.length === 0) {

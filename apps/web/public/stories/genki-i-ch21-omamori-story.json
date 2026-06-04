@@ -41,121 +41,159 @@
       "key": 10000,
       "word": "お守り",
       "hiragana": "おまもり",
-      "translation": "good luck charm; amulet"
+      "translation": "good luck charm; amulet",
+      "pos": "n",
+      "dictionary_form": "お守り"
     },
     {
       "key": 10001,
       "word": "緑",
       "hiragana": "みどり",
-      "translation": "green"
+      "translation": "green",
+      "pos": "n",
+      "dictionary_form": "緑"
     },
     {
       "key": 10002,
       "word": "運",
       "hiragana": "うん",
-      "translation": "luck"
+      "translation": "luck",
+      "pos": "n",
+      "dictionary_form": "運"
     },
     {
       "key": 10003,
       "word": "ケンジ",
       "hiragana": "ケンジ",
-      "translation": "Kenji (boy's name)"
+      "translation": "Kenji (boy's name)",
+      "pos": "n",
+      "dictionary_form": "ケンジ"
     },
     {
       "key": 10004,
       "word": "止まる",
       "hiragana": "とまる",
-      "translation": "to stop (intransitive)"
+      "translation": "to stop (intransitive)",
+      "pos": "v5",
+      "dictionary_form": "止まる"
     },
     {
       "key": 10005,
       "word": "ベンチ",
       "hiragana": "ベンチ",
-      "translation": "bench"
+      "translation": "bench",
+      "pos": "n",
+      "dictionary_form": "ベンチ"
     },
     {
       "key": 10006,
       "word": "取る",
       "hiragana": "とる",
-      "translation": "to take; to get"
+      "translation": "to take; to get",
+      "pos": "v5",
+      "dictionary_form": "取る"
     },
     {
       "key": 10007,
       "word": "草",
       "hiragana": "くさ",
-      "translation": "grass"
+      "translation": "grass",
+      "pos": "n",
+      "dictionary_form": "草"
     },
     {
       "key": 10008,
       "word": "さくら",
       "hiragana": "さくら",
-      "translation": "Sakura (girl's name)"
+      "translation": "Sakura (girl's name)",
+      "pos": "n",
+      "dictionary_form": "さくら"
     },
     {
       "key": 10009,
       "word": "地面",
       "hiragana": "じめん",
-      "translation": "ground"
+      "translation": "ground",
+      "pos": "n",
+      "dictionary_form": "地面"
     },
     {
       "key": 10010,
       "word": "近くに",
       "hiragana": "ちかくに",
-      "translation": "nearby; closer (adverbial phrase)"
+      "translation": "nearby; closer (adverbial phrase)",
+      "pos": "n",
+      "dictionary_form": "近く"
     },
     {
       "key": 10011,
       "word": "あ",
       "hiragana": "あ",
-      "translation": "Oh!"
+      "translation": "Oh!",
+      "dictionary_form": "あ"
     },
     {
       "key": 10012,
       "word": "持ち上げる",
       "hiragana": "もちあげる",
-      "translation": "to pick up; to lift"
+      "translation": "to pick up; to lift",
+      "pos": "v1",
+      "dictionary_form": "持ち上げる"
     },
     {
       "key": 10013,
       "word": "追いかける",
       "hiragana": "おいかける",
-      "translation": "to run after; to chase"
+      "translation": "to run after; to chase",
+      "pos": "v1",
+      "dictionary_form": "追いかける"
     },
     {
       "key": 10014,
       "word": "振り返る",
       "hiragana": "ふりかえる",
-      "translation": "to turn around"
+      "translation": "to turn around",
+      "pos": "v5",
+      "dictionary_form": "振り返る"
     },
     {
       "key": 10015,
       "word": "〜のほうへ",
       "hiragana": "〜のほうへ",
-      "translation": "towards"
+      "translation": "towards",
+      "pos": "n",
+      "dictionary_form": "ほう"
     },
     {
       "key": 10016,
       "word": "走る",
       "hiragana": "はしる",
-      "translation": "to run"
+      "translation": "to run",
+      "pos": "v5",
+      "dictionary_form": "走る"
     },
     {
       "key": 10017,
       "word": "なくなる",
       "hiragana": "なくなる",
-      "translation": "to disappear; to be lost"
+      "translation": "to disappear; to be lost",
+      "pos": "v5",
+      "dictionary_form": "なくなる"
     },
     {
       "key": 10018,
       "word": "ありがとう",
       "hiragana": "ありがとう",
-      "translation": "Thank you"
+      "translation": "Thank you",
+      "dictionary_form": "ありがとう"
     },
     {
       "key": 10019,
       "word": "戻す",
       "hiragana": "もどす",
-      "translation": "to put (something) back; to return (something)"
+      "translation": "to put (something) back; to return (something)",
+      "pos": "v5",
+      "dictionary_form": "戻す"
     }
   ],
   "sentences": [

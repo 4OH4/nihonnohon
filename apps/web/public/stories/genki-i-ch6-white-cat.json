@@ -34,91 +34,121 @@
       "key": 10000,
       "word": "門",
       "hiragana": "もん",
-      "translation": "gate"
+      "translation": "gate",
+      "pos": "n",
+      "dictionary_form": "門"
     },
     {
       "key": 10001,
       "word": "木",
       "hiragana": "き",
-      "translation": "tree"
+      "translation": "tree",
+      "pos": "n",
+      "dictionary_form": "木"
     },
     {
       "key": 10002,
       "word": "地面",
       "hiragana": "じめん",
-      "translation": "ground"
+      "translation": "ground",
+      "pos": "n",
+      "dictionary_form": "地面"
     },
     {
       "key": 10003,
       "word": "変",
       "hiragana": "へん",
-      "translation": "strange"
+      "translation": "strange",
+      "pos": "n",
+      "dictionary_form": "変"
     },
     {
       "key": 10004,
       "word": "毛",
       "hiragana": "け",
-      "translation": "fur"
+      "translation": "fur",
+      "pos": "n",
+      "dictionary_form": "毛"
     },
     {
       "key": 10005,
       "word": "真っ白",
       "hiragana": "まっしろ",
-      "translation": "pure white"
+      "translation": "pure white",
+      "pos": "adj-na",
+      "dictionary_form": "真っ白"
     },
     {
       "key": 10007,
       "word": "目",
       "hiragana": "め",
-      "translation": "eye"
+      "translation": "eye",
+      "pos": "n",
+      "dictionary_form": "目"
     },
     {
       "key": 10009,
       "word": "青い",
       "hiragana": "あおい",
-      "translation": "blue"
+      "translation": "blue",
+      "pos": "adj-i",
+      "dictionary_form": "青い"
     },
     {
       "key": 10010,
       "word": "黄色い",
       "hiragana": "きいろい",
-      "translation": "yellow"
+      "translation": "yellow",
+      "pos": "adj-i",
+      "dictionary_form": "黄色い"
     },
     {
       "key": 10012,
       "word": "おとなしい",
       "hiragana": "おとなしい",
-      "translation": "calm"
+      "translation": "calm",
+      "pos": "adj-i",
+      "dictionary_form": "おとなしい"
     },
     {
       "key": 10014,
       "word": "音",
       "hiragana": "おと",
-      "translation": "sound"
+      "translation": "sound",
+      "pos": "n",
+      "dictionary_form": "音"
     },
     {
       "key": 10016,
       "word": "そして",
       "hiragana": "そして",
-      "translation": "and then"
+      "translation": "and then",
+      "pos": "conj",
+      "dictionary_form": "そして"
     },
     {
       "key": 10017,
       "word": "不思議",
       "hiragana": "ふしぎ",
-      "translation": "mysterious"
+      "translation": "mysterious",
+      "pos": "n",
+      "dictionary_form": "不思議"
     },
     {
       "key": 10018,
       "word": "一つ",
       "hiragana": "ひとつ",
-      "translation": "one (thing)"
+      "translation": "one (thing)",
+      "pos": "n",
+      "dictionary_form": "一"
     },
     {
       "key": 10019,
       "word": "もう一つ",
       "hiragana": "もうひとつ",
-      "translation": "another one (thing)"
+      "translation": "another one (thing)",
+      "pos": "adv",
+      "dictionary_form": "もう"
     }
   ],
   "sentences": [

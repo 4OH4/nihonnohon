@@ -2,10 +2,12 @@
 // SPDX-License-Identifier: MIT
 
 import { cn } from '@/lib/utils'
+import { groupRubySegments } from '@/lib/rubyUtils'
+import { supplementToVocabEntry } from '@/lib/vocabAdapter'
 import { useLookupStore } from '@/stores/lookupStore'
 import { usePreferenceStore } from '@/stores/preferenceStore'
 import { lookupVocab } from '@/services/vocabService'
-import type { ParsedWord, VocabEntry, VocabSupplementEntry } from '@nihonnohon/schema'
+import type { ParsedWord, VocabSupplementEntry } from '@nihonnohon/schema'
 
 interface WordTokenProps {
   token: ParsedWord
@@ -32,14 +34,7 @@ export function WordToken({ token, vocabKey, sentenceId, supplementEntry }: Word
     e.stopPropagation()
     // Supplement entry takes precedence over the main vocab dictionary
     if (supplementEntry != null) {
-      const adapted: VocabEntry = {
-        id: -(supplementEntry.key),
-        word: supplementEntry.word,
-        reading: supplementEntry.hiragana,
-        meaning: supplementEntry.translation,
-        lesson: 'supplement',
-      }
-      lookup(token.surface, adapted, sentenceId, supplementEntry.pos)
+      lookup(token.surface, supplementToVocabEntry(supplementEntry), sentenceId, supplementEntry.pos)
       return
     }
     if (vocabKey === null) return
@@ -48,28 +43,17 @@ export function WordToken({ token, vocabKey, sentenceId, supplementEntry }: Word
     lookup(token.surface, entry, sentenceId)
   }
 
-  // Group each annotated segment with its immediately-following unannotated segment (okurigana)
-  // inside one <ruby> element, so the browser distributes the annotation over the full word unit.
-  const renderedSegments: JSX.Element[] = []
-  let i = 0
-  while (i < token.segments.length) {
-    const seg = token.segments[i]
-    if (seg.ruby !== null) {
-      const next = token.segments[i + 1]
-      const trailer = next?.ruby === null ? next.text : null
-      renderedSegments.push(
+  const renderedSegments = groupRubySegments(token.segments).map((group, i) =>
+    group.type === 'annotated'
+      ? (
         <ruby key={i}>
-          {seg.text}
-          <rt className={cn(!rubyVisible && 'invisible')}>{seg.ruby}</rt>
-          {trailer}
+          {group.text}
+          <rt className={cn(!rubyVisible && 'invisible')}>{group.ruby}</rt>
+          {group.trailer}
         </ruby>
       )
-      i += trailer !== null ? 2 : 1
-    } else {
-      renderedSegments.push(<span key={i}>{seg.text}</span>)
-      i++
-    }
-  }
+      : <span key={i}>{group.text}</span>
+  )
 
   return (
     <span

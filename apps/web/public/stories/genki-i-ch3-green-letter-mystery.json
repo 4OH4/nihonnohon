@@ -27,253 +27,337 @@
       "key": 10000,
       "word": "教室",
       "hiragana": "きょうしつ",
-      "translation": "classroom"
+      "translation": "classroom",
+      "pos": "n",
+      "dictionary_form": "教室"
     },
     {
       "key": 10001,
       "word": "机",
       "hiragana": "つくえ",
-      "translation": "desk"
+      "translation": "desk",
+      "pos": "n",
+      "dictionary_form": "机"
     },
     {
       "key": 10002,
       "word": "窓",
       "hiragana": "まど",
-      "translation": "window"
+      "translation": "window",
+      "pos": "n",
+      "dictionary_form": "窓"
     },
     {
       "key": 10003,
       "word": "壁",
       "hiragana": "かべ",
-      "translation": "wall"
+      "translation": "wall",
+      "pos": "n",
+      "dictionary_form": "壁"
     },
     {
       "key": 10004,
       "word": "椅子",
       "hiragana": "いす",
-      "translation": "chair"
+      "translation": "chair",
+      "pos": "n",
+      "dictionary_form": "椅子"
     },
     {
       "key": 10005,
       "word": "いつも",
       "hiragana": "いつも",
-      "translation": "always"
+      "translation": "always",
+      "pos": "n",
+      "dictionary_form": "いつも"
     },
     {
       "key": 10006,
       "word": "中",
       "hiragana": "なか",
-      "translation": "inside"
+      "translation": "inside",
+      "pos": "n",
+      "dictionary_form": "中"
     },
     {
       "key": 10007,
       "word": "何か",
       "hiragana": "なにか",
-      "translation": "something"
+      "translation": "something",
+      "pos": "pron",
+      "dictionary_form": "何"
     },
     {
       "key": 10008,
       "word": "手紙",
       "hiragana": "てがみ",
-      "translation": "letter"
+      "translation": "letter",
+      "pos": "n",
+      "dictionary_form": "手紙"
     },
     {
       "key": 10009,
       "word": "変",
       "hiragana": "へん",
-      "translation": "strange"
+      "translation": "strange",
+      "pos": "n",
+      "dictionary_form": "変"
     },
     {
       "key": 10010,
       "word": "緑",
       "hiragana": "みどり",
-      "translation": "green"
+      "translation": "green",
+      "pos": "n",
+      "dictionary_form": "緑"
     },
     {
       "key": 10011,
       "word": "びっくり",
       "hiragana": "びっくり",
-      "translation": "surprised"
+      "translation": "surprised",
+      "pos": "n",
+      "dictionary_form": "びっくり"
     },
     {
       "key": 10012,
       "word": "紙",
       "hiragana": "かみ",
-      "translation": "paper"
+      "translation": "paper",
+      "pos": "n",
+      "dictionary_form": "紙"
     },
     {
       "key": 10013,
       "word": "白い",
       "hiragana": "しろい",
-      "translation": "white"
+      "translation": "white",
+      "pos": "adj-i",
+      "dictionary_form": "白い"
     },
     {
       "key": 10014,
       "word": "小さい",
       "hiragana": "ちいさい",
-      "translation": "small"
+      "translation": "small",
+      "pos": "adj-i",
+      "dictionary_form": "小さい"
     },
     {
       "key": 10015,
       "word": "短い",
       "hiragana": "みじかい",
-      "translation": "short"
+      "translation": "short",
+      "pos": "adj-i",
+      "dictionary_form": "短い"
     },
     {
       "key": 10016,
       "word": "放課後",
       "hiragana": "ほうかご",
-      "translation": "after school"
+      "translation": "after school",
+      "pos": "n",
+      "dictionary_form": "放課後"
     },
     {
       "key": 10017,
       "word": "木",
       "hiragana": "き",
-      "translation": "tree"
+      "translation": "tree",
+      "pos": "n",
+      "dictionary_form": "木"
     },
     {
       "key": 10018,
       "word": "絵",
       "hiragana": "え",
-      "translation": "drawing"
+      "translation": "drawing",
+      "pos": "n",
+      "dictionary_form": "絵"
     },
     {
       "key": 10019,
       "word": "山田さん",
       "hiragana": "やまださん",
-      "translation": "Mr./Ms. Yamada"
+      "translation": "Mr./Ms. Yamada",
+      "pos": "n",
+      "dictionary_form": "山田"
     },
     {
       "key": 10020,
       "word": "田中さん",
       "hiragana": "たなかさん",
-      "translation": "Mr./Ms. Tanaka"
+      "translation": "Mr./Ms. Tanaka",
+      "pos": "n",
+      "dictionary_form": "田中"
     },
     {
       "key": 10021,
       "word": "鈴木さん",
       "hiragana": "すずきさん",
-      "translation": "Mr./Ms. Suzuki"
+      "translation": "Mr./Ms. Suzuki",
+      "pos": "n",
+      "dictionary_form": "鈴木"
     },
     {
       "key": 10022,
       "word": "みんな",
       "hiragana": "みんな",
-      "translation": "everyone"
+      "translation": "everyone",
+      "pos": "n",
+      "dictionary_form": "みんな"
     },
     {
       "key": 10023,
       "word": "忙しい",
       "hiragana": "いそがしい",
-      "translation": "busy"
+      "translation": "busy",
+      "pos": "adj-i",
+      "dictionary_form": "忙しい"
     },
     {
       "key": 10024,
       "word": "知る",
       "hiragana": "しる",
-      "translation": "to know"
+      "translation": "to know",
+      "pos": "v5",
+      "dictionary_form": "知る"
     },
     {
       "key": 10025,
       "word": "時",
       "hiragana": "とき",
-      "translation": "time"
+      "translation": "time",
+      "pos": "n",
+      "dictionary_form": "時"
     },
     {
       "key": 10026,
       "word": "ベル",
       "hiragana": "ベル",
-      "translation": "bell"
+      "translation": "bell",
+      "pos": "n",
+      "dictionary_form": "ベル"
     },
     {
       "key": 10027,
       "word": "大きい",
       "hiragana": "おおきい",
-      "translation": "big"
+      "translation": "big",
+      "pos": "adj-i",
+      "dictionary_form": "大きい"
     },
     {
       "key": 10028,
       "word": "建物",
       "hiragana": "たてもの",
-      "translation": "building"
+      "translation": "building",
+      "pos": "n",
+      "dictionary_form": "建物"
     },
     {
       "key": 10029,
       "word": "二階",
       "hiragana": "にかい",
-      "translation": "second floor"
+      "translation": "second floor",
+      "pos": "n",
+      "dictionary_form": "二"
     },
     {
       "key": 10030,
       "word": "ゆっくり",
       "hiragana": "ゆっくり",
-      "translation": "slowly; carefully"
+      "translation": "slowly; carefully",
+      "pos": "adv",
+      "dictionary_form": "ゆっくり"
     },
     {
       "key": 10031,
       "word": "近く",
       "hiragana": "ちかく",
-      "translation": "near"
+      "translation": "near",
+      "pos": "n",
+      "dictionary_form": "近く"
     },
     {
       "key": 10032,
       "word": "あります",
       "hiragana": "あります",
-      "translation": "to exist (inanimate)"
+      "translation": "to exist (inanimate)",
+      "pos": "v5",
+      "dictionary_form": "ある"
     },
     {
       "key": 10033,
       "word": "ありません",
       "hiragana": "ありません",
-      "translation": "not to exist (inanimate)"
+      "translation": "not to exist (inanimate)",
+      "pos": "v5",
+      "dictionary_form": "ある"
     },
     {
       "key": 10034,
       "word": "鳴る",
       "hiragana": "なる",
-      "translation": "to ring"
+      "translation": "to ring",
+      "pos": "v5",
+      "dictionary_form": "鳴る"
     },
     {
       "key": 10035,
       "word": "始まる",
       "hiragana": "はじまる",
-      "translation": "to begin"
+      "translation": "to begin",
+      "pos": "v5",
+      "dictionary_form": "始まる"
     },
     {
       "key": 10036,
       "word": "考える",
       "hiragana": "かんがえる",
-      "translation": "to think"
+      "translation": "to think",
+      "pos": "v1",
+      "dictionary_form": "考える"
     },
     {
       "key": 10037,
       "word": "所",
       "hiragana": "ところ",
-      "translation": "place"
+      "translation": "place",
+      "pos": "n",
+      "dictionary_form": "所"
     },
     {
       "key": 10038,
       "word": "とても",
       "hiragana": "とても",
-      "translation": "very"
+      "translation": "very",
+      "pos": "adv",
+      "dictionary_form": "とても"
     },
     {
       "key": 10039,
       "word": "それから",
       "hiragana": "それから",
-      "translation": "then; after that"
+      "translation": "then; after that",
+      "pos": "pron",
+      "dictionary_form": "それ"
     },
     {
       "key": 10040,
       "word": "会う",
       "hiragana": "あう",
-      "translation": "to meet"
+      "translation": "to meet",
+      "pos": "v5",
+      "dictionary_form": "会う"
     },
     {
       "key": 10041,
       "word": "色",
       "hiragana": "いろ",
-      "translation": "color"
+      "translation": "color",
+      "pos": "n",
+      "dictionary_form": "色"
     }
   ],
   "sentences": [

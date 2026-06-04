@@ -52,181 +52,240 @@
       "key": 10000,
       "word": "ラーメン",
       "hiragana": "",
-      "translation": "ramen"
+      "translation": "ramen",
+      "pos": "n",
+      "dictionary_form": "ラーメン"
     },
     {
       "key": 10001,
       "word": "じゅうごふん",
       "hiragana": "じゅうごふん",
-      "translation": "fifteen minutes"
+      "translation": "fifteen minutes",
+      "pos": "adv",
+      "dictionary_form": "じゅう"
     },
     {
       "key": 10002,
       "word": "笑顔",
       "hiragana": "えがお",
-      "translation": "smile"
+      "translation": "smile",
+      "pos": "n",
+      "dictionary_form": "笑顔"
     },
     {
       "key": 10003,
       "word": "その時",
       "hiragana": "そのとき",
-      "translation": "at that time"
+      "translation": "at that time",
+      "dictionary_form": "その"
     },
     {
       "key": 10004,
       "word": "まず",
       "hiragana": "",
-      "translation": "first"
+      "translation": "first",
+      "pos": "adv",
+      "dictionary_form": "まず"
     },
     {
       "key": 10005,
       "word": "テーブル",
       "hiragana": "",
-      "translation": "table"
+      "translation": "table",
+      "pos": "n",
+      "dictionary_form": "テーブル"
     },
     {
       "key": 10006,
       "word": "いす",
       "hiragana": "",
-      "translation": "chair"
+      "translation": "chair",
+      "pos": "n",
+      "dictionary_form": "いす"
     },
     {
       "key": 10007,
       "word": "ピッチャー",
       "hiragana": "",
-      "translation": "pitcher"
+      "translation": "pitcher",
+      "pos": "n",
+      "dictionary_form": "ピッチャー"
     },
     {
       "key": 10008,
       "word": "入れる",
       "hiragana": "いれる",
-      "translation": "to put in, fill"
+      "translation": "to put in, fill",
+      "pos": "v1",
+      "dictionary_form": "入れる"
     },
     {
       "key": 10009,
       "word": "カウンター",
       "hiragana": "",
-      "translation": "counter"
+      "translation": "counter",
+      "pos": "n",
+      "dictionary_form": "カウンター"
     },
     {
       "key": 10010,
       "word": "置く",
       "hiragana": "おく",
-      "translation": "to put, place"
+      "translation": "to put, place",
+      "pos": "v5",
+      "dictionary_form": "置く"
     },
     {
       "key": 10011,
       "word": "お客さん",
       "hiragana": "おきゃくさん",
-      "translation": "customer"
+      "translation": "customer",
+      "pos": "n",
+      "dictionary_form": "お客さん"
     },
     {
       "key": 10012,
       "word": "声",
       "hiragana": "こえ",
-      "translation": "voice"
+      "translation": "voice",
+      "pos": "n",
+      "dictionary_form": "声"
     },
     {
       "key": 10013,
       "word": "注文",
       "hiragana": "ちゅうもん",
-      "translation": "order"
+      "translation": "order",
+      "pos": "n",
+      "dictionary_form": "注文"
     },
     {
       "key": 10014,
       "word": "注文する",
       "hiragana": "ちゅうもんする",
-      "translation": "to order"
+      "translation": "to order",
+      "pos": "v-irr",
+      "dictionary_form": "注文する"
     },
     {
       "key": 10015,
       "word": "ほとんどの人",
       "hiragana": "ほとんどのひと",
-      "translation": "most people"
+      "translation": "most people",
+      "pos": "n",
+      "dictionary_form": "ほとんど"
     },
     {
       "key": 10016,
       "word": "ぎょうざ",
       "hiragana": "",
-      "translation": "gyoza"
+      "translation": "gyoza",
+      "pos": "n",
+      "dictionary_form": "ぎょうざ"
     },
     {
       "key": 10017,
       "word": "焼き飯",
       "hiragana": "やきめし",
-      "translation": "fried rice"
+      "translation": "fried rice",
+      "pos": "n",
+      "dictionary_form": "焼き飯"
     },
     {
       "key": 10018,
       "word": "湯気",
       "hiragana": "ゆげ",
-      "translation": "steam"
+      "translation": "steam",
+      "pos": "n",
+      "dictionary_form": "湯気"
     },
     {
       "key": 10019,
       "word": "スープ",
       "hiragana": "",
-      "translation": "broth"
+      "translation": "broth",
+      "pos": "n",
+      "dictionary_form": "スープ"
     },
     {
       "key": 10020,
       "word": "匂い",
       "hiragana": "におい",
-      "translation": "smell"
+      "translation": "smell",
+      "pos": "n",
+      "dictionary_form": "匂い"
     },
     {
       "key": 10021,
       "word": "間違い",
       "hiragana": "まちがい",
-      "translation": "mistake"
+      "translation": "mistake",
+      "pos": "n",
+      "dictionary_form": "間違い"
     },
     {
       "key": 10022,
       "word": "一度",
       "hiragana": "いちど",
-      "translation": "once"
+      "translation": "once",
+      "pos": "n",
+      "dictionary_form": "一度"
     },
     {
       "key": 10023,
       "word": "落とす",
       "hiragana": "おとす",
-      "translation": "to drop"
+      "translation": "to drop",
+      "pos": "v5",
+      "dictionary_form": "落とす"
     },
     {
       "key": 10024,
       "word": "捕まえる",
       "hiragana": "つかまえる",
-      "translation": "to catch"
+      "translation": "to catch",
+      "pos": "v1",
+      "dictionary_form": "捕まえる"
     },
     {
       "key": 10025,
       "word": "別の時",
       "hiragana": "べつのとき",
-      "translation": "another time"
+      "translation": "another time",
+      "pos": "n",
+      "dictionary_form": "別"
     },
     {
       "key": 10026,
       "word": "怒る",
       "hiragana": "おこる",
-      "translation": "to get angry"
+      "translation": "to get angry",
+      "pos": "v5",
+      "dictionary_form": "怒る"
     },
     {
       "key": 10027,
       "word": "丁寧",
       "hiragana": "ていねい",
-      "translation": "polite, careful"
+      "translation": "polite, careful",
+      "pos": "adj-na",
+      "dictionary_form": "丁寧"
     },
     {
       "key": 10028,
       "word": "はっきり",
       "hiragana": "",
-      "translation": "clearly"
+      "translation": "clearly",
+      "pos": "adv",
+      "dictionary_form": "はっきり"
     },
     {
       "key": 10029,
       "word": "半年",
       "hiragana": "はんとし",
-      "translation": "half a year"
+      "translation": "half a year",
+      "pos": "n",
+      "dictionary_form": "半年"
     }
   ],
   "sentences": [

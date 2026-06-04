@@ -34,73 +34,97 @@
       "key": 10000,
       "word": "一番",
       "hiragana": "いちばん",
-      "translation": "most; best"
+      "translation": "most; best",
+      "pos": "adv",
+      "dictionary_form": "一番"
     },
     {
       "key": 10001,
       "word": "ラーメン屋",
       "hiragana": "ラーメンや",
-      "translation": "ramen shop"
+      "translation": "ramen shop",
+      "pos": "n",
+      "dictionary_form": "ラーメン"
     },
     {
       "key": 10002,
       "word": "日",
       "hiragana": "ひ",
-      "translation": "day"
+      "translation": "day",
+      "pos": "n",
+      "dictionary_form": "日"
     },
     {
       "key": 10003,
       "word": "店",
       "hiragana": "みせ",
-      "translation": "shop; store"
+      "translation": "shop; store",
+      "pos": "n",
+      "dictionary_form": "店"
     },
     {
       "key": 10004,
       "word": "オープン",
       "hiragana": "オープン",
-      "translation": "opening"
+      "translation": "opening",
+      "pos": "n",
+      "dictionary_form": "オープン"
     },
     {
       "key": 10005,
       "word": "八時",
       "hiragana": "はちじ",
-      "translation": "8 o'clock"
+      "translation": "8 o'clock",
+      "pos": "n",
+      "dictionary_form": "八"
     },
     {
       "key": 10006,
       "word": "十一時",
       "hiragana": "じゅういちじ",
-      "translation": "11 o'clock"
+      "translation": "11 o'clock",
+      "pos": "n",
+      "dictionary_form": "十一"
     },
     {
       "key": 10007,
       "word": "十時半",
       "hiragana": "じゅうじはん",
-      "translation": "10:30"
+      "translation": "10:30",
+      "pos": "n",
+      "dictionary_form": "十"
     },
     {
       "key": 10008,
       "word": "もう",
       "hiragana": "もう",
-      "translation": "already"
+      "translation": "already",
+      "pos": "adv",
+      "dictionary_form": "もう"
     },
     {
       "key": 10009,
       "word": "三十分",
       "hiragana": "さんじゅっぷん",
-      "translation": "thirty minutes"
+      "translation": "thirty minutes",
+      "pos": "n",
+      "dictionary_form": "三十"
     },
     {
       "key": 10010,
       "word": "しょうゆラーメン",
       "hiragana": "しょうゆラーメン",
-      "translation": "soy sauce ramen"
+      "translation": "soy sauce ramen",
+      "pos": "n",
+      "dictionary_form": "しょうゆラーメン"
     },
     {
       "key": 10011,
       "word": "みそラーメン",
       "hiragana": "みそラーメン",
-      "translation": "miso ramen"
+      "translation": "miso ramen",
+      "pos": "n",
+      "dictionary_form": "みそ"
     }
   ],
   "sentences": [

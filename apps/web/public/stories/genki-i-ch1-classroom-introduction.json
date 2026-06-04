@@ -15,121 +15,160 @@
       "key": 10000,
       "word": "ここ",
       "hiragana": "ここ",
-      "translation": "here"
+      "translation": "here",
+      "pos": "pron",
+      "dictionary_form": "ここ"
     },
     {
       "key": 10001,
       "word": "教室",
       "hiragana": "きょうしつ",
-      "translation": "classroom"
+      "translation": "classroom",
+      "pos": "n",
+      "dictionary_form": "教室"
     },
     {
       "key": 10002,
       "word": "本",
       "hiragana": "ほん",
-      "translation": "book"
+      "translation": "book",
+      "pos": "n",
+      "dictionary_form": "本"
     },
     {
       "key": 10003,
       "word": "ノート",
       "hiragana": "ノート",
-      "translation": "notebook"
+      "translation": "notebook",
+      "pos": "n",
+      "dictionary_form": "ノート"
     },
     {
       "key": 10004,
       "word": "机",
       "hiragana": "つくえ",
-      "translation": "desk"
+      "translation": "desk",
+      "pos": "n",
+      "dictionary_form": "机"
     },
     {
       "key": 10005,
       "word": "上",
       "hiragana": "うえ",
-      "translation": "on; above"
+      "translation": "on; above",
+      "pos": "n",
+      "dictionary_form": "上"
     },
     {
       "key": 10006,
       "word": "田中",
       "hiragana": "たなか",
-      "translation": "Tanaka (name)"
+      "translation": "Tanaka (name)",
+      "pos": "n",
+      "dictionary_form": "田中"
     },
     {
       "key": 10007,
       "word": "おはようございます",
       "hiragana": "おはようございます",
-      "translation": "Good morning"
+      "translation": "Good morning",
+      "dictionary_form": "おはようございます"
     },
     {
       "key": 10008,
       "word": "皆さん",
       "hiragana": "みなさん",
-      "translation": "everyone"
+      "translation": "everyone",
+      "pos": "n",
+      "dictionary_form": "皆"
     },
     {
       "key": 10009,
       "word": "ゆき",
       "hiragana": "ゆき",
-      "translation": "Yuki (name)"
+      "translation": "Yuki (name)",
+      "pos": "n",
+      "dictionary_form": "ゆき"
     },
     {
       "key": 10010,
       "word": "リュック",
       "hiragana": "リュック",
-      "translation": "backpack"
+      "translation": "backpack",
+      "pos": "n",
+      "dictionary_form": "リュック"
     },
     {
       "key": 10011,
       "word": "赤",
       "hiragana": "あか",
-      "translation": "red (color)"
+      "translation": "red (color)",
+      "pos": "n",
+      "dictionary_form": "赤"
     },
     {
       "key": 10012,
       "word": "ペンケース",
       "hiragana": "ペンケース",
-      "translation": "pencil case"
+      "translation": "pencil case",
+      "pos": "n",
+      "dictionary_form": "ペンケース"
     },
     {
       "key": 10013,
       "word": "はじめまして",
       "hiragana": "はじめまして",
-      "translation": "Nice to meet you"
+      "translation": "Nice to meet you",
+      "pos": "v1",
+      "dictionary_form": "はじめる"
     },
     {
       "key": 10014,
       "word": "これ",
       "hiragana": "これ",
-      "translation": "this"
+      "translation": "this",
+      "pos": "pron",
+      "dictionary_form": "これ"
     },
     {
       "key": 10015,
       "word": "窓",
       "hiragana": "まど",
-      "translation": "window"
+      "translation": "window",
+      "pos": "n",
+      "dictionary_form": "窓"
     },
     {
       "key": 10016,
       "word": "そば",
       "hiragana": "そば",
-      "translation": "by; next to"
+      "translation": "by; next to",
+      "pos": "n",
+      "dictionary_form": "そば"
     },
     {
       "key": 10017,
       "word": "椅子",
       "hiragana": "いす",
-      "translation": "chair"
+      "translation": "chair",
+      "pos": "n",
+      "dictionary_form": "椅子"
     },
     {
       "key": 10018,
       "word": "あきら",
       "hiragana": "あきら",
-      "translation": "Akira (name)"
+      "translation": "Akira (name)",
+      "pos": "n",
+      "dictionary_form": "あきら"
     },
     {
       "key": 10019,
       "word": "授業",
       "hiragana": "じゅぎょう",
-      "translation": "lesson"
+      "translation": "lesson",
+      "pos": "n",
+      "dictionary_form": "授業"
     }
   ],
   "sentences": [

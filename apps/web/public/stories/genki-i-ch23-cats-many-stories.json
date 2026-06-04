@@ -41,139 +41,183 @@
       "key": 10000,
       "word": "ベンチ",
       "hiragana": "ベンチ",
-      "translation": "bench"
+      "translation": "bench",
+      "pos": "n",
+      "dictionary_form": "ベンチ"
     },
     {
       "key": 10001,
       "word": "ふわふわ",
       "hiragana": "ふわふわ",
-      "translation": "fluffy"
+      "translation": "fluffy",
+      "pos": "adv",
+      "dictionary_form": "ふわふわ"
     },
     {
       "key": 10002,
       "word": "ひざ",
       "hiragana": "ひざ",
-      "translation": "lap"
+      "translation": "lap",
+      "pos": "n",
+      "dictionary_form": "ひざ"
     },
     {
       "key": 10003,
       "word": "ある日",
       "hiragana": "あるひ",
-      "translation": "one day"
+      "translation": "one day",
+      "dictionary_form": "ある"
     },
     {
       "key": 10004,
       "word": "焼き魚",
       "hiragana": "やきざかな",
-      "translation": "grilled fish"
+      "translation": "grilled fish",
+      "pos": "n",
+      "dictionary_form": "焼き魚"
     },
     {
       "key": 10005,
       "word": "こんにちは",
       "hiragana": "こんにちは",
-      "translation": "Hello"
+      "translation": "Hello",
+      "dictionary_form": "こんにちは"
     },
     {
       "key": 10006,
       "word": "すごい",
       "hiragana": "すごい",
-      "translation": "amazing"
+      "translation": "amazing",
+      "pos": "adj-i",
+      "dictionary_form": "すごい"
     },
     {
       "key": 10007,
       "word": "ハンター",
       "hiragana": "ハンター",
-      "translation": "hunter"
+      "translation": "hunter",
+      "pos": "n",
+      "dictionary_form": "ハンター"
     },
     {
       "key": 10008,
       "word": "茶色い",
       "hiragana": "ちゃいろい",
-      "translation": "brown"
+      "translation": "brown",
+      "pos": "adj-i",
+      "dictionary_form": "茶色い"
     },
     {
       "key": 10009,
       "word": "ねずみ",
       "hiragana": "ねずみ",
-      "translation": "mouse"
+      "translation": "mouse",
+      "pos": "n",
+      "dictionary_form": "ねずみ"
     },
     {
       "key": 10010,
       "word": "動物",
       "hiragana": "どうぶつ",
-      "translation": "animal"
+      "translation": "animal",
+      "pos": "n",
+      "dictionary_form": "動物"
     },
     {
       "key": 10011,
       "word": "全く",
       "hiragana": "まったく",
-      "translation": "completely"
+      "translation": "completely",
+      "pos": "adv",
+      "dictionary_form": "全く"
     },
     {
       "key": 10012,
       "word": "数日後",
       "hiragana": "すうじつご",
-      "translation": "a few days later"
+      "translation": "a few days later",
+      "pos": "n",
+      "dictionary_form": "数"
     },
     {
       "key": 10013,
       "word": "撫でる",
       "hiragana": "なでる",
-      "translation": "stroke"
+      "translation": "stroke",
+      "pos": "v1",
+      "dictionary_form": "撫でる"
     },
     {
       "key": 10014,
       "word": "クラシック音楽",
       "hiragana": "クラシックおんがく",
-      "translation": "classical music"
+      "translation": "classical music",
+      "pos": "n",
+      "dictionary_form": "クラシック"
     },
     {
       "key": 10015,
       "word": "閉じる",
       "hiragana": "とじる",
-      "translation": "close (eyes)"
+      "translation": "close (eyes)",
+      "pos": "v1",
+      "dictionary_form": "閉じる"
     },
     {
       "key": 10016,
       "word": "メロディー",
       "hiragana": "メロディー",
-      "translation": "melody"
+      "translation": "melody",
+      "pos": "n",
+      "dictionary_form": "メロディー"
     },
     {
       "key": 10017,
       "word": "平和な",
       "hiragana": "へいわな",
-      "translation": "peaceful"
+      "translation": "peaceful",
+      "pos": "n",
+      "dictionary_form": "平和"
     },
     {
       "key": 10018,
       "word": "屋根",
       "hiragana": "やね",
-      "translation": "roof"
+      "translation": "roof",
+      "pos": "n",
+      "dictionary_form": "屋根"
     },
     {
       "key": 10019,
       "word": "冒険家",
       "hiragana": "ぼうけんか",
-      "translation": "adventurer"
+      "translation": "adventurer",
+      "pos": "n",
+      "dictionary_form": "冒険家"
     },
     {
       "key": 10020,
       "word": "蛇口",
       "hiragana": "じゃぐち",
-      "translation": "faucet"
+      "translation": "faucet",
+      "pos": "n",
+      "dictionary_form": "蛇口"
     },
     {
       "key": 10021,
       "word": "鳥",
       "hiragana": "とり",
-      "translation": "bird"
+      "translation": "bird",
+      "pos": "n",
+      "dictionary_form": "鳥"
     },
     {
       "key": 10022,
       "word": "ドア",
       "hiragana": "ドア",
-      "translation": "door"
+      "translation": "door",
+      "pos": "n",
+      "dictionary_form": "ドア"
     }
   ],
   "sentences": [

@@ -16,31 +16,41 @@
       "key": 10000,
       "word": "まつり",
       "hiragana": "まつり",
-      "translation": "festival"
+      "translation": "festival",
+      "pos": "n",
+      "dictionary_form": "まつり"
     },
     {
       "key": 10001,
       "word": "やきそば",
       "hiragana": "やきそば",
-      "translation": "yakisoba"
+      "translation": "yakisoba",
+      "pos": "n",
+      "dictionary_form": "やきそば"
     },
     {
       "key": 10002,
       "word": "おんがく",
       "hiragana": "おんがく",
-      "translation": "music"
+      "translation": "music",
+      "pos": "n",
+      "dictionary_form": "おんがく"
     },
     {
       "key": 10003,
       "word": "ダンス",
       "hiragana": "ダンス",
-      "translation": "dance"
+      "translation": "dance",
+      "pos": "n",
+      "dictionary_form": "ダンス"
     },
     {
       "key": 10004,
       "word": "ご",
       "hiragana": "ご",
-      "translation": "five (number)"
+      "translation": "five (number)",
+      "pos": "n",
+      "dictionary_form": "ご"
     }
   ],
   "sentences": [

@@ -35,121 +35,160 @@
       "key": 10000,
       "word": "ラーメンやさん",
       "hiragana": "ラーメンやさん",
-      "translation": "ramen shop"
+      "translation": "ramen shop",
+      "pos": "n",
+      "dictionary_form": "ラーメン"
     },
     {
       "key": 10001,
       "word": "いつも",
       "hiragana": "いつも",
-      "translation": "always"
+      "translation": "always",
+      "pos": "n",
+      "dictionary_form": "いつも"
     },
     {
       "key": 10002,
       "word": "せん",
       "hiragana": "せん",
-      "translation": "line; queue"
+      "translation": "line; queue",
+      "pos": "n",
+      "dictionary_form": "せん"
     },
     {
       "key": 10003,
       "word": "ケンさん",
       "hiragana": "ケンさん",
-      "translation": "Mr./Ms. Ken"
+      "translation": "Mr./Ms. Ken",
+      "pos": "n",
+      "dictionary_form": "ケン"
     },
     {
       "key": 10004,
       "word": "ある",
       "hiragana": "ある",
-      "translation": "a certain; one (as in 'one day')"
+      "translation": "a certain; one (as in 'one day')",
+      "pos": "v5",
+      "dictionary_form": "ある"
     },
     {
       "key": 10005,
       "word": "もう",
       "hiragana": "もう",
-      "translation": "already"
+      "translation": "already",
+      "pos": "adv",
+      "dictionary_form": "もう"
     },
     {
       "key": 10006,
       "word": "だめ",
       "hiragana": "だめ",
-      "translation": "no good; impossible"
+      "translation": "no good; impossible",
+      "pos": "n",
+      "dictionary_form": "だめ"
     },
     {
       "key": 10007,
       "word": "また",
       "hiragana": "また",
-      "translation": "again"
+      "translation": "again",
+      "pos": "conj",
+      "dictionary_form": "また"
     },
     {
       "key": 10008,
       "word": "まだ",
       "hiragana": "まだ",
-      "translation": "still"
+      "translation": "still",
+      "pos": "adv",
+      "dictionary_form": "まだ"
     },
     {
       "key": 10009,
       "word": "たぶん",
       "hiragana": "たぶん",
-      "translation": "perhaps; maybe"
+      "translation": "perhaps; maybe",
+      "pos": "adv",
+      "dictionary_form": "たぶん"
     },
     {
       "key": 10010,
       "word": "今度",
       "hiragana": "こんど",
-      "translation": "this time"
+      "translation": "this time",
+      "pos": "n",
+      "dictionary_form": "今度"
     },
     {
       "key": 10011,
       "word": "一番",
       "hiragana": "いちばん",
-      "translation": "most; number one"
+      "translation": "most; number one",
+      "pos": "adv",
+      "dictionary_form": "一番"
     },
     {
       "key": 10012,
       "word": "動く",
       "hiragana": "うごく",
-      "translation": "to move"
+      "translation": "to move",
+      "pos": "v5",
+      "dictionary_form": "動く"
     },
     {
       "key": 10013,
       "word": "少し",
       "hiragana": "すこし",
-      "translation": "a little"
+      "translation": "a little",
+      "pos": "adv",
+      "dictionary_form": "少し"
     },
     {
       "key": 10014,
       "word": "やっと",
       "hiragana": "やっと",
-      "translation": "finally"
+      "translation": "finally",
+      "pos": "adv",
+      "dictionary_form": "やっと"
     },
     {
       "key": 10015,
       "word": "店",
       "hiragana": "みせ",
-      "translation": "shop; store"
+      "translation": "shop; store",
+      "pos": "n",
+      "dictionary_form": "店"
     },
     {
       "key": 10016,
       "word": "カウンター",
       "hiragana": "カウンター",
-      "translation": "counter"
+      "translation": "counter",
+      "pos": "n",
+      "dictionary_form": "カウンター"
     },
     {
       "key": 10017,
       "word": "注文する",
       "hiragana": "ちゅうもんする",
-      "translation": "to order"
+      "translation": "to order",
+      "pos": "v-irr",
+      "dictionary_form": "注文する"
     },
     {
       "key": 10018,
       "word": "わあ",
       "hiragana": "わあ",
-      "translation": "Wow!"
+      "translation": "Wow!",
+      "dictionary_form": "わあ"
     },
     {
       "key": 10019,
       "word": "わけ",
       "hiragana": "わけ",
-      "translation": "reason"
+      "translation": "reason",
+      "pos": "n",
+      "dictionary_form": "わけ"
     }
   ],
   "sentences": [

@@ -23,61 +23,80 @@
       "key": 10000,
       "word": "たなかはな",
       "hiragana": "たなかはな",
-      "translation": "Tanaka Hana"
+      "translation": "Tanaka Hana",
+      "pos": "n",
+      "dictionary_form": "たなか"
     },
     {
       "key": 10001,
       "word": "さとうせんせい",
       "hiragana": "さとうせんせい",
-      "translation": "Ms. Sato"
+      "translation": "Ms. Sato",
+      "pos": "n",
+      "dictionary_form": "さとう"
     },
     {
       "key": 10002,
       "word": "ピンク",
       "hiragana": "ピンク",
-      "translation": "pink"
+      "translation": "pink",
+      "pos": "n",
+      "dictionary_form": "ピンク"
     },
     {
       "key": 10003,
       "word": "ケン",
       "hiragana": "ケン",
-      "translation": "Ken"
+      "translation": "Ken",
+      "pos": "n",
+      "dictionary_form": "ケン"
     },
     {
       "key": 10004,
       "word": "つくえ",
       "hiragana": "つくえ",
-      "translation": "desk"
+      "translation": "desk",
+      "pos": "n",
+      "dictionary_form": "つくえ"
     },
     {
       "key": 10005,
       "word": "おおさかじん",
       "hiragana": "おおさかじん",
-      "translation": "person from Osaka"
+      "translation": "person from Osaka",
+      "pos": "n",
+      "dictionary_form": "おおさか"
     },
     {
       "key": 10006,
       "word": "いいえ",
       "hiragana": "いいえ",
-      "translation": "no"
+      "translation": "no",
+      "dictionary_form": "いいえ"
     },
     {
       "key": 10007,
       "word": "あなた",
       "hiragana": "あなた",
-      "translation": "you"
+      "translation": "you",
+      "pos": "pron",
+      "dictionary_form": "あなた"
     },
     {
       "key": 10008,
       "word": "いい",
       "hiragana": "いい",
-      "translation": "good"
+      "translation": "good",
+      "pos": "adj-i",
+      "dictionary_form": "いい"
     },
     {
       "key": 10009,
       "word": "たなか",
       "hiragana": "たなか",
-      "translation": "Tanaka (surname)"
+      "translation": "Tanaka (surname)",
+      "pos": "n",
+      "dictionary_form": "たなか"
     }
   ],
   "sentences": [

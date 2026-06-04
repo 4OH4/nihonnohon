@@ -37,103 +37,137 @@
       "key": 10000,
       "word": "空",
       "hiragana": "そら",
-      "translation": "sky"
+      "translation": "sky",
+      "pos": "n",
+      "dictionary_form": "空"
     },
     {
       "key": 10001,
       "word": "ロッカー",
       "hiragana": "ろっかー",
-      "translation": "locker"
+      "translation": "locker",
+      "pos": "n",
+      "dictionary_form": "ロッカー"
     },
     {
       "key": 10002,
       "word": "ドア",
       "hiragana": "どあ",
-      "translation": "door"
+      "translation": "door",
+      "pos": "n",
+      "dictionary_form": "ドア"
     },
     {
       "key": 10003,
       "word": "違う",
       "hiragana": "ちがう",
-      "translation": "different"
+      "translation": "different",
+      "pos": "v5",
+      "dictionary_form": "違う"
     },
     {
       "key": 10004,
       "word": "封筒",
       "hiragana": "ふうとう",
-      "translation": "envelope"
+      "translation": "envelope",
+      "pos": "n",
+      "dictionary_form": "封筒"
     },
     {
       "key": 10005,
       "word": "住所",
       "hiragana": "じゅうしょ",
-      "translation": "address"
+      "translation": "address",
+      "pos": "n",
+      "dictionary_form": "住所"
     },
     {
       "key": 10006,
       "word": "周り",
       "hiragana": "まわり",
-      "translation": "around"
+      "translation": "around",
+      "pos": "n",
+      "dictionary_form": "周り"
     },
     {
       "key": 10007,
       "word": "少し",
       "hiragana": "すこし",
-      "translation": "a little"
+      "translation": "a little",
+      "pos": "adv",
+      "dictionary_form": "少し"
     },
     {
       "key": 10008,
       "word": "だけ",
       "hiragana": "だけ",
-      "translation": "only"
+      "translation": "only",
+      "pos": "prt",
+      "dictionary_form": "だけ"
     },
     {
       "key": 10009,
       "word": "桜",
       "hiragana": "さくら",
-      "translation": "cherry (blossom)"
+      "translation": "cherry (blossom)",
+      "pos": "n",
+      "dictionary_form": "桜"
     },
     {
       "key": 10010,
       "word": "木",
       "hiragana": "き",
-      "translation": "tree"
+      "translation": "tree",
+      "pos": "n",
+      "dictionary_form": "木"
     },
     {
       "key": 10011,
       "word": "大切",
       "hiragana": "たいせつ",
-      "translation": "important"
+      "translation": "important",
+      "pos": "adj-na",
+      "dictionary_form": "大切"
     },
     {
       "key": 10012,
       "word": "一度",
       "hiragana": "いちど",
-      "translation": "once, one time"
+      "translation": "once, one time",
+      "pos": "n",
+      "dictionary_form": "一度"
     },
     {
       "key": 10013,
       "word": "ジム",
       "hiragana": "じむ",
-      "translation": "gym"
+      "translation": "gym",
+      "pos": "n",
+      "dictionary_form": "ジム"
     },
     {
       "key": 10014,
       "word": "変",
       "hiragana": "へん",
-      "translation": "strange, suspicious"
+      "translation": "strange, suspicious",
+      "pos": "n",
+      "dictionary_form": "変"
     },
     {
       "key": 10015,
       "word": "謎",
       "hiragana": "なぞ",
-      "translation": "mystery"
+      "translation": "mystery",
+      "pos": "n",
+      "dictionary_form": "謎"
     },
     {
       "key": 10016,
       "word": "水色",
       "hiragana": "みずいろ",
-      "translation": "light blue"
+      "translation": "light blue",
+      "pos": "n",
+      "dictionary_form": "水色"
     }
   ],
   "sentences": [

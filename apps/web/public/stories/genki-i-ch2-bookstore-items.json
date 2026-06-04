@@ -23,25 +23,33 @@
       "key": 10000,
       "word": "本屋",
       "hiragana": "ほんや",
-      "translation": "bookstore"
+      "translation": "bookstore",
+      "pos": "n",
+      "dictionary_form": "本屋"
     },
     {
       "key": 10001,
       "word": "漫画",
       "hiragana": "まんが",
-      "translation": "manga"
+      "translation": "manga",
+      "pos": "n",
+      "dictionary_form": "漫画"
     },
     {
       "key": 10002,
       "word": "ケン",
       "hiragana": "けん",
-      "translation": "Ken (name)"
+      "translation": "Ken (name)",
+      "pos": "n",
+      "dictionary_form": "ケン"
     },
     {
       "key": 10003,
       "word": "ここ",
       "hiragana": "ここ",
-      "translation": "here"
+      "translation": "here",
+      "pos": "pron",
+      "dictionary_form": "ここ"
     }
   ],
   "sentences": [

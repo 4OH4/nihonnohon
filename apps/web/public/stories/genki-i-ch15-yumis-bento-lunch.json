@@ -43,145 +43,192 @@
       "key": 10000,
       "word": "卵",
       "hiragana": "たまご",
-      "translation": "egg"
+      "translation": "egg",
+      "pos": "n",
+      "dictionary_form": "卵"
     },
     {
       "key": 10001,
       "word": "焼き",
       "hiragana": "やき",
-      "translation": "grilled; fried"
+      "translation": "grilled; fried",
+      "pos": "v5",
+      "dictionary_form": "焼く"
     },
     {
       "key": 10002,
       "word": "鶏肉",
       "hiragana": "とりにく",
-      "translation": "chicken meat"
+      "translation": "chicken meat",
+      "pos": "n",
+      "dictionary_form": "鶏肉"
     },
     {
       "key": 10003,
       "word": "ベル",
       "hiragana": "ベル",
-      "translation": "bell"
+      "translation": "bell",
+      "pos": "n",
+      "dictionary_form": "ベル"
     },
     {
       "key": 10004,
       "word": "鳴る",
       "hiragana": "なる",
-      "translation": "to ring"
+      "translation": "to ring",
+      "pos": "v5",
+      "dictionary_form": "鳴る"
     },
     {
       "key": 10005,
       "word": "教室",
       "hiragana": "きょうしつ",
-      "translation": "classroom"
+      "translation": "classroom",
+      "pos": "n",
+      "dictionary_form": "教室"
     },
     {
       "key": 10006,
       "word": "温かい",
       "hiragana": "あたたかい",
-      "translation": "warm (food, object)"
+      "translation": "warm (food, object)",
+      "pos": "adj-i",
+      "dictionary_form": "温かい"
     },
     {
       "key": 10007,
       "word": "選ぶ",
       "hiragana": "えらぶ",
-      "translation": "to choose"
+      "translation": "to choose",
+      "pos": "v5",
+      "dictionary_form": "選ぶ"
     },
     {
       "key": 10008,
       "word": "サンドイッチ",
       "hiragana": "サンドイッチ",
-      "translation": "sandwich"
+      "translation": "sandwich",
+      "pos": "n",
+      "dictionary_form": "サンドイッチ"
     },
     {
       "key": 10009,
       "word": "ハム",
       "hiragana": "ハム",
-      "translation": "ham"
+      "translation": "ham",
+      "pos": "n",
+      "dictionary_form": "ハム"
     },
     {
       "key": 10010,
       "word": "チーズ",
       "hiragana": "チーズ",
-      "translation": "cheese"
+      "translation": "cheese",
+      "pos": "n",
+      "dictionary_form": "チーズ"
     },
     {
       "key": 10011,
       "word": "匂い",
       "hiragana": "におい",
-      "translation": "smell"
+      "translation": "smell",
+      "pos": "n",
+      "dictionary_form": "匂い"
     },
     {
       "key": 10012,
       "word": "笑う",
       "hiragana": "わらう",
-      "translation": "to smile; to laugh"
+      "translation": "to smile; to laugh",
+      "pos": "v5",
+      "dictionary_form": "笑う"
     },
     {
       "key": 10013,
       "word": "少し",
       "hiragana": "すこし",
-      "translation": "a little"
+      "translation": "a little",
+      "pos": "adv",
+      "dictionary_form": "少し"
     },
     {
       "key": 10014,
       "word": "ありがとう",
       "hiragana": "ありがとう",
-      "translation": "thank you"
+      "translation": "thank you",
+      "dictionary_form": "ありがとう"
     },
     {
       "key": 10015,
       "word": "特別",
       "hiragana": "とくべつ",
-      "translation": "special"
+      "translation": "special",
+      "pos": "adj-na",
+      "dictionary_form": "特別"
     },
     {
       "key": 10016,
       "word": "ため",
       "hiragana": "ため",
-      "translation": "purpose; sake"
+      "translation": "purpose; sake",
+      "pos": "n",
+      "dictionary_form": "ため"
     },
     {
       "key": 10017,
       "word": "など",
       "hiragana": "など",
-      "translation": "and so on; etc."
+      "translation": "and so on; etc.",
+      "pos": "prt",
+      "dictionary_form": "など"
     },
     {
       "key": 10018,
       "word": "フルーツ",
       "hiragana": "フルーツ",
-      "translation": "fruit"
+      "translation": "fruit",
+      "pos": "n",
+      "dictionary_form": "フルーツ"
     },
     {
       "key": 10019,
       "word": "種類",
       "hiragana": "しゅるい",
-      "translation": "kind; type"
+      "translation": "kind; type",
+      "pos": "n",
+      "dictionary_form": "種類"
     },
     {
       "key": 10020,
       "word": "感謝する",
       "hiragana": "かんしゃする",
-      "translation": "to appreciate; to thank"
+      "translation": "to appreciate; to thank",
+      "pos": "v-irr",
+      "dictionary_form": "感謝する"
     },
     {
       "key": 10021,
       "word": "そんな",
       "hiragana": "そんな",
-      "translation": "such a"
+      "translation": "such a",
+      "pos": "adj-na",
+      "dictionary_form": "そんな"
     },
     {
       "key": 10022,
       "word": "飽きる",
       "hiragana": "あきる",
-      "translation": "to get tired of"
+      "translation": "to get tired of",
+      "pos": "v1",
+      "dictionary_form": "飽きる"
     },
     {
       "key": 10023,
       "word": "愛",
       "hiragana": "あい",
-      "translation": "love"
+      "translation": "love",
+      "pos": "n",
+      "dictionary_form": "愛"
     }
   ],
   "sentences": [

@@ -72,6 +72,15 @@
     "description": "A student encounters a mysterious cat with unusual eyes near their school gate after classes. The cat disappears without a trace, leaving the student wondering if they will ever see it again."
   },
   {
+    "id": "genki-i-ch6-tanaka-letter",
+    "filename": "genki-i-ch6-tanaka-letter.json",
+    "title": "Mary's Letter to Tanaka-san",
+    "titleJa": "メアリーさんの手紙",
+    "difficulty": "Genki I Ch.6",
+    "language": "ja",
+    "description": "Mary introduces herself and describes her daily life and routine to her new pen-pal, Tanaka-san. This story is calibrated for Genki I Chapter 6 learners."
+  },
+  {
     "id": "genki-i-ch7-convenience-store",
     "filename": "genki-i-ch7-convenience-store.json",
     "title": "Ken's Convenience Store Trip",

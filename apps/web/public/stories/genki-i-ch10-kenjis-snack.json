@@ -34,79 +34,105 @@
       "key": 10000,
       "word": "けんじさん",
       "hiragana": "けんじさん",
-      "translation": "Kenji (person's name)"
+      "translation": "Kenji (person's name)",
+      "pos": "n",
+      "dictionary_form": "けんじ"
     },
     {
       "key": 10001,
       "word": "彼",
       "hiragana": "かれ",
-      "translation": "he"
+      "translation": "he",
+      "pos": "pron",
+      "dictionary_form": "彼"
     },
     {
       "key": 10002,
       "word": "入れる",
       "hiragana": "いれる",
-      "translation": "to put in"
+      "translation": "to put in",
+      "pos": "v1",
+      "dictionary_form": "入れる"
     },
     {
       "key": 10003,
       "word": "外",
       "hiragana": "そと",
-      "translation": "outside"
+      "translation": "outside",
+      "pos": "n",
+      "dictionary_form": "外"
     },
     {
       "key": 10004,
       "word": "お腹が空く",
       "hiragana": "おなかがすく",
-      "translation": "to get hungry"
+      "translation": "to get hungry",
+      "pos": "n",
+      "dictionary_form": "お腹"
     },
     {
       "key": 10005,
       "word": "甘い",
       "hiragana": "あまい",
-      "translation": "sweet"
+      "translation": "sweet",
+      "pos": "adj-i",
+      "dictionary_form": "甘い"
     },
     {
       "key": 10006,
       "word": "ドア",
       "hiragana": "ドア",
-      "translation": "door"
+      "translation": "door",
+      "pos": "n",
+      "dictionary_form": "ドア"
     },
     {
       "key": 10007,
       "word": "ポテトチップス",
       "hiragana": "ポテトチップス",
-      "translation": "potato chips"
+      "translation": "potato chips",
+      "pos": "n",
+      "dictionary_form": "ポテトチップス"
     },
     {
       "key": 10008,
       "word": "チョコレート",
       "hiragana": "チョコレート",
-      "translation": "chocolate"
+      "translation": "chocolate",
+      "pos": "n",
+      "dictionary_form": "チョコレート"
     },
     {
       "key": 10009,
       "word": "お握り",
       "hiragana": "おにぎり",
-      "translation": "rice ball"
+      "translation": "rice ball",
+      "pos": "n",
+      "dictionary_form": "お握り"
     },
     {
       "key": 10010,
       "word": "ジュース",
       "hiragana": "ジュース",
-      "translation": "juice"
+      "translation": "juice",
+      "pos": "n",
+      "dictionary_form": "ジュース"
     },
     {
       "key": 10011,
       "word": "店員",
       "hiragana": "てんいん",
-      "translation": "clerk"
+      "translation": "clerk",
+      "pos": "n",
+      "dictionary_form": "店員"
     },
     {
       "key": 10012,
       "word": "ベンチ",
       "hiragana": "ベンチ",
-      "translation": "bench"
+      "translation": "bench",
+      "pos": "n",
+      "dictionary_form": "ベンチ"
     }
   ],
   "sentences": [

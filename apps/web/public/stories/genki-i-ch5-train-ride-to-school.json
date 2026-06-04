@@ -27,217 +27,289 @@
       "key": 10000,
       "word": "電車",
       "hiragana": "でんしゃ",
-      "translation": "train"
+      "translation": "train",
+      "pos": "n",
+      "dictionary_form": "電車"
     },
     {
       "key": 10001,
       "word": "窓",
       "hiragana": "まど",
-      "translation": "window"
+      "translation": "window",
+      "pos": "n",
+      "dictionary_form": "窓"
     },
     {
       "key": 10002,
       "word": "座ります",
       "hiragana": "すわります",
-      "translation": "to sit"
+      "translation": "to sit",
+      "pos": "v5",
+      "dictionary_form": "座る"
     },
     {
       "key": 10003,
       "word": "音",
       "hiragana": "おと",
-      "translation": "sound"
+      "translation": "sound",
+      "pos": "n",
+      "dictionary_form": "音"
     },
     {
       "key": 10004,
       "word": "言葉",
       "hiragana": "ことば",
-      "translation": "word"
+      "translation": "word",
+      "pos": "n",
+      "dictionary_form": "言葉"
     },
     {
       "key": 10005,
       "word": "止まります",
       "hiragana": "とまります",
-      "translation": "to stop"
+      "translation": "to stop",
+      "pos": "v5",
+      "dictionary_form": "止まる"
     },
     {
       "key": 10006,
       "word": "違う",
       "hiragana": "ちがう",
-      "translation": "different"
+      "translation": "different",
+      "pos": "v5",
+      "dictionary_form": "違う"
     },
     {
       "key": 10007,
       "word": "トンネル",
       "hiragana": "トンネル",
-      "translation": "tunnel"
+      "translation": "tunnel",
+      "pos": "n",
+      "dictionary_form": "トンネル"
     },
     {
       "key": 10008,
       "word": "入ります",
       "hiragana": "はいります",
-      "translation": "to enter"
+      "translation": "to enter",
+      "pos": "v5",
+      "dictionary_form": "入る"
     },
     {
       "key": 10009,
       "word": "電気",
       "hiragana": "でんき",
-      "translation": "light; electricity"
+      "translation": "light; electricity",
+      "pos": "n",
+      "dictionary_form": "電気"
     },
     {
       "key": 10010,
       "word": "明るい",
       "hiragana": "あかるい",
-      "translation": "bright"
+      "translation": "bright",
+      "pos": "adj-i",
+      "dictionary_form": "明るい"
     },
     {
       "key": 10011,
       "word": "駅",
       "hiragana": "えき",
-      "translation": "station"
+      "translation": "station",
+      "pos": "n",
+      "dictionary_form": "駅"
     },
     {
       "key": 10012,
       "word": "女の人",
       "hiragana": "おんなのひと",
-      "translation": "woman"
+      "translation": "woman",
+      "pos": "n",
+      "dictionary_form": "女"
     },
     {
       "key": 10013,
       "word": "店",
       "hiragana": "みせ",
-      "translation": "shop"
+      "translation": "shop",
+      "pos": "n",
+      "dictionary_form": "店"
     },
     {
       "key": 10014,
       "word": "壁",
       "hiragana": "かべ",
-      "translation": "wall"
+      "translation": "wall",
+      "pos": "n",
+      "dictionary_form": "壁"
     },
     {
       "key": 10015,
       "word": "席",
       "hiragana": "せき",
-      "translation": "seat"
+      "translation": "seat",
+      "pos": "n",
+      "dictionary_form": "席"
     },
     {
       "key": 10016,
       "word": "取ります",
       "hiragana": "とります",
-      "translation": "to pick up; to take"
+      "translation": "to pick up; to take",
+      "pos": "v5",
+      "dictionary_form": "取る"
     },
     {
       "key": 10017,
       "word": "黒い",
       "hiragana": "くろい",
-      "translation": "black"
+      "translation": "black",
+      "pos": "adj-i",
+      "dictionary_form": "黒い"
     },
     {
       "key": 10018,
       "word": "ゆっくり",
       "hiragana": "ゆっくり",
-      "translation": "slowly"
+      "translation": "slowly",
+      "pos": "adv",
+      "dictionary_form": "ゆっくり"
     },
     {
       "key": 10019,
       "word": "立ちます",
       "hiragana": "たちます",
-      "translation": "to stand up"
+      "translation": "to stand up",
+      "pos": "v5",
+      "dictionary_form": "立つ"
     },
     {
       "key": 10020,
       "word": "ドア",
       "hiragana": "ドア",
-      "translation": "door"
+      "translation": "door",
+      "pos": "n",
+      "dictionary_form": "ドア"
     },
     {
       "key": 10021,
       "word": "開きます",
       "hiragana": "ひらきます",
-      "translation": "to open"
+      "translation": "to open",
+      "pos": "v5",
+      "dictionary_form": "開く"
     },
     {
       "key": 10022,
       "word": "ホーム",
       "hiragana": "ホーム",
-      "translation": "platform"
+      "translation": "platform",
+      "pos": "n",
+      "dictionary_form": "ホーム"
     },
     {
       "key": 10023,
       "word": "歩きます",
       "hiragana": "あるきます",
-      "translation": "to walk"
+      "translation": "to walk",
+      "pos": "v5",
+      "dictionary_form": "歩く"
     },
     {
       "key": 10024,
       "word": "出口",
       "hiragana": "でぐち",
-      "translation": "exit"
+      "translation": "exit",
+      "pos": "n",
+      "dictionary_form": "出口"
     },
     {
       "key": 10025,
       "word": "花屋",
       "hiragana": "はなや",
-      "translation": "flower shop"
+      "translation": "flower shop",
+      "pos": "n",
+      "dictionary_form": "花屋"
     },
     {
       "key": 10026,
       "word": "花",
       "hiragana": "はな",
-      "translation": "flower"
+      "translation": "flower",
+      "pos": "n",
+      "dictionary_form": "花"
     },
     {
       "key": 10027,
       "word": "外",
       "hiragana": "そと",
-      "translation": "outside"
+      "translation": "outside",
+      "pos": "n",
+      "dictionary_form": "外"
     },
     {
       "key": 10028,
       "word": "空",
       "hiragana": "そら",
-      "translation": "sky"
+      "translation": "sky",
+      "pos": "n",
+      "dictionary_form": "空"
     },
     {
       "key": 10029,
       "word": "青い",
       "hiragana": "あおい",
-      "translation": "blue"
+      "translation": "blue",
+      "pos": "adj-i",
+      "dictionary_form": "青い"
     },
     {
       "key": 10030,
       "word": "太陽",
       "hiragana": "たいよう",
-      "translation": "sun"
+      "translation": "sun",
+      "pos": "n",
+      "dictionary_form": "太陽"
     },
     {
       "key": 10031,
       "word": "出ます",
       "hiragana": "でます",
-      "translation": "to exit"
+      "translation": "to exit",
+      "pos": "v1",
+      "dictionary_form": "出る"
     },
     {
       "key": 10032,
       "word": "教室",
       "hiragana": "きょうしつ",
-      "translation": "classroom"
+      "translation": "classroom",
+      "pos": "n",
+      "dictionary_form": "教室"
     },
     {
       "key": 10033,
       "word": "うるさい",
       "hiragana": "うるさい",
-      "translation": "loud"
+      "translation": "loud",
+      "pos": "adj-i",
+      "dictionary_form": "うるさい"
     },
     {
       "key": 10034,
       "word": "すぐ",
       "hiragana": "すぐ",
-      "translation": "soon"
+      "translation": "soon",
+      "pos": "adv",
+      "dictionary_form": "すぐ"
     },
     {
       "key": 10035,
       "word": "暗い",
       "hiragana": "くらい",
-      "translation": "dark"
+      "translation": "dark",
+      "pos": "adj-i",
+      "dictionary_form": "暗い"
     }
   ],
   "sentences": [

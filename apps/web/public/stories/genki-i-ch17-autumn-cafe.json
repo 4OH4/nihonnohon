@@ -33,55 +33,73 @@
       "key": 10000,
       "word": "木",
       "hiragana": "き",
-      "translation": "tree"
+      "translation": "tree",
+      "pos": "n",
+      "dictionary_form": "木"
     },
     {
       "key": 10001,
       "word": "葉",
       "hiragana": "は",
-      "translation": "leaf"
+      "translation": "leaf",
+      "pos": "n",
+      "dictionary_form": "葉"
     },
     {
       "key": 10002,
       "word": "黄色い",
       "hiragana": "きいろい",
-      "translation": "yellow"
+      "translation": "yellow",
+      "pos": "adj-i",
+      "dictionary_form": "黄色い"
     },
     {
       "key": 10003,
       "word": "パンプキンスパイスラテ",
       "hiragana": "パンプキンスパイスラテ",
-      "translation": "Pumpkin Spice Latte"
+      "translation": "Pumpkin Spice Latte",
+      "pos": "n",
+      "dictionary_form": "パンプキンスパイスラテ"
     },
     {
       "key": 10004,
       "word": "メイプルピーカンケーキ",
       "hiragana": "メイプルピーカンケーキ",
-      "translation": "Maple Pecan Cake"
+      "translation": "Maple Pecan Cake",
+      "pos": "n",
+      "dictionary_form": "メイプル"
     },
     {
       "key": 10005,
       "word": "マロンクリームドーナツ",
       "hiragana": "マロンクリームドーナツ",
-      "translation": "Chestnut Cream Donut"
+      "translation": "Chestnut Cream Donut",
+      "pos": "n",
+      "dictionary_form": "マロン"
     },
     {
       "key": 10006,
       "word": "など",
       "hiragana": "など",
-      "translation": "etc.; and so on"
+      "translation": "etc.; and so on",
+      "pos": "prt",
+      "dictionary_form": "など"
     },
     {
       "key": 10007,
       "word": "考える",
       "hiragana": "かんがえる",
-      "translation": "to think"
+      "translation": "to think",
+      "pos": "v1",
+      "dictionary_form": "考える"
     },
     {
       "key": 10008,
       "word": "落ちる",
       "hiragana": "おちる",
-      "translation": "to fall"
+      "translation": "to fall",
+      "pos": "v1",
+      "dictionary_form": "落ちる"
     }
   ],
   "sentences": [

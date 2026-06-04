@@ -46,139 +46,185 @@
       "key": 10000,
       "word": "ラーメン",
       "hiragana": "ラーメン",
-      "translation": "ramen"
+      "translation": "ramen",
+      "pos": "n",
+      "dictionary_form": "ラーメン"
     },
     {
       "key": 10001,
       "word": "ラーメン屋",
       "hiragana": "ラーメンや",
-      "translation": "ramen shop"
+      "translation": "ramen shop",
+      "pos": "n",
+      "dictionary_form": "ラーメン"
     },
     {
       "key": 10002,
       "word": "門",
       "hiragana": "もん",
-      "translation": "gate"
+      "translation": "gate",
+      "pos": "n",
+      "dictionary_form": "門"
     },
     {
       "key": 10003,
       "word": "スープ",
       "hiragana": "スープ",
-      "translation": "soup"
+      "translation": "soup",
+      "pos": "n",
+      "dictionary_form": "スープ"
     },
     {
       "key": 10004,
       "word": "おおどおり",
       "hiragana": "おおどおり",
-      "translation": "main street"
+      "translation": "main street",
+      "pos": "pref",
+      "dictionary_form": "お"
     },
     {
       "key": 10005,
       "word": "くだもの屋",
       "hiragana": "くだものや",
-      "translation": "fruit shop"
+      "translation": "fruit shop",
+      "pos": "n",
+      "dictionary_form": "くだもの"
     },
     {
       "key": 10006,
       "word": "パン屋",
       "hiragana": "パンや",
-      "translation": "bakery"
+      "translation": "bakery",
+      "pos": "n",
+      "dictionary_form": "パン屋"
     },
     {
       "key": 10007,
       "word": "看板",
       "hiragana": "かんばん",
-      "translation": "sign"
+      "translation": "sign",
+      "pos": "n",
+      "dictionary_form": "看板"
     },
     {
       "key": 10008,
       "word": "におい",
       "hiragana": "におい",
-      "translation": "smell"
+      "translation": "smell",
+      "pos": "n",
+      "dictionary_form": "におい"
     },
     {
       "key": 10009,
       "word": "戸",
       "hiragana": "と",
-      "translation": "door"
+      "translation": "door",
+      "pos": "n",
+      "dictionary_form": "戸"
     },
     {
       "key": 10010,
       "word": "ベル",
       "hiragana": "ベル",
-      "translation": "bell"
+      "translation": "bell",
+      "pos": "n",
+      "dictionary_form": "ベル"
     },
     {
       "key": 10011,
       "word": "カウンター",
       "hiragana": "カウンター",
-      "translation": "counter"
+      "translation": "counter",
+      "pos": "n",
+      "dictionary_form": "カウンター"
     },
     {
       "key": 10012,
       "word": "椅子",
       "hiragana": "いす",
-      "translation": "chair; stool"
+      "translation": "chair; stool",
+      "pos": "n",
+      "dictionary_form": "椅子"
     },
     {
       "key": 10013,
       "word": "テーブル",
       "hiragana": "テーブル",
-      "translation": "table"
+      "translation": "table",
+      "pos": "n",
+      "dictionary_form": "テーブル"
     },
     {
       "key": 10014,
       "word": "エプロン",
       "hiragana": "エプロン",
-      "translation": "apron"
+      "translation": "apron",
+      "pos": "n",
+      "dictionary_form": "エプロン"
     },
     {
       "key": 10015,
       "word": "とんこつラーメン",
       "hiragana": "とんこつラーメン",
-      "translation": "tonkotsu ramen"
+      "translation": "tonkotsu ramen",
+      "pos": "n",
+      "dictionary_form": "とんこつラーメン"
     },
     {
       "key": 10016,
       "word": "みそラーメン",
       "hiragana": "みそラーメン",
-      "translation": "miso ramen"
+      "translation": "miso ramen",
+      "pos": "n",
+      "dictionary_form": "みそ"
     },
     {
       "key": 10017,
       "word": "どんぶり",
       "hiragana": "どんぶり",
-      "translation": "bowl"
+      "translation": "bowl",
+      "pos": "adv",
+      "dictionary_form": "どんぶり"
     },
     {
       "key": 10018,
       "word": "湯気",
       "hiragana": "ゆげ",
-      "translation": "steam"
+      "translation": "steam",
+      "pos": "n",
+      "dictionary_form": "湯気"
     },
     {
       "key": 10019,
       "word": "麺",
       "hiragana": "めん",
-      "translation": "noodles"
+      "translation": "noodles",
+      "pos": "n",
+      "dictionary_form": "麺"
     },
     {
       "key": 10020,
       "word": "卵",
       "hiragana": "たまご",
-      "translation": "egg"
+      "translation": "egg",
+      "pos": "n",
+      "dictionary_form": "卵"
     },
     {
       "key": 10021,
       "word": "ねぎ",
       "hiragana": "ねぎ",
-      "translation": "green onions"
+      "translation": "green onions",
+      "pos": "n",
+      "dictionary_form": "ねぎ"
     },
     {
       "key": 10022,
       "word": "いっぱい",
       "hiragana": "いっぱい",
-      "translation": "full"
+      "translation": "full",
+      "pos": "n",
+      "dictionary_form": "いっぱい"
     }
   ],
   "sentences": [

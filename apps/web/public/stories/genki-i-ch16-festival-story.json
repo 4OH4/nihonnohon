@@ -30,97 +30,129 @@
       "key": 10000,
       "word": "ケン",
       "hiragana": "ケン",
-      "translation": "Ken (name)"
+      "translation": "Ken (name)",
+      "pos": "n",
+      "dictionary_form": "ケン"
     },
     {
       "key": 10001,
       "word": "お祭り",
       "hiragana": "おまつり",
-      "translation": "festival"
+      "translation": "festival",
+      "pos": "n",
+      "dictionary_form": "お祭り"
     },
     {
       "key": 10002,
       "word": "におい",
       "hiragana": "におい",
-      "translation": "smell"
+      "translation": "smell",
+      "pos": "n",
+      "dictionary_form": "におい"
     },
     {
       "key": 10003,
       "word": "まず",
       "hiragana": "まず",
-      "translation": "first of all"
+      "translation": "first of all",
+      "pos": "adv",
+      "dictionary_form": "まず"
     },
     {
       "key": 10004,
       "word": "たこ焼き",
       "hiragana": "たこやき",
-      "translation": "takoyaki"
+      "translation": "takoyaki",
+      "pos": "n",
+      "dictionary_form": "たこ焼き"
     },
     {
       "key": 10005,
       "word": "ゲーム",
       "hiragana": "ゲーム",
-      "translation": "game"
+      "translation": "game",
+      "pos": "n",
+      "dictionary_form": "ゲーム"
     },
     {
       "key": 10006,
       "word": "飴",
       "hiragana": "あめ",
-      "translation": "candy"
+      "translation": "candy",
+      "pos": "n",
+      "dictionary_form": "飴"
     },
     {
       "key": 10007,
       "word": "浴衣",
       "hiragana": "ゆかた",
-      "translation": "yukata"
+      "translation": "yukata",
+      "pos": "n",
+      "dictionary_form": "浴衣"
     },
     {
       "key": 10008,
       "word": "ステージ",
       "hiragana": "ステージ",
-      "translation": "stage"
+      "translation": "stage",
+      "pos": "n",
+      "dictionary_form": "ステージ"
     },
     {
       "key": 10009,
       "word": "太鼓",
       "hiragana": "たいこ",
-      "translation": "drum"
+      "translation": "drum",
+      "pos": "n",
+      "dictionary_form": "太鼓"
     },
     {
       "key": 10010,
       "word": "叩く",
       "hiragana": "たたく",
-      "translation": "to hit; to play (drums)"
+      "translation": "to hit; to play (drums)",
+      "pos": "v5",
+      "dictionary_form": "叩く"
     },
     {
       "key": 10011,
       "word": "音",
       "hiragana": "おと",
-      "translation": "sound"
+      "translation": "sound",
+      "pos": "n",
+      "dictionary_form": "音"
     },
     {
       "key": 10012,
       "word": "力強い",
       "hiragana": "ちからづよい",
-      "translation": "powerful"
+      "translation": "powerful",
+      "pos": "adj-i",
+      "dictionary_form": "力強い"
     },
     {
       "key": 10013,
       "word": "暗い",
       "hiragana": "くらい",
-      "translation": "dark"
+      "translation": "dark",
+      "pos": "adj-i",
+      "dictionary_form": "暗い"
     },
     {
       "key": 10014,
       "word": "つく",
       "hiragana": "つく",
-      "translation": "(lights) turn on (intransitive)"
+      "translation": "(lights) turn on (intransitive)",
+      "pos": "v5",
+      "dictionary_form": "つく"
     },
     {
       "key": 10015,
       "word": "素晴らしい",
       "hiragana": "すばらしい",
-      "translation": "wonderful"
+      "translation": "wonderful",
+      "pos": "adj-i",
+      "dictionary_form": "素晴らしい"
     }
   ],
   "sentences": [

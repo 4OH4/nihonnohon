@@ -33,169 +33,225 @@
       "key": 10000,
       "word": "オコノミヤキ",
       "hiragana": "おこのみやき",
-      "translation": "Okonomiyaki"
+      "translation": "Okonomiyaki",
+      "pos": "n",
+      "dictionary_form": "オコノミヤキ"
     },
     {
       "key": 10001,
       "word": "ざいりょう",
       "hiragana": "ざいりょう",
-      "translation": "ingredients"
+      "translation": "ingredients",
+      "pos": "n",
+      "dictionary_form": "ざいりょう"
     },
     {
       "key": 10002,
       "word": "キャベツ",
       "hiragana": "キャベツ",
-      "translation": "cabbage"
+      "translation": "cabbage",
+      "pos": "n",
+      "dictionary_form": "キャベツ"
     },
     {
       "key": 10003,
       "word": "こむぎこ",
       "hiragana": "こむぎこ",
-      "translation": "flour"
+      "translation": "flour",
+      "pos": "n",
+      "dictionary_form": "こむぎ"
     },
     {
       "key": 10004,
       "word": "たまご",
       "hiragana": "たまご",
-      "translation": "egg"
+      "translation": "egg",
+      "pos": "n",
+      "dictionary_form": "たまご"
     },
     {
       "key": 10005,
       "word": "ぶたにく",
       "hiragana": "ぶたにく",
-      "translation": "pork"
+      "translation": "pork",
+      "pos": "n",
+      "dictionary_form": "ぶたにく"
     },
     {
       "key": 10006,
       "word": "オコノミヤキソース",
       "hiragana": "おこのみやきソース",
-      "translation": "Okonomiyaki sauce"
+      "translation": "Okonomiyaki sauce",
+      "pos": "n",
+      "dictionary_form": "オコノミヤキソース"
     },
     {
       "key": 10007,
       "word": "マヨネーズ",
       "hiragana": "マヨネーズ",
-      "translation": "mayonnaise"
+      "translation": "mayonnaise",
+      "pos": "n",
+      "dictionary_form": "マヨネーズ"
     },
     {
       "key": 10008,
       "word": "ボウル",
       "hiragana": "ボウル",
-      "translation": "bowl"
+      "translation": "bowl",
+      "pos": "n",
+      "dictionary_form": "ボウル"
     },
     {
       "key": 10009,
       "word": "まぜる",
       "hiragana": "まぜる",
-      "translation": "to mix"
+      "translation": "to mix",
+      "pos": "v1",
+      "dictionary_form": "まぜる"
     },
     {
       "key": 10010,
       "word": "また",
       "hiragana": "また",
-      "translation": "again"
+      "translation": "again",
+      "pos": "conj",
+      "dictionary_form": "また"
     },
     {
       "key": 10011,
       "word": "生地",
       "hiragana": "きじ",
-      "translation": "batter"
+      "translation": "batter",
+      "pos": "n",
+      "dictionary_form": "生地"
     },
     {
       "key": 10012,
       "word": "フライパン",
       "hiragana": "フライパン",
-      "translation": "frying pan"
+      "translation": "frying pan",
+      "pos": "n",
+      "dictionary_form": "フライパン"
     },
     {
       "key": 10013,
       "word": "あたためる",
       "hiragana": "あたためる",
-      "translation": "to heat"
+      "translation": "to heat",
+      "pos": "v1",
+      "dictionary_form": "あたためる"
     },
     {
       "key": 10014,
       "word": "油",
       "hiragana": "あぶら",
-      "translation": "oil"
+      "translation": "oil",
+      "pos": "n",
+      "dictionary_form": "油"
     },
     {
       "key": 10015,
       "word": "丸い",
       "hiragana": "まるい",
-      "translation": "round"
+      "translation": "round",
+      "pos": "adj-i",
+      "dictionary_form": "丸い"
     },
     {
       "key": 10016,
       "word": "形",
       "hiragana": "かたち",
-      "translation": "shape"
+      "translation": "shape",
+      "pos": "n",
+      "dictionary_form": "形"
     },
     {
       "key": 10017,
       "word": "薄い",
       "hiragana": "うすい",
-      "translation": "thin"
+      "translation": "thin",
+      "pos": "adj-i",
+      "dictionary_form": "薄い"
     },
     {
       "key": 10018,
       "word": "乗せる",
       "hiragana": "のせる",
-      "translation": "to place on top"
+      "translation": "to place on top",
+      "pos": "v1",
+      "dictionary_form": "乗せる"
     },
     {
       "key": 10019,
       "word": "におい",
       "hiragana": "におい",
-      "translation": "smell"
+      "translation": "smell",
+      "pos": "n",
+      "dictionary_form": "におい"
     },
     {
       "key": 10020,
       "word": "焼く",
       "hiragana": "やく",
-      "translation": "to cook/grill"
+      "translation": "to cook/grill",
+      "pos": "v5",
+      "dictionary_form": "焼く"
     },
     {
       "key": 10021,
       "word": "何分か",
       "hiragana": "なんぷんか",
-      "translation": "several minutes"
+      "translation": "several minutes",
+      "pos": "pron",
+      "dictionary_form": "何"
     },
     {
       "key": 10022,
       "word": "ひっくり返す",
       "hiragana": "ひっくりかえす",
-      "translation": "to flip"
+      "translation": "to flip",
+      "pos": "v5",
+      "dictionary_form": "ひっくり返す"
     },
     {
       "key": 10023,
       "word": "もう一方",
       "hiragana": "もういっぽう",
-      "translation": "the other side"
+      "translation": "the other side",
+      "pos": "adv",
+      "dictionary_form": "もう"
     },
     {
       "key": 10024,
       "word": "最後",
       "hiragana": "さいご",
-      "translation": "finally"
+      "translation": "finally",
+      "pos": "n",
+      "dictionary_form": "最後"
     },
     {
       "key": 10025,
       "word": "最高",
       "hiragana": "さいこう",
-      "translation": "the best"
+      "translation": "the best",
+      "pos": "n",
+      "dictionary_form": "最高"
     },
     {
       "key": 10026,
       "word": "かける",
       "hiragana": "かける",
-      "translation": "to pour (sauce etc.)"
+      "translation": "to pour (sauce etc.)",
+      "pos": "n",
+      "dictionary_form": "かける"
     },
     {
       "key": 10027,
       "word": "ジグザグ",
       "hiragana": "ジグザグ",
-      "translation": "zig-zag"
+      "translation": "zig-zag",
+      "pos": "adj-na",
+      "dictionary_form": "ジグザグ"
     }
   ],
   "sentences": [

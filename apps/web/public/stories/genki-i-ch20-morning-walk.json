@@ -32,97 +32,129 @@
       "key": 10000,
       "word": "コーヒーメーカー",
       "hiragana": "コーヒーメーカー",
-      "translation": "coffee maker"
+      "translation": "coffee maker",
+      "pos": "n",
+      "dictionary_form": "コーヒーメーカー"
     },
     {
       "key": 10001,
       "word": "まっすぐ",
       "hiragana": "まっすぐ",
-      "translation": "directly; straight"
+      "translation": "directly; straight",
+      "pos": "adv",
+      "dictionary_form": "まっすぐ"
     },
     {
       "key": 10002,
       "word": "セルフサービス",
       "hiragana": "セルフサービス",
-      "translation": "self-service"
+      "translation": "self-service",
+      "pos": "n",
+      "dictionary_form": "セルフサービス"
     },
     {
       "key": 10003,
       "word": "機械",
       "hiragana": "きかい",
-      "translation": "machine"
+      "translation": "machine",
+      "pos": "n",
+      "dictionary_form": "機械"
     },
     {
       "key": 10004,
       "word": "ボタン",
       "hiragana": "ボタン",
-      "translation": "button"
+      "translation": "button",
+      "pos": "n",
+      "dictionary_form": "ボタン"
     },
     {
       "key": 10005,
       "word": "置く",
       "hiragana": "おく",
-      "translation": "to put; to place"
+      "translation": "to put; to place",
+      "pos": "v5",
+      "dictionary_form": "置く"
     },
     {
       "key": 10006,
       "word": "レジ",
       "hiragana": "レジ",
-      "translation": "cash register; counter"
+      "translation": "cash register; counter",
+      "pos": "n",
+      "dictionary_form": "レジ"
     },
     {
       "key": 10007,
       "word": "店員",
       "hiragana": "てんいん",
-      "translation": "clerk"
+      "translation": "clerk",
+      "pos": "n",
+      "dictionary_form": "店員"
     },
     {
       "key": 10008,
       "word": "丁寧に",
       "hiragana": "ていねいに",
-      "translation": "carefully; politely"
+      "translation": "carefully; politely",
+      "pos": "adj-na",
+      "dictionary_form": "丁寧"
     },
     {
       "key": 10009,
       "word": "ふた",
       "hiragana": "ふた",
-      "translation": "lid"
+      "translation": "lid",
+      "pos": "n",
+      "dictionary_form": "ふた"
     },
     {
       "key": 10010,
       "word": "気持ちがいい",
       "hiragana": "きもちがいい",
-      "translation": "feels good; pleasant"
+      "translation": "feels good; pleasant",
+      "pos": "n",
+      "dictionary_form": "気持ち"
     },
     {
       "key": 10011,
       "word": "湯気",
       "hiragana": "ゆげ",
-      "translation": "steam"
+      "translation": "steam",
+      "pos": "n",
+      "dictionary_form": "湯気"
     },
     {
       "key": 10012,
       "word": "体",
       "hiragana": "からだ",
-      "translation": "body"
+      "translation": "body",
+      "pos": "n",
+      "dictionary_form": "体"
     },
     {
       "key": 10013,
       "word": "味",
       "hiragana": "あじ",
-      "translation": "taste"
+      "translation": "taste",
+      "pos": "n",
+      "dictionary_form": "味"
     },
     {
       "key": 10014,
       "word": "会話する",
       "hiragana": "かいわする",
-      "translation": "to converse; to talk"
+      "translation": "to converse; to talk",
+      "pos": "v-irr",
+      "dictionary_form": "会話する"
     },
     {
       "key": 10015,
       "word": "～にとって",
       "hiragana": "～にとって",
-      "translation": "for (someone); to (someone)"
+      "translation": "for (someone); to (someone)",
+      "pos": "v5",
+      "dictionary_form": "とる"
     }
   ],
   "sentences": [

@@ -51,121 +51,161 @@
       "key": 10000,
       "word": "お祭り",
       "hiragana": "おまつり",
-      "translation": "festival"
+      "translation": "festival",
+      "pos": "n",
+      "dictionary_form": "お祭り"
     },
     {
       "key": 10001,
       "word": "提灯",
       "hiragana": "ちょうちん",
-      "translation": "lantern"
+      "translation": "lantern",
+      "pos": "n",
+      "dictionary_form": "提灯"
     },
     {
       "key": 10002,
       "word": "飾り",
       "hiragana": "かざり",
-      "translation": "decoration"
+      "translation": "decoration",
+      "pos": "n",
+      "dictionary_form": "飾り"
     },
     {
       "key": 10003,
       "word": "まず",
       "hiragana": "まず",
-      "translation": "first"
+      "translation": "first",
+      "pos": "adv",
+      "dictionary_form": "まず"
     },
     {
       "key": 10004,
       "word": "匂い",
       "hiragana": "におい",
-      "translation": "smell"
+      "translation": "smell",
+      "pos": "n",
+      "dictionary_form": "匂い"
     },
     {
       "key": 10005,
       "word": "やきそば",
       "hiragana": "やきそば",
-      "translation": "yakisoba"
+      "translation": "yakisoba",
+      "pos": "n",
+      "dictionary_form": "やきそば"
     },
     {
       "key": 10006,
       "word": "たこやき",
       "hiragana": "たこやき",
-      "translation": "takoyaki"
+      "translation": "takoyaki",
+      "pos": "n",
+      "dictionary_form": "たこやき"
     },
     {
       "key": 10007,
       "word": "丸い",
       "hiragana": "まるい",
-      "translation": "round"
+      "translation": "round",
+      "pos": "adj-i",
+      "dictionary_form": "丸い"
     },
     {
       "key": 10008,
       "word": "ボール",
       "hiragana": "ボール",
-      "translation": "ball"
+      "translation": "ball",
+      "pos": "n",
+      "dictionary_form": "ボール"
     },
     {
       "key": 10009,
       "word": "歩き回る",
       "hiragana": "あるきまわる",
-      "translation": "to walk around"
+      "translation": "to walk around",
+      "pos": "v5",
+      "dictionary_form": "歩き回る"
     },
     {
       "key": 10010,
       "word": "金魚",
       "hiragana": "きんぎょ",
-      "translation": "goldfish"
+      "translation": "goldfish",
+      "pos": "n",
+      "dictionary_form": "金魚"
     },
     {
       "key": 10011,
       "word": "金魚すくい",
       "hiragana": "きんぎょすくい",
-      "translation": "goldfish scooping"
+      "translation": "goldfish scooping",
+      "pos": "n",
+      "dictionary_form": "金魚すくい"
     },
     {
       "key": 10012,
       "word": "ゆかた",
       "hiragana": "ゆかた",
-      "translation": "yukata"
+      "translation": "yukata",
+      "pos": "n",
+      "dictionary_form": "ゆかた"
     },
     {
       "key": 10013,
       "word": "チャーム",
       "hiragana": "チャーム",
-      "translation": "charm"
+      "translation": "charm",
+      "pos": "n",
+      "dictionary_form": "チャーム"
     },
     {
       "key": 10014,
       "word": "扇子",
       "hiragana": "せんす",
-      "translation": "fan"
+      "translation": "fan",
+      "pos": "n",
+      "dictionary_form": "扇子"
     },
     {
       "key": 10015,
       "word": "暗い",
       "hiragana": "くらい",
-      "translation": "dark"
+      "translation": "dark",
+      "pos": "adj-i",
+      "dictionary_form": "暗い"
     },
     {
       "key": 10016,
       "word": "光る",
       "hiragana": "ひかる",
-      "translation": "to glow"
+      "translation": "to glow",
+      "pos": "v5",
+      "dictionary_form": "光る"
     },
     {
       "key": 10017,
       "word": "明るい",
       "hiragana": "あかるい",
-      "translation": "bright"
+      "translation": "bright",
+      "pos": "adj-i",
+      "dictionary_form": "明るい"
     },
     {
       "key": 10018,
       "word": "数時間",
       "hiragana": "すうじかん",
-      "translation": "a few hours"
+      "translation": "a few hours",
+      "pos": "n",
+      "dictionary_form": "数時間"
     },
     {
       "key": 10019,
       "word": "帰り道",
       "hiragana": "かえりみち",
-      "translation": "way back home"
+      "translation": "way back home",
+      "pos": "n",
+      "dictionary_form": "帰り道"
     }
   ],
   "sentences": [

@@ -30,193 +30,257 @@
       "key": 10001,
       "word": "五分",
       "hiragana": "ごふん",
-      "translation": "five minutes"
+      "translation": "five minutes",
+      "pos": "n",
+      "dictionary_form": "五"
     },
     {
       "key": 10003,
       "word": "冷蔵庫",
       "hiragana": "れいぞうこ",
-      "translation": "refrigerator"
+      "translation": "refrigerator",
+      "pos": "n",
+      "dictionary_form": "冷蔵庫"
     },
     {
       "key": 10004,
       "word": "お菓子",
       "hiragana": "おかし",
-      "translation": "snack"
+      "translation": "snack",
+      "pos": "pref",
+      "dictionary_form": "お"
     },
     {
       "key": 10005,
       "word": "ポテトチップス",
       "hiragana": "ぽてとちっぷす",
-      "translation": "potato chips"
+      "translation": "potato chips",
+      "pos": "n",
+      "dictionary_form": "ポテトチップス"
     },
     {
       "key": 10006,
       "word": "クッキー",
       "hiragana": "くっきー",
-      "translation": "cookie"
+      "translation": "cookie",
+      "pos": "n",
+      "dictionary_form": "クッキー"
     },
     {
       "key": 10007,
       "word": "チョコレート",
       "hiragana": "ちょこれーと",
-      "translation": "chocolate"
+      "translation": "chocolate",
+      "pos": "n",
+      "dictionary_form": "チョコレート"
     },
     {
       "key": 10008,
       "word": "おにぎり",
       "hiragana": "おにぎり",
-      "translation": "rice ball"
+      "translation": "rice ball",
+      "pos": "n",
+      "dictionary_form": "おにぎり"
     },
     {
       "key": 10009,
       "word": "いろいろな",
       "hiragana": "いろいろな",
-      "translation": "various"
+      "translation": "various",
+      "pos": "adj-na",
+      "dictionary_form": "いろいろ"
     },
     {
       "key": 10010,
       "word": "物",
       "hiragana": "もの",
-      "translation": "thing"
+      "translation": "thing",
+      "pos": "n",
+      "dictionary_form": "物"
     },
     {
       "key": 10011,
       "word": "終わる",
       "hiragana": "おわる",
-      "translation": "to finish"
+      "translation": "to finish",
+      "pos": "v5",
+      "dictionary_form": "終わる"
     },
     {
       "key": 10014,
       "word": "言う",
       "hiragana": "いう",
-      "translation": "to say"
+      "translation": "to say",
+      "pos": "v5",
+      "dictionary_form": "言う"
     },
     {
       "key": 10016,
       "word": "見える",
       "hiragana": "みえる",
-      "translation": "to be visible"
+      "translation": "to be visible",
+      "pos": "v1",
+      "dictionary_form": "見える"
     },
     {
       "key": 10017,
       "word": "店員",
       "hiragana": "てんいん",
-      "translation": "cashier"
+      "translation": "cashier",
+      "pos": "n",
+      "dictionary_form": "店員"
     },
     {
       "key": 10018,
       "word": "笑う",
       "hiragana": "わらう",
-      "translation": "to smile"
+      "translation": "to smile",
+      "pos": "v5",
+      "dictionary_form": "笑う"
     },
     {
       "key": 10019,
       "word": "冷たい",
       "hiragana": "つめたい",
-      "translation": "cold (for objects)"
+      "translation": "cold (for objects)",
+      "pos": "adj-i",
+      "dictionary_form": "冷たい"
     },
     {
       "key": 10020,
       "word": "オレンジジュース",
       "hiragana": "おれんじじゅーす",
-      "translation": "orange juice"
+      "translation": "orange juice",
+      "pos": "n",
+      "dictionary_form": "オレンジジュース"
     },
     {
       "key": 10021,
       "word": "取る",
       "hiragana": "とる",
-      "translation": "to take; to pick up"
+      "translation": "to take; to pick up",
+      "pos": "v5",
+      "dictionary_form": "取る"
     },
     {
       "key": 10022,
       "word": "選ぶ",
       "hiragana": "えらぶ",
-      "translation": "to choose"
+      "translation": "to choose",
+      "pos": "v5",
+      "dictionary_form": "選ぶ"
     },
     {
       "key": 10023,
       "word": "レジ",
       "hiragana": "れじ",
-      "translation": "cash register; counter"
+      "translation": "cash register; counter",
+      "pos": "n",
+      "dictionary_form": "レジ"
     },
     {
       "key": 10024,
       "word": "スキャンする",
       "hiragana": "すきゃんする",
-      "translation": "to scan"
+      "translation": "to scan",
+      "pos": "v-irr",
+      "dictionary_form": "スキャンする"
     },
     {
       "key": 10025,
       "word": "出す",
       "hiragana": "だす",
-      "translation": "to take out"
+      "translation": "to take out",
+      "pos": "v5",
+      "dictionary_form": "出す"
     },
     {
       "key": 10027,
       "word": "おつり",
       "hiragana": "おつり",
-      "translation": "change"
+      "translation": "change",
+      "pos": "pref",
+      "dictionary_form": "お"
     },
     {
       "key": 10028,
       "word": "レシート",
       "hiragana": "れしーと",
-      "translation": "receipt"
+      "translation": "receipt",
+      "pos": "n",
+      "dictionary_form": "レシート"
     },
     {
       "key": 10029,
       "word": "払う",
       "hiragana": "はらう",
-      "translation": "to pay"
+      "translation": "to pay",
+      "pos": "v5",
+      "dictionary_form": "払う"
     },
     {
       "key": 10030,
       "word": "店",
       "hiragana": "みせ",
-      "translation": "store"
+      "translation": "store",
+      "pos": "n",
+      "dictionary_form": "店"
     },
     {
       "key": 10031,
       "word": "出る",
       "hiragana": "でる",
-      "translation": "to leave (a place)"
+      "translation": "to leave (a place)",
+      "pos": "v1",
+      "dictionary_form": "出る"
     },
     {
       "key": 10032,
       "word": "甘い",
       "hiragana": "あまい",
-      "translation": "sweet"
+      "translation": "sweet",
+      "pos": "adj-i",
+      "dictionary_form": "甘い"
     },
     {
       "key": 10033,
       "word": "野球",
       "hiragana": "やきゅう",
-      "translation": "baseball"
+      "translation": "baseball",
+      "pos": "n",
+      "dictionary_form": "野球"
     },
     {
       "key": 10034,
       "word": "練習",
       "hiragana": "れんしゅう",
-      "translation": "practice"
+      "translation": "practice",
+      "pos": "n",
+      "dictionary_form": "練習"
     },
     {
       "key": 10035,
       "word": "所",
       "hiragana": "ところ",
-      "translation": "place; section"
+      "translation": "place; section",
+      "pos": "n",
+      "dictionary_form": "所"
     },
     {
       "key": 10036,
       "word": "三百八十",
       "hiragana": "さんびゃくはちじゅう",
-      "translation": "three hundred eighty"
+      "translation": "three hundred eighty",
+      "pos": "n",
+      "dictionary_form": "三百八十"
     },
     {
       "key": 10037,
       "word": "あげる",
       "hiragana": "あげる",
-      "translation": "to give (to others)"
+      "translation": "to give (to others)",
+      "pos": "v1",
+      "dictionary_form": "あげる"
     }
   ],
   "sentences": [

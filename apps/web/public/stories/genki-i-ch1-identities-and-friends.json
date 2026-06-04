@@ -16,19 +16,25 @@
       "key": 10000,
       "word": "けん",
       "hiragana": "けん",
-      "translation": "Ken (person's name)"
+      "translation": "Ken (person's name)",
+      "pos": "n",
+      "dictionary_form": "けん"
     },
     {
       "key": 10001,
       "word": "さくら",
       "hiragana": "さくら",
-      "translation": "Sakura (person's name)"
+      "translation": "Sakura (person's name)",
+      "pos": "n",
+      "dictionary_form": "さくら"
     },
     {
       "key": 10002,
       "word": "三",
       "hiragana": "さん",
-      "translation": "three (number)"
+      "translation": "three (number)",
+      "pos": "n",
+      "dictionary_form": "三"
     }
   ],
   "sentences": [
