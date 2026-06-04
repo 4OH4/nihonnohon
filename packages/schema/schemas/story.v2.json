@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Nihon no Hon Story v2",
+  "description": "Open story format for Japanese language reading practice. Words may contain inline 漢字[よみ] furigana annotations.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "title", "title_ja", "language", "description", "sentences"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": ["2"]
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title_ja": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "difficulty": {
+      "type": ["string", "null"]
+    },
+    "keywords": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/vocabEntry" }
+    },
+    "grammar": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "vocab_supplement": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/vocabEntry" }
+    },
+    "author": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1
+    },
+    "license_url": {
+      "type": "string",
+      "minLength": 1
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "sentences": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/sentence" }
+    }
+  },
+  "$defs": {
+    "vocabEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "word", "hiragana", "translation"],
+      "properties": {
+        "key": { "type": "integer", "minimum": 0 },
+        "word": { "type": "string" },
+        "hiragana": { "type": "string" },
+        "translation": { "type": "string" }
+      }
+    },
+    "sentence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "words"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "words": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "vocab_keys": {
+          "type": "array",
+          "items": { "type": ["integer", "null"], "minimum": 0 }
+        },
+        "translation": {
+          "type": "string"
+        },
+        "grammar": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0 }
+        },
+        "audio_url": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

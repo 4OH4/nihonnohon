@@ -1,5 +1,11 @@
 # Deferred Work
 
+## Deferred from: code review of se1-1-inline-ruby-parser-and-v2-schema (2026-06-04)
+
+- **CJK Extension A (U+3400–U+4DBF) excluded from `isKanji`:** No kyouiku/joyo kanji fall in this block; spec explicitly defines range as 0x4E00–0x9FFF. Revisit if classical/rare character support is needed. [`parseInlineRuby.ts:19`]
+- **Surrogate-pair iteration for CJK Extension B+ characters:** Characters at U+20000+ are not used in modern Japanese; theoretical only for this app. [`parseInlineRuby.ts:40`]
+- **`metadata` object uses `additionalProperties: true` while AC1 says "every object node":** Pre-existing from v1; metadata is an intentional open escape-hatch. [`story.v2.json:66`]
+
 ## Deferred from: code review of supp-1-gemini-thinking-live-status (2026-05-19)
 
 - **Thought text forwarded verbatim to client with no sanitisation:** React escapes HTML so XSS is not a concern; Unicode bidirectional control characters are a cosmetic edge case. Acceptable for v1. [agent.py — both streaming loops]

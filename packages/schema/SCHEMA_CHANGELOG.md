@@ -1,5 +1,31 @@
 # Schema Changelog
 
+## Version 2
+
+Introduced inline furigana annotation. See ADR 005 (`docs/adr/005-inline-furigana-format.md`)
+for full design rationale.
+
+### Changes from Version 1
+
+**Removed:** `ruby` field from sentence objects. This was a parallel array associating a
+whole-word reading with each word. It is no longer valid in v2; including it causes
+`additionalProperties: false` validation to fail.
+
+**Changed:** `words` array entries may now contain inline `漢字[よみ]` annotations. The
+`[reading]` bracket attaches to the contiguous kanji block immediately preceding it.
+Unannotated characters are plain text. Words with no furigana are plain strings. This
+is transparent to the schema — `words` remains `string[]`.
+
+### Sentence-level fields (v2)
+
+Required: `id`, `words`
+
+Optional: `vocab_keys`, `translation`, `grammar`, `audio_url`
+
+Removed: `ruby`
+
+---
+
 ## Version 1
 
 Initial schema version. Establishes the core story format contract.
