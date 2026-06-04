@@ -1,17 +1,7 @@
 // Copyright (c) 2026 Rupert Thomas
 // SPDX-License-Identifier: MIT
 
-/** A single text+ruby segment within a parsed word. ruby is null for unannotated text. */
-export interface WordSegment {
-  text: string
-  ruby: string | null
-}
-
-/** A word parsed from an inline-annotated string. surface is always the clean plain text. */
-export interface ParsedWord {
-  surface: string
-  segments: WordSegment[]
-}
+import type { WordSegment, ParsedWord } from '@nihonnohon/schema'
 
 /** Returns true if the character is kanji: CJK Unified Ideographs or iteration marks 々〻〃. */
 function isKanji(char: string): boolean {

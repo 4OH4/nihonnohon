@@ -4,11 +4,13 @@
 import type { StoryModel } from '@nihonnohon/schema'
 import { LoaderError } from './errors'
 import { loadV1 } from './v1'
+import { loadV2 } from './v2'
 
 export { LoaderError } from './errors'
 
 const LOADERS: Record<string, (raw: unknown) => StoryModel> = {
   '1': loadV1,
+  '2': loadV2,
 }
 
 export function loadStory(rawJson: unknown): StoryModel {

@@ -1,5 +1,12 @@
 # Deferred Work
 
+## Deferred from: code review of se1-3-loader-v2-and-v1-shim (2026-06-04)
+
+- **Shared AJV `validate.errors` mutable under concurrent calls:** Module-level `const validate = ajv.compile(schema)` in `v2.ts` (and identically in `v1.ts`) means `validate.errors` is a shared mutable reference; concurrent `loadStory()` calls could read stale errors. Pre-existing pattern; loader is currently synchronous. [`v2.ts:9-10`]
+- **`mapVocabEntry` duplicated verbatim between `v1.ts` and `v2.ts`:** Both files define an identical private `mapVocabEntry`. A bug fix in one will not propagate to the other. By design in the versioned-loader architecture where each version file is self-contained. [`v1.ts:100`, `v2.ts:91`]
+- **v1 shim `surface` contains bracket markup if a v1 payload word contains inline notation:** A v1 word like `"食[た]"` would produce `token.surface = "食[た]"` (brackets included) and a flat ruby annotation on the same token. Theoretical only — well-formed v1 stories never use inline bracket notation in words. [`v1.ts:108-111`]
+- **`sentence.grammar` indices not bounds-checked against `story.grammar.length` in `v2.ts`:** An index beyond the story-level grammar array length is stored without validation; consumers get `undefined` entries. Pre-existing in `v1.ts`; grammar panel handles out-of-range indices gracefully. [`v2.ts:60-69`]
+
 ## Deferred from: code review of se1-2-internal-type-changes (2026-06-04)
 
 - **`parseInlineRuby` orphan-bracket handler silently discards bracket content:** An orphan `[` outside kanji context causes the bracket and its contents to be discarded from `surface`, so `token.surface` diverges from the original input string. Pre-existing from se1-1. [`parseInlineRuby.ts:68-70`]

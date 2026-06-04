@@ -2,9 +2,10 @@
 // SPDX-License-Identifier: MIT
 
 import Ajv from 'ajv'
-import schema from '@nihonnohon/schema/schemas/story.v1.json'
+import schema from '@nihonnohon/schema/schemas/story.v2.json'
 import { LoaderError } from './errors'
-import type { StoryModel, SentenceModel, VocabSupplementEntry, ParsedWord } from '@nihonnohon/schema'
+import { parseInlineRuby } from './parseInlineRuby'
+import type { StoryModel, SentenceModel, VocabSupplementEntry } from '@nihonnohon/schema'
 
 const ajv = new Ajv()
 const validate = ajv.compile(schema)
@@ -19,7 +20,6 @@ interface WireVocabEntry {
 interface WireSentence {
   id: string
   words: string[]
-  ruby?: (string | null)[]
   vocab_keys?: (number | null)[]
   translation?: string
   grammar?: number[]
@@ -45,7 +45,8 @@ interface WireStory {
   sentences: WireSentence[]
 }
 
-export function loadV1(raw: unknown): StoryModel {
+/** Loads and validates a v2 story JSON object, returning a StoryModel with parsed tokens. */
+export function loadV2(raw: unknown): StoryModel {
   // 1. AJV validates snake_case wire format FIRST — before any transformation
   if (!validate(raw)) {
     throw new LoaderError(
@@ -59,12 +60,6 @@ export function loadV1(raw: unknown): StoryModel {
   // 2. Parallel array length check (JSON Schema Draft-07 cannot enforce cross-field equality)
   for (const sentence of wire.sentences) {
     const wordCount = sentence.words.length
-    if (sentence.ruby !== undefined && sentence.ruby.length !== wordCount) {
-      throw new LoaderError(
-        'SCHEMA_INVALID',
-        `Sentence "${sentence.id}": ruby array length (${sentence.ruby.length}) must match words length (${wordCount}).`
-      )
-    }
     if (sentence.vocab_keys !== undefined && sentence.vocab_keys.length !== wordCount) {
       throw new LoaderError(
         'SCHEMA_INVALID',
@@ -100,15 +95,9 @@ function mapVocabEntry(e: WireVocabEntry): VocabSupplementEntry {
 
 function mapSentence(s: WireSentence): SentenceModel {
   const wordCount = s.words.length
-  // Coerce the string "null" produced by some LLM outputs to real null.
-  const rubyArr = (s.ruby ?? Array<string | null>(wordCount).fill(null))
-    .map(v => (v === 'null' ? null : v))
   return {
     id: s.id,
-    tokens: s.words.map((word, i): ParsedWord => ({
-      surface: word,
-      segments: [{ text: word, ruby: rubyArr[i] ?? null }],
-    })),
+    tokens: s.words.map(word => parseInlineRuby(word)),
     vocabKeys: (s.vocab_keys ?? Array<number | null>(wordCount).fill(null))
       .map(v => (v === ('null' as unknown) ? null : v)),
     translation: s.translation ?? null,
