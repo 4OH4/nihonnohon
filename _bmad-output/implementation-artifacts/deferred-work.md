@@ -1,5 +1,14 @@
 # Deferred Work
 
+## Deferred from: code review of se2-2-updated-generation-pipeline (2026-06-04)
+
+- **`_lookup_genki_id` falsy-zero pattern:** `or` chain would misclassify row ID 0 as not-found; safe with IDs 1–1172 but latent. Prefer `if (v := ...) is not None` pattern when revisiting. [`enrichment.py:_lookup_genki_id`]
+- **`vocab_supplement` translation empty string:** When neither Genki nor JMdict has a gloss, `translation` is `""`. Consider a fallback or explicit null. [`enrichment.py:build_enriched_story`]
+- **`valid_story.json` fixture lacks `pos`/`dictionary_form`:** Test fixture represents old-format stories; se2-3 schema work will address this. [`tests/fixtures/valid_story.json`]
+- **`supp_key_counter` theoretical collision:** Supplement keys start at 10000; would collide if Genki CSV ever exceeds 9999 rows. Add an assertion at load time if CSV grows significantly. [`enrichment.py`]
+- **`感動詞` interjection pos_code="":** Interjections classified as punctuation in `build_enriched_story`, missing a vocab key. Pre-existing `_pos_code` design decision. [`enrichment.py`]
+- **`load_genki_key_index` no header guard:** `int(row[0])` would raise on a header row. Pre-existing pattern from `load_genki_index`; CSV has no header. [`enrichment.py:load_genki_key_index`]
+
 ## Deferred from: code review of se2-1-enrichment-module (2026-06-04)
 
 - **`_pos_code` empty `conj_type` → silent v1 fallback:** SudachiPy returning `""` for 活用型 on dictionary-form verb tokens causes silent v1 label; consider a warning or `""` → explicit unknown code. [`enrichment.py`]

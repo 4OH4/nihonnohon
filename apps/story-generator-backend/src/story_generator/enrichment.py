@@ -70,6 +70,9 @@ _AUXILIARY_POS = {"助動詞", "助詞", "補助記号", "空白"}
 # Major POS categories worth looking up in a dictionary
 _CONTENT_POS = {"名詞", "動詞", "形容詞", "形状詞", "副詞", "接続詞", "感動詞", "代名詞"}
 
+# Compact POS codes used in build_enriched_story vocab key assignment
+_CONTENT_POS_CODES = {"n", "v1", "v5", "v-irr", "adj-i", "adj-na", "adv", "pron", "conj"}
+
 _POS_MAP = {
     "名詞": "n",
     "形容詞": "adj-i",
@@ -157,6 +160,29 @@ def _pos_code(morphemes: list) -> str:
 # ---------------------------------------------------------------------------
 
 
+def load_genki_key_index(csv_path: Path) -> tuple[dict[str, int], dict[str, int]]:
+    """Parse genki1vocab.csv into kanji and kana row-ID indexes.
+
+    Returns (kanji_id_index, kana_id_index) mapping headword → integer row ID (1–1172).
+    Used by build_enriched_story to assign Genki vocab_keys by construction.
+    """
+    kanji_id_index: dict[str, int] = {}
+    kana_id_index: dict[str, int] = {}
+    with open(csv_path, encoding="utf-8", newline="") as f:
+        for row in csv.reader(f):
+            if len(row) < 4:
+                continue
+            row_id = int(row[0])
+            kanji = row[2].strip().lstrip("〜")
+            for reading in row[1].split(";"):
+                reading = reading.strip().lstrip("〜")
+                if reading and reading not in kana_id_index:
+                    kana_id_index[reading] = row_id
+            if kanji and kanji not in kanji_id_index:
+                kanji_id_index[kanji] = row_id
+    return kanji_id_index, kana_id_index
+
+
 def load_genki_index(csv_path: Path) -> tuple[dict[str, str], dict[str, str]]:
     """Parse genki1vocab.csv into kanji and kana lookup indexes.
 
@@ -241,6 +267,7 @@ class EnrichmentPipeline:
         self._dictionary = sudachipy.Dictionary()
         self._tokenizer = self._dictionary.create()
         self._kanji_index, self._kana_index = load_genki_index(genki_csv_path)
+        self._kanji_id_index, self._kana_id_index = load_genki_key_index(genki_csv_path)
         self._jam = Jamdict()
 
     def enrich_sentence(
@@ -306,3 +333,112 @@ class EnrichmentPipeline:
             results.append(entry)
 
         return results
+
+    def _lookup_genki_id(self, dictionary_form: str) -> int | None:
+        """Return the Genki CSV row ID for dictionary_form, or None. IDs are 1–1172."""
+        return self._kanji_id_index.get(dictionary_form) or self._kana_id_index.get(dictionary_form)
+
+    def build_enriched_story(self, segments: list[dict], story_meta: dict) -> dict:
+        """Build a complete story dict from pre-segmented sentences and story metadata.
+
+        Assigns furigana, vocab_keys, and vocab_supplement deterministically without LLM input.
+
+        Args:
+            segments: List of sentence dicts from Gemini, each with ``english``, ``japanese``,
+                ``words`` (surface strings), and optional ``grammar`` (index list).
+            story_meta: Dict with ``id``, ``title``, ``title_ja``, ``description``,
+                ``grammar`` (story-level pattern list), and ``difficulty``.
+
+        Returns:
+            Complete story dict in v2 wire format, ready for schema validation.
+
+        Raises:
+            ValueError: If a segment's joined words don't reconstruct its ``japanese`` string.
+        """
+        # Shared state across all sentences
+        seen_dict_forms: set[str] = set()
+        supp_key_counter = 10000
+        supp_key_map: dict[str, int] = {}  # dictionary_form → assigned supplemental key
+        vocab_supplement: list[dict] = []
+        built_sentences: list[dict] = []
+
+        for i, segment in enumerate(segments):
+            # Word boundary validation — Gemini output must reconstruct the Japanese sentence
+            words_raw: list[str] = segment.get("words") or []
+            japanese = segment.get("japanese", "")
+            joined = "".join(words_raw)
+            expected = japanese.replace(" ", "")
+            if joined != expected:
+                raise ValueError(
+                    f"Sentence {i + 1}: joined words {joined!r} != japanese {expected!r}"
+                )
+
+            # Morphological enrichment with shared furigana suppression set
+            enriched_results = self.enrich_sentence(words_raw, seen_dict_forms)
+            if len(enriched_results) != len(words_raw):
+                raise ValueError(
+                    f"Sentence {i + 1}: enrich_sentence returned {len(enriched_results)} results "
+                    f"for {len(words_raw)} words — tokenisation mismatch"
+                )
+
+            # Assign vocab keys per word
+            vocab_keys: list[int | None] = []
+            annotated_words: list[str] = []
+            for surface, enriched in zip(words_raw, enriched_results):
+                annotated_words.append(enriched["annotated"])
+                dict_form = enriched["dictionary_form"]
+                pos_code = enriched["pos_code"]
+
+                # 1. Try Genki lookup by dictionary form
+                genki_id = self._lookup_genki_id(dict_form)
+                if genki_id is not None:
+                    vocab_keys.append(genki_id)
+                    continue
+
+                # 2. Particles and punctuation → null
+                if pos_code in ("prt", ""):
+                    vocab_keys.append(None)
+                    continue
+
+                # 3. Content words → supplemental key (reuse if same dict form seen before)
+                if pos_code in _CONTENT_POS_CODES:
+                    if dict_form in supp_key_map:
+                        vocab_keys.append(supp_key_map[dict_form])
+                    else:
+                        key = supp_key_counter
+                        supp_key_counter += 1
+                        supp_key_map[dict_form] = key
+                        vocab_supplement.append({
+                            "key": key,
+                            "word": surface,
+                            "hiragana": enriched["reading"],
+                            "translation": enriched.get("gloss", ""),
+                            "pos": pos_code,
+                            "dictionary_form": dict_form,
+                        })
+                        vocab_keys.append(key)
+                    continue
+
+                # 4. Suffixes, prefixes, and other non-content words not in Genki → null
+                vocab_keys.append(None)
+
+            built_sentences.append({
+                "id": f"s{i + 1:02d}",
+                "words": annotated_words,
+                "vocab_keys": vocab_keys,
+                "translation": segment.get("english", ""),
+                "grammar": segment.get("grammar", []),
+            })
+
+        return {
+            "schema_version": "2",
+            "id": story_meta.get("id", ""),
+            "title": story_meta.get("title", ""),
+            "title_ja": story_meta.get("title_ja", ""),
+            "language": "ja",
+            "description": story_meta.get("description", ""),
+            "difficulty": story_meta.get("difficulty", ""),
+            "grammar": story_meta.get("grammar", []),
+            "vocab_supplement": vocab_supplement,
+            "sentences": built_sentences,
+        }

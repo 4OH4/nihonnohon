@@ -87,69 +87,44 @@ Format: ID | hiragana (kanji) | English meaning
 
 {grammar_dist_text}
 {steering_block}
-## Inline Furigana Annotation
+## Word Segmentation Rules
 
-Words containing kanji MUST be annotated using inline `漢字[よみ]` syntax.
-The reading goes in square brackets immediately after the kanji character(s).
-Non-kanji characters (hiragana, katakana, punctuation) between or after annotated
-blocks are bare text — do not annotate them.
-
-**Four annotation patterns:**
-
-| Pattern | Word | Annotated form |
-|---|---|---|
-| Single kanji | 私 | `私[わたし]` |
-| Kanji block + okurigana | 肌寒い | `肌寒[はだざむ]い` |
-| Separate kanji with interleaved kana | 付け加える | `付[つ]け加[くわ]える` |
-| Jukujikun (whole-word reading) | 大人 | `大人[おとな]` |
-
-Words that are pure hiragana, katakana, or punctuation: write them as plain strings with no brackets.
+Split each Japanese sentence into surface word tokens following these rules:
+1. Verb stems stay attached to their polite endings: 食べます is one token, 行きます is one token
+2. Particles are separate tokens: は、を、に、で、へ、が、と、も、の are each a single token
+3. Punctuation is separate: 。and 、are each a single token
+4. Honorifics attached to names stay attached: たろうさん is one token
+5. The words array joined (no spaces) must exactly equal the japanese string
 
 ## Output Format
 
 Respond with a single JSON object matching this exact structure:
 
 {{
-  "schema_version": "2",
   "id": "<kebab-case identifier embedding difficulty and topic, e.g. genki-i-ch{chapter}-topic>",
   "title": "<English story title>",
   "title_ja": "<Japanese story title>",
-  "language": "ja",
   "description": "<1-2 sentence English description of the story>",
-  "difficulty": "{difficulty}",
   "grammar": ["<grammar pattern string 1>", "<grammar pattern string 2>", ...],
-  "vocab_supplement": [
-    {{"key": <integer starting at 10000>, "word": "<word>", "hiragana": "<reading>", "translation": "<English>"}}
-  ],
   "sentences": [
     {{
-      "id": "s01",
-      "words": ["<word1 with inline annotation if kanji>", "<word2>", ...],
-      "vocab_keys": [<vocab_id or null>, <vocab_id or null>, ...],
-      "translation": "<English translation of this sentence>",
-      "grammar": [<index into story-level grammar array>, ...]
+      "english": "<English translation of this sentence>",
+      "japanese": "<full Japanese sentence with no spaces>",
+      "words": ["<surface word 1>", "<surface word 2>", ...],
+      "grammar": [<0-based index into story-level grammar array>, ...]
     }}
   ]
 }}
 
-## Critical Rules
+## Rules
 
-1. **Parallel arrays**: `words` and `vocab_keys` MUST have the SAME LENGTH for every sentence. This is a hard requirement — mismatched lengths will fail validation.
+1. **sentence.grammar**: List the 0-based indices into the story-level `grammar` array for patterns used in that sentence.
 
-2. **vocab_keys values**:
-   - Use the integer ID from the vocabulary list above if the token matches a listed word
-   - Use `null` (JSON null, no quotes) for particles, punctuation, conjunctions, or any token not in the vocabulary list
-   - Supplemental vocabulary (words needed but NOT in the list) must appear in `vocab_supplement` with a unique integer `key` starting at 10000, and that same key used in `vocab_keys`
+2. **id field**: Must be suitable as a filename (kebab-case, no spaces, no special characters except hyphens).
 
-3. **Annotation format**: Words containing kanji MUST use inline `漢字[よみ]` syntax as described above. The `[` bracket must immediately follow the kanji character(s) it annotates.
+3. **Vocabulary discipline**: Only use vocabulary from the provided list. Do not introduce vocabulary beyond Chapter {chapter}.
 
-4. **sentence.id**: Use "s01", "s02", etc.
-
-5. **sentence.grammar**: List the 0-based indices into the story-level `grammar` array for patterns used in that sentence.
-
-6. **id field**: Must be suitable as a filename (kebab-case, no spaces, no special characters except hyphens).
-
-7. **Vocabulary discipline**: Only use vocabulary from the provided list or `vocab_supplement`. Do not introduce vocabulary beyond Chapter {chapter} without adding it to `vocab_supplement`.
+4. **words array**: Plain surface forms only — no furigana brackets. Joined words must exactly equal the japanese field.
 
 Return ONLY the JSON object. No markdown, no code fences, no explanation.
 """
@@ -249,12 +224,14 @@ class StoryGeneratorAgent:
         grammar_data: GrammarData,
         gemini_client=None,
         gemini_stream_client=None,
+        enrichment_pipeline=None,
         generation_timeout_s: float = 55.0,
     ) -> None:
         self._vocab_data = vocab_data
         self._grammar_data = grammar_data
         self._gemini_client = gemini_client  # None → real client on first call
         self._gemini_stream_client = gemini_stream_client  # None → real stream client on first call
+        self._enrichment_pipeline = enrichment_pipeline  # None → real pipeline injected by main.py
         self._generation_timeout_s = generation_timeout_s
 
     def _get_caller(self):
@@ -496,9 +473,9 @@ class StoryGeneratorAgent:
         )
         logger.debug("Response (%d chars):\n%s", len(raw_json), raw_json[:2000])
 
-        # Parse JSON
+        # Parse simplified Gemini JSON response
         try:
-            story_dict = json.loads(raw_json)
+            raw_response = json.loads(raw_json)
         except json.JSONDecodeError as exc:
             logger.error("run_id=%s invalid JSON from Gemini: %s", run_id, exc)
             yield {
@@ -508,12 +485,35 @@ class StoryGeneratorAgent:
             }
             return
 
-        # Coerce string "null" → None in ruby and vocab_keys arrays.
-        # Gemini occasionally outputs ["null"] instead of [null] despite prompt
-        # instructions; fix silently before validation so it never reaches the client.
-        _coerce_string_nulls(story_dict)
+        # Extract sentences (segments) and story metadata from simplified response
+        segments = raw_response.get("sentences") or []
+        story_meta = {k: v for k, v in raw_response.items() if k != "sentences"}
+        story_meta["difficulty"] = f"Genki I Ch.{chapter_int}"
 
-        # Validate before streaming — emit ERROR instead of RUN_FINISHED on failure
+        # Guard: enrichment pipeline must be available
+        pipeline = self._enrichment_pipeline
+        if pipeline is None:
+            logger.error("run_id=%s enrichment pipeline not initialised", run_id)
+            yield {
+                "type": "ERROR",
+                "code": "GENERATION_FAILED",
+                "message": "Enrichment pipeline not initialised — SudachiPy may not be installed.",
+            }
+            return
+
+        # Enrich deterministically: furigana, vocab_keys, vocab_supplement all built by Python
+        try:
+            story_dict = pipeline.build_enriched_story(segments, story_meta)
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("run_id=%s enrichment failed: %s", run_id, exc)
+            yield {
+                "type": "ERROR",
+                "code": "GENERATION_FAILED",
+                "message": str(exc),
+            }
+            return
+
+        # Validate assembled story — PARALLEL_ARRAY_MISMATCH here is a pipeline bug, not LLM error
         result = validate(story_dict)
         if not result.valid:
             errors_str = "; ".join(e.message for e in result.errors[:3])
@@ -529,12 +529,13 @@ class StoryGeneratorAgent:
         sentences = story_dict.get("sentences", [])
         logger.info("run_id=%s generation complete — id=%r sentences=%d", run_id, story_id, len(sentences))
 
-        # Stream complete JSON as a single chunk then finish
-        yield {"type": "TEXT_MESSAGE_CHUNK", "delta": raw_json}
+        # Stream enriched JSON as a single chunk then finish
+        enriched_json = json.dumps(story_dict, ensure_ascii=False)
+        yield {"type": "TEXT_MESSAGE_CHUNK", "delta": enriched_json}
         yield {
             "type": "RUN_FINISHED",
             "resultType": "story",
-            "content": raw_json,
+            "content": enriched_json,
         }
 
     async def _generate_proposal(

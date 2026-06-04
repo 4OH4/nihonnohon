@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-05-11
-last_updated: 2026-06-04  # se2-1 enrichment module done
+last_updated: 2026-06-04  # se2-2 generation pipeline done
 # v1 complete: all epics done, retrospective closed
 # supp-epic-1 (furigana rework) in progress
 project: nihonnohon
@@ -95,7 +95,7 @@ development_status:
   # Planning: _bmad-output/planning-artifacts/supp-epic-2-python-enrichment.md
   supp-epic-2: in-progress
   se2-1-enrichment-module: done
-  se2-2-updated-generation-pipeline: backlog
+  se2-2-updated-generation-pipeline: done
   se2-3-schema-and-type-updates: backlog
   se2-4-web-app-pos-display: backlog
   se2-5-story-library-re-enrichment: backlog

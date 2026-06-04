@@ -108,6 +108,7 @@ _SUGGEST_TOPIC_TIMEOUT_S: float = float(_timeouts["suggestTopicTimeoutS"])
 
 _vocab_data = None
 _grammar_data = None
+_enrichment_pipeline = None
 
 # Registry of in-flight runs: runId → cancel Event
 _active_runs: dict[str, asyncio.Event] = {}
@@ -120,14 +121,23 @@ _SUGGEST_TOPIC_COOLDOWN_S = 2.0
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Load CSV reference data once at startup; no per-request file I/O."""
-    global _vocab_data, _grammar_data  # noqa: PLW0603
+    """Load CSV reference data and enrichment pipeline once at startup."""
+    global _vocab_data, _grammar_data, _enrichment_pipeline  # noqa: PLW0603
 
     data_dir = Path(os.environ.get("DATA_DIR", "../../resources"))
     from story_generator.data_loader import load_grammar_data, load_vocab_data
 
     _vocab_data = load_vocab_data(data_dir / "genki1vocab.csv")
     _grammar_data = load_grammar_data(data_dir / "Genki_grammar_for_AI_generation.csv")
+
+    # SudachiPy startup is ~1-2 seconds; initialise once and reuse across requests
+    try:
+        from story_generator.enrichment import EnrichmentPipeline
+        _enrichment_pipeline = EnrichmentPipeline(data_dir / "genki1vocab.csv")
+        logger.info("EnrichmentPipeline initialised")
+    except ImportError:
+        logger.warning("SudachiPy not installed — enrichment pipeline unavailable; generation will fail")
+
     yield
 
 
@@ -186,7 +196,11 @@ async def run_sse(
 
     from story_generator.agent import StoryGeneratorAgent
 
-    agent = StoryGeneratorAgent(_vocab_data, _grammar_data, generation_timeout_s=_GENERATION_TIMEOUT_S)
+    agent = StoryGeneratorAgent(
+        _vocab_data, _grammar_data,
+        enrichment_pipeline=_enrichment_pipeline,
+        generation_timeout_s=_GENERATION_TIMEOUT_S,
+    )
 
     async def event_stream():
         try:
