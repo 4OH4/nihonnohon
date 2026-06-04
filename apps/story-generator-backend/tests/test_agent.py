@@ -174,6 +174,32 @@ def test_system_prompt_includes_cumulative_vocab_up_to_chapter(vocab_data, gramm
             break
 
 
+def test_system_prompt_contains_v2_format_instructions(vocab_data, grammar_data, fixture_json):
+    """System prompt instructs schema_version 2, inline annotation syntax, and no ruby array."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    captured: list[str] = []
+    agent = StoryGeneratorAgent(
+        vocab_data, grammar_data,
+        gemini_stream_client=make_capturing_stream_client(fixture_json, captured),
+    )
+    _collect(agent.generate(run_id="t", input_text="test", chapter="Genki I Ch.3"))
+
+    assert captured, "No Gemini call was made"
+    prompt = captured[0]
+
+    # v2 schema version instruction is present
+    assert '"schema_version": "2"' in prompt, "Prompt must specify schema_version 2"
+
+    # Inline annotation syntax is explained
+    assert "漢字[よみ]" in prompt or "大人[おとな]" in prompt, (
+        "Prompt must describe the inline annotation syntax"
+    )
+
+    # No mention of a ruby parallel array
+    assert '"ruby"' not in prompt, 'Prompt must not reference a "ruby" array'
+
+
 def test_system_prompt_includes_grammar_for_chapter(vocab_data, grammar_data, fixture_json):
     """System prompt includes grammar points up to the requested chapter."""
     from story_generator.agent import StoryGeneratorAgent
@@ -194,11 +220,11 @@ def test_system_prompt_includes_grammar_for_chapter(vocab_data, grammar_data, fi
 
 
 def test_validation_failure_emits_error_not_finished(vocab_data, grammar_data):
-    """A story with parallel-array mismatch causes ERROR instead of RUN_FINISHED."""
+    """A story with vocab_keys length mismatch causes ERROR instead of RUN_FINISHED."""
     from story_generator.agent import StoryGeneratorAgent
 
     bad_story = json.dumps({
-        "schema_version": "1",
+        "schema_version": "2",
         "id": "test",
         "title": "Test",
         "title_ja": "テスト",
@@ -208,8 +234,7 @@ def test_validation_failure_emits_error_not_finished(vocab_data, grammar_data):
             {
                 "id": "s01",
                 "words": ["a", "b"],
-                "ruby": ["r1"],          # length 1 ≠ words length 2
-                "vocab_keys": [None, None],
+                "vocab_keys": [None],    # length 1 ≠ words length 2
             }
         ],
     })
@@ -519,14 +544,14 @@ def test_path_b_phase2_validation_failure_emits_error(vocab_data, grammar_data):
     from story_generator.agent import StoryGeneratorAgent
 
     bad_story = json.dumps({
-        "schema_version": "1",
+        "schema_version": "2",
         "id": "test",
         "title": "Test",
         "title_ja": "テスト",
         "language": "ja",
         "description": "test",
         "sentences": [
-            {"id": "s01", "words": ["a", "b"], "ruby": ["r1"], "vocab_keys": [None, None]}
+            {"id": "s01", "words": ["a", "b"], "vocab_keys": [None]},  # length 1 ≠ words length 2
         ],
     })
     agent = StoryGeneratorAgent(

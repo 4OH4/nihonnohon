@@ -87,12 +87,30 @@ Format: ID | hiragana (kanji) | English meaning
 
 {grammar_dist_text}
 {steering_block}
+## Inline Furigana Annotation
+
+Words containing kanji MUST be annotated using inline `漢字[よみ]` syntax.
+The reading goes in square brackets immediately after the kanji character(s).
+Non-kanji characters (hiragana, katakana, punctuation) between or after annotated
+blocks are bare text — do not annotate them.
+
+**Four annotation patterns:**
+
+| Pattern | Word | Annotated form |
+|---|---|---|
+| Single kanji | 私 | `私[わたし]` |
+| Kanji block + okurigana | 肌寒い | `肌寒[はだざむ]い` |
+| Separate kanji with interleaved kana | 付け加える | `付[つ]け加[くわ]える` |
+| Jukujikun (whole-word reading) | 大人 | `大人[おとな]` |
+
+Words that are pure hiragana, katakana, or punctuation: write them as plain strings with no brackets.
+
 ## Output Format
 
 Respond with a single JSON object matching this exact structure:
 
 {{
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "<kebab-case identifier embedding difficulty and topic, e.g. genki-i-ch{chapter}-topic>",
   "title": "<English story title>",
   "title_ja": "<Japanese story title>",
@@ -106,8 +124,7 @@ Respond with a single JSON object matching this exact structure:
   "sentences": [
     {{
       "id": "s01",
-      "words": ["<word1>", "<word2>", ...],
-      "ruby": ["<reading1 or null>", "<reading2 or null>", ...],
+      "words": ["<word1 with inline annotation if kanji>", "<word2>", ...],
       "vocab_keys": [<vocab_id or null>, <vocab_id or null>, ...],
       "translation": "<English translation of this sentence>",
       "grammar": [<index into story-level grammar array>, ...]
@@ -117,17 +134,14 @@ Respond with a single JSON object matching this exact structure:
 
 ## Critical Rules
 
-1. **Parallel arrays**: `words`, `ruby`, and `vocab_keys` MUST have the SAME LENGTH for every sentence. This is a hard requirement — mismatched lengths will fail validation.
+1. **Parallel arrays**: `words` and `vocab_keys` MUST have the SAME LENGTH for every sentence. This is a hard requirement — mismatched lengths will fail validation.
 
 2. **vocab_keys values**:
    - Use the integer ID from the vocabulary list above if the token matches a listed word
    - Use `null` (JSON null, no quotes) for particles, punctuation, conjunctions, or any token not in the vocabulary list
    - Supplemental vocabulary (words needed but NOT in the list) must appear in `vocab_supplement` with a unique integer `key` starting at 10000, and that same key used in `vocab_keys`
 
-3. **ruby values**:
-   - Provide the hiragana reading for tokens that contain kanji
-   - Use `null` (JSON null, no quotes) for tokens that are already hiragana, katakana, or punctuation
-   - Never use the string `"null"` — only the bare JSON value `null`
+3. **Annotation format**: Words containing kanji MUST use inline `漢字[よみ]` syntax as described above. The `[` bracket must immediately follow the kanji character(s) it annotates.
 
 4. **sentence.id**: Use "s01", "s02", etc.
 
@@ -197,19 +211,17 @@ def _parse_chapter(chapter_str: str) -> int:
 
 
 def _coerce_string_nulls(story_dict: dict) -> None:
-    """Replace string "null" with None in ruby and vocab_keys arrays, in-place.
+    """Replace string "null" with None in vocab_keys arrays, in-place.
 
     Gemini occasionally emits ["null"] instead of [null] despite explicit prompt
-    instructions. Both arrays accept null elements; the string form passes JSON
-    parsing but breaks validation and the reader.
+    instructions. The string form passes JSON parsing but breaks validation and the reader.
     """
     for sentence in story_dict.get("sentences") or []:
         if not isinstance(sentence, dict):
             continue
-        for key in ("ruby", "vocab_keys"):
-            arr = sentence.get(key)
-            if isinstance(arr, list):
-                sentence[key] = [None if v == "null" else v for v in arr]
+        arr = sentence.get("vocab_keys")
+        if isinstance(arr, list):
+            sentence["vocab_keys"] = [None if v == "null" else v for v in arr]
 
 
 # ---------------------------------------------------------------------------
