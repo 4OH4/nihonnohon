@@ -70,5 +70,5 @@ export interface StoryModel {
 
 export type LookupState =
   | { status: 'idle' }
-  | { status: 'found'; word: string; entry: VocabEntry }
+  | { status: 'found'; word: string; entry: VocabEntry; pos?: string }
   | { status: 'not-found'; word: string }

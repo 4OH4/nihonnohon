@@ -5,14 +5,14 @@ import { cn } from '@/lib/utils'
 import { useLookupStore } from '@/stores/lookupStore'
 import { usePreferenceStore } from '@/stores/preferenceStore'
 import { lookupVocab } from '@/services/vocabService'
-import type { ParsedWord, VocabEntry } from '@nihonnohon/schema'
+import type { ParsedWord, VocabEntry, VocabSupplementEntry } from '@nihonnohon/schema'
 
 interface WordTokenProps {
   token: ParsedWord
   vocabKey: number | null
   sentenceId: string
-  /** Supplement entry takes precedence over vocabKey lookup when provided and non-null. */
-  supplementEntry?: VocabEntry | null
+  /** Raw supplement entry; takes precedence over vocabKey lookup when provided and non-null. */
+  supplementEntry?: VocabSupplementEntry | null
 }
 
 /** Single Japanese word token with per-segment ruby annotation and vocabulary lookup. */
@@ -32,7 +32,14 @@ export function WordToken({ token, vocabKey, sentenceId, supplementEntry }: Word
     e.stopPropagation()
     // Supplement entry takes precedence over the main vocab dictionary
     if (supplementEntry != null) {
-      lookup(token.surface, supplementEntry, sentenceId)
+      const adapted: VocabEntry = {
+        id: -(supplementEntry.key),
+        word: supplementEntry.word,
+        reading: supplementEntry.hiragana,
+        meaning: supplementEntry.translation,
+        lesson: 'supplement',
+      }
+      lookup(token.surface, adapted, sentenceId, supplementEntry.pos)
       return
     }
     if (vocabKey === null) return

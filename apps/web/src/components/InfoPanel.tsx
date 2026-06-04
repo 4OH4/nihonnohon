@@ -49,6 +49,11 @@ export function InfoPanel({ story }: InfoPanelProps) {
             <div className="flex items-baseline gap-2">
               <span className="font-ja font-semibold text-paper-text" lang="ja">{lookupState.word}</span>
               <span className="text-[0.875rem] font-ja text-muted" lang="ja">{lookupState.entry.reading}</span>
+              {lookupState.pos && (
+                <span className="text-xs text-muted rounded px-1 py-0.5 bg-surface-subtle border border-border">
+                  {lookupState.pos}
+                </span>
+              )}
             </div>
             <p className="text-[1.125rem] text-paper-text">{lookupState.entry.meaning}</p>
           </div>

@@ -7,7 +7,7 @@ import type { LookupState, VocabEntry } from '@nihonnohon/schema'
 interface LookupStoreState {
   lookupState: LookupState
   selectedSentenceId: string | null
-  lookup: (word: string, entry: VocabEntry | null, sentenceId: string | null) => void
+  lookup: (word: string, entry: VocabEntry | null, sentenceId: string | null, pos?: string) => void
   selectSentence: (sentenceId: string) => void
   reset: () => void
   _reset: () => void
@@ -20,10 +20,10 @@ const initialState = {
 
 export const useLookupStore = create<LookupStoreState>()((set) => ({
   ...initialState,
-  lookup: (word, entry, sentenceId) =>
+  lookup: (word, entry, sentenceId, pos) =>
     set({
       lookupState: entry !== null
-        ? { status: 'found', word, entry }
+        ? { status: 'found', word, entry, ...(pos !== undefined && { pos }) }
         : { status: 'not-found', word },
       selectedSentenceId: sentenceId,
     }),

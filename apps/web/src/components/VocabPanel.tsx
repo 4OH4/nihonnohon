@@ -4,14 +4,20 @@
 import { VocabItem } from '@/components/VocabItem'
 import type { VocabEntry, VocabSupplementEntry } from '@nihonnohon/schema'
 
-/** Converts VocabSupplementEntry items to VocabEntry shape for lookup store compatibility. */
-function toVocabEntries(items: VocabSupplementEntry[], idOffset: number): VocabEntry[] {
+/** Converts VocabSupplementEntry items to display-ready pairs preserving the original pos. */
+function toVocabItems(
+  items: VocabSupplementEntry[],
+  idOffset: number,
+): Array<{ entry: VocabEntry; pos?: string }> {
   return items.map((e, i) => ({
-    id: -(idOffset + i + 1),
-    word: e.word,
-    reading: e.hiragana,
-    meaning: e.translation,
-    lesson: 'supplement',
+    entry: {
+      id: -(idOffset + i + 1),
+      word: e.word,
+      reading: e.hiragana,
+      meaning: e.translation,
+      lesson: 'supplement',
+    },
+    pos: e.pos,
   }))
 }
 
@@ -24,9 +30,9 @@ interface VocabPanelProps {
 
 /** Unified vocabulary panel — keywords first, then supplement; empty state when both absent. */
 export function VocabPanel({ keywords, vocabSupplement }: VocabPanelProps) {
-  const keywordEntries = toVocabEntries(keywords ?? [], 0)
-  const supplementEntries = toVocabEntries(vocabSupplement, keywordEntries.length)
-  const combined = [...keywordEntries, ...supplementEntries]
+  const keywordItems = toVocabItems(keywords ?? [], 0)
+  const supplementItems = toVocabItems(vocabSupplement, keywordItems.length)
+  const combined = [...keywordItems, ...supplementItems]
 
   if (combined.length === 0) {
     return (
@@ -38,8 +44,8 @@ export function VocabPanel({ keywords, vocabSupplement }: VocabPanelProps) {
 
   return (
     <div style={{ fontSize: 'var(--story-font-size)' }}>
-      {combined.map((entry) => (
-        <VocabItem key={entry.id} entry={entry} />
+      {combined.map(({ entry, pos }) => (
+        <VocabItem key={entry.id} entry={entry} pos={pos} />
       ))}
     </div>
   )
