@@ -1,5 +1,24 @@
 # Deferred Work
 
+## Deferred from: code review of se1-6-story-generator-frontend-v2-compatibility (2026-06-04)
+
+- **No test asserts `schema_version: "1"` still accepted:** Stage 2 test suite covers `"2"` (accepted) and `"3"` (rejected) but not the `!== '1'` branch. Add `it('accepts "1" as a valid schema_version')` to the Stage 2 suite. [`apps/story-generator/src/__tests__/validateStoryJson.test.ts`]
+
+- **v1 stories with ruby mismatch now pass client-side validator:** `validateStoryJson` no longer checks `ruby` parallel-array parity; per spec, v1 ruby validation is intentionally removed. If a user edits generated output to add a malformed v1 `ruby` field, the validator won't catch it — the loader will reject it at runtime. The proper fix is AJV-based schema validation in the client, not custom array checks. [`apps/story-generator/src/lib/validateStoryJson.ts:76`]
+- **Error message hardcodes `"1" or "2"` and will be stale when v3 is added:** Stage 2 is an open whitelist; when a v3 schema is introduced, both the condition and the user-facing message string must be updated in tandem. Pre-existing design pattern throughout the validator. [`apps/story-generator/src/lib/validateStoryJson.ts:38-44`]
+- **Duplicate `vocab_supplement` keys silently valid:** `supplementalKeys` Set deduplicates duplicate-key entries silently; no error or warning surfaced to the user. Pre-existing, unrelated to this story. [`apps/story-generator/src/lib/validateStoryJson.ts:67-71`]
+- **Empty sentence (`words: []`, no `vocab_keys`) passes all 8 validation stages:** A sentence with no words and no vocab_keys has nothing to check and is considered valid. Pre-existing, unrelated to this story. [`apps/story-generator/src/lib/validateStoryJson.ts:75`]
+
+## Deferred from: code review of se1-5-story-generator-backend-v2-format (2026-06-04)
+
+- **Empty reading bracket `食[]` passes validation:** `[` has a matching `]` but reading content is empty; spec only requires closed bracket preceded by kanji. Outside spec scope. [`validator.py` `_validate_word_annotation`]
+- **Orphan `]` and nested brackets not detected:** Validator iterates `[` only; a stray `]` or nested `食[た[inner]]` is not flagged. Beyond spec requirements; `parseInlineRuby` handles gracefully. [`validator.py` `_validate_word_annotation`]
+- **No `schema_version` gate on bracket validation:** Bracket check runs on v1 and v2 stories alike. Backend only validates freshly-generated v2 output; v1 words never contain `[`. [`validator.py` `validate()`]
+- **String `"null"` in `words` array not coerced:** `_coerce_string_nulls` was narrowed to `vocab_keys`; a Gemini hallucination of `"null"` in `words` would pass as a valid token and render literally. Pre-existing gap — `words` coercion was never in scope. [`agent.py` `_coerce_string_nulls`]
+- **Only first malformed `[` per word reported:** `_validate_word_annotation` returns early on the first error; a word with two bad brackets only surfaces one error. Diagnostic quality only; story is still correctly rejected. [`validator.py` `_validate_word_annotation`]
+- **Agent truncates `ValidationResult.errors` to first 3:** `result.errors[:3]` in the error message; more than three validation failures produce an incomplete diagnostic. Pre-existing behaviour. [`agent.py` ~L507]
+- **Bracket-not-preceded-by-kanji test asserts word in message only:** Test checks `"は[な]" in e.message` but not the explanatory phrase. Behaviour is correct; additional assertion is improvement only. [`tests/test_validator.py`]
+
 ## Deferred from: code review of se1-4-reader-ui-per-segment-rendering (2026-06-04)
 
 - **`vocabKeys` length not validated vs `tokens` in UI layer:** `sentence.vocabKeys[i]` is accessed by index without checking that `vocabKeys.length === tokens.length`; a shorter array silently yields `undefined ?? null` for trailing tokens, suppressing vocab lookup. Pre-existing; loader validates at load time, UI trusts loader output. [`apps/web/src/components/SentenceBlock.tsx:48`]
