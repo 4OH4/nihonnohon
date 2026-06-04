@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-05-11
-last_updated: 2026-06-04  # se1-5 done
+last_updated: 2026-06-04  # se1-7 done — all stories migrated to v2
 # v1 complete: all epics done, retrospective closed
 # supp-epic-1 (furigana rework) in progress
 project: nihonnohon
@@ -88,5 +88,5 @@ development_status:
   se1-4-reader-ui-per-segment-rendering: done
   se1-5-story-generator-backend-v2-format: done
   se1-6-story-generator-frontend-v2-compatibility: done
-  se1-7-migrate-story-files-to-v2: backlog
+  se1-7-migrate-story-files-to-v2: done
   supp-epic-1-retrospective: optional

@@ -12,6 +12,7 @@
     "build-kanji": "tsx scripts/build-kanji.ts",
     "build-manifest": "tsx scripts/build-manifest.ts",
     "bulk-generate": "tsx scripts/bulk_generate.ts",
+    "migrate-to-v2": "tsx scripts/migrate-to-v2.ts",
     "prepare": "husky"
   },
   "devDependencies": {

@@ -45,6 +45,9 @@ interface WireStory {
   sentences: WireSentence[]
 }
 
+// The v1 shim is retained for externally-sourced stories (user uploads, shared links).
+// All committed story files in apps/web/public/stories/ were migrated to v2 in se1-7.
+// Removal of this shim can be considered once external v1 ingestion is formally deprecated.
 export function loadV1(raw: unknown): StoryModel {
   // 1. AJV validates snake_case wire format FIRST — before any transformation
   if (!validate(raw)) {
