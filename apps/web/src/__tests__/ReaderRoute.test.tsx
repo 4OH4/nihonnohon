@@ -11,6 +11,7 @@ import { usePreferenceStore } from '@/stores/preferenceStore'
 import { _initVocabFromData, _resetVocab, initVocab } from '@/services/vocabService'
 import { _initKanjiFromData, _resetKanji, initKanji } from '@/services/kanjiService'
 import { fetchManifest } from '@/utils/storyManifest'
+import { TEXT_SIZE_VALUES } from '@/utils/textSize'
 import { loadStory } from '@nihonnohon/story-loader'
 import type { StoryModel, VocabEntry, KanjiEntry } from '@nihonnohon/schema'
 
@@ -296,7 +297,7 @@ describe('ReaderRoute', () => {
     // cascades to the vocab/grammar panels too. Locate it by walking up from the story column.
     const storyContainer = screen.getAllByRole('group')[0].parentElement as HTMLElement
     const outerContainer = storyContainer.closest('.h-dvh') as HTMLElement
-    expect(outerContainer.style.getPropertyValue('--story-font-size')).toBe('1.5rem')
+    expect(outerContainer.style.getPropertyValue('--story-font-size')).toBe(TEXT_SIZE_VALUES.large)
   })
 
   it('renders bottom tab bar with Story, Vocabulary, Grammar tabs', () => {
