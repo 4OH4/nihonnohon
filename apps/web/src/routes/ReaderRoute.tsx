@@ -220,12 +220,12 @@ export function ReaderRoute() {
         </div>
 
         {/* Mobile-only: vocabulary panel (hidden on desktop since it's in right panel) */}
-        <div className={cn('w-full overflow-y-auto', activeTab === 'vocabulary' ? 'block lg:hidden' : 'hidden')}>
+        <div className={cn('w-full overflow-y-auto', activeTab === 'vocabulary' ? 'block lg:hidden' : 'hidden')} tabIndex={0}>
           <VocabPanel keywords={story.keywords} vocabSupplement={story.vocabSupplement} />
         </div>
 
         {/* Mobile-only: grammar panel */}
-        <div className={cn('w-full overflow-y-auto', activeTab === 'grammar' ? 'block lg:hidden' : 'hidden')}>
+        <div className={cn('w-full overflow-y-auto', activeTab === 'grammar' ? 'block lg:hidden' : 'hidden')} tabIndex={0}>
           <GrammarPanel grammar={story.grammar} sentences={story.sentences} />
         </div>
       </div>

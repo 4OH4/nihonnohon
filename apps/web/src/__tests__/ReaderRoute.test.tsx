@@ -68,7 +68,7 @@ import { getStory } from '@/services/indexedDbService'
 //   - word tap updates InfoPanel to found state
 //   - Escape key resets InfoPanel to idle
 //   - ToolBar has exactly 2 interactive controls (UPDATED from 3 — Supp-2: Settings moved to AppBar)
-//   - ルビ label is "ルビ" for Japanese, "Ruby" otherwise
+//   - ルビ label is "ルビ" for language="ja", "Ruby" otherwise
 //   - ruby toggle uses visibility:hidden not display:none
 //   - Trans toggle shows translations
 //   - vocab supplement takes precedence over main dict
@@ -108,7 +108,7 @@ const baseStory: StoryModel = {
   id: 'test-story',
   title: 'Test Story',
   titleJa: 'テスト',
-  language: 'Japanese',
+  language: 'ja',
   difficulty: 'Genki I Ch.6',
   description: 'A test story.',
   keywords: [],
@@ -228,13 +228,13 @@ describe('ReaderRoute', () => {
     expect(buttons).toHaveLength(2)
   })
 
-  it('ルビ label is "ルビ" when story language is Japanese', () => {
+  it('ルビ label is "ルビ" when story language is "ja"', () => {
     renderRoute()
     expect(screen.getByRole('button', { name: 'ルビ' })).toBeInTheDocument()
   })
 
-  it('ルビ label is "Ruby" when story language is not Japanese', () => {
-    renderRoute({ ...baseStory, language: 'Chinese' })
+  it('ルビ label is "Ruby" when story language is not "ja"', () => {
+    renderRoute({ ...baseStory, language: 'zh' })
     expect(screen.getByRole('button', { name: 'Ruby' })).toBeInTheDocument()
   })
 
