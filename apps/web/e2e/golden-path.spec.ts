@@ -10,10 +10,10 @@ test.describe('Golden path', () => {
   test('library → reader → word lookup → back to library', async ({ page }) => {
     // 1. Library loads with the built-in story
     await page.goto('/')
-    await expect(page.getByText('Mary's Letter to Tanaka-san')).toBeVisible()
+    await expect(page.getByText("Mary's Letter to Tanaka-san")).toBeVisible()
 
     // 2. Click story card → reader route loads
-    await page.getByText('Mary's Letter to Tanaka-san').click()
+    await page.getByText("Mary's Letter to Tanaka-san").click()
     await expect(page).toHaveURL(/\/read\/genki-i-ch6-tanaka-letter/)
 
     // 3. Story sentences are visible
@@ -25,7 +25,7 @@ test.describe('Golden path', () => {
     // 5. InfoPanel has moved out of idle state — story title no longer fills the panel
     const infoPanel = page.getByLabel('Word lookup panel')
     await expect(infoPanel).toBeVisible()
-    await expect(infoPanel).not.toContainText('Mary's Letter to Tanaka-san')
+    await expect(infoPanel).not.toContainText("Mary's Letter to Tanaka-san")
 
     // 6. Tap a second word
     await page.getByRole('button', { name: 'はじめまして' }).click()
@@ -35,6 +35,6 @@ test.describe('Golden path', () => {
     // 7. Navigate back to library
     await page.getByRole('link', { name: 'Back to library' }).click()
     await expect(page).toHaveURL('/')
-    await expect(page.getByText('Mary's Letter to Tanaka-san')).toBeVisible()
+    await expect(page.getByText("Mary's Letter to Tanaka-san")).toBeVisible()
   })
 })
