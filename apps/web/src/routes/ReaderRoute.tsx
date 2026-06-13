@@ -166,7 +166,9 @@ export function ReaderRoute() {
           className={cn(
             // [overflow-anchor:none] lets SentenceBlock's manual scroll anchoring
             // be the single source of truth when an inline translation collapses.
-            'overflow-y-auto p-4 w-full [overflow-anchor:none]',
+            // Horizontal padding lives on each SentenceBlock so its highlight can
+            // span full width while the text stays inset from the edges.
+            'overflow-y-auto py-4 w-full [overflow-anchor:none]',
             activeTab !== 'story' ? 'hidden lg:block' : 'block',
             'lg:max-w-none lg:shrink-0 lg:w-[var(--story-pct)]',
           )}

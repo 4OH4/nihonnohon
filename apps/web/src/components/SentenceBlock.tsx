@@ -99,7 +99,9 @@ export function SentenceBlock({ sentence, sentenceIndex, supplementMap, scrollCo
       }}
       {...longPress}
       className={cn(
-        'flex flex-wrap items-baseline py-2 px-1 rounded',
+        // Full-width highlight; px-5 keeps the text inset (matching the padding
+        // that previously lived on the scroll container) away from the edges.
+        'flex flex-wrap items-baseline py-2 px-5',
         'transition-[gap,background-color] duration-150',
         spacingVisible ? 'gap-x-2' : 'gap-x-0',
         isSelected && 'bg-accent-subtle',
