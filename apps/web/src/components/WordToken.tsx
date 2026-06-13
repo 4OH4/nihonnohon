@@ -68,6 +68,9 @@ export function WordToken({ token, vocabKey, sentenceId, supplementEntry }: Word
           : 'hover:bg-accent-subtle',
       )}
       onClick={handleActivate}
+      // Keep the sentence-level long-press from starting on a word: a press on a
+      // word is always a word lookup, never a quick sentence translation.
+      onPointerDown={(e) => e.stopPropagation()}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') handleActivate(e)
       }}

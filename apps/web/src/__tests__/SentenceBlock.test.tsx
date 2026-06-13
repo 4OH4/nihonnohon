@@ -122,4 +122,24 @@ describe('SentenceBlock', () => {
     render(<SentenceBlock sentence={sentenceNoTranslation} sentenceIndex={0} />)
     expect(screen.queryByText('Eating is fun.')).not.toBeInTheDocument()
   })
+
+  it('inline translation shown when this sentence is the translated one (global toggle off)', () => {
+    act(() => { useLookupStore.setState({ translatedSentenceId: 'sent-1' }) })
+    render(<SentenceBlock sentence={sentence} sentenceIndex={0} />)
+    expect(screen.getByText('Eating is fun.')).toBeInTheDocument()
+  })
+
+  it('inline translation not shown for a different translated sentence', () => {
+    act(() => { useLookupStore.setState({ translatedSentenceId: 'other' }) })
+    render(<SentenceBlock sentence={sentence} sentenceIndex={0} />)
+    expect(screen.queryByText('Eating is fun.')).not.toBeInTheDocument()
+  })
+
+  it('pressing "t" reveals this sentence\'s translation (keyboard fallback for long-press)', () => {
+    const { container } = render(<SentenceBlock sentence={sentence} sentenceIndex={0} />)
+    const group = container.querySelector('[role="group"]')!
+    fireEvent.keyDown(group, { key: 't' })
+    expect(useLookupStore.getState().translatedSentenceId).toBe('sent-1')
+    expect(screen.getByText('Eating is fun.')).toBeInTheDocument()
+  })
 })

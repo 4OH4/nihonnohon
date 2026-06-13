@@ -68,5 +68,27 @@ describe('useLookupStore', () => {
     const state = useLookupStore.getState()
     expect(state.lookupState).toEqual({ status: 'idle' })
     expect(state.selectedSentenceId).toBeNull()
+    expect(state.translatedSentenceId).toBeNull()
+  })
+
+  it('showSentenceTranslation reveals the sentence, selects it, and clears any word lookup', () => {
+    useLookupStore.getState().lookup('食べる', entry, 'sent-1')
+    useLookupStore.getState().showSentenceTranslation('sent-1')
+    const state = useLookupStore.getState()
+    expect(state.translatedSentenceId).toBe('sent-1')
+    expect(state.selectedSentenceId).toBe('sent-1')
+    expect(state.lookupState).toEqual({ status: 'idle' })
+  })
+
+  it('selectSentence clears a revealed sentence translation', () => {
+    useLookupStore.getState().showSentenceTranslation('sent-1')
+    useLookupStore.getState().selectSentence('sent-1')
+    expect(useLookupStore.getState().translatedSentenceId).toBeNull()
+  })
+
+  it('selecting a word clears a revealed sentence translation', () => {
+    useLookupStore.getState().showSentenceTranslation('sent-1')
+    useLookupStore.getState().lookup('食べる', entry, 'sent-1')
+    expect(useLookupStore.getState().translatedSentenceId).toBeNull()
   })
 })

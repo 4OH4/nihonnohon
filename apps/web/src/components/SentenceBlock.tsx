@@ -3,6 +3,7 @@
 
 import { useShallow } from 'zustand/react/shallow'
 import { cn } from '@/lib/utils'
+import { useLongPress } from '@/lib/useLongPress'
 import { useLookupStore } from '@/stores/lookupStore'
 import { usePreferenceStore } from '@/stores/preferenceStore'
 import { WordToken } from '@/components/WordToken'
@@ -17,10 +18,12 @@ interface SentenceBlockProps {
 
 /** Renders a sentence as a row of WordTokens with optional spacing, highlight, and translation. */
 export function SentenceBlock({ sentence, sentenceIndex, supplementMap }: SentenceBlockProps) {
-  const { selectSentence, selectedSentenceId } = useLookupStore(
+  const { selectSentence, showSentenceTranslation, selectedSentenceId, translatedSentenceId } = useLookupStore(
     useShallow((s) => ({
       selectSentence: s.selectSentence,
+      showSentenceTranslation: s.showSentenceTranslation,
       selectedSentenceId: s.selectedSentenceId,
+      translatedSentenceId: s.translatedSentenceId,
     }))
   )
   const { spacingVisible, transVisible } = usePreferenceStore(
@@ -28,12 +31,28 @@ export function SentenceBlock({ sentence, sentenceIndex, supplementMap }: Senten
   )
 
   const isSelected = selectedSentenceId === sentence.id
+  // Show the translation when globally enabled, or when this sentence's quick
+  // translation has been revealed via long-press / keyboard fallback.
+  const showTranslation =
+    (transVisible || translatedSentenceId === sentence.id) && sentence.translation !== null
+
+  // Long-press reveals this sentence's translation inline. Long-pressing a word
+  // is excluded — WordToken stops pointer propagation so word lookup wins there.
+  const longPress = useLongPress(() => showSentenceTranslation(sentence.id))
 
   return (
     <div
       role="group"
       aria-label={`Sentence ${sentenceIndex + 1}`}
       onClick={() => selectSentence(sentence.id)}
+      // Keyboard fallback for long-press: 't' translates the focused sentence.
+      onKeyDown={(e) => {
+        if (e.key === 't' || e.key === 'T') {
+          e.preventDefault()
+          showSentenceTranslation(sentence.id)
+        }
+      }}
+      {...longPress}
       className={cn(
         'flex flex-wrap items-baseline py-2 px-1 rounded',
         'transition-[gap,background-color] duration-150',
@@ -50,7 +69,7 @@ export function SentenceBlock({ sentence, sentenceIndex, supplementMap }: Senten
           supplementEntry={supplementMap?.get(token.surface) ?? null}
         />
       ))}
-      {transVisible && sentence.translation !== null && (
+      {showTranslation && (
         <p className="w-full mt-1 italic text-translation text-[0.8em]">
           {sentence.translation}
         </p>
