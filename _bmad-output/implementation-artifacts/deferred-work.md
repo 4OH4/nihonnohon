@@ -1,5 +1,78 @@
 # Deferred Work
 
+## Deferred from: code review of se2-3-schema-and-type-updates (2026-06-04)
+
+- **`pos: ""` schema allows empty string:** `"type": "string"` has no `minLength:1` on the `pos` property; `""` is a valid sentinel for "unknown POS" in the enrichment pipeline but causes `if (entry.pos)` to treat it as absent. Consider `minLength:1` with an explicit "unknown" code if a stricter contract is needed later. [`packages/schema/schemas/story.v2.json`]
+- **`keywords`/`vocabSupplement` share `VocabSupplementEntry`:** Both arrays are typed with the same interface; `pos`/`dictionaryForm` can silently appear on keyword entries. If these collections need divergent shapes in future, consider separate interfaces. [`packages/schema/src/types.ts`]
+- **`key: e.key!` non-null assertion:** Pre-existing pattern in `mapVocabEntry`; AJV validates `key` as required so the assertion is safe, but an explicit `?? 0` fallback would be clearer. [`packages/story-loader/src/v2.ts`]
+
+## Deferred from: code review of se2-2-updated-generation-pipeline (2026-06-04)
+
+- **`_lookup_genki_id` falsy-zero pattern:** `or` chain would misclassify row ID 0 as not-found; safe with IDs 1–1172 but latent. Prefer `if (v := ...) is not None` pattern when revisiting. [`enrichment.py:_lookup_genki_id`]
+- **`vocab_supplement` translation empty string:** When neither Genki nor JMdict has a gloss, `translation` is `""`. Consider a fallback or explicit null. [`enrichment.py:build_enriched_story`]
+- **`valid_story.json` fixture lacks `pos`/`dictionary_form`:** Test fixture represents old-format stories; se2-3 schema work will address this. [`tests/fixtures/valid_story.json`]
+- **`supp_key_counter` theoretical collision:** Supplement keys start at 10000; would collide if Genki CSV ever exceeds 9999 rows. Add an assertion at load time if CSV grows significantly. [`enrichment.py`]
+- **`感動詞` interjection pos_code="":** Interjections classified as punctuation in `build_enriched_story`, missing a vocab key. Pre-existing `_pos_code` design decision. [`enrichment.py`]
+- **`load_genki_key_index` no header guard:** `int(row[0])` would raise on a header row. Pre-existing pattern from `load_genki_index`; CSV has no header. [`enrichment.py:load_genki_key_index`]
+
+## Deferred from: code review of se2-1-enrichment-module (2026-06-04)
+
+- **`_pos_code` empty `conj_type` → silent v1 fallback:** SudachiPy returning `""` for 活用型 on dictionary-form verb tokens causes silent v1 label; consider a warning or `""` → explicit unknown code. [`enrichment.py`]
+- **`_annotate_morpheme` theoretical empty kanji_reading:** If `reading_hira` is shorter than `surface` (cannot occur with valid SudachiPy output), `kanji_reading` becomes `""` producing `食[]べ`. Add an assertion guard if input validation is introduced upstream. [`enrichment.py`]
+- **`enrich_sentence` imports `sudachipy` inside method:** `import sudachipy` and `sudachipy.SplitMode.C` inside the loop body on every call; move import to module level or constructor. [`enrichment.py`]
+- **`lookup_gloss` `str(Gloss)` format not verified:** `str(glosses[0])` relies on Jamdict's `Gloss.__str__` which may include language tags or metadata. Confirm format is clean English only. [`enrichment.py`]
+- **`_dominant_pos` and `_derive_dictionary_form` duplicate `_AUXILIARY_POS` filtering:** Both independently build `content` list. Consider extracting `_content_morphemes(morphemes)` helper to keep in sync. [`enrichment.py`]
+
+## Deferred from: code review of se1-6-story-generator-frontend-v2-compatibility (2026-06-04)
+
+- **No test asserts `schema_version: "1"` still accepted:** Stage 2 test suite covers `"2"` (accepted) and `"3"` (rejected) but not the `!== '1'` branch. Add `it('accepts "1" as a valid schema_version')` to the Stage 2 suite. [`apps/story-generator/src/__tests__/validateStoryJson.test.ts`]
+
+- **v1 stories with ruby mismatch now pass client-side validator:** `validateStoryJson` no longer checks `ruby` parallel-array parity; per spec, v1 ruby validation is intentionally removed. If a user edits generated output to add a malformed v1 `ruby` field, the validator won't catch it — the loader will reject it at runtime. The proper fix is AJV-based schema validation in the client, not custom array checks. [`apps/story-generator/src/lib/validateStoryJson.ts:76`]
+- **Error message hardcodes `"1" or "2"` and will be stale when v3 is added:** Stage 2 is an open whitelist; when a v3 schema is introduced, both the condition and the user-facing message string must be updated in tandem. Pre-existing design pattern throughout the validator. [`apps/story-generator/src/lib/validateStoryJson.ts:38-44`]
+- **Duplicate `vocab_supplement` keys silently valid:** `supplementalKeys` Set deduplicates duplicate-key entries silently; no error or warning surfaced to the user. Pre-existing, unrelated to this story. [`apps/story-generator/src/lib/validateStoryJson.ts:67-71`]
+- **Empty sentence (`words: []`, no `vocab_keys`) passes all 8 validation stages:** A sentence with no words and no vocab_keys has nothing to check and is considered valid. Pre-existing, unrelated to this story. [`apps/story-generator/src/lib/validateStoryJson.ts:75`]
+
+## Deferred from: code review of se1-5-story-generator-backend-v2-format (2026-06-04)
+
+- **Empty reading bracket `食[]` passes validation:** `[` has a matching `]` but reading content is empty; spec only requires closed bracket preceded by kanji. Outside spec scope. [`validator.py` `_validate_word_annotation`]
+- **Orphan `]` and nested brackets not detected:** Validator iterates `[` only; a stray `]` or nested `食[た[inner]]` is not flagged. Beyond spec requirements; `parseInlineRuby` handles gracefully. [`validator.py` `_validate_word_annotation`]
+- **No `schema_version` gate on bracket validation:** Bracket check runs on v1 and v2 stories alike. Backend only validates freshly-generated v2 output; v1 words never contain `[`. [`validator.py` `validate()`]
+- **String `"null"` in `words` array not coerced:** `_coerce_string_nulls` was narrowed to `vocab_keys`; a Gemini hallucination of `"null"` in `words` would pass as a valid token and render literally. Pre-existing gap — `words` coercion was never in scope. [`agent.py` `_coerce_string_nulls`]
+- **Only first malformed `[` per word reported:** `_validate_word_annotation` returns early on the first error; a word with two bad brackets only surfaces one error. Diagnostic quality only; story is still correctly rejected. [`validator.py` `_validate_word_annotation`]
+- **Agent truncates `ValidationResult.errors` to first 3:** `result.errors[:3]` in the error message; more than three validation failures produce an incomplete diagnostic. Pre-existing behaviour. [`agent.py` ~L507]
+- **Bracket-not-preceded-by-kanji test asserts word in message only:** Test checks `"は[な]" in e.message` but not the explanatory phrase. Behaviour is correct; additional assertion is improvement only. [`tests/test_validator.py`]
+
+## Deferred from: code review of se1-4-reader-ui-per-segment-rendering (2026-06-04)
+
+- **`vocabKeys` length not validated vs `tokens` in UI layer:** `sentence.vocabKeys[i]` is accessed by index without checking that `vocabKeys.length === tokens.length`; a shorter array silently yields `undefined ?? null` for trailing tokens, suppressing vocab lookup. Pre-existing; loader validates at load time, UI trusts loader output. [`apps/web/src/components/SentenceBlock.tsx:48`]
+- **Inner `<ruby>` elements carry no explicit `lang` attribute:** The outer `<span lang="ja">` wrapper sets language; inner `<ruby>` elements inherit it. No functional impact; noted in case any CSS or screen-reader rule targets `ruby[lang="ja"]` directly. [`apps/web/src/components/WordToken.tsx:64`]
+- **Empty `segments[]` array produces invisible focusable `<span role="button">`:** `parseInlineRuby('')` returns `{ surface: '', segments: [] }`, which renders a zero-width focusable button with an empty aria-label. AJV `story.v2.json` schema does not permit empty word strings; v1 shim inherits the same constraint from the v1 wire schema. Unreachable in practice. [`apps/web/src/components/WordToken.tsx:62`]
+- **supplementMap key mismatch if supplement `word` field contains inline bracket notation:** `supplementMap.get(token.surface)` uses the parsed, bracket-stripped surface; if a `vocabSupplement[].word` value in JSON uses bracket notation, its surface-stripped form would not match. Supplement entries never contain inline ruby markup in practice. [`apps/web/src/components/SentenceBlock.tsx:50`]
+- **`seg.ruby === ""` from v1 shim renders empty `<rt>` visible when `rubyVisible: true`:** `v1.ts` passes `rubyArr[i] ?? null` directly; an empty-string ruby value in a v1 word passes the `seg.ruby !== null` guard and renders `<ruby>word<rt></rt></ruby>`. V1 wire format never uses bracket notation in word strings; this is theoretical only. [`packages/story-loader/src/v1.ts:109`]
+- **Space key `handleActivate` calls `stopPropagation()` but not `preventDefault()`:** On `<span role="button">`, a Space keypress triggers lookup but also scrolls the page because `preventDefault()` is not called. Pre-existing — the old `<ruby role="button">` had the same handler. [`apps/web/src/components/WordToken.tsx:57`]
+- **`token.surface` is empty string from orphan-bracket input:** A word like `[foo]` parsed by `parseInlineRuby` discards all bracket content, yielding `surface: ""` — the rendered `<span role="button">` is zero-width with an empty `aria-label`. AJV enforces `minLength:1` on wire strings (catching `""` directly), but bracket-only input like `[foo]` passes AJV as a non-empty string while producing an empty surface. Root cause is in the parser (se1-1). [`apps/web/src/components/WordToken.tsx:44`]
+- **Two `WordToken` instances with identical surface in one sentence both activate simultaneously:** `isActive` checks `activeWord === token.surface` with no index/position discriminator; clicking either token activates both. `lookupState` stores only `word: string`. Pre-existing store design limitation. [`apps/web/src/components/WordToken.tsx:27`]
+- **AC5 — No explicit integration test loading a v1 story through the shim to verify rendered output:** The rendering of single-segment tokens (the shim's output shape) is fully covered by `makeToken()`-based tests, but no test is explicitly labelled as the v1 shim path. Documentation clarity gap only.
+- **`supplementEntry` override path not tested under new `token: ParsedWord` prop shape:** None of the new tests pass a non-null `supplementEntry`. Behaviour is unchanged from before the migration; pre-existing coverage gap. [`apps/web/src/__tests__/WordToken.test.tsx`]
+- **`<span role="button">` vs native `<button>` — built-in keyboard accessibility:** Native `<button>` suppresses Space-scroll by default and doesn't require explicit `tabIndex={0}`. Change was architecturally necessary (nested `<ruby>` elements require a non-`<ruby>` outer wrapper); valid ARIA pattern. Revisit if an a11y audit flags it. [`apps/web/src/components/WordToken.tsx:45`]
+
+## Deferred from: code review of se1-3-loader-v2-and-v1-shim (2026-06-04)
+
+- **Shared AJV `validate.errors` mutable under concurrent calls:** Module-level `const validate = ajv.compile(schema)` in `v2.ts` (and identically in `v1.ts`) means `validate.errors` is a shared mutable reference; concurrent `loadStory()` calls could read stale errors. Pre-existing pattern; loader is currently synchronous. [`v2.ts:9-10`]
+- **`mapVocabEntry` duplicated verbatim between `v1.ts` and `v2.ts`:** Both files define an identical private `mapVocabEntry`. A bug fix in one will not propagate to the other. By design in the versioned-loader architecture where each version file is self-contained. [`v1.ts:100`, `v2.ts:91`]
+- **v1 shim `surface` contains bracket markup if a v1 payload word contains inline notation:** A v1 word like `"食[た]"` would produce `token.surface = "食[た]"` (brackets included) and a flat ruby annotation on the same token. Theoretical only — well-formed v1 stories never use inline bracket notation in words. [`v1.ts:108-111`]
+- **`sentence.grammar` indices not bounds-checked against `story.grammar.length` in `v2.ts`:** An index beyond the story-level grammar array length is stored without validation; consumers get `undefined` entries. Pre-existing in `v1.ts`; grammar panel handles out-of-range indices gracefully. [`v2.ts:60-69`]
+
+## Deferred from: code review of se1-2-internal-type-changes (2026-06-04)
+
+- **`parseInlineRuby` orphan-bracket handler silently discards bracket content:** An orphan `[` outside kanji context causes the bracket and its contents to be discarded from `surface`, so `token.surface` diverges from the original input string. Pre-existing from se1-1. [`parseInlineRuby.ts:68-70`]
+
+## Deferred from: code review of se1-1-inline-ruby-parser-and-v2-schema (2026-06-04)
+
+- **CJK Extension A (U+3400–U+4DBF) excluded from `isKanji`:** No kyouiku/joyo kanji fall in this block; spec explicitly defines range as 0x4E00–0x9FFF. Revisit if classical/rare character support is needed. [`parseInlineRuby.ts:19`]
+- **Surrogate-pair iteration for CJK Extension B+ characters:** Characters at U+20000+ are not used in modern Japanese; theoretical only for this app. [`parseInlineRuby.ts:40`]
+- **`metadata` object uses `additionalProperties: true` while AC1 says "every object node":** Pre-existing from v1; metadata is an intentional open escape-hatch. [`story.v2.json:66`]
+
 ## Deferred from: code review of supp-1-gemini-thinking-live-status (2026-05-19)
 
 - **Thought text forwarded verbatim to client with no sanitisation:** React escapes HTML so XSS is not a concern; Unicode bidirectional control characters are a cosmetic edge case. Acceptable for v1. [agent.py — both streaming loops]

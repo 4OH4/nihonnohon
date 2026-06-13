@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest'
 import { loadStory, LoaderError } from './index'
 import validV1 from './__fixtures__/valid-v1.json'
 import validMinimal from './__fixtures__/valid-v1-minimal.json'
+import validV2 from './__fixtures__/valid-v2.json'
 import invalidSchema from './__fixtures__/invalid-schema.json'
 import invalidEmptySentences from './__fixtures__/invalid-empty-sentences.json'
 import invalidSentenceMissingId from './__fixtures__/invalid-sentence-missing-id.json'
@@ -30,8 +31,13 @@ describe('loadStory', () => {
       const result = loadStory(validV1)
       const s = result.sentences[0]
       expect(s.id).toBe('s1')
-      expect(s.words).toEqual(['田中', 'さん', 'は', '先生', 'です'])
-      expect(s.ruby).toEqual(['たなか', null, null, 'せんせい', null])
+      expect(s.tokens).toEqual([
+        { surface: '田中', segments: [{ text: '田中', ruby: 'たなか' }] },
+        { surface: 'さん', segments: [{ text: 'さん', ruby: null }] },
+        { surface: 'は', segments: [{ text: 'は', ruby: null }] },
+        { surface: '先生', segments: [{ text: '先生', ruby: 'せんせい' }] },
+        { surface: 'です', segments: [{ text: 'です', ruby: null }] },
+      ])
       expect(s.vocabKeys).toEqual([null, null, null, 1, null])
       expect(s.translation).toBe('Mr. Tanaka is a teacher.')
       expect(s.grammar).toEqual([0])
@@ -50,12 +56,73 @@ describe('loadStory', () => {
     it('fills absent sentence arrays with parallel nulls matching words length', () => {
       const result = loadStory(validMinimal)
       const s = result.sentences[0]
-      expect(s.words).toEqual(['こんにちは'])
-      expect(s.ruby).toEqual([null])
+      expect(s.tokens).toEqual([
+        { surface: 'こんにちは', segments: [{ text: 'こんにちは', ruby: null }] },
+      ])
       expect(s.vocabKeys).toEqual([null])
       expect(s.translation).toBeNull()
       expect(s.grammar).toEqual([])
       expect(s.audioUrl).toBeUndefined()
+    })
+  })
+
+  describe('valid v2 stories', () => {
+    it('loads valid-v2.json and returns schemaVersion "2"', () => {
+      const result = loadStory(validV2)
+      expect(result.schemaVersion).toBe('2')
+      expect(result.id).toBe('test-story-v2')
+    })
+
+    it('parses annotated words into multi-segment tokens', () => {
+      const result = loadStory(validV2)
+      const s1 = result.sentences[0]
+      // 大人[おとな] — whole-word annotation
+      expect(s1.tokens[0]).toEqual({ surface: '大人', segments: [{ text: '大人', ruby: 'おとな' }] })
+      // は — plain word; single segment with ruby: null
+      expect(s1.tokens[1]).toEqual({ surface: 'は', segments: [{ text: 'は', ruby: null }] })
+      // 肌寒[はだざむ]い — kanji block + okurigana
+      expect(s1.tokens[2]).toEqual({
+        surface: '肌寒い',
+        segments: [{ text: '肌寒', ruby: 'はだざむ' }, { text: 'い', ruby: null }],
+      })
+      // 日[ひ]に — single kanji + kana
+      expect(s1.tokens[3]).toEqual({
+        surface: '日に',
+        segments: [{ text: '日', ruby: 'ひ' }, { text: 'に', ruby: null }],
+      })
+      // 付[つ]け加[くわ]える — two annotated kanji blocks interleaved with kana
+      expect(s1.tokens[4]).toEqual({
+        surface: '付け加える',
+        segments: [
+          { text: '付', ruby: 'つ' },
+          { text: 'け', ruby: null },
+          { text: '加', ruby: 'くわ' },
+          { text: 'える', ruby: null },
+        ],
+      })
+    })
+
+    it('maps vocabKeys and translation from v2 sentence', () => {
+      const result = loadStory(validV2)
+      const s2 = result.sentences[1]
+      expect(s2.vocabKeys).toEqual([null, null, 1, null])
+      expect(s2.translation).toBe('I am a student.')
+    })
+
+    it('throws SCHEMA_INVALID for mismatched vocab_keys length in v2 sentence', () => {
+      const mismatch = {
+        ...validV2,
+        sentences: [{
+          id: 'sx',
+          words: ['私[わたし]', 'は'],
+          vocab_keys: [1],
+        }],
+      }
+      let thrown: unknown
+      try { loadStory(mismatch) } catch (e) { thrown = e }
+      expect(thrown).toBeInstanceOf(LoaderError)
+      expect((thrown as LoaderError).code).toBe('SCHEMA_INVALID')
+      expect((thrown as LoaderError).message).toContain('sx')
     })
   })
 

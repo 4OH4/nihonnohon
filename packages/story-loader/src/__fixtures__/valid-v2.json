@@ -1,0 +1,21 @@
+{
+  "schema_version": "2",
+  "id": "test-story-v2",
+  "title": "V2 Test Story",
+  "title_ja": "V2テストストーリー",
+  "language": "Japanese",
+  "description": "Test fixture for story.v2.json parser validation.",
+  "difficulty": "Genki I Ch.6",
+  "sentences": [
+    {
+      "id": "s1",
+      "words": ["大人[おとな]", "は", "肌寒[はだざむ]い", "日[ひ]に", "付[つ]け加[くわ]える"]
+    },
+    {
+      "id": "s2",
+      "words": ["私[わたし]", "は", "学生[がくせい]", "です"],
+      "vocab_keys": [null, null, 1, null],
+      "translation": "I am a student."
+    }
+  ]
+}

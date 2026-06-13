@@ -2,22 +2,23 @@
 // SPDX-License-Identifier: MIT
 
 import { cn } from '@/lib/utils'
+import { groupRubySegments } from '@/lib/rubyUtils'
+import { supplementToVocabEntry } from '@/lib/vocabAdapter'
 import { useLookupStore } from '@/stores/lookupStore'
 import { usePreferenceStore } from '@/stores/preferenceStore'
 import { lookupVocab } from '@/services/vocabService'
-import type { VocabEntry } from '@nihonnohon/schema'
+import type { ParsedWord, VocabSupplementEntry } from '@nihonnohon/schema'
 
 interface WordTokenProps {
-  word: string
-  ruby: string | null
+  token: ParsedWord
   vocabKey: number | null
   sentenceId: string
-  /** Supplement entry takes precedence over vocabKey lookup when provided and non-null. */
-  supplementEntry?: VocabEntry | null
+  /** Raw supplement entry; takes precedence over vocabKey lookup when provided and non-null. */
+  supplementEntry?: VocabSupplementEntry | null
 }
 
-/** Single Japanese word token with optional ruby annotation and vocabulary lookup. */
-export function WordToken({ word, ruby, vocabKey, sentenceId, supplementEntry }: WordTokenProps) {
+/** Single Japanese word token with per-segment ruby annotation and vocabulary lookup. */
+export function WordToken({ token, vocabKey, sentenceId, supplementEntry }: WordTokenProps) {
   const lookup = useLookupStore((s) => s.lookup)
   const lookupStatus = useLookupStore((s) => s.lookupState.status)
   const activeWord = useLookupStore((s) =>
@@ -25,7 +26,7 @@ export function WordToken({ word, ruby, vocabKey, sentenceId, supplementEntry }:
   )
   const rubyVisible = usePreferenceStore((s) => s.rubyVisible)
 
-  const isActive = lookupStatus === 'found' && activeWord === word
+  const isActive = lookupStatus === 'found' && activeWord === token.surface
 
   const handleActivate = (e: React.MouseEvent | React.KeyboardEvent) => {
     // Stop propagation always — prevents SentenceBlock container from calling
@@ -33,20 +34,32 @@ export function WordToken({ word, ruby, vocabKey, sentenceId, supplementEntry }:
     e.stopPropagation()
     // Supplement entry takes precedence over the main vocab dictionary
     if (supplementEntry != null) {
-      lookup(word, supplementEntry, sentenceId)
+      lookup(token.surface, supplementToVocabEntry(supplementEntry), sentenceId, supplementEntry.pos)
       return
     }
     if (vocabKey === null) return
     const entry = lookupVocab(vocabKey)
     if (entry === null) return
-    lookup(word, entry, sentenceId)
+    lookup(token.surface, entry, sentenceId)
   }
 
+  const renderedSegments = groupRubySegments(token.segments).map((group, i) =>
+    group.type === 'annotated'
+      ? (
+        <ruby key={i}>
+          {group.text}
+          <rt className={cn(!rubyVisible && 'invisible')}>{group.ruby}</rt>
+          {group.trailer}
+        </ruby>
+      )
+      : <span key={i}>{group.text}</span>
+  )
+
   return (
-    <ruby
+    <span
       role="button"
       tabIndex={0}
-      aria-label={word}
+      aria-label={token.surface}
       lang="ja"
       className={cn(
         'font-ja cursor-pointer rounded word-token',
@@ -59,10 +72,7 @@ export function WordToken({ word, ruby, vocabKey, sentenceId, supplementEntry }:
         if (e.key === 'Enter' || e.key === ' ') handleActivate(e)
       }}
     >
-      {word}
-      <rt className={cn(!rubyVisible && 'invisible')}>
-        {ruby ?? ' '}
-      </rt>
-    </ruby>
+      {renderedSegments}
+    </span>
   )
 }

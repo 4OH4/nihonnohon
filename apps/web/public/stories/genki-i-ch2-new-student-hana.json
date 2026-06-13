@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "genki-i-ch2-new-student-hana",
   "title": "Tanaka Hana, a Student",
   "title_ja": "田中花さん、学生です",
@@ -23,61 +23,80 @@
       "key": 10000,
       "word": "たなかはな",
       "hiragana": "たなかはな",
-      "translation": "Tanaka Hana"
+      "translation": "Tanaka Hana",
+      "pos": "n",
+      "dictionary_form": "たなか"
     },
     {
       "key": 10001,
       "word": "さとうせんせい",
       "hiragana": "さとうせんせい",
-      "translation": "Ms. Sato"
+      "translation": "Ms. Sato",
+      "pos": "n",
+      "dictionary_form": "さとう"
     },
     {
       "key": 10002,
       "word": "ピンク",
       "hiragana": "ピンク",
-      "translation": "pink"
+      "translation": "pink",
+      "pos": "n",
+      "dictionary_form": "ピンク"
     },
     {
       "key": 10003,
       "word": "ケン",
       "hiragana": "ケン",
-      "translation": "Ken"
+      "translation": "Ken",
+      "pos": "n",
+      "dictionary_form": "ケン"
     },
     {
       "key": 10004,
       "word": "つくえ",
       "hiragana": "つくえ",
-      "translation": "desk"
+      "translation": "desk",
+      "pos": "n",
+      "dictionary_form": "つくえ"
     },
     {
       "key": 10005,
       "word": "おおさかじん",
       "hiragana": "おおさかじん",
-      "translation": "person from Osaka"
+      "translation": "person from Osaka",
+      "pos": "n",
+      "dictionary_form": "おおさか"
     },
     {
       "key": 10006,
       "word": "いいえ",
       "hiragana": "いいえ",
-      "translation": "no"
+      "translation": "no",
+      "dictionary_form": "いいえ"
     },
     {
       "key": 10007,
       "word": "あなた",
       "hiragana": "あなた",
-      "translation": "you"
+      "translation": "you",
+      "pos": "pron",
+      "dictionary_form": "あなた"
     },
     {
       "key": 10008,
       "word": "いい",
       "hiragana": "いい",
-      "translation": "good"
+      "translation": "good",
+      "pos": "adj-i",
+      "dictionary_form": "いい"
     },
     {
       "key": 10009,
       "word": "たなか",
       "hiragana": "たなか",
-      "translation": "Tanaka (surname)"
+      "translation": "Tanaka (surname)",
+      "pos": "n",
+      "dictionary_form": "たなか"
     }
   ],
   "sentences": [
@@ -89,13 +108,6 @@
         "がくせい",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         91,
@@ -120,14 +132,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         53,
         null,
@@ -149,13 +153,6 @@
         "せんせい",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10001,
@@ -179,15 +176,6 @@
         "かばん",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         93,
@@ -217,16 +205,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         92,
         null,
@@ -252,13 +230,6 @@
         "あそこ",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10004,
@@ -290,22 +261,6 @@
         "です",
         "か",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10001,
@@ -346,19 +301,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10000,
         44,
@@ -389,14 +331,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10003,
         44,
@@ -422,17 +356,6 @@
         "です",
         "か",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10001,
@@ -465,18 +388,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10000,
         44,
@@ -506,16 +417,6 @@
         "か",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10001,
         null,
@@ -544,18 +445,6 @@
         "ビジネス",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10000,
@@ -594,24 +483,6 @@
         "です",
         "か",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10003,
@@ -656,22 +527,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10000,
         44,
@@ -708,16 +563,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10000,
         44,
@@ -745,14 +590,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10003,
         44,
@@ -779,16 +616,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10000,
         44,
@@ -814,14 +641,6 @@
         "です",
         "ね",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         91,

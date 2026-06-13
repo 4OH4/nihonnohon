@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "genki-i-ch2-bookstore-items",
   "title": "At the Bookstore",
   "title_ja": "本屋です！",
@@ -23,43 +23,44 @@
       "key": 10000,
       "word": "本屋",
       "hiragana": "ほんや",
-      "translation": "bookstore"
+      "translation": "bookstore",
+      "pos": "n",
+      "dictionary_form": "本屋"
     },
     {
       "key": 10001,
       "word": "漫画",
       "hiragana": "まんが",
-      "translation": "manga"
+      "translation": "manga",
+      "pos": "n",
+      "dictionary_form": "漫画"
     },
     {
       "key": 10002,
       "word": "ケン",
       "hiragana": "けん",
-      "translation": "Ken (name)"
+      "translation": "Ken (name)",
+      "pos": "n",
+      "dictionary_form": "ケン"
     },
     {
       "key": 10003,
       "word": "ここ",
       "hiragana": "ここ",
-      "translation": "here"
+      "translation": "here",
+      "pos": "pron",
+      "dictionary_form": "ここ"
     }
   ],
   "sentences": [
     {
       "id": "s01",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
-        "高校生",
+        "高校生[こうこうせい]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "こうこうせい",
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -78,26 +79,14 @@
       "words": [
         "これ",
         "は",
-        "私",
+        "私[わたし]",
         "の",
-        "友達",
+        "友達[ともだち]",
         "の",
         "ケン",
         "さん",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "わたし",
-        null,
-        "ともだち",
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         91,
@@ -124,17 +113,9 @@
         "ケン",
         "さん",
         "も",
-        "高校生",
+        "高校生[こうこうせい]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "こうこうせい",
-        null,
-        null
       ],
       "vocab_keys": [
         10002,
@@ -160,14 +141,6 @@
         "か",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10003,
         null,
@@ -187,16 +160,9 @@
       "words": [
         "ここ",
         "は",
-        "本屋",
+        "本屋[ほんや]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "ほんや",
-        null,
-        null
       ],
       "vocab_keys": [
         10003,
@@ -215,21 +181,12 @@
       "id": "s06",
       "words": [
         "この",
-        "本屋",
+        "本屋[ほんや]",
         "は",
-        "図書館",
+        "図書館[としょかん]",
         "じゃない",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        "ほんや",
-        null,
-        "としょかん",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -252,18 +209,10 @@
       "words": [
         "これ",
         "は",
-        "何",
+        "何[なん]",
         "です",
         "か",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "なん",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         91,
@@ -284,16 +233,9 @@
       "words": [
         "これ",
         "は",
-        "本",
+        "本[ほん]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "ほん",
-        null,
-        null
       ],
       "vocab_keys": [
         91,
@@ -312,19 +254,11 @@
       "id": "s09",
       "words": [
         "この",
-        "本",
+        "本[ほん]",
         "は",
-        "漫画",
+        "漫画[まんが]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        "ほん",
-        null,
-        "まんが",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -345,16 +279,9 @@
       "words": [
         "あれ",
         "は",
-        "辞書",
+        "辞書[じしょ]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "じしょ",
-        null,
-        null
       ],
       "vocab_keys": [
         93,
@@ -374,22 +301,12 @@
       "words": [
         "それ",
         "は",
-        "日本",
+        "日本[にほん]",
         "語",
         "の",
-        "辞書",
+        "辞書[じしょ]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "にほん",
-        null,
-        null,
-        "じしょ",
-        null,
-        null
       ],
       "vocab_keys": [
         92,
@@ -418,14 +335,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10002,
         44,
@@ -445,18 +354,10 @@
       "words": [
         "それ",
         "は",
-        "何",
+        "何[なん]",
         "です",
         "か",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "なん",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         92,
@@ -480,13 +381,6 @@
         "ペン",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         92,
@@ -512,16 +406,6 @@
         "です",
         "か",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         91,
@@ -553,16 +437,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         91,
         null,
@@ -586,19 +460,10 @@
         "この",
         "ペン",
         "は",
-        "高い",
+        "高[たかい]い",
         "です",
         "ね",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "たかい",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -622,10 +487,6 @@
         "そうです",
         "。"
       ],
-      "ruby": [
-        null,
-        null
-      ],
       "vocab_keys": [
         49,
         null
@@ -640,10 +501,6 @@
       "words": [
         "どうも",
         "。"
-      ],
-      "ruby": [
-        null,
-        null
       ],
       "vocab_keys": [
         138,

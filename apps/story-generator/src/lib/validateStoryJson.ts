@@ -12,11 +12,11 @@ export interface ValidationError {
 /**
  * Run the 8-stage client-side validation pipeline on a raw JSON string.
  *
- * Stages: JSON parse → schema_version → required fields → parallel array
- * parity → grammar index bounds → vocab key resolution → difficulty format →
+ * Stages: JSON parse → schema_version → required fields → vocab_keys parity →
+ * grammar index bounds → vocab key resolution → difficulty format →
  * id filename legality.
  *
- * Bails immediately after a JSON parse failure.
+ * Accepts schema_version "1" and "2". Bails immediately after a JSON parse failure.
  * Returns an empty array if the story is valid.
  */
 export function validateStoryJson(json: string): ValidationError[] {
@@ -35,10 +35,11 @@ export function validateStoryJson(json: string): ValidationError[] {
   const errors: ValidationError[] = []
 
   // Stage 2: schema_version — only run if field is present (absent is already caught by Stage 3)
-  if ('schema_version' in story && story.schema_version !== null && story.schema_version !== '1') {
+  if ('schema_version' in story && story.schema_version !== null
+      && story.schema_version !== '1' && story.schema_version !== '2') {
     errors.push({
       rule: 'SCHEMA_VERSION',
-      message: `schema_version must be "1", got ${JSON.stringify(story.schema_version)}.`,
+      message: `schema_version must be "1" or "2", got ${JSON.stringify(story.schema_version)}.`,
       path: '$.schema_version',
     })
   }
@@ -75,14 +76,6 @@ export function validateStoryJson(json: string): ValidationError[] {
     const wordCount = Array.isArray(sentence.words) ? (sentence.words as unknown[]).length : 0
 
     // Stage 4: parallel array parity
-    if (Array.isArray(sentence.ruby) && (sentence.ruby as unknown[]).length !== wordCount) {
-      errors.push({
-        rule: 'PARALLEL_ARRAY_MISMATCH',
-        message: `Sentence ${i}: ruby length (${(sentence.ruby as unknown[]).length}) ≠ words length (${wordCount}).`,
-        sentenceIndex: i,
-        path: `$.sentences[${i}].ruby`,
-      })
-    }
     if (Array.isArray(sentence.vocab_keys) && (sentence.vocab_keys as unknown[]).length !== wordCount) {
       errors.push({
         rule: 'PARALLEL_ARRAY_MISMATCH',

@@ -4,7 +4,7 @@
 import Ajv from 'ajv'
 import schema from '@nihonnohon/schema/schemas/story.v1.json'
 import { LoaderError } from './errors'
-import type { StoryModel, SentenceModel, VocabSupplementEntry } from '@nihonnohon/schema'
+import type { StoryModel, SentenceModel, VocabSupplementEntry, ParsedWord } from '@nihonnohon/schema'
 
 const ajv = new Ajv()
 const validate = ajv.compile(schema)
@@ -45,6 +45,9 @@ interface WireStory {
   sentences: WireSentence[]
 }
 
+// The v1 shim is retained for externally-sourced stories (user uploads, shared links).
+// All committed story files in apps/web/public/stories/ were migrated to v2 in se1-7.
+// Removal of this shim can be considered once external v1 ingestion is formally deprecated.
 export function loadV1(raw: unknown): StoryModel {
   // 1. AJV validates snake_case wire format FIRST — before any transformation
   if (!validate(raw)) {
@@ -100,12 +103,15 @@ function mapVocabEntry(e: WireVocabEntry): VocabSupplementEntry {
 
 function mapSentence(s: WireSentence): SentenceModel {
   const wordCount = s.words.length
+  // Coerce the string "null" produced by some LLM outputs to real null.
+  const rubyArr = (s.ruby ?? Array<string | null>(wordCount).fill(null))
+    .map(v => (v === 'null' ? null : v))
   return {
     id: s.id,
-    words: s.words,
-    // Coerce the string "null" produced by some LLM outputs to real null.
-    ruby: (s.ruby ?? Array<string | null>(wordCount).fill(null))
-      .map(v => (v === 'null' ? null : v)),
+    tokens: s.words.map((word, i): ParsedWord => ({
+      surface: word,
+      segments: [{ text: word, ruby: rubyArr[i] ?? null }],
+    })),
     vocabKeys: (s.vocab_keys ?? Array<number | null>(wordCount).fill(null))
       .map(v => (v === ('null' as unknown) ? null : v)),
     translation: s.translation ?? null,

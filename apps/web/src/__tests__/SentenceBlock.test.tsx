@@ -15,8 +15,11 @@ const vocabFixture: VocabEntry[] = [
 
 const sentence: SentenceModel = {
   id: 'sent-1',
-  words: ['食べる', 'は', '楽しい'],
-  ruby: ['たべる', null, 'たのしい'],
+  tokens: [
+    { surface: '食べる', segments: [{ text: '食べる', ruby: 'たべる' }] },
+    { surface: 'は',     segments: [{ text: 'は',     ruby: null }] },
+    { surface: '楽しい', segments: [{ text: '楽しい', ruby: 'たのしい' }] },
+  ],
   vocabKeys: [42, null, null],
   translation: 'Eating is fun.',
   grammar: [],
@@ -60,7 +63,7 @@ describe('SentenceBlock', () => {
     expect(screen.getByRole('group', { name: 'Sentence 3' })).toBeInTheDocument()
   })
 
-  it('renders a WordToken for each word', () => {
+  it('renders a WordToken for each token', () => {
     render(<SentenceBlock sentence={sentence} sentenceIndex={0} />)
     expect(screen.getByRole('button', { name: '食べる' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'は' })).toBeInTheDocument()

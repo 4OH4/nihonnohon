@@ -20,7 +20,7 @@ export function ToolBar({ language }: ToolBarProps) {
     }))
   )
 
-  const rubyLabel = language === 'Japanese' ? 'ルビ' : 'Ruby'
+  const rubyLabel = language === 'ja' ? 'ルビ' : 'Ruby'
 
   return (
     <div role="toolbar" aria-label="Reading controls" className="flex flex-col gap-2 px-3 py-3 justify-center bg-surface">

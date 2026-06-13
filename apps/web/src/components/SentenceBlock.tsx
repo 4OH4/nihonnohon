@@ -6,13 +6,13 @@ import { cn } from '@/lib/utils'
 import { useLookupStore } from '@/stores/lookupStore'
 import { usePreferenceStore } from '@/stores/preferenceStore'
 import { WordToken } from '@/components/WordToken'
-import type { SentenceModel, VocabEntry } from '@nihonnohon/schema'
+import type { SentenceModel, VocabSupplementEntry } from '@nihonnohon/schema'
 
 interface SentenceBlockProps {
   sentence: SentenceModel
   sentenceIndex: number
   /** Per-story supplement entries keyed by word string — supplement takes precedence over main vocab. */
-  supplementMap?: Map<string, VocabEntry>
+  supplementMap?: Map<string, VocabSupplementEntry>
 }
 
 /** Renders a sentence as a row of WordTokens with optional spacing, highlight, and translation. */
@@ -35,20 +35,19 @@ export function SentenceBlock({ sentence, sentenceIndex, supplementMap }: Senten
       aria-label={`Sentence ${sentenceIndex + 1}`}
       onClick={() => selectSentence(sentence.id)}
       className={cn(
-        'flex flex-wrap py-2 px-1 rounded',
+        'flex flex-wrap items-baseline py-2 px-1 rounded',
         'transition-[gap,background-color] duration-150',
         spacingVisible ? 'gap-x-2' : 'gap-x-0',
         isSelected && 'bg-accent-subtle',
       )}
     >
-      {sentence.words.map((word, i) => (
+      {sentence.tokens.map((token, i) => (
         <WordToken
           key={i}
-          word={word}
-          ruby={sentence.ruby[i] ?? null}
+          token={token}
           vocabKey={sentence.vocabKeys[i] ?? null}
           sentenceId={sentence.id}
-          supplementEntry={supplementMap?.get(word) ?? null}
+          supplementEntry={supplementMap?.get(token.surface) ?? null}
         />
       ))}
       {transVisible && sentence.translation !== null && (

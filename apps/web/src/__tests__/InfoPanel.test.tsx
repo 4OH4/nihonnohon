@@ -155,4 +155,33 @@ describe('InfoPanel', () => {
     expect(useLookupStore.getState().lookupState.status).toBe('idle')
     expect(screen.getByText('Test Story')).toBeInTheDocument()
   })
+
+  it('found state with pos shows POS badge', () => {
+    act(() => {
+      useLookupStore.setState({
+        lookupState: { status: 'found', word: '食べる', entry: vocabEntry, pos: 'v5' },
+        selectedSentenceId: 's1',
+      })
+    })
+    render(<InfoPanel story={storyFixture} />)
+    expect(screen.getByText('v5')).toBeInTheDocument()
+  })
+
+  it('found state without pos shows no POS badge', () => {
+    act(() => {
+      useLookupStore.getState().lookup('食べる', vocabEntry, 's1')
+    })
+    const { container } = render(<InfoPanel story={storyFixture} />)
+    expect(container.querySelector('.bg-surface-subtle.border-border')).toBeNull()
+    expect(screen.getByText('食べる')).toBeInTheDocument()
+  })
+
+  it('found state with pos="" shows no POS badge — lookup() with empty string does not render badge', () => {
+    act(() => {
+      useLookupStore.getState().lookup('食べる', vocabEntry, 's1', '')
+    })
+    const { container } = render(<InfoPanel story={storyFixture} />)
+    expect(container.querySelector('.bg-surface-subtle.border-border')).toBeNull()
+    expect(screen.getByText('食べる')).toBeInTheDocument()
+  })
 })

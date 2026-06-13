@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "genki-i-ch3-green-letter-mystery",
   "title": "The Green Letter Mystery",
   "title_ja": "緑の手紙の謎",
@@ -27,281 +27,353 @@
       "key": 10000,
       "word": "教室",
       "hiragana": "きょうしつ",
-      "translation": "classroom"
+      "translation": "classroom",
+      "pos": "n",
+      "dictionary_form": "教室"
     },
     {
       "key": 10001,
       "word": "机",
       "hiragana": "つくえ",
-      "translation": "desk"
+      "translation": "desk",
+      "pos": "n",
+      "dictionary_form": "机"
     },
     {
       "key": 10002,
       "word": "窓",
       "hiragana": "まど",
-      "translation": "window"
+      "translation": "window",
+      "pos": "n",
+      "dictionary_form": "窓"
     },
     {
       "key": 10003,
       "word": "壁",
       "hiragana": "かべ",
-      "translation": "wall"
+      "translation": "wall",
+      "pos": "n",
+      "dictionary_form": "壁"
     },
     {
       "key": 10004,
       "word": "椅子",
       "hiragana": "いす",
-      "translation": "chair"
+      "translation": "chair",
+      "pos": "n",
+      "dictionary_form": "椅子"
     },
     {
       "key": 10005,
       "word": "いつも",
       "hiragana": "いつも",
-      "translation": "always"
+      "translation": "always",
+      "pos": "n",
+      "dictionary_form": "いつも"
     },
     {
       "key": 10006,
       "word": "中",
       "hiragana": "なか",
-      "translation": "inside"
+      "translation": "inside",
+      "pos": "n",
+      "dictionary_form": "中"
     },
     {
       "key": 10007,
       "word": "何か",
       "hiragana": "なにか",
-      "translation": "something"
+      "translation": "something",
+      "pos": "pron",
+      "dictionary_form": "何"
     },
     {
       "key": 10008,
       "word": "手紙",
       "hiragana": "てがみ",
-      "translation": "letter"
+      "translation": "letter",
+      "pos": "n",
+      "dictionary_form": "手紙"
     },
     {
       "key": 10009,
       "word": "変",
       "hiragana": "へん",
-      "translation": "strange"
+      "translation": "strange",
+      "pos": "n",
+      "dictionary_form": "変"
     },
     {
       "key": 10010,
       "word": "緑",
       "hiragana": "みどり",
-      "translation": "green"
+      "translation": "green",
+      "pos": "n",
+      "dictionary_form": "緑"
     },
     {
       "key": 10011,
       "word": "びっくり",
       "hiragana": "びっくり",
-      "translation": "surprised"
+      "translation": "surprised",
+      "pos": "n",
+      "dictionary_form": "びっくり"
     },
     {
       "key": 10012,
       "word": "紙",
       "hiragana": "かみ",
-      "translation": "paper"
+      "translation": "paper",
+      "pos": "n",
+      "dictionary_form": "紙"
     },
     {
       "key": 10013,
       "word": "白い",
       "hiragana": "しろい",
-      "translation": "white"
+      "translation": "white",
+      "pos": "adj-i",
+      "dictionary_form": "白い"
     },
     {
       "key": 10014,
       "word": "小さい",
       "hiragana": "ちいさい",
-      "translation": "small"
+      "translation": "small",
+      "pos": "adj-i",
+      "dictionary_form": "小さい"
     },
     {
       "key": 10015,
       "word": "短い",
       "hiragana": "みじかい",
-      "translation": "short"
+      "translation": "short",
+      "pos": "adj-i",
+      "dictionary_form": "短い"
     },
     {
       "key": 10016,
       "word": "放課後",
       "hiragana": "ほうかご",
-      "translation": "after school"
+      "translation": "after school",
+      "pos": "n",
+      "dictionary_form": "放課後"
     },
     {
       "key": 10017,
       "word": "木",
       "hiragana": "き",
-      "translation": "tree"
+      "translation": "tree",
+      "pos": "n",
+      "dictionary_form": "木"
     },
     {
       "key": 10018,
       "word": "絵",
       "hiragana": "え",
-      "translation": "drawing"
+      "translation": "drawing",
+      "pos": "n",
+      "dictionary_form": "絵"
     },
     {
       "key": 10019,
       "word": "山田さん",
       "hiragana": "やまださん",
-      "translation": "Mr./Ms. Yamada"
+      "translation": "Mr./Ms. Yamada",
+      "pos": "n",
+      "dictionary_form": "山田"
     },
     {
       "key": 10020,
       "word": "田中さん",
       "hiragana": "たなかさん",
-      "translation": "Mr./Ms. Tanaka"
+      "translation": "Mr./Ms. Tanaka",
+      "pos": "n",
+      "dictionary_form": "田中"
     },
     {
       "key": 10021,
       "word": "鈴木さん",
       "hiragana": "すずきさん",
-      "translation": "Mr./Ms. Suzuki"
+      "translation": "Mr./Ms. Suzuki",
+      "pos": "n",
+      "dictionary_form": "鈴木"
     },
     {
       "key": 10022,
       "word": "みんな",
       "hiragana": "みんな",
-      "translation": "everyone"
+      "translation": "everyone",
+      "pos": "n",
+      "dictionary_form": "みんな"
     },
     {
       "key": 10023,
       "word": "忙しい",
       "hiragana": "いそがしい",
-      "translation": "busy"
+      "translation": "busy",
+      "pos": "adj-i",
+      "dictionary_form": "忙しい"
     },
     {
       "key": 10024,
       "word": "知る",
       "hiragana": "しる",
-      "translation": "to know"
+      "translation": "to know",
+      "pos": "v5",
+      "dictionary_form": "知る"
     },
     {
       "key": 10025,
       "word": "時",
       "hiragana": "とき",
-      "translation": "time"
+      "translation": "time",
+      "pos": "n",
+      "dictionary_form": "時"
     },
     {
       "key": 10026,
       "word": "ベル",
       "hiragana": "ベル",
-      "translation": "bell"
+      "translation": "bell",
+      "pos": "n",
+      "dictionary_form": "ベル"
     },
     {
       "key": 10027,
       "word": "大きい",
       "hiragana": "おおきい",
-      "translation": "big"
+      "translation": "big",
+      "pos": "adj-i",
+      "dictionary_form": "大きい"
     },
     {
       "key": 10028,
       "word": "建物",
       "hiragana": "たてもの",
-      "translation": "building"
+      "translation": "building",
+      "pos": "n",
+      "dictionary_form": "建物"
     },
     {
       "key": 10029,
       "word": "二階",
       "hiragana": "にかい",
-      "translation": "second floor"
+      "translation": "second floor",
+      "pos": "n",
+      "dictionary_form": "二"
     },
     {
       "key": 10030,
       "word": "ゆっくり",
       "hiragana": "ゆっくり",
-      "translation": "slowly; carefully"
+      "translation": "slowly; carefully",
+      "pos": "adv",
+      "dictionary_form": "ゆっくり"
     },
     {
       "key": 10031,
       "word": "近く",
       "hiragana": "ちかく",
-      "translation": "near"
+      "translation": "near",
+      "pos": "n",
+      "dictionary_form": "近く"
     },
     {
       "key": 10032,
       "word": "あります",
       "hiragana": "あります",
-      "translation": "to exist (inanimate)"
+      "translation": "to exist (inanimate)",
+      "pos": "v5",
+      "dictionary_form": "ある"
     },
     {
       "key": 10033,
       "word": "ありません",
       "hiragana": "ありません",
-      "translation": "not to exist (inanimate)"
+      "translation": "not to exist (inanimate)",
+      "pos": "v5",
+      "dictionary_form": "ある"
     },
     {
       "key": 10034,
       "word": "鳴る",
       "hiragana": "なる",
-      "translation": "to ring"
+      "translation": "to ring",
+      "pos": "v5",
+      "dictionary_form": "鳴る"
     },
     {
       "key": 10035,
       "word": "始まる",
       "hiragana": "はじまる",
-      "translation": "to begin"
+      "translation": "to begin",
+      "pos": "v5",
+      "dictionary_form": "始まる"
     },
     {
       "key": 10036,
       "word": "考える",
       "hiragana": "かんがえる",
-      "translation": "to think"
+      "translation": "to think",
+      "pos": "v1",
+      "dictionary_form": "考える"
     },
     {
       "key": 10037,
       "word": "所",
       "hiragana": "ところ",
-      "translation": "place"
+      "translation": "place",
+      "pos": "n",
+      "dictionary_form": "所"
     },
     {
       "key": 10038,
       "word": "とても",
       "hiragana": "とても",
-      "translation": "very"
+      "translation": "very",
+      "pos": "adv",
+      "dictionary_form": "とても"
     },
     {
       "key": 10039,
       "word": "それから",
       "hiragana": "それから",
-      "translation": "then; after that"
+      "translation": "then; after that",
+      "pos": "pron",
+      "dictionary_form": "それ"
     },
     {
       "key": 10040,
       "word": "会う",
       "hiragana": "あう",
-      "translation": "to meet"
+      "translation": "to meet",
+      "pos": "v5",
+      "dictionary_form": "会う"
     },
     {
       "key": 10041,
       "word": "色",
       "hiragana": "いろ",
-      "translation": "color"
+      "translation": "color",
+      "pos": "n",
+      "dictionary_form": "色"
     }
   ],
   "sentences": [
     {
       "id": "s01",
       "words": [
-        "今日",
+        "今日[きょう]",
         "、",
-        "私",
+        "私[わたし]",
         "は",
-        "学校",
+        "学校[がっこう]",
         "へ",
         "ちょっと",
-        "早く",
-        "来ます",
+        "早[はやく]く",
+        "来[きます]ます",
         "。"
-      ],
-      "ruby": [
-        "きょう",
-        null,
-        "わたし",
-        null,
-        "がっこう",
-        null,
-        null,
-        "はやく",
-        "きます",
-        null
       ],
       "vocab_keys": [
         162,
@@ -325,20 +397,12 @@
     {
       "id": "s02",
       "words": [
-        "学校",
+        "学校[がっこう]",
         "は",
         "とても",
-        "大きい",
+        "大[おおきい]きい",
         "です",
         "。"
-      ],
-      "ruby": [
-        "がっこう",
-        null,
-        null,
-        "おおきい",
-        null,
-        null
       ],
       "vocab_keys": [
         158,
@@ -356,22 +420,13 @@
     {
       "id": "s03",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
         "ゆっくり",
-        "教室",
+        "教室[きょうしつ]",
         "へ",
-        "行きます",
+        "行[いきます]きます",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        null,
-        "きょうしつ",
-        null,
-        "いきます",
-        null
       ],
       "vocab_keys": [
         61,
@@ -392,18 +447,11 @@
     {
       "id": "s04",
       "words": [
-        "教室",
+        "教室[きょうしつ]",
         "は",
-        "二階",
+        "二階[にかい]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "きょうしつ",
-        null,
-        "にかい",
-        null,
-        null
       ],
       "vocab_keys": [
         10000,
@@ -420,32 +468,18 @@
     {
       "id": "s05",
       "words": [
-        "私",
+        "私[わたし]",
         "の",
-        "机",
+        "机[つくえ]",
         "は",
         "、",
-        "窓",
+        "窓[まど]",
         "と",
-        "壁",
+        "壁[かべ]",
         "の",
-        "近く",
+        "近[ちかく]く",
         "です",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "つくえ",
-        null,
-        null,
-        "まど",
-        null,
-        "かべ",
-        null,
-        "ちかく",
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -472,20 +506,11 @@
       "words": [
         "いつも",
         "、",
-        "私",
+        "私[わたし]",
         "は",
         "ここ",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "わたし",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10005,
@@ -506,26 +531,15 @@
     {
       "id": "s07",
       "words": [
-        "私",
+        "私[わたし]",
         "の",
         "カバン",
         "は",
-        "椅子",
+        "椅子[いす]",
         "の",
-        "近く",
+        "近[ちかく]く",
         "です",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        null,
-        null,
-        "いす",
-        null,
-        "ちかく",
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -549,20 +563,11 @@
       "words": [
         "それから",
         "、",
-        "机",
+        "机[つくえ]",
         "を",
         "よく",
-        "見ます",
+        "見[みます]ます",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "つくえ",
-        null,
-        null,
-        "みます",
-        null
       ],
       "vocab_keys": [
         10039,
@@ -584,22 +589,13 @@
     {
       "id": "s09",
       "words": [
-        "机",
+        "机[つくえ]",
         "の",
-        "中",
+        "中[なか]",
         "に",
-        "何か",
+        "何[なにか]か",
         "あります",
         "。"
-      ],
-      "ruby": [
-        "つくえ",
-        null,
-        "なか",
-        null,
-        "なにか",
-        null,
-        null
       ],
       "vocab_keys": [
         10001,
@@ -621,20 +617,11 @@
       "words": [
         "これ",
         "は",
-        "私",
+        "私[わたし]",
         "の",
-        "本",
+        "本[ほん]",
         "じゃないです",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "わたし",
-        null,
-        "ほん",
-        null,
-        null
       ],
       "vocab_keys": [
         91,
@@ -661,12 +648,6 @@
         "じゃないです",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         108,
         null,
@@ -684,16 +665,9 @@
       "words": [
         "これ",
         "は",
-        "手紙",
+        "手紙[てがみ]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "てがみ",
-        null,
-        null
       ],
       "vocab_keys": [
         91,
@@ -711,20 +685,12 @@
     {
       "id": "s13",
       "words": [
-        "手紙",
+        "手紙[てがみ]",
         "は",
         "とても",
-        "変",
+        "変[へん]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "てがみ",
-        null,
-        null,
-        "へん",
-        null,
-        null
       ],
       "vocab_keys": [
         10008,
@@ -742,18 +708,11 @@
     {
       "id": "s14",
       "words": [
-        "緑",
+        "緑[みどり]",
         "の",
-        "色",
+        "色[いろ]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "みどり",
-        null,
-        "いろ",
-        null,
-        null
       ],
       "vocab_keys": [
         10010,
@@ -771,16 +730,10 @@
     {
       "id": "s15",
       "words": [
-        "名前",
+        "名前[なまえ]",
         "は",
         "ありません",
         "。"
-      ],
-      "ruby": [
-        "なまえ",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         53,
@@ -798,18 +751,10 @@
       "words": [
         "だれ",
         "の",
-        "手紙",
+        "手紙[てがみ]",
         "です",
         "か",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "てがみ",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         101,
@@ -829,18 +774,11 @@
     {
       "id": "s17",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
         "びっくり",
         "です",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -857,24 +795,14 @@
     {
       "id": "s18",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
         "この",
-        "手紙",
+        "手紙[てがみ]",
         "を",
         "よく",
-        "見ます",
+        "見[みます]ます",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        null,
-        "てがみ",
-        null,
-        null,
-        "みます",
-        null
       ],
       "vocab_keys": [
         61,
@@ -898,24 +826,14 @@
     {
       "id": "s19",
       "words": [
-        "紙",
+        "紙[かみ]",
         "は",
-        "白い",
+        "白[しろい]い",
         "です",
         "。",
-        "小さい",
+        "小[ちいさい]さい",
         "です",
         "。"
-      ],
-      "ruby": [
-        "かみ",
-        null,
-        "しろい",
-        null,
-        null,
-        "ちいさい",
-        null,
-        null
       ],
       "vocab_keys": [
         10012,
@@ -935,20 +853,12 @@
     {
       "id": "s20",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
-        "手紙",
+        "手紙[てがみ]",
         "を",
-        "読みます",
+        "読[よみます]みます",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "てがみ",
-        null,
-        "よみます",
-        null
       ],
       "vocab_keys": [
         61,
@@ -969,15 +879,9 @@
       "id": "s21",
       "words": [
         "とても",
-        "短い",
+        "短[みじかい]い",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        "みじかい",
-        null,
-        null
       ],
       "vocab_keys": [
         10038,
@@ -994,29 +898,16 @@
       "id": "s22",
       "words": [
         "「",
-        "放課後",
+        "放課後[ほうかご]",
         "、",
-        "大きい",
-        "木",
+        "大[おおきい]きい",
+        "木[き]",
         "の",
-        "近く",
+        "近[ちかく]く",
         "で",
-        "会います",
+        "会[あいます]います",
         "。",
         "」"
-      ],
-      "ruby": [
-        null,
-        "ほうかご",
-        null,
-        "おおきい",
-        "き",
-        null,
-        "ちかく",
-        null,
-        "あいます",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1043,24 +934,14 @@
     {
       "id": "s23",
       "words": [
-        "名前",
+        "名前[なまえ]",
         "は",
         "ありません",
         "。",
-        "絵",
+        "絵[え]",
         "も",
         "ありません",
         "。"
-      ],
-      "ruby": [
-        "なまえ",
-        null,
-        null,
-        null,
-        "え",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         53,
@@ -1081,20 +962,12 @@
     {
       "id": "s24",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
-        "教室",
+        "教室[きょうしつ]",
         "を",
-        "見ます",
+        "見[みます]ます",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "きょうしつ",
-        null,
-        "みます",
-        null
       ],
       "vocab_keys": [
         61,
@@ -1114,24 +987,14 @@
     {
       "id": "s25",
       "words": [
-        "友達",
+        "友達[ともだち]",
         "の",
-        "山田さん",
+        "山田[やまださん]さん",
         "は",
-        "本",
+        "本[ほん]",
         "を",
-        "読みます",
+        "読[よみます]みます",
         "。"
-      ],
-      "ruby": [
-        "ともだち",
-        null,
-        "やまださん",
-        null,
-        "ほん",
-        null,
-        "よみます",
-        null
       ],
       "vocab_keys": [
         52,
@@ -1155,24 +1018,14 @@
     {
       "id": "s26",
       "words": [
-        "友達",
+        "友達[ともだち]",
         "の",
-        "田中さん",
+        "田中[たなかさん]さん",
         "は",
-        "鈴木さん",
+        "鈴木[すずきさん]さん",
         "と",
-        "話します",
+        "話[はなします]します",
         "。"
-      ],
-      "ruby": [
-        "ともだち",
-        null,
-        "たなかさん",
-        null,
-        "すずきさん",
-        null,
-        "はなします",
-        null
       ],
       "vocab_keys": [
         52,
@@ -1196,15 +1049,9 @@
       "id": "s27",
       "words": [
         "みんな",
-        "忙しい",
+        "忙[いそがしい]しい",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        "いそがしい",
-        null,
-        null
       ],
       "vocab_keys": [
         10022,
@@ -1222,18 +1069,10 @@
       "words": [
         "だれ",
         "も",
-        "私",
+        "私[わたし]",
         "を",
-        "見ません",
+        "見[みません]ません",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "わたし",
-        null,
-        "みません",
-        null
       ],
       "vocab_keys": [
         101,
@@ -1254,18 +1093,11 @@
     {
       "id": "s29",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
         "よく",
-        "知りません",
+        "知[しりません]りません",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        null,
-        "しりません",
-        null
       ],
       "vocab_keys": [
         61,
@@ -1285,15 +1117,9 @@
       "id": "s30",
       "words": [
         "とても",
-        "変",
+        "変[へん]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        "へん",
-        null,
-        null
       ],
       "vocab_keys": [
         10038,
@@ -1309,24 +1135,14 @@
     {
       "id": "s31",
       "words": [
-        "手紙",
+        "手紙[てがみ]",
         "は",
         "カバン",
         "の",
-        "中",
+        "中[なか]",
         "に",
         "あります",
         "。"
-      ],
-      "ruby": [
-        "てがみ",
-        null,
-        null,
-        null,
-        "なか",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10008,
@@ -1353,17 +1169,8 @@
         "、",
         "ベル",
         "が",
-        "鳴ります",
+        "鳴[なります]ります",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        "なります",
-        null
       ],
       "vocab_keys": [
         96,
@@ -1384,20 +1191,12 @@
     {
       "id": "s33",
       "words": [
-        "先生",
+        "先生[せんせい]",
         "は",
-        "教室",
+        "教室[きょうしつ]",
         "へ",
-        "来ます",
+        "来[きます]ます",
         "。"
-      ],
-      "ruby": [
-        "せんせい",
-        null,
-        "きょうしつ",
-        null,
-        "きます",
-        null
       ],
       "vocab_keys": [
         47,
@@ -1419,14 +1218,8 @@
       "words": [
         "クラス",
         "が",
-        "始まります",
+        "始[はじまります]まります",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "はじまります",
-        null
       ],
       "vocab_keys": [
         10027,
@@ -1445,22 +1238,12 @@
       "words": [
         "でも",
         "、",
-        "私",
+        "私[わたし]",
         "は",
-        "手紙",
+        "手紙[てがみ]",
         "を",
-        "考えます",
+        "考[かんがえます]えます",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "わたし",
-        null,
-        "てがみ",
-        null,
-        "かんがえます",
-        null
       ],
       "vocab_keys": [
         192,
@@ -1482,32 +1265,18 @@
     {
       "id": "s36",
       "words": [
-        "放課後",
+        "放課後[ほうかご]",
         "、",
-        "大きい",
-        "木",
+        "大[おおきい]きい",
+        "木[き]",
         "の",
-        "所",
+        "所[ところ]",
         "で",
-        "何",
+        "何[なに]",
         "が",
         "あります",
         "か",
         "。"
-      ],
-      "ruby": [
-        "ほうかご",
-        null,
-        "おおきい",
-        "き",
-        null,
-        "ところ",
-        null,
-        "なに",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10016,

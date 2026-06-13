@@ -6,14 +6,14 @@ import { useLookupStore } from '@/stores/lookupStore'
 import type { VocabEntry } from '@nihonnohon/schema'
 
 /** Single row in the vocabulary panel — shows word, reading, and translation with lookup on tap. */
-export function VocabItem({ entry }: { entry: VocabEntry }) {
+export function VocabItem({ entry, pos }: { entry: VocabEntry; pos?: string }) {
   const lookup = useLookupStore((s) => s.lookup)
   const lookupState = useLookupStore((s) => s.lookupState)
   const isActive = lookupState.status === 'found' && lookupState.word === entry.word
 
   const handleActivate = () => {
     // sentenceId is null — vocab panel taps do not select or highlight a sentence
-    lookup(entry.word, entry, null)
+    lookup(entry.word, entry, null, pos)
   }
 
   return (

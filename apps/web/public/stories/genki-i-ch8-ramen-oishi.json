@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "genki-i-ch8-ramen-oishi",
   "title": "Ramen Oishi",
   "title_ja": "ラーメンおいしい",
@@ -35,121 +35,160 @@
       "key": 10000,
       "word": "ラーメンやさん",
       "hiragana": "ラーメンやさん",
-      "translation": "ramen shop"
+      "translation": "ramen shop",
+      "pos": "n",
+      "dictionary_form": "ラーメン"
     },
     {
       "key": 10001,
       "word": "いつも",
       "hiragana": "いつも",
-      "translation": "always"
+      "translation": "always",
+      "pos": "n",
+      "dictionary_form": "いつも"
     },
     {
       "key": 10002,
       "word": "せん",
       "hiragana": "せん",
-      "translation": "line; queue"
+      "translation": "line; queue",
+      "pos": "n",
+      "dictionary_form": "せん"
     },
     {
       "key": 10003,
       "word": "ケンさん",
       "hiragana": "ケンさん",
-      "translation": "Mr./Ms. Ken"
+      "translation": "Mr./Ms. Ken",
+      "pos": "n",
+      "dictionary_form": "ケン"
     },
     {
       "key": 10004,
       "word": "ある",
       "hiragana": "ある",
-      "translation": "a certain; one (as in 'one day')"
+      "translation": "a certain; one (as in 'one day')",
+      "pos": "v5",
+      "dictionary_form": "ある"
     },
     {
       "key": 10005,
       "word": "もう",
       "hiragana": "もう",
-      "translation": "already"
+      "translation": "already",
+      "pos": "adv",
+      "dictionary_form": "もう"
     },
     {
       "key": 10006,
       "word": "だめ",
       "hiragana": "だめ",
-      "translation": "no good; impossible"
+      "translation": "no good; impossible",
+      "pos": "n",
+      "dictionary_form": "だめ"
     },
     {
       "key": 10007,
       "word": "また",
       "hiragana": "また",
-      "translation": "again"
+      "translation": "again",
+      "pos": "conj",
+      "dictionary_form": "また"
     },
     {
       "key": 10008,
       "word": "まだ",
       "hiragana": "まだ",
-      "translation": "still"
+      "translation": "still",
+      "pos": "adv",
+      "dictionary_form": "まだ"
     },
     {
       "key": 10009,
       "word": "たぶん",
       "hiragana": "たぶん",
-      "translation": "perhaps; maybe"
+      "translation": "perhaps; maybe",
+      "pos": "adv",
+      "dictionary_form": "たぶん"
     },
     {
       "key": 10010,
       "word": "今度",
       "hiragana": "こんど",
-      "translation": "this time"
+      "translation": "this time",
+      "pos": "n",
+      "dictionary_form": "今度"
     },
     {
       "key": 10011,
       "word": "一番",
       "hiragana": "いちばん",
-      "translation": "most; number one"
+      "translation": "most; number one",
+      "pos": "adv",
+      "dictionary_form": "一番"
     },
     {
       "key": 10012,
       "word": "動く",
       "hiragana": "うごく",
-      "translation": "to move"
+      "translation": "to move",
+      "pos": "v5",
+      "dictionary_form": "動く"
     },
     {
       "key": 10013,
       "word": "少し",
       "hiragana": "すこし",
-      "translation": "a little"
+      "translation": "a little",
+      "pos": "adv",
+      "dictionary_form": "少し"
     },
     {
       "key": 10014,
       "word": "やっと",
       "hiragana": "やっと",
-      "translation": "finally"
+      "translation": "finally",
+      "pos": "adv",
+      "dictionary_form": "やっと"
     },
     {
       "key": 10015,
       "word": "店",
       "hiragana": "みせ",
-      "translation": "shop; store"
+      "translation": "shop; store",
+      "pos": "n",
+      "dictionary_form": "店"
     },
     {
       "key": 10016,
       "word": "カウンター",
       "hiragana": "カウンター",
-      "translation": "counter"
+      "translation": "counter",
+      "pos": "n",
+      "dictionary_form": "カウンター"
     },
     {
       "key": 10017,
       "word": "注文する",
       "hiragana": "ちゅうもんする",
-      "translation": "to order"
+      "translation": "to order",
+      "pos": "v-irr",
+      "dictionary_form": "注文する"
     },
     {
       "key": 10018,
       "word": "わあ",
       "hiragana": "わあ",
-      "translation": "Wow!"
+      "translation": "Wow!",
+      "dictionary_form": "わあ"
     },
     {
       "key": 10019,
       "word": "わけ",
       "hiragana": "わけ",
-      "translation": "reason"
+      "translation": "reason",
+      "pos": "n",
+      "dictionary_form": "わけ"
     }
   ],
   "sentences": [
@@ -161,13 +200,6 @@
         "ラーメンやさん",
         "が",
         "あります。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         217,
@@ -186,18 +218,11 @@
     {
       "id": "s02",
       "words": [
-        "名前",
+        "名前[なまえ]",
         "は",
         "「ラーメン",
         "おいしい」",
         "です。"
-      ],
-      "ruby": [
-        "なまえ",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         53,
@@ -214,26 +239,15 @@
     {
       "id": "s03",
       "words": [
-        "毎日",
+        "毎日[まいにち]",
         "、",
         "たくさん",
         "の",
-        "人",
+        "人[ひと]",
         "が",
         "そこ",
         "へ",
-        "行きます。"
-      ],
-      "ruby": [
-        "まいにち",
-        null,
-        null,
-        null,
-        "ひと",
-        null,
-        null,
-        null,
-        "いきます"
+        "行[いきます]きます。"
       ],
       "vocab_keys": [
         168,
@@ -260,16 +274,8 @@
         "、",
         "せん",
         "は",
-        "長い",
+        "長[ながい]い",
         "です。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        "ながい",
-        null
       ],
       "vocab_keys": [
         10001,
@@ -293,16 +299,7 @@
         "の",
         "そば",
         "に",
-        "住んでいます。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "すんでいます"
+        "住[すんでいます]んでいます。"
       ],
       "vocab_keys": [
         10003,
@@ -322,20 +319,12 @@
     {
       "id": "s06",
       "words": [
-        "毎朝",
+        "毎朝[まいあさ]",
         "、",
-        "長い",
+        "長[ながい]い",
         "せん",
         "を",
-        "見ます。"
-      ],
-      "ruby": [
-        "まいあさ",
-        null,
-        "ながい",
-        null,
-        null,
-        "みます"
+        "見[みます]ます。"
       ],
       "vocab_keys": [
         159,
@@ -354,14 +343,9 @@
     {
       "id": "s07",
       "words": [
-        "毎晩",
+        "毎晩[まいばん]",
         "も",
-        "見ます。"
-      ],
-      "ruby": [
-        "まいばん",
-        null,
-        "みます"
+        "見[みます]ます。"
       ],
       "vocab_keys": [
         169,
@@ -381,17 +365,8 @@
         "せん",
         "は",
         "とても",
-        "長い",
+        "長[ながい]い",
         "です。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        "ながい",
-        null
       ],
       "vocab_keys": [
         192,
@@ -411,25 +386,14 @@
       "id": "s09",
       "words": [
         "ある",
-        "土曜日",
+        "土曜日[どようび]",
         "、",
         "ケンさん",
         "は",
         "そこ",
         "へ",
-        "行き",
+        "行[いき]き",
         "ました。"
-      ],
-      "ruby": [
-        null,
-        "どようび",
-        null,
-        null,
-        null,
-        null,
-        null,
-        "いき",
-        null
       ],
       "vocab_keys": [
         10004,
@@ -451,12 +415,8 @@
     {
       "id": "s10",
       "words": [
-        "十二時",
+        "十二時[じゅうにじ]",
         "でした。"
-      ],
-      "ruby": [
-        "じゅうにじ",
-        null
       ],
       "vocab_keys": [
         45,
@@ -472,20 +432,11 @@
       "words": [
         "たくさん",
         "の",
-        "人",
+        "人[ひと]",
         "が",
         "もう",
-        "待って",
+        "待[まって]って",
         "いました。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "ひと",
-        null,
-        null,
-        "まって",
-        null
       ],
       "vocab_keys": [
         239,
@@ -508,27 +459,14 @@
         "ケンさん",
         "は",
         "「",
-        "今日",
+        "今日[きょう]",
         "は",
         "だめ",
         "だ。",
         "」",
         "と",
-        "思い",
+        "思[おもい]い",
         "ました。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "きょう",
-        null,
-        null,
-        null,
-        null,
-        null,
-        "おもい",
-        null
       ],
       "vocab_keys": [
         10003,
@@ -552,16 +490,10 @@
     {
       "id": "s13",
       "words": [
-        "家",
+        "家[いえ]",
         "へ",
-        "帰り",
+        "帰[かえり]り",
         "ました。"
-      ],
-      "ruby": [
-        "いえ",
-        null,
-        "かえり",
-        null
       ],
       "vocab_keys": [
         155,
@@ -578,22 +510,13 @@
     {
       "id": "s14",
       "words": [
-        "日曜日",
+        "日曜日[にちようび]",
         "、",
         "ケンさん",
         "は",
         "また",
-        "行き",
+        "行[いき]き",
         "ました。"
-      ],
-      "ruby": [
-        "にちようび",
-        null,
-        null,
-        null,
-        null,
-        "いき",
-        null
       ],
       "vocab_keys": [
         167,
@@ -612,16 +535,10 @@
     {
       "id": "s15",
       "words": [
-        "一時",
+        "一時[いちじ]",
         "に",
-        "行き",
+        "行[いき]き",
         "ました。"
-      ],
-      "ruby": [
-        "いちじ",
-        null,
-        "いき",
-        null
       ],
       "vocab_keys": [
         45,
@@ -641,15 +558,8 @@
         "せん",
         "は",
         "まだ",
-        "長かった",
+        "長[ながかった]かった",
         "です。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "ながかった",
-        null
       ],
       "vocab_keys": [
         10002,
@@ -666,28 +576,16 @@
     {
       "id": "s17",
       "words": [
-        "男の",
-        "人",
+        "男[おとこの]の",
+        "人[ひと]",
         "と",
-        "女の",
-        "人",
+        "女[おんなの]の",
+        "人[ひと]",
         "と",
-        "子供",
+        "子供[こども]",
         "を",
-        "見",
+        "見[み]",
         "ました。"
-      ],
-      "ruby": [
-        "おとこの",
-        "ひと",
-        null,
-        "おんなの",
-        "ひと",
-        null,
-        "こども",
-        null,
-        "み",
-        null
       ],
       "vocab_keys": [
         365,
@@ -712,13 +610,8 @@
       "id": "s18",
       "words": [
         "みんな",
-        "待って",
+        "待[まって]って",
         "いました。"
-      ],
-      "ruby": [
-        null,
-        "まって",
-        null
       ],
       "vocab_keys": [
         455,
@@ -734,13 +627,8 @@
       "id": "s19",
       "words": [
         "みんな",
-        "元気",
+        "元気[げんき]",
         "でした。"
-      ],
-      "ruby": [
-        null,
-        "げんき",
-        null
       ],
       "vocab_keys": [
         455,
@@ -766,23 +654,8 @@
         "です。",
         "」",
         "と",
-        "思い",
+        "思[おもい]い",
         "ました。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "おもい",
-        null
       ],
       "vocab_keys": [
         10003,
@@ -807,16 +680,10 @@
     {
       "id": "s21",
       "words": [
-        "今度",
+        "今度[こんど]",
         "は",
-        "待ち",
+        "待[まち]ち",
         "ました。"
-      ],
-      "ruby": [
-        "こんど",
-        null,
-        "まち",
-        null
       ],
       "vocab_keys": [
         10010,
@@ -834,20 +701,11 @@
       "words": [
         "せん",
         "の",
-        "一番",
+        "一番[いちばん]",
         "うしろ",
         "に",
-        "立ち",
+        "立[たち]ち",
         "ました。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "いちばん",
-        null,
-        null,
-        "たち",
-        null
       ],
       "vocab_keys": [
         10002,
@@ -868,16 +726,10 @@
     {
       "id": "s23",
       "words": [
-        "十分",
+        "十分[じゅっぷん]",
         "、",
-        "二十分",
+        "二十分[にじゅっぷん]",
         "。"
-      ],
-      "ruby": [
-        "じゅっぷん",
-        null,
-        "にじゅっぷん",
-        null
       ],
       "vocab_keys": [
         221,
@@ -895,16 +747,8 @@
         "、",
         "せん",
         "が",
-        "動き",
+        "動[うごき]き",
         "ました。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        "うごき",
-        null
       ],
       "vocab_keys": [
         359,
@@ -923,22 +767,13 @@
     {
       "id": "s25",
       "words": [
-        "前",
+        "前[まえ]",
         "の",
-        "人",
+        "人[ひと]",
         "と",
         "少し",
-        "話し",
+        "話[はなし]し",
         "ました。"
-      ],
-      "ruby": [
-        "まえ",
-        null,
-        "ひと",
-        null,
-        null,
-        "はなし",
-        null
       ],
       "vocab_keys": [
         246,
@@ -959,16 +794,10 @@
     {
       "id": "s26",
       "words": [
-        "天気",
+        "天気[てんき]",
         "は",
         "よかった",
         "です。"
-      ],
-      "ruby": [
-        "てんき",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         265,
@@ -986,30 +815,16 @@
       "words": [
         "やっと",
         "、",
-        "三十分",
+        "三十分[さんじゅっぷん]",
         "ぐらい",
-        "後で",
+        "後[あとで]で",
         "、",
         "ケンさん",
         "は",
-        "店",
+        "店[みせ]",
         "に",
-        "入り",
+        "入[はいり]り",
         "ました。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "さんじゅっぷん",
-        null,
-        "あとで",
-        null,
-        null,
-        null,
-        "みせ",
-        null,
-        "はいり",
-        null
       ],
       "vocab_keys": [
         10014,
@@ -1035,16 +850,10 @@
     {
       "id": "s28",
       "words": [
-        "小さくて",
+        "小[ちいさくて]さくて",
         "、",
         "にぎやか",
         "でした。"
-      ],
-      "ruby": [
-        "ちいさくて",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         283,
@@ -1062,14 +871,8 @@
       "words": [
         "カウンター",
         "に",
-        "座り",
+        "座[すわり]り",
         "ました。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "すわり",
-        null
       ],
       "vocab_keys": [
         10016,
@@ -1088,14 +891,8 @@
       "words": [
         "ラーメン",
         "を",
-        "注文",
+        "注文[ちゅうもん]",
         "しました。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "ちゅうもん",
-        null
       ],
       "vocab_keys": [
         10000,
@@ -1115,15 +912,8 @@
         "ラーメン",
         "は",
         "すぐ",
-        "来",
+        "来[き]",
         "ました。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "き",
-        null
       ],
       "vocab_keys": [
         10000,
@@ -1144,16 +934,8 @@
         "は",
         "ラーメン",
         "を",
-        "食べ",
+        "食[たべ]べ",
         "ました。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        "たべ",
-        null
       ],
       "vocab_keys": [
         10003,
@@ -1172,18 +954,11 @@
     {
       "id": "s33",
       "words": [
-        "熱くて",
+        "熱[あつくて]くて",
         "、",
         "とても",
         "おいしかった",
         "です。"
-      ],
-      "ruby": [
-        "あつくて",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         276,
@@ -1213,24 +988,8 @@
         "ね。",
         "」",
         "と",
-        "思い",
+        "思[おもい]い",
         "ました。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "おもい",
-        null
       ],
       "vocab_keys": [
         null,
@@ -1258,22 +1017,13 @@
     {
       "id": "s35",
       "words": [
-        "長い",
+        "長[ながい]い",
         "せん",
         "の",
         "わけ",
         "が",
         "わかり",
         "ました。"
-      ],
-      "ruby": [
-        "ながい",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         386,
@@ -1301,26 +1051,12 @@
         "すぐ",
         "ラーメン",
         "を",
-        "食べ",
+        "食[たべ]べ",
         "に",
-        "行く",
+        "行[いく]く",
         "と",
-        "思い",
+        "思[おもい]い",
         "ます。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "たべ",
-        null,
-        "いく",
-        null,
-        "おもい",
-        null
       ],
       "vocab_keys": [
         10003,

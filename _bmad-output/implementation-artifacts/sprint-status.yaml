@@ -35,8 +35,9 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-05-11
-last_updated: 2026-05-13
+last_updated: 2026-06-04  # se2-5 story created
 # v1 complete: all epics done, retrospective closed
+# supp-epic-1 (furigana rework) in progress
 project: nihonnohon
 project_key: NOKEY
 tracking_system: file-system
@@ -76,3 +77,25 @@ development_status:
   4-3-responsive-layout-and-settingsmenu: done
   4-4-credits-seo-polish-and-playwright-e2e-suite: done
   epic-4-retrospective: done
+
+  # Supplemental Epic 1: Furigana Rework — Per-Kanji Annotations and story.v2.json
+  # Planning: _bmad-output/planning-artifacts/supp-epic-1-furigana-rework.md
+  # ADR: docs/adr/005-inline-furigana-format.md
+  supp-epic-1: in-progress
+  se1-1-inline-ruby-parser-and-v2-schema: done
+  se1-2-internal-type-changes: done
+  se1-3-loader-v2-and-v1-shim: done
+  se1-4-reader-ui-per-segment-rendering: done
+  se1-5-story-generator-backend-v2-format: done
+  se1-6-story-generator-frontend-v2-compatibility: done
+  se1-7-migrate-story-files-to-v2: done
+  supp-epic-1-retrospective: optional
+
+  # Supplemental Epic 2: Python-Side Tokenization and Vocab Enrichment
+  # Planning: _bmad-output/planning-artifacts/supp-epic-2-python-enrichment.md
+  supp-epic-2: in-progress
+  se2-1-enrichment-module: done
+  se2-2-updated-generation-pipeline: done
+  se2-3-schema-and-type-updates: done
+  se2-4-web-app-pos-display: review
+  se2-5-story-library-re-enrichment: review

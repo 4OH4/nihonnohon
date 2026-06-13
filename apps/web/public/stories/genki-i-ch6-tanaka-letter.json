@@ -1,0 +1,989 @@
+{
+  "schema_version": "2",
+  "id": "genki-i-ch6-tanaka-letter",
+  "title": "Mary's Letter to Tanaka-san",
+  "title_ja": "メアリーさんの手紙",
+  "language": "ja",
+  "description": "Mary introduces herself and describes her daily life and routine to her new pen-pal, Tanaka-san. This story is calibrated for Genki I Chapter 6 learners.",
+  "difficulty": "Genki I Ch.6",
+  "grammar": [
+    "Defining Identity (X は Y です)",
+    "Connecting Nouns (Noun1 の Noun2)",
+    "Basic Inquiry (Question Sentences)",
+    "Addition and Inclusion (Particle も)",
+    "Identifying Places (ここ・そこ・あそこ)",
+    "Verb Classes and Conjugation (～ます forms)",
+    "The Present Tense (habitual actions)",
+    "Sentence Logistics (Particles を, で, に, へ)",
+    "Temporal Markers (Time References - に)",
+    "Frequency Adverbs (よく, たいてい, ときどき)",
+    "Stating Existence (あります / います)",
+    "Connecting Items (Particle と)",
+    "Measuring Time (Duration - ぐらい)",
+    "Attribute Basics (Adjective + です / な-adj + な)",
+    "Personal Preferences (好き / 嫌い)",
+    "Verb Linking (て-form)",
+    "Asking for Favors (～てください)",
+    "Sequencing Actions (て-form for Activities)",
+    "Explaining Reasons (Particle から)"
+  ],
+  "vocab_supplement": [
+    {
+      "key": 10000,
+      "word": "田中さん",
+      "hiragana": "たなかさん",
+      "translation": "",
+      "pos": "n",
+      "dictionary_form": "田中"
+    },
+    {
+      "key": 10001,
+      "word": "メアリー",
+      "hiragana": "めありー",
+      "translation": "",
+      "pos": "n",
+      "dictionary_form": "メアリー"
+    },
+    {
+      "key": 10002,
+      "word": "シアトル",
+      "hiragana": "しあとる",
+      "translation": "Seattle",
+      "pos": "n",
+      "dictionary_form": "シアトル"
+    },
+    {
+      "key": 10003,
+      "word": "ルナ",
+      "hiragana": "るな",
+      "translation": "",
+      "pos": "n",
+      "dictionary_form": "ルナ"
+    },
+    {
+      "key": 10004,
+      "word": "で",
+      "hiragana": "で",
+      "translation": "",
+      "pos": "conj",
+      "dictionary_form": "で"
+    },
+    {
+      "key": 10005,
+      "word": "ひるごはん",
+      "hiragana": "ひるごはん",
+      "translation": "",
+      "pos": "n",
+      "dictionary_form": "ひる"
+    },
+    {
+      "key": 10006,
+      "word": "一緒に",
+      "hiragana": "いっしょに",
+      "translation": "together",
+      "pos": "n",
+      "dictionary_form": "一緒"
+    },
+    {
+      "key": 10007,
+      "word": "ばんごはん",
+      "hiragana": "ばんごはん",
+      "translation": "",
+      "pos": "adv",
+      "dictionary_form": "ばん"
+    }
+  ],
+  "sentences": [
+    {
+      "id": "s01",
+      "words": [
+        "はじめまして",
+        "、",
+        "田中[たなか]さん",
+        "！"
+      ],
+      "vocab_keys": [
+        447,
+        null,
+        10000,
+        null
+      ],
+      "translation": "Hello, Tanaka-san!",
+      "grammar": []
+    },
+    {
+      "id": "s02",
+      "words": [
+        "私[わたくし]",
+        "の",
+        "なまえ",
+        "は",
+        "メアリー",
+        "です",
+        "。"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        53,
+        603,
+        10001,
+        21,
+        null
+      ],
+      "translation": "My name is Mary.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s03",
+      "words": [
+        "私",
+        "は",
+        "だいがくせい",
+        "です",
+        "。"
+      ],
+      "vocab_keys": [
+        61,
+        603,
+        50,
+        21,
+        null
+      ],
+      "translation": "I am a university student.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s04",
+      "words": [
+        "私",
+        "は",
+        "じゅうきゅうさい",
+        "です",
+        "。"
+      ],
+      "vocab_keys": [
+        61,
+        603,
+        33,
+        21,
+        null
+      ],
+      "translation": "I am nineteen years old.",
+      "grammar": [
+        0
+      ]
+    },
+    {
+      "id": "s05",
+      "words": [
+        "私",
+        "は",
+        "アメリカ",
+        "の",
+        "シアトル",
+        "に",
+        "います",
+        "。"
+      ],
+      "vocab_keys": [
+        61,
+        603,
+        62,
+        null,
+        10002,
+        25,
+        235,
+        null
+      ],
+      "translation": "I am in Seattle, in the United States.",
+      "grammar": [
+        10,
+        1,
+        8
+      ]
+    },
+    {
+      "id": "s06",
+      "words": [
+        "シアトル",
+        "は",
+        "大[おお]きい",
+        "町[まち]",
+        "です",
+        "。"
+      ],
+      "vocab_keys": [
+        10002,
+        603,
+        278,
+        216,
+        21,
+        null
+      ],
+      "translation": "Seattle is a big city.",
+      "grammar": [
+        0,
+        13
+      ]
+    },
+    {
+      "id": "s07",
+      "words": [
+        "私",
+        "は",
+        "うち",
+        "に",
+        "います",
+        "。"
+      ],
+      "vocab_keys": [
+        61,
+        603,
+        156,
+        25,
+        235,
+        null
+      ],
+      "translation": "I am at home.",
+      "grammar": [
+        10,
+        8
+      ]
+    },
+    {
+      "id": "s08",
+      "words": [
+        "おとうと",
+        "が",
+        "います",
+        "。"
+      ],
+      "vocab_keys": [
+        90,
+        405,
+        235,
+        null
+      ],
+      "translation": "I have a younger brother.",
+      "grammar": [
+        10
+      ]
+    },
+    {
+      "id": "s09",
+      "words": [
+        "ねこ",
+        "も",
+        "います",
+        "。"
+      ],
+      "vocab_keys": [
+        205,
+        null,
+        235,
+        null
+      ],
+      "translation": "I also have a cat.",
+      "grammar": [
+        10,
+        3
+      ]
+    },
+    {
+      "id": "s10",
+      "words": [
+        "ねこ",
+        "の",
+        "なまえ",
+        "は",
+        "ルナ",
+        "です",
+        "。"
+      ],
+      "vocab_keys": [
+        205,
+        null,
+        53,
+        603,
+        10003,
+        21,
+        null
+      ],
+      "translation": "The cat's name is Luna.",
+      "grammar": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "s11",
+      "words": [
+        "私",
+        "は",
+        "本[ほん]",
+        "が",
+        "好[す]き",
+        "です",
+        "から",
+        "、",
+        "よく",
+        "本",
+        "を",
+        "読[よ]みます",
+        "。"
+      ],
+      "vocab_keys": [
+        61,
+        603,
+        123,
+        405,
+        293,
+        21,
+        355,
+        null,
+        190,
+        123,
+        null,
+        175,
+        null
+      ],
+      "translation": "I like books, so I often read books.",
+      "grammar": [
+        14,
+        18,
+        9,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "s12",
+      "words": [
+        "音楽[おんがく]",
+        "も",
+        "好き",
+        "です",
+        "。"
+      ],
+      "vocab_keys": [
+        140,
+        null,
+        293,
+        21,
+        null
+      ],
+      "translation": "I also like music.",
+      "grammar": [
+        14,
+        3
+      ]
+    },
+    {
+      "id": "s13",
+      "words": [
+        "よく",
+        "音楽",
+        "を",
+        "聞[き]きます",
+        "。"
+      ],
+      "vocab_keys": [
+        190,
+        140,
+        null,
+        172,
+        null
+      ],
+      "translation": "I often listen to music.",
+      "grammar": [
+        9,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "s14",
+      "words": [
+        "毎日[まいにち]",
+        "の",
+        "朝[あさ]",
+        "、",
+        "七[なな]時[じ]",
+        "に",
+        "起[お]きます",
+        "。"
+      ],
+      "vocab_keys": [
+        168,
+        null,
+        159,
+        null,
+        30,
+        25,
+        176,
+        null
+      ],
+      "translation": "Every morning, I get up at seven o'clock.",
+      "grammar": [
+        1,
+        9,
+        8,
+        6
+      ]
+    },
+    {
+      "id": "s15",
+      "words": [
+        "水[みず]",
+        "を",
+        "飲[の]みます",
+        "。"
+      ],
+      "vocab_keys": [
+        154,
+        null,
+        173,
+        null
+      ],
+      "translation": "I drink water.",
+      "grammar": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "s16",
+      "words": [
+        "それから",
+        "、",
+        "パン",
+        "と",
+        "コーヒー",
+        "を",
+        "食[た]べます",
+        "。"
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        206,
+        240,
+        150,
+        null,
+        177,
+        null
+      ],
+      "translation": "Then, I eat bread and coffee for breakfast.",
+      "grammar": [
+        6,
+        7,
+        11
+      ]
+    },
+    {
+      "id": "s17",
+      "words": [
+        "八[はち]時半[じはん]",
+        "に",
+        "大学[だいがく]",
+        "へ",
+        "行[い]きます",
+        "。"
+      ],
+      "vocab_keys": [
+        31,
+        25,
+        50,
+        null,
+        170,
+        null
+      ],
+      "translation": "At eight-thirty, I go to university.",
+      "grammar": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "s18",
+      "words": [
+        "私",
+        "は",
+        "英語[えいご]文学[ぶんがく]",
+        "と",
+        "アメリカ歴史[れきし]",
+        "を",
+        "勉強[べんきょう]します",
+        "。"
+      ],
+      "vocab_keys": [
+        61,
+        603,
+        37,
+        240,
+        62,
+        null,
+        182,
+        null
+      ],
+      "translation": "I study English literature and American history.",
+      "grammar": [
+        6,
+        7,
+        11
+      ]
+    },
+    {
+      "id": "s19",
+      "words": [
+        "午後[ごご]",
+        "、",
+        "友達[ともだち]",
+        "と",
+        "大学",
+        "で",
+        "ひるごはん",
+        "を",
+        "食べます",
+        "。"
+      ],
+      "vocab_keys": [
+        41,
+        null,
+        52,
+        240,
+        50,
+        10004,
+        10005,
+        null,
+        177,
+        null
+      ],
+      "translation": "In the afternoon, I eat lunch at the university with friends.",
+      "grammar": [
+        6,
+        7,
+        8,
+        11
+      ]
+    },
+    {
+      "id": "s20",
+      "words": [
+        "友達",
+        "と",
+        "よく",
+        "話[はな]します",
+        "。"
+      ],
+      "vocab_keys": [
+        52,
+        240,
+        190,
+        174,
+        null
+      ],
+      "translation": "I often talk with friends.",
+      "grammar": [
+        6,
+        11,
+        9
+      ]
+    },
+    {
+      "id": "s21",
+      "words": [
+        "クラス",
+        "の",
+        "あとで",
+        "、",
+        "私",
+        "は",
+        "よく",
+        "大学",
+        "の",
+        "図書館[としょかん]",
+        "へ",
+        "行きます",
+        "。"
+      ],
+      "vocab_keys": [
+        196,
+        null,
+        583,
+        null,
+        61,
+        603,
+        190,
+        50,
+        null,
+        127,
+        null,
+        170,
+        null
+      ],
+      "translation": "After classes, I often go to the university library.",
+      "grammar": [
+        1,
+        9,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "s22",
+      "words": [
+        "そこ",
+        "で",
+        "一[いち]時間[じかん]",
+        "ぐらい",
+        "本",
+        "を",
+        "読んで",
+        "、",
+        "友達",
+        "と",
+        "勉強します",
+        "。"
+      ],
+      "vocab_keys": [
+        254,
+        10004,
+        24,
+        236,
+        123,
+        null,
+        175,
+        null,
+        52,
+        240,
+        182,
+        null
+      ],
+      "translation": "I read books for about one hour there and study with friends.",
+      "grammar": [
+        4,
+        7,
+        13,
+        16,
+        18,
+        11,
+        6
+      ]
+    },
+    {
+      "id": "s23",
+      "words": [
+        "ときどき",
+        "、",
+        "大学",
+        "の",
+        "そば",
+        "の",
+        "小[ちい]さい",
+        "喫茶店[きっさてん]",
+        "で",
+        "友達",
+        "と",
+        "会[あ]って",
+        "、",
+        "コーヒー",
+        "を",
+        "飲みます",
+        "。"
+      ],
+      "vocab_keys": [
+        189,
+        null,
+        50,
+        null,
+        251,
+        null,
+        283,
+        125,
+        10004,
+        52,
+        240,
+        228,
+        null,
+        150,
+        null,
+        173,
+        null
+      ],
+      "translation": "Sometimes, I meet friends at a small cafe near campus and drink coffee.",
+      "grammar": [
+        9,
+        1,
+        13,
+        7,
+        11,
+        16,
+        18,
+        6
+      ]
+    },
+    {
+      "id": "s24",
+      "words": [
+        "夜[よる]",
+        "、",
+        "うち",
+        "へ",
+        "帰[かえ]ります",
+        "。"
+      ],
+      "vocab_keys": [
+        325,
+        null,
+        156,
+        null,
+        171,
+        null
+      ],
+      "translation": "In the evening, I go home.",
+      "grammar": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "s25",
+      "words": [
+        "私",
+        "の",
+        "おかあさん",
+        "と",
+        "私",
+        "は",
+        "よく",
+        "一緒[いっしょ]に",
+        "ばんごはん",
+        "を",
+        "食べます",
+        "。"
+      ],
+      "vocab_keys": [
+        61,
+        null,
+        85,
+        240,
+        61,
+        603,
+        190,
+        10006,
+        10007,
+        null,
+        177,
+        null
+      ],
+      "translation": "My mother and I often eat dinner together.",
+      "grammar": [
+        1,
+        11,
+        9,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "s26",
+      "words": [
+        "ばんごはん",
+        "の",
+        "あとで",
+        "、",
+        "宿題[しゅくだい]",
+        "を",
+        "します",
+        "。"
+      ],
+      "vocab_keys": [
+        10007,
+        null,
+        583,
+        null,
+        261,
+        null,
+        181,
+        null
+      ],
+      "translation": "After dinner, I do my homework.",
+      "grammar": [
+        1,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "s27",
+      "words": [
+        "それから",
+        "、",
+        "あした",
+        "の",
+        "クラス",
+        "を",
+        "勉強します",
+        "。"
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        160,
+        null,
+        196,
+        null,
+        182,
+        null
+      ],
+      "translation": "Then, I study for tomorrow's classes.",
+      "grammar": [
+        1,
+        6,
+        7
+      ]
+    },
+    {
+      "id": "s28",
+      "words": [
+        "それから",
+        "、",
+        "ちょっと",
+        "テレビ",
+        "を",
+        "見[み]て",
+        "、",
+        "本",
+        "を",
+        "読みます",
+        "。"
+      ],
+      "vocab_keys": [
+        92,
+        null,
+        188,
+        145,
+        null,
+        179,
+        null,
+        123,
+        null,
+        175,
+        null
+      ],
+      "translation": "Then, I watch a little TV and read a book.",
+      "grammar": [
+        9,
+        7,
+        16,
+        18,
+        6
+      ]
+    },
+    {
+      "id": "s29",
+      "words": [
+        "大抵[たいてい]",
+        "十[じゅう]時半[じはん]",
+        "に",
+        "寝[ね]ます",
+        "。"
+      ],
+      "vocab_keys": [
+        187,
+        33,
+        25,
+        178,
+        null
+      ],
+      "translation": "I usually go to bed at ten-thirty.",
+      "grammar": [
+        9,
+        8,
+        6
+      ]
+    },
+    {
+      "id": "s30",
+      "words": [
+        "田中さん",
+        "、",
+        "あなた",
+        "も",
+        "手紙[てがみ]",
+        "を",
+        "書[か]いて",
+        "ください",
+        "。"
+      ],
+      "vocab_keys": [
+        10000,
+        null,
+        197,
+        null,
+        204,
+        null,
+        231,
+        944,
+        null
+      ],
+      "translation": "Tanaka-san, please write a letter, too.",
+      "grammar": [
+        3,
+        7,
+        16,
+        17
+      ]
+    },
+    {
+      "id": "s31",
+      "words": [
+        "あなた",
+        "の",
+        "毎日",
+        "を",
+        "教[おし]えて",
+        "ください",
+        "。"
+      ],
+      "vocab_keys": [
+        197,
+        null,
+        168,
+        null,
+        344,
+        944,
+        null
+      ],
+      "translation": "Please tell me about your daily routine.",
+      "grammar": [
+        1,
+        7,
+        16,
+        17
+      ]
+    },
+    {
+      "id": "s32",
+      "words": [
+        "メアリー"
+      ],
+      "vocab_keys": [
+        10001
+      ],
+      "translation": "Mary",
+      "grammar": []
+    }
+  ],
+  "source": "Generated using the 日本の本 AI Story Authoring Tool",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/"
+}

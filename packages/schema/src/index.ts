@@ -4,6 +4,8 @@
 export type {
   StoryModel,
   SentenceModel,
+  WordSegment,
+  ParsedWord,
   VocabSupplementEntry,
   VocabEntry,
   KanjiEntry,

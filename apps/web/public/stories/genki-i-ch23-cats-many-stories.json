@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "genki-i-ch23-cats-many-stories",
   "title": "The Cat's Many Stories",
   "title_ja": "猫のたくさんの話",
@@ -41,163 +41,197 @@
       "key": 10000,
       "word": "ベンチ",
       "hiragana": "ベンチ",
-      "translation": "bench"
+      "translation": "bench",
+      "pos": "n",
+      "dictionary_form": "ベンチ"
     },
     {
       "key": 10001,
       "word": "ふわふわ",
       "hiragana": "ふわふわ",
-      "translation": "fluffy"
+      "translation": "fluffy",
+      "pos": "adv",
+      "dictionary_form": "ふわふわ"
     },
     {
       "key": 10002,
       "word": "ひざ",
       "hiragana": "ひざ",
-      "translation": "lap"
+      "translation": "lap",
+      "pos": "n",
+      "dictionary_form": "ひざ"
     },
     {
       "key": 10003,
       "word": "ある日",
       "hiragana": "あるひ",
-      "translation": "one day"
+      "translation": "one day",
+      "dictionary_form": "ある"
     },
     {
       "key": 10004,
       "word": "焼き魚",
       "hiragana": "やきざかな",
-      "translation": "grilled fish"
+      "translation": "grilled fish",
+      "pos": "n",
+      "dictionary_form": "焼き魚"
     },
     {
       "key": 10005,
       "word": "こんにちは",
       "hiragana": "こんにちは",
-      "translation": "Hello"
+      "translation": "Hello",
+      "dictionary_form": "こんにちは"
     },
     {
       "key": 10006,
       "word": "すごい",
       "hiragana": "すごい",
-      "translation": "amazing"
+      "translation": "amazing",
+      "pos": "adj-i",
+      "dictionary_form": "すごい"
     },
     {
       "key": 10007,
       "word": "ハンター",
       "hiragana": "ハンター",
-      "translation": "hunter"
+      "translation": "hunter",
+      "pos": "n",
+      "dictionary_form": "ハンター"
     },
     {
       "key": 10008,
       "word": "茶色い",
       "hiragana": "ちゃいろい",
-      "translation": "brown"
+      "translation": "brown",
+      "pos": "adj-i",
+      "dictionary_form": "茶色い"
     },
     {
       "key": 10009,
       "word": "ねずみ",
       "hiragana": "ねずみ",
-      "translation": "mouse"
+      "translation": "mouse",
+      "pos": "n",
+      "dictionary_form": "ねずみ"
     },
     {
       "key": 10010,
       "word": "動物",
       "hiragana": "どうぶつ",
-      "translation": "animal"
+      "translation": "animal",
+      "pos": "n",
+      "dictionary_form": "動物"
     },
     {
       "key": 10011,
       "word": "全く",
       "hiragana": "まったく",
-      "translation": "completely"
+      "translation": "completely",
+      "pos": "adv",
+      "dictionary_form": "全く"
     },
     {
       "key": 10012,
       "word": "数日後",
       "hiragana": "すうじつご",
-      "translation": "a few days later"
+      "translation": "a few days later",
+      "pos": "n",
+      "dictionary_form": "数"
     },
     {
       "key": 10013,
       "word": "撫でる",
       "hiragana": "なでる",
-      "translation": "stroke"
+      "translation": "stroke",
+      "pos": "v1",
+      "dictionary_form": "撫でる"
     },
     {
       "key": 10014,
       "word": "クラシック音楽",
       "hiragana": "クラシックおんがく",
-      "translation": "classical music"
+      "translation": "classical music",
+      "pos": "n",
+      "dictionary_form": "クラシック"
     },
     {
       "key": 10015,
       "word": "閉じる",
       "hiragana": "とじる",
-      "translation": "close (eyes)"
+      "translation": "close (eyes)",
+      "pos": "v1",
+      "dictionary_form": "閉じる"
     },
     {
       "key": 10016,
       "word": "メロディー",
       "hiragana": "メロディー",
-      "translation": "melody"
+      "translation": "melody",
+      "pos": "n",
+      "dictionary_form": "メロディー"
     },
     {
       "key": 10017,
       "word": "平和な",
       "hiragana": "へいわな",
-      "translation": "peaceful"
+      "translation": "peaceful",
+      "pos": "n",
+      "dictionary_form": "平和"
     },
     {
       "key": 10018,
       "word": "屋根",
       "hiragana": "やね",
-      "translation": "roof"
+      "translation": "roof",
+      "pos": "n",
+      "dictionary_form": "屋根"
     },
     {
       "key": 10019,
       "word": "冒険家",
       "hiragana": "ぼうけんか",
-      "translation": "adventurer"
+      "translation": "adventurer",
+      "pos": "n",
+      "dictionary_form": "冒険家"
     },
     {
       "key": 10020,
       "word": "蛇口",
       "hiragana": "じゃぐち",
-      "translation": "faucet"
+      "translation": "faucet",
+      "pos": "n",
+      "dictionary_form": "蛇口"
     },
     {
       "key": 10021,
       "word": "鳥",
       "hiragana": "とり",
-      "translation": "bird"
+      "translation": "bird",
+      "pos": "n",
+      "dictionary_form": "鳥"
     },
     {
       "key": 10022,
       "word": "ドア",
       "hiragana": "ドア",
-      "translation": "door"
+      "translation": "door",
+      "pos": "n",
+      "dictionary_form": "ドア"
     }
   ],
   "sentences": [
     {
       "id": "s01",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
         "まいあさ",
-        "公園",
+        "公園[こうえん]",
         "を",
-        "歩き",
+        "歩[あるき]き",
         "ます",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        null,
-        "こうえん",
-        null,
-        "あるき",
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -220,28 +254,15 @@
       "words": [
         "そこ",
         "は",
-        "木",
+        "木[き]",
         "が",
         "たくさん",
         "の",
-        "静か",
+        "静[しずか]か",
         "な",
         "ところ",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "き",
-        null,
-        null,
-        null,
-        "しずか",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         254,
@@ -266,26 +287,15 @@
     {
       "id": "s03",
       "words": [
-        "毎日",
+        "毎日[まいにち]",
         "、",
         "おじいさん",
         "が",
         "ベンチ",
         "に",
-        "座って",
+        "座[すわって]って",
         "います",
         "。"
-      ],
-      "ruby": [
-        "まいにち",
-        null,
-        null,
-        null,
-        null,
-        null,
-        "すわって",
-        null,
-        null
       ],
       "vocab_keys": [
         168,
@@ -309,17 +319,10 @@
       "id": "s04",
       "words": [
         "いつも",
-        "猫",
+        "猫[ねこ]",
         "が",
         "います",
         "。"
-      ],
-      "ruby": [
-        null,
-        "ねこ",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         629,
@@ -338,27 +341,15 @@
       "id": "s05",
       "words": [
         "その",
-        "猫",
+        "猫[ねこ]",
         "は",
-        "白く",
+        "白[しろく]く",
         "て",
         "、",
         "とても",
         "ふわふわ",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        "ねこ",
-        null,
-        "しろく",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         96,
@@ -387,19 +378,9 @@
         "の",
         "ひざ",
         "で",
-        "寝て",
+        "寝[ねて]て",
         "います",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        "ねて",
-        null,
-        null
       ],
       "vocab_keys": [
         187,
@@ -423,32 +404,17 @@
       "words": [
         "ある日",
         "、",
-        "私",
+        "私[わたし]",
         "は",
-        "彼",
+        "彼[かれ]",
         "の",
         "そば",
         "の",
         "ベンチ",
         "に",
-        "座り",
+        "座[すわり]り",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "あるひ",
-        null,
-        "わたし",
-        null,
-        "かれ",
-        null,
-        null,
-        null,
-        null,
-        null,
-        "すわり",
-        null,
-        null
       ],
       "vocab_keys": [
         10003,
@@ -474,52 +440,28 @@
     {
       "id": "s08",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
-        "私",
+        "私[わたし]",
         "を",
-        "見て",
+        "見[み]て",
         "、",
         "「",
-        "私",
+        "私[わたし]",
         "の",
-        "猫",
+        "猫[ねこ]",
         "は",
         "とても",
-        "頭",
+        "頭[あたま]",
         "が",
         "いい",
         "です",
         "よ",
         "」",
         "と",
-        "言い",
+        "言[いい]い",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        "わたし",
-        null,
-        "み",
-        null,
-        null,
-        "わたし",
-        null,
-        "ねこ",
-        null,
-        null,
-        "あたま",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "いい",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -559,29 +501,15 @@
         "「",
         "きのう",
         "、",
-        "自分",
+        "自分[じぶん]",
         "で",
-        "冷蔵庫",
+        "冷蔵庫[れいぞうこ]",
         "の",
         "ドア",
         "を",
-        "開け",
+        "開[あけ]け",
         "ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "じぶん",
-        null,
-        "れいぞうこ",
-        null,
-        null,
-        null,
-        "あけ",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -606,26 +534,15 @@
     {
       "id": "s10",
       "words": [
-        "中",
+        "中[なか]",
         "の",
-        "焼き魚",
+        "焼[やきざかな]き魚",
         "を",
         "とても",
-        "欲しがって",
+        "欲[ほしがって]しがって",
         "いました",
         "よ",
         "。」"
-      ],
-      "ruby": [
-        "なか",
-        null,
-        "やきざかな",
-        null,
-        null,
-        "ほしがって",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         248,
@@ -648,18 +565,11 @@
     {
       "id": "s11",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
-        "笑い",
+        "笑[わらい]い",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "わらい",
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -679,19 +589,10 @@
         "それ",
         "は",
         "とても",
-        "面白い",
-        "話",
+        "面白[おもしろい]い",
+        "話[はなし]",
         "でした",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "おもしろい",
-        "はなし",
-        null,
-        null
       ],
       "vocab_keys": [
         92,
@@ -711,7 +612,7 @@
     {
       "id": "s13",
       "words": [
-        "猫",
+        "猫[ねこ]",
         "が",
         "そんな",
         "こと",
@@ -719,24 +620,10 @@
         "できる",
         "と",
         "は",
-        "思い",
+        "思[おもい]い",
         "ません",
         "でした",
         "。"
-      ],
-      "ruby": [
-        "ねこ",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "おもい",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         205,
@@ -762,22 +649,13 @@
     {
       "id": "s14",
       "words": [
-        "来週",
+        "来週[らいしゅう]",
         "、",
         "また",
-        "彼",
+        "彼[かれ]",
         "に",
-        "会いました",
+        "会[あいました]いました",
         "。"
-      ],
-      "ruby": [
-        "らいしゅう",
-        null,
-        null,
-        "かれ",
-        null,
-        "あいました",
-        null
       ],
       "vocab_keys": [
         326,
@@ -797,9 +675,9 @@
     {
       "id": "s15",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
-        "彼",
+        "彼[かれ]",
         "に",
         "「",
         "こんにちは",
@@ -808,43 +686,18 @@
         "あなた",
         "の",
         "すごい",
-        "猫",
+        "猫[ねこ]",
         "は",
-        "何",
+        "何[なに]",
         "を",
         "して",
         "います",
         "か",
         "」",
         "と",
-        "言い",
+        "言[いい]い",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "かれ",
-        null,
-        null,
-        null,
-        "きょう",
-        null,
-        null,
-        null,
-        null,
-        "ねこ",
-        null,
-        "なに",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "いい",
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -881,17 +734,17 @@
     {
       "id": "s16",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
-        "笑って",
+        "笑[わらって]って",
         "、",
         "「",
         "ああ",
         "、",
-        "今日",
-        "私",
+        "今日[きょう]",
+        "私[わたし]",
         "の",
-        "猫",
+        "猫[ねこ]",
         "は",
         "すごい",
         "ハンター",
@@ -899,32 +752,9 @@
         "よ",
         "」",
         "と",
-        "言い",
+        "言[いい]い",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        "わらって",
-        null,
-        null,
-        null,
-        null,
-        "きょう",
-        "わたし",
-        null,
-        "ねこ",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "いい",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -963,29 +793,15 @@
         "「",
         "ゆうべ",
         "、",
-        "庭",
+        "庭[にわ]",
         "で",
-        "大きい",
-        "茶色い",
+        "大[おおきい]きい",
+        "茶色[ちゃいろい]い",
         "ねずみ",
         "を",
-        "捕り",
+        "捕[とり]り",
         "ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "にわ",
-        null,
-        "おおきい",
-        "ちゃいろい",
-        null,
-        null,
-        "とり",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1015,21 +831,10 @@
         "に",
         "ドア",
         "に",
-        "持ってき",
+        "持[もってき]ってき",
         "ました",
         "よ",
         "。」"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        "もってき",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         307,
@@ -1052,20 +857,12 @@
     {
       "id": "s19",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
         "とても",
         "びっくり",
         "しました",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -1083,34 +880,19 @@
     {
       "id": "s20",
       "words": [
-        "冷蔵庫",
+        "冷蔵庫[れいぞうこ]",
         "を",
-        "開ける",
-        "猫",
+        "開[あける]ける",
+        "猫[ねこ]",
         "と",
         "、",
-        "強い",
+        "強[つよい]い",
         "ねずみ",
         "ハンター",
         "の",
-        "猫",
+        "猫[ねこ]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "れいぞうこ",
-        null,
-        "あける",
-        "ねこ",
-        null,
-        null,
-        "つよい",
-        null,
-        null,
-        null,
-        "ねこ",
-        null,
-        null
       ],
       "vocab_keys": [
         886,
@@ -1136,20 +918,12 @@
     {
       "id": "s21",
       "words": [
-        "全く",
-        "違う",
-        "動物",
+        "全[まったく]く",
+        "違[ちがう]う",
+        "動物[どうぶつ]",
         "みたい",
         "でした",
         "。"
-      ],
-      "ruby": [
-        "まったく",
-        "ちがう",
-        "どうぶつ",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10011,
@@ -1168,28 +942,16 @@
     {
       "id": "s22",
       "words": [
-        "数日後",
+        "数日後[すうじつご]",
         "、",
         "また",
-        "彼",
+        "彼[かれ]",
         "を",
         "ベンチ",
         "で",
-        "見つけ",
+        "見[みつけ]つけ",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "すうじつご",
-        null,
-        null,
-        "かれ",
-        null,
-        null,
-        null,
-        "みつけ",
-        null,
-        null
       ],
       "vocab_keys": [
         10012,
@@ -1212,26 +974,15 @@
     {
       "id": "s23",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
-        "白い",
-        "猫",
+        "白[しろい]い",
+        "猫[ねこ]",
         "を",
         "ゆっくり",
-        "撫でて",
+        "撫[なでて]でて",
         "いました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        "しろい",
-        "ねこ",
-        null,
-        null,
-        "なでて",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -1255,36 +1006,19 @@
       "words": [
         "「",
         "この",
-        "猫",
+        "猫[ねこ]",
         "は",
         "クラシック音楽",
         "が",
-        "大好き",
+        "大好[だいすき]き",
         "です",
         "よ",
         "」",
         "と",
-        "優しく",
-        "言い",
+        "優[やさしく]しく",
+        "言[いい]い",
         "ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "ねこ",
-        null,
-        null,
-        null,
-        "だいすき",
-        null,
-        null,
-        null,
-        null,
-        "やさしく",
-        "いい",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1313,50 +1047,27 @@
     {
       "id": "s25",
       "words": [
-        "私",
+        "私[わたし]",
         "が",
         "ピアノ",
         "を",
-        "弾く",
-        "時",
+        "弾[ひく]く",
+        "時[とき]",
         "、",
-        "猫",
+        "猫[ねこ]",
         "は",
-        "私",
+        "私[わたし]",
         "の",
         "そば",
         "に",
-        "座って",
+        "座[すわって]って",
         "、",
-        "長い",
-        "時間",
+        "長[ながい]い",
+        "時間[じかん]",
         "よく",
-        "聞いて",
+        "聞[きいて]いて",
         "います",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        null,
-        null,
-        "ひく",
-        "とき",
-        null,
-        "ねこ",
-        null,
-        "わたし",
-        null,
-        null,
-        null,
-        "すわって",
-        null,
-        "ながい",
-        "じかん",
-        null,
-        "きいて",
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -1394,22 +1105,12 @@
       "words": [
         "目",
         "を",
-        "閉じる",
+        "閉[とじる]じる",
         "こと",
         "も",
         "あり",
         "ます",
         "。」"
-      ],
-      "ruby": [
-        null,
-        null,
-        "とじる",
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         379,
@@ -1429,38 +1130,21 @@
     {
       "id": "s27",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
-        "猫",
+        "猫[ねこ]",
         "が",
         "きれい",
         "な",
         "メロディー",
         "を",
-        "聞いて",
+        "聞[きいて]いて",
         "いる",
         "の",
         "だと",
-        "思い",
+        "思[おもい]い",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "ねこ",
-        null,
-        null,
-        null,
-        null,
-        null,
-        "きいて",
-        null,
-        null,
-        null,
-        "おもい",
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -1489,20 +1173,12 @@
     {
       "id": "s28",
       "words": [
-        "平和",
+        "平和[へいわ]",
         "な",
-        "絵",
+        "絵[え]",
         "みたい",
         "でした",
         "。"
-      ],
-      "ruby": [
-        "へいわ",
-        null,
-        "え",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10017,
@@ -1523,34 +1199,18 @@
       "words": [
         "おじいさん",
         "に",
-        "会う",
-        "時",
+        "会[あう]う",
+        "時[とき]",
         "、",
         "いつも",
-        "新しい",
-        "猫",
+        "新[あたらしい]しい",
+        "猫[ねこ]",
         "の",
-        "話",
+        "話[はなし]",
         "を",
-        "聞き",
+        "聞[きき]き",
         "ます",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "あう",
-        "とき",
-        null,
-        null,
-        "あたらしい",
-        "ねこ",
-        null,
-        "はなし",
-        null,
-        "きき",
-        null,
-        null
       ],
       "vocab_keys": [
         638,
@@ -1578,30 +1238,17 @@
     {
       "id": "s30",
       "words": [
-        "時々",
+        "時々[ときどき]",
         "、",
-        "猫",
+        "猫[ねこ]",
         "は",
-        "怠け者",
+        "怠[なまけもの]け者",
         "で",
         "、",
-        "一日中",
-        "寝て",
+        "一日中[いちにちじゅう]",
+        "寝[ねて]て",
         "います",
         "。"
-      ],
-      "ruby": [
-        "ときどき",
-        null,
-        "ねこ",
-        null,
-        "なまけもの",
-        null,
-        null,
-        "いちにちじゅう",
-        "ねて",
-        null,
-        null
       ],
       "vocab_keys": [
         189,
@@ -1626,28 +1273,16 @@
     {
       "id": "s31",
       "words": [
-        "時々",
+        "時々[ときどき]",
         "、",
-        "隣",
+        "隣[となり]",
         "の",
-        "屋根",
+        "屋根[やね]",
         "で",
-        "遊ぶ",
-        "冒険家",
+        "遊[あそぶ]ぶ",
+        "冒険家[ぼうけんか]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "ときどき",
-        null,
-        "となり",
-        null,
-        "やね",
-        null,
-        "あそぶ",
-        "ぼうけんか",
-        null,
-        null
       ],
       "vocab_keys": [
         189,
@@ -1671,36 +1306,20 @@
     {
       "id": "s32",
       "words": [
-        "時々",
+        "時々[ときどき]",
         "、",
         "とても",
-        "興味",
+        "興味[きょうみ]",
         "が",
         "あって",
         "、",
-        "蛇口",
+        "蛇口[じゃぐち]",
         "の",
         "水",
         "で",
-        "遊んで",
+        "遊[あそんで]んで",
         "います",
         "。"
-      ],
-      "ruby": [
-        "ときどき",
-        null,
-        null,
-        "きょうみ",
-        null,
-        null,
-        null,
-        "じゃぐち",
-        null,
-        null,
-        null,
-        "あそんで",
-        null,
-        null
       ],
       "vocab_keys": [
         189,
@@ -1729,52 +1348,28 @@
     {
       "id": "s33",
       "words": [
-        "次",
+        "次[つぎ]",
         "は",
         "どんな",
-        "話",
+        "話[はなし]",
         "を",
-        "聞く",
+        "聞[きく]く",
         "か",
         "、",
-        "分かり",
+        "分[わかり]かり",
         "ません",
         "が",
         "、",
-        "私",
+        "私[わたし]",
         "は",
         "いつも",
         "その",
-        "話",
+        "話[はなし]",
         "が",
         "とても",
-        "好き",
+        "好[すき]き",
         "です",
         "。"
-      ],
-      "ruby": [
-        "つぎ",
-        null,
-        null,
-        "はなし",
-        null,
-        "きく",
-        null,
-        null,
-        "わかり",
-        null,
-        null,
-        null,
-        "わたし",
-        null,
-        null,
-        null,
-        "はなし",
-        null,
-        null,
-        "すき",
-        null,
-        null
       ],
       "vocab_keys": [
         318,
@@ -1811,30 +1406,17 @@
     {
       "id": "s34",
       "words": [
-        "猫",
+        "猫[ねこ]",
         "は",
         "ただ",
-        "寝たり",
+        "寝[ねたり]たり",
         "、",
-        "鳥",
+        "鳥[とり]",
         "を",
-        "見たり",
+        "見[みたり]たり",
         "して",
         "います",
         "。"
-      ],
-      "ruby": [
-        "ねこ",
-        null,
-        null,
-        "ねたり",
-        null,
-        "とり",
-        null,
-        "みたり",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         205,
@@ -1859,23 +1441,13 @@
       "id": "s35",
       "words": [
         "全然",
-        "自分",
+        "自分[じぶん]",
         "の",
         "すごい",
-        "話",
+        "話[はなし]",
         "は",
         "しません",
         "。"
-      ],
-      "ruby": [
-        null,
-        "じぶん",
-        null,
-        null,
-        "はなし",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         186,

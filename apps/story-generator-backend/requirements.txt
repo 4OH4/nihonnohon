@@ -6,3 +6,7 @@ python-dotenv
 jsonschema
 fastapi
 uvicorn[standard]
+sudachipy
+sudachidict-core
+jamdict
+jamdict-data-fix

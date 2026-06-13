@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "genki-i-ch1-hana-festival",
   "title": "Hana and the Festival",
   "title_ja": "はなさんとまつり",
@@ -16,31 +16,41 @@
       "key": 10000,
       "word": "まつり",
       "hiragana": "まつり",
-      "translation": "festival"
+      "translation": "festival",
+      "pos": "n",
+      "dictionary_form": "まつり"
     },
     {
       "key": 10001,
       "word": "やきそば",
       "hiragana": "やきそば",
-      "translation": "yakisoba"
+      "translation": "yakisoba",
+      "pos": "n",
+      "dictionary_form": "やきそば"
     },
     {
       "key": 10002,
       "word": "おんがく",
       "hiragana": "おんがく",
-      "translation": "music"
+      "translation": "music",
+      "pos": "n",
+      "dictionary_form": "おんがく"
     },
     {
       "key": 10003,
       "word": "ダンス",
       "hiragana": "ダンス",
-      "translation": "dance"
+      "translation": "dance",
+      "pos": "n",
+      "dictionary_form": "ダンス"
     },
     {
       "key": 10004,
       "word": "ご",
       "hiragana": "ご",
-      "translation": "five (number)"
+      "translation": "five (number)",
+      "pos": "n",
+      "dictionary_form": "ご"
     }
   ],
   "sentences": [
@@ -54,15 +64,6 @@
         "はなさん",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -88,13 +89,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         44,
         null,
@@ -116,13 +110,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         44,
         null,
@@ -143,13 +130,6 @@
         "がくせい",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -173,14 +153,6 @@
         "か",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         44,
         null,
@@ -203,12 +175,6 @@
         "そうです",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         57,
         null,
@@ -227,14 +193,6 @@
         "です",
         "か",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         55,
@@ -258,12 +216,6 @@
         "そうです",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         57,
         null,
@@ -282,14 +234,6 @@
         "です",
         "か",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10000,
@@ -312,12 +256,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10004,
         45,
@@ -336,11 +274,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10001,
         null,
@@ -358,11 +291,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10002,
         null,
@@ -379,11 +307,6 @@
         "ダンス",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10003,

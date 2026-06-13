@@ -39,7 +39,8 @@
       "Bash(Get-ChildItem \"C:\\\\repo\\\\nihonnohon\\\\apps\\\\web\\\\public\" -Recurse)",
       "Bash(Select-Object FullName)",
       "Bash(pnpm test:unit)",
-      "Bash(pnpm test:e2e --update-snapshots)"
+      "Bash(pnpm test:e2e --update-snapshots)",
+      "Bash(pnpm turbo *)"
     ]
   }
 }

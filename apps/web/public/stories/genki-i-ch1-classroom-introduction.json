@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "genki-i-ch1-classroom-introduction",
   "title": "A New Student in Class",
   "title_ja": "教室 の 学生",
@@ -15,121 +15,160 @@
       "key": 10000,
       "word": "ここ",
       "hiragana": "ここ",
-      "translation": "here"
+      "translation": "here",
+      "pos": "pron",
+      "dictionary_form": "ここ"
     },
     {
       "key": 10001,
       "word": "教室",
       "hiragana": "きょうしつ",
-      "translation": "classroom"
+      "translation": "classroom",
+      "pos": "n",
+      "dictionary_form": "教室"
     },
     {
       "key": 10002,
       "word": "本",
       "hiragana": "ほん",
-      "translation": "book"
+      "translation": "book",
+      "pos": "n",
+      "dictionary_form": "本"
     },
     {
       "key": 10003,
       "word": "ノート",
       "hiragana": "ノート",
-      "translation": "notebook"
+      "translation": "notebook",
+      "pos": "n",
+      "dictionary_form": "ノート"
     },
     {
       "key": 10004,
       "word": "机",
       "hiragana": "つくえ",
-      "translation": "desk"
+      "translation": "desk",
+      "pos": "n",
+      "dictionary_form": "机"
     },
     {
       "key": 10005,
       "word": "上",
       "hiragana": "うえ",
-      "translation": "on; above"
+      "translation": "on; above",
+      "pos": "n",
+      "dictionary_form": "上"
     },
     {
       "key": 10006,
       "word": "田中",
       "hiragana": "たなか",
-      "translation": "Tanaka (name)"
+      "translation": "Tanaka (name)",
+      "pos": "n",
+      "dictionary_form": "田中"
     },
     {
       "key": 10007,
       "word": "おはようございます",
       "hiragana": "おはようございます",
-      "translation": "Good morning"
+      "translation": "Good morning",
+      "dictionary_form": "おはようございます"
     },
     {
       "key": 10008,
       "word": "皆さん",
       "hiragana": "みなさん",
-      "translation": "everyone"
+      "translation": "everyone",
+      "pos": "n",
+      "dictionary_form": "皆"
     },
     {
       "key": 10009,
       "word": "ゆき",
       "hiragana": "ゆき",
-      "translation": "Yuki (name)"
+      "translation": "Yuki (name)",
+      "pos": "n",
+      "dictionary_form": "ゆき"
     },
     {
       "key": 10010,
       "word": "リュック",
       "hiragana": "リュック",
-      "translation": "backpack"
+      "translation": "backpack",
+      "pos": "n",
+      "dictionary_form": "リュック"
     },
     {
       "key": 10011,
       "word": "赤",
       "hiragana": "あか",
-      "translation": "red (color)"
+      "translation": "red (color)",
+      "pos": "n",
+      "dictionary_form": "赤"
     },
     {
       "key": 10012,
       "word": "ペンケース",
       "hiragana": "ペンケース",
-      "translation": "pencil case"
+      "translation": "pencil case",
+      "pos": "n",
+      "dictionary_form": "ペンケース"
     },
     {
       "key": 10013,
       "word": "はじめまして",
       "hiragana": "はじめまして",
-      "translation": "Nice to meet you"
+      "translation": "Nice to meet you",
+      "pos": "v1",
+      "dictionary_form": "はじめる"
     },
     {
       "key": 10014,
       "word": "これ",
       "hiragana": "これ",
-      "translation": "this"
+      "translation": "this",
+      "pos": "pron",
+      "dictionary_form": "これ"
     },
     {
       "key": 10015,
       "word": "窓",
       "hiragana": "まど",
-      "translation": "window"
+      "translation": "window",
+      "pos": "n",
+      "dictionary_form": "窓"
     },
     {
       "key": 10016,
       "word": "そば",
       "hiragana": "そば",
-      "translation": "by; next to"
+      "translation": "by; next to",
+      "pos": "n",
+      "dictionary_form": "そば"
     },
     {
       "key": 10017,
       "word": "椅子",
       "hiragana": "いす",
-      "translation": "chair"
+      "translation": "chair",
+      "pos": "n",
+      "dictionary_form": "椅子"
     },
     {
       "key": 10018,
       "word": "あきら",
       "hiragana": "あきら",
-      "translation": "Akira (name)"
+      "translation": "Akira (name)",
+      "pos": "n",
+      "dictionary_form": "あきら"
     },
     {
       "key": 10019,
       "word": "授業",
       "hiragana": "じゅぎょう",
-      "translation": "lesson"
+      "translation": "lesson",
+      "pos": "n",
+      "dictionary_form": "授業"
     }
   ],
   "sentences": [
@@ -138,16 +177,9 @@
       "words": [
         "いま",
         "は",
-        "午前",
+        "午前[ごぜん]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "ごぜん",
-        null,
-        null
       ],
       "vocab_keys": [
         36,
@@ -166,16 +198,9 @@
       "words": [
         "ここ",
         "は",
-        "教室",
+        "教室[きょうしつ]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "きょうしつ",
-        null,
-        null
       ],
       "vocab_keys": [
         10000,
@@ -192,16 +217,10 @@
     {
       "id": "s03",
       "words": [
-        "学生",
+        "学生[がくせい]",
         "さん",
         "です",
         "。"
-      ],
-      "ruby": [
-        "がくせい",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         38,
@@ -217,18 +236,11 @@
     {
       "id": "s04",
       "words": [
-        "本",
+        "本[ほん]",
         "と",
         "ノート",
         "です",
         "。"
-      ],
-      "ruby": [
-        "ほん",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10002,
@@ -245,22 +257,13 @@
     {
       "id": "s05",
       "words": [
-        "本",
+        "本[ほん]",
         "は",
-        "机",
+        "机[つくえ]",
         "の",
-        "上",
+        "上[うえ]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "ほん",
-        null,
-        "つくえ",
-        null,
-        "うえ",
-        null,
-        null
       ],
       "vocab_keys": [
         10002,
@@ -280,16 +283,10 @@
     {
       "id": "s06",
       "words": [
-        "田中",
-        "先生",
+        "田中[たなか]",
+        "先生[せんせい]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "たなか",
-        "せんせい",
-        null,
-        null
       ],
       "vocab_keys": [
         10006,
@@ -305,20 +302,12 @@
     {
       "id": "s07",
       "words": [
-        "田中",
-        "先生",
+        "田中[たなか]",
+        "先生[せんせい]",
         "は",
-        "先生",
+        "先生[せんせい]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "たなか",
-        "せんせい",
-        null,
-        "せんせい",
-        null,
-        null
       ],
       "vocab_keys": [
         10006,
@@ -336,16 +325,10 @@
     {
       "id": "s08",
       "words": [
-        "皆さん",
+        "皆[みなさん]さん",
         "、",
         "おはようございます",
         "。"
-      ],
-      "ruby": [
-        "みなさん",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10008,
@@ -364,12 +347,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10009,
         44,
@@ -387,17 +364,9 @@
         "ゆき",
         "さん",
         "は",
-        "学生",
+        "学生[がくせい]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "がくせい",
-        null,
-        null
       ],
       "vocab_keys": [
         10009,
@@ -422,14 +391,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10009,
         44,
@@ -447,14 +408,9 @@
     {
       "id": "s12",
       "words": [
-        "赤",
+        "赤[あか]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "あか",
-        null,
-        null
       ],
       "vocab_keys": [
         10011,
@@ -474,12 +430,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10012,
         null,
@@ -494,22 +444,13 @@
     {
       "id": "s14",
       "words": [
-        "私",
+        "私[わたし]",
         "の",
-        "名前",
+        "名前[なまえ]",
         "は",
         "ゆき",
         "です",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "なまえ",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -532,10 +473,6 @@
         "はじめまして",
         "。"
       ],
-      "ruby": [
-        null,
-        null
-      ],
       "vocab_keys": [
         10013,
         null
@@ -548,16 +485,9 @@
       "words": [
         "これ",
         "は",
-        "机",
+        "机[つくえ]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "つくえ",
-        null,
-        null
       ],
       "vocab_keys": [
         10014,
@@ -574,18 +504,11 @@
     {
       "id": "s17",
       "words": [
-        "窓",
+        "窓[まど]",
         "の",
         "そば",
         "です",
         "。"
-      ],
-      "ruby": [
-        "まど",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10015,
@@ -603,16 +526,10 @@
     {
       "id": "s18",
       "words": [
-        "椅子",
+        "椅子[いす]",
         "も",
         "です",
         "。"
-      ],
-      "ruby": [
-        "いす",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10017,
@@ -633,12 +550,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10018,
         44,
@@ -656,17 +567,9 @@
         "あきら",
         "さん",
         "は",
-        "友達",
+        "友達[ともだち]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "ともだち",
-        null,
-        null
       ],
       "vocab_keys": [
         10018,
@@ -684,20 +587,12 @@
     {
       "id": "s21",
       "words": [
-        "田中",
-        "先生",
+        "田中[たなか]",
+        "先生[せんせい]",
         "の",
-        "授業",
+        "授業[じゅぎょう]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "たなか",
-        "せんせい",
-        null,
-        "じゅぎょう",
-        null,
-        null
       ],
       "vocab_keys": [
         10006,

@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "genki-i-ch21-omamori-story",
   "title": "The Lost Omamori",
   "title_ja": "なくなったお守り",
@@ -41,121 +41,159 @@
       "key": 10000,
       "word": "お守り",
       "hiragana": "おまもり",
-      "translation": "good luck charm; amulet"
+      "translation": "good luck charm; amulet",
+      "pos": "n",
+      "dictionary_form": "お守り"
     },
     {
       "key": 10001,
       "word": "緑",
       "hiragana": "みどり",
-      "translation": "green"
+      "translation": "green",
+      "pos": "n",
+      "dictionary_form": "緑"
     },
     {
       "key": 10002,
       "word": "運",
       "hiragana": "うん",
-      "translation": "luck"
+      "translation": "luck",
+      "pos": "n",
+      "dictionary_form": "運"
     },
     {
       "key": 10003,
       "word": "ケンジ",
       "hiragana": "ケンジ",
-      "translation": "Kenji (boy's name)"
+      "translation": "Kenji (boy's name)",
+      "pos": "n",
+      "dictionary_form": "ケンジ"
     },
     {
       "key": 10004,
       "word": "止まる",
       "hiragana": "とまる",
-      "translation": "to stop (intransitive)"
+      "translation": "to stop (intransitive)",
+      "pos": "v5",
+      "dictionary_form": "止まる"
     },
     {
       "key": 10005,
       "word": "ベンチ",
       "hiragana": "ベンチ",
-      "translation": "bench"
+      "translation": "bench",
+      "pos": "n",
+      "dictionary_form": "ベンチ"
     },
     {
       "key": 10006,
       "word": "取る",
       "hiragana": "とる",
-      "translation": "to take; to get"
+      "translation": "to take; to get",
+      "pos": "v5",
+      "dictionary_form": "取る"
     },
     {
       "key": 10007,
       "word": "草",
       "hiragana": "くさ",
-      "translation": "grass"
+      "translation": "grass",
+      "pos": "n",
+      "dictionary_form": "草"
     },
     {
       "key": 10008,
       "word": "さくら",
       "hiragana": "さくら",
-      "translation": "Sakura (girl's name)"
+      "translation": "Sakura (girl's name)",
+      "pos": "n",
+      "dictionary_form": "さくら"
     },
     {
       "key": 10009,
       "word": "地面",
       "hiragana": "じめん",
-      "translation": "ground"
+      "translation": "ground",
+      "pos": "n",
+      "dictionary_form": "地面"
     },
     {
       "key": 10010,
       "word": "近くに",
       "hiragana": "ちかくに",
-      "translation": "nearby; closer (adverbial phrase)"
+      "translation": "nearby; closer (adverbial phrase)",
+      "pos": "n",
+      "dictionary_form": "近く"
     },
     {
       "key": 10011,
       "word": "あ",
       "hiragana": "あ",
-      "translation": "Oh!"
+      "translation": "Oh!",
+      "dictionary_form": "あ"
     },
     {
       "key": 10012,
       "word": "持ち上げる",
       "hiragana": "もちあげる",
-      "translation": "to pick up; to lift"
+      "translation": "to pick up; to lift",
+      "pos": "v1",
+      "dictionary_form": "持ち上げる"
     },
     {
       "key": 10013,
       "word": "追いかける",
       "hiragana": "おいかける",
-      "translation": "to run after; to chase"
+      "translation": "to run after; to chase",
+      "pos": "v1",
+      "dictionary_form": "追いかける"
     },
     {
       "key": 10014,
       "word": "振り返る",
       "hiragana": "ふりかえる",
-      "translation": "to turn around"
+      "translation": "to turn around",
+      "pos": "v5",
+      "dictionary_form": "振り返る"
     },
     {
       "key": 10015,
       "word": "〜のほうへ",
       "hiragana": "〜のほうへ",
-      "translation": "towards"
+      "translation": "towards",
+      "pos": "n",
+      "dictionary_form": "ほう"
     },
     {
       "key": 10016,
       "word": "走る",
       "hiragana": "はしる",
-      "translation": "to run"
+      "translation": "to run",
+      "pos": "v5",
+      "dictionary_form": "走る"
     },
     {
       "key": 10017,
       "word": "なくなる",
       "hiragana": "なくなる",
-      "translation": "to disappear; to be lost"
+      "translation": "to disappear; to be lost",
+      "pos": "v5",
+      "dictionary_form": "なくなる"
     },
     {
       "key": 10018,
       "word": "ありがとう",
       "hiragana": "ありがとう",
-      "translation": "Thank you"
+      "translation": "Thank you",
+      "dictionary_form": "ありがとう"
     },
     {
       "key": 10019,
       "word": "戻す",
       "hiragana": "もどす",
-      "translation": "to put (something) back; to return (something)"
+      "translation": "to put (something) back; to return (something)",
+      "pos": "v5",
+      "dictionary_form": "戻す"
     }
   ],
   "sentences": [
@@ -164,24 +202,13 @@
       "words": [
         "ケンジ",
         "は",
-        "学校",
+        "学校[がっこう]",
         "から",
-        "家",
+        "家[いえ]",
         "に",
-        "帰って",
+        "帰[かえって]って",
         "いました",
         "。"
-      ],
-      "ruby": [
-        "ケンジ",
-        null,
-        "がっこう",
-        null,
-        "いえ",
-        null,
-        "かえって",
-        null,
-        null
       ],
       "vocab_keys": [
         10003,
@@ -203,24 +230,14 @@
     {
       "id": "s02",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
-        "赤い",
+        "赤[あかい]い",
         "カバン",
         "を",
-        "持って",
+        "持[もって]って",
         "いました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        "あかい",
-        null,
-        null,
-        "もって",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -242,24 +259,14 @@
     {
       "id": "s03",
       "words": [
-        "彼",
+        "彼[かれ]",
         "の",
         "カバン",
         "は",
-        "少し",
-        "古かった",
+        "少[すこし]し",
+        "古[ふるかった]かった",
         "です",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        null,
-        null,
-        "すこし",
-        "ふるかった",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -282,30 +289,17 @@
     {
       "id": "s04",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
         "よく",
-        "中",
+        "中[なか]",
         "に",
         "たくさん",
-        "本",
+        "本[ほん]",
         "を",
-        "入れて",
+        "入[いれて]れて",
         "いました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        null,
-        "なか",
-        null,
-        null,
-        "ほん",
-        null,
-        "いれて",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -329,22 +323,13 @@
     {
       "id": "s05",
       "words": [
-        "今日",
+        "今日[きょう]",
         "、",
-        "彼",
+        "彼[かれ]",
         "は",
-        "疲れて",
+        "疲[つかれて]れて",
         "いました",
         "。"
-      ],
-      "ruby": [
-        "きょう",
-        null,
-        "かれ",
-        null,
-        "つかれて",
-        null,
-        null
       ],
       "vocab_keys": [
         162,
@@ -363,20 +348,12 @@
     {
       "id": "s06",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
         "ゆっくり",
-        "歩き",
+        "歩[あるき]き",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        null,
-        "あるき",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -394,40 +371,22 @@
     {
       "id": "s07",
       "words": [
-        "彼",
+        "彼[かれ]",
         "の",
         "カバン",
         "に",
-        "小さく",
+        "小[ちいさく]さく",
         "て",
-        "緑",
+        "緑[みどり]",
         "と",
-        "白",
+        "白[しろ]",
         "の",
         "お守り",
         "が",
-        "貼って",
+        "貼[はって]って",
         "あり",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        null,
-        null,
-        "ちいさく",
-        null,
-        "みどり",
-        null,
-        "しろ",
-        null,
-        "おまもり",
-        null,
-        "はって",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -461,30 +420,17 @@
     {
       "id": "s08",
       "words": [
-        "彼",
+        "彼[かれ]",
         "の",
         "おばあさん",
         "が",
         "それ",
         "を",
-        "彼",
+        "彼[かれ]",
         "に",
         "くれ",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        null,
-        null,
-        null,
-        null,
-        "かれ",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -513,21 +459,11 @@
         "それ",
         "は",
         "いい",
-        "運",
+        "運[うん]",
         "の",
         "お守り",
         "でした",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "うん",
-        null,
-        "おまもり",
-        null,
-        null
       ],
       "vocab_keys": [
         92,
@@ -555,19 +491,9 @@
         "それ",
         "が",
         "とても",
-        "好き",
+        "好[すき]き",
         "でした",
         "。"
-      ],
-      "ruby": [
-        "ケンジ",
-        null,
-        null,
-        null,
-        null,
-        "すき",
-        null,
-        null
       ],
       "vocab_keys": [
         10003,
@@ -589,28 +515,16 @@
     {
       "id": "s11",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
         "いつも",
         "カバン",
         "に",
         "それ",
         "を",
-        "持って",
+        "持[もって]って",
         "いました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "もって",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -633,22 +547,13 @@
     {
       "id": "s12",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
-        "公園",
+        "公園[こうえん]",
         "で",
-        "止まり",
+        "止[とまり]まり",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        "こうえん",
-        null,
-        "とまり",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -668,22 +573,13 @@
     {
       "id": "s13",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
-        "花",
+        "花[はな]",
         "を",
-        "見たかった",
+        "見[みたかった]たかった",
         "です",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        "はな",
-        null,
-        "みたかった",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -703,22 +599,13 @@
     {
       "id": "s14",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
         "ベンチ",
         "に",
-        "座り",
+        "座[すわり]り",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        null,
-        null,
-        "すわり",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -738,30 +625,17 @@
     {
       "id": "s15",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
         "カバン",
         "を",
-        "開けて",
+        "開[あけて]けて",
         "、",
         "ジュース",
         "を",
-        "取り",
+        "取[とり]り",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        null,
-        null,
-        "あけて",
-        null,
-        null,
-        null,
-        "とり",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -787,22 +661,13 @@
     {
       "id": "s16",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
         "ジュース",
         "を",
-        "飲み",
+        "飲[のみ]み",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        null,
-        null,
-        "のみ",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -824,20 +689,11 @@
       "words": [
         "それから",
         "、",
-        "彼",
+        "彼[かれ]",
         "は",
-        "立ち",
+        "立[たち]ち",
         "ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "かれ",
-        null,
-        "たち",
-        null,
-        null
       ],
       "vocab_keys": [
         305,
@@ -856,22 +712,13 @@
     {
       "id": "s18",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
         "また",
-        "歩き",
-        "始め",
+        "歩[あるき]き",
+        "始[はじめ]め",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        null,
-        "あるき",
-        "はじめ",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -892,16 +739,9 @@
       "words": [
         "お守り",
         "は",
-        "落ち",
+        "落[おち]ち",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "おまもり",
-        null,
-        "おち",
-        null,
-        null
       ],
       "vocab_keys": [
         10000,
@@ -920,28 +760,15 @@
       "words": [
         "それ",
         "は",
-        "静か",
+        "静[しずか]か",
         "に",
-        "草",
+        "草[くさ]",
         "の",
-        "上",
+        "上[うえ]",
         "に",
-        "落ち",
+        "落[おち]ち",
         "ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "しずか",
-        null,
-        "くさ",
-        null,
-        "うえ",
-        null,
-        "おち",
-        null,
-        null
       ],
       "vocab_keys": [
         92,
@@ -969,18 +796,10 @@
       "words": [
         "ケンジ",
         "は",
-        "気がつき",
+        "気[きがつき]がつき",
         "ません",
         "でした",
         "。"
-      ],
-      "ruby": [
-        "ケンジ",
-        null,
-        "きがつき",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10003,
@@ -998,20 +817,12 @@
     {
       "id": "s22",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
-        "歩き",
-        "続け",
+        "歩[あるき]き",
+        "続[つづけ]け",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        "あるき",
-        "つづけ",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -1031,18 +842,10 @@
       "words": [
         "さくら",
         "も",
-        "公園",
+        "公園[こうえん]",
         "に",
         "いました",
         "。"
-      ],
-      "ruby": [
-        "さくら",
-        null,
-        "こうえん",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10008,
@@ -1062,22 +865,13 @@
     {
       "id": "s24",
       "words": [
-        "彼女",
+        "彼女[かのじょ]",
         "は",
-        "絵",
+        "絵[え]",
         "を",
-        "描いて",
+        "描[かいて]いて",
         "いました",
         "。"
-      ],
-      "ruby": [
-        "かのじょ",
-        null,
-        "え",
-        null,
-        "かいて",
-        null,
-        null
       ],
       "vocab_keys": [
         594,
@@ -1097,32 +891,18 @@
     {
       "id": "s25",
       "words": [
-        "彼女",
+        "彼女[かのじょ]",
         "は",
-        "地面",
+        "地面[じめん]",
         "に",
-        "何か",
+        "何[なにか]か",
         "きれい",
         "な",
         "もの",
         "を",
-        "見",
+        "見[み]",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かのじょ",
-        null,
-        "じめん",
-        null,
-        "なにか",
-        null,
-        null,
-        null,
-        null,
-        "み",
-        null,
-        null
       ],
       "vocab_keys": [
         594,
@@ -1148,20 +928,12 @@
     {
       "id": "s26",
       "words": [
-        "彼女",
+        "彼女[かのじょ]",
         "は",
-        "近くに",
-        "歩き",
+        "近[ちかくに]くに",
+        "歩[あるき]き",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かのじょ",
-        null,
-        "ちかくに",
-        "あるき",
-        null,
-        null
       ],
       "vocab_keys": [
         594,
@@ -1184,35 +956,17 @@
         "、",
         "これ",
         "は",
-        "何",
+        "何[なに]",
         "です",
         "か",
         "。",
         "」",
         "と",
-        "彼女",
+        "彼女[かのじょ]",
         "は",
-        "思い",
+        "思[おもい]い",
         "ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        "あ",
-        null,
-        null,
-        null,
-        "なに",
-        null,
-        null,
-        null,
-        null,
-        null,
-        "かのじょ",
-        null,
-        "おもい",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1248,13 +1002,6 @@
         "でした",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        "おまもり",
-        null,
-        null
-      ],
       "vocab_keys": [
         92,
         null,
@@ -1274,18 +1021,10 @@
       "words": [
         "それ",
         "は",
-        "大切",
+        "大切[たいせつ]",
         "そう",
         "でした",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "たいせつ",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         92,
@@ -1306,24 +1045,14 @@
     {
       "id": "s30",
       "words": [
-        "彼女",
+        "彼女[かのじょ]",
         "は",
         "それ",
         "を",
-        "気を付けて",
-        "持ち上げ",
+        "気[きをつけて]を付けて",
+        "持[もちあげ]ち上げ",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かのじょ",
-        null,
-        null,
-        null,
-        "きをつけて",
-        "もちあげ",
-        null,
-        null
       ],
       "vocab_keys": [
         594,
@@ -1347,28 +1076,15 @@
       "words": [
         "さくら",
         "は",
-        "遠く",
+        "遠[とおく]く",
         "に",
-        "歩いて",
+        "歩[あるいて]いて",
         "いる",
         "ケンジ",
         "を",
-        "見",
+        "見[み]",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "さくら",
-        null,
-        "とおく",
-        null,
-        "あるいて",
-        null,
-        "ケンジ",
-        null,
-        "み",
-        null,
-        null
       ],
       "vocab_keys": [
         10008,
@@ -1406,30 +1122,11 @@
         "。",
         "」",
         "と",
-        "彼女",
+        "彼女[かのじょ]",
         "は",
-        "思い",
+        "思[おもい]い",
         "ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "ケンジ",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "かのじょ",
-        null,
-        "おもい",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1462,36 +1159,20 @@
     {
       "id": "s33",
       "words": [
-        "彼女",
+        "彼女[かのじょ]",
         "は",
-        "前",
+        "前[まえ]",
         "に",
         "カバン",
         "に",
         "お守り",
         "を",
-        "見た",
+        "見[みた]た",
         "こと",
         "を",
-        "覚えて",
+        "覚[おぼえて]えて",
         "いました",
         "。"
-      ],
-      "ruby": [
-        "かのじょ",
-        null,
-        "まえ",
-        null,
-        null,
-        null,
-        "おまもり",
-        null,
-        "みた",
-        null,
-        null,
-        "おぼえて",
-        null,
-        null
       ],
       "vocab_keys": [
         594,
@@ -1520,22 +1201,13 @@
     {
       "id": "s34",
       "words": [
-        "彼女",
+        "彼女[かのじょ]",
         "は",
-        "彼",
+        "彼[かれ]",
         "を",
-        "追いかけ",
+        "追[おいかけ]いかけ",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かのじょ",
-        null,
-        "かれ",
-        null,
-        "おいかけ",
-        null,
-        null
       ],
       "vocab_keys": [
         594,
@@ -1564,27 +1236,11 @@
         "！",
         "」",
         "と",
-        "彼女",
+        "彼女[かのじょ]",
         "は",
-        "呼び",
+        "呼[よび]び",
         "ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        "ケンジ",
-        null,
-        null,
-        "ケンジ",
-        null,
-        null,
-        null,
-        null,
-        "かのじょ",
-        null,
-        "よび",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1613,16 +1269,9 @@
       "words": [
         "ケンジ",
         "は",
-        "振り返り",
+        "振[ふりかえり]り返り",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "ケンジ",
-        null,
-        "ふりかえり",
-        null,
-        null
       ],
       "vocab_keys": [
         10003,
@@ -1641,22 +1290,12 @@
       "words": [
         "さくら",
         "は",
-        "彼",
+        "彼[かれ]",
         "の",
         "ほうへ",
-        "走って",
+        "走[はしって]って",
         "きました",
         "。"
-      ],
-      "ruby": [
-        "さくら",
-        null,
-        "かれ",
-        null,
-        "ほうへ",
-        "はしって",
-        null,
-        null
       ],
       "vocab_keys": [
         10008,
@@ -1678,22 +1317,13 @@
     {
       "id": "s38",
       "words": [
-        "彼女",
+        "彼女[かのじょ]",
         "は",
         "お守り",
         "を",
-        "出し",
+        "出[だし]し",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かのじょ",
-        null,
-        "おまもり",
-        null,
-        "だし",
-        null,
-        null
       ],
       "vocab_keys": [
         594,
@@ -1720,37 +1350,17 @@
         "の",
         "カバン",
         "から",
-        "落ち",
+        "落[おち]ち",
         "ました",
         "よ",
         "！",
         "」",
         "と",
-        "彼女",
+        "彼女[かのじょ]",
         "は",
-        "言い",
+        "言[いい]い",
         "ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "おち",
-        null,
-        null,
-        null,
-        null,
-        null,
-        "かのじょ",
-        null,
-        "いい",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1787,24 +1397,13 @@
       "words": [
         "ケンジ",
         "は",
-        "自分",
+        "自分[じぶん]",
         "の",
         "カバン",
         "を",
-        "見",
+        "見[み]",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "ケンジ",
-        null,
-        "じぶん",
-        null,
-        null,
-        null,
-        "み",
-        null,
-        null
       ],
       "vocab_keys": [
         10003,
@@ -1833,13 +1432,6 @@
         "いました",
         "。"
       ],
-      "ruby": [
-        "おまもり",
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         10000,
         null,
@@ -1865,28 +1457,11 @@
         "！",
         "」",
         "と",
-        "彼",
+        "彼[かれ]",
         "は",
-        "言い",
+        "言[いい]い",
         "ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        "あ",
-        null,
-        "さくら",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "かれ",
-        null,
-        "いい",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1918,20 +1493,10 @@
         "これ",
         "は",
         "とても",
-        "大切",
+        "大切[たいせつ]",
         "です",
         "。",
         "」"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        "たいせつ",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1953,18 +1518,11 @@
     {
       "id": "s44",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
-        "笑い",
+        "笑[わらい]い",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        "わらい",
-        null,
-        null
       ],
       "vocab_keys": [
         595,
@@ -1983,16 +1541,9 @@
       "words": [
         "さくら",
         "も",
-        "笑い",
+        "笑[わらい]い",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "さくら",
-        null,
-        "わらい",
-        null,
-        null
       ],
       "vocab_keys": [
         10008,
@@ -2016,20 +1567,9 @@
         "を",
         "カバン",
         "に",
-        "戻し",
+        "戻[もどし]し",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "ケンジ",
-        null,
-        "おまもり",
-        null,
-        null,
-        null,
-        "もどし",
-        null,
-        null
       ],
       "vocab_keys": [
         10003,

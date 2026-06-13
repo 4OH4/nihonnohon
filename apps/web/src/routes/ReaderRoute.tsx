@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Rupert Thomas
 // SPDX-License-Identifier: MIT
 
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useMemo } from 'react'
 import { useLoaderData, useRouteError, isRouteErrorResponse, Link } from 'react-router-dom'
 import type { LoaderFunctionArgs } from 'react-router-dom'
 import { useShallow } from 'zustand/react/shallow'
@@ -20,19 +20,13 @@ import { SentenceBlock } from '@/components/SentenceBlock'
 import { VocabPanel } from '@/components/VocabPanel'
 import { GrammarPanel } from '@/components/GrammarPanel'
 import { usePreferenceStore } from '@/stores/preferenceStore'
-import type { StoryModel, VocabEntry, VocabSupplementEntry } from '@nihonnohon/schema'
+import type { StoryModel, VocabSupplementEntry } from '@nihonnohon/schema'
 
-/** Converts vocab supplement entries to VocabEntry shape for lookup store compatibility. */
-function buildSupplementMap(supplement: VocabSupplementEntry[]): Map<string, VocabEntry> {
-  const map = new Map<string, VocabEntry>()
-  supplement.forEach((entry, i) => {
-    map.set(entry.word, {
-      id: -(i + 1),
-      word: entry.word,
-      reading: entry.hiragana,
-      meaning: entry.translation,
-      lesson: 'supplement',
-    })
+/** Returns raw supplement entries keyed by word; adaptation to display shape happens in WordToken. */
+function buildSupplementMap(supplement: VocabSupplementEntry[]): Map<string, VocabSupplementEntry> {
+  const map = new Map<string, VocabSupplementEntry>()
+  supplement.forEach((entry) => {
+    map.set(entry.word, entry)
   })
   return map
 }
@@ -98,7 +92,7 @@ const TABS: { id: Tab; label: string }[] = [
 /** Full reader view — story text with word lookup, panels, and responsive two-column layout. */
 export function ReaderRoute() {
   const story = useLoaderData() as StoryModel
-  const supplementMap = buildSupplementMap(story.vocabSupplement)
+  const supplementMap = useMemo(() => buildSupplementMap(story.vocabSupplement), [story.vocabSupplement])
 
   const { textSize, activeTab, setActiveTab } = usePreferenceStore(
     useShallow(s => ({
@@ -226,12 +220,12 @@ export function ReaderRoute() {
         </div>
 
         {/* Mobile-only: vocabulary panel (hidden on desktop since it's in right panel) */}
-        <div className={cn('w-full overflow-y-auto', activeTab === 'vocabulary' ? 'block lg:hidden' : 'hidden')}>
+        <div className={cn('w-full overflow-y-auto', activeTab === 'vocabulary' ? 'block lg:hidden' : 'hidden')} tabIndex={0}>
           <VocabPanel keywords={story.keywords} vocabSupplement={story.vocabSupplement} />
         </div>
 
         {/* Mobile-only: grammar panel */}
-        <div className={cn('w-full overflow-y-auto', activeTab === 'grammar' ? 'block lg:hidden' : 'hidden')}>
+        <div className={cn('w-full overflow-y-auto', activeTab === 'grammar' ? 'block lg:hidden' : 'hidden')} tabIndex={0}>
           <GrammarPanel grammar={story.grammar} sentences={story.sentences} />
         </div>
       </div>

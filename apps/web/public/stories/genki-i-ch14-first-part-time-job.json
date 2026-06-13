@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "genki-i-ch14-first-part-time-job",
   "title": "My First Part-Time Job",
   "title_ja": "はじめてのアルバイト",
@@ -52,188 +52,247 @@
       "key": 10000,
       "word": "ラーメン",
       "hiragana": "",
-      "translation": "ramen"
+      "translation": "ramen",
+      "pos": "n",
+      "dictionary_form": "ラーメン"
     },
     {
       "key": 10001,
       "word": "じゅうごふん",
       "hiragana": "じゅうごふん",
-      "translation": "fifteen minutes"
+      "translation": "fifteen minutes",
+      "pos": "adv",
+      "dictionary_form": "じゅう"
     },
     {
       "key": 10002,
       "word": "笑顔",
       "hiragana": "えがお",
-      "translation": "smile"
+      "translation": "smile",
+      "pos": "n",
+      "dictionary_form": "笑顔"
     },
     {
       "key": 10003,
       "word": "その時",
       "hiragana": "そのとき",
-      "translation": "at that time"
+      "translation": "at that time",
+      "dictionary_form": "その"
     },
     {
       "key": 10004,
       "word": "まず",
       "hiragana": "",
-      "translation": "first"
+      "translation": "first",
+      "pos": "adv",
+      "dictionary_form": "まず"
     },
     {
       "key": 10005,
       "word": "テーブル",
       "hiragana": "",
-      "translation": "table"
+      "translation": "table",
+      "pos": "n",
+      "dictionary_form": "テーブル"
     },
     {
       "key": 10006,
       "word": "いす",
       "hiragana": "",
-      "translation": "chair"
+      "translation": "chair",
+      "pos": "n",
+      "dictionary_form": "いす"
     },
     {
       "key": 10007,
       "word": "ピッチャー",
       "hiragana": "",
-      "translation": "pitcher"
+      "translation": "pitcher",
+      "pos": "n",
+      "dictionary_form": "ピッチャー"
     },
     {
       "key": 10008,
       "word": "入れる",
       "hiragana": "いれる",
-      "translation": "to put in, fill"
+      "translation": "to put in, fill",
+      "pos": "v1",
+      "dictionary_form": "入れる"
     },
     {
       "key": 10009,
       "word": "カウンター",
       "hiragana": "",
-      "translation": "counter"
+      "translation": "counter",
+      "pos": "n",
+      "dictionary_form": "カウンター"
     },
     {
       "key": 10010,
       "word": "置く",
       "hiragana": "おく",
-      "translation": "to put, place"
+      "translation": "to put, place",
+      "pos": "v5",
+      "dictionary_form": "置く"
     },
     {
       "key": 10011,
       "word": "お客さん",
       "hiragana": "おきゃくさん",
-      "translation": "customer"
+      "translation": "customer",
+      "pos": "n",
+      "dictionary_form": "お客さん"
     },
     {
       "key": 10012,
       "word": "声",
       "hiragana": "こえ",
-      "translation": "voice"
+      "translation": "voice",
+      "pos": "n",
+      "dictionary_form": "声"
     },
     {
       "key": 10013,
       "word": "注文",
       "hiragana": "ちゅうもん",
-      "translation": "order"
+      "translation": "order",
+      "pos": "n",
+      "dictionary_form": "注文"
     },
     {
       "key": 10014,
       "word": "注文する",
       "hiragana": "ちゅうもんする",
-      "translation": "to order"
+      "translation": "to order",
+      "pos": "v-irr",
+      "dictionary_form": "注文する"
     },
     {
       "key": 10015,
       "word": "ほとんどの人",
       "hiragana": "ほとんどのひと",
-      "translation": "most people"
+      "translation": "most people",
+      "pos": "n",
+      "dictionary_form": "ほとんど"
     },
     {
       "key": 10016,
       "word": "ぎょうざ",
       "hiragana": "",
-      "translation": "gyoza"
+      "translation": "gyoza",
+      "pos": "n",
+      "dictionary_form": "ぎょうざ"
     },
     {
       "key": 10017,
       "word": "焼き飯",
       "hiragana": "やきめし",
-      "translation": "fried rice"
+      "translation": "fried rice",
+      "pos": "n",
+      "dictionary_form": "焼き飯"
     },
     {
       "key": 10018,
       "word": "湯気",
       "hiragana": "ゆげ",
-      "translation": "steam"
+      "translation": "steam",
+      "pos": "n",
+      "dictionary_form": "湯気"
     },
     {
       "key": 10019,
       "word": "スープ",
       "hiragana": "",
-      "translation": "broth"
+      "translation": "broth",
+      "pos": "n",
+      "dictionary_form": "スープ"
     },
     {
       "key": 10020,
       "word": "匂い",
       "hiragana": "におい",
-      "translation": "smell"
+      "translation": "smell",
+      "pos": "n",
+      "dictionary_form": "匂い"
     },
     {
       "key": 10021,
       "word": "間違い",
       "hiragana": "まちがい",
-      "translation": "mistake"
+      "translation": "mistake",
+      "pos": "n",
+      "dictionary_form": "間違い"
     },
     {
       "key": 10022,
       "word": "一度",
       "hiragana": "いちど",
-      "translation": "once"
+      "translation": "once",
+      "pos": "n",
+      "dictionary_form": "一度"
     },
     {
       "key": 10023,
       "word": "落とす",
       "hiragana": "おとす",
-      "translation": "to drop"
+      "translation": "to drop",
+      "pos": "v5",
+      "dictionary_form": "落とす"
     },
     {
       "key": 10024,
       "word": "捕まえる",
       "hiragana": "つかまえる",
-      "translation": "to catch"
+      "translation": "to catch",
+      "pos": "v1",
+      "dictionary_form": "捕まえる"
     },
     {
       "key": 10025,
       "word": "別の時",
       "hiragana": "べつのとき",
-      "translation": "another time"
+      "translation": "another time",
+      "pos": "n",
+      "dictionary_form": "別"
     },
     {
       "key": 10026,
       "word": "怒る",
       "hiragana": "おこる",
-      "translation": "to get angry"
+      "translation": "to get angry",
+      "pos": "v5",
+      "dictionary_form": "怒る"
     },
     {
       "key": 10027,
       "word": "丁寧",
       "hiragana": "ていねい",
-      "translation": "polite, careful"
+      "translation": "polite, careful",
+      "pos": "adj-na",
+      "dictionary_form": "丁寧"
     },
     {
       "key": 10028,
       "word": "はっきり",
       "hiragana": "",
-      "translation": "clearly"
+      "translation": "clearly",
+      "pos": "adv",
+      "dictionary_form": "はっきり"
     },
     {
       "key": 10029,
       "word": "半年",
       "hiragana": "はんとし",
-      "translation": "half a year"
+      "translation": "half a year",
+      "pos": "n",
+      "dictionary_form": "半年"
     }
   ],
   "sentences": [
     {
       "id": "s01",
       "words": [
-        "私",
+        "私[わたし]",
         "の",
         "はじめて",
         "の",
@@ -242,23 +301,9 @@
         "ちいさい",
         "ラーメン",
         "の",
-        "店",
+        "店[みせ]",
         "でした",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "みせ",
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -286,36 +331,19 @@
       "words": [
         "それ",
         "は",
-        "私",
+        "私[わたし]",
         "の",
-        "家",
+        "家[いえ]",
         "から",
         "あまり",
-        "近くなかったです",
+        "近[ちかくなかったです]くなかったです",
         "。",
         "たぶん",
-        "歩いて",
+        "歩[あるいて]いて",
         "じゅうごふん",
         "ぐらい",
         "でした",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "わたし",
-        null,
-        "いえ",
-        null,
-        null,
-        "ちかくなかったです",
-        null,
-        null,
-        "あるいて",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         92,
@@ -346,39 +374,21 @@
       "id": "s03",
       "words": [
         "その",
-        "店",
+        "店[みせ]",
         "は",
-        "古",
+        "古[ふる]",
         "い",
         "し",
         "、",
         "いつも",
-        "暖かくて",
+        "暖[あたたかくて]かくて",
         "、",
         "いい",
-        "匂い",
+        "匂[におい]い",
         "で",
         "おいしかった",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        "みせ",
-        null,
-        "ふる",
-        "い",
-        null,
-        null,
-        null,
-        "あたたかくて",
-        null,
-        null,
-        "におい",
-        null,
-        "おいしかった",
-        null,
-        null
       ],
       "vocab_keys": [
         96,
@@ -409,32 +419,18 @@
     {
       "id": "s04",
       "words": [
-        "大家さん",
+        "大家[おおやさん]さん",
         "は",
-        "親切",
+        "親切[しんせつ]",
         "な",
         "おじいさん",
         "でした",
         "。",
-        "大きい",
-        "笑顔",
+        "大[おおきい]きい",
+        "笑顔[えがお]",
         "が",
         "ありました",
         "。"
-      ],
-      "ruby": [
-        "おおやさん",
-        null,
-        "しんせつ",
-        null,
-        null,
-        null,
-        null,
-        "おおきい",
-        "えがお",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         694,
@@ -461,36 +457,20 @@
     {
       "id": "s05",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
         "その時",
         "、",
-        "高校生",
+        "高校生[こうこうせい]",
         "でした",
         "。",
         "だから",
         "、",
-        "仕事",
+        "仕事[しごと]",
         "が",
         "ちょっと",
-        "緊張しました",
+        "緊張[きんちょうしました]しました",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "そのとき",
-        null,
-        "こうこうせい",
-        null,
-        null,
-        null,
-        null,
-        "しごと",
-        null,
-        null,
-        "きんちょうしました",
-        null
       ],
       "vocab_keys": [
         61,
@@ -519,26 +499,15 @@
     {
       "id": "s06",
       "words": [
-        "毎日",
+        "毎日[まいにち]",
         "、",
-        "午後",
-        "五時",
+        "午後[ごご]",
+        "五時[ごじ]",
         "に",
-        "仕事",
+        "仕事[しごと]",
         "を",
-        "始めました",
+        "始[はじめました]めました",
         "。"
-      ],
-      "ruby": [
-        "まいにち",
-        null,
-        "ごご",
-        "ごじ",
-        null,
-        "しごと",
-        null,
-        "はじめました",
-        null
       ],
       "vocab_keys": [
         168,
@@ -563,26 +532,14 @@
       "words": [
         "まず",
         "、",
-        "全部",
+        "全部[ぜんぶ]",
         "の",
         "テーブル",
         "と",
         "いす",
         "を",
-        "掃除しなければいけませんでした",
+        "掃除[そうじしなければいけませんでした]しなければいけませんでした",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "ぜんぶ",
-        null,
-        null,
-        null,
-        null,
-        null,
-        "そうじしなければいけませんでした",
-        null
       ],
       "vocab_keys": [
         10004,
@@ -609,34 +566,18 @@
       "words": [
         "それから",
         "、",
-        "水",
+        "水[みず]",
         "の",
         "ピッチャー",
         "を",
-        "入れて",
+        "入[いれて]れて",
         "、",
         "カウンター",
         "の",
-        "上",
+        "上[うえ]",
         "に",
-        "置きました",
+        "置[おきました]きました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "みず",
-        null,
-        null,
-        null,
-        "いれて",
-        null,
-        null,
-        null,
-        "うえ",
-        null,
-        "おきました",
-        null
       ],
       "vocab_keys": [
         305,
@@ -669,17 +610,8 @@
         "お客さん",
         "が",
         "たくさん",
-        "来ました",
+        "来[きました]ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "おきゃくさん",
-        null,
-        null,
-        "きました",
-        null
       ],
       "vocab_keys": [
         357,
@@ -703,22 +635,11 @@
         "いらっしゃいませ",
         "！」",
         "と",
-        "大きい",
-        "声",
+        "大[おおきい]きい",
+        "声[こえ]",
         "で",
-        "言ってみました",
+        "言[いってみました]ってみました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        "おおきい",
-        "こえ",
-        null,
-        "いってみました",
-        null
       ],
       "vocab_keys": [
         null,
@@ -744,19 +665,10 @@
         "ちいさい",
         "ノート",
         "に",
-        "注文",
+        "注文[ちゅうもん]",
         "を",
-        "書きました",
+        "書[かきました]きました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "ちゅうもん",
-        null,
-        "かきました",
-        null
       ],
       "vocab_keys": [
         283,
@@ -781,38 +693,19 @@
         "は",
         "ラーメン",
         "を",
-        "注文しました",
+        "注文[ちゅうもんしました]しました",
         "。",
         "でも",
         "、",
         "ぎょうざ",
         "や",
-        "焼き飯",
+        "焼[やきめし]き飯",
         "を",
-        "注文する",
-        "人",
+        "注文[ちゅうもんする]する",
+        "人[ひと]",
         "も",
         "いました",
         "。"
-      ],
-      "ruby": [
-        "ほとんどのひと",
-        null,
-        null,
-        null,
-        "ちゅうもんしました",
-        null,
-        null,
-        null,
-        null,
-        null,
-        "やきめし",
-        null,
-        "ちゅうもんする",
-        "ひと",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10015,
@@ -845,38 +738,21 @@
     {
       "id": "s13",
       "words": [
-        "熱い",
+        "熱[あつい]い",
         "ラーメン",
         "の",
         "お皿",
         "を",
         "テーブル",
         "に",
-        "持っていく",
+        "持[もっていく]っていく",
         "の",
         "が",
-        "私",
+        "私[わたし]",
         "の",
-        "仕事",
+        "仕事[しごと]",
         "でした",
         "。"
-      ],
-      "ruby": [
-        "あつい",
-        null,
-        null,
-        "おさら",
-        null,
-        null,
-        null,
-        "もっていく",
-        null,
-        null,
-        "わたし",
-        null,
-        "しごと",
-        null,
-        null
       ],
       "vocab_keys": [
         276,
@@ -907,36 +783,20 @@
     {
       "id": "s14",
       "words": [
-        "湯気",
+        "湯気[ゆげ]",
         "が",
-        "出て",
+        "出[でて]て",
         "、",
         "スープ",
         "の",
         "いい",
-        "匂い",
+        "匂[におい]い",
         "は",
         "いつも",
         "お腹",
         "が",
         "すきました",
         "。"
-      ],
-      "ruby": [
-        "ゆげ",
-        null,
-        "でて",
-        null,
-        null,
-        null,
-        null,
-        "におい",
-        null,
-        null,
-        "おなか",
-        null,
-        "すきました",
-        null
       ],
       "vocab_keys": [
         10018,
@@ -965,22 +825,13 @@
     {
       "id": "s15",
       "words": [
-        "時々",
+        "時々[ときどき]",
         "、",
         "ちいさい",
-        "間違い",
+        "間違[まちがい]い",
         "を",
         "しました",
         "。"
-      ],
-      "ruby": [
-        "ときどき",
-        null,
-        null,
-        "まちがい",
-        null,
-        "しました",
-        null
       ],
       "vocab_keys": [
         189,
@@ -1001,34 +852,19 @@
     {
       "id": "s16",
       "words": [
-        "一度",
+        "一度[いちど]",
         "、",
         "お皿",
         "を",
-        "落としそう",
+        "落[おとしそう]としそう",
         "に",
         "なりました",
         "。",
         "でも",
         "、",
         "すぐ",
-        "捕まえました",
+        "捕[つかまえました]まえました",
         "。"
-      ],
-      "ruby": [
-        "いちど",
-        null,
-        "おさら",
-        null,
-        "おとしそう",
-        null,
-        "なりました",
-        null,
-        null,
-        null,
-        null,
-        "つかまえました",
-        null
       ],
       "vocab_keys": [
         10022,
@@ -1057,32 +893,18 @@
     {
       "id": "s17",
       "words": [
-        "別の時",
+        "別[べつのとき]の時",
         "に",
         "、",
         "お客さん",
         "に",
-        "水",
+        "水[みず]",
         "を",
-        "持っていく",
+        "持[もっていく]っていく",
         "の",
         "を",
-        "忘れました",
+        "忘[わすれました]れました",
         "。"
-      ],
-      "ruby": [
-        "べつのとき",
-        null,
-        null,
-        "おきゃくさん",
-        null,
-        "みず",
-        null,
-        "もっていく",
-        null,
-        null,
-        "わすれました",
-        null
       ],
       "vocab_keys": [
         10025,
@@ -1108,18 +930,11 @@
     {
       "id": "s18",
       "words": [
-        "大家さん",
+        "大家[おおやさん]さん",
         "は",
-        "全然",
-        "怒りませんでした",
+        "全然[ぜんぜん]",
+        "怒[おこりませんでした]りませんでした",
         "。"
-      ],
-      "ruby": [
-        "おおやさん",
-        null,
-        "ぜんぜん",
-        "おこりませんでした",
-        null
       ],
       "vocab_keys": [
         694,
@@ -1137,42 +952,23 @@
     {
       "id": "s19",
       "words": [
-        "大家さん",
+        "大家[おおやさん]さん",
         "は",
         "「",
-        "心配しないでください",
+        "心配[しんぱいしないでください]しないでください",
         "。",
         "みんな",
-        "間違い",
+        "間違[まちがい]い",
         "を",
         "します",
         "よ",
         "。",
-        "頑張ってください",
+        "頑張[がんばってください]ってください",
         "。",
         "」",
         "と",
-        "言いました",
+        "言[いいました]いました",
         "。"
-      ],
-      "ruby": [
-        "おおやさん",
-        null,
-        null,
-        "しんぱいしないでください",
-        null,
-        null,
-        "まちがい",
-        null,
-        null,
-        null,
-        null,
-        "がんばってください",
-        null,
-        null,
-        null,
-        "いいました",
-        null
       ],
       "vocab_keys": [
         694,
@@ -1205,46 +1001,25 @@
     {
       "id": "s20",
       "words": [
-        "大家さん",
+        "大家[おおやさん]さん",
         "は",
         "「",
         "お皿",
         "を",
         "たくさん",
-        "丁寧",
+        "丁寧[ていねい]",
         "に",
-        "持って",
+        "持[もって]って",
         "ください",
         "。",
         "はっきり",
-        "話して",
+        "話[はなして]して",
         "ください",
         "。",
         "」",
         "と",
-        "教えてくれました",
+        "教[おしえてくれました]えてくれました",
         "。"
-      ],
-      "ruby": [
-        "おおやさん",
-        null,
-        null,
-        "おさら",
-        null,
-        null,
-        "ていねい",
-        null,
-        "もって",
-        null,
-        null,
-        null,
-        "はなして",
-        null,
-        null,
-        null,
-        null,
-        "おしえてくれました",
-        null
       ],
       "vocab_keys": [
         694,
@@ -1279,22 +1054,12 @@
       "words": [
         "ラーメン",
         "の",
-        "店",
+        "店[みせ]",
         "で",
-        "半年",
+        "半年[はんとし]",
         "ぐらい",
-        "働きました",
+        "働[はたらきました]きました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "みせ",
-        null,
-        "はんとし",
-        null,
-        "はたらきました",
-        null
       ],
       "vocab_keys": [
         10000,
@@ -1317,9 +1082,9 @@
     {
       "id": "s22",
       "words": [
-        "大変",
+        "大変[たいへん]",
         "な",
-        "仕事",
+        "仕事[しごと]",
         "だったんです",
         "。",
         "でも",
@@ -1328,23 +1093,8 @@
         "の",
         "もの",
         "を",
-        "知りました",
+        "知[しりました]りました",
         "。"
-      ],
-      "ruby": [
-        "たいへん",
-        null,
-        "しごと",
-        "だったんです",
-        null,
-        null,
-        null,
-        null,
-        null,
-        "もの",
-        null,
-        "しりました",
-        null
       ],
       "vocab_keys": [
         328,
@@ -1373,20 +1123,12 @@
     {
       "id": "s23",
       "words": [
-        "責任",
+        "責任[せきにん]",
         "や",
         "チームワーク",
         "も",
-        "知りました",
+        "知[しりました]りました",
         "。"
-      ],
-      "ruby": [
-        "せきにん",
-        null,
-        null,
-        null,
-        "しりました",
-        null
       ],
       "vocab_keys": [
         576,
@@ -1406,28 +1148,16 @@
     {
       "id": "s24",
       "words": [
-        "大家さん",
+        "大家[おおやさん]さん",
         "の",
         "ラーメン",
         "が",
-        "本当に",
-        "一番",
+        "本当[ほんとうに]に",
+        "一番[いちばん]",
         "おいしい",
         "と",
-        "思いました",
+        "思[おもいました]いました",
         "。"
-      ],
-      "ruby": [
-        "おおやさん",
-        null,
-        null,
-        null,
-        "ほんとうに",
-        "いちばん",
-        null,
-        null,
-        "おもいました",
-        null
       ],
       "vocab_keys": [
         694,
@@ -1455,32 +1185,16 @@
         "いい",
         "はじめて",
         "の",
-        "仕事",
+        "仕事[しごと]",
         "でした",
         "。",
         "そして",
         "、",
-        "今",
+        "今[いま]",
         "も",
         "よく",
-        "覚えています",
+        "覚[おぼえています]えています",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        "しごと",
-        null,
-        null,
-        null,
-        null,
-        "いま",
-        null,
-        null,
-        "おぼえています",
-        null
       ],
       "vocab_keys": [
         307,

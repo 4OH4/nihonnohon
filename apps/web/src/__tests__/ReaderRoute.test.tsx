@@ -68,7 +68,7 @@ import { getStory } from '@/services/indexedDbService'
 //   - word tap updates InfoPanel to found state
 //   - Escape key resets InfoPanel to idle
 //   - ToolBar has exactly 2 interactive controls (UPDATED from 3 — Supp-2: Settings moved to AppBar)
-//   - ルビ label is "ルビ" for Japanese, "Ruby" otherwise
+//   - ルビ label is "ルビ" for language="ja", "Ruby" otherwise
 //   - ruby toggle uses visibility:hidden not display:none
 //   - Trans toggle shows translations
 //   - vocab supplement takes precedence over main dict
@@ -108,7 +108,7 @@ const baseStory: StoryModel = {
   id: 'test-story',
   title: 'Test Story',
   titleJa: 'テスト',
-  language: 'Japanese',
+  language: 'ja',
   difficulty: 'Genki I Ch.6',
   description: 'A test story.',
   keywords: [],
@@ -118,16 +118,22 @@ const baseStory: StoryModel = {
   sentences: [
     {
       id: 's1',
-      words: ['食べる', 'は', '楽しい'],
-      ruby: ['たべる', null, 'たのしい'],
+      tokens: [
+        { surface: '食べる',   segments: [{ text: '食べる',   ruby: 'たべる' }] },
+        { surface: 'は',       segments: [{ text: 'は',       ruby: null }] },
+        { surface: '楽しい',   segments: [{ text: '楽しい',   ruby: 'たのしい' }] },
+      ],
       vocabKeys: [1, null, null],
       translation: 'Eating is fun.',
       grammar: [],
     },
     {
       id: 's2',
-      words: ['日本語', 'を', '勉強します'],
-      ruby: ['にほんご', null, 'べんきょうします'],
+      tokens: [
+        { surface: '日本語',     segments: [{ text: '日本語',     ruby: 'にほんご' }] },
+        { surface: 'を',         segments: [{ text: 'を',         ruby: null }] },
+        { surface: '勉強します', segments: [{ text: '勉強します', ruby: 'べんきょうします' }] },
+      ],
       vocabKeys: [null, null, 2],
       translation: 'I study Japanese.',
       grammar: [],
@@ -222,13 +228,13 @@ describe('ReaderRoute', () => {
     expect(buttons).toHaveLength(2)
   })
 
-  it('ルビ label is "ルビ" when story language is Japanese', () => {
+  it('ルビ label is "ルビ" when story language is "ja"', () => {
     renderRoute()
     expect(screen.getByRole('button', { name: 'ルビ' })).toBeInTheDocument()
   })
 
-  it('ルビ label is "Ruby" when story language is not Japanese', () => {
-    renderRoute({ ...baseStory, language: 'Chinese' })
+  it('ルビ label is "Ruby" when story language is not "ja"', () => {
+    renderRoute({ ...baseStory, language: 'zh' })
     expect(screen.getByRole('button', { name: 'Ruby' })).toBeInTheDocument()
   })
 
@@ -260,8 +266,7 @@ describe('ReaderRoute', () => {
       ],
       sentences: [{
         id: 's1',
-        words: ['食べる'],
-        ruby: ['たべる'],
+        tokens: [{ surface: '食べる', segments: [{ text: '食べる', ruby: 'たべる' }] }],
         vocabKeys: [1],
         translation: null,
         grammar: [],
@@ -324,8 +329,7 @@ describe('ReaderRoute', () => {
       ],
       sentences: [{
         id: 's1',
-        words: ['まいあさ'],
-        ruby: [null],
+        tokens: [{ surface: 'まいあさ', segments: [{ text: 'まいあさ', ruby: null }] }],
         vocabKeys: [null],
         translation: null,
         grammar: [],

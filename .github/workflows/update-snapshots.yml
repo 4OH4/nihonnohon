@@ -1,0 +1,52 @@
+name: Update Playwright Snapshots
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to update snapshots on'
+        required: false
+        default: ''
+
+jobs:
+  update-snapshots:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch || github.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.0.9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build data assets
+        run: pnpm build-vocab && pnpm build-kanji
+
+      - name: Install Playwright browsers
+        run: pnpm --filter @nihonnohon/web exec playwright install --with-deps chromium firefox webkit
+
+      - name: Update snapshots
+        run: pnpm run test:e2e -- --update-snapshots
+        continue-on-error: true
+
+      - name: Commit updated snapshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add apps/web/e2e/accessibility.spec.ts-snapshots/
+          git diff --cached --quiet || git commit -m "chore(e2e): update playwright linux snapshots [skip ci]"
+          git push

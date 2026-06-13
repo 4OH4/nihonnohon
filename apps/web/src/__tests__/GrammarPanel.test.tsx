@@ -10,8 +10,8 @@ import type { SentenceModel } from '@nihonnohon/schema'
 const grammar = ['Grammar point A', 'Grammar point B', 'Grammar point C']
 
 const sentences: SentenceModel[] = [
-  { id: 's1', words: ['word'], ruby: [null], vocabKeys: [null], translation: null, grammar: [] },
-  { id: 's2', words: ['word'], ruby: [null], vocabKeys: [null], translation: null, grammar: [0, 2] },
+  { id: 's1', tokens: [{ surface: 'word', segments: [{ text: 'word', ruby: null }] }], vocabKeys: [null], translation: null, grammar: [] },
+  { id: 's2', tokens: [{ surface: 'word', segments: [{ text: 'word', ruby: null }] }], vocabKeys: [null], translation: null, grammar: [0, 2] },
 ]
 
 afterEach(() => {
