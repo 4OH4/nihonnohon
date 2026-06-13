@@ -26,7 +26,7 @@ export function InfoPanel({ story }: InfoPanelProps) {
 
   return (
     <div
-      className="flex-1 min-h-[90px] max-h-[120px] overflow-y-auto bg-surface px-4 py-2"
+      className="flex-1 min-h-[90px] max-h-[160px] overflow-y-auto bg-surface px-4 py-2"
       style={{ fontSize: 'var(--story-font-size)' } as React.CSSProperties}
       aria-live="polite"
       aria-label="Word lookup panel"
@@ -44,12 +44,14 @@ export function InfoPanel({ story }: InfoPanelProps) {
       )}
 
       {lookupState.status === 'found' && (
-        <div className="flex gap-8">
-          {/* Left: word + reading inline, meaning beneath */}
+        // Wrapping row: word block and kanji breakdown sit side by side when there's
+        // room, and the breakdown flows below the word block for long words / tight widths.
+        <div className="flex flex-wrap gap-x-6 gap-y-1">
+          {/* Word + reading inline; reading wraps as a whole below the kanji when tight. Meaning beneath. */}
           <div className="min-w-0">
-            <div className="flex items-baseline gap-2">
-              <span className="font-ja font-semibold text-paper-text" lang="ja">{lookupState.word}</span>
-              <span className="text-[0.875rem] font-ja text-muted" lang="ja">{lookupState.entry.reading}</span>
+            <div className="flex flex-wrap items-baseline gap-x-2">
+              <span className="font-ja font-semibold text-paper-text whitespace-nowrap" lang="ja">{lookupState.word}</span>
+              <span className="text-[0.875em] font-ja text-muted whitespace-nowrap" lang="ja">{lookupState.entry.reading}</span>
               {lookupState.pos && (
                 <span className="text-xs text-muted rounded px-1 py-0.5 bg-surface-subtle border border-border">
                   {lookupState.pos}
@@ -58,10 +60,8 @@ export function InfoPanel({ story }: InfoPanelProps) {
             </div>
             <p className="text-paper-text">{lookupState.entry.meaning}</p>
           </div>
-          {/* Dictionary detail column — vertical stack, ready for additional sections */}
-          <div className="flex flex-col gap-3 shrink-0">
-            <KanjiBreakdown word={lookupState.word} />
-          </div>
+          {/* Kanji breakdown — wrappable sibling, no shrink-0 so it never squeezes the word block. */}
+          <KanjiBreakdown word={lookupState.word} />
         </div>
       )}
 
