@@ -48,7 +48,7 @@ export function WordToken({ token, vocabKey, sentenceId, supplementEntry }: Word
       ? (
         <ruby key={i}>
           {group.text}
-          <rt className={cn(!rubyVisible && 'invisible')}>{group.ruby}</rt>
+          <rt className={cn('select-none [-webkit-touch-callout:none]', !rubyVisible && 'invisible')}>{group.ruby}</rt>
           {group.trailer}
         </ruby>
       )

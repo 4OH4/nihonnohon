@@ -70,7 +70,7 @@ export function SentenceBlock({ sentence, sentenceIndex, supplementMap }: Senten
         />
       ))}
       {showTranslation && (
-        <p className="w-full mt-1 italic text-translation text-[0.8em]">
+        <p className="w-full mt-1 italic text-translation text-[0.8em] select-none [-webkit-touch-callout:none]">
           {sentence.translation}
         </p>
       )}
