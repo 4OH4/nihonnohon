@@ -45,6 +45,9 @@ export function SentenceBlock({ sentence, sentenceIndex, supplementMap }: Senten
       role="group"
       aria-label={`Sentence ${sentenceIndex + 1}`}
       onClick={() => selectSentence(sentence.id)}
+      // Double-tap / double-click the whitespace is an alternative to the
+      // long-press for revealing this sentence's translation.
+      onDoubleClick={() => showSentenceTranslation(sentence.id)}
       // Keyboard fallback for long-press: 't' translates the focused sentence.
       onKeyDown={(e) => {
         if (e.key === 't' || e.key === 'T') {

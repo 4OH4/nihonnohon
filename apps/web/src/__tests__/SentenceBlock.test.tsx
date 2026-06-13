@@ -142,4 +142,18 @@ describe('SentenceBlock', () => {
     expect(useLookupStore.getState().translatedSentenceId).toBe('sent-1')
     expect(screen.getByText('Eating is fun.')).toBeInTheDocument()
   })
+
+  it('double-clicking the sentence whitespace reveals its translation', () => {
+    const { container } = render(<SentenceBlock sentence={sentence} sentenceIndex={0} />)
+    const group = container.querySelector('[role="group"]')!
+    fireEvent.doubleClick(group)
+    expect(useLookupStore.getState().translatedSentenceId).toBe('sent-1')
+    expect(screen.getByText('Eating is fun.')).toBeInTheDocument()
+  })
+
+  it('double-clicking a word does not reveal the sentence translation', () => {
+    render(<SentenceBlock sentence={sentence} sentenceIndex={0} />)
+    fireEvent.doubleClick(screen.getByRole('button', { name: '食べる' }))
+    expect(useLookupStore.getState().translatedSentenceId).toBeNull()
+  })
 })
