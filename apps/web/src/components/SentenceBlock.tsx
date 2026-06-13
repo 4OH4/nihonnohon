@@ -1,6 +1,8 @@
 // Copyright (c) 2026 Rupert Thomas
 // SPDX-License-Identifier: MIT
 
+import { useCallback, useLayoutEffect, useRef } from 'react'
+import type { RefObject } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import { cn } from '@/lib/utils'
 import { useLongPress } from '@/lib/useLongPress'
@@ -14,10 +16,12 @@ interface SentenceBlockProps {
   sentenceIndex: number
   /** Per-story supplement entries keyed by word string — supplement takes precedence over main vocab. */
   supplementMap?: Map<string, VocabSupplementEntry>
+  /** Scroll container used to keep this sentence visually fixed when an earlier translation collapses. */
+  scrollContainerRef?: RefObject<HTMLDivElement | null>
 }
 
 /** Renders a sentence as a row of WordTokens with optional spacing, highlight, and translation. */
-export function SentenceBlock({ sentence, sentenceIndex, supplementMap }: SentenceBlockProps) {
+export function SentenceBlock({ sentence, sentenceIndex, supplementMap, scrollContainerRef }: SentenceBlockProps) {
   const { selectSentence, showSentenceTranslation, selectedSentenceId, translatedSentenceId } = useLookupStore(
     useShallow((s) => ({
       selectSentence: s.selectSentence,
@@ -36,23 +40,61 @@ export function SentenceBlock({ sentence, sentenceIndex, supplementMap }: Senten
   const showTranslation =
     (transVisible || translatedSentenceId === sentence.id) && sentence.translation !== null
 
+  // Scroll anchoring: when interacting with this sentence collapses *another*
+  // sentence's open translation above it, the page would otherwise jump. We
+  // record this sentence's viewport position just before the state change, then
+  // restore it after the DOM updates so the sentence stays under the pointer.
+  const rootRef = useRef<HTMLDivElement>(null)
+  const anchorTopRef = useRef<number | null>(null)
+
+  const captureAnchor = useCallback(() => {
+    // Only an open translation belonging to a *different* sentence can shift us.
+    if (translatedSentenceId === null || translatedSentenceId === sentence.id) return
+    if (rootRef.current) anchorTopRef.current = rootRef.current.getBoundingClientRect().top
+  }, [translatedSentenceId, sentence.id])
+
+  useLayoutEffect(() => {
+    const anchorTop = anchorTopRef.current
+    anchorTopRef.current = null
+    if (anchorTop === null || selectedSentenceId !== sentence.id) return
+    const el = rootRef.current
+    const container = scrollContainerRef?.current
+    if (!el || !container) return
+    const delta = el.getBoundingClientRect().top - anchorTop
+    if (delta !== 0) container.scrollTop += delta
+  }, [selectedSentenceId, translatedSentenceId, sentence.id, scrollContainerRef])
+
+  // Select this sentence, anchoring first — a plain tap also collapses any open
+  // translation (the first click of a double-tap included), so it must anchor too.
+  const selectThisSentence = useCallback(() => {
+    captureAnchor()
+    selectSentence(sentence.id)
+  }, [captureAnchor, selectSentence, sentence.id])
+
+  // Reveal this sentence's translation, anchoring our scroll position first.
+  const reveal = useCallback(() => {
+    captureAnchor()
+    showSentenceTranslation(sentence.id)
+  }, [captureAnchor, showSentenceTranslation, sentence.id])
+
   // Long-press reveals this sentence's translation inline. Long-pressing a word
   // is excluded — WordToken stops pointer propagation so word lookup wins there.
-  const longPress = useLongPress(() => showSentenceTranslation(sentence.id))
+  const longPress = useLongPress(reveal)
 
   return (
     <div
+      ref={rootRef}
       role="group"
       aria-label={`Sentence ${sentenceIndex + 1}`}
-      onClick={() => selectSentence(sentence.id)}
+      onClick={selectThisSentence}
       // Double-tap / double-click the whitespace is an alternative to the
       // long-press for revealing this sentence's translation.
-      onDoubleClick={() => showSentenceTranslation(sentence.id)}
+      onDoubleClick={reveal}
       // Keyboard fallback for long-press: 't' translates the focused sentence.
       onKeyDown={(e) => {
         if (e.key === 't' || e.key === 'T') {
           e.preventDefault()
-          showSentenceTranslation(sentence.id)
+          reveal()
         }
       }}
       {...longPress}
@@ -70,6 +112,7 @@ export function SentenceBlock({ sentence, sentenceIndex, supplementMap }: Senten
           vocabKey={sentence.vocabKeys[i] ?? null}
           sentenceId={sentence.id}
           supplementEntry={supplementMap?.get(token.surface) ?? null}
+          onBeforeActivate={captureAnchor}
         />
       ))}
       {showTranslation && (

@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Rupert Thomas
 // SPDX-License-Identifier: MIT
 
-import { describe, it, expect, afterEach } from 'vitest'
+import { describe, it, expect, afterEach, vi } from 'vitest'
 import { render, fireEvent, screen, act } from '@testing-library/react'
 import { SentenceBlock } from '@/components/SentenceBlock'
 import { useLookupStore } from '@/stores/lookupStore'
@@ -155,5 +155,80 @@ describe('SentenceBlock', () => {
     render(<SentenceBlock sentence={sentence} sentenceIndex={0} />)
     fireEvent.doubleClick(screen.getByRole('button', { name: '食べる' }))
     expect(useLookupStore.getState().translatedSentenceId).toBeNull()
+  })
+
+  // Scroll anchoring: jsdom has no layout, so we mock the sentence's measured
+  // top (before → after) and assert the scroll container is compensated.
+  const rect = (top: number) => ({ top }) as unknown as DOMRect
+
+  it('anchors scroll when revealing a translation collapses an earlier one', () => {
+    // A different sentence's translation is currently open above this one.
+    act(() => { useLookupStore.setState({ translatedSentenceId: 'other-sent' }) })
+    const container = document.createElement('div')
+    container.scrollTop = 200
+    const scrollRef = { current: container }
+    const { container: c } = render(
+      <SentenceBlock sentence={sentence} sentenceIndex={0} scrollContainerRef={scrollRef} />,
+    )
+    const group = c.querySelector('[role="group"]') as HTMLElement
+    const tops = [100, 60] // before the collapse, then after (moved up 40px)
+    vi.spyOn(group, 'getBoundingClientRect').mockImplementation(() => rect(tops.shift() ?? 60))
+
+    fireEvent.doubleClick(group)
+
+    expect(useLookupStore.getState().translatedSentenceId).toBe('sent-1')
+    expect(container.scrollTop).toBe(160) // 200 + (60 - 100)
+  })
+
+  it('anchors scroll when a plain tap (selectSentence) collapses an earlier translation', () => {
+    // This is the path that fires on the first click of a double-tap, too.
+    act(() => { useLookupStore.setState({ translatedSentenceId: 'other-sent' }) })
+    const container = document.createElement('div')
+    container.scrollTop = 200
+    const scrollRef = { current: container }
+    const { container: c } = render(
+      <SentenceBlock sentence={sentence} sentenceIndex={0} scrollContainerRef={scrollRef} />,
+    )
+    const group = c.querySelector('[role="group"]') as HTMLElement
+    const tops = [100, 60]
+    vi.spyOn(group, 'getBoundingClientRect').mockImplementation(() => rect(tops.shift() ?? 60))
+
+    fireEvent.click(group)
+
+    expect(useLookupStore.getState().translatedSentenceId).toBeNull()
+    expect(container.scrollTop).toBe(160)
+  })
+
+  it('anchors scroll when tapping a word collapses an earlier translation', () => {
+    act(() => { useLookupStore.setState({ translatedSentenceId: 'other-sent' }) })
+    const container = document.createElement('div')
+    container.scrollTop = 200
+    const scrollRef = { current: container }
+    const { container: c } = render(
+      <SentenceBlock sentence={sentence} sentenceIndex={0} scrollContainerRef={scrollRef} />,
+    )
+    const group = c.querySelector('[role="group"]') as HTMLElement
+    const tops = [100, 60]
+    vi.spyOn(group, 'getBoundingClientRect').mockImplementation(() => rect(tops.shift() ?? 60))
+
+    fireEvent.click(screen.getByRole('button', { name: '食べる' }))
+
+    expect(useLookupStore.getState().translatedSentenceId).toBeNull() // word lookup clears it
+    expect(container.scrollTop).toBe(160)
+  })
+
+  it('does not adjust scroll when no other translation is open', () => {
+    const container = document.createElement('div')
+    container.scrollTop = 200
+    const scrollRef = { current: container }
+    const { container: c } = render(
+      <SentenceBlock sentence={sentence} sentenceIndex={0} scrollContainerRef={scrollRef} />,
+    )
+    const group = c.querySelector('[role="group"]') as HTMLElement
+    vi.spyOn(group, 'getBoundingClientRect').mockReturnValue(rect(60))
+
+    fireEvent.doubleClick(group)
+
+    expect(container.scrollTop).toBe(200)
   })
 })

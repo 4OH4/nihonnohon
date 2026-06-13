@@ -15,10 +15,12 @@ interface WordTokenProps {
   sentenceId: string
   /** Raw supplement entry; takes precedence over vocabKey lookup when provided and non-null. */
   supplementEntry?: VocabSupplementEntry | null
+  /** Called just before a lookup dispatches, so the parent can anchor its scroll position. */
+  onBeforeActivate?: () => void
 }
 
 /** Single Japanese word token with per-segment ruby annotation and vocabulary lookup. */
-export function WordToken({ token, vocabKey, sentenceId, supplementEntry }: WordTokenProps) {
+export function WordToken({ token, vocabKey, sentenceId, supplementEntry, onBeforeActivate }: WordTokenProps) {
   const lookup = useLookupStore((s) => s.lookup)
   const lookupStatus = useLookupStore((s) => s.lookupState.status)
   const activeWord = useLookupStore((s) =>
@@ -34,12 +36,14 @@ export function WordToken({ token, vocabKey, sentenceId, supplementEntry }: Word
     e.stopPropagation()
     // Supplement entry takes precedence over the main vocab dictionary
     if (supplementEntry != null) {
+      onBeforeActivate?.()
       lookup(token.surface, supplementToVocabEntry(supplementEntry), sentenceId, supplementEntry.pos)
       return
     }
     if (vocabKey === null) return
     const entry = lookupVocab(vocabKey)
     if (entry === null) return
+    onBeforeActivate?.()
     lookup(token.surface, entry, sentenceId)
   }
 

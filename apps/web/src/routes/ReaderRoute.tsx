@@ -164,7 +164,9 @@ export function ReaderRoute() {
         <div
           ref={storyScrollRef}
           className={cn(
-            'overflow-y-auto p-4 w-full',
+            // [overflow-anchor:none] lets SentenceBlock's manual scroll anchoring
+            // be the single source of truth when an inline translation collapses.
+            'overflow-y-auto p-4 w-full [overflow-anchor:none]',
             activeTab !== 'story' ? 'hidden lg:block' : 'block',
             'lg:max-w-none lg:shrink-0 lg:w-[var(--story-pct)]',
           )}
@@ -179,6 +181,7 @@ export function ReaderRoute() {
               sentence={sentence}
               sentenceIndex={i}
               supplementMap={supplementMap}
+              scrollContainerRef={storyScrollRef}
             />
           ))}
         </div>
