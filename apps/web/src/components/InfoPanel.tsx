@@ -26,7 +26,7 @@ export function InfoPanel({ story }: InfoPanelProps) {
 
   return (
     <div
-      className="flex-1 min-h-[90px] max-h-[160px] overflow-y-auto bg-surface px-4 py-2"
+      className="flex-1 min-w-0 min-h-[90px] max-h-[160px] overflow-y-auto overflow-x-hidden bg-surface px-4 py-2"
       style={{ fontSize: 'var(--story-font-size)' } as React.CSSProperties}
       aria-live="polite"
       aria-label="Word lookup panel"
@@ -61,11 +61,10 @@ export function InfoPanel({ story }: InfoPanelProps) {
             </div>
             <p className="text-paper-text">{lookupState.entry.meaning}</p>
           </div>
-          {/* Kanji breakdown — holds its width beside the word column; only a wide,
-              multi-kanji word pushes it onto its own line below the English meaning. */}
-          <div className="shrink-0">
-            <KanjiBreakdown word={lookupState.word} />
-          </div>
+          {/* Kanji breakdown — sits beside the word column; a wide, multi-kanji word
+              drops it onto its own line below the English meaning, where its own
+              flex-wrap lets the kanji flow over rows rather than scroll horizontally. */}
+          <KanjiBreakdown word={lookupState.word} />
         </div>
       )}
 

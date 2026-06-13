@@ -17,7 +17,7 @@ export function KanjiBreakdown({ word }: KanjiBreakdownProps) {
   if (entries.length === 0) return null
 
   return (
-    <div className="flex gap-3 overflow-x-auto" tabIndex={0} aria-label="Kanji breakdown">
+    <div className="flex flex-wrap gap-x-3 gap-y-2" aria-label="Kanji breakdown">
       {entries.map(({ char, entry }, i) => (
         <div key={char + i} className="flex flex-col items-center shrink-0">
           <span className="font-ja text-[1.25em]" lang="ja">{char}</span>
