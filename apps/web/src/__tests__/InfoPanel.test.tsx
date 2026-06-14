@@ -104,7 +104,7 @@ describe('InfoPanel', () => {
     expect(screen.getByText('たべる')).toBeInTheDocument()
   })
 
-  it('found state keeps word and reading on a non-breaking, wrappable row', () => {
+  it('found state keeps word and reading non-breaking, stacked on mobile and inline on desktop', () => {
     act(() => {
       useLookupStore.getState().lookup('食べる', vocabEntry, 's1')
     })
@@ -114,8 +114,10 @@ describe('InfoPanel', () => {
     // Neither the kanji word nor the kana reading may break internally...
     expect(word.classList.contains('whitespace-nowrap')).toBe(true)
     expect(reading.classList.contains('whitespace-nowrap')).toBe(true)
-    // ...but the row they share wraps, so the reading can drop below the word when tight.
-    expect((word.parentElement as HTMLElement).classList.contains('flex-wrap')).toBe(true)
+    // ...the column stacks them on mobile (so the column stays narrow) and goes inline on desktop.
+    const row = word.parentElement as HTMLElement
+    expect(row.classList.contains('flex-col')).toBe(true)
+    expect(row.classList.contains('lg:flex-row')).toBe(true)
   })
 
   it('found state with kanji word shows KanjiBreakdown entry', () => {

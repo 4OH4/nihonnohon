@@ -14,7 +14,6 @@ import { TEXT_SIZE_VALUES } from '@/utils/textSize'
 import { cn } from '@/lib/utils'
 import { AppBar } from '@/components/AppBar'
 import { InfoPanel } from '@/components/InfoPanel'
-import { ToolBar } from '@/components/ToolBar'
 import { SettingsMenu } from '@/components/SettingsMenu'
 import { SentenceBlock } from '@/components/SentenceBlock'
 import { VocabPanel } from '@/components/VocabPanel'
@@ -152,11 +151,10 @@ export function ReaderRoute() {
       style={{ '--story-font-size': TEXT_SIZE_VALUES[textSize] } as React.CSSProperties}
     >
       <AppBar rightSlot={<SettingsMenu />} />
-      {/* bg-surface backs the whole row so the page never shows through if the
-          ToolBar is shorter than the (font-scaled) InfoPanel. */}
-      <div className="flex items-stretch border-b border-border bg-surface">
+      {/* Full-width InfoPanel — the ruby/translation/spacing toggles live in the
+          SettingsMenu now, so the panel takes the whole width. */}
+      <div className="flex border-b border-border">
         <InfoPanel story={story} />
-        <ToolBar language={story.language} />
       </div>
 
       {/* Content area: single column on mobile, two-column on desktop (lg+) */}

@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Rupert Thomas
 // SPDX-License-Identifier: MIT
 
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useLookupStore } from '@/stores/lookupStore'
 import { KanjiBreakdown } from '@/components/KanjiBreakdown'
 import type { StoryModel } from '@nihonnohon/schema'
@@ -27,16 +27,40 @@ export function InfoPanel({ story }: InfoPanelProps) {
     return () => document.removeEventListener('keydown', handler)
   }, [reset])
 
+  // Show a soft fade at the bottom edge while there's more content below the fold,
+  // hinting that the panel scrolls.
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [canScrollDown, setCanScrollDown] = useState(false)
+
+  const updateScroll = useCallback(() => {
+    const el = scrollRef.current
+    if (!el) return
+    setCanScrollDown(el.scrollTop + el.clientHeight < el.scrollHeight - 1)
+  }, [])
+
+  // Recompute when the looked-up content changes (its height changes).
+  useLayoutEffect(() => { updateScroll() }, [lookupState, updateScroll])
+
+  // Recompute when the panel resizes (e.g. a font-size change alters its em height).
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    const ro = new ResizeObserver(updateScroll)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [updateScroll])
+
   return (
     <div
       // Fixed height so the panel never resizes and pushes the story text;
       // expressed in em (relative to --story-font-size) so it scales with the
       // chosen font size. Deeper on mobile, where content wraps onto more lines.
-      className="flex-1 min-w-0 h-[5.5em] lg:h-[4.5em] overflow-y-auto overflow-x-hidden bg-surface px-4 py-2"
+      className="relative flex-1 min-w-0 h-[5.5em] lg:h-[4.5em] bg-surface"
       style={{ fontSize: 'var(--story-font-size)' } as React.CSSProperties}
       aria-live="polite"
       aria-label="Word lookup panel"
     >
+    <div ref={scrollRef} onScroll={updateScroll} className="h-full overflow-y-auto overflow-x-hidden px-4 py-2">
       {lookupState.status === 'idle' && (
         <div>
           <p className="font-semibold text-paper-text">{story.title}</p>
@@ -52,15 +76,12 @@ export function InfoPanel({ story }: InfoPanelProps) {
       )}
 
       {lookupState.status === 'found' && (
-        // Wrapping row: the word column grows to fill, the kanji breakdown holds its
-        // size beside it. Because the column's min size is the reading width, the kana
-        // reading wraps below the word *before* the breakdown is pushed to its own line.
-        <div className="flex flex-wrap items-start gap-x-6 gap-y-1">
-          {/* On desktop the word column sizes to its content (lg:flex-initial) so the
-              kanji breakdown stays attached beside it rather than being pushed to the
-              far edge; on mobile it grows so the reading wraps before the breakdown does. */}
-          <div className="flex-1 lg:flex-initial">
-            <div className="flex flex-wrap items-baseline gap-x-2">
+        // The word column sizes to its content, keeping the kanji breakdown attached
+        // beside it. On mobile the word and reading stack (narrow column → the
+        // breakdown has room to stay horizontal); on desktop they sit inline.
+        <div className="flex items-start gap-x-3">
+          <div className="flex-initial">
+            <div className="flex flex-col lg:flex-row lg:flex-wrap lg:items-baseline lg:gap-x-2">
               <span className="font-ja font-semibold text-paper-text whitespace-nowrap" lang="ja">{lookupState.word}</span>
               {/* Skip the reading when it's identical to the surface (a kana-only word). */}
               {lookupState.entry.reading !== lookupState.word && (
@@ -75,15 +96,18 @@ export function InfoPanel({ story }: InfoPanelProps) {
               )}
             </div>
           </div>
-          {/* Kanji breakdown — sits beside the word column; a wide, multi-kanji word
-              drops it onto its own line below the English meaning, where its own
-              flex-wrap lets the kanji flow over rows rather than scroll horizontally. */}
+          {/* Kanji breakdown — beside the word column; wraps onto further rows for a
+              wide multi-kanji word, after the reading has wrapped. */}
           <KanjiBreakdown word={lookupState.word} />
         </div>
       )}
 
       {lookupState.status === 'not-found' && (
         <p className="text-muted">No entry for <span lang="ja">{lookupState.word}</span></p>
+      )}
+    </div>
+      {canScrollDown && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-5 bg-gradient-to-t from-surface to-transparent" />
       )}
     </div>
   )
