@@ -43,7 +43,8 @@ export function SettingsMenu() {
         <button
           type="button"
           aria-label="Settings"
-          className="px-3 py-2 rounded text-base text-muted"
+          // py-1.5 keeps the (larger) icon within the AppBar's min-h-12 height
+          className="px-3 py-1.5 rounded text-lg text-muted"
         >
           ⚙
         </button>
