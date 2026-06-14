@@ -15,10 +15,12 @@ interface WordTokenProps {
   sentenceId: string
   /** Raw supplement entry; takes precedence over vocabKey lookup when provided and non-null. */
   supplementEntry?: VocabSupplementEntry | null
+  /** Called just before a lookup dispatches, so the parent can anchor its scroll position. */
+  onBeforeActivate?: () => void
 }
 
 /** Single Japanese word token with per-segment ruby annotation and vocabulary lookup. */
-export function WordToken({ token, vocabKey, sentenceId, supplementEntry }: WordTokenProps) {
+export function WordToken({ token, vocabKey, sentenceId, supplementEntry, onBeforeActivate }: WordTokenProps) {
   const lookup = useLookupStore((s) => s.lookup)
   const lookupStatus = useLookupStore((s) => s.lookupState.status)
   const activeWord = useLookupStore((s) =>
@@ -34,12 +36,14 @@ export function WordToken({ token, vocabKey, sentenceId, supplementEntry }: Word
     e.stopPropagation()
     // Supplement entry takes precedence over the main vocab dictionary
     if (supplementEntry != null) {
+      onBeforeActivate?.()
       lookup(token.surface, supplementToVocabEntry(supplementEntry), sentenceId, supplementEntry.pos)
       return
     }
     if (vocabKey === null) return
     const entry = lookupVocab(vocabKey)
     if (entry === null) return
+    onBeforeActivate?.()
     lookup(token.surface, entry, sentenceId)
   }
 
@@ -48,7 +52,7 @@ export function WordToken({ token, vocabKey, sentenceId, supplementEntry }: Word
       ? (
         <ruby key={i}>
           {group.text}
-          <rt className={cn(!rubyVisible && 'invisible')}>{group.ruby}</rt>
+          <rt className={cn('select-none [-webkit-touch-callout:none]', !rubyVisible && 'invisible')}>{group.ruby}</rt>
           {group.trailer}
         </ruby>
       )
@@ -62,12 +66,20 @@ export function WordToken({ token, vocabKey, sentenceId, supplementEntry }: Word
       aria-label={token.surface}
       lang="ja"
       className={cn(
-        'font-ja cursor-pointer rounded word-token',
+        // Reserve the underline space on every token (border-transparent) so
+        // selecting a word only changes its colour — it never grows the line and
+        // reflows the surrounding text.
+        'font-ja cursor-pointer rounded word-token border-b-2 border-transparent',
         isActive
-          ? 'bg-accent-subtle border-b-2 border-accent'
+          ? 'bg-accent-subtle border-accent'
           : 'hover:bg-accent-subtle',
       )}
       onClick={handleActivate}
+      // Keep the sentence-level long-press / double-tap from firing on a word: a
+      // press or double-tap on a word is always a word lookup, never a quick
+      // sentence translation.
+      onPointerDown={(e) => e.stopPropagation()}
+      onDoubleClick={(e) => e.stopPropagation()}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') handleActivate(e)
       }}

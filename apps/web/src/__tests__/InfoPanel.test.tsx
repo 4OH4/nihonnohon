@@ -104,6 +104,24 @@ describe('InfoPanel', () => {
     expect(screen.getByText('たべる')).toBeInTheDocument()
   })
 
+  it('found state keeps the word non-breaking but lets the reading wrap, stacked on mobile and inline on desktop', () => {
+    act(() => {
+      useLookupStore.getState().lookup('食べる', vocabEntry, 's1')
+    })
+    render(<InfoPanel story={storyFixture} />)
+    const word = screen.getByText('食べる')
+    const reading = screen.getByText('たべる')
+    // The kanji word stays on one line...
+    expect(word.classList.contains('whitespace-nowrap')).toBe(true)
+    // ...but a long reading may wrap so it doesn't crowd out the kanji breakdown.
+    expect(reading.classList.contains('whitespace-nowrap')).toBe(false)
+    expect(reading.classList.contains('break-words')).toBe(true)
+    // The column stacks them on mobile (so the column stays narrow) and goes inline on desktop.
+    const row = word.parentElement as HTMLElement
+    expect(row.classList.contains('flex-col')).toBe(true)
+    expect(row.classList.contains('lg:flex-row')).toBe(true)
+  })
+
   it('found state with kanji word shows KanjiBreakdown entry', () => {
     _initKanjiFromData(kanjiData)
     act(() => {
@@ -123,6 +141,26 @@ describe('InfoPanel', () => {
     render(<InfoPanel story={storyFixture} />)
     // KanjiBreakdown returns null — the labelled region should not be in the DOM
     expect(screen.queryByLabelText('Kanji breakdown')).toBeNull()
+  })
+
+  it('found state hides the reading when it equals the surface (kana-only word)', () => {
+    act(() => {
+      useLookupStore.getState().lookup('たべる', hiraganaEntry, 's1')
+    })
+    render(<InfoPanel story={storyFixture} />)
+    // Only the surface renders the kana — the duplicate reading line is suppressed.
+    expect(screen.getAllByText('たべる')).toHaveLength(1)
+  })
+
+  it('found state renders the POS tag after the meaning', () => {
+    act(() => {
+      useLookupStore.getState().lookup('食べる', vocabEntry, 's1', 'n')
+    })
+    render(<InfoPanel story={storyFixture} />)
+    const meaning = screen.getByText('to eat')
+    const pos = screen.getByText('n')
+    // POS follows the meaning in document order.
+    expect(meaning.compareDocumentPosition(pos) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   })
 
   it('not-found state shows muted "No entry for" message', () => {

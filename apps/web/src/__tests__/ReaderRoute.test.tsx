@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import { render, screen, fireEvent, act, within } from '@testing-library/react'
+import { render, screen, fireEvent, act } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import type { LoaderFunctionArgs } from 'react-router-dom'
 import { ReaderRoute, ReaderError, loader } from '@/routes/ReaderRoute'
@@ -221,26 +221,10 @@ describe('ReaderRoute', () => {
     expect(useLookupStore.getState().lookupState.status).toBe('idle')
   })
 
-  it('ToolBar has exactly 2 interactive controls', () => {
+  it('Ruby toggle (in settings): rt elements use invisible class when off, not display:none', () => {
     renderRoute()
-    const toolbar = screen.getByRole('toolbar')
-    const buttons = within(toolbar).getAllByRole('button')
-    expect(buttons).toHaveLength(2)
-  })
-
-  it('ルビ label is "ルビ" when story language is "ja"', () => {
-    renderRoute()
-    expect(screen.getByRole('button', { name: 'ルビ' })).toBeInTheDocument()
-  })
-
-  it('ルビ label is "Ruby" when story language is not "ja"', () => {
-    renderRoute({ ...baseStory, language: 'zh' })
-    expect(screen.getByRole('button', { name: 'Ruby' })).toBeInTheDocument()
-  })
-
-  it('ruby toggle: rt elements use invisible class when off, not display:none', () => {
-    renderRoute()
-    fireEvent.click(screen.getByRole('button', { name: 'ルビ' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Ruby' }))
 
     const rtElements = document.querySelectorAll('rt')
     expect(rtElements.length).toBeGreaterThan(0)
@@ -250,10 +234,11 @@ describe('ReaderRoute', () => {
     })
   })
 
-  it('Trans toggle shows translations when on', () => {
+  it('Trans toggle (in settings) shows translations when on', () => {
     renderRoute()
     expect(screen.queryByText('Eating is fun.')).not.toBeInTheDocument()
-    fireEvent.click(screen.getByRole('button', { name: 'Trans' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Trans.' }))
     expect(screen.getByText('Eating is fun.')).toBeInTheDocument()
     expect(screen.getByText('I study Japanese.')).toBeInTheDocument()
   })
@@ -280,10 +265,12 @@ describe('ReaderRoute', () => {
     expect(screen.queryByText('to eat')).not.toBeInTheDocument()
   })
 
-  it('SettingsMenu opens with spacing and text size controls', () => {
+  it('SettingsMenu opens with spacing, ruby, trans, and text size controls', () => {
     renderRoute()
     fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
     expect(screen.getByText('Spaces')).toBeInTheDocument()
+    expect(screen.getByText('Ruby')).toBeInTheDocument()
+    expect(screen.getByText('Trans.')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Smaller text' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Larger text' })).toBeInTheDocument()
   })

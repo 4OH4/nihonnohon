@@ -42,6 +42,20 @@ describe('KanjiBreakdown', () => {
     expect(container.firstChild).toBeNull()
   })
 
+  it('keeps a 3-kanji word on a single row', () => {
+    render(<KanjiBreakdown word="日本食" />)
+    expect(screen.getByLabelText('Kanji breakdown').children).toHaveLength(1)
+  })
+
+  it('splits a 4-kanji word into two balanced rows', () => {
+    render(<KanjiBreakdown word="日本食無" />)
+    const region = screen.getByLabelText('Kanji breakdown')
+    expect(region.children).toHaveLength(2)
+    // First row holds 2 of the 4 cells (4 → 2 + 2).
+    expect(region.children[0].children).toHaveLength(2)
+    ;['日', '本', '食', '無'].forEach((c) => expect(screen.getByText(c)).toBeInTheDocument())
+  })
+
   it('renders nothing (null) for a katakana-only word', () => {
     const { container } = render(<KanjiBreakdown word="タベル" />)
     expect(container.firstChild).toBeNull()
