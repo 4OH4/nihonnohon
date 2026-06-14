@@ -23,7 +23,7 @@ export function ToolBar({ language }: ToolBarProps) {
   const rubyLabel = language === 'ja' ? 'ルビ' : 'Ruby'
 
   return (
-    <div role="toolbar" aria-label="Reading controls" className="flex flex-col gap-2 px-3 py-3 justify-center bg-surface">
+    <div role="toolbar" aria-label="Reading controls" className="flex flex-col gap-2 px-3 pt-2 justify-start bg-surface">
       <button
         type="button"
         aria-pressed={rubyVisible}

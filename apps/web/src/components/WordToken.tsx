@@ -66,9 +66,12 @@ export function WordToken({ token, vocabKey, sentenceId, supplementEntry, onBefo
       aria-label={token.surface}
       lang="ja"
       className={cn(
-        'font-ja cursor-pointer rounded word-token',
+        // Reserve the underline space on every token (border-transparent) so
+        // selecting a word only changes its colour — it never grows the line and
+        // reflows the surrounding text.
+        'font-ja cursor-pointer rounded word-token border-b-2 border-transparent',
         isActive
-          ? 'bg-accent-subtle border-b-2 border-accent'
+          ? 'bg-accent-subtle border-accent'
           : 'hover:bg-accent-subtle',
       )}
       onClick={handleActivate}

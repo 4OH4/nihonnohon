@@ -152,7 +152,9 @@ export function ReaderRoute() {
       style={{ '--story-font-size': TEXT_SIZE_VALUES[textSize] } as React.CSSProperties}
     >
       <AppBar rightSlot={<SettingsMenu />} />
-      <div className="flex items-stretch border-b border-border">
+      {/* bg-surface backs the whole row so the page never shows through if the
+          ToolBar is shorter than the (font-scaled) InfoPanel. */}
+      <div className="flex items-stretch border-b border-border bg-surface">
         <InfoPanel story={story} />
         <ToolBar language={story.language} />
       </div>

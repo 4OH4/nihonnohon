@@ -139,6 +139,26 @@ describe('InfoPanel', () => {
     expect(screen.queryByLabelText('Kanji breakdown')).toBeNull()
   })
 
+  it('found state hides the reading when it equals the surface (kana-only word)', () => {
+    act(() => {
+      useLookupStore.getState().lookup('たべる', hiraganaEntry, 's1')
+    })
+    render(<InfoPanel story={storyFixture} />)
+    // Only the surface renders the kana — the duplicate reading line is suppressed.
+    expect(screen.getAllByText('たべる')).toHaveLength(1)
+  })
+
+  it('found state renders the POS tag after the meaning', () => {
+    act(() => {
+      useLookupStore.getState().lookup('食べる', vocabEntry, 's1', 'n')
+    })
+    render(<InfoPanel story={storyFixture} />)
+    const meaning = screen.getByText('to eat')
+    const pos = screen.getByText('n')
+    // POS follows the meaning in document order.
+    expect(meaning.compareDocumentPosition(pos) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
   it('not-found state shows muted "No entry for" message', () => {
     act(() => {
       useLookupStore.getState().lookup('zzz', null, 's1')
