@@ -38,7 +38,7 @@ export function KanjiBreakdown({ word }: KanjiBreakdownProps) {
     // keyword when there's room and shrinks toward the 2.5em floor when tight). On
     // desktop the rows collapse (lg:contents) into a single horizontal row, since
     // the wider panel has room for all the kanji at once.
-    <div className="flex flex-col gap-y-1 lg:flex-row lg:gap-x-2" aria-label="Kanji breakdown">
+    <div className="flex shrink-0 flex-col gap-y-1 lg:flex-row lg:gap-x-2" aria-label="Kanji breakdown">
       {splitIntoRows(entries).map((row, ri) => (
         <div key={ri} className="flex gap-x-2 lg:contents">
           {row.map(({ char, entry }, i) => (

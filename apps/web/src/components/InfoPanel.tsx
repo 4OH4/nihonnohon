@@ -80,21 +80,28 @@ export function InfoPanel({ story }: InfoPanelProps) {
         // beside it. On mobile the word and reading stack (narrow column → the
         // breakdown has room to stay horizontal); on desktop they sit inline.
         <div className="flex items-start gap-x-3">
-          <div className="flex-initial">
+          {/* min-w-0 lets this column shrink (and its reading/translation wrap)
+              when the breakdown needs room, rather than growing to max-content
+              and pushing the breakdown off the clipped right edge. */}
+          <div className="flex-initial min-w-0">
             <div className="flex flex-col lg:flex-row lg:flex-wrap lg:items-baseline lg:gap-x-2">
               <span className="font-ja font-semibold text-paper-text whitespace-nowrap" lang="ja">{lookupState.word}</span>
-              {/* Skip the reading when it's identical to the surface (a kana-only word). */}
+              {/* Skip the reading when it's identical to the surface (a kana-only word).
+                  Allowed to wrap (between kana) so a long reading doesn't crowd out the breakdown. */}
               {lookupState.entry.reading !== lookupState.word && (
-                <span className="text-[0.875em] font-ja text-muted whitespace-nowrap" lang="ja">{lookupState.entry.reading}</span>
+                <span className="text-[0.875em] font-ja text-muted break-words" lang="ja">{lookupState.entry.reading}</span>
               )}
             </div>
-            {/* Meaning, with the part-of-speech tag trailing it. */}
-            <div className="flex flex-wrap items-baseline gap-x-2">
-              <p className="text-paper-text">{lookupState.entry.meaning}</p>
+            {/* Meaning, with the part-of-speech tag as inline content trailing the
+                text — so it flows right after the last word (and wraps onto a new
+                line only when there's no room), rather than dropping below the
+                whole paragraph. Hyphenates on wrap. */}
+            <p lang="en" className="text-paper-text hyphens-auto break-words">
+              {lookupState.entry.meaning}
               {lookupState.pos && (
-                <span className={TAG_CLASS}>{lookupState.pos}</span>
+                <span className={`${TAG_CLASS} ml-2 inline-block whitespace-nowrap align-baseline`}>{lookupState.pos}</span>
               )}
-            </div>
+            </p>
           </div>
           {/* Kanji breakdown — beside the word column; wraps onto further rows for a
               wide multi-kanji word, after the reading has wrapped. */}
