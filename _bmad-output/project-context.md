@@ -71,6 +71,16 @@ _Critical rules and patterns that AI agents must follow when implementing code i
 - Story reader route: `/read/:storyId`; library route: `/`
 - Components are `.tsx` files, PascalCase filenames matching the export name
 
+### Reader Interaction Contract
+
+The reader's word/sentence interactions are a fixed behavioural contract. Design rationale lives in `_bmad-output/planning-artifacts/ux-design-specification.md`; the enforceable rules are here. Components: `WordToken`, `SentenceBlock`, `InfoPanel`.
+
+- **Word selection:** a single click/tap (or `Enter`/`Space`) on a `WordToken` calls `lookup(...)` — the `InfoPanel` updates (translation, hiragana reading, `KanjiBreakdown`) and the token gets the active highlight (`accent-subtle` + accent bottom border). If the token has no vocab/supplement entry the activation is a silent no-op — never show an error.
+- **Ruby on selection:** the currently selected word **always** shows its ruby above it, regardless of the global `rubyVisible` toggle, and reverts when deselected. Implemented by gating the `<rt>` `invisible` class on `!rubyVisible && !isActive` in `WordToken` — do not regress this to `!rubyVisible` alone.
+- **Global ruby toggle:** `rubyVisible` (preferenceStore, Settings) shows/hides `<rt>` for all words via the `invisible` class (`visibility: hidden`) — layout space for `<rt>` is **always reserved**; never use `display: none`, so toggling or revealing ruby never reflows the text.
+- **Sentence translation — two independent mechanisms:** (1) the global `transVisible` (Trans toggle) reveals every sentence's translation; (2) a long-press (touch) or double-click (desktop) on a `SentenceBlock` reveals just that one sentence's translation via `showSentenceTranslation` → `translatedSentenceId`. A word activation `stopPropagation()`s so it never triggers the sentence gesture.
+- **Deselection:** clicking another word, or the sentence background (`selectSentence`), resets the lookup — the active highlight and the selected-word ruby clear automatically via `isActive`.
+
 ### State Management (Zustand)
 
 - Stores live in `apps/web/src/stores/`, camelCase + `Store` suffix (e.g. `lookupStore.ts`)
