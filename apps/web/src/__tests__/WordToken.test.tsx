@@ -72,6 +72,39 @@ describe('WordToken', () => {
     expect(rt.classList.contains('invisible')).toBe(false)
   })
 
+  it('selected word shows ruby even when rubyVisible is false', () => {
+    act(() => { usePreferenceStore.setState({ rubyVisible: false }) })
+    const { container, rerender } = render(
+      <WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" />
+    )
+    // Select the word, then re-render so isActive is recomputed.
+    fireEvent.click(screen.getByRole('button', { name: '食べる' }))
+    rerender(<WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" />)
+    expect(container.querySelector('rt')!.classList.contains('invisible')).toBe(false)
+  })
+
+  it('non-selected word keeps ruby hidden when rubyVisible is false', () => {
+    act(() => { usePreferenceStore.setState({ rubyVisible: false }) })
+    const { container } = render(
+      <WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" />
+    )
+    expect(container.querySelector('rt')!.classList.contains('invisible')).toBe(true)
+  })
+
+  it('deselecting the word hides its ruby again when rubyVisible is false', () => {
+    act(() => { usePreferenceStore.setState({ rubyVisible: false }) })
+    const { container, rerender } = render(
+      <WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" />
+    )
+    fireEvent.click(screen.getByRole('button', { name: '食べる' }))
+    rerender(<WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" />)
+    expect(container.querySelector('rt')!.classList.contains('invisible')).toBe(false)
+    // Deselect (e.g. clicking the sentence resets the lookup state).
+    act(() => { useLookupStore.getState().reset() })
+    rerender(<WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" />)
+    expect(container.querySelector('rt')!.classList.contains('invisible')).toBe(true)
+  })
+
   it('click calls lookup for a valid vocabKey', () => {
     render(<WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" />)
     fireEvent.click(screen.getByRole('button', { name: '食べる' }))
