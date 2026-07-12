@@ -54,13 +54,13 @@ test.describe('Visual regression snapshots', () => {
     await page.getByRole('button', { name: 'Settings' }).click()
     await page.getByRole('button', { name: 'Ruby' }).click()
     await page.keyboard.press('Escape')
-    expect(await page.getByRole('group', { name: 'Sentence 1' }).screenshot()).toMatchSnapshot('ruby-off.png')
+    expect(await page.getByRole('group', { name: 'Sentence 1', exact: true }).screenshot()).toMatchSnapshot('ruby-off.png')
   })
 
   test('Ruby toggle on', async ({ page }) => {
     await page.goto('/read/genki-i-ch6-tanaka-letter')
     // Ruby is on by default
-    expect(await page.getByRole('group', { name: 'Sentence 1' }).screenshot()).toMatchSnapshot('ruby-on.png')
+    expect(await page.getByRole('group', { name: 'Sentence 1', exact: true }).screenshot()).toMatchSnapshot('ruby-on.png')
   })
 
   test('Trans toggle on', async ({ page }) => {
@@ -68,13 +68,13 @@ test.describe('Visual regression snapshots', () => {
     await page.getByRole('button', { name: 'Settings' }).click()
     await page.getByRole('button', { name: 'Trans.' }).click()
     await page.keyboard.press('Escape')
-    expect(await page.getByRole('group', { name: 'Sentence 1' }).screenshot()).toMatchSnapshot('trans-on.png')
+    expect(await page.getByRole('group', { name: 'Sentence 1', exact: true }).screenshot()).toMatchSnapshot('trans-on.png')
   })
 
   test('Trans toggle off', async ({ page }) => {
     await page.goto('/read/genki-i-ch6-tanaka-letter')
     // Trans is off by default
-    expect(await page.getByRole('group', { name: 'Sentence 1' }).screenshot()).toMatchSnapshot('trans-off.png')
+    expect(await page.getByRole('group', { name: 'Sentence 1', exact: true }).screenshot()).toMatchSnapshot('trans-off.png')
   })
 
   test('SettingsMenu Spaces toggle on', async ({ page }) => {
@@ -82,7 +82,7 @@ test.describe('Visual regression snapshots', () => {
     await page.getByRole('button', { name: 'Settings' }).click()
     await page.getByRole('button', { name: 'Spaces' }).click()
     await page.keyboard.press('Escape')
-    expect(await page.getByRole('group', { name: 'Sentence 1' }).screenshot()).toMatchSnapshot('spaces-on.png')
+    expect(await page.getByRole('group', { name: 'Sentence 1', exact: true }).screenshot()).toMatchSnapshot('spaces-on.png')
   })
 
   test('SettingsMenu Spaces toggle off', async ({ page }) => {
