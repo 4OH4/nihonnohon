@@ -282,6 +282,117 @@ class StoryGeneratorAgent:
         self._gemini_stream_client = _stream
         return _stream
 
+    def _log_llm_perf(
+        self, activity: str, run_id: str, t0: float, response_chars: int, status: str
+    ) -> None:
+        """Emit one llm_perf log line for a completed or failed stream, keyed by activity."""
+        _perf_logger.info(
+            "",
+            extra={
+                "activity": activity,
+                "run_id": run_id,
+                "elapsed_ms": round((time.perf_counter() - t0) * 1000),
+                "response_chars": response_chars,
+                "status": status,
+            },
+        )
+
+    async def _stream_llm(
+        self,
+        *,
+        contents,
+        json_output: bool,
+        activity: str,
+        temperature: float,
+        cancel_event: asyncio.Event | None,
+        run_id: str,
+    ) -> AsyncGenerator[dict, None]:
+        """Stream one Gemini call; yield AGENT_STATUS dicts then one terminal control dict.
+
+        Owns the GenerateContentConfig, the monotonic wall-clock deadline and initial
+        ``asyncio.wait_for``, the mid-stream cancel check, thought-part → AGENT_STATUS
+        emission, and the llm_perf log line keyed by ``activity``. Thought parts are emitted
+        as pass-through ``AGENT_STATUS`` events; non-thought parts accumulate into the raw text.
+
+        The final yielded item is exactly one terminal control dict, one of:
+        ``{"__stream__": "ok", "text": <raw>}``, ``{"__stream__": "timeout"}``,
+        ``{"__stream__": "error", "message": <str>}``, or ``{"__stream__": "cancelled"}``.
+        Callers forward every AGENT_STATUS and break on the first dict carrying ``__stream__``.
+        """
+        # Stream chunks under a wall-clock deadline; accumulate non-thought text.
+        # Config construction stays inside the try so an SDK import / bad-config failure
+        # surfaces as a clean "error" terminal rather than aborting the stream.
+        t0 = time.perf_counter()
+        parts: list[str] = []
+        cancelled = False
+        try:
+            from google.genai import types as genai_types
+
+            # Build the generation config — response_mime_type is the only path difference.
+            config_kwargs = dict(
+                temperature=temperature,
+                thinking_config=genai_types.ThinkingConfig(
+                    thinking_budget=THINKING_BUDGET,
+                    include_thoughts=True,  # required to receive thought parts in stream chunks
+                ),
+            )
+            if json_output:
+                config_kwargs["response_mime_type"] = "application/json"
+            config = genai_types.GenerateContentConfig(**config_kwargs)
+
+            stream = self._get_stream_caller()
+            logger.debug("Streaming %s for %r (timeout=%ss, thinking_budget=%s)",
+                         GEMINI_MODEL, activity, self._generation_timeout_s, THINKING_BUDGET)
+            deadline = time.monotonic() + self._generation_timeout_s
+            # Guard the initial SDK call with the remaining time budget (P-review-2)
+            chunks = await asyncio.wait_for(
+                stream(GEMINI_MODEL, contents, config),
+                timeout=max(deadline - time.monotonic(), 0),
+            )
+            async for chunk in chunks:
+                if time.monotonic() > deadline:
+                    raise asyncio.TimeoutError()
+                # Honour cancel mid-stream rather than waiting for the full stream (P-review-1)
+                if cancel_event and cancel_event.is_set():
+                    cancelled = True
+                    break
+                # candidates can be None on some SDK versions (SDK issue #226)
+                candidates = getattr(chunk, "candidates", None) or []
+                if not candidates:
+                    continue
+                content = getattr(candidates[0], "content", None)
+                if not content:
+                    continue
+                for part in getattr(content, "parts", []):
+                    if getattr(part, "thought", False):
+                        thought_text = (getattr(part, "text", None) or "").strip()
+                        if thought_text:
+                            yield {"type": "AGENT_STATUS", "message": thought_text}
+                    else:
+                        parts.append(getattr(part, "text", None) or "")
+        except asyncio.TimeoutError:
+            self._log_llm_perf(activity, run_id, t0, 0, "timeout")
+            logger.warning("run_id=%s %s timed out after %ss", run_id, activity, self._generation_timeout_s)
+            yield {"__stream__": "timeout"}
+            return
+        except Exception as exc:  # noqa: BLE001
+            self._log_llm_perf(activity, run_id, t0, 0, "error")
+            logger.error("run_id=%s %s Gemini call failed: %s", run_id, activity, exc)
+            yield {"__stream__": "error", "message": str(exc)}
+            return
+
+        # Terminal control dict — cancelled short-circuits before the ok perf log.
+        if cancelled:
+            yield {"__stream__": "cancelled"}
+            return
+
+        raw = "".join(parts)
+        # No "ok" perf line for empty (safety-filtered) output — the caller turns it into
+        # GENERATION_FAILED, so logging it as a success would double-count the run.
+        if raw:
+            self._log_llm_perf(activity, run_id, t0, len(raw), "ok")
+        yield {"__stream__": "ok", "text": raw}
+
     async def generate(
         self,
         *,
@@ -361,92 +472,38 @@ class StoryGeneratorAgent:
         )
         logger.debug("Prompt (%d chars):\n%s", len(prompt), prompt)
 
-        # Stream from Gemini — thought parts become AGENT_STATUS events; content parts
-        # accumulate into raw_json. Wall-clock deadline replaces asyncio.wait_for.
-        t0 = time.perf_counter()
-        try:
-            from google.genai import types as genai_types
+        # Stream from Gemini via the shared streamer — thought parts arrive as pass-through
+        # AGENT_STATUS events; the terminal control dict carries the accumulated JSON or a failure.
+        raw_json = ""
+        async for ev in self._stream_llm(
+            contents=prompt,
+            json_output=True,
+            activity="Convert to Japanese",
+            temperature=temperature,
+            cancel_event=cancel_event,
+            run_id=run_id,
+        ):
+            if "__stream__" not in ev:
+                yield ev
+                continue
+            outcome = ev["__stream__"]
+            if outcome == "timeout":
+                yield {
+                    "type": "ERROR",
+                    "code": "TIMEOUT",
+                    "message": "This took longer than expected — your inputs are preserved. Try again.",
+                }
+                return
+            if outcome == "error":
+                yield {"type": "ERROR", "code": "GENERATION_FAILED", "message": ev["message"]}
+                return
+            if outcome == "cancelled":
+                yield {"type": "RUN_CANCELLED", "runId": run_id}
+                return
+            raw_json = ev["text"]
+            break
 
-            config = genai_types.GenerateContentConfig(
-                response_mime_type="application/json",
-                temperature=temperature,
-                thinking_config=genai_types.ThinkingConfig(
-                    thinking_budget=THINKING_BUDGET,
-                    include_thoughts=True,  # required to receive thought parts in stream chunks
-                ),
-            )
-            stream = self._get_stream_caller()
-            logger.debug("Streaming %s (timeout=%ss, thinking_budget=%s)",
-                         GEMINI_MODEL, self._generation_timeout_s, THINKING_BUDGET)
-
-            raw_json_parts: list[str] = []
-            deadline = time.monotonic() + self._generation_timeout_s
-            # Guard the initial SDK call with the remaining time budget (P-review-2)
-            chunks = await asyncio.wait_for(
-                stream(GEMINI_MODEL, prompt, config),
-                timeout=max(deadline - time.monotonic(), 0),
-            )
-            async for chunk in chunks:
-                if time.monotonic() > deadline:
-                    raise asyncio.TimeoutError()
-                # Honour cancel mid-stream rather than waiting for the full stream (P-review-1)
-                if cancel_event and cancel_event.is_set():
-                    break
-                # candidates can be None on some SDK versions (SDK issue #226)
-                candidates = getattr(chunk, "candidates", None) or []
-                if not candidates:
-                    continue
-                content = getattr(candidates[0], "content", None)
-                if not content:
-                    continue
-                for part in getattr(content, "parts", []):
-                    if getattr(part, "thought", False):
-                        thought_text = (getattr(part, "text", None) or "").strip()
-                        if thought_text:
-                            yield {"type": "AGENT_STATUS", "message": thought_text}
-                    else:
-                        raw_json_parts.append(getattr(part, "text", None) or "")
-
-            raw_json = "".join(raw_json_parts)
-            elapsed_ms = (time.perf_counter() - t0) * 1000
-        except asyncio.TimeoutError:
-            _perf_logger.info(
-                "",
-                extra={
-                    "activity": "Convert to Japanese",
-                    "run_id": run_id,
-                    "elapsed_ms": round((time.perf_counter() - t0) * 1000),
-                    "response_chars": 0,
-                    "status": "timeout",
-                },
-            )
-            logger.warning("run_id=%s timed out after %ss", run_id, self._generation_timeout_s)
-            yield {
-                "type": "ERROR",
-                "code": "TIMEOUT",
-                "message": "This took longer than expected — your inputs are preserved. Try again.",
-            }
-            return
-        except Exception as exc:  # noqa: BLE001
-            _perf_logger.info(
-                "",
-                extra={
-                    "activity": "Convert to Japanese",
-                    "run_id": run_id,
-                    "elapsed_ms": round((time.perf_counter() - t0) * 1000),
-                    "response_chars": 0,
-                    "status": "error",
-                },
-            )
-            logger.error("run_id=%s Gemini call failed: %s", run_id, exc)
-            yield {
-                "type": "ERROR",
-                "code": "GENERATION_FAILED",
-                "message": str(exc),
-            }
-            return
-
-        # Check cancel after stream completes
+        # Honour a cancel that arrived exactly as the stream completed
         if cancel_event and cancel_event.is_set():
             yield {"type": "RUN_CANCELLED", "runId": run_id}
             return
@@ -461,16 +518,6 @@ class StoryGeneratorAgent:
             }
             return
 
-        _perf_logger.info(
-            "",
-            extra={
-                "activity": "Convert to Japanese",
-                "run_id": run_id,
-                "elapsed_ms": round(elapsed_ms),
-                "response_chars": len(raw_json),
-                "status": "ok",
-            },
-        )
         logger.debug("Response (%d chars):\n%s", len(raw_json), raw_json[:2000])
 
         # Parse simplified Gemini JSON response
@@ -568,88 +615,42 @@ class StoryGeneratorAgent:
         prompt = build_proposal_prompt(chapter_int, topic, steering_instructions, target_word_count)
         logger.debug("Proposal prompt (%d chars):\n%s", len(prompt), prompt)
 
-        # Stream from Gemini — same pattern as the JSON path but plain text accumulation.
-        t0 = time.perf_counter()
-        try:
-            from google.genai import types as genai_types
+        # Stream from Gemini via the shared streamer — plain-text output (json_output=False).
+        raw_text = ""
+        async for ev in self._stream_llm(
+            contents=prompt,
+            json_output=False,
+            activity="Generate story in English",
+            temperature=temperature,
+            cancel_event=cancel_event,
+            run_id=run_id,
+        ):
+            if "__stream__" not in ev:
+                yield ev
+                continue
+            outcome = ev["__stream__"]
+            if outcome == "timeout":
+                yield {
+                    "type": "ERROR",
+                    "code": "TIMEOUT",
+                    "message": "This took longer than expected — your inputs are preserved. Try again.",
+                }
+                return
+            if outcome == "error":
+                yield {"type": "ERROR", "code": "GENERATION_FAILED", "message": ev["message"]}
+                return
+            if outcome == "cancelled":
+                yield {"type": "RUN_CANCELLED", "runId": run_id}
+                return
+            raw_text = ev["text"]
+            break
 
-            # Plain text output — no response_mime_type for the proposal
-            config = genai_types.GenerateContentConfig(
-                temperature=temperature,
-                thinking_config=genai_types.ThinkingConfig(
-                    thinking_budget=THINKING_BUDGET,
-                    include_thoughts=True,
-                ),
-            )
-            stream = self._get_stream_caller()
-            logger.debug("Streaming %s for English proposal (timeout=%ss)", GEMINI_MODEL, self._generation_timeout_s)
-
-            proposal_parts: list[str] = []
-            deadline = time.monotonic() + self._generation_timeout_s
-            # Guard the initial SDK call with the remaining time budget (P-review-2)
-            chunks = await asyncio.wait_for(
-                stream(GEMINI_MODEL, prompt, config),
-                timeout=max(deadline - time.monotonic(), 0),
-            )
-            async for chunk in chunks:
-                if time.monotonic() > deadline:
-                    raise asyncio.TimeoutError()
-                # Honour cancel mid-stream rather than waiting for the full stream (P-review-1)
-                if cancel_event and cancel_event.is_set():
-                    break
-                candidates = getattr(chunk, "candidates", None) or []
-                if not candidates:
-                    continue
-                content = getattr(candidates[0], "content", None)
-                if not content:
-                    continue
-                for part in getattr(content, "parts", []):
-                    if getattr(part, "thought", False):
-                        thought_text = (getattr(part, "text", None) or "").strip()
-                        if thought_text:
-                            yield {"type": "AGENT_STATUS", "message": thought_text}
-                    else:
-                        proposal_parts.append(getattr(part, "text", None) or "")
-
-            elapsed_ms = (time.perf_counter() - t0) * 1000
-        except asyncio.TimeoutError:
-            _perf_logger.info(
-                "",
-                extra={
-                    "activity": "Generate story in English",
-                    "run_id": run_id,
-                    "elapsed_ms": round((time.perf_counter() - t0) * 1000),
-                    "response_chars": 0,
-                    "status": "timeout",
-                },
-            )
-            logger.warning("run_id=%s proposal timed out", run_id)
-            yield {
-                "type": "ERROR",
-                "code": "TIMEOUT",
-                "message": "This took longer than expected — your inputs are preserved. Try again.",
-            }
-            return
-        except Exception as exc:  # noqa: BLE001
-            _perf_logger.info(
-                "",
-                extra={
-                    "activity": "Generate story in English",
-                    "run_id": run_id,
-                    "elapsed_ms": round((time.perf_counter() - t0) * 1000),
-                    "response_chars": 0,
-                    "status": "error",
-                },
-            )
-            logger.error("run_id=%s proposal Gemini call failed: %s", run_id, exc)
-            yield {"type": "ERROR", "code": "GENERATION_FAILED", "message": str(exc)}
-            return
-
+        # Honour a cancel that arrived exactly as the stream completed
         if cancel_event and cancel_event.is_set():
             yield {"type": "RUN_CANCELLED", "runId": run_id}
             return
 
-        proposal_text = "".join(proposal_parts).strip()
+        proposal_text = raw_text.strip()
         if not proposal_text:
             logger.warning("run_id=%s Gemini returned no proposal (safety filter?)", run_id)
             yield {
@@ -659,16 +660,6 @@ class StoryGeneratorAgent:
             }
             return
 
-        _perf_logger.info(
-            "",
-            extra={
-                "activity": "Generate story in English",
-                "run_id": run_id,
-                "elapsed_ms": round(elapsed_ms),
-                "response_chars": len(proposal_text),
-                "status": "ok",
-            },
-        )
         logger.info("run_id=%s proposal complete (%d chars)", run_id, len(proposal_text))
         logger.debug("Proposal text:\n%s", proposal_text)
         yield {"type": "TEXT_MESSAGE_CHUNK", "delta": proposal_text}

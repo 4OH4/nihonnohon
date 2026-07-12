@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-05-11
-last_updated: 2026-06-04  # se2-5 story created
+last_updated: 2026-07-12  # se3-1 reviewed → done
 # v1 complete: all epics done, retrospective closed
 # supp-epic-1 (furigana rework) in progress
 project: nihonnohon
@@ -99,3 +99,13 @@ development_status:
   se2-3-schema-and-type-updates: done
   se2-4-web-app-pos-display: review
   se2-5-story-library-re-enrichment: review
+
+  # Supplemental Epic 3: Staged Generation Pipeline and Japanese Story Input
+  # Planning: _bmad-output/planning-artifacts/supp-epic-3-staged-generation-pipeline.md
+  supp-epic-3: in-progress
+  se3-1-shared-llm-streamer-extraction: done
+  se3-2-stage-1-japanese-production-prompt: backlog
+  se3-3-stage-2-universal-japanese-analysis-prompt: backlog
+  se3-4-two-stage-orchestration-and-japanese-entry-point: backlog
+  se3-5-frontend-japanese-input-mode-and-optional-target-difficulty: backlog
+  se3-6-eval-adapter-for-stage-2: backlog

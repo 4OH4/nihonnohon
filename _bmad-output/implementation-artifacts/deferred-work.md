@@ -1,5 +1,10 @@
 # Deferred Work
 
+## Deferred from: code review of se3-1-shared-llm-streamer-extraction (2026-07-12)
+
+- **`status="ok"` perf line on cancel-at-completion:** `_stream_llm` logs the "ok" llm_perf line, then the caller's post-loop cancel check emits `RUN_CANCELLED`, so a cancelled run also carries an "ok" perf line. Observability-only; the triggering window (cancel set exactly between stream completion and the caller check) is negligible. Fold the caller's post-loop cancel guard into `_stream_llm` (re-check cancel before the "ok" log) if perf-metric fidelity for cancels ever matters. [`agent.py:_stream_llm`]
+- **`chunks` async stream not `aclose()`d on early exit:** On timeout or mid-stream cancel the `async for chunk in chunks` loop is left early and the underlying Gemini SDK stream/HTTP connection is reclaimed only by GC, never explicitly closed. Pre-existing pattern carried verbatim from both original loops; now centralised in `_stream_llm`, so an `async with`/`aclose()` here would fix both call sites at once. [`agent.py:_stream_llm`]
+
 ## Deferred from: code review of se2-3-schema-and-type-updates (2026-06-04)
 
 - **`pos: ""` schema allows empty string:** `"type": "string"` has no `minLength:1` on the `pos` property; `""` is a valid sentinel for "unknown POS" in the enrichment pipeline but causes `if (entry.pos)` to treat it as absent. Consider `minLength:1` with an explicit "unknown" code if a stricter contract is needed later. [`packages/schema/schemas/story.v2.json`]
