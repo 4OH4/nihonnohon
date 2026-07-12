@@ -19,12 +19,13 @@ describe('ModeToggle', () => {
     expect(screen.getByRole('tablist')).toBeInTheDocument()
   })
 
-  it('renders two tab buttons', () => {
+  it('renders three tab buttons', () => {
     render(<ModeToggle />)
     const tabs = screen.getAllByRole('tab')
-    expect(tabs).toHaveLength(2)
+    expect(tabs).toHaveLength(3)
     expect(tabs[0]).toHaveTextContent('Convert a story')
     expect(tabs[1]).toHaveTextContent('Generate from topic')
+    expect(tabs[2]).toHaveTextContent('Japanese story')
   })
 
   it('marks the active mode as aria-selected="true"', () => {
@@ -33,6 +34,7 @@ describe('ModeToggle', () => {
     // Default mode is A
     expect(tabs[0]).toHaveAttribute('aria-selected', 'true')
     expect(tabs[1]).toHaveAttribute('aria-selected', 'false')
+    expect(tabs[2]).toHaveAttribute('aria-selected', 'false')
   })
 
   it('updates pathMode in store when a tab is clicked', () => {
@@ -40,6 +42,28 @@ describe('ModeToggle', () => {
     const tabs = screen.getAllByRole('tab')
     fireEvent.click(tabs[1])
     expect(useAuthoringStore.getState().pathMode).toBe('B')
+  })
+
+  it('sets pathMode to C when the Japanese story tab is clicked', () => {
+    render(<ModeToggle />)
+    const tabs = screen.getAllByRole('tab')
+    fireEvent.click(tabs[2])
+    expect(useAuthoringStore.getState().pathMode).toBe('C')
+  })
+
+  it('arrow-key nav wraps around all three tabs', () => {
+    render(<ModeToggle />)
+    const tabs = screen.getAllByRole('tab')
+    // A → ArrowRight → B → C → wrap to A
+    fireEvent.keyDown(tabs[0], { key: 'ArrowRight' })
+    expect(useAuthoringStore.getState().pathMode).toBe('B')
+    fireEvent.keyDown(tabs[1], { key: 'ArrowRight' })
+    expect(useAuthoringStore.getState().pathMode).toBe('C')
+    fireEvent.keyDown(tabs[2], { key: 'ArrowRight' })
+    expect(useAuthoringStore.getState().pathMode).toBe('A')
+    // A → ArrowLeft wraps back to C
+    fireEvent.keyDown(tabs[0], { key: 'ArrowLeft' })
+    expect(useAuthoringStore.getState().pathMode).toBe('C')
   })
 
   it('clears outputJson when switching modes', () => {

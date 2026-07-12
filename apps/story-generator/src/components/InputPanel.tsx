@@ -123,10 +123,16 @@ export function InputPanel() {
       {isCollapsed && (
         <div className="flex items-center gap-3 py-1 text-sm flex-wrap">
           <span className="text-muted shrink-0">
-            {storedInputs?.pathMode === 'B' ? 'Generate from topic' : 'Convert a story'}
+            {storedInputs?.pathMode === 'B'
+              ? 'Generate from topic'
+              : storedInputs?.pathMode === 'C'
+                ? 'Japanese story'
+                : 'Convert a story'}
           </span>
           {storedInputs?.chapterTarget && (
-            <span className="text-muted shrink-0">· {storedInputs.chapterTarget}</span>
+            <span className="text-muted shrink-0">
+              · {storedInputs.chapterTarget === 'unspecified' ? 'Unspecified' : storedInputs.chapterTarget}
+            </span>
           )}
           {/* Path B shows topic; Path A shows inputText */}
           {storedInputs?.pathMode === 'B' ? (
@@ -139,7 +145,12 @@ export function InputPanel() {
             )
           ) : (
             storedInputs?.inputText && (
-              <span className="text-paper-text truncate flex-1 min-w-0">
+              <span
+                className={cn(
+                  'text-paper-text truncate flex-1 min-w-0',
+                  storedInputs?.pathMode === 'C' && 'font-ja',
+                )}
+              >
                 {storedInputs.inputText.length > 60
                   ? storedInputs.inputText.slice(0, 60) + '…'
                   : storedInputs.inputText}
@@ -162,7 +173,9 @@ export function InputPanel() {
       {/* Full form — hidden when collapsed */}
       {!isCollapsed && (
         <>
-          {/* Path A: English story textarea / Path B: TopicTextarea */}
+          {/* Input branch: Path A → English textarea, Path C → Japanese (font-ja) textarea,
+              Path B → TopicTextarea. A and C share the inputText binding; only the label,
+              placeholder, and font differ. */}
           {pathMode === 'A' ? (
             <div>
               <label
@@ -190,6 +203,36 @@ export function InputPanel() {
               )}
               <p className="text-xs text-muted mt-1">
                 English source material must be original or appropriately licensed.
+              </p>
+            </div>
+          ) : pathMode === 'C' ? (
+            <div>
+              <label
+                htmlFor="input-text"
+                className="block text-sm font-medium text-paper-text mb-1"
+              >
+                Japanese story
+              </label>
+              <textarea
+                id="input-text"
+                value={inputText}
+                onChange={e => handleInputChange(e.target.value)}
+                placeholder="Paste your finished Japanese story here…"
+                className={cn(
+                  'font-ja',
+                  'w-full min-h-[200px] max-h-[400px] overflow-y-auto resize-none',
+                  'px-3 py-2 text-sm border rounded-md bg-surface-subtle text-paper-text',
+                  'focus-visible:ring-2 ring-accent outline-none transition-colors',
+                  hints.story ? 'border-error' : 'border-border',
+                )}
+              />
+              {hints.story && (
+                <p className="text-xs text-error mt-1">
+                  Enter your Japanese story before generating.
+                </p>
+              )}
+              <p className="text-xs text-muted mt-1">
+                Japanese source material must be original or appropriately licensed.
               </p>
             </div>
           ) : (
@@ -221,6 +264,11 @@ export function InputPanel() {
               )}
             >
               <option value="">Select a chapter…</option>
+              {/* Optional target difficulty — offered for the full-story inputs (A and C) only,
+                  not topic mode (B). Value is the exact "unspecified" backend sentinel (se3-4). */}
+              {(pathMode === 'A' || pathMode === 'C') && (
+                <option value="unspecified">Unspecified — keep original difficulty</option>
+              )}
               {CHAPTER_OPTIONS.map(ch => (
                 <option key={ch} value={ch}>{ch}</option>
               ))}
@@ -230,7 +278,15 @@ export function InputPanel() {
                 Select a chapter before generating.
               </p>
             )}
-            {chapterTarget && <ScopeChip chapter={chapterTarget} className="mt-2" />}
+            {/* Unspecified → explanatory helper text (no ScopeChip); a recognised chapter → ScopeChip */}
+            {chapterTarget === 'unspecified' ? (
+              <p className="text-xs text-muted mt-1">
+                The story keeps its natural difficulty — vocabulary and grammar are not constrained
+                to a Genki chapter.
+              </p>
+            ) : (
+              chapterTarget && <ScopeChip chapter={chapterTarget} className="mt-2" />
+            )}
           </div>
 
           {/* Steering instructions collapsible */}
@@ -294,7 +350,7 @@ export function InputPanel() {
               isGenerateDisabled && 'opacity-[0.45] cursor-not-allowed pointer-events-none',
             )}
           >
-            {pathMode === 'A' ? 'Convert to Japanese' : 'Generate'}
+            {pathMode === 'A' ? 'Convert to Japanese' : pathMode === 'C' ? 'Create story' : 'Generate'}
           </button>
         )}
 

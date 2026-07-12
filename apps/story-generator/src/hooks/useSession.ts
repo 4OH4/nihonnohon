@@ -3,7 +3,7 @@
 
 import { useEffect, useRef } from 'react'
 import { useAuthoringStore, STORY_LENGTH_WORD_COUNTS } from '@/stores/authoringStore'
-import type { Phase, StoryLengthPreset } from '@/stores/authoringStore'
+import type { Phase, PathMode, StoryLengthPreset } from '@/stores/authoringStore'
 
 /** localStorage key for the authoring session. */
 export const SESSION_KEY = 'nihonnohon-sg-session'
@@ -19,7 +19,7 @@ interface SessionState {
   topicText: string
   chapterTarget: string
   steeringInstructions: string
-  pathMode: 'A' | 'B'
+  pathMode: PathMode
   temperature: number
   grammarDist: 0 | 1 | 2
   storyLengthPreset: StoryLengthPreset
@@ -88,14 +88,26 @@ export function useSession(): void {
     // Guard against stale sessions missing topicText (added in Story 3.2)
     const topicText: string = session.topicText ?? ''
 
+    // Guard against a stale/out-of-range pathMode (e.g. an old or corrupt session) — fall back to 'A'
+    const pathMode: PathMode =
+      (['A', 'B', 'C'] as const).includes(session.pathMode) ? session.pathMode : 'A'
+
+    // Mirror the setPathMode leak guard on restore: Path B never offers the 'unspecified'
+    // chapter option, so a stale/corrupt B + 'unspecified' session would otherwise send an
+    // epic-forbidden chapter=unspecified on a Path-B run — coerce it back to the empty choice.
+    const chapterTarget: string =
+      pathMode === 'B' && session.chapterTarget === 'unspecified'
+        ? ''
+        : session.chapterTarget
+
     // Batch-set the store in one atomic write
     useAuthoringStore.setState({
       phase: safePhase,
       inputText: session.inputText,
       topicText,
-      chapterTarget: session.chapterTarget,
+      chapterTarget,
       steeringInstructions: session.steeringInstructions,
-      pathMode: session.pathMode,
+      pathMode,
       temperature: session.temperature,
       grammarDist: session.grammarDist,
       storyLengthPreset,
@@ -110,7 +122,7 @@ export function useSession(): void {
       session.outputJson !== null ||
       session.inputText !== '' ||
       topicText !== '' ||
-      session.chapterTarget !== '' ||
+      chapterTarget !== '' ||
       session.steeringInstructions !== '' ||
       proposalText !== null
     if (hasContent) {

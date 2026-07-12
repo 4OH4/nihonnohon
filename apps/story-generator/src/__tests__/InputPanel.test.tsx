@@ -40,13 +40,13 @@ describe('InputPanel', () => {
     expect(useAuthoringStore.getState().inputText).toBe('Hello world')
   })
 
-  it('renders chapter select with placeholder and 23 chapter options', () => {
+  it('renders chapter select with placeholder, Unspecified, and 23 chapter options', () => {
     render(<InputPanel />)
     const select = screen.getByLabelText(/genki chapter/i)
     expect(select).toBeInTheDocument()
     const options = screen.getAllByRole('option')
-    // 1 placeholder + 23 chapters
-    expect(options.length).toBe(24)
+    // Path A (default): 1 placeholder + 1 Unspecified + 23 chapters
+    expect(options.length).toBe(25)
   })
 
   it('placeholder option has empty value', () => {
@@ -389,6 +389,115 @@ describe('InputPanel — Path B mode', () => {
     rerender(<InputPanel />)
     // After switch, Generate button should reflect Path A label
     expect(screen.getByRole('button', { name: /convert to japanese/i })).toBeInTheDocument()
+  })
+})
+
+describe('InputPanel — Path C mode', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+    vi.mocked(useBackendStatus).mockReturnValue('connected')
+    // Switch to Path C (Japanese story)
+    act(() => useAuthoringStore.getState().setPathMode('C'))
+  })
+
+  afterEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('renders a Japanese story textarea carrying font-ja', () => {
+    const { container } = render(<InputPanel />)
+    const ta = container.querySelector('textarea#input-text')
+    expect(ta).toBeInTheDocument()
+    expect(screen.getByLabelText(/japanese story/i)).toBeInTheDocument()
+    expect(screen.queryByLabelText(/english story/i)).not.toBeInTheDocument()
+    expect(ta).toHaveClass('font-ja')
+  })
+
+  it('updates inputText in store on Japanese textarea change', () => {
+    render(<InputPanel />)
+    fireEvent.change(screen.getByLabelText(/japanese story/i), {
+      target: { value: '日本語の物語' },
+    })
+    expect(useAuthoringStore.getState().inputText).toBe('日本語の物語')
+  })
+
+  it('offers the "Unspecified" chapter option in Path C', () => {
+    render(<InputPanel />)
+    expect(screen.getByRole('option', { name: /unspecified/i })).toBeInTheDocument()
+  })
+
+  it('"Unspecified" option value is exactly the "unspecified" sentinel', () => {
+    render(<InputPanel />)
+    expect(screen.getByRole('option', { name: /unspecified/i })).toHaveValue('unspecified')
+  })
+
+  it('hides the ScopeChip and shows helper text when chapter is "unspecified"', () => {
+    render(<InputPanel />)
+    fireEvent.change(screen.getByLabelText(/genki chapter/i), {
+      target: { value: 'unspecified' },
+    })
+    // No ScopeChip (its scope line renders "NN vocab"); regex avoids matching "vocabulary" in the helper
+    expect(screen.queryByText(/\d+ vocab/)).not.toBeInTheDocument()
+    // Helper text explains the natural-difficulty behaviour
+    expect(screen.getByText(/keeps its natural difficulty/i)).toBeInTheDocument()
+  })
+
+  it('shows a ScopeChip for a real chapter in Path C', () => {
+    render(<InputPanel />)
+    fireEvent.change(screen.getByLabelText(/genki chapter/i), {
+      target: { value: 'Genki I Ch.6' },
+    })
+    expect(screen.getByText('325 vocab')).toBeInTheDocument()
+  })
+
+  it('shows the "Create story" button label in Path C', () => {
+    render(<InputPanel />)
+    expect(screen.getByRole('button', { name: /create story/i })).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /convert to japanese/i })).not.toBeInTheDocument()
+  })
+
+  it('validation passes with Japanese inputText + "unspecified" chapter', () => {
+    useAuthoringStore.getState().setInputText('凍った日本語。')
+    render(<InputPanel />)
+    fireEvent.change(screen.getByLabelText(/genki chapter/i), {
+      target: { value: 'unspecified' },
+    })
+    fireEvent.click(screen.getByRole('button', { name: /create story/i }))
+    expect(useAuthoringStore.getState().phase).toBe('generating')
+  })
+
+  it('validation blocks generation when Japanese story is empty', () => {
+    render(<InputPanel />)
+    fireEvent.change(screen.getByLabelText(/genki chapter/i), {
+      target: { value: 'Genki I Ch.5' },
+    })
+    fireEvent.click(screen.getByRole('button', { name: /create story/i }))
+    // Assert the user is told why, not merely that nothing generated — a silent no-op
+    // (e.g. button disabled for an unrelated reason) would also leave phase at 'idle'.
+    expect(screen.getByText('Enter your Japanese story before generating.')).toBeInTheDocument()
+    expect(useAuthoringStore.getState().phase).toBe('idle')
+  })
+})
+
+describe('InputPanel — Unspecified option gating', () => {
+  beforeEach(() => {
+    useAuthoringStore.getState()._reset()
+    vi.mocked(useBackendStatus).mockReturnValue('connected')
+  })
+
+  afterEach(() => {
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('offers "Unspecified" in Path A', () => {
+    render(<InputPanel />)
+    expect(screen.getByRole('option', { name: /unspecified/i })).toBeInTheDocument()
+  })
+
+  it('does NOT offer "Unspecified" in Path B', () => {
+    act(() => useAuthoringStore.getState().setPathMode('B'))
+    render(<InputPanel />)
+    expect(screen.queryByRole('option', { name: /unspecified/i })).not.toBeInTheDocument()
   })
 })
 

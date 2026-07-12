@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-05-11
-last_updated: 2026-07-12  # se3-4 → done (code review passed; JSON-shape guard fix, 86 tests passing)
+last_updated: 2026-07-12  # se3-5 → done (code review passed; 5 patches applied)
 # v1 complete: all epics done, retrospective closed
 # supp-epic-1 (furigana rework) in progress
 project: nihonnohon
@@ -107,5 +107,5 @@ development_status:
   se3-2-stage-1-japanese-production-prompt: done
   se3-3-stage-2-universal-japanese-analysis-prompt: done
   se3-4-two-stage-orchestration-and-japanese-entry-point: done
-  se3-5-frontend-japanese-input-mode-and-optional-target-difficulty: backlog
+  se3-5-frontend-japanese-input-mode-and-optional-target-difficulty: done
   se3-6-eval-adapter-for-stage-2: backlog

@@ -53,6 +53,31 @@ describe('authoringStore — setPathMode mode-change', () => {
     useAuthoringStore.getState().setPathMode('A')  // already A
     expect(useAuthoringStore.getState().outputJson).toBeTruthy()
   })
+
+  it('sets pathMode to C', () => {
+    useAuthoringStore.getState().setPathMode('C')
+    expect(useAuthoringStore.getState().pathMode).toBe('C')
+  })
+
+  it('clears an "unspecified" chapter when switching A/C → B (leak guard)', () => {
+    useAuthoringStore.getState().setPathMode('C')
+    useAuthoringStore.getState().setChapterTarget('unspecified')
+    useAuthoringStore.getState().setPathMode('B')
+    expect(useAuthoringStore.getState().pathMode).toBe('B')
+    expect(useAuthoringStore.getState().chapterTarget).toBe('')
+  })
+
+  it('preserves a real chapter when switching A/C → B', () => {
+    useAuthoringStore.getState().setChapterTarget('Genki I Ch.5')
+    useAuthoringStore.getState().setPathMode('B')
+    expect(useAuthoringStore.getState().chapterTarget).toBe('Genki I Ch.5')
+  })
+
+  it('preserves an "unspecified" chapter when switching A → C', () => {
+    useAuthoringStore.getState().setChapterTarget('unspecified')
+    useAuthoringStore.getState().setPathMode('C')
+    expect(useAuthoringStore.getState().chapterTarget).toBe('unspecified')
+  })
 })
 
 describe('authoringStore — generate() from error (implicit retry)', () => {

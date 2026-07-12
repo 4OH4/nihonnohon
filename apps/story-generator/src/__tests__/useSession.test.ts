@@ -200,6 +200,31 @@ describe('useSession — hydration on mount', () => {
     renderHook(() => useSession())
     expect(useAuthoringStore.getState().pathMode).toBe('B')
   })
+
+  it('round-trips pathMode="C" and chapterTarget="unspecified"', () => {
+    writeSession({ pathMode: 'C', chapterTarget: 'unspecified' })
+    renderHook(() => useSession())
+    expect(useAuthoringStore.getState().pathMode).toBe('C')
+    expect(useAuthoringStore.getState().chapterTarget).toBe('unspecified')
+  })
+
+  it('falls back to pathMode="A" when the stored mode is out of range', () => {
+    // Seed a valid non-'A' mode first: this proves the clamp actually ran and rewrote
+    // the value, rather than the assertion merely matching the store's 'A' default (or a
+    // restore that bailed out entirely, which would leave 'C' in place).
+    writeSession({ pathMode: 'X' })
+    useAuthoringStore.setState({ pathMode: 'C' })
+    renderHook(() => useSession())
+    expect(useAuthoringStore.getState().pathMode).toBe('A')
+  })
+
+  it('coerces a stale pathMode="B" + chapterTarget="unspecified" session to an empty chapter', () => {
+    writeSession({ pathMode: 'B', chapterTarget: 'unspecified' })
+    renderHook(() => useSession())
+    expect(useAuthoringStore.getState().pathMode).toBe('B')
+    // Path B never offers 'unspecified'; restore must not leak it (mirrors the setPathMode guard)
+    expect(useAuthoringStore.getState().chapterTarget).toBe('')
+  })
 })
 
 describe('useSession — topicText persistence', () => {

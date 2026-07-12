@@ -360,3 +360,7 @@
 
 - **Unknown `path_mode` (not A/B/C) silently treated as Path A (EN→JA):** No `else`/default branch rejects an unrecognised mode; `source_is_japanese`/`skip_stage1` both resolve `False`, so a mis-specified mode is translated as English source rather than rejected. Fall-through predates this change; `pathMode` is a frontend-controlled free-form query param and no AC requires rejection. [agent.py:665,691]
 - **Non-string/`None` `chapter` bypasses the `ValueError` guard → `AttributeError`:** For a non-`"unspecified"`, non-str `chapter`, `_parse_chapter` raises `AttributeError` (only `IndexError`/`ValueError` are caught), escaping the generator instead of a clean `GENERATION_FAILED`. Unreachable via HTTP — `main.py` declares `chapter: str` as a required `Query`, so a 422 fires first; only a direct/mis-typed `generate()` call reaches it. Cheap hardening: broaden the `except` to `(ValueError, AttributeError, TypeError)`. [agent.py:684]
+
+## Deferred from: code review of se3-5-frontend-japanese-input-mode-and-optional-target-difficulty (2026-07-12)
+
+- Pre-existing ScopeChip test hardcodes the `'325 vocab'` magic count (`apps/story-generator/src/__tests__/InputPanel.test.tsx:76`). Brittle — any change to the Genki scope vocab dataset silently breaks an unrelated Path-rendering test. A `/\d+ vocab/` presence check would test the actual claim. Not introduced by se3-5.

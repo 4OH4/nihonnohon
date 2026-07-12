@@ -41,6 +41,12 @@ function injectAttribution(json: string, s: AttribSettings): string {
 
 export type { ValidationError }
 
+/**
+ * Generation entry point:
+ * A = convert an English story, B = generate from a topic, C = enrich a finished Japanese story.
+ */
+export type PathMode = 'A' | 'B' | 'C'
+
 /** All phases of the authoring workflow. */
 export type Phase =
   | 'idle'
@@ -70,7 +76,7 @@ interface StoredInputs {
   inputText: string
   chapterTarget: string
   steeringInstructions: string
-  pathMode: 'A' | 'B'
+  pathMode: PathMode
   temperature: number
   grammarDist: 0 | 1 | 2
   /** Path B phase 1: topic text snapshotted at generate() time. */
@@ -87,7 +93,7 @@ interface AuthoringStore {
   topicText: string
   chapterTarget: string
   steeringInstructions: string
-  pathMode: 'A' | 'B'
+  pathMode: PathMode
   temperature: number
   grammarDist: 0 | 1 | 2
   storyLengthPreset: StoryLengthPreset
@@ -118,7 +124,7 @@ interface AuthoringStore {
   setTopicText: (v: string) => void
   setChapterTarget: (v: string) => void
   setSteeringInstructions: (v: string) => void
-  setPathMode: (v: 'A' | 'B') => void
+  setPathMode: (v: PathMode) => void
   setTemperature: (v: number) => void
   setGrammarDist: (v: 0 | 1 | 2) => void
   setStoryLengthPreset: (preset: StoryLengthPreset) => void
@@ -313,14 +319,19 @@ export const useAuthoringStore = create<AuthoringStore>()((set, get) => ({
   setSteeringInstructions: (v) => set({ steeringInstructions: v }),
 
   setPathMode(v) {
-    const { pathMode, phase } = get()
+    const { pathMode, phase, chapterTarget } = get()
     if (pathMode === v) return
     if (phase === 'generating') get().cancel()
     const isActive = phase === 'generating' || phase === 'cancelling'
+    // Leak guard: B does not offer "Unspecified" (A/C only). Switching A/C → B with an
+    // "unspecified" chapter would leave the store holding a value B cannot render or send,
+    // so clear it to force a real chapter choice. Switching to A/C leaves chapterTarget as-is.
+    const clearUnspecified = v === 'B' && chapterTarget === 'unspecified'
     set({
       pathMode: v,
       outputJson: null,
       outputIsDirty: false,
+      ...(clearUnspecified ? { chapterTarget: '' } : {}),
       ...(isActive ? {} : { phase: 'idle' }),
     })
   },

@@ -3,15 +3,16 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
-import { useAuthoringStore } from '@/stores/authoringStore'
+import { useAuthoringStore, type PathMode } from '@/stores/authoringStore'
 
 const MODES = [
   { value: 'A' as const, label: 'Convert a story' },
   { value: 'B' as const, label: 'Generate from topic' },
+  { value: 'C' as const, label: 'Japanese story' },
 ]
 
 /**
- * Segmented pill control for switching between Path A and Path B generation modes.
+ * Segmented pill control for switching between Path A, B, and C generation modes.
  * Shows an inline confirmation strip when switching with unsaved edits (outputIsDirty).
  */
 export function ModeToggle() {
@@ -21,7 +22,7 @@ export function ModeToggle() {
   const buttonRefs    = useRef<(HTMLButtonElement | null)[]>([])
 
   // Pending target mode — set when dirty-warning confirmation is needed
-  const [pendingMode, setPendingMode] = useState<'A' | 'B' | null>(null)
+  const [pendingMode, setPendingMode] = useState<PathMode | null>(null)
   const confirmRef = useRef<HTMLButtonElement>(null)
 
   // Focus [Switch anyway] when the warning strip appears
@@ -29,7 +30,7 @@ export function ModeToggle() {
     if (pendingMode !== null) confirmRef.current?.focus()
   }, [pendingMode])
 
-  const handleModeClick = (mode: 'A' | 'B') => {
+  const handleModeClick = (mode: PathMode) => {
     if (mode === pathMode) return
     if (outputIsDirty) {
       setPendingMode(mode)

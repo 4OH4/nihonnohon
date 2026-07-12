@@ -621,6 +621,60 @@ describe('useAgUiRun — Path B URL params', () => {
   })
 })
 
+// ─── Story se3-5: Path C URL params ──────────────────────────────────────────
+
+describe('useAgUiRun — Path C URL params', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    useAuthoringStore.getState()._reset()
+  })
+
+  it('sends pathMode=C, inputText, and chapter; omits topic/englishDraft', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setPathMode('C')
+    store.setInputText('日本語の物語です。')
+    store.setChapterTarget('Genki I Ch.5')
+    store.generate()
+
+    renderHook(() => useAgUiRun(factory))
+
+    expect(factory).toHaveBeenCalledOnce()
+    const url: string = factory.mock.calls[0][0]
+    const params = new URLSearchParams(url.split('?')[1] ?? '')
+    expect(params.get('pathMode')).toBe('C')
+    expect(params.get('inputText')).toBe('日本語の物語です。')
+    expect(params.get('chapter')).toBe('Genki I Ch.5')
+    expect(params.has('topic')).toBe(false)
+    expect(params.has('englishDraft')).toBe(false)
+    expect(params.has('target_word_count')).toBe(false)
+  })
+
+  it('sends chapter=unspecified when the Unspecified target is chosen for Path C', () => {
+    const mockEs = new MockEventSource()
+    const factory = vi.fn().mockReturnValue(mockEs as unknown as EventSource)
+    const store = useAuthoringStore.getState()
+    store.setPathMode('C')
+    store.setInputText('凍った日本語。')
+    store.setChapterTarget('unspecified')
+    store.generate()
+
+    renderHook(() => useAgUiRun(factory))
+
+    const url: string = factory.mock.calls[0][0]
+    const params = new URLSearchParams(url.split('?')[1] ?? '')
+    expect(params.get('pathMode')).toBe('C')
+    expect(params.get('chapter')).toBe('unspecified')
+    expect(params.has('topic')).toBe(false)
+  })
+})
+
 // ─── AGENT_STATUS handling ───────────────────────────────────────────────────
 
 describe('useAgUiRun — AGENT_STATUS', () => {
