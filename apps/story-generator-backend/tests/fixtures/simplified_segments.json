@@ -1,0 +1,79 @@
+{
+  "id": "genki-i-ch8-kenji-student-life",
+  "title": "Kenji's Student Life",
+  "title_ja": "けんじさんの学生生活",
+  "description": "This story introduces Kenji, a university student in Tokyo, his studies, hobbies, and social life with his friend Yuki, calibrated to Genki I Chapter 8.",
+  "grammar": [
+    "Defining Identity (X は Y です)",
+    "Connecting Nouns (Noun1 の Noun2)",
+    "Addition and Inclusion (Particle も)",
+    "Verb Classes and Conjugation",
+    "The Present Tense",
+    "Sentence Logistics (Particles を, で, に, へ)",
+    "Temporal Markers (Time References)",
+    "Frequency Adverbs",
+    "Connecting Items (Particle と)",
+    "Attribute Basics (Adjective Tenses)",
+    "Personal Preferences (好き / 嫌い)",
+    "Current Actions (～ている)",
+    "Purpose of Movement (Stem + に行く)",
+    "Nominalized Verbs (Verb + のが好き)",
+    "Conjunction が (but)"
+  ],
+  "sentences": [
+    {
+      "english": "Kenji is a first-year university student in Tokyo.",
+      "japanese": "けんじさんはとうきょうのだいがく一年生です。",
+      "words": ["けんじさん", "は", "とうきょう", "の", "だいがく", "一年生", "です", "。"],
+      "grammar": [0, 1]
+    },
+    {
+      "english": "He is from Osaka.",
+      "japanese": "けんじさんはおおさかです。",
+      "words": ["けんじさん", "は", "おおさか", "です", "。"],
+      "grammar": [0]
+    },
+    {
+      "english": "He studies economics.",
+      "japanese": "けいざいをべんきょうしています。",
+      "words": ["けいざい", "を", "べんきょうしています", "。"],
+      "grammar": [5, 11]
+    },
+    {
+      "english": "Every day after class, he goes to the library to study Japanese history.",
+      "japanese": "まいにち、クラスのあとで、にほんのれきしをべんきょうしにとしょかんへ行きます。",
+      "words": ["まいにち", "、", "クラス", "の", "あとで", "、", "にほん", "の", "れきし", "を", "べんきょうしに", "としょかん", "へ", "行きます", "。"],
+      "grammar": [1, 5, 6, 12]
+    },
+    {
+      "english": "He likes reading, but he finds kanji difficult.",
+      "japanese": "けんじさんは読むのが好きですが、漢字は難しいです。",
+      "words": ["けんじさん", "は", "読む", "の", "が", "好きです", "が", "、", "漢字", "は", "難しいです", "。"],
+      "grammar": [9, 10, 13, 14]
+    },
+    {
+      "english": "On weekends, he eats ramen with his friends from class.",
+      "japanese": "週末に、クラスの友達とラーメンを食べます。",
+      "words": ["週末", "に", "、", "クラス", "の", "友達", "と", "ラーメン", "を", "食べます", "。"],
+      "grammar": [1, 5, 6, 8]
+    },
+    {
+      "english": "His friend Yuki is from Kyoto.",
+      "japanese": "けんじさんの友達のゆきさんはきょうとです。",
+      "words": ["けんじさん", "の", "友達", "の", "ゆきさん", "は", "きょうと", "です", "。"],
+      "grammar": [0, 1]
+    },
+    {
+      "english": "Yuki also likes Japanese food.",
+      "japanese": "ゆきさんもにほんのたべものが好きです。",
+      "words": ["ゆきさん", "も", "にほん", "の", "たべもの", "が", "好きです", "。"],
+      "grammar": [1, 2, 10]
+    },
+    {
+      "english": "They often speak Japanese together.",
+      "japanese": "二人はいっしょによく日本語を話します。",
+      "words": ["二人", "は", "いっしょに", "よく", "日本語", "を", "話します", "。"],
+      "grammar": [3, 4, 5, 7]
+    }
+  ]
+}

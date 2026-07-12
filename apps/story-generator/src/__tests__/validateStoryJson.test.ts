@@ -33,8 +33,14 @@ describe('validateStoryJson', () => {
   })
 
   describe('Stage 2 — schema_version', () => {
-    it('returns SCHEMA_VERSION error when schema_version is not "1"', () => {
+    it('accepts "2" as a valid schema_version', () => {
       const story = { ...validStory, schema_version: '2' }
+      const errors = validateStoryJson(JSON.stringify(story))
+      expect(errors.some(e => e.rule === 'SCHEMA_VERSION')).toBe(false)
+    })
+
+    it('rejects unknown schema_version "3"', () => {
+      const story = { ...validStory, schema_version: '3' }
       const errors = validateStoryJson(JSON.stringify(story))
       expect(errors.some(e => e.rule === 'SCHEMA_VERSION')).toBe(true)
     })
@@ -61,13 +67,13 @@ describe('validateStoryJson', () => {
   })
 
   describe('Stage 4 — parallel array parity', () => {
-    it('detects ruby array length mismatch at sentenceIndex 0', () => {
+    it('detects vocab_keys array length mismatch at sentenceIndex 0', () => {
       const errors = validateStoryJson(JSON.stringify(parallelMismatch))
       const match = errors.find(
         e => e.rule === 'PARALLEL_ARRAY_MISMATCH' && e.sentenceIndex === 0
       )
       expect(match).toBeDefined()
-      expect(match?.path).toContain('ruby')
+      expect(match?.path).toContain('vocab_keys')
     })
 
     it('detects vocab_keys length mismatch', () => {

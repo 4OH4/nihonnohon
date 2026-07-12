@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Rupert Thomas
 // SPDX-License-Identifier: MIT
 
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useMemo } from 'react'
 import { useLoaderData, useRouteError, isRouteErrorResponse, Link } from 'react-router-dom'
 import type { LoaderFunctionArgs } from 'react-router-dom'
 import { useShallow } from 'zustand/react/shallow'
@@ -14,25 +14,18 @@ import { TEXT_SIZE_VALUES } from '@/utils/textSize'
 import { cn } from '@/lib/utils'
 import { AppBar } from '@/components/AppBar'
 import { InfoPanel } from '@/components/InfoPanel'
-import { ToolBar } from '@/components/ToolBar'
 import { SettingsMenu } from '@/components/SettingsMenu'
 import { SentenceBlock } from '@/components/SentenceBlock'
 import { VocabPanel } from '@/components/VocabPanel'
 import { GrammarPanel } from '@/components/GrammarPanel'
 import { usePreferenceStore } from '@/stores/preferenceStore'
-import type { StoryModel, VocabEntry, VocabSupplementEntry } from '@nihonnohon/schema'
+import type { StoryModel, VocabSupplementEntry } from '@nihonnohon/schema'
 
-/** Converts vocab supplement entries to VocabEntry shape for lookup store compatibility. */
-function buildSupplementMap(supplement: VocabSupplementEntry[]): Map<string, VocabEntry> {
-  const map = new Map<string, VocabEntry>()
-  supplement.forEach((entry, i) => {
-    map.set(entry.word, {
-      id: -(i + 1),
-      word: entry.word,
-      reading: entry.hiragana,
-      meaning: entry.translation,
-      lesson: 'supplement',
-    })
+/** Returns raw supplement entries keyed by word; adaptation to display shape happens in WordToken. */
+function buildSupplementMap(supplement: VocabSupplementEntry[]): Map<string, VocabSupplementEntry> {
+  const map = new Map<string, VocabSupplementEntry>()
+  supplement.forEach((entry) => {
+    map.set(entry.word, entry)
   })
   return map
 }
@@ -98,7 +91,7 @@ const TABS: { id: Tab; label: string }[] = [
 /** Full reader view — story text with word lookup, panels, and responsive two-column layout. */
 export function ReaderRoute() {
   const story = useLoaderData() as StoryModel
-  const supplementMap = buildSupplementMap(story.vocabSupplement)
+  const supplementMap = useMemo(() => buildSupplementMap(story.vocabSupplement), [story.vocabSupplement])
 
   const { textSize, activeTab, setActiveTab } = usePreferenceStore(
     useShallow(s => ({
@@ -158,9 +151,10 @@ export function ReaderRoute() {
       style={{ '--story-font-size': TEXT_SIZE_VALUES[textSize] } as React.CSSProperties}
     >
       <AppBar rightSlot={<SettingsMenu />} />
-      <div className="flex items-stretch border-b border-border">
+      {/* Full-width InfoPanel — the ruby/translation/spacing toggles live in the
+          SettingsMenu now, so the panel takes the whole width. */}
+      <div className="flex border-b border-border">
         <InfoPanel story={story} />
-        <ToolBar language={story.language} />
       </div>
 
       {/* Content area: single column on mobile, two-column on desktop (lg+) */}
@@ -170,7 +164,11 @@ export function ReaderRoute() {
         <div
           ref={storyScrollRef}
           className={cn(
-            'overflow-y-auto p-4 w-full',
+            // [overflow-anchor:none] lets SentenceBlock's manual scroll anchoring
+            // be the single source of truth when an inline translation collapses.
+            // Horizontal padding lives on each SentenceBlock so its highlight can
+            // span full width while the text stays inset from the edges.
+            'overflow-y-auto py-4 w-full [overflow-anchor:none]',
             activeTab !== 'story' ? 'hidden lg:block' : 'block',
             'lg:max-w-none lg:shrink-0 lg:w-[var(--story-pct)]',
           )}
@@ -185,6 +183,7 @@ export function ReaderRoute() {
               sentence={sentence}
               sentenceIndex={i}
               supplementMap={supplementMap}
+              scrollContainerRef={storyScrollRef}
             />
           ))}
         </div>
@@ -226,12 +225,12 @@ export function ReaderRoute() {
         </div>
 
         {/* Mobile-only: vocabulary panel (hidden on desktop since it's in right panel) */}
-        <div className={cn('w-full overflow-y-auto', activeTab === 'vocabulary' ? 'block lg:hidden' : 'hidden')}>
+        <div className={cn('w-full overflow-y-auto', activeTab === 'vocabulary' ? 'block lg:hidden' : 'hidden')} tabIndex={0}>
           <VocabPanel keywords={story.keywords} vocabSupplement={story.vocabSupplement} />
         </div>
 
         {/* Mobile-only: grammar panel */}
-        <div className={cn('w-full overflow-y-auto', activeTab === 'grammar' ? 'block lg:hidden' : 'hidden')}>
+        <div className={cn('w-full overflow-y-auto', activeTab === 'grammar' ? 'block lg:hidden' : 'hidden')} tabIndex={0}>
           <GrammarPanel grammar={story.grammar} sentences={story.sentences} />
         </div>
       </div>

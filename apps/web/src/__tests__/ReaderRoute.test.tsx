@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import { render, screen, fireEvent, act, within } from '@testing-library/react'
+import { render, screen, fireEvent, act } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import type { LoaderFunctionArgs } from 'react-router-dom'
 import { ReaderRoute, ReaderError, loader } from '@/routes/ReaderRoute'
@@ -11,6 +11,7 @@ import { usePreferenceStore } from '@/stores/preferenceStore'
 import { _initVocabFromData, _resetVocab, initVocab } from '@/services/vocabService'
 import { _initKanjiFromData, _resetKanji, initKanji } from '@/services/kanjiService'
 import { fetchManifest } from '@/utils/storyManifest'
+import { TEXT_SIZE_VALUES } from '@/utils/textSize'
 import { loadStory } from '@nihonnohon/story-loader'
 import type { StoryModel, VocabEntry, KanjiEntry } from '@nihonnohon/schema'
 
@@ -67,7 +68,7 @@ import { getStory } from '@/services/indexedDbService'
 //   - word tap updates InfoPanel to found state
 //   - Escape key resets InfoPanel to idle
 //   - ToolBar has exactly 2 interactive controls (UPDATED from 3 — Supp-2: Settings moved to AppBar)
-//   - ルビ label is "ルビ" for Japanese, "Ruby" otherwise
+//   - ルビ label is "ルビ" for language="ja", "Ruby" otherwise
 //   - ruby toggle uses visibility:hidden not display:none
 //   - Trans toggle shows translations
 //   - vocab supplement takes precedence over main dict
@@ -107,7 +108,7 @@ const baseStory: StoryModel = {
   id: 'test-story',
   title: 'Test Story',
   titleJa: 'テスト',
-  language: 'Japanese',
+  language: 'ja',
   difficulty: 'Genki I Ch.6',
   description: 'A test story.',
   keywords: [],
@@ -117,16 +118,22 @@ const baseStory: StoryModel = {
   sentences: [
     {
       id: 's1',
-      words: ['食べる', 'は', '楽しい'],
-      ruby: ['たべる', null, 'たのしい'],
+      tokens: [
+        { surface: '食べる',   segments: [{ text: '食べる',   ruby: 'たべる' }] },
+        { surface: 'は',       segments: [{ text: 'は',       ruby: null }] },
+        { surface: '楽しい',   segments: [{ text: '楽しい',   ruby: 'たのしい' }] },
+      ],
       vocabKeys: [1, null, null],
       translation: 'Eating is fun.',
       grammar: [],
     },
     {
       id: 's2',
-      words: ['日本語', 'を', '勉強します'],
-      ruby: ['にほんご', null, 'べんきょうします'],
+      tokens: [
+        { surface: '日本語',     segments: [{ text: '日本語',     ruby: 'にほんご' }] },
+        { surface: 'を',         segments: [{ text: 'を',         ruby: null }] },
+        { surface: '勉強します', segments: [{ text: '勉強します', ruby: 'べんきょうします' }] },
+      ],
       vocabKeys: [null, null, 2],
       translation: 'I study Japanese.',
       grammar: [],
@@ -214,26 +221,10 @@ describe('ReaderRoute', () => {
     expect(useLookupStore.getState().lookupState.status).toBe('idle')
   })
 
-  it('ToolBar has exactly 2 interactive controls', () => {
+  it('Ruby toggle (in settings): rt elements use invisible class when off, not display:none', () => {
     renderRoute()
-    const toolbar = screen.getByRole('toolbar')
-    const buttons = within(toolbar).getAllByRole('button')
-    expect(buttons).toHaveLength(2)
-  })
-
-  it('ルビ label is "ルビ" when story language is Japanese', () => {
-    renderRoute()
-    expect(screen.getByRole('button', { name: 'ルビ' })).toBeInTheDocument()
-  })
-
-  it('ルビ label is "Ruby" when story language is not Japanese', () => {
-    renderRoute({ ...baseStory, language: 'Chinese' })
-    expect(screen.getByRole('button', { name: 'Ruby' })).toBeInTheDocument()
-  })
-
-  it('ruby toggle: rt elements use invisible class when off, not display:none', () => {
-    renderRoute()
-    fireEvent.click(screen.getByRole('button', { name: 'ルビ' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Ruby' }))
 
     const rtElements = document.querySelectorAll('rt')
     expect(rtElements.length).toBeGreaterThan(0)
@@ -243,10 +234,11 @@ describe('ReaderRoute', () => {
     })
   })
 
-  it('Trans toggle shows translations when on', () => {
+  it('Trans toggle (in settings) shows translations when on', () => {
     renderRoute()
     expect(screen.queryByText('Eating is fun.')).not.toBeInTheDocument()
-    fireEvent.click(screen.getByRole('button', { name: 'Trans' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Trans.' }))
     expect(screen.getByText('Eating is fun.')).toBeInTheDocument()
     expect(screen.getByText('I study Japanese.')).toBeInTheDocument()
   })
@@ -259,8 +251,7 @@ describe('ReaderRoute', () => {
       ],
       sentences: [{
         id: 's1',
-        words: ['食べる'],
-        ruby: ['たべる'],
+        tokens: [{ surface: '食べる', segments: [{ text: '食べる', ruby: 'たべる' }] }],
         vocabKeys: [1],
         translation: null,
         grammar: [],
@@ -274,10 +265,12 @@ describe('ReaderRoute', () => {
     expect(screen.queryByText('to eat')).not.toBeInTheDocument()
   })
 
-  it('SettingsMenu opens with spacing and text size controls', () => {
+  it('SettingsMenu opens with spacing, ruby, trans, and text size controls', () => {
     renderRoute()
     fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
     expect(screen.getByText('Spaces')).toBeInTheDocument()
+    expect(screen.getByText('Ruby')).toBeInTheDocument()
+    expect(screen.getByText('Trans.')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Smaller text' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Larger text' })).toBeInTheDocument()
   })
@@ -291,7 +284,7 @@ describe('ReaderRoute', () => {
     // cascades to the vocab/grammar panels too. Locate it by walking up from the story column.
     const storyContainer = screen.getAllByRole('group')[0].parentElement as HTMLElement
     const outerContainer = storyContainer.closest('.h-dvh') as HTMLElement
-    expect(outerContainer.style.getPropertyValue('--story-font-size')).toBe('1.5rem')
+    expect(outerContainer.style.getPropertyValue('--story-font-size')).toBe(TEXT_SIZE_VALUES.large)
   })
 
   it('renders bottom tab bar with Story, Vocabulary, Grammar tabs', () => {
@@ -323,8 +316,7 @@ describe('ReaderRoute', () => {
       ],
       sentences: [{
         id: 's1',
-        words: ['まいあさ'],
-        ruby: [null],
+        tokens: [{ surface: 'まいあさ', segments: [{ text: 'まいあさ', ruby: null }] }],
         vocabKeys: [null],
         translation: null,
         grammar: [],

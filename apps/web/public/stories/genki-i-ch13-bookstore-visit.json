@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "genki-i-ch13-bookstore-visit",
   "title": "Kenji's Favorite Bookstore",
   "title_ja": "ケンジさんと好きな本屋",
@@ -43,217 +43,288 @@
       "key": 10000,
       "word": "目",
       "hiragana": "め",
-      "translation": "eye"
+      "translation": "eye",
+      "pos": "n",
+      "dictionary_form": "目"
     },
     {
       "key": 10001,
       "word": "光",
       "hiragana": "ひかり",
-      "translation": "light"
+      "translation": "light",
+      "pos": "n",
+      "dictionary_form": "光"
     },
     {
       "key": 10002,
       "word": "台所",
       "hiragana": "だいどころ",
-      "translation": "kitchen"
+      "translation": "kitchen",
+      "pos": "n",
+      "dictionary_form": "台所"
     },
     {
       "key": 10003,
       "word": "音",
       "hiragana": "おと",
-      "translation": "sound"
+      "translation": "sound",
+      "pos": "n",
+      "dictionary_form": "音"
     },
     {
       "key": 10004,
       "word": "匂い",
       "hiragana": "におい",
-      "translation": "smell; scent"
+      "translation": "smell; scent",
+      "pos": "n",
+      "dictionary_form": "匂い"
     },
     {
       "key": 10005,
       "word": "こと",
       "hiragana": "こと",
-      "translation": "thing; matter"
+      "translation": "thing; matter",
+      "pos": "n",
+      "dictionary_form": "こと"
     },
     {
       "key": 10006,
       "word": "遠い",
       "hiragana": "とおい",
-      "translation": "far"
+      "translation": "far",
+      "pos": "adj-i",
+      "dictionary_form": "遠い"
     },
     {
       "key": 10007,
       "word": "棚",
       "hiragana": "たな",
-      "translation": "shelf"
+      "translation": "shelf",
+      "pos": "n",
+      "dictionary_form": "棚"
     },
     {
       "key": 10008,
       "word": "角",
       "hiragana": "かど",
-      "translation": "corner"
+      "translation": "corner",
+      "pos": "n",
+      "dictionary_form": "角"
     },
     {
       "key": 10009,
       "word": "出す",
       "hiragana": "だす",
-      "translation": "to serve; to put out"
+      "translation": "to serve; to put out",
+      "pos": "v5",
+      "dictionary_form": "出す"
     },
     {
       "key": 10010,
       "word": "紙",
       "hiragana": "かみ",
-      "translation": "paper"
+      "translation": "paper",
+      "pos": "n",
+      "dictionary_form": "紙"
     },
     {
       "key": 10011,
       "word": "混じる",
       "hiragana": "まじる",
-      "translation": "to be mixed (intransitive)"
+      "translation": "to be mixed (intransitive)",
+      "pos": "v1",
+      "dictionary_form": "混じる"
     },
     {
       "key": 10012,
       "word": "組み合わせ",
       "hiragana": "くみあわせ",
-      "translation": "combination"
+      "translation": "combination",
+      "pos": "n",
+      "dictionary_form": "組み合わせ"
     },
     {
       "key": 10013,
       "word": "日",
       "hiragana": "ひ",
-      "translation": "day"
+      "translation": "day",
+      "pos": "n",
+      "dictionary_form": "日"
     },
     {
       "key": 10014,
       "word": "準備する",
       "hiragana": "じゅんびする",
-      "translation": "to prepare"
+      "translation": "to prepare",
+      "pos": "v-irr",
+      "dictionary_form": "準備する"
     },
     {
       "key": 10015,
       "word": "ジャケット",
       "hiragana": "ジャケット",
-      "translation": "jacket"
+      "translation": "jacket",
+      "pos": "n",
+      "dictionary_form": "ジャケット"
     },
     {
       "key": 10016,
       "word": "楽しむ",
       "hiragana": "たのしむ",
-      "translation": "to enjoy"
+      "translation": "to enjoy",
+      "pos": "v5",
+      "dictionary_form": "楽しむ"
     },
     {
       "key": 10017,
       "word": "空",
       "hiragana": "そら",
-      "translation": "sky"
+      "translation": "sky",
+      "pos": "n",
+      "dictionary_form": "空"
     },
     {
       "key": 10018,
       "word": "着く",
       "hiragana": "つく",
-      "translation": "to arrive"
+      "translation": "to arrive",
+      "pos": "v5",
+      "dictionary_form": "着く"
     },
     {
       "key": 10019,
       "word": "木",
       "hiragana": "き",
-      "translation": "wood; tree"
+      "translation": "wood; tree",
+      "pos": "n",
+      "dictionary_form": "木"
     },
     {
       "key": 10020,
       "word": "ドア",
       "hiragana": "ドア",
-      "translation": "door"
+      "translation": "door",
+      "pos": "n",
+      "dictionary_form": "ドア"
     },
     {
       "key": 10021,
       "word": "開く",
       "hiragana": "あく",
-      "translation": "to open (intransitive)"
+      "translation": "to open (intransitive)",
+      "pos": "v5",
+      "dictionary_form": "開く"
     },
     {
       "key": 10022,
       "word": "迎える",
       "hiragana": "むかえる",
-      "translation": "to greet; to welcome"
+      "translation": "to greet; to welcome",
+      "pos": "v1",
+      "dictionary_form": "迎える"
     },
     {
       "key": 10023,
       "word": "人々",
       "hiragana": "ひとびと",
-      "translation": "people"
+      "translation": "people",
+      "pos": "n",
+      "dictionary_form": "人々"
     },
     {
       "key": 10024,
       "word": "テーブル",
       "hiragana": "テーブル",
-      "translation": "table"
+      "translation": "table",
+      "pos": "n",
+      "dictionary_form": "テーブル"
     },
     {
       "key": 10025,
       "word": "何人か",
       "hiragana": "なんにんか",
-      "translation": "some people"
+      "translation": "some people",
+      "pos": "n",
+      "dictionary_form": "何人"
     },
     {
       "key": 10026,
       "word": "まず",
       "hiragana": "まず",
-      "translation": "first of all"
+      "translation": "first of all",
+      "pos": "adv",
+      "dictionary_form": "まず"
     },
     {
       "key": 10027,
       "word": "少し",
       "hiragana": "すこし",
-      "translation": "a little"
+      "translation": "a little",
+      "pos": "adv",
+      "dictionary_form": "少し"
     },
     {
       "key": 10028,
       "word": "表紙",
       "hiragana": "ひょうし",
-      "translation": "cover (of a book)"
+      "translation": "cover (of a book)",
+      "pos": "n",
+      "dictionary_form": "表紙"
     },
     {
       "key": 10029,
       "word": "小説",
       "hiragana": "しょうせつ",
-      "translation": "novel"
+      "translation": "novel",
+      "pos": "n",
+      "dictionary_form": "小説"
     },
     {
       "key": 10030,
       "word": "注文する",
       "hiragana": "ちゅうもんする",
-      "translation": "to order"
+      "translation": "to order",
+      "pos": "v-irr",
+      "dictionary_form": "注文する"
     },
     {
       "key": 10031,
       "word": "同じように",
       "hiragana": "おなじように",
-      "translation": "just like"
+      "translation": "just like",
+      "dictionary_form": "同じ"
     },
     {
       "key": 10032,
       "word": "椅子",
       "hiragana": "いす",
-      "translation": "chair"
+      "translation": "chair",
+      "pos": "n",
+      "dictionary_form": "椅子"
     },
     {
       "key": 10033,
       "word": "笑う",
       "hiragana": "わらう",
-      "translation": "to smile"
+      "translation": "to smile",
+      "pos": "v5",
+      "dictionary_form": "笑う"
     },
     {
       "key": 10034,
       "word": "完璧な",
       "hiragana": "かんぺきな",
-      "translation": "perfect (な-adjective)"
+      "translation": "perfect (な-adjective)",
+      "pos": "n",
+      "dictionary_form": "完璧"
     },
     {
       "key": 10035,
       "word": "彼",
       "hiragana": "かれ",
-      "translation": "he; him"
+      "translation": "he; him",
+      "pos": "pron",
+      "dictionary_form": "彼"
     }
   ],
   "sentences": [
@@ -264,22 +335,11 @@
         "さん",
         "は",
         "ゆっくり",
-        "目",
+        "目[め]",
         "を",
-        "開け",
+        "開[あけ]け",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "ケンジ",
-        null,
-        null,
-        null,
-        "め",
-        null,
-        "あけ",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -301,30 +361,17 @@
     {
       "id": "s02",
       "words": [
-        "朝",
+        "朝[あさ]",
         "の",
-        "光",
+        "光[ひかり]",
         "は",
-        "彼",
+        "彼[かれ]",
         "の",
-        "部屋",
+        "部屋[へや]",
         "に",
         "いっぱい",
         "でした",
         "。"
-      ],
-      "ruby": [
-        "あさ",
-        null,
-        "ひかり",
-        null,
-        "かれ",
-        null,
-        "へや",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         159,
@@ -350,24 +397,14 @@
     {
       "id": "s03",
       "words": [
-        "台所",
+        "台所[だいどころ]",
         "から",
         "小さい",
-        "音",
+        "音[おと]",
         "が",
         "し",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "だいどころ",
-        null,
-        null,
-        "おと",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10002,
@@ -390,20 +427,11 @@
       "words": [
         "そして",
         "、",
-        "匂い",
+        "匂[におい]い",
         "が",
         "し",
         "ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "におい",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         586,
@@ -422,26 +450,15 @@
     {
       "id": "s05",
       "words": [
-        "暖か",
+        "暖[あたたか]か",
         "くて",
         "、",
         "いい",
         "コーヒー",
         "の",
-        "匂い",
+        "匂[におい]い",
         "でした",
         "。"
-      ],
-      "ruby": [
-        "あたたか",
-        null,
-        null,
-        null,
-        null,
-        null,
-        "におい",
-        null,
-        null
       ],
       "vocab_keys": [
         528,
@@ -468,25 +485,13 @@
         "お母さん",
         "は",
         "いつも",
-        "朝",
+        "朝[あさ]",
         "に",
         "コーヒー",
         "を",
-        "作り",
+        "作[つくり]り",
         "ます",
         "。"
-      ],
-      "ruby": [
-        "おかあさん",
-        null,
-        null,
-        "あさ",
-        null,
-        null,
-        null,
-        "つくり",
-        null,
-        null
       ],
       "vocab_keys": [
         85,
@@ -512,19 +517,11 @@
       "id": "s07",
       "words": [
         "この",
-        "匂い",
+        "匂[におい]い",
         "は",
         "よかった",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        "におい",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         95,
@@ -549,40 +546,19 @@
         "さん",
         "は",
         "この",
-        "匂い",
+        "匂[におい]い",
         "で",
         "、",
         "いつも",
-        "好き",
+        "好[すき]き",
         "な",
-        "本屋",
+        "本屋[ほんや]",
         "の",
         "こと",
         "を",
-        "思い",
+        "思[おもい]い",
         "ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "ケンジ",
-        null,
-        null,
-        null,
-        "におい",
-        null,
-        null,
-        null,
-        "すき",
-        null,
-        "ほんや",
-        null,
-        null,
-        null,
-        "おもい",
-        null,
-        null
       ],
       "vocab_keys": [
         192,
@@ -619,30 +595,17 @@
     {
       "id": "s09",
       "words": [
-        "彼",
+        "彼[かれ]",
         "の",
-        "好き",
+        "好[すき]き",
         "な",
-        "本屋",
+        "本屋[ほんや]",
         "は",
-        "町",
+        "町[まち]",
         "に",
         "あり",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        "すき",
-        null,
-        "ほんや",
-        null,
-        "まち",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10035,
@@ -669,20 +632,12 @@
     {
       "id": "s10",
       "words": [
-        "駅",
+        "駅[えき]",
         "から",
-        "遠く",
+        "遠[とおく]く",
         "なかった",
         "です",
         "。"
-      ],
-      "ruby": [
-        "えき",
-        null,
-        "とおく",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         505,
@@ -701,34 +656,19 @@
     {
       "id": "s11",
       "words": [
-        "大きい",
-        "本屋",
+        "大[おおきい]きい",
+        "本屋[ほんや]",
         "では",
         "ありません",
         "でしたが",
         "、",
-        "彼",
+        "彼[かれ]",
         "の",
-        "好き",
+        "好[すき]き",
         "な",
-        "本屋",
+        "本屋[ほんや]",
         "でした",
         "。"
-      ],
-      "ruby": [
-        "おおきい",
-        "ほんや",
-        null,
-        null,
-        null,
-        null,
-        "かれ",
-        null,
-        "すき",
-        null,
-        "ほんや",
-        null,
-        null
       ],
       "vocab_keys": [
         278,
@@ -756,13 +696,13 @@
     {
       "id": "s12",
       "words": [
-        "中",
+        "中[なか]",
         "に",
         "、",
-        "棚",
+        "棚[たな]",
         "に",
         "たくさん",
-        "本",
+        "本[ほん]",
         "が",
         "あり",
         "ました",
@@ -770,36 +710,13 @@
         "、",
         "小さい",
         "、",
-        "静か",
+        "静[しずか]か",
         "な",
-        "喫茶店",
+        "喫茶店[きっさてん]",
         "も",
         "あり",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "なか",
-        null,
-        null,
-        "たな",
-        null,
-        null,
-        "ほん",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "しずか",
-        null,
-        "きっさてん",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         248,
@@ -841,32 +758,16 @@
         "では",
         "いつも",
         "おいしい",
-        "熱い",
+        "熱[あつい]い",
         "コーヒー",
         "や",
         "いろいろ",
         "な",
         "お茶",
         "を",
-        "出し",
+        "出[だし]し",
         "ます",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        "あつい",
-        null,
-        null,
-        null,
-        null,
-        "おちゃ",
-        null,
-        "だし",
-        null,
-        null
       ],
       "vocab_keys": [
         254,
@@ -901,39 +802,20 @@
         "そこの",
         "コーヒー",
         "の",
-        "匂い",
+        "匂[におい]い",
         "は",
         "、",
         "いつも",
-        "紙",
+        "紙[かみ]",
         "や",
-        "古い",
-        "本",
+        "古[ふるい]い",
+        "本[ほん]",
         "の",
-        "匂い",
+        "匂[におい]い",
         "と",
-        "混じって",
+        "混[まじって]じって",
         "いました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "におい",
-        null,
-        null,
-        null,
-        "かみ",
-        null,
-        "ふるい",
-        "ほん",
-        null,
-        "におい",
-        null,
-        "まじって",
-        null,
-        null
       ],
       "vocab_keys": [
         254,
@@ -973,22 +855,11 @@
         "さん",
         "は",
         "この",
-        "組み合わせ",
+        "組[くみあわせ]み合わせ",
         "が",
-        "大好き",
+        "大好[だいすき]き",
         "でした",
         "。"
-      ],
-      "ruby": [
-        "ケンジ",
-        null,
-        null,
-        null,
-        "くみあわせ",
-        null,
-        "だいすき",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1012,40 +883,22 @@
     {
       "id": "s16",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
         "よく",
         "そこ",
         "で",
-        "本",
+        "本[ほん]",
         "を",
-        "読ん",
+        "読[よん]ん",
         "だり",
         "、",
-        "勉強",
+        "勉強[べんきょう]",
         "し",
         "たり",
         "し",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        null,
-        null,
-        null,
-        "ほん",
-        null,
-        "よん",
-        null,
-        null,
-        "べんきょう",
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10035,
@@ -1077,28 +930,16 @@
     {
       "id": "s17",
       "words": [
-        "今日",
+        "今日[きょう]",
         "は",
-        "土曜日",
+        "土曜日[どようび]",
         "で",
         "、",
-        "暇",
+        "暇[ひま]",
         "な",
-        "日",
+        "日[ひ]",
         "でした",
         "。"
-      ],
-      "ruby": [
-        "きょう",
-        null,
-        "どようび",
-        null,
-        null,
-        "ひま",
-        null,
-        "ひ",
-        null,
-        null
       ],
       "vocab_keys": [
         162,
@@ -1125,21 +966,11 @@
         "ケンジ",
         "さん",
         "は",
-        "朝ごはん",
+        "朝[あさごはん]ごはん",
         "を",
-        "食べ",
+        "食[たべ]べ",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "ケンジ",
-        null,
-        null,
-        "あさごはん",
-        null,
-        "たべ",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1163,20 +994,11 @@
       "words": [
         "それから",
         "、",
-        "早く",
-        "準備",
+        "早[はやく]く",
+        "準備[じゅんび]",
         "し",
         "ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "はやく",
-        "じゅんび",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         305,
@@ -1195,38 +1017,21 @@
     {
       "id": "s20",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
-        "好き",
+        "好[すき]き",
         "な",
-        "青い",
+        "青[あおい]い",
         "ジャケット",
         "を",
-        "着て",
+        "着[きて]て",
         "、",
         "小さい",
         "かばん",
         "を",
-        "持ち",
+        "持[もち]ち",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        "すき",
-        null,
-        "あおい",
-        null,
-        null,
-        "きて",
-        null,
-        null,
-        null,
-        null,
-        "もち",
-        null,
-        null
       ],
       "vocab_keys": [
         10035,
@@ -1255,28 +1060,16 @@
     {
       "id": "s21",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
-        "本屋",
+        "本屋[ほんや]",
         "に",
-        "行き",
+        "行[いき]き",
         "たい",
         "と",
-        "思い",
+        "思[おもい]い",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        "ほんや",
-        null,
-        "いき",
-        null,
-        null,
-        "おもい",
-        null,
-        null
       ],
       "vocab_keys": [
         10035,
@@ -1302,24 +1095,14 @@
     {
       "id": "s22",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
-        "駅",
+        "駅[えき]",
         "に",
-        "歩いて",
-        "行き",
+        "歩[あるいて]いて",
+        "行[いき]き",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        "えき",
-        null,
-        "あるいて",
-        "いき",
-        null,
-        null
       ],
       "vocab_keys": [
         10035,
@@ -1340,24 +1123,14 @@
     {
       "id": "s23",
       "words": [
-        "秋",
+        "秋[あき]",
         "の",
         "いい",
-        "空気",
+        "空気[くうき]",
         "を",
-        "楽しみ",
+        "楽[たのしみ]しみ",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "あき",
-        null,
-        null,
-        "くうき",
-        null,
-        "たのしみ",
-        null,
-        null
       ],
       "vocab_keys": [
         504,
@@ -1380,18 +1153,11 @@
     {
       "id": "s24",
       "words": [
-        "空",
+        "空[そら]",
         "は",
-        "青かった",
+        "青[あおかった]かった",
         "です",
         "。"
-      ],
-      "ruby": [
-        "そら",
-        null,
-        "あおかった",
-        null,
-        null
       ],
       "vocab_keys": [
         10017,
@@ -1410,38 +1176,21 @@
     {
       "id": "s25",
       "words": [
-        "駅",
+        "駅[えき]",
         "に",
-        "着いて",
+        "着[ついて]いて",
         "から",
         "、",
-        "本屋",
+        "本屋[ほんや]",
         "の",
-        "古い",
-        "木",
+        "古[ふるい]い",
+        "木[き]",
         "の",
         "ドア",
         "が",
-        "開いて",
+        "開[あいて]いて",
         "いました",
         "。"
-      ],
-      "ruby": [
-        "えき",
-        null,
-        "ついて",
-        null,
-        null,
-        "ほんや",
-        null,
-        "ふるい",
-        "き",
-        null,
-        null,
-        null,
-        "あいて",
-        null,
-        null
       ],
       "vocab_keys": [
         505,
@@ -1472,42 +1221,23 @@
     {
       "id": "s26",
       "words": [
-        "中",
+        "中[なか]",
         "に",
-        "入って",
+        "入[はいって]って",
         "から",
         "、",
         "コーヒー",
         "と",
-        "本",
+        "本[ほん]",
         "の",
-        "匂い",
+        "匂[におい]い",
         "が",
         "すぐ",
-        "彼",
+        "彼[かれ]",
         "を",
-        "迎え",
+        "迎[むかえ]え",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "なか",
-        null,
-        "はいって",
-        null,
-        null,
-        null,
-        null,
-        "ほん",
-        null,
-        "におい",
-        null,
-        null,
-        "かれ",
-        null,
-        "むかえ",
-        null,
-        null
       ],
       "vocab_keys": [
         248,
@@ -1540,38 +1270,21 @@
     {
       "id": "s27",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
-        "人々",
+        "人々[ひとびと]",
         "が",
-        "静か",
+        "静[しずか]か",
         "に",
-        "本",
+        "本[ほん]",
         "を",
-        "見て",
+        "見[みて]て",
         "いる",
         "の",
         "を",
-        "見",
+        "見[み]",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        "ひとびと",
-        null,
-        "しずか",
-        null,
-        "ほん",
-        null,
-        "みて",
-        null,
-        null,
-        null,
-        "み",
-        null,
-        null
       ],
       "vocab_keys": [
         10035,
@@ -1602,44 +1315,24 @@
     {
       "id": "s28",
       "words": [
-        "何人か",
-        "喫茶店",
+        "何人[なんにんか]か",
+        "喫茶店[きっさてん]",
         "の",
         "テーブル",
         "に",
-        "座って",
+        "座[すわって]って",
         "、",
-        "本",
+        "本[ほん]",
         "を",
-        "読ん",
+        "読[よん]ん",
         "だり",
         "、",
         "ゆっくり",
-        "話し",
+        "話[はなし]し",
         "たり",
         "して",
         "いました",
         "。"
-      ],
-      "ruby": [
-        "なんにんか",
-        "きっさてん",
-        null,
-        null,
-        null,
-        "すわって",
-        null,
-        "ほん",
-        null,
-        "よん",
-        null,
-        null,
-        null,
-        "はなし",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10025,
@@ -1678,30 +1371,15 @@
         "さん",
         "は",
         "まず",
-        "科学",
+        "科学[かがく]",
         "の",
-        "本",
+        "本[ほん]",
         "の",
         "ところ",
         "に",
-        "行き",
+        "行[いき]き",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "ケンジ",
-        null,
-        null,
-        null,
-        "かがく",
-        null,
-        "ほん",
-        null,
-        null,
-        null,
-        "いき",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1728,28 +1406,16 @@
     {
       "id": "s30",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
-        "少し",
-        "本",
+        "少[すこし]し",
+        "本[ほん]",
         "の",
-        "表紙",
+        "表紙[ひょうし]",
         "を",
-        "見",
+        "見[み]",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        "すこし",
-        "ほん",
-        null,
-        "ひょうし",
-        null,
-        "み",
-        null,
-        null
       ],
       "vocab_keys": [
         10035,
@@ -1775,26 +1441,14 @@
       "words": [
         "そして",
         "、",
-        "読み",
+        "読[よみ]み",
         "たい",
-        "新しい",
-        "小説",
+        "新[あたらしい]しい",
+        "小説[しょうせつ]",
         "を",
-        "決め",
+        "決[きめ]め",
         "ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "よみ",
-        null,
-        "あたらしい",
-        "しょうせつ",
-        null,
-        "きめ",
-        null,
-        null
       ],
       "vocab_keys": [
         586,
@@ -1818,28 +1472,16 @@
     {
       "id": "s32",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
         "それ",
         "を",
         "小さい",
-        "喫茶店",
+        "喫茶店[きっさてん]",
         "に",
-        "持って行き",
+        "持[もっていき]って行き",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        null,
-        null,
-        null,
-        "きっさてん",
-        null,
-        "もっていき",
-        null,
-        null
       ],
       "vocab_keys": [
         10035,
@@ -1866,26 +1508,14 @@
       "words": [
         "いつも",
         "と",
-        "同じように",
-        "熱い",
+        "同[おなじように]じように",
+        "熱[あつい]い",
         "コーヒー",
         "を",
-        "注文",
+        "注文[ちゅうもん]",
         "し",
         "ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "おなじように",
-        "あつい",
-        null,
-        null,
-        "ちゅうもん",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         629,
@@ -1910,48 +1540,26 @@
     {
       "id": "s34",
       "words": [
-        "窓",
+        "窓[まど]",
         "の",
         "そば",
         "の",
         "いい",
-        "椅子",
+        "椅子[いす]",
         "に",
-        "座って",
+        "座[すわって]って",
         "、",
-        "本",
+        "本[ほん]",
         "を",
-        "開けて",
+        "開[あけて]けて",
         "、",
         "コーヒー",
         "を",
-        "少し",
-        "飲んで",
+        "少[すこし]し",
+        "飲[のんで]んで",
         "み",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "まど",
-        null,
-        null,
-        null,
-        null,
-        "いす",
-        null,
-        "すわって",
-        null,
-        "ほん",
-        null,
-        "あけて",
-        null,
-        null,
-        null,
-        "すこし",
-        "のんで",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         324,
@@ -1990,18 +1598,11 @@
     {
       "id": "s35",
       "words": [
-        "彼",
+        "彼[かれ]",
         "は",
-        "笑い",
+        "笑[わらい]い",
         "ました",
         "。"
-      ],
-      "ruby": [
-        "かれ",
-        null,
-        "わらい",
-        null,
-        null
       ],
       "vocab_keys": [
         10035,
@@ -2021,22 +1622,12 @@
       "words": [
         "これ",
         "は",
-        "完璧な",
-        "土曜日",
+        "完璧[かんぺきな]な",
+        "土曜日[どようび]",
         "の",
-        "午後",
+        "午後[ごご]",
         "でした",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "かんぺきな",
-        "どようび",
-        null,
-        "ごご",
-        null,
-        null
       ],
       "vocab_keys": [
         91,

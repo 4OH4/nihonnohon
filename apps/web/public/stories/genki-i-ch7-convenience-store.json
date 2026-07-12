@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "genki-i-ch7-convenience-store",
   "title": "Ken's Convenience Store Trip",
   "title_ja": "ケンのコンビニ",
@@ -30,225 +30,275 @@
       "key": 10001,
       "word": "五分",
       "hiragana": "ごふん",
-      "translation": "five minutes"
+      "translation": "five minutes",
+      "pos": "n",
+      "dictionary_form": "五"
     },
     {
       "key": 10003,
       "word": "冷蔵庫",
       "hiragana": "れいぞうこ",
-      "translation": "refrigerator"
+      "translation": "refrigerator",
+      "pos": "n",
+      "dictionary_form": "冷蔵庫"
     },
     {
       "key": 10004,
       "word": "お菓子",
       "hiragana": "おかし",
-      "translation": "snack"
+      "translation": "snack",
+      "pos": "pref",
+      "dictionary_form": "お"
     },
     {
       "key": 10005,
       "word": "ポテトチップス",
       "hiragana": "ぽてとちっぷす",
-      "translation": "potato chips"
+      "translation": "potato chips",
+      "pos": "n",
+      "dictionary_form": "ポテトチップス"
     },
     {
       "key": 10006,
       "word": "クッキー",
       "hiragana": "くっきー",
-      "translation": "cookie"
+      "translation": "cookie",
+      "pos": "n",
+      "dictionary_form": "クッキー"
     },
     {
       "key": 10007,
       "word": "チョコレート",
       "hiragana": "ちょこれーと",
-      "translation": "chocolate"
+      "translation": "chocolate",
+      "pos": "n",
+      "dictionary_form": "チョコレート"
     },
     {
       "key": 10008,
       "word": "おにぎり",
       "hiragana": "おにぎり",
-      "translation": "rice ball"
+      "translation": "rice ball",
+      "pos": "n",
+      "dictionary_form": "おにぎり"
     },
     {
       "key": 10009,
       "word": "いろいろな",
       "hiragana": "いろいろな",
-      "translation": "various"
+      "translation": "various",
+      "pos": "adj-na",
+      "dictionary_form": "いろいろ"
     },
     {
       "key": 10010,
       "word": "物",
       "hiragana": "もの",
-      "translation": "thing"
+      "translation": "thing",
+      "pos": "n",
+      "dictionary_form": "物"
     },
     {
       "key": 10011,
       "word": "終わる",
       "hiragana": "おわる",
-      "translation": "to finish"
+      "translation": "to finish",
+      "pos": "v5",
+      "dictionary_form": "終わる"
     },
     {
       "key": 10014,
       "word": "言う",
       "hiragana": "いう",
-      "translation": "to say"
+      "translation": "to say",
+      "pos": "v5",
+      "dictionary_form": "言う"
     },
     {
       "key": 10016,
       "word": "見える",
       "hiragana": "みえる",
-      "translation": "to be visible"
+      "translation": "to be visible",
+      "pos": "v1",
+      "dictionary_form": "見える"
     },
     {
       "key": 10017,
       "word": "店員",
       "hiragana": "てんいん",
-      "translation": "cashier"
+      "translation": "cashier",
+      "pos": "n",
+      "dictionary_form": "店員"
     },
     {
       "key": 10018,
       "word": "笑う",
       "hiragana": "わらう",
-      "translation": "to smile"
+      "translation": "to smile",
+      "pos": "v5",
+      "dictionary_form": "笑う"
     },
     {
       "key": 10019,
       "word": "冷たい",
       "hiragana": "つめたい",
-      "translation": "cold (for objects)"
+      "translation": "cold (for objects)",
+      "pos": "adj-i",
+      "dictionary_form": "冷たい"
     },
     {
       "key": 10020,
       "word": "オレンジジュース",
       "hiragana": "おれんじじゅーす",
-      "translation": "orange juice"
+      "translation": "orange juice",
+      "pos": "n",
+      "dictionary_form": "オレンジジュース"
     },
     {
       "key": 10021,
       "word": "取る",
       "hiragana": "とる",
-      "translation": "to take; to pick up"
+      "translation": "to take; to pick up",
+      "pos": "v5",
+      "dictionary_form": "取る"
     },
     {
       "key": 10022,
       "word": "選ぶ",
       "hiragana": "えらぶ",
-      "translation": "to choose"
+      "translation": "to choose",
+      "pos": "v5",
+      "dictionary_form": "選ぶ"
     },
     {
       "key": 10023,
       "word": "レジ",
       "hiragana": "れじ",
-      "translation": "cash register; counter"
+      "translation": "cash register; counter",
+      "pos": "n",
+      "dictionary_form": "レジ"
     },
     {
       "key": 10024,
       "word": "スキャンする",
       "hiragana": "すきゃんする",
-      "translation": "to scan"
+      "translation": "to scan",
+      "pos": "v-irr",
+      "dictionary_form": "スキャンする"
     },
     {
       "key": 10025,
       "word": "出す",
       "hiragana": "だす",
-      "translation": "to take out"
+      "translation": "to take out",
+      "pos": "v5",
+      "dictionary_form": "出す"
     },
     {
       "key": 10027,
       "word": "おつり",
       "hiragana": "おつり",
-      "translation": "change"
+      "translation": "change",
+      "pos": "pref",
+      "dictionary_form": "お"
     },
     {
       "key": 10028,
       "word": "レシート",
       "hiragana": "れしーと",
-      "translation": "receipt"
+      "translation": "receipt",
+      "pos": "n",
+      "dictionary_form": "レシート"
     },
     {
       "key": 10029,
       "word": "払う",
       "hiragana": "はらう",
-      "translation": "to pay"
+      "translation": "to pay",
+      "pos": "v5",
+      "dictionary_form": "払う"
     },
     {
       "key": 10030,
       "word": "店",
       "hiragana": "みせ",
-      "translation": "store"
+      "translation": "store",
+      "pos": "n",
+      "dictionary_form": "店"
     },
     {
       "key": 10031,
       "word": "出る",
       "hiragana": "でる",
-      "translation": "to leave (a place)"
+      "translation": "to leave (a place)",
+      "pos": "v1",
+      "dictionary_form": "出る"
     },
     {
       "key": 10032,
       "word": "甘い",
       "hiragana": "あまい",
-      "translation": "sweet"
+      "translation": "sweet",
+      "pos": "adj-i",
+      "dictionary_form": "甘い"
     },
     {
       "key": 10033,
       "word": "野球",
       "hiragana": "やきゅう",
-      "translation": "baseball"
+      "translation": "baseball",
+      "pos": "n",
+      "dictionary_form": "野球"
     },
     {
       "key": 10034,
       "word": "練習",
       "hiragana": "れんしゅう",
-      "translation": "practice"
+      "translation": "practice",
+      "pos": "n",
+      "dictionary_form": "練習"
     },
     {
       "key": 10035,
       "word": "所",
       "hiragana": "ところ",
-      "translation": "place; section"
+      "translation": "place; section",
+      "pos": "n",
+      "dictionary_form": "所"
     },
     {
       "key": 10036,
       "word": "三百八十",
       "hiragana": "さんびゃくはちじゅう",
-      "translation": "three hundred eighty"
+      "translation": "three hundred eighty",
+      "pos": "n",
+      "dictionary_form": "三百八十"
     },
     {
       "key": 10037,
       "word": "あげる",
       "hiragana": "あげる",
-      "translation": "to give (to others)"
+      "translation": "to give (to others)",
+      "pos": "v1",
+      "dictionary_form": "あげる"
     }
   ],
   "sentences": [
     {
       "id": "s01",
       "words": [
-        "私",
+        "私[わたし]",
         "の",
-        "名前",
+        "名前[なまえ]",
         "は",
         "ケン",
         "です",
         "。",
-        "私",
+        "私[わたし]",
         "は",
-        "学生",
+        "学生[がくせい]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "なまえ",
-        null,
-        null,
-        null,
-        null,
-        "わたし",
-        null,
-        "がくせい",
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -273,34 +323,19 @@
     {
       "id": "s02",
       "words": [
-        "毎日",
+        "毎日[まいにち]",
         "、",
-        "学校",
+        "学校[がっこう]",
         "の",
         "あとで",
         "、",
-        "私",
+        "私[わたし]",
         "は",
         "よく",
         "コンビニ",
         "へ",
-        "行きます",
+        "行[いきます]きます",
         "。"
-      ],
-      "ruby": [
-        "まいにち",
-        null,
-        "がっこう",
-        null,
-        "あとで",
-        null,
-        "わたし",
-        null,
-        null,
-        null,
-        null,
-        "いきます",
-        null
       ],
       "vocab_keys": [
         168,
@@ -329,32 +364,17 @@
       "words": [
         "コンビニ",
         "は",
-        "私",
+        "私[わたし]",
         "の",
-        "学校",
+        "学校[がっこう]",
         "の",
         "そば",
         "です",
         "。",
-        "五分",
+        "五分[ごふん]",
         "ぐらい",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "わたし",
-        null,
-        "がっこう",
-        null,
-        null,
-        null,
-        null,
-        "ごふん",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         375,
@@ -382,28 +402,16 @@
     {
       "id": "s04",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
         "たいてい",
-        "友達",
+        "友達[ともだち]",
         "の",
         "ひろし",
         "さん",
         "と",
-        "行きます",
+        "行[いきます]きます",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        null,
-        "ともだち",
-        null,
-        null,
-        null,
-        null,
-        "いきます",
-        null
       ],
       "vocab_keys": [
         61,
@@ -434,14 +442,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         375,
         null,
@@ -458,26 +458,15 @@
     {
       "id": "s06",
       "words": [
-        "大きい",
-        "冷蔵庫",
+        "大[おおきい]きい",
+        "冷蔵庫[れいぞうこ]",
         "に",
         "、",
         "たくさん",
-        "飲み物",
+        "飲[のみもの]み物",
         "が",
         "あります",
         "。"
-      ],
-      "ruby": [
-        "おおきい",
-        "れいぞうこ",
-        null,
-        null,
-        null,
-        "のみもの",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         278,
@@ -513,20 +502,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        "おかし",
-        null,
-        null,
-        null,
-        null,
-        "ぽてとちっぷす",
-        null,
-        "くっきー",
-        null,
-        "ちょこれーと",
-        null,
-        null
-      ],
       "vocab_keys": [
         10004,
         null,
@@ -551,18 +526,11 @@
     {
       "id": "s08",
       "words": [
-        "新しい",
+        "新[あたらしい]しい",
         "おにぎり",
         "も",
         "あります",
         "。"
-      ],
-      "ruby": [
-        "あたらしい",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         274,
@@ -581,24 +549,14 @@
     {
       "id": "s09",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
         "いろいろな",
-        "物",
+        "物[もの]",
         "が",
         "好き",
         "です",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "いろいろな",
-        "もの",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -618,22 +576,13 @@
     {
       "id": "s10",
       "words": [
-        "今日",
+        "今日[きょう]",
         "は",
         "、",
         "クラス",
         "が",
-        "終わります",
+        "終[おわります]わります",
         "。"
-      ],
-      "ruby": [
-        "きょう",
-        null,
-        null,
-        null,
-        null,
-        "おわります",
-        null
       ],
       "vocab_keys": [
         162,
@@ -652,36 +601,20 @@
     {
       "id": "s11",
       "words": [
-        "鞄",
+        "鞄[かばん]",
         "を",
-        "持って",
+        "持[もって]って",
         "、",
-        "先生",
+        "先生[せんせい]",
         "に",
         "「",
         "さようなら",
         "」",
         "と",
-        "私",
+        "私[わたし]",
         "は",
-        "言います",
+        "言[いいます]います",
         "。"
-      ],
-      "ruby": [
-        "かばん",
-        null,
-        "もって",
-        null,
-        "せんせい",
-        null,
-        null,
-        null,
-        null,
-        null,
-        "わたし",
-        null,
-        "いいます",
-        null
       ],
       "vocab_keys": [
         110,
@@ -715,17 +648,8 @@
         "ひろし",
         "さん",
         "と",
-        "出かけます",
+        "出[でかけます]かけます",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        "でかけます",
-        null
       ],
       "vocab_keys": [
         305,
@@ -746,18 +670,11 @@
     {
       "id": "s13",
       "words": [
-        "天気",
+        "天気[てんき]",
         "は",
         "いい",
         "です",
         "。"
-      ],
-      "ruby": [
-        "てんき",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         265,
@@ -779,21 +696,10 @@
         "ひろし",
         "さん",
         "は",
-        "宿題",
+        "宿題[しゅくだい]",
         "を",
-        "話します",
+        "話[はなします]します",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        "しゅくだい",
-        null,
-        "はなします",
-        null
       ],
       "vocab_keys": [
         null,
@@ -818,15 +724,8 @@
         "コンビニ",
         "が",
         "すぐに",
-        "見えます",
+        "見[みえます]えます",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "みえます",
-        null
       ],
       "vocab_keys": [
         375,
@@ -848,21 +747,10 @@
         "ひろし",
         "さん",
         "は",
-        "中",
+        "中[なか]",
         "へ",
-        "入ります",
+        "入[はいります]ります",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        "なか",
-        null,
-        "はいります",
-        null
       ],
       "vocab_keys": [
         null,
@@ -885,30 +773,17 @@
     {
       "id": "s17",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
-        "店員",
+        "店員[てんいん]",
         "に",
         "「",
         "こんにちは",
         "！",
         "」",
         "と",
-        "言います",
+        "言[いいます]います",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "てんいん",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "いいます",
-        null
       ],
       "vocab_keys": [
         61,
@@ -932,16 +807,10 @@
     {
       "id": "s18",
       "words": [
-        "店員",
+        "店員[てんいん]",
         "は",
-        "笑います",
+        "笑[わらいます]います",
         "。"
-      ],
-      "ruby": [
-        "てんいん",
-        null,
-        "わらいます",
-        null
       ],
       "vocab_keys": [
         10017,
@@ -957,34 +826,19 @@
     {
       "id": "s19",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
-        "飲み物",
+        "飲[のみもの]み物",
         "の",
-        "所",
+        "所[ところ]",
         "へ",
-        "行って",
+        "行[いって]って",
         "、",
-        "冷たい",
+        "冷[つめたい]たい",
         "オレンジジュース",
         "を",
-        "取ります",
+        "取[とります]ります",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "のみもの",
-        null,
-        "ところ",
-        null,
-        "いって",
-        null,
-        "つめたい",
-        "おれんじじゅーす",
-        null,
-        "とります",
-        null
       ],
       "vocab_keys": [
         61,
@@ -1017,30 +871,15 @@
         "、",
         "お菓子",
         "の",
-        "所",
+        "所[ところ]",
         "を",
-        "見て",
+        "見[みて]て",
         "、",
-        "小さい",
+        "小[ちいさい]さい",
         "チョコレート",
         "を",
-        "選びます",
+        "選[えらびます]びます",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "おかし",
-        null,
-        "ところ",
-        null,
-        "みて",
-        null,
-        "ちいさい",
-        "ちょこれーと",
-        null,
-        "えらびます",
-        null
       ],
       "vocab_keys": [
         305,
@@ -1074,17 +913,8 @@
         "は",
         "おにぎり",
         "を",
-        "取ります",
+        "取[とります]ります",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        "とります",
-        null
       ],
       "vocab_keys": [
         null,
@@ -1111,19 +941,8 @@
         "は",
         "レジ",
         "へ",
-        "行きます",
+        "行[いきます]きます",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "いきます",
-        null
       ],
       "vocab_keys": [
         null,
@@ -1145,32 +964,18 @@
     {
       "id": "s23",
       "words": [
-        "店員",
+        "店員[てんいん]",
         "は",
         "ケン",
         "と",
         "ひろし",
         "さん",
         "の",
-        "物",
+        "物[もの]",
         "を",
         "スキャン",
         "します",
         "。"
-      ],
-      "ruby": [
-        "てんいん",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "もの",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10017,
@@ -1197,29 +1002,16 @@
       "id": "s24",
       "words": [
         "「",
-        "三百八十",
-        "円",
+        "三百八十[さんびゃくはちじゅう]",
+        "円[えん]",
         "です",
         "。",
         "」",
         "と",
-        "店員",
+        "店員[てんいん]",
         "は",
-        "言います",
+        "言[いいます]います",
         "。"
-      ],
-      "ruby": [
-        null,
-        "さんびゃくはちじゅう",
-        "えん",
-        null,
-        null,
-        null,
-        null,
-        "てんいん",
-        null,
-        "いいます",
-        null
       ],
       "vocab_keys": [
         null,
@@ -1242,28 +1034,16 @@
     {
       "id": "s25",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
-        "財布",
+        "財布[さいふ]",
         "を",
-        "出して",
+        "出[だして]して",
         "、",
         "お金",
         "を",
         "あげます",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "さいふ",
-        null,
-        "だして",
-        null,
-        "おかね",
-        null,
-        "あげます",
-        null
       ],
       "vocab_keys": [
         61,
@@ -1288,9 +1068,9 @@
     {
       "id": "s26",
       "words": [
-        "店員",
+        "店員[てんいん]",
         "は",
-        "私",
+        "私[わたし]",
         "に",
         "、",
         "おつり",
@@ -1299,19 +1079,6 @@
         "を",
         "あげます",
         "。"
-      ],
-      "ruby": [
-        "てんいん",
-        null,
-        "わたし",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "あげます",
-        null
       ],
       "vocab_keys": [
         10017,
@@ -1340,21 +1107,10 @@
         "！",
         "」",
         "と",
-        "私",
+        "私[わたし]",
         "は",
-        "言います",
+        "言[いいます]います",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        "わたし",
-        null,
-        "いいます",
-        null
       ],
       "vocab_keys": [
         null,
@@ -1382,19 +1138,8 @@
         "の",
         "お金",
         "を",
-        "払います",
+        "払[はらいます]います",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        "おかね",
-        null,
-        "はらいます",
-        null
       ],
       "vocab_keys": [
         null,
@@ -1422,21 +1167,10 @@
         "ひろし",
         "さん",
         "は",
-        "店",
+        "店[みせ]",
         "を",
-        "出ます",
+        "出[でます]ます",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        "みせ",
-        null,
-        "でます",
-        null
       ],
       "vocab_keys": [
         null,
@@ -1460,32 +1194,17 @@
       "words": [
         "お菓子",
         "を",
-        "開けて",
+        "開[あけて]けて",
         "、",
-        "家",
+        "家[うち]",
         "へ",
-        "帰ります",
+        "帰[かえります]ります",
         "。",
-        "帰る",
+        "帰[かえる]る",
         "とき",
         "、",
-        "食べます",
+        "食[たべます]べます",
         "。"
-      ],
-      "ruby": [
-        "おかし",
-        null,
-        "あけて",
-        null,
-        "うち",
-        null,
-        "かえります",
-        null,
-        "かえる",
-        "とき",
-        null,
-        "たべます",
-        null
       ],
       "vocab_keys": [
         10004,
@@ -1514,26 +1233,15 @@
     {
       "id": "s31",
       "words": [
-        "冷たい",
+        "冷[つめたい]たい",
         "オレンジジュース",
         "は",
-        "学校",
+        "学校[がっこう]",
         "の",
         "あとで",
         "おいしい",
         "です",
         "。"
-      ],
-      "ruby": [
-        "つめたい",
-        "おれんじじゅーす",
-        null,
-        "がっこう",
-        null,
-        "あとで",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10019,
@@ -1558,16 +1266,9 @@
       "words": [
         "チョコレート",
         "は",
-        "甘い",
+        "甘[あまい]い",
         "です",
         "。"
-      ],
-      "ruby": [
-        "ちょこれーと",
-        null,
-        "あまい",
-        null,
-        null
       ],
       "vocab_keys": [
         10007,
@@ -1593,16 +1294,6 @@
         "です",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         null,
         null,
@@ -1626,25 +1317,12 @@
         "ひろし",
         "さん",
         "は",
-        "野球",
+        "野球[やきゅう]",
         "の",
-        "練習",
+        "練習[れんしゅう]",
         "を",
-        "話します",
+        "話[はなします]します",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        "やきゅう",
-        null,
-        "れんしゅう",
-        null,
-        "はなします",
-        null
       ],
       "vocab_keys": [
         null,
@@ -1671,24 +1349,13 @@
       "words": [
         "コンビニ",
         "は",
-        "楽しい",
+        "楽[たのしい]しい",
         "です",
         "。",
         "いい",
-        "休み",
+        "休[やすみ]み",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "たのしい",
-        null,
-        null,
-        null,
-        "やすみ",
-        null,
-        null
       ],
       "vocab_keys": [
         375,

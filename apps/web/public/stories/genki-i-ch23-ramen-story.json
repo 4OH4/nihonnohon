@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "genki-i-ch23-ramen-story",
   "title": "A New Ramen Shop",
   "title_ja": "新しいラーメン屋",
@@ -46,159 +46,197 @@
       "key": 10000,
       "word": "ラーメン",
       "hiragana": "ラーメン",
-      "translation": "ramen"
+      "translation": "ramen",
+      "pos": "n",
+      "dictionary_form": "ラーメン"
     },
     {
       "key": 10001,
       "word": "ラーメン屋",
       "hiragana": "ラーメンや",
-      "translation": "ramen shop"
+      "translation": "ramen shop",
+      "pos": "n",
+      "dictionary_form": "ラーメン"
     },
     {
       "key": 10002,
       "word": "門",
       "hiragana": "もん",
-      "translation": "gate"
+      "translation": "gate",
+      "pos": "n",
+      "dictionary_form": "門"
     },
     {
       "key": 10003,
       "word": "スープ",
       "hiragana": "スープ",
-      "translation": "soup"
+      "translation": "soup",
+      "pos": "n",
+      "dictionary_form": "スープ"
     },
     {
       "key": 10004,
       "word": "おおどおり",
       "hiragana": "おおどおり",
-      "translation": "main street"
+      "translation": "main street",
+      "pos": "pref",
+      "dictionary_form": "お"
     },
     {
       "key": 10005,
       "word": "くだもの屋",
       "hiragana": "くだものや",
-      "translation": "fruit shop"
+      "translation": "fruit shop",
+      "pos": "n",
+      "dictionary_form": "くだもの"
     },
     {
       "key": 10006,
       "word": "パン屋",
       "hiragana": "パンや",
-      "translation": "bakery"
+      "translation": "bakery",
+      "pos": "n",
+      "dictionary_form": "パン屋"
     },
     {
       "key": 10007,
       "word": "看板",
       "hiragana": "かんばん",
-      "translation": "sign"
+      "translation": "sign",
+      "pos": "n",
+      "dictionary_form": "看板"
     },
     {
       "key": 10008,
       "word": "におい",
       "hiragana": "におい",
-      "translation": "smell"
+      "translation": "smell",
+      "pos": "n",
+      "dictionary_form": "におい"
     },
     {
       "key": 10009,
       "word": "戸",
       "hiragana": "と",
-      "translation": "door"
+      "translation": "door",
+      "pos": "n",
+      "dictionary_form": "戸"
     },
     {
       "key": 10010,
       "word": "ベル",
       "hiragana": "ベル",
-      "translation": "bell"
+      "translation": "bell",
+      "pos": "n",
+      "dictionary_form": "ベル"
     },
     {
       "key": 10011,
       "word": "カウンター",
       "hiragana": "カウンター",
-      "translation": "counter"
+      "translation": "counter",
+      "pos": "n",
+      "dictionary_form": "カウンター"
     },
     {
       "key": 10012,
       "word": "椅子",
       "hiragana": "いす",
-      "translation": "chair; stool"
+      "translation": "chair; stool",
+      "pos": "n",
+      "dictionary_form": "椅子"
     },
     {
       "key": 10013,
       "word": "テーブル",
       "hiragana": "テーブル",
-      "translation": "table"
+      "translation": "table",
+      "pos": "n",
+      "dictionary_form": "テーブル"
     },
     {
       "key": 10014,
       "word": "エプロン",
       "hiragana": "エプロン",
-      "translation": "apron"
+      "translation": "apron",
+      "pos": "n",
+      "dictionary_form": "エプロン"
     },
     {
       "key": 10015,
       "word": "とんこつラーメン",
       "hiragana": "とんこつラーメン",
-      "translation": "tonkotsu ramen"
+      "translation": "tonkotsu ramen",
+      "pos": "n",
+      "dictionary_form": "とんこつラーメン"
     },
     {
       "key": 10016,
       "word": "みそラーメン",
       "hiragana": "みそラーメン",
-      "translation": "miso ramen"
+      "translation": "miso ramen",
+      "pos": "n",
+      "dictionary_form": "みそ"
     },
     {
       "key": 10017,
       "word": "どんぶり",
       "hiragana": "どんぶり",
-      "translation": "bowl"
+      "translation": "bowl",
+      "pos": "adv",
+      "dictionary_form": "どんぶり"
     },
     {
       "key": 10018,
       "word": "湯気",
       "hiragana": "ゆげ",
-      "translation": "steam"
+      "translation": "steam",
+      "pos": "n",
+      "dictionary_form": "湯気"
     },
     {
       "key": 10019,
       "word": "麺",
       "hiragana": "めん",
-      "translation": "noodles"
+      "translation": "noodles",
+      "pos": "n",
+      "dictionary_form": "麺"
     },
     {
       "key": 10020,
       "word": "卵",
       "hiragana": "たまご",
-      "translation": "egg"
+      "translation": "egg",
+      "pos": "n",
+      "dictionary_form": "卵"
     },
     {
       "key": 10021,
       "word": "ねぎ",
       "hiragana": "ねぎ",
-      "translation": "green onions"
+      "translation": "green onions",
+      "pos": "n",
+      "dictionary_form": "ねぎ"
     },
     {
       "key": 10022,
       "word": "いっぱい",
       "hiragana": "いっぱい",
-      "translation": "full"
+      "translation": "full",
+      "pos": "n",
+      "dictionary_form": "いっぱい"
     }
   ],
   "sentences": [
     {
       "id": "s01",
       "words": [
-        "暖かい",
-        "火曜日",
+        "暖[あたたかい]かい",
+        "火曜日[かようび]",
         "の",
-        "午後",
+        "午後[ごご]",
         "でした",
         "。"
-      ],
-      "ruby": [
-        "あたたかい",
-        "かようび",
-        null,
-        "ごご",
-        null,
-        null
       ],
       "vocab_keys": [
         528,
@@ -219,7 +257,7 @@
     {
       "id": "s02",
       "words": [
-        "佐藤",
+        "佐藤[さとう]",
         "さん",
         "、",
         "けん",
@@ -228,27 +266,11 @@
         "ミカ",
         "さん",
         "は",
-        "学校",
+        "学校[がっこう]",
         "から",
-        "一緒に",
+        "一緒[いっしょに]に",
         "でました",
         "。"
-      ],
-      "ruby": [
-        "さとう",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "がっこう",
-        null,
-        "いっしょに",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -278,31 +300,17 @@
       "id": "s03",
       "words": [
         "ほかの",
-        "学生",
+        "学生[がくせい]",
         "さん",
         "も",
         "わらいながら",
         "、",
         "話しながら",
         "、",
-        "学校",
+        "学校[がっこう]",
         "から",
         "でていました",
         "。"
-      ],
-      "ruby": [
-        null,
-        "がくせい",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "がっこう",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         822,
@@ -332,18 +340,18 @@
         "けん",
         "さん",
         "は",
-        "学校",
+        "学校[がっこう]",
         "の",
-        "門",
+        "門[もん]",
         "の",
         "そば",
         "で",
         "、「",
-        "今日",
+        "今日[きょう]",
         "、",
-        "新しい",
+        "新[あたらしい]しい",
         "ラーメン",
-        "屋",
+        "屋[や]",
         "に",
         "行きましょう",
         "。",
@@ -351,30 +359,6 @@
         "と",
         "言いました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "がっこう",
-        null,
-        "もん",
-        null,
-        null,
-        null,
-        null,
-        "きょう",
-        null,
-        "あたらしい",
-        null,
-        "や",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -415,7 +399,7 @@
     {
       "id": "s05",
       "words": [
-        "佐藤",
+        "佐藤[さとう]",
         "さん",
         "は",
         "「",
@@ -424,10 +408,10 @@
         "ね",
         "。僕",
         "の",
-        "兄",
+        "兄[あに]",
         "は",
         "とても",
-        "人気",
+        "人気[にんき]",
         "が",
         "ある",
         "と",
@@ -436,29 +420,6 @@
         "と",
         "言いました",
         "。"
-      ],
-      "ruby": [
-        "さとう",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "ぼく",
-        null,
-        "あに",
-        null,
-        null,
-        "にんき",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -510,18 +471,6 @@
         "すきました",
         "。 」"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         null,
         44,
@@ -550,19 +499,9 @@
         "、",
         "おおどおり",
         "を",
-        "早く",
+        "早[はやく]く",
         "あるきました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        "はやく",
-        null,
-        null
       ],
       "vocab_keys": [
         492,
@@ -585,18 +524,11 @@
     {
       "id": "s08",
       "words": [
-        "車",
+        "車[くるま]",
         "が",
         "たくさん",
         "ありました",
         "。"
-      ],
-      "ruby": [
-        "くるま",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         374,
@@ -619,22 +551,11 @@
         "は",
         "くだもの屋",
         "と",
-        "小さい",
+        "小[ちいさい]さい",
         "パン屋",
         "を",
         "見ました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        "ちいさい",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         492,
@@ -658,36 +579,20 @@
     {
       "id": "s10",
       "words": [
-        "新しい",
+        "新[あたらしい]しい",
         "ラーメン",
-        "屋",
+        "屋[や]",
         "は",
-        "駅",
+        "駅[えき]",
         "の",
         "そば",
         "の",
-        "少し",
-        "遠い",
+        "少[すこし]し",
+        "遠[とおい]い",
         "ところ",
         "に",
         "ありました",
         "。"
-      ],
-      "ruby": [
-        "あたらしい",
-        null,
-        "や",
-        null,
-        "えき",
-        null,
-        null,
-        null,
-        "すこし",
-        "とおい",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         274,
@@ -717,32 +622,18 @@
     {
       "id": "s11",
       "words": [
-        "大きい",
-        "赤い",
-        "看板",
+        "大[おおきい]きい",
+        "赤[あかい]い",
+        "看板[かんばん]",
         "が",
         "ありました",
         "。",
-        "白い",
-        "日本語",
+        "白[しろい]い",
+        "日本語[にほんご]",
         "が",
-        "書いて",
+        "書[かいて]いて",
         "ありました",
         "。"
-      ],
-      "ruby": [
-        "おおきい",
-        "あかい",
-        "かんばん",
-        null,
-        null,
-        null,
-        "しろい",
-        "にほんご",
-        null,
-        "かいて",
-        null,
-        null
       ],
       "vocab_keys": [
         278,
@@ -771,11 +662,11 @@
     {
       "id": "s12",
       "words": [
-        "中",
+        "中[なか]",
         "から",
         "おいしい",
         "、",
-        "暖かい",
+        "暖[あたたかい]かい",
         "ラーメン",
         "の",
         "スープ",
@@ -784,21 +675,6 @@
         "が",
         "来ました",
         "。"
-      ],
-      "ruby": [
-        "なか",
-        null,
-        null,
-        null,
-        "あたたかい",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         248,
@@ -829,7 +705,7 @@
     {
       "id": "s13",
       "words": [
-        "佐藤",
+        "佐藤[さとう]",
         "さん",
         "は",
         "「",
@@ -839,18 +715,6 @@
         "と",
         "言いました",
         "。"
-      ],
-      "ruby": [
-        "さとう",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -874,20 +738,12 @@
     {
       "id": "s14",
       "words": [
-        "戸",
+        "戸[と]",
         "を",
         "開けて",
         "、",
         "入りました",
         "。"
-      ],
-      "ruby": [
-        "と",
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10009,
@@ -908,26 +764,15 @@
     {
       "id": "s15",
       "words": [
-        "戸",
+        "戸[と]",
         "の",
-        "上",
+        "上[うえ]",
         "に",
-        "小さい",
+        "小[ちいさい]さい",
         "ベル",
         "が",
         "ありました",
         "。"
-      ],
-      "ruby": [
-        "と",
-        null,
-        "うえ",
-        null,
-        "ちいさい",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10009,
@@ -952,32 +797,18 @@
     {
       "id": "s16",
       "words": [
-        "店",
+        "店[みせ]",
         "は",
-        "小さかった",
+        "小[ちいさかった]さかった",
         "です",
         "が",
         "、",
         "とても",
         "きれいで",
         "、",
-        "明るかった",
+        "明[あかるかった]るかった",
         "です",
         "。"
-      ],
-      "ruby": [
-        "みせ",
-        null,
-        "ちいさかった",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "あかるかった",
-        null,
-        null
       ],
       "vocab_keys": [
         658,
@@ -1004,38 +835,21 @@
     {
       "id": "s17",
       "words": [
-        "長い",
+        "長[ながい]い",
         "カウンター",
         "と",
-        "椅子",
+        "椅子[いす]",
         "が",
         "ありました",
         "。",
         "そして",
         "、",
-        "少し",
-        "小さい",
+        "少[すこし]し",
+        "小[ちいさい]さい",
         "テーブル",
         "も",
         "ありました",
         "。"
-      ],
-      "ruby": [
-        "ながい",
-        null,
-        null,
-        "いす",
-        null,
-        null,
-        null,
-        null,
-        null,
-        "すこし",
-        "ちいさい",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         386,
@@ -1069,23 +883,13 @@
       "id": "s18",
       "words": [
         "ほかの",
-        "客",
+        "客[きゃく]",
         "さん",
         "も",
         "ラーメン",
         "を",
         "食べていました",
         "。"
-      ],
-      "ruby": [
-        null,
-        "きゃく",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         822,
@@ -1111,11 +915,11 @@
         "エプロン",
         "を",
         "した",
-        "親切",
+        "親切[しんせつ]",
         "な",
-        "女",
+        "女[おんな]",
         "の",
-        "人",
+        "人[ひと]",
         "が",
         "わらいながら",
         "「",
@@ -1124,24 +928,6 @@
         "と",
         "言いました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "しんせつ",
-        null,
-        "おんな",
-        null,
-        "ひと",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10014,
@@ -1177,7 +963,7 @@
       "words": [
         "みんな",
         "は",
-        "窓",
+        "窓[まど]",
         "の",
         "そば",
         "の",
@@ -1185,28 +971,11 @@
         "に",
         "座りました",
         "。",
-        "道",
+        "道[みち]",
         "を",
         "みながら",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "まど",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "みち",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         492,
@@ -1254,22 +1023,6 @@
         "聞きました",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         null,
         44,
@@ -1303,13 +1056,13 @@
         "は",
         "メニュー",
         "の",
-        "写真",
+        "写真[しゃしん]",
         "を",
         "見ました",
         "。「",
         "とんこつラーメン",
         "を",
-        "一つ",
+        "一[ひとつ]つ",
         "ください",
         "。とても",
         "おいしい",
@@ -1318,28 +1071,6 @@
         "スープ",
         "です",
         "。 」"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        "しゃしん",
-        null,
-        null,
-        null,
-        null,
-        null,
-        "ひとつ",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1377,7 +1108,7 @@
     {
       "id": "s23",
       "words": [
-        "佐藤",
+        "佐藤[さとう]",
         "さん",
         "は",
         "しょうゆ",
@@ -1390,21 +1121,6 @@
         "スープ",
         "です",
         "。"
-      ],
-      "ruby": [
-        "さとう",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1440,31 +1156,14 @@
         "に",
         "決めました",
         "。",
-        "少し",
+        "少[すこし]し",
         "甘くて",
         "、",
-        "辛い",
+        "辛[からい]い",
         "味",
         "が",
         "ありました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "すこし",
-        null,
-        null,
-        "からい",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1496,32 +1195,18 @@
     {
       "id": "s25",
       "words": [
-        "女",
+        "女[おんな]",
         "の",
-        "人",
+        "人[ひと]",
         "は",
-        "早く",
-        "冷たい",
-        "水",
+        "早[はやく]く",
+        "冷[つめたい]たい",
+        "水[みず]",
         "の",
         "コップ",
         "を",
         "持ってきました",
         "。"
-      ],
-      "ruby": [
-        "おんな",
-        null,
-        "ひと",
-        null,
-        "はやく",
-        "つめたい",
-        "みず",
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         826,
@@ -1552,24 +1237,13 @@
       "words": [
         "すぐ",
         "、",
-        "暖かい",
+        "暖[あたたかい]かい",
         "ラーメン",
         "の",
         "どんぶり",
         "が",
         "着きました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "あたたかい",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         357,
@@ -1596,20 +1270,11 @@
       "words": [
         "どんぶり",
         "は",
-        "大きくて",
+        "大[おおきくて]きくて",
         "、",
-        "熱かった",
+        "熱[あつかった]かった",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "おおきくて",
-        null,
-        "あつかった",
-        null,
-        null
       ],
       "vocab_keys": [
         10017,
@@ -1633,20 +1298,11 @@
       "words": [
         "スープ",
         "から",
-        "白い",
-        "湯気",
+        "白[しろい]い",
+        "湯気[ゆげ]",
         "が",
         "でました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "しろい",
-        "ゆげ",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10003,
@@ -1670,30 +1326,16 @@
       "words": [
         "どんぶり",
         "には",
-        "麺",
+        "麺[めん]",
         "と",
-        "肉",
+        "肉[にく]",
         "と",
-        "卵",
+        "卵[たまご]",
         "と",
         "ねぎ",
         "が",
         "ありました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "めん",
-        null,
-        "にく",
-        null,
-        "たまご",
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10017,
@@ -1721,7 +1363,7 @@
     {
       "id": "s30",
       "words": [
-        "佐藤",
+        "佐藤[さとう]",
         "さん",
         "は",
         "「",
@@ -1730,17 +1372,6 @@
         "と",
         "言いました",
         "。"
-      ],
-      "ruby": [
-        "さとう",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1768,12 +1399,6 @@
         "持ちました",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         429,
         6,
@@ -1793,8 +1418,8 @@
         "けん",
         "さん",
         "は",
-        "早く",
-        "麺",
+        "早[はやく]く",
+        "麺[めん]",
         "を",
         "食べました",
         "。「",
@@ -1807,25 +1432,6 @@
         "おいしい",
         "です",
         "。 」"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "はやく",
-        "めん",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1862,33 +1468,17 @@
         "ミカ",
         "さん",
         "は",
-        "肉",
+        "肉[にく]",
         "を",
         "食べてみました",
         "。「",
         "この",
-        "肉",
+        "肉[にく]",
         "は",
         "とても",
         "おいしい",
         "です",
         "。 」"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "にく",
-        null,
-        null,
-        null,
-        null,
-        "にく",
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -1925,21 +1515,9 @@
         "。",
         "そして",
         "、",
-        "楽しく",
+        "楽[たのしく]しく",
         "話しました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "たのしく",
-        null,
-        null
       ],
       "vocab_keys": [
         492,
@@ -1964,46 +1542,25 @@
     {
       "id": "s35",
       "words": [
-        "佐藤",
+        "佐藤[さとう]",
         "さん",
         "は",
         "スープ",
         "を",
-        "全部",
+        "全部[ぜんぶ]",
         "飲んで",
         "しまいました",
         "。「",
         "この",
         "ラーメン",
         "は",
-        "一番",
+        "一番[いちばん]",
         "おいしい",
         "です",
         "。 」",
         "と",
         "言いました",
         "。"
-      ],
-      "ruby": [
-        "さとう",
-        null,
-        null,
-        null,
-        null,
-        "ぜんぶ",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "いちばん",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -2059,33 +1616,9 @@
         "が",
         "いっぱいで",
         "、",
-        "幸せ",
+        "幸[しあわせ]せ",
         "でした",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "しあわせ",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -2134,34 +1667,15 @@
         "いっぱいで",
         "、",
         "とても",
-        "幸せ",
+        "幸[しあわせ]せ",
         "でした",
         "。「",
-        "私",
+        "私[わたし]",
         "も",
         "！",
-        "来週",
+        "来週[らいしゅう]",
         "来ましょう",
         "。 」"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        "しあわせ",
-        null,
-        null,
-        "わたし",
-        null,
-        null,
-        "らいしゅう",
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -2203,11 +1717,11 @@
         "を",
         "払って",
         "、",
-        "親切",
+        "親切[しんせつ]",
         "な",
-        "女",
+        "女[おんな]",
         "の",
-        "人",
+        "人[ひと]",
         "に",
         "「",
         "ありがとう",
@@ -2215,26 +1729,6 @@
         "と",
         "言いました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "おかね",
-        null,
-        null,
-        null,
-        "しんせつ",
-        null,
-        "おんな",
-        null,
-        "ひと",
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10011,
@@ -2269,18 +1763,11 @@
     {
       "id": "s39",
       "words": [
-        "夕方",
+        "夕方[ゆうがた]",
         "は",
         "きれい",
         "でした",
         "。"
-      ],
-      "ruby": [
-        "ゆうがた",
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         883,
@@ -2299,11 +1786,11 @@
     {
       "id": "s40",
       "words": [
-        "佐藤",
+        "佐藤[さとう]",
         "さん",
         "は",
         "「",
-        "本当に",
+        "本当[ほんとうに]に",
         "とても",
         "おいしい",
         "ご飯",
@@ -2312,21 +1799,6 @@
         "と",
         "言いました",
         "。"
-      ],
-      "ruby": [
-        "さとう",
-        null,
-        null,
-        null,
-        "ほんとうに",
-        null,
-        null,
-        "ごはん",
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         null,
@@ -2367,20 +1839,6 @@
         "言いました",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         null,
         44,
@@ -2409,40 +1867,21 @@
       "words": [
         "みんな",
         "は",
-        "新しい",
-        "好き",
+        "新[あたらしい]しい",
+        "好[すき]き",
         "な",
         "ラーメン",
-        "屋",
+        "屋[や]",
         "の",
-        "話",
+        "話[はなし]",
         "を",
         "しながら",
         "、",
-        "一緒に",
-        "家",
+        "一緒[いっしょに]に",
+        "家[いえ]",
         "に",
         "帰りました",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        "あたらしい",
-        "すき",
-        null,
-        null,
-        "や",
-        null,
-        "はなし",
-        null,
-        null,
-        null,
-        "いっしょに",
-        "いえ",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         492,

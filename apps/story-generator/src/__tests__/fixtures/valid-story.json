@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "genki-1-ch3-test-story",
   "title": "Test Story",
   "title_ja": "テスト話",
@@ -14,7 +14,6 @@
     {
       "id": "genki-1-ch3-test-story-s1",
       "words": ["これ", "は", "テスト", "です"],
-      "ruby": [null, null, "てすと", null],
       "vocab_keys": [null, null, 9001, null],
       "translation": "This is a test.",
       "grammar": [0]

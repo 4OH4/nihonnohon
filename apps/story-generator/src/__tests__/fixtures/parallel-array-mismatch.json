@@ -1,18 +1,17 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "parallel-mismatch-story",
   "title": "Mismatch Story",
   "title_ja": "テスト",
   "language": "ja",
-  "description": "Story with parallel array mismatch in ruby.",
+  "description": "Story with parallel array mismatch in vocab_keys.",
   "grammar": ["〜です"],
   "vocab_supplement": [],
   "sentences": [
     {
       "id": "s1",
       "words": ["これ", "は", "テスト"],
-      "ruby": [null, null],
-      "vocab_keys": [null, null, null],
+      "vocab_keys": [null, null],
       "translation": "Test.",
       "grammar": [0]
     }

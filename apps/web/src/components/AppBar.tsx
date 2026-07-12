@@ -19,14 +19,14 @@ export function AppBar({ variant = 'reader', rightSlot }: AppBarProps) {
         <Link
           to="/"
           aria-label="Back to library"
-          className="text-sm text-muted hover:text-paper-text transition-colors"
+          className="text-base text-muted hover:text-paper-text transition-colors"
         >
           ← Library
         </Link>
       ) : (
         <span />
       )}
-      <span className="font-ja text-sm text-muted justify-self-center" lang="ja">
+      <span className="font-ja text-base text-muted justify-self-center" lang="ja">
         日本の本
       </span>
       <div className="flex justify-end">{rightSlot}</div>

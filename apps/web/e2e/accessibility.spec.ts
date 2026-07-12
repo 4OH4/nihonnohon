@@ -49,35 +49,40 @@ test.describe('Accessibility — axe-core WCAG 2.1 AA', () => {
 })
 
 test.describe('Visual regression snapshots', () => {
-  test('ToolBar ruby toggle off', async ({ page }) => {
+  test('Ruby toggle off', async ({ page }) => {
     await page.goto('/read/genki-i-ch6-tanaka-letter')
-    await page.getByRole('button', { name: 'ルビ' }).click()
-    expect(await page.getByRole('toolbar').screenshot()).toMatchSnapshot('toolbar-ruby-off.png')
+    await page.getByRole('button', { name: 'Settings' }).click()
+    await page.getByRole('button', { name: 'Ruby' }).click()
+    await page.keyboard.press('Escape')
+    expect(await page.getByRole('group', { name: 'Sentence 1', exact: true }).screenshot()).toMatchSnapshot('ruby-off.png')
   })
 
-  test('ToolBar ruby toggle on', async ({ page }) => {
+  test('Ruby toggle on', async ({ page }) => {
     await page.goto('/read/genki-i-ch6-tanaka-letter')
     // Ruby is on by default
-    expect(await page.getByRole('toolbar').screenshot()).toMatchSnapshot('toolbar-ruby-on.png')
+    expect(await page.getByRole('group', { name: 'Sentence 1', exact: true }).screenshot()).toMatchSnapshot('ruby-on.png')
   })
 
-  test('ToolBar Trans toggle on', async ({ page }) => {
+  test('Trans toggle on', async ({ page }) => {
     await page.goto('/read/genki-i-ch6-tanaka-letter')
-    await page.getByRole('button', { name: 'Trans' }).click()
-    expect(await page.getByRole('toolbar').screenshot()).toMatchSnapshot('toolbar-trans-on.png')
+    await page.getByRole('button', { name: 'Settings' }).click()
+    await page.getByRole('button', { name: 'Trans.' }).click()
+    await page.keyboard.press('Escape')
+    expect(await page.getByRole('group', { name: 'Sentence 1', exact: true }).screenshot()).toMatchSnapshot('trans-on.png')
   })
 
-  test('ToolBar Trans toggle off', async ({ page }) => {
+  test('Trans toggle off', async ({ page }) => {
     await page.goto('/read/genki-i-ch6-tanaka-letter')
     // Trans is off by default
-    expect(await page.getByRole('toolbar').screenshot()).toMatchSnapshot('toolbar-trans-off.png')
+    expect(await page.getByRole('group', { name: 'Sentence 1', exact: true }).screenshot()).toMatchSnapshot('trans-off.png')
   })
 
   test('SettingsMenu Spaces toggle on', async ({ page }) => {
     await page.goto('/read/genki-i-ch6-tanaka-letter')
     await page.getByRole('button', { name: 'Settings' }).click()
-    await page.getByRole('button', { name: 'Off' }).click()
-    expect(await page.getByRole('toolbar').screenshot()).toMatchSnapshot('toolbar-spaces-on.png')
+    await page.getByRole('button', { name: 'Spaces' }).click()
+    await page.keyboard.press('Escape')
+    expect(await page.getByRole('group', { name: 'Sentence 1', exact: true }).screenshot()).toMatchSnapshot('spaces-on.png')
   })
 
   test('SettingsMenu Spaces toggle off', async ({ page }) => {

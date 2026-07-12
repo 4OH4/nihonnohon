@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "id": "genki-i-ch1-identities-and-friends",
   "title": "My Friends and I",
   "title_ja": "わたしとともだち",
@@ -16,37 +16,36 @@
       "key": 10000,
       "word": "けん",
       "hiragana": "けん",
-      "translation": "Ken (person's name)"
+      "translation": "Ken (person's name)",
+      "pos": "n",
+      "dictionary_form": "けん"
     },
     {
       "key": 10001,
       "word": "さくら",
       "hiragana": "さくら",
-      "translation": "Sakura (person's name)"
+      "translation": "Sakura (person's name)",
+      "pos": "n",
+      "dictionary_form": "さくら"
     },
     {
       "key": 10002,
       "word": "三",
       "hiragana": "さん",
-      "translation": "three (number)"
+      "translation": "three (number)",
+      "pos": "n",
+      "dictionary_form": "三"
     }
   ],
   "sentences": [
     {
       "id": "s01",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
-        "学生",
+        "学生[がくせい]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "がくせい",
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -63,18 +62,11 @@
     {
       "id": "s02",
       "words": [
-        "私",
+        "私[わたし]",
         "は",
-        "大学生",
+        "大学生[だいがくせい]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "だいがくせい",
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -91,22 +83,13 @@
     {
       "id": "s03",
       "words": [
-        "私",
+        "私[わたし]",
         "の",
-        "専門",
+        "専門[せんもん]",
         "は",
-        "歴史",
+        "歴史[れきし]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "せんもん",
-        null,
-        "れきし",
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -126,24 +109,14 @@
     {
       "id": "s04",
       "words": [
-        "私",
+        "私[わたし]",
         "の",
-        "友達",
+        "友達[ともだち]",
         "は",
         "けん",
         "さん",
         "です",
         "。"
-      ],
-      "ruby": [
-        "わたし",
-        null,
-        "ともだち",
-        null,
-        null,
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         61,
@@ -168,18 +141,9 @@
         "さん",
         "は",
         "アメリカ",
-        "人",
+        "人[じん]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null,
-        "じん",
-        null,
-        null
       ],
       "vocab_keys": [
         10000,
@@ -201,21 +165,11 @@
         "けん",
         "さん",
         "の",
-        "専門",
+        "専門[せんもん]",
         "は",
-        "科学",
+        "科学[かがく]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "せんもん",
-        null,
-        "かがく",
-        null,
-        null
       ],
       "vocab_keys": [
         10000,
@@ -239,21 +193,11 @@
         "さくら",
         "さん",
         "は",
-        "私",
+        "私[わたし]",
         "の",
-        "友達",
+        "友達[ともだち]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "わたし",
-        null,
-        "ともだち",
-        null,
-        null
       ],
       "vocab_keys": [
         10001,
@@ -277,19 +221,10 @@
         "さくら",
         "さん",
         "は",
-        "日本",
-        "人",
+        "日本[にほん]",
+        "人[じん]",
         "です",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "にほん",
-        "じん",
-        null,
-        null
       ],
       "vocab_keys": [
         10001,
@@ -311,19 +246,10 @@
         "さくら",
         "さん",
         "は",
-        "高校生",
+        "高校生[こうこうせい]",
         "です",
         "か",
         "。"
-      ],
-      "ruby": [
-        null,
-        null,
-        null,
-        "こうこうせい",
-        null,
-        null,
-        null
       ],
       "vocab_keys": [
         10001,
@@ -348,12 +274,6 @@
         "そうです",
         "。"
       ],
-      "ruby": [
-        null,
-        null,
-        null,
-        null
-      ],
       "vocab_keys": [
         57,
         null,
@@ -366,22 +286,13 @@
     {
       "id": "s11",
       "words": [
-        "今",
+        "今[いま]",
         "は",
-        "午後",
-        "三",
-        "時",
+        "午後[ごご]",
+        "三[さん]",
+        "時[じ]",
         "です",
         "。"
-      ],
-      "ruby": [
-        "いま",
-        null,
-        "ごご",
-        "さん",
-        "じ",
-        null,
-        null
       ],
       "vocab_keys": [
         36,

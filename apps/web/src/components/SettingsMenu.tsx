@@ -13,16 +13,29 @@ const SIZE_CONFIG = [
   { size: 'large', label: 'A+', ariaLabel: 'Larger text' },
 ] as const
 
-/** Settings popover containing spacing toggle and text size controls. */
+/** Settings popover containing the reading toggles and text size controls. */
 export function SettingsMenu() {
-  const { spacingVisible, textSize, setSpacingVisible, setTextSize } = usePreferenceStore(
+  const {
+    spacingVisible, rubyVisible, transVisible, textSize,
+    setSpacingVisible, setRubyVisible, setTransVisible, setTextSize,
+  } = usePreferenceStore(
     useShallow(s => ({
       spacingVisible: s.spacingVisible,
+      rubyVisible: s.rubyVisible,
+      transVisible: s.transVisible,
       textSize: s.textSize,
       setSpacingVisible: s.setSpacingVisible,
+      setRubyVisible: s.setRubyVisible,
+      setTransVisible: s.setTransVisible,
       setTextSize: s.setTextSize,
     }))
   )
+
+  const toggles = [
+    { label: 'Spaces', value: spacingVisible, set: setSpacingVisible },
+    { label: 'Ruby', value: rubyVisible, set: setRubyVisible },
+    { label: 'Trans.', value: transVisible, set: setTransVisible },
+  ]
 
   return (
     <Popover.Root>
@@ -30,7 +43,8 @@ export function SettingsMenu() {
         <button
           type="button"
           aria-label="Settings"
-          className="px-3 py-2 rounded text-base text-muted"
+          // py-1.5 keeps the (larger) icon within the AppBar's min-h-12 height
+          className="px-3 py-1.5 rounded text-lg text-muted"
         >
           ⚙
         </button>
@@ -40,23 +54,26 @@ export function SettingsMenu() {
           className="bg-surface border border-border rounded shadow-md p-3 flex flex-col gap-3 z-50 min-w-[160px]"
           sideOffset={5}
         >
-          {/* Spaces toggle */}
-          <div className="flex items-center justify-between gap-4">
-            <span className="text-sm text-paper-text">Spaces</span>
-            <button
-              type="button"
-              aria-pressed={spacingVisible}
-              onClick={() => setSpacingVisible(!spacingVisible)}
-              className={cn(
-                'px-3 py-1 rounded text-sm border',
-                spacingVisible
-                  ? 'bg-accent-subtle border-accent text-paper-text'
-                  : 'bg-surface border-border text-muted',
-              )}
-            >
-              {spacingVisible ? 'On' : 'Off'}
-            </button>
-          </div>
+          {/* On/off reading toggles */}
+          {toggles.map(({ label, value, set }) => (
+            <div key={label} className="flex items-center justify-between gap-4">
+              <span className="text-sm text-paper-text">{label}</span>
+              <button
+                type="button"
+                aria-label={label}
+                aria-pressed={value}
+                onClick={() => set(!value)}
+                className={cn(
+                  'px-3 py-1 rounded text-sm border',
+                  value
+                    ? 'bg-accent-subtle border-accent text-paper-text'
+                    : 'bg-surface border-border text-muted',
+                )}
+              >
+                {value ? 'On' : 'Off'}
+              </button>
+            </div>
+          ))}
 
           {/* Text size controls */}
           <div className="flex items-center gap-1">

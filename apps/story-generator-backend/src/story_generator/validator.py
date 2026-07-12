@@ -1,4 +1,5 @@
 """Structural validator for nihonnohon story dicts."""
+import re
 from dataclasses import dataclass, field
 
 
@@ -19,10 +20,37 @@ class ValidationResult:
     errors: list[ValidationError] = field(default_factory=list)
 
 
-# Required top-level fields per story.v1.json
+# Required top-level fields (shared by v1 and v2 schemas)
 _REQUIRED_FIELDS = frozenset(
     {"schema_version", "id", "title", "title_ja", "language", "description", "sentences"}
 )
+
+# Kanji Unicode ranges: CJK Unified Ideographs, Extension A, Compatibility Ideographs, Extension B,
+# plus ideographic iteration marks 々〻〃 (U+3005, U+303B, U+3003) — matches TypeScript isKanji().
+_KANJI_RE = re.compile(r"[一-鿿㐀-䶿豈-﫿\U00020000-\U0002A6DF々〻〃]")
+
+
+def _is_kanji(ch: str) -> bool:
+    """Return True if ch is a kanji character."""
+    return bool(_KANJI_RE.match(ch))
+
+
+def _validate_word_annotation(word: str) -> str | None:
+    """Return an error message if inline ruby annotation syntax is malformed, else None.
+
+    Rules:
+    - A '[' must be immediately preceded by a kanji character.
+    - A '[' must be closed by a matching ']'.
+    """
+    if "[" not in word:
+        return None
+    for i, ch in enumerate(word):
+        if ch == "[":
+            if i == 0 or not _is_kanji(word[i - 1]):
+                return f"word {word!r}: '[' at position {i} not preceded by a kanji character"
+            if "]" not in word[i + 1:]:
+                return f"word {word!r}: '[' at position {i} is not closed"
+    return None
 
 
 def validate(story_dict: dict) -> ValidationResult:
@@ -60,7 +88,7 @@ def validate(story_dict: dict) -> ValidationResult:
                 )
             )
 
-        # 2. Parallel array parity per sentence + sentence.id presence
+        # 2. Per-sentence validation: id presence, bracket syntax, vocab_keys parity
         sentences = story_dict.get("sentences")
         # P5: sentences: null must not pass as valid (key present but null value)
         if sentences is None:
@@ -86,20 +114,25 @@ def validate(story_dict: dict) -> ValidationResult:
                         )
                     )
                 words = sentence.get("words") or []
-                ruby = sentence.get("ruby")
                 vocab_keys = sentence.get("vocab_keys")
                 n = len(words)
-                if ruby is not None and len(ruby) != n:
-                    errors.append(
-                        ValidationError(
-                            code="PARALLEL_ARRAY_MISMATCH",
-                            message=(
-                                f"sentence[{i}] (id={sentence.get('id', '?')}): "
-                                f"words={n} but ruby={len(ruby)}"
-                            ),
-                            sentence_index=i,
-                        )
-                    )
+
+                # Inline annotation bracket syntax check (v2 format)
+                for word_str in words:
+                    if isinstance(word_str, str):
+                        msg = _validate_word_annotation(word_str)
+                        if msg:
+                            errors.append(
+                                ValidationError(
+                                    code="VALIDATION_ERROR",
+                                    message=(
+                                        f"sentence[{i}] (id={sentence.get('id', '?')}): {msg}"
+                                    ),
+                                    sentence_index=i,
+                                )
+                            )
+
+                # vocab_keys length parity
                 if vocab_keys is not None and len(vocab_keys) != n:
                     errors.append(
                         ValidationError(

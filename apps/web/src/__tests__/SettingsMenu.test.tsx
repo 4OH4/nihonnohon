@@ -8,6 +8,8 @@ import { usePreferenceStore } from '@/stores/preferenceStore'
 
 const DEFAULT_PREFS = {
   spacingVisible: false,
+  rubyVisible: true,
+  transVisible: false,
   textSize: 'medium' as const,
 }
 
@@ -22,10 +24,12 @@ describe('SettingsMenu', () => {
     expect(screen.getByRole('button', { name: 'Settings' })).toBeInTheDocument()
   })
 
-  it('clicking trigger opens popover with Spaces and text size controls', () => {
+  it('clicking trigger opens popover with toggles and text size controls', () => {
     render(<SettingsMenu />)
     fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
     expect(screen.getByText('Spaces')).toBeInTheDocument()
+    expect(screen.getByText('Ruby')).toBeInTheDocument()
+    expect(screen.getByText('Trans.')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Smaller text' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /Medium text/ })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Larger text' })).toBeInTheDocument()
@@ -34,8 +38,22 @@ describe('SettingsMenu', () => {
   it('Spaces toggle updates spacingVisible in store', () => {
     render(<SettingsMenu />)
     fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
-    fireEvent.click(screen.getByRole('button', { name: 'Off' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Spaces' }))
     expect(usePreferenceStore.getState().spacingVisible).toBe(true)
+  })
+
+  it('Ruby toggle updates rubyVisible in store', () => {
+    render(<SettingsMenu />)
+    fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Ruby' }))
+    expect(usePreferenceStore.getState().rubyVisible).toBe(false)
+  })
+
+  it('Trans toggle updates transVisible in store', () => {
+    render(<SettingsMenu />)
+    fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Trans.' }))
+    expect(usePreferenceStore.getState().transVisible).toBe(true)
   })
 
   it('A− button sets textSize to small', () => {
