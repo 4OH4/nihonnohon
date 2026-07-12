@@ -56,6 +56,7 @@ scan_level: deep
 | [integration-architecture.md](./integration-architecture.md) | How parts interact and data flows |
 | [source-tree-analysis.md](./source-tree-analysis.md) | Annotated directory structure |
 | [development-guide.md](./development-guide.md) | Setup, build, test, deploy |
+| [story-generation-pipeline.md](./story-generation-pipeline.md) | How a topic/story becomes a JSON story file; where Genki/kanji data enters (baseline for quality work) |
 
 ---
 

@@ -1,0 +1,163 @@
+{
+  "id": "eval-genki6-daily-life",
+  "chapter": 6,
+  "source": "Gold annotations authored by Claude (Opus 4.8) sentence-by-sentence. Japanese drafted to approx. Genki I Ch.6 level. HUMAN REVIEW REQUIRED before treating as ground truth — check segmentation boundaries, dictionary forms, and readings.",
+  "english_source": "A university student describes their daily routine: waking up, going to class, studying Japanese, spending time with friends, and relaxing in the evening.",
+  "conventions": {
+    "input": "The `ja` string is the frozen benchmark input. The system under test receives `ja` and must reproduce `words` (segmentation), `dict`, and `ruby`.",
+    "scored_fields": ["surface (segmentation)", "dict", "ruby"],
+    "ruby": "kanji-run[reading] with okurigana left bare, e.g. 起[お]きます, 勉強[べんきょう]します. Pure-kana tokens have ruby == surface. Canonical per-word: first-occurrence suppression is NOT applied here (it is a separate story-level transform).",
+    "dict": "Lexical dictionary/lemma form of the token's head word. For adjective+です tokens the head adjective (大きい). For particles/punctuation, dict == surface.",
+    "pos": "pron | n | v1 | v5 | v-irr | adj-i | adj-na | adv | conj | prt | aux | punct. Used to scope metrics: dict scored on content words; ruby scored on tokens containing kanji."
+  },
+  "sentences": [
+    {
+      "id": "s01",
+      "ja": "私は毎朝六時に起きます。",
+      "en": "I get up at six every morning.",
+      "words": [
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "毎朝", "dict": "毎朝", "ruby": "毎朝[まいあさ]", "pos": "n" },
+        { "surface": "六時", "dict": "六時", "ruby": "六時[ろくじ]", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "起きます", "dict": "起きる", "ruby": "起[お]きます", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s02",
+      "ja": "朝ごはんを食べてから、大学へ行きます。",
+      "en": "After eating breakfast, I go to the university.",
+      "words": [
+        { "surface": "朝ごはん", "dict": "朝ごはん", "ruby": "朝[あさ]ごはん", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "食べて", "dict": "食べる", "ruby": "食[た]べて", "pos": "v1" },
+        { "surface": "から", "dict": "から", "ruby": "から", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "大学", "dict": "大学", "ruby": "大学[だいがく]", "pos": "n" },
+        { "surface": "へ", "dict": "へ", "ruby": "へ", "pos": "prt" },
+        { "surface": "行きます", "dict": "行く", "ruby": "行[い]きます", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s03",
+      "ja": "私の大学はとても大きいです。",
+      "en": "My university is very big.",
+      "words": [
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "大学", "dict": "大学", "ruby": "大学[だいがく]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "とても", "dict": "とても", "ruby": "とても", "pos": "adv" },
+        { "surface": "大きいです", "dict": "大きい", "ruby": "大[おお]きいです", "pos": "adj-i" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s04",
+      "ja": "月曜日から金曜日まで日本語を勉強します。",
+      "en": "I study Japanese from Monday to Friday.",
+      "words": [
+        { "surface": "月曜日", "dict": "月曜日", "ruby": "月曜日[げつようび]", "pos": "n" },
+        { "surface": "から", "dict": "から", "ruby": "から", "pos": "prt" },
+        { "surface": "金曜日", "dict": "金曜日", "ruby": "金曜日[きんようび]", "pos": "n" },
+        { "surface": "まで", "dict": "まで", "ruby": "まで", "pos": "prt" },
+        { "surface": "日本語", "dict": "日本語", "ruby": "日本語[にほんご]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "勉強します", "dict": "勉強する", "ruby": "勉強[べんきょう]します", "pos": "v-irr" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s05",
+      "ja": "日本語のクラスは難しいですが、おもしろいです。",
+      "en": "The Japanese class is difficult, but it is interesting.",
+      "words": [
+        { "surface": "日本語", "dict": "日本語", "ruby": "日本語[にほんご]", "pos": "n" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "クラス", "dict": "クラス", "ruby": "クラス", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "難しいです", "dict": "難しい", "ruby": "難[むずか]しいです", "pos": "adj-i" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "おもしろいです", "dict": "おもしろい", "ruby": "おもしろいです", "pos": "adj-i" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s06",
+      "ja": "ときどき友だちと図書館で本を読みます。",
+      "en": "Sometimes I read books at the library with friends.",
+      "words": [
+        { "surface": "ときどき", "dict": "ときどき", "ruby": "ときどき", "pos": "adv" },
+        { "surface": "友だち", "dict": "友だち", "ruby": "友[とも]だち", "pos": "n" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "図書館", "dict": "図書館", "ruby": "図書館[としょかん]", "pos": "n" },
+        { "surface": "で", "dict": "で", "ruby": "で", "pos": "prt" },
+        { "surface": "本", "dict": "本", "ruby": "本[ほん]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "読みます", "dict": "読む", "ruby": "読[よ]みます", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s07",
+      "ja": "夜はテレビを見て、おふろに入ります。",
+      "en": "At night I watch TV and take a bath.",
+      "words": [
+        { "surface": "夜", "dict": "夜", "ruby": "夜[よる]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "テレビ", "dict": "テレビ", "ruby": "テレビ", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "見て", "dict": "見る", "ruby": "見[み]て", "pos": "v1" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "おふろ", "dict": "おふろ", "ruby": "おふろ", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "入ります", "dict": "入る", "ruby": "入[はい]ります", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s08",
+      "ja": "週末に友だちと映画を見ます。",
+      "en": "On the weekend I watch a movie with friends.",
+      "words": [
+        { "surface": "週末", "dict": "週末", "ruby": "週末[しゅうまつ]", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "友だち", "dict": "友だち", "ruby": "友[とも]だち", "pos": "n" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "映画", "dict": "映画", "ruby": "映画[えいが]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "見ます", "dict": "見る", "ruby": "見[み]ます", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s09",
+      "ja": "とても疲れたから、早く寝ます。",
+      "en": "Because I am very tired, I sleep early.",
+      "words": [
+        { "surface": "とても", "dict": "とても", "ruby": "とても", "pos": "adv" },
+        { "surface": "疲れた", "dict": "疲れる", "ruby": "疲[つか]れた", "pos": "v1" },
+        { "surface": "から", "dict": "から", "ruby": "から", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "早く", "dict": "早い", "ruby": "早[はや]く", "pos": "adj-i" },
+        { "surface": "寝ます", "dict": "寝る", "ruby": "寝[ね]ます", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s10",
+      "ja": "毎日とても楽しいです。",
+      "en": "Every day is a lot of fun.",
+      "words": [
+        { "surface": "毎日", "dict": "毎日", "ruby": "毎日[まいにち]", "pos": "n" },
+        { "surface": "とても", "dict": "とても", "ruby": "とても", "pos": "adv" },
+        { "surface": "楽しいです", "dict": "楽しい", "ruby": "楽[たの]しいです", "pos": "adj-i" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    }
+  ]
+}
