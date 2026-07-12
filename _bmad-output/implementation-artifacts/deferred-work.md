@@ -355,3 +355,8 @@
 - **`target_word_count` included in phase 2 SSE URL:** When `approve()` fires the Japanese conversion, `target_word_count` is still in the URL params even though the backend ignores it in phase 2. Harmless but could add a comment clarifying it's phase-1-only. [useAgUiRun.ts]
 - **En-dash in default length hint:** `"~150–300 words"` uses Unicode en-dash (–) while the rest of the prompt uses hyphen-minus. Cosmetic inconsistency. [agent.py]
 - **`isClearedState` check does not include `topicText`:** Pre-existing issue; not introduced by this story. The cleared-state detection could be audited for completeness. [useSession.ts]
+
+## Deferred from: code review of se3-4-two-stage-orchestration-and-japanese-entry-point (2026-07-12)
+
+- **Unknown `path_mode` (not A/B/C) silently treated as Path A (EN→JA):** No `else`/default branch rejects an unrecognised mode; `source_is_japanese`/`skip_stage1` both resolve `False`, so a mis-specified mode is translated as English source rather than rejected. Fall-through predates this change; `pathMode` is a frontend-controlled free-form query param and no AC requires rejection. [agent.py:665,691]
+- **Non-string/`None` `chapter` bypasses the `ValueError` guard → `AttributeError`:** For a non-`"unspecified"`, non-str `chapter`, `_parse_chapter` raises `AttributeError` (only `IndexError`/`ValueError` are caught), escaping the generator instead of a clean `GENERATION_FAILED`. Unreachable via HTTP — `main.py` declares `chapter: str` as a required `Query`, so a 422 fires first; only a direct/mis-typed `generate()` call reaches it. Cheap hardening: broaden the `except` to `(ValueError, AttributeError, TypeError)`. [agent.py:684]

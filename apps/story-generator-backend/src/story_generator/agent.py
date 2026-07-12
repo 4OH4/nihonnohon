@@ -22,16 +22,9 @@ THINKING_BUDGET = 16384  # thinking tokens; caps pre-generation reasoning at ~2 
 # Prompt construction — adapted from spike.py
 # ---------------------------------------------------------------------------
 
-#: Grammar distribution hint text keyed by the 3-position slider value
-_GRAMMAR_DIST_HINTS: dict[int, str] = {
-    0: "Use a limited set of grammar patterns — keep the sentence structures simple and repetitive.",
-    1: "Balance the grammar patterns — use a moderate variety that fits naturally.",
-    2: "Use as many grammar patterns from the list as you can, fitting them naturally into the story.",
-}
-
 #: Word-segmentation rules body (intro line + five numbered rules), shared verbatim by the
-#: fused system prompt and the Stage-2 analysis prompt so the join-invariant instruction never
-#: diverges. The ``## Word Segmentation Rules`` heading stays inline in each prompt.
+#: Stage-2 analysis prompt so the join-invariant instruction never diverges. The
+#: ``## Word Segmentation Rules`` heading stays inline in the prompt.
 _WORD_SEGMENTATION_RULES = """Split each Japanese sentence into surface word tokens following these rules:
 1. Verb stems stay attached to their polite endings: 食べます is one token, 行きます is one token
 2. Particles are separate tokens: は、を、に、で、へ、が、と、も、の are each a single token
@@ -73,88 +66,6 @@ def _cumulative_grammar_block(grammar_data: GrammarData, chapter: int | None) ->
             grammar_lines.append(f"  [Ch{ch} {gp.point}] {gp.title}: {gp.summary}")
 
     return "\n".join(grammar_lines) if grammar_lines else "  (none)"
-
-
-def build_system_prompt(
-    vocab_data: VocabData,
-    grammar_data: GrammarData,
-    chapter: int,
-    english_source: str,
-    steering_instructions: str = "",
-    grammar_distribution: int = 1,
-) -> str:
-    """Build the Gemini prompt with cumulative Ch.1–N vocab and grammar."""
-    # Cumulative curriculum blocks up to this chapter
-    vocab_block = _cumulative_vocab_block(vocab_data, chapter)
-    grammar_block = _cumulative_grammar_block(grammar_data, chapter)
-
-    grammar_dist_text = _GRAMMAR_DIST_HINTS.get(grammar_distribution, _GRAMMAR_DIST_HINTS[1])
-    steering_block = (
-        f"\n## Additional Instructions\n\n{steering_instructions.strip()}\n"
-        if steering_instructions.strip()
-        else ""
-    )
-    difficulty = f"Genki I Ch.{chapter}"
-
-    return f"""You are a Japanese language curriculum expert generating a graded reader story for learners studying with the Genki I textbook up to Chapter {chapter}.
-
-## Task
-
-Adapt the English source story below into a short Japanese graded reader story. The story must be calibrated to Genki I Chapter {chapter} — use ONLY the vocabulary and grammar patterns listed below.
-
-## English Source Story
-
-{english_source.strip()}
-
-## Curriculum Constraints
-
-### Vocabulary available (cumulative Ch.1–{chapter})
-Format: ID | hiragana (kanji) | English meaning
-{vocab_block}
-
-### Grammar patterns available (cumulative Ch.1–{chapter})
-{grammar_block}
-
-## Grammar Distribution
-
-{grammar_dist_text}
-{steering_block}
-## Word Segmentation Rules
-
-{_WORD_SEGMENTATION_RULES}
-
-## Output Format
-
-Respond with a single JSON object matching this exact structure:
-
-{{
-  "id": "<kebab-case identifier embedding difficulty and topic, e.g. genki-i-ch{chapter}-topic>",
-  "title": "<English story title>",
-  "title_ja": "<Japanese story title>",
-  "description": "<1-2 sentence English description of the story>",
-  "grammar": ["<grammar pattern string 1>", "<grammar pattern string 2>", ...],
-  "sentences": [
-    {{
-      "english": "<English translation of this sentence>",
-      "japanese": "<full Japanese sentence with no spaces>",
-      "words": ["<surface word 1>", "<surface word 2>", ...],
-      "grammar": [<0-based index into story-level grammar array>, ...]
-    }}
-  ]
-}}
-
-## Rules
-
-1. **sentence.grammar**: List the 0-based indices into the story-level `grammar` array for patterns used in that sentence.
-
-2. **id field**: Must be suitable as a filename (kebab-case, no spaces, no special characters except hyphens).
-
-3. **Vocabulary discipline**: Only use vocabulary from the provided list. Do not introduce vocabulary beyond Chapter {chapter}.
-
-4. **words array**: Plain surface forms only — no furigana brackets. Joined words must exactly equal the japanese field.
-
-Return ONLY the JSON object. No markdown, no code fences, no explanation.
-"""
 
 
 # ---------------------------------------------------------------------------
@@ -611,6 +522,105 @@ class StoryGeneratorAgent:
             self._log_llm_perf(activity, run_id, t0, len(raw), "ok")
         yield {"__stream__": "ok", "text": raw}
 
+    async def _run_json_stage(
+        self,
+        *,
+        prompt: str,
+        activity: str,
+        temperature: float,
+        cancel_event: asyncio.Event | None,
+        run_id: str,
+    ) -> AsyncGenerator[dict, None]:
+        """Run one JSON Gemini stage via ``_stream_llm`` and yield a terminal control dict.
+
+        Wraps the boilerplate shared by Stage 1 and Stage 2: forward pass-through
+        ``AGENT_STATUS`` events, map ``_stream_llm``'s terminal ``__stream__`` dict to the
+        ``ERROR``/``RUN_CANCELLED`` events used everywhere else, guard empty (safety-filtered)
+        output, re-check a cancel that landed exactly as the stream completed, then ``json.loads``
+        the accumulated text.
+
+        Yields pass-through ``AGENT_STATUS`` dicts, then exactly one terminal dict: on success
+        ``{"__stage__": "ok", "data": <parsed dict>}``; on any failure the mapped user-facing
+        event followed by ``{"__stage__": "failed"}``. Callers forward ``AGENT_STATUS``, break on
+        the ``__stage__`` dict, and ``return`` immediately when it is ``"failed"`` (AC5).
+        """
+        raw = ""
+        async for ev in self._stream_llm(
+            contents=prompt,
+            json_output=True,
+            activity=activity,
+            temperature=temperature,
+            cancel_event=cancel_event,
+            run_id=run_id,
+        ):
+            if "__stream__" not in ev:
+                yield ev  # pass-through AGENT_STATUS
+                continue
+            outcome = ev["__stream__"]
+            if outcome == "timeout":
+                yield {
+                    "type": "ERROR",
+                    "code": "TIMEOUT",
+                    "message": "This took longer than expected — your inputs are preserved. Try again.",
+                }
+                yield {"__stage__": "failed"}
+                return
+            if outcome == "error":
+                yield {"type": "ERROR", "code": "GENERATION_FAILED", "message": ev["message"]}
+                yield {"__stage__": "failed"}
+                return
+            if outcome == "cancelled":
+                yield {"type": "RUN_CANCELLED", "runId": run_id}
+                yield {"__stage__": "failed"}
+                return
+            raw = ev["text"]
+            break
+
+        # Honour a cancel that arrived exactly as the stream completed
+        if cancel_event and cancel_event.is_set():
+            yield {"type": "RUN_CANCELLED", "runId": run_id}
+            yield {"__stage__": "failed"}
+            return
+
+        # Guard against empty output (safety filter or all-thought response)
+        if not raw:
+            logger.warning("run_id=%s %s returned no content (safety filter?)", run_id, activity)
+            yield {
+                "type": "ERROR",
+                "code": "GENERATION_FAILED",
+                "message": "Gemini returned no content. Check safety filters or prompt length.",
+            }
+            yield {"__stage__": "failed"}
+            return
+
+        try:
+            data = json.loads(raw)
+        except json.JSONDecodeError as exc:
+            logger.error("run_id=%s %s invalid JSON from Gemini: %s", run_id, activity, exc)
+            yield {
+                "type": "ERROR",
+                "code": "GENERATION_FAILED",
+                "message": f"Response is not valid JSON: {exc}",
+            }
+            yield {"__stage__": "failed"}
+            return
+
+        # Guard valid-but-wrong-shape JSON (list/scalar/null): downstream stages call dict
+        # methods (.get/.items) and would crash the async generator with no terminal event.
+        if not isinstance(data, dict):
+            logger.error(
+                "run_id=%s %s JSON was not an object (got %s)", run_id, activity, type(data).__name__
+            )
+            yield {
+                "type": "ERROR",
+                "code": "GENERATION_FAILED",
+                "message": "Response JSON was not an object.",
+            }
+            yield {"__stage__": "failed"}
+            return
+
+        yield {"__stage__": "ok", "data": data}
+
     async def generate(
         self,
         *,
@@ -628,9 +638,16 @@ class StoryGeneratorAgent:
     ) -> AsyncGenerator[dict, None]:
         """Yield AG-UI event dicts per ADR-004.
 
-        Path A:  RUN_STARTED → [TEXT_MESSAGE_CHUNK] → RUN_FINISHED(story)  or  ERROR/RUN_CANCELLED
-        Path B1: RUN_STARTED → [TEXT_MESSAGE_CHUNK] → RUN_FINISHED(proposal)  or  ERROR/RUN_CANCELLED
-        Path B2: identical to Path A but uses english_draft as source text
+        Story paths run Stage 1 (produce Japanese) then Stage 2 (analyse Japanese):
+
+        Path A:  RUN_STARTED → [AGENT_STATUS] → TEXT_MESSAGE_CHUNK → RUN_FINISHED(story) — EN→JA
+        Path B1: RUN_STARTED → [TEXT_MESSAGE_CHUNK] → RUN_FINISHED(proposal) — topic → English
+        Path B2: as Path A but uses english_draft as the source text (EN→JA)
+        Path C:  finished Japanese input — Stage 1 simplifies JA→JA when a target chapter is set,
+                 or is skipped entirely (frozen) when ``chapter == "unspecified"`` so the pasted
+                 Japanese flows straight to Stage 2 (one Gemini call)
+        Any stage may instead terminate with ERROR/RUN_CANCELLED; a Stage-1 failure short-circuits
+        before Stage 2 runs.
         """
         # Emit RUN_STARTED immediately so the frontend's 3-second first-event timeout is satisfied
         yield {"type": "RUN_STARTED", "runId": run_id}
@@ -655,105 +672,116 @@ class StoryGeneratorAgent:
                 yield event
             return
 
-        # Path A and Path B phase 2 both go through the Japanese story pipeline.
-        # Phase 2 uses english_draft as the source text; Path A uses input_text.
+        # --- Source resolution (Paths A / B-phase-2 / C) ---
+        # Phase 2 uses english_draft as the source text; Path A and Path C use input_text.
+        # source_is_japanese distinguishes Path C (finished Japanese) from the EN sources.
         source_text = english_draft if (path_mode == "B" and english_draft) else input_text
+        source_is_japanese = path_mode == "C"
 
-        logger.info(
-            "Path %s generation — run_id=%s chapter=%s temp=%.1f grammar_dist=%s",
-            "B2" if path_mode == "B" else "A",
-            run_id, chapter, temperature, grammar_distribution,
-        )
-
-        # Guard: reject empty source before the expensive Gemini call
+        # Guard: reject empty source before the expensive Gemini call (holds for frozen Path C too)
         if not source_text.strip():
             yield {
                 "type": "ERROR",
                 "code": "GENERATION_FAILED",
-                "message": "No source text provided. Supply inputText (Path A) or englishDraft (Path B phase 2).",
+                "message": "No source text provided. Supply inputText (Path A/C) or englishDraft (Path B phase 2).",
             }
             return
 
-        # P1: catch ValueError so a bad chapter string yields ERROR instead of breaking the stream
-        try:
-            chapter_int = _parse_chapter(chapter)
-        except ValueError as exc:
-            yield {"type": "ERROR", "code": "GENERATION_FAILED", "message": str(exc)}
-            return
-        prompt = build_system_prompt(
-            self._vocab_data,
-            self._grammar_data,
-            chapter_int,
-            source_text,
-            steering_instructions,
-            grammar_distribution,
-        )
-        logger.debug("Prompt (%d chars):\n%s", len(prompt), prompt)
+        # --- Target-chapter derivation ---
+        # The "unspecified" sentinel means "no Genki target" → target_chapter is None (never parsed);
+        # a real chapter string parses exactly as before. Guard the sentinel BEFORE _parse_chapter so
+        # "unspecified" does not raise ValueError.
+        if chapter == "unspecified":
+            target_chapter: int | None = None
+        else:
+            # P1: catch ValueError so a bad chapter string yields ERROR instead of breaking the stream
+            try:
+                target_chapter = _parse_chapter(chapter)
+            except ValueError as exc:
+                yield {"type": "ERROR", "code": "GENERATION_FAILED", "message": str(exc)}
+                return
 
-        # Stream from Gemini via the shared streamer — thought parts arrive as pass-through
-        # AGENT_STATUS events; the terminal control dict carries the accumulated JSON or a failure.
-        raw_json = ""
-        async for ev in self._stream_llm(
-            contents=prompt,
-            json_output=True,
-            activity="Convert to Japanese",
+        # Path C with no target is "frozen": the pasted Japanese is analysed as-is (Stage 1 skipped).
+        skip_stage1 = path_mode == "C" and target_chapter is None
+
+        logger.info(
+            "Path %s generation — run_id=%s target=%s temp=%.1f skip_stage1=%s",
+            "C" if path_mode == "C" else ("B2" if path_mode == "B" else "A"),
+            run_id,
+            f"Ch.{target_chapter}" if target_chapter is not None else "Unspecified",
+            temperature,
+            skip_stage1,
+        )
+
+        # --- Stage 1: produce Japanese (translate EN→JA, simplify JA→JA, or skip for frozen Path C) ---
+        if skip_stage1:
+            japanese_text = input_text
+        else:
+            prod_prompt = build_japanese_production_prompt(
+                self._vocab_data,
+                self._grammar_data,
+                source=source_text,
+                source_is_japanese=source_is_japanese,
+                target_chapter=target_chapter,
+                steering_instructions=steering_instructions,
+            )
+            stage1_data: dict | None = None
+            async for ev in self._run_json_stage(
+                prompt=prod_prompt,
+                activity="Convert to Japanese",
+                temperature=temperature,
+                cancel_event=cancel_event,
+                run_id=run_id,
+            ):
+                if "__stage__" not in ev:
+                    yield ev
+                    continue
+                if ev["__stage__"] == "failed":
+                    return  # AC5: Stage-1 failure short-circuits — Stage 2 never runs
+                stage1_data = ev["data"]
+                break
+
+            # AC6: Stage 1 returns minimal {"japanese": "..."}; a missing/blank/non-string value is a failure.
+            japanese_value = (stage1_data or {}).get("japanese", "")
+            japanese_text = japanese_value if isinstance(japanese_value, str) else ""
+            if not japanese_text.strip():
+                logger.warning("run_id=%s Stage 1 produced no Japanese text", run_id)
+                yield {
+                    "type": "ERROR",
+                    "code": "GENERATION_FAILED",
+                    "message": "Stage 1 produced no Japanese text.",
+                }
+                return
+
+        # --- Stage 2: analyse the Japanese into the pipeline seam ---
+        ana_prompt = build_japanese_analysis_prompt(
+            self._grammar_data,
+            japanese_text,
+            target_chapter=target_chapter,
+            steering_instructions=steering_instructions,
+        )
+        raw_response: dict | None = None
+        async for ev in self._run_json_stage(
+            prompt=ana_prompt,
+            activity="Analyse Japanese",
             temperature=temperature,
             cancel_event=cancel_event,
             run_id=run_id,
         ):
-            if "__stream__" not in ev:
+            if "__stage__" not in ev:
                 yield ev
                 continue
-            outcome = ev["__stream__"]
-            if outcome == "timeout":
-                yield {
-                    "type": "ERROR",
-                    "code": "TIMEOUT",
-                    "message": "This took longer than expected — your inputs are preserved. Try again.",
-                }
+            if ev["__stage__"] == "failed":
                 return
-            if outcome == "error":
-                yield {"type": "ERROR", "code": "GENERATION_FAILED", "message": ev["message"]}
-                return
-            if outcome == "cancelled":
-                yield {"type": "RUN_CANCELLED", "runId": run_id}
-                return
-            raw_json = ev["text"]
+            raw_response = ev["data"]
             break
 
-        # Honour a cancel that arrived exactly as the stream completed
-        if cancel_event and cancel_event.is_set():
-            yield {"type": "RUN_CANCELLED", "runId": run_id}
-            return
-
-        # Guard against empty output (safety filter or all-thought response)
-        if not raw_json:
-            logger.warning("run_id=%s Gemini returned no content (safety filter?)", run_id)
-            yield {
-                "type": "ERROR",
-                "code": "GENERATION_FAILED",
-                "message": "Gemini returned no content. Check safety filters or prompt length.",
-            }
-            return
-
-        logger.debug("Response (%d chars):\n%s", len(raw_json), raw_json[:2000])
-
-        # Parse simplified Gemini JSON response
-        try:
-            raw_response = json.loads(raw_json)
-        except json.JSONDecodeError as exc:
-            logger.error("run_id=%s invalid JSON from Gemini: %s", run_id, exc)
-            yield {
-                "type": "ERROR",
-                "code": "GENERATION_FAILED",
-                "message": f"Response is not valid JSON: {exc}",
-            }
-            return
-
-        # Extract sentences (segments) and story metadata from simplified response
+        # --- Seam (unchanged): extract segments + story metadata, set the difficulty label ---
         segments = raw_response.get("sentences") or []
         story_meta = {k: v for k, v in raw_response.items() if k != "sentences"}
-        story_meta["difficulty"] = f"Genki I Ch.{chapter_int}"
+        story_meta["difficulty"] = (
+            f"Genki I Ch.{target_chapter}" if target_chapter is not None else "Unspecified"
+        )
 
         # Guard: enrichment pipeline must be available
         pipeline = self._enrichment_pipeline

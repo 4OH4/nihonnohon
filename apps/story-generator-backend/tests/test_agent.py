@@ -30,6 +30,18 @@ class MockEnrichmentPipeline:
         return self._story
 
 
+class RecordingEnrichmentPipeline(MockEnrichmentPipeline):
+    """MockEnrichmentPipeline that records the seam inputs (segments, story_meta) for assertion."""
+
+    last_segments: list | None = None
+    last_story_meta: dict | None = None
+
+    def build_enriched_story(self, segments: list, story_meta: dict) -> dict:
+        self.last_segments = segments
+        self.last_story_meta = story_meta
+        return self._story
+
+
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
@@ -95,6 +107,34 @@ def make_capturing_stream_client(text: str, capture_list: list):
     return _stream
 
 
+#: A minimal valid Stage-1 response — the ``{"japanese": "..."}`` blob Stage 1 hands to Stage 2.
+STAGE1_JA = '{"japanese": "けんじさんはとうきょうのだいがく一年生です。"}'
+
+
+def make_sequenced_stream_client(responses: list, capture_list: list | None = None):
+    """Return an async stream client that yields responses[0], responses[1], … on successive calls.
+
+    Records each prompt into ``capture_list`` when provided (so ``captured[0]`` is the Stage-1
+    production prompt and ``captured[1]`` the Stage-2 analysis prompt). Raises AssertionError if
+    called more times than responses provided — a test that expects exactly one call (frozen
+    Path C, or a Stage-1 short-circuit) fails loudly if Stage 2 is wrongly run.
+    """
+    calls = {"n": 0}
+
+    async def _stream(model, contents, config):
+        i = calls["n"]
+        calls["n"] += 1
+        if capture_list is not None:
+            capture_list.append(contents)
+        assert i < len(responses), f"unexpected Gemini call #{i + 1} (only {len(responses)} queued)"
+        text = responses[i]
+        async def _gen():
+            yield make_chunk([make_part(text, thought=False)])
+        return _gen()
+
+    return _stream
+
+
 @pytest.fixture(scope="module")
 def fixture_json() -> str:
     return FIXTURE_PATH.read_text(encoding="utf-8")
@@ -131,7 +171,7 @@ def test_events_emitted_in_order(vocab_data, grammar_data, fixture_json, simplif
 
     agent = StoryGeneratorAgent(
         vocab_data, grammar_data,
-        gemini_stream_client=make_mock_stream_client(simplified_fixture_json),
+        gemini_stream_client=make_sequenced_stream_client([STAGE1_JA, simplified_fixture_json]),
         enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
     )
     events = _collect(
@@ -154,7 +194,7 @@ def test_run_started_echoes_run_id(vocab_data, grammar_data, fixture_json, simpl
 
     agent = StoryGeneratorAgent(
         vocab_data, grammar_data,
-        gemini_stream_client=make_mock_stream_client(simplified_fixture_json),
+        gemini_stream_client=make_sequenced_stream_client([STAGE1_JA, simplified_fixture_json]),
         enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
     )
     events = _collect(
@@ -164,93 +204,9 @@ def test_run_started_echoes_run_id(vocab_data, grammar_data, fixture_json, simpl
     assert started["runId"] == "my-run-42"
 
 
-def test_system_prompt_includes_cumulative_vocab_up_to_chapter(vocab_data, grammar_data, fixture_json, simplified_fixture_json):
-    """System prompt for Ch.3 includes Ch.1–3 vocab; chapter ceiling is respected."""
-    from story_generator.agent import StoryGeneratorAgent
-
-    captured: list[str] = []
-    agent = StoryGeneratorAgent(
-        vocab_data, grammar_data,
-        gemini_stream_client=make_capturing_stream_client(simplified_fixture_json, captured),
-        enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
-    )
-    _collect(agent.generate(run_id="t", input_text="test", chapter="Genki I Ch.3"))
-
-    assert captured, "No Gemini call was made"
-    prompt = captured[0]
-
-    # P7: assert the formatted vocab line (ID | hiragana | ...) not bare hiragana
-    for ch in range(1, 4):
-        for entry in vocab_data.by_chapter.get(ch, []):
-            vocab_line_prefix = f"  {entry.id} |"
-            assert vocab_line_prefix in prompt, (
-                f"Ch.{ch} vocab entry id={entry.id} ('{entry.hiragana}') missing from prompt"
-            )
-
-    # A Ch.4-only entry must NOT appear in the prompt (ceiling enforced)
-    ch1_to_3_ids = {
-        e.id
-        for ch in range(1, 4)
-        for e in vocab_data.by_chapter.get(ch, [])
-    }
-    for entry in vocab_data.by_chapter.get(4, [])[:5]:
-        if entry.id not in ch1_to_3_ids:
-            assert f"  {entry.id} |" not in prompt, (
-                f"Ch.4-only vocab id={entry.id} should not appear in Ch.3 prompt"
-            )
-            break
-
-
-def test_system_prompt_has_simplified_format(vocab_data, grammar_data, fixture_json, simplified_fixture_json):
-    """System prompt uses simplified format: no furigana rules, no vocab_keys, has segmentation rules."""
-    from story_generator.agent import StoryGeneratorAgent
-
-    captured: list[str] = []
-    agent = StoryGeneratorAgent(
-        vocab_data, grammar_data,
-        gemini_stream_client=make_capturing_stream_client(simplified_fixture_json, captured),
-        enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
-    )
-    _collect(agent.generate(run_id="t", input_text="test", chapter="Genki I Ch.3"))
-
-    assert captured, "No Gemini call was made"
-    prompt = captured[0]
-
-    # Furigana annotation instructions must NOT appear
-    assert "漢字[よみ]" not in prompt, "Prompt must not contain furigana annotation syntax"
-    assert "大人[おとな]" not in prompt, "Prompt must not contain furigana annotation examples"
-
-    # vocab_keys and vocab_supplement instructions must NOT appear
-    assert "vocab_keys" not in prompt, "Prompt must not instruct the model to produce vocab_keys"
-    assert "vocab_supplement" not in prompt, "Prompt must not instruct the model to produce vocab_supplement"
-
-    # Word segmentation rules must be present
-    assert "particles are separate" in prompt.lower() or "particles" in prompt, (
-        "Prompt must include word segmentation rules"
-    )
-
-    # Simplified words field must be present in the output format
-    assert '"words"' in prompt, 'Prompt must describe the words surface array'
-
-
-def test_system_prompt_includes_grammar_for_chapter(vocab_data, grammar_data, fixture_json, simplified_fixture_json):
-    """System prompt includes grammar points up to the requested chapter."""
-    from story_generator.agent import StoryGeneratorAgent
-
-    captured: list[str] = []
-    agent = StoryGeneratorAgent(
-        vocab_data, grammar_data,
-        gemini_stream_client=make_capturing_stream_client(simplified_fixture_json, captured),
-        enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
-    )
-    _collect(agent.generate(run_id="t", input_text="test", chapter="Genki I Ch.3"))
-
-    prompt = captured[0]
-    for ch in range(1, 4):
-        for gp in grammar_data.by_chapter.get(ch, []):
-            assert gp.title in prompt, (
-                f"Ch.{ch} grammar '{gp.title}' missing from prompt"
-            )
+# (The three `test_system_prompt_*` tests were removed in se3-4 with `build_system_prompt`;
+#  their coverage is subsumed by the `test_production_prompt_*` and `test_analysis_prompt_*`
+#  unit tests below, plus the two-stage orchestration tests near the end of this file.)
 
 
 # ---------------------------------------------------------------------------
@@ -477,7 +433,7 @@ def test_validation_failure_emits_error_not_finished(vocab_data, grammar_data, s
     }
     agent = StoryGeneratorAgent(
         vocab_data, grammar_data,
-        gemini_stream_client=make_mock_stream_client(simplified_fixture_json),
+        gemini_stream_client=make_sequenced_stream_client([STAGE1_JA, simplified_fixture_json]),
         enrichment_pipeline=MockEnrichmentPipeline(bad_story),
     )
     events = _collect(
@@ -559,10 +515,18 @@ def test_agent_status_emitted_for_thought_chunks(vocab_data, grammar_data, fixtu
     """AGENT_STATUS events are yielded for thought parts before TEXT_MESSAGE_CHUNK."""
     from story_generator.agent import StoryGeneratorAgent
 
+    # Stage 1 (call 0) emits a thought then the Japanese blob; Stage 2 (call 1) emits the seam.
+    calls = {"n": 0}
+
     async def stream_with_thoughts(model, contents, config):
+        i = calls["n"]
+        calls["n"] += 1
         async def _gen():
-            yield make_chunk([make_part("Planning the structure…", thought=True)])
-            yield make_chunk([make_part(simplified_fixture_json, thought=False)])
+            if i == 0:
+                yield make_chunk([make_part("Planning the structure…", thought=True)])
+                yield make_chunk([make_part(STAGE1_JA, thought=False)])
+            else:
+                yield make_chunk([make_part(simplified_fixture_json, thought=False)])
         return _gen()
 
     agent = StoryGeneratorAgent(
@@ -587,7 +551,7 @@ def test_no_agent_status_when_no_thoughts(vocab_data, grammar_data, fixture_json
 
     agent = StoryGeneratorAgent(
         vocab_data, grammar_data,
-        gemini_stream_client=make_mock_stream_client(simplified_fixture_json),
+        gemini_stream_client=make_sequenced_stream_client([STAGE1_JA, simplified_fixture_json]),
         enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
     )
     events = _collect(
@@ -600,10 +564,17 @@ def test_empty_thought_text_not_emitted(vocab_data, grammar_data, fixture_json, 
     """AGENT_STATUS is not emitted for thought parts with empty/whitespace text."""
     from story_generator.agent import StoryGeneratorAgent
 
+    calls = {"n": 0}
+
     async def stream_whitespace_thought(model, contents, config):
+        i = calls["n"]
+        calls["n"] += 1
         async def _gen():
-            yield make_chunk([make_part("   ", thought=True)])
-            yield make_chunk([make_part(simplified_fixture_json, thought=False)])
+            if i == 0:
+                yield make_chunk([make_part("   ", thought=True)])
+                yield make_chunk([make_part(STAGE1_JA, thought=False)])
+            else:
+                yield make_chunk([make_part(simplified_fixture_json, thought=False)])
         return _gen()
 
     agent = StoryGeneratorAgent(
@@ -621,10 +592,14 @@ def test_none_candidates_chunks_skipped(vocab_data, grammar_data, fixture_json, 
     """Chunks with candidates=None are skipped without error (SDK issue #226)."""
     from story_generator.agent import StoryGeneratorAgent
 
+    calls = {"n": 0}
+
     async def stream_with_none_candidates(model, contents, config):
+        i = calls["n"]
+        calls["n"] += 1
         async def _gen():
             yield SimpleNamespace(candidates=None)      # empty chunk — must be skipped
-            yield make_chunk([make_part(simplified_fixture_json, thought=False)])
+            yield make_chunk([make_part(STAGE1_JA if i == 0 else simplified_fixture_json, thought=False)])
         return _gen()
 
     agent = StoryGeneratorAgent(
@@ -768,7 +743,7 @@ def test_path_b_phase2_emits_story(vocab_data, grammar_data, fixture_json, simpl
 
     agent = StoryGeneratorAgent(
         vocab_data, grammar_data,
-        gemini_stream_client=make_mock_stream_client(simplified_fixture_json),
+        gemini_stream_client=make_sequenced_stream_client([STAGE1_JA, simplified_fixture_json]),
         enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
     )
     events = _collect(
@@ -806,7 +781,7 @@ def test_path_b_phase2_validation_failure_emits_error(vocab_data, grammar_data, 
     }
     agent = StoryGeneratorAgent(
         vocab_data, grammar_data,
-        gemini_stream_client=make_mock_stream_client(simplified_fixture_json),
+        gemini_stream_client=make_sequenced_stream_client([STAGE1_JA, simplified_fixture_json]),
         enrichment_pipeline=MockEnrichmentPipeline(bad_story),
     )
     events = _collect(
@@ -828,7 +803,7 @@ def test_path_a_unchanged_with_new_params(vocab_data, grammar_data, fixture_json
 
     agent = StoryGeneratorAgent(
         vocab_data, grammar_data,
-        gemini_stream_client=make_mock_stream_client(simplified_fixture_json),
+        gemini_stream_client=make_sequenced_stream_client([STAGE1_JA, simplified_fixture_json]),
         enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
     )
     events = _collect(
@@ -836,6 +811,243 @@ def test_path_a_unchanged_with_new_params(vocab_data, grammar_data, fixture_json
     )
     finished = next(e for e in events if e["type"] == "RUN_FINISHED")
     assert finished["resultType"] == "story"
+
+
+# ---------------------------------------------------------------------------
+# Two-stage orchestration (se3-4)
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "kwargs",
+    [
+        {"input_text": "Ken went to the park.", "chapter": "Genki I Ch.5"},
+        {"english_draft": "Ken went to the park.", "chapter": "Genki I Ch.5", "path_mode": "B"},
+        {"input_text": "けんはこうえんにいきました。", "chapter": "Genki I Ch.6", "path_mode": "C"},
+    ],
+    ids=["path-a", "path-b2", "path-c-target"],
+)
+def test_two_stage_ordering_produces_then_analyses(
+    vocab_data, grammar_data, fixture_json, simplified_fixture_json, kwargs
+):
+    """A / B2 / C-with-target: Stage 1 (production) runs, then Stage 2 (analysis); two calls; finishes."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    captured: list[str] = []
+    agent = StoryGeneratorAgent(
+        vocab_data, grammar_data,
+        gemini_stream_client=make_sequenced_stream_client([STAGE1_JA, simplified_fixture_json], captured),
+        enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
+    )
+    events = _collect(agent.generate(run_id="ts", **kwargs))
+
+    # Exactly two Gemini calls: the production prompt then the analysis prompt.
+    assert len(captured) == 2, f"expected 2 Gemini calls, got {len(captured)}"
+    # captured[0] = Stage-1 production prompt (minimal {"japanese"} output, targeted constraint,
+    # and none of the Stage-2-only analysis instructions).
+    assert '{"japanese"' in captured[0]
+    assert "Vocabulary available" in captured[0]
+    assert "Word Segmentation" not in captured[0]
+    # captured[1] = Stage-2 analysis prompt (segmentation rules + per-word output shape).
+    assert "Word Segmentation" in captured[1]
+    assert '"words"' in captured[1]
+
+    finished = next(e for e in events if e["type"] == "RUN_FINISHED")
+    assert finished["resultType"] == "story"
+
+
+def test_stage1_failure_short_circuits_stage2(vocab_data, grammar_data, fixture_json):
+    """AC5: a Stage-1 error emits the mapped ERROR and Stage 2 is never invoked (one Gemini call)."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    calls = {"n": 0}
+
+    async def failing_stage1(model, contents, config):
+        calls["n"] += 1
+        async def _gen():
+            raise RuntimeError("boom")
+            yield  # pragma: no cover — marks _gen an async generator
+        return _gen()
+
+    agent = StoryGeneratorAgent(
+        vocab_data, grammar_data,
+        gemini_stream_client=failing_stage1,
+        enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
+    )
+    events = _collect(agent.generate(run_id="s1f", input_text="x", chapter="Genki I Ch.3"))
+
+    assert calls["n"] == 1, "Stage 2 must not run after a Stage-1 failure"
+    assert any(e["type"] == "ERROR" and e["code"] == "GENERATION_FAILED" for e in events)
+    assert not any(e["type"] == "RUN_FINISHED" for e in events)
+
+
+def test_stage1_empty_japanese_is_failure(vocab_data, grammar_data, fixture_json):
+    """AC6: a Stage-1 response missing/blank 'japanese' fails and never reaches Stage 2."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    captured: list[str] = []
+    agent = StoryGeneratorAgent(
+        vocab_data, grammar_data,
+        # Only the Stage-1 response is queued; if Stage 2 ran, the sequenced client would assert.
+        gemini_stream_client=make_sequenced_stream_client(['{"japanese": "   "}'], captured),
+        enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
+    )
+    events = _collect(agent.generate(run_id="s1e", input_text="x", chapter="Genki I Ch.3"))
+
+    assert len(captured) == 1, "Stage 2 must not run when Stage 1 yields no Japanese"
+    assert any(e["type"] == "ERROR" and e["code"] == "GENERATION_FAILED" for e in events)
+    assert not any(e["type"] == "RUN_FINISHED" for e in events)
+
+
+def test_stage1_null_japanese_is_failure(vocab_data, grammar_data, fixture_json):
+    """AC6 robustness: a non-string 'japanese' value fails cleanly instead of crashing the stream."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    captured: list[str] = []
+    agent = StoryGeneratorAgent(
+        vocab_data, grammar_data,
+        gemini_stream_client=make_sequenced_stream_client(['{"japanese": null}'], captured),
+        enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
+    )
+    events = _collect(agent.generate(run_id="s1n", input_text="x", chapter="Genki I Ch.3"))
+
+    assert len(captured) == 1, "Stage 2 must not run when Stage 1 yields no usable Japanese"
+    assert any(e["type"] == "ERROR" and e["code"] == "GENERATION_FAILED" for e in events)
+    assert not any(e["type"] == "RUN_FINISHED" for e in events)
+
+
+def test_stage_nondict_json_is_failure(vocab_data, grammar_data, fixture_json):
+    """Robustness: valid JSON that is not an object (list/scalar) fails cleanly with a terminal ERROR."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    captured: list[str] = []
+    agent = StoryGeneratorAgent(
+        vocab_data, grammar_data,
+        # Stage 1 returns a JSON array — a dict-shaped consumer would otherwise crash the generator.
+        gemini_stream_client=make_sequenced_stream_client(['[{"japanese": "x"}]'], captured),
+        enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
+    )
+    events = _collect(agent.generate(run_id="s1l", input_text="x", chapter="Genki I Ch.3"))
+
+    assert len(captured) == 1, "Stage 2 must not run when Stage 1 returns a non-object"
+    assert any(e["type"] == "ERROR" and e["code"] == "GENERATION_FAILED" for e in events)
+    assert not any(e["type"] == "RUN_FINISHED" for e in events)
+
+
+def test_path_c_frozen_skips_stage1(vocab_data, grammar_data, fixture_json, simplified_fixture_json):
+    """AC2: Path C + Unspecified skips Stage 1 — one Gemini call (analysis) embedding the pasted JA."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    pasted = "けんはこうえんへいきました。"
+    captured: list[str] = []
+    agent = StoryGeneratorAgent(
+        vocab_data, grammar_data,
+        # Only one response queued: a wrongly-run Stage 1 would trip the sequenced client's guard.
+        gemini_stream_client=make_sequenced_stream_client([simplified_fixture_json], captured),
+        enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
+    )
+    events = _collect(agent.generate(
+        run_id="cf", input_text=pasted, chapter="unspecified", path_mode="C",
+    ))
+
+    assert len(captured) == 1, "frozen Path C must make exactly one Gemini call (Stage 2 only)"
+    assert "Word Segmentation" in captured[0], "the single call must be the analysis prompt"
+    assert pasted in captured[0], "the pasted Japanese must be embedded verbatim in Stage 2"
+
+    finished = next(e for e in events if e["type"] == "RUN_FINISHED")
+    assert finished["resultType"] == "story"
+
+
+def test_path_c_with_target_stage1_simplifies(vocab_data, grammar_data, fixture_json, simplified_fixture_json):
+    """AC3: Path C + target runs Stage 1 as a JA→JA simplify; two calls; story finishes."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    captured: list[str] = []
+    agent = StoryGeneratorAgent(
+        vocab_data, grammar_data,
+        gemini_stream_client=make_sequenced_stream_client([STAGE1_JA, simplified_fixture_json], captured),
+        enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
+    )
+    events = _collect(agent.generate(
+        run_id="ct", input_text="けんはこうえんにいきました。", chapter="Genki I Ch.6", path_mode="C",
+    ))
+
+    assert len(captured) == 2
+    assert "simplify" in captured[0].lower()
+    assert "translate" not in captured[0].lower()
+    assert any(e["type"] == "RUN_FINISHED" for e in events)
+
+
+def test_path_a_unspecified_is_natural(vocab_data, grammar_data, fixture_json, simplified_fixture_json):
+    """AC4: Path A + Unspecified → the Stage-1 production prompt carries no curriculum constraint."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    captured: list[str] = []
+    agent = StoryGeneratorAgent(
+        vocab_data, grammar_data,
+        gemini_stream_client=make_sequenced_stream_client([STAGE1_JA, simplified_fixture_json], captured),
+        enrichment_pipeline=MockEnrichmentPipeline(json.loads(fixture_json)),
+    )
+    _collect(agent.generate(
+        run_id="au", input_text="Ken went to the park.", chapter="unspecified", path_mode="A",
+    ))
+
+    assert len(captured) == 2
+    assert "beyond Chapter" not in captured[0]
+    assert "Vocabulary available" not in captured[0]
+    assert "natural" in captured[0].lower()
+
+
+def test_path_c_empty_input_errors_before_gemini(vocab_data, grammar_data):
+    """AC8: Path C + blank input_text → GENERATION_FAILED with zero Gemini calls."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    captured: list[str] = []
+    agent = StoryGeneratorAgent(
+        vocab_data, grammar_data,
+        gemini_stream_client=make_sequenced_stream_client([], captured),
+    )
+    events = _collect(agent.generate(
+        run_id="ce", input_text="   ", chapter="unspecified", path_mode="C",
+    ))
+
+    assert captured == [], "an empty source must not reach any Gemini call"
+    assert any(e["type"] == "ERROR" and e["code"] == "GENERATION_FAILED" for e in events)
+    assert not any(e["type"] == "RUN_FINISHED" for e in events)
+
+
+def test_difficulty_label_unspecified(vocab_data, grammar_data, fixture_json, simplified_fixture_json):
+    """AC7: target None → story_meta['difficulty'] == 'Unspecified' at the pipeline seam."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    pipeline = RecordingEnrichmentPipeline(json.loads(fixture_json))
+    agent = StoryGeneratorAgent(
+        vocab_data, grammar_data,
+        gemini_stream_client=make_sequenced_stream_client([simplified_fixture_json]),
+        enrichment_pipeline=pipeline,
+    )
+    _collect(agent.generate(run_id="d1", input_text="x", chapter="unspecified", path_mode="C"))
+
+    assert pipeline.last_story_meta["difficulty"] == "Unspecified"
+
+
+def test_difficulty_label_targeted_and_segments_forwarded(
+    vocab_data, grammar_data, fixture_json, simplified_fixture_json
+):
+    """AC7: target N → difficulty == 'Genki I Ch.N', and the Stage-2 sentences reach the seam verbatim."""
+    from story_generator.agent import StoryGeneratorAgent
+
+    pipeline = RecordingEnrichmentPipeline(json.loads(fixture_json))
+    agent = StoryGeneratorAgent(
+        vocab_data, grammar_data,
+        gemini_stream_client=make_sequenced_stream_client([STAGE1_JA, simplified_fixture_json]),
+        enrichment_pipeline=pipeline,
+    )
+    _collect(agent.generate(run_id="d2", input_text="A story.", chapter="Genki I Ch.6"))
+
+    assert pipeline.last_story_meta["difficulty"] == "Genki I Ch.6"
+    seam = json.loads(simplified_fixture_json)
+    assert pipeline.last_segments == seam["sentences"]
 
 
 # ---------------------------------------------------------------------------
