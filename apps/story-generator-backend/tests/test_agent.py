@@ -253,6 +253,111 @@ def test_system_prompt_includes_grammar_for_chapter(vocab_data, grammar_data, fi
             )
 
 
+# ---------------------------------------------------------------------------
+# Stage 1 — Japanese production prompt (se3-2)
+# ---------------------------------------------------------------------------
+
+
+def test_production_prompt_en_target_injects_constraint(vocab_data, grammar_data):
+    """EN source + target chapter → constrained faithful translation with vocab/grammar blocks."""
+    from story_generator.agent import build_japanese_production_prompt
+
+    prompt = build_japanese_production_prompt(
+        vocab_data, grammar_data, "Ken went to the park.",
+        source_is_japanese=False, target_chapter=3,
+    )
+    # Constraint text present
+    assert "beyond Chapter 3" in prompt
+    assert "Vocabulary available" in prompt
+    # Cumulative Ch.1–3 vocab lines injected (byte-identical `  {id} |` prefix idiom)
+    assert any(f"  {e.id} |" in prompt for e in vocab_data.by_chapter[1])
+    # Cumulative grammar injected
+    assert any(gp.title in prompt for gp in grammar_data.by_chapter[1])
+    # EN source is translated, not simplified
+    assert "translate" in prompt.lower()
+    assert "simplify" not in prompt.lower()
+
+
+def test_production_prompt_en_no_target_is_natural(vocab_data, grammar_data):
+    """EN source + no target → natural translation, no curriculum constraint."""
+    from story_generator.agent import build_japanese_production_prompt
+
+    prompt = build_japanese_production_prompt(
+        vocab_data, grammar_data, "Ken went to the park.",
+        source_is_japanese=False, target_chapter=None,
+    )
+    assert "beyond Chapter" not in prompt          # no ceiling
+    assert "Vocabulary available" not in prompt    # no vocab block header
+    assert "natural" in prompt.lower()
+    assert "translate" in prompt.lower()
+
+
+def test_production_prompt_ja_target_says_simplify(vocab_data, grammar_data):
+    """JA source + target → simplify/rewrite (never 'translate'), constraint present."""
+    from story_generator.agent import build_japanese_production_prompt
+
+    prompt = build_japanese_production_prompt(
+        vocab_data, grammar_data, "けんは こうえんに いきました。",
+        source_is_japanese=True, target_chapter=3,
+    )
+    assert "simplify" in prompt.lower()
+    assert "translate" not in prompt.lower()
+    assert "beyond Chapter 3" in prompt
+    assert "Vocabulary available" in prompt
+
+
+def test_production_prompt_ja_no_target_echoes_unchanged(vocab_data, grammar_data):
+    """JA source + no target (defensive) → echo unchanged, no constraint, no 'translate'."""
+    from story_generator.agent import build_japanese_production_prompt
+
+    prompt = build_japanese_production_prompt(
+        vocab_data, grammar_data, "けんは こうえんに いきました。",
+        source_is_japanese=True, target_chapter=None,
+    )
+    assert "unchanged" in prompt.lower()
+    assert "beyond Chapter" not in prompt
+    assert "translate" not in prompt.lower()
+
+
+def test_production_prompt_omits_stage2_instructions(vocab_data, grammar_data):
+    """Stage-2-only tokens must never leak into the Stage-1 prompt; output shape is minimal."""
+    from story_generator.agent import build_japanese_production_prompt
+
+    for source_is_japanese, target in [(False, 3), (False, None), (True, 3), (True, None)]:
+        prompt = build_japanese_production_prompt(
+            vocab_data, grammar_data, "Ken went to the park.",
+            source_is_japanese=source_is_japanese, target_chapter=target,
+        )
+        for banned in ('"words"', "vocab_keys", "vocab_supplement", "漢字[よみ]", '"english"',
+                       "Word Segmentation", '"title"', '"description"'):
+            assert banned not in prompt, (
+                f"Stage-2 token '{banned}' leaked into Stage-1 prompt "
+                f"(source_is_japanese={source_is_japanese}, target_chapter={target})"
+            )
+        # Minimal output shape requested
+        assert '{"japanese"' in prompt
+
+
+def test_production_prompt_honours_steering_instructions(vocab_data, grammar_data):
+    """A non-empty steering string is appended; empty/whitespace injects nothing."""
+    from story_generator.agent import build_japanese_production_prompt
+
+    with_steering = build_japanese_production_prompt(
+        vocab_data, grammar_data, "Ken went to the park.",
+        source_is_japanese=False, target_chapter=3,
+        steering_instructions="Keep it cheerful.",
+    )
+    assert "Additional Instructions" in with_steering
+    assert "Keep it cheerful." in with_steering
+
+    without_steering = build_japanese_production_prompt(
+        vocab_data, grammar_data, "Ken went to the park.",
+        source_is_japanese=False, target_chapter=3,
+        steering_instructions="   ",
+    )
+    assert "Additional Instructions" not in without_steering
+
+
 def test_validation_failure_emits_error_not_finished(vocab_data, grammar_data, simplified_fixture_json):
     """A story with vocab_keys length mismatch causes VALIDATION_ERROR instead of RUN_FINISHED."""
     from story_generator.agent import StoryGeneratorAgent

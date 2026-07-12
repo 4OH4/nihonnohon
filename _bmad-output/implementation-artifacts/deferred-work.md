@@ -1,5 +1,11 @@
 # Deferred Work
 
+## Deferred from: code review of se3-2-stage-1-japanese-production-prompt (2026-07-12)
+
+- **`target_chapter <= 0` produces a self-contradictory constrained prompt:** With a zero/negative chapter the `is None` guard is skipped, so `_cumulative_vocab_block`/`_cumulative_grammar_block` render `  (none)` (empty `range(1, chapter+1)`) while the task text and discipline line still say "use ONLY … up to Chapter 0", "cumulative Ch.1–0", and "Do not introduce vocabulary beyond Chapter 0" — an impossible constraint, no crash. No lower-bound guard in the builder. se3-4 owns chapter parsing/validation (spec: parsing lives in se3-4); its `_parse_chapter` must guarantee `chapter >= 1`. [`agent.py:build_japanese_production_prompt`]
+- **`target_chapter` beyond the highest Genki chapter silently misrepresents the ceiling:** `by_chapter.get(ch, [])` skips out-of-range chapters without error, so the prompt asserts "calibrated to … Chapter N" / "cumulative Ch.1–N" for a chapter that does not exist in the curriculum data and the ceiling effectively becomes "everything." se3-4 should validate/clamp against the real chapter range. [`agent.py:build_japanese_production_prompt`]
+- **Empty/whitespace `source` embeds a blank Source Story body:** `source.strip()` reduces empty/whitespace input to `""`, injected under `## {source_heading}` with an empty body; Stage 1 is then told to translate/simplify nothing (fabricated content or empty `{"japanese": ""}`). No early return / validation. se3-4 (which wires `generate()`) should reject an empty source before building the Stage-1 prompt. [`agent.py:build_japanese_production_prompt`]
+
 ## Deferred from: code review of se3-1-shared-llm-streamer-extraction (2026-07-12)
 
 - **`status="ok"` perf line on cancel-at-completion:** `_stream_llm` logs the "ok" llm_perf line, then the caller's post-loop cancel check emits `RUN_CANCELLED`, so a cancelled run also carries an "ok" perf line. Observability-only; the triggering window (cancel set exactly between stream completion and the caller check) is negligible. Fold the caller's post-loop cancel guard into `_stream_llm` (re-check cancel before the "ok" log) if perf-metric fidelity for cancels ever matters. [`agent.py:_stream_llm`]

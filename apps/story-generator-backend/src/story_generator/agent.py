@@ -30,6 +30,36 @@ _GRAMMAR_DIST_HINTS: dict[int, str] = {
 }
 
 
+def _cumulative_vocab_block(vocab_data: VocabData, chapter: int) -> str:
+    """Format the cumulative Ch.1–N vocabulary list as prompt lines.
+
+    Shared by the fused system prompt and the Stage-1 production prompt so the two
+    never diverge. Output is one ``  {id} | {hiragana}{ (kanji)} | {translation}`` line
+    per entry, or ``  (none)`` when the range is empty.
+    """
+    vocab_lines: list[str] = []
+    for ch in range(1, chapter + 1):
+        for entry in vocab_data.by_chapter.get(ch, []):
+            kanji_part = f" ({entry.kanji})" if entry.kanji else ""
+            vocab_lines.append(f"  {entry.id} | {entry.hiragana}{kanji_part} | {entry.translation}")
+
+    return "\n".join(vocab_lines) if vocab_lines else "  (none)"
+
+
+def _cumulative_grammar_block(grammar_data: GrammarData, chapter: int) -> str:
+    """Format the cumulative Ch.1–N grammar points as prompt lines.
+
+    Shared by the fused system prompt and the Stage-1 production prompt. Output is one
+    ``  [Ch{ch} {point}] {title}: {summary}`` line per point, or ``  (none)`` when empty.
+    """
+    grammar_lines: list[str] = []
+    for ch in range(1, chapter + 1):
+        for gp in grammar_data.by_chapter.get(ch, []):
+            grammar_lines.append(f"  [Ch{ch} {gp.point}] {gp.title}: {gp.summary}")
+
+    return "\n".join(grammar_lines) if grammar_lines else "  (none)"
+
+
 def build_system_prompt(
     vocab_data: VocabData,
     grammar_data: GrammarData,
@@ -39,22 +69,9 @@ def build_system_prompt(
     grammar_distribution: int = 1,
 ) -> str:
     """Build the Gemini prompt with cumulative Ch.1–N vocab and grammar."""
-    # Cumulative vocab entries up to this chapter
-    vocab_lines: list[str] = []
-    for ch in range(1, chapter + 1):
-        for entry in vocab_data.by_chapter.get(ch, []):
-            kanji_part = f" ({entry.kanji})" if entry.kanji else ""
-            vocab_lines.append(f"  {entry.id} | {entry.hiragana}{kanji_part} | {entry.translation}")
-
-    vocab_block = "\n".join(vocab_lines) if vocab_lines else "  (none)"
-
-    # Cumulative grammar points up to this chapter
-    grammar_lines: list[str] = []
-    for ch in range(1, chapter + 1):
-        for gp in grammar_data.by_chapter.get(ch, []):
-            grammar_lines.append(f"  [Ch{ch} {gp.point}] {gp.title}: {gp.summary}")
-
-    grammar_block = "\n".join(grammar_lines) if grammar_lines else "  (none)"
+    # Cumulative curriculum blocks up to this chapter
+    vocab_block = _cumulative_vocab_block(vocab_data, chapter)
+    grammar_block = _cumulative_grammar_block(grammar_data, chapter)
 
     grammar_dist_text = _GRAMMAR_DIST_HINTS.get(grammar_distribution, _GRAMMAR_DIST_HINTS[1])
     steering_block = (
@@ -127,6 +144,104 @@ Respond with a single JSON object matching this exact structure:
 4. **words array**: Plain surface forms only — no furigana brackets. Joined words must exactly equal the japanese field.
 
 Return ONLY the JSON object. No markdown, no code fences, no explanation.
+"""
+
+
+# ---------------------------------------------------------------------------
+# Stage 1 — Japanese production prompt
+# ---------------------------------------------------------------------------
+
+
+def build_japanese_production_prompt(
+    vocab_data: VocabData,
+    grammar_data: GrammarData,
+    source: str,
+    *,
+    source_is_japanese: bool,
+    target_chapter: int | None,
+    steering_instructions: str = "",
+) -> str:
+    """Build the Stage-1 prompt that produces plain Japanese prose only.
+
+    Stage 1 translates (EN→JA) or simplifies (JA→JA) into a Japanese prose blob and
+    nothing else — no segmentation, gloss, grammar tags, furigana, or metadata (all of
+    which are Stage 2's job). The output is the minimal JSON ``{"japanese": "..."}`` so
+    produced and pasted Japanese reach Stage 2 in the identical shape (a Japanese string).
+
+    ``target_chapter`` is an already-parsed ``int | None`` (chapter-string parsing and the
+    ``"unspecified"`` sentinel live in se3-4); ``None`` means no Genki constraint.
+    """
+    steering_block = (
+        f"\n## Additional Instructions\n\n{steering_instructions.strip()}\n"
+        if steering_instructions.strip()
+        else ""
+    )
+
+    # Task framing — the verb differs by source language. A Japanese source is
+    # *simplified/rewritten*, never "translated"; an English source is translated.
+    if source_is_japanese:
+        source_heading = "Japanese Source Story"
+        if target_chapter is None:
+            # Defensive branch only: se3-4 skips Stage 1 entirely for frozen Japanese,
+            # so this pairing is never reached in production. Echo the input unchanged.
+            task = "Return the Japanese source story below exactly as given, unchanged."
+        else:
+            task = (
+                f"Rewrite the Japanese source story below, simplifying it so it uses ONLY "
+                f"the Genki I vocabulary and grammar patterns available up to Chapter "
+                f"{target_chapter} (listed below). Preserve the original meaning and events; "
+                f"do not add new content."
+            )
+    else:
+        source_heading = "English Source Story"
+        if target_chapter is None:
+            task = (
+                "Translate the English source story below into natural Japanese prose at a "
+                "natural difficulty level — there is no vocabulary or grammar restriction."
+            )
+        else:
+            task = (
+                f"Translate the English source story below into Japanese, calibrated to Genki I "
+                f"Chapter {target_chapter} — use ONLY the vocabulary and grammar patterns listed "
+                f"below. Produce a faithful translation brought down to that level."
+            )
+
+    # Curriculum constraint block — assembled only when a target chapter is set.
+    if target_chapter is None:
+        constraints_block = ""
+    else:
+        vocab_block = _cumulative_vocab_block(vocab_data, target_chapter)
+        grammar_block = _cumulative_grammar_block(grammar_data, target_chapter)
+        constraints_block = f"""
+## Curriculum Constraints
+
+### Vocabulary available (cumulative Ch.1–{target_chapter})
+Format: ID | hiragana (kanji) | English meaning
+{vocab_block}
+
+### Grammar patterns available (cumulative Ch.1–{target_chapter})
+{grammar_block}
+
+**Vocabulary discipline:** Only use vocabulary from the provided list. Do not introduce vocabulary beyond Chapter {target_chapter}.
+"""
+
+    return f"""You are a Japanese language expert producing Japanese prose for a graded reader.
+
+## Task
+
+{task}
+{constraints_block}
+## {source_heading}
+
+{source.strip()}
+{steering_block}
+## Output Format
+
+Respond with a single JSON object containing ONLY the Japanese story text as one string:
+
+{{"japanese": "<full Japanese story text>"}}
+
+Return ONLY that JSON object. Do NOT split the text into words, do NOT add furigana, readings, or English glosses, and do NOT include a title, description, id, grammar tags, or any per-sentence structure — just the plain Japanese prose. No markdown, no code fences, no explanation.
 """
 
 
