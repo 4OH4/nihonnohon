@@ -29,6 +29,16 @@ _GRAMMAR_DIST_HINTS: dict[int, str] = {
     2: "Use as many grammar patterns from the list as you can, fitting them naturally into the story.",
 }
 
+#: Word-segmentation rules body (intro line + five numbered rules), shared verbatim by the
+#: fused system prompt and the Stage-2 analysis prompt so the join-invariant instruction never
+#: diverges. The ``## Word Segmentation Rules`` heading stays inline in each prompt.
+_WORD_SEGMENTATION_RULES = """Split each Japanese sentence into surface word tokens following these rules:
+1. Verb stems stay attached to their polite endings: 食べます is one token, 行きます is one token
+2. Particles are separate tokens: は、を、に、で、へ、が、と、も、の are each a single token
+3. Punctuation is separate: 。and 、are each a single token
+4. Honorifics attached to names stay attached: たろうさん is one token
+5. The words array joined (no spaces) must exactly equal the japanese string"""
+
 
 def _cumulative_vocab_block(vocab_data: VocabData, chapter: int) -> str:
     """Format the cumulative Ch.1–N vocabulary list as prompt lines.
@@ -46,14 +56,19 @@ def _cumulative_vocab_block(vocab_data: VocabData, chapter: int) -> str:
     return "\n".join(vocab_lines) if vocab_lines else "  (none)"
 
 
-def _cumulative_grammar_block(grammar_data: GrammarData, chapter: int) -> str:
-    """Format the cumulative Ch.1–N grammar points as prompt lines.
+def _cumulative_grammar_block(grammar_data: GrammarData, chapter: int | None) -> str:
+    """Format the cumulative grammar points as prompt lines.
 
-    Shared by the fused system prompt and the Stage-1 production prompt. Output is one
-    ``  [Ch{ch} {point}] {title}: {summary}`` line per point, or ``  (none)`` when empty.
+    Shared by the fused system prompt, the Stage-1 production prompt, and the Stage-2 analysis
+    prompt. An ``int`` chapter yields the cumulative Ch.1–N set; ``chapter is None`` yields the
+    **full** cumulative Genki set (every chapter present in ``grammar_data.by_chapter``), used by
+    Stage-2 analysis when no target chapter is chosen so grammar highlights still populate without
+    constraining the text. Output is one ``  [Ch{ch} {point}] {title}: {summary}`` line per point,
+    or ``  (none)`` when empty.
     """
+    max_ch = chapter if chapter is not None else max(grammar_data.by_chapter, default=0)
     grammar_lines: list[str] = []
-    for ch in range(1, chapter + 1):
+    for ch in range(1, max_ch + 1):
         for gp in grammar_data.by_chapter.get(ch, []):
             grammar_lines.append(f"  [Ch{ch} {gp.point}] {gp.title}: {gp.summary}")
 
@@ -106,12 +121,7 @@ Format: ID | hiragana (kanji) | English meaning
 {steering_block}
 ## Word Segmentation Rules
 
-Split each Japanese sentence into surface word tokens following these rules:
-1. Verb stems stay attached to their polite endings: 食べます is one token, 行きます is one token
-2. Particles are separate tokens: は、を、に、で、へ、が、と、も、の are each a single token
-3. Punctuation is separate: 。and 、are each a single token
-4. Honorifics attached to names stay attached: たろうさん is one token
-5. The words array joined (no spaces) must exactly equal the japanese string
+{_WORD_SEGMENTATION_RULES}
 
 ## Output Format
 
@@ -242,6 +252,99 @@ Respond with a single JSON object containing ONLY the Japanese story text as one
 {{"japanese": "<full Japanese story text>"}}
 
 Return ONLY that JSON object. Do NOT split the text into words, do NOT add furigana, readings, or English glosses, and do NOT include a title, description, id, grammar tags, or any per-sentence structure — just the plain Japanese prose. No markdown, no code fences, no explanation.
+"""
+
+
+# ---------------------------------------------------------------------------
+# Stage 2 — Japanese analysis prompt
+# ---------------------------------------------------------------------------
+
+
+def build_japanese_analysis_prompt(
+    grammar_data: GrammarData,
+    japanese_text: str,
+    *,
+    target_chapter: int | None,
+    steering_instructions: str = "",
+) -> str:
+    """Build the Stage-2 prompt that analyses any Japanese string into the pipeline seam.
+
+    Stage 2 is the single universal analysis step run on every path: it takes a finished Japanese
+    prose blob (produced by Stage 1, or pasted verbatim by the user on Path C) and returns the
+    segmented, glossed, grammar-tagged structure the enrichment pipeline consumes —
+    ``{id, title, title_ja, description, grammar, sentences:[{english, japanese, words, grammar}]}``.
+    It never translates, simplifies, or corrects the Japanese: it echoes each sentence verbatim and
+    describes it.
+
+    ``target_chapter`` is an already-parsed ``int | None`` (chapter-string parsing lives in se3-4).
+    ``N`` tags grammar against the cumulative Ch.1–N reference set; ``None`` tags against the full
+    Genki grammar set without constraining the text. The grammar block is a *recognition* reference
+    only — Stage 2 never restricts vocabulary, so no vocabulary block is injected and there is no
+    ``vocab_data`` parameter. A non-empty ``steering_instructions`` is appended as an "Additional
+    Instructions" block (same idiom as the fused/production prompts); empty/whitespace injects nothing.
+    """
+    # Grammar-reference assembly — Ch.1..N when targeted, full Genki set when None.
+    grammar_block = _cumulative_grammar_block(grammar_data, target_chapter)
+
+    steering_block = (
+        f"\n## Additional Instructions\n\n{steering_instructions.strip()}\n"
+        if steering_instructions.strip()
+        else ""
+    )
+
+    # Task framing: analyse (echo verbatim + segment + back-translate + tag) — never rewrite.
+    return f"""You are a Japanese language expert analysing a finished Japanese story for a graded reader.
+
+## Task
+
+Analyse the Japanese story below. Split it into sentences and, for each sentence, echo the Japanese exactly, segment it into surface words, back-translate it into English, and tag the grammar patterns it uses. Then invent the story metadata. Do NOT alter, rewrite, translate, simplify, or correct the Japanese — copy each sentence character-for-character into its `japanese` field.
+
+## Japanese Story
+
+{japanese_text.strip()}
+{steering_block}
+## Grammar Reference (for tagging)
+
+These are the grammar patterns to recognise. Identify which appear in each sentence and tag them — this is a tagging reference, not a generation constraint.
+{grammar_block}
+
+## Word Segmentation Rules
+
+{_WORD_SEGMENTATION_RULES}
+
+## Output Format
+
+Respond with a single JSON object matching this exact structure:
+
+{{
+  "id": "<kebab-case identifier derived from the story topic, e.g. daily-life-at-the-station>",
+  "title": "<English story title>",
+  "title_ja": "<Japanese story title>",
+  "description": "<1-2 sentence English description of the story>",
+  "grammar": ["<grammar pattern string 1>", "<grammar pattern string 2>", ...],
+  "sentences": [
+    {{
+      "english": "<faithful English back-translation of this sentence>",
+      "japanese": "<this sentence copied EXACTLY from the source, unchanged>",
+      "words": ["<surface word 1>", "<surface word 2>", ...],
+      "grammar": [<0-based index into the story-level grammar array>, ...]
+    }}
+  ]
+}}
+
+## Rules
+
+1. **japanese field**: Copy each sentence verbatim from the source. Do NOT alter, rewrite, translate, or simplify the Japanese — the joined `words` must exactly reproduce it.
+
+2. **english field**: A faithful English back-translation of the echoed Japanese sentence.
+
+3. **sentence.grammar**: List the 0-based indices into the story-level `grammar` array for patterns used in that sentence.
+
+4. **id field**: Must be suitable as a filename (kebab-case, lowercase, no spaces, no special characters except hyphens).
+
+5. **words array**: Plain surface forms only — no furigana brackets. Joined words must exactly equal the japanese field.
+
+Return ONLY the JSON object. No markdown, no code fences, no explanation.
 """
 
 

@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-05-11
-last_updated: 2026-07-12  # se3-2 → done (code review passed)
+last_updated: 2026-07-12  # se3-3 → done (code-review complete)
 # v1 complete: all epics done, retrospective closed
 # supp-epic-1 (furigana rework) in progress
 project: nihonnohon
@@ -105,7 +105,7 @@ development_status:
   supp-epic-3: in-progress
   se3-1-shared-llm-streamer-extraction: done
   se3-2-stage-1-japanese-production-prompt: done
-  se3-3-stage-2-universal-japanese-analysis-prompt: backlog
+  se3-3-stage-2-universal-japanese-analysis-prompt: done
   se3-4-two-stage-orchestration-and-japanese-entry-point: backlog
   se3-5-frontend-japanese-input-mode-and-optional-target-difficulty: backlog
   se3-6-eval-adapter-for-stage-2: backlog

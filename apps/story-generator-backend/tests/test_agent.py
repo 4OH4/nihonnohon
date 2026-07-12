@@ -358,6 +358,104 @@ def test_production_prompt_honours_steering_instructions(vocab_data, grammar_dat
     assert "Additional Instructions" not in without_steering
 
 
+# ---------------------------------------------------------------------------
+# Stage 2 — Japanese analysis prompt (se3-3)
+# ---------------------------------------------------------------------------
+
+
+def test_analysis_prompt_echoes_japanese_unchanged(grammar_data):
+    """AC3/AC4/AC5/AC6: echo-verbatim, segmentation rules, back-translation, metadata invention."""
+    from story_generator.agent import build_japanese_analysis_prompt
+
+    prompt = build_japanese_analysis_prompt(
+        grammar_data, "けんは こうえんに いきました。",
+        target_chapter=3,
+    )
+    # AC3 — an unambiguous "do not alter/rewrite the Japanese" instruction is present
+    lower = prompt.lower()
+    assert "do not" in lower and ("alter" in lower or "rewrite" in lower)
+    # AC3 — the given Japanese is embedded verbatim as the source to analyse
+    assert "けんは こうえんに いきました。" in prompt
+    # AC4 — segmentation rules reused (join-invariant instruction present)
+    assert "particles" in lower
+    assert "joined" in lower and "japanese string" in lower
+    # AC5 — back-translation into per-sentence english
+    assert "back-translat" in lower
+    assert '"english"' in prompt
+    # AC6 — invent id/title/title_ja/description, id required kebab-case
+    for field in ("id", "title", "title_ja", "description"):
+        assert field in prompt
+    assert "kebab-case" in prompt
+
+
+def test_analysis_prompt_grammar_switch_target_vs_full(grammar_data):
+    """AC7: target_chapter=N tags Ch.1..N; None tags the full cumulative Genki set."""
+    from story_generator.agent import build_japanese_analysis_prompt
+
+    # Match the exact rendered grammar-reference line (not a bare title substring, which could
+    # collide with a title/summary word from another chapter and false-fail).
+    def grammar_line(ch, gp):
+        return f"[Ch{ch} {gp.point}] {gp.title}:"
+
+    max_ch = max(grammar_data.by_chapter)
+    targeted = build_japanese_analysis_prompt(grammar_data, "テスト。", target_chapter=3)
+    full = build_japanese_analysis_prompt(grammar_data, "テスト。", target_chapter=None)
+
+    # A Ch.4-only grammar point is absent when targeted at Ch.3, present in the full set
+    ch1_to_3 = {gp.title for ch in range(1, 4) for gp in grammar_data.by_chapter.get(ch, [])}
+    ch4_only = [gp for gp in grammar_data.by_chapter.get(4, []) if gp.title not in ch1_to_3]
+    if ch4_only:
+        assert grammar_line(4, ch4_only[0]) not in targeted
+        assert grammar_line(4, ch4_only[0]) in full
+
+    # A max-chapter grammar point appears only in the full set
+    assert max_ch > 3, "fixture must span beyond Ch.3 for this switch to be meaningful"
+    assert any(grammar_line(max_ch, gp) in full for gp in grammar_data.by_chapter[max_ch])
+    assert not any(grammar_line(max_ch, gp) in targeted for gp in grammar_data.by_chapter[max_ch])
+
+
+def test_analysis_prompt_has_no_vocab_constraint(grammar_data):
+    """AC8: grammar is a tagging reference, never a vocabulary constraint — in both branches."""
+    from story_generator.agent import build_japanese_analysis_prompt
+
+    for target in (3, None):
+        prompt = build_japanese_analysis_prompt(grammar_data, "テスト。", target_chapter=target)
+        assert "beyond Chapter" not in prompt
+        assert "Vocabulary available" not in prompt
+
+
+def test_analysis_prompt_omits_downstream_fields(grammar_data):
+    """AC2: enrichment/generate()-injected fields must never be requested by the prompt."""
+    from story_generator.agent import build_japanese_analysis_prompt
+
+    for target in (3, None):
+        prompt = build_japanese_analysis_prompt(grammar_data, "テスト。", target_chapter=target)
+        for banned in ("vocab_keys", "vocab_supplement", "漢字[よみ]", "schema_version",
+                       '"language"', "difficulty"):
+            assert banned not in prompt, f"downstream/enrichment token leaked: {banned}"
+        # AC2 — the requested output shape is exactly the seam the pipeline consumes
+        for expected in ('"id"', '"title"', '"title_ja"', '"description"', '"grammar"',
+                         '"sentences"', '"english"', '"japanese"', '"words"'):
+            assert expected in prompt, f"output-shape field missing: {expected}"
+
+
+def test_analysis_prompt_honours_steering(grammar_data):
+    """AC9: non-empty steering appended as Additional Instructions; whitespace injects nothing."""
+    from story_generator.agent import build_japanese_analysis_prompt
+
+    with_s = build_japanese_analysis_prompt(
+        grammar_data, "テスト。", target_chapter=3,
+        steering_instructions="Keep it cheerful.",
+    )
+    assert "Additional Instructions" in with_s and "Keep it cheerful." in with_s
+
+    without_s = build_japanese_analysis_prompt(
+        grammar_data, "テスト。", target_chapter=3,
+        steering_instructions="   ",
+    )
+    assert "Additional Instructions" not in without_s
+
+
 def test_validation_failure_emits_error_not_finished(vocab_data, grammar_data, simplified_fixture_json):
     """A story with vocab_keys length mismatch causes VALIDATION_ERROR instead of RUN_FINISHED."""
     from story_generator.agent import StoryGeneratorAgent

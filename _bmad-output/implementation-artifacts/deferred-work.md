@@ -1,5 +1,10 @@
 # Deferred Work
 
+## Deferred from: code review of se3-3-stage-2-universal-japanese-analysis-prompt (2026-07-12)
+
+- **`target_chapter=0`/negative yields an empty grammar reference instead of the full set:** In `_cumulative_grammar_block`, an `int` `target_chapter` of `0` (or negative) gives `max_ch=0` → `range(1,1)` → `  (none)`, so `build_japanese_analysis_prompt`'s "Grammar Reference (for tagging)" section is empty and every sentence's `grammar` array comes back empty. The `None`→full-set vs `0`→empty asymmetry is by-design for this story (spec scope fence: "Do not add lower-bound guards here"). se3-4's chapter parser must guarantee `target_chapter is None` or `>= 1` before calling the analysis builder. Sibling of the se3-2 `build_japanese_production_prompt` deferral below. [`agent.py:69` / `agent.py:build_japanese_analysis_prompt`]
+- **Empty/whitespace `japanese_text` produces a degenerate analysis prompt:** `japanese_text.strip()` reduces empty/whitespace input to `""`, emitting an empty `## Japanese Story` body while instructing the model to "echo each sentence verbatim" — the model will hallucinate a story (violating the verbatim-echo contract) or emit empty/malformed `sentences`. No early return; se3-4 (which wires `generate()`) owns rejecting empty input before building the prompt. [`agent.py:303` / `agent.py:build_japanese_analysis_prompt`]
+
 ## Deferred from: code review of se3-2-stage-1-japanese-production-prompt (2026-07-12)
 
 - **`target_chapter <= 0` produces a self-contradictory constrained prompt:** With a zero/negative chapter the `is None` guard is skipped, so `_cumulative_vocab_block`/`_cumulative_grammar_block` render `  (none)` (empty `range(1, chapter+1)`) while the task text and discipline line still say "use ONLY … up to Chapter 0", "cumulative Ch.1–0", and "Do not introduce vocabulary beyond Chapter 0" — an impossible constraint, no crash. No lower-bound guard in the builder. se3-4 owns chapter parsing/validation (spec: parsing lives in se3-4); its `_parse_chapter` must guarantee `chapter >= 1`. [`agent.py:build_japanese_production_prompt`]
