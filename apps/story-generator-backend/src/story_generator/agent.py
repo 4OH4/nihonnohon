@@ -16,6 +16,8 @@ _perf_logger = logging.getLogger("llm_perf")
 
 GEMINI_MODEL = "gemini-2.5-flash"
 THINKING_BUDGET = 16384  # thinking tokens; caps pre-generation reasoning at ~2 minutes
+STAGE2_TEMPERATURE = 0.2  # Stage 2 is structural (segmentation/tagging), not creative — fixed
+# low temperature regardless of the user's chosen generation temperature (Stage 1 only)
 
 
 # ---------------------------------------------------------------------------
@@ -621,6 +623,47 @@ class StoryGeneratorAgent:
 
         yield {"__stage__": "ok", "data": data}
 
+    async def _run_stage2_analysis(
+        self,
+        *,
+        japanese_text: str,
+        target_chapter: int | None,
+        steering_instructions: str,
+        cancel_event: asyncio.Event | None,
+        run_id: str,
+    ) -> AsyncGenerator[dict, None]:
+        """Build the Stage-2 analysis prompt and run it — generate()'s Stage 2, as a reusable seam.
+
+        Pulled out of ``generate()`` so a caller that only wants the raw Stage-2 result (e.g. the
+        eval harness) can drive the exact prompt, model, and ``GenerateContentConfig`` (temperature,
+        thinking budget, streaming) that production uses, without going through the rest of
+        ``generate()`` — whose ``RUN_FINISHED`` payload is the fully enriched v2 story (ruby
+        first-occurrence-suppressed, no per-word dictionary-form/POS retained), not the raw
+        per-word annotations a benchmark scores against.
+
+        Temperature is fixed at ``STAGE2_TEMPERATURE`` — not a parameter — because segmentation
+        and grammar tagging are structural tasks, not creative ones: they should not scale with
+        the user's chosen generation temperature (that only applies to Stage 1's prose). Fixing it
+        here also guarantees the eval harness can never drift from production's Stage-2 config.
+
+        Same contract as ``_run_json_stage``: pass-through ``AGENT_STATUS`` dicts, then exactly one
+        terminal dict (``{"__stage__": "ok", "data": ...}`` or a failure event + ``{"__stage__": "failed"}``).
+        """
+        ana_prompt = build_japanese_analysis_prompt(
+            self._grammar_data,
+            japanese_text,
+            target_chapter=target_chapter,
+            steering_instructions=steering_instructions,
+        )
+        async for ev in self._run_json_stage(
+            prompt=ana_prompt,
+            activity="Analyse Japanese",
+            temperature=STAGE2_TEMPERATURE,
+            cancel_event=cancel_event,
+            run_id=run_id,
+        ):
+            yield ev
+
     async def generate(
         self,
         *,
@@ -754,17 +797,11 @@ class StoryGeneratorAgent:
                 return
 
         # --- Stage 2: analyse the Japanese into the pipeline seam ---
-        ana_prompt = build_japanese_analysis_prompt(
-            self._grammar_data,
-            japanese_text,
+        raw_response: dict | None = None
+        async for ev in self._run_stage2_analysis(
+            japanese_text=japanese_text,
             target_chapter=target_chapter,
             steering_instructions=steering_instructions,
-        )
-        raw_response: dict | None = None
-        async for ev in self._run_json_stage(
-            prompt=ana_prompt,
-            activity="Analyse Japanese",
-            temperature=temperature,
             cancel_event=cancel_event,
             run_id=run_id,
         ):

@@ -1,5 +1,10 @@
 # Deferred Work
 
+## Deferred from: code review of se3-6-eval-adapter-for-stage-2 (2026-07-13)
+
+- **`run_meta["model"]` is read from the module-level `GEMINI_MODEL` constant rather than derived from the actual injected `caller`:** Correct today since the only real caller (`_build_real_caller`) uses the same constant, but would misreport if the injection seam is ever repurposed with a different model outside tests. No clean fix without changing the caller contract to expose its own model name; theoretical only. [apps/story-generator-backend/eval/run_eval.py:238]
+- **`sys.path` insertion to import the top-level `adapters` package is duplicated between `run_eval.py` and `test_eval_gemini_adapter.py`, and risks shadowing any other process-wide module literally named `adapters`:** This is the exact import mechanism the story's own Dev Notes prescribe (`eval/adapters/` intentionally sits outside the `story_generator` package); revisiting it is an architecture question beyond this review. [apps/story-generator-backend/eval/run_eval.py, apps/story-generator-backend/tests/test_eval_gemini_adapter.py]
+
 ## Deferred from: code review of se3-3-stage-2-universal-japanese-analysis-prompt (2026-07-12)
 
 - **`target_chapter=0`/negative yields an empty grammar reference instead of the full set:** In `_cumulative_grammar_block`, an `int` `target_chapter` of `0` (or negative) gives `max_ch=0` → `range(1,1)` → `  (none)`, so `build_japanese_analysis_prompt`'s "Grammar Reference (for tagging)" section is empty and every sentence's `grammar` array comes back empty. The `None`→full-set vs `0`→empty asymmetry is by-design for this story (spec scope fence: "Do not add lower-bound guards here"). se3-4's chapter parser must guarantee `target_chapter is None` or `>= 1` before calling the analysis builder. Sibling of the se3-2 `build_japanese_production_prompt` deferral below. [`agent.py:69` / `agent.py:build_japanese_analysis_prompt`]
