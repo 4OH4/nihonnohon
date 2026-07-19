@@ -33,7 +33,10 @@ for how these fit the current pipeline.
 
 ```
 eval/
-  gold/eval-genki6-daily-life.json   # frozen ground truth (VERIFY before trusting)
+  gold/                              # frozen ground truth — 10 Genki stories (VERIFY before trusting)
+    eval-genki4-day-out.json         #   one file per story (chapters 4,6,8,10,12,14,16,18,20,22);
+    ...                              #   pass the gold/ directory to run and aggregate all 10 at once
+    eval-genki22-raising-children.json
   run_eval.py                        # harness: scoring, CLI, run-logging, adapter dispatch
   adapters/
     __init__.py                      # Adapter type alias + ADAPTERS registry {name: factory}
@@ -170,89 +173,60 @@ in `ADAPTERS` (`eval/adapters/__init__.py`):
 
 ## Baseline snapshot (SudachiPy adapter)
 
-**Whole-story protocol** (current — one adapter call for the full joined story, matching
-production's call granularity):
+Measured over the full **10-story** benchmark (`eval/gold/` — 100 sentences, 442 content
+words, 287 kanji words), whole-story protocol (one adapter call per story, matching
+production's call granularity). SudachiPy is deterministic — 4 repeat runs were byte-identical,
+so a single row stands for all of them:
 
 | Metric | Value |
 |--------|-------|
-| Segmentation boundary F1 | 0.901 |
-| Segmentation sentence exact-match | 0.000 |
-| Dictionary form (aligned) | 1.000 |
-| Dictionary form (strict) | 0.610 |
-| Ruby (aligned) | 0.895 |
-| Ruby (strict) | 0.515 |
+| Segmentation boundary P / R / F1 | 0.808 / 1.000 / 0.894 |
+| Segmentation sentence exact-match | 0.170 |
+| Dictionary form (aligned) | 0.997 |
+| Dictionary form (strict) | 0.663 |
+| Ruby (aligned) | 0.866 |
+| Ruby (strict) | 0.606 |
 
-The gap between *aligned* and *strict* is almost entirely segmentation: SudachiPy's word
-boundaries differ from the gold convention (e.g. it splits です off adjectives and うます-endings
-off stems), so no sentence matches exactly even though the annotations of matched tokens are
-near-perfect. This is exactly the segmentation signal the eval is meant to surface.
+The gap between *aligned* and *strict* is almost entirely segmentation: recall is a perfect
+1.000 — SudachiPy never *misses* a gold boundary — but precision is only 0.808 because it
+**over-splits** relative to the gold convention (e.g. it splits です off adjectives and polite
+-ます endings off stems). That over-segmentation is why only 17% of sentences tile exactly even
+though the annotations of the boundary-matched tokens are near-perfect (dict 0.997, ruby 0.866
+aligned). This is exactly the segmentation signal the eval is meant to surface.
 
-<details>
-<summary>Superseded: per-sentence protocol (one call per gold sentence)</summary>
+## Production-pipeline snapshot (gemini-analysis adapter)
 
-| Metric | Value |
-|--------|-------|
-| Segmentation boundary F1 | 0.889 |
-| Segmentation sentence exact-match | 0.000 |
-| Dictionary form (aligned) | 1.000 |
-| Dictionary form (strict) | 0.610 |
-| Ruby (aligned) | 0.895 |
-| Ruby (strict) | 0.515 |
+Driven through the exact production seam (`StoryGeneratorAgent._run_stage2_analysis`,
+byte-identical prompt/model/config to `generate()`) at the current production
+`STAGE2_TEMPERATURE = 0.2`, over the full **10-story** benchmark. `STAGE2_TEMPERATURE` is fixed
+at 0.2 in `agent.py`, decoupled from the user-facing generation-temperature slider (which only
+affects Stage 1's prose) — the se3-6 fix, made because segmentation and grammar tagging are
+structural tasks, not creative ones, and the model followed the prompt's own segmentation rules
+far more reliably at low temperature.
 
-Boundary F1 moved slightly (0.889 → 0.901): whole-story scoring adds each sentence-end offset as a
-real internal boundary to get right, which SudachiPy — being chapter/context-independent — gets
-right almost as easily as isolated per-sentence calls. Everything else is unchanged, since
-SudachiPy's segmentation doesn't depend on call scope.
-</details>
+**Stage-2 segmentation still has real run-to-run variance even at this low temperature — a
+single run is not representative**, so we report 4 repeat runs (`eval/results/` is gitignored —
+this table is the only record):
 
-## Production-pipeline snapshot (gemini-analysis adapter, se3-6)
+| Run | boundary F1 | sentence exact | dict (aligned) | dict (strict) | ruby (aligned) | ruby (strict) |
+|---|---|---|---|---|---|---|
+| 1 | 0.842 | 0.360 | 0.941 | 0.609 | 0.852 | 0.561 |
+| 2 | 0.876 | 0.440 | 0.909 | 0.658 | 0.849 | 0.606 |
+| 3 | 0.960 | 0.540 | 0.938 | 0.787 | 0.873 | 0.746 |
+| 4 | 0.899 | 0.430 | 0.943 | 0.676 | 0.863 | 0.659 |
+| **mean** | **0.894** | **0.443** | **0.933** | **0.682** | **0.859** | **0.643** |
+| **spread** | 0.842–0.960 | 0.360–0.540 | 0.909–0.943 | 0.609–0.787 | 0.849–0.873 | 0.561–0.746 |
 
-**Stage-2 segmentation has real run-to-run variance at a given temperature — a single run is not
-representative.** This was discovered by driving the eval adapter through the exact production
-seam (`StoryGeneratorAgent._run_stage2_analysis`, byte-identical prompt/model/config to
-`generate()`) and finding wildly different results across back-to-back calls at
-`temperature=1.0` (the model's own default before this fix — see next section): boundary F1 swung
-between 0.484 and 0.917, and `sentence_exact_match` between 0.000 and 0.100, purely from sampling
-— not from any prompt, chapter, or config difference. Below are 4 runs at each temperature
-(`eval/results/` is gitignored — these tables are the only record):
+Two of the four runs (runs 1 and 4) had a single story return an empty Stage-2 response —
+recorded as an all-miss story per the error-resilience design below, not dropped — which drags
+those runs' strict metrics and the means down. Even at `temperature=0.2`, a lone run can still
+fail outright, so multi-run evaluation remains the honest way to report these numbers.
 
-| Run | boundary F1 (temp=1.0) | sentence exact (temp=1.0) | boundary F1 (temp=0.2) | sentence exact (temp=0.2) |
-|---|---|---|---|---|
-| 1 | 0.917 | 0.000 | 0.957 | 0.400 |
-| 2 | 0.917 | 0.000 | 0.975 | 0.700 |
-| 3 | 0.917 | 0.000 | 0.910 | 0.000 |
-| 4 | 0.484 | 0.100 | 0.957 | 0.400 |
-| **mean** | **0.809** | **0.025** | **0.950** | **0.375** |
-| **spread** | 0.484–0.917 | 0.000–0.100 | 0.910–0.975 | 0.000–0.700 |
-
-Lowering **only** Stage 2's temperature (`STAGE2_TEMPERATURE = 0.2` in `agent.py`, decoupled from
-the user-facing generation-temperature slider, which still only affects Stage 1's prose) raised
-the mean boundary F1 from 0.809 to 0.950, tightened the spread roughly 8x (stdev ~0.19 → ~0.02),
-and lifted mean `sentence_exact_match` from 0.025 to 0.375. Segmentation and grammar tagging are
-structural tasks, not creative ones — the Stage-2 prompt's own segmentation rule ("verb stems stay
-attached to their polite endings") was already correct; the model just wasn't following it
-reliably at temperature=1.0. A 5th temp=0.2 run returned an empty response (adapter-level failure,
-recorded as an all-miss story per the error-resilience design below, not a segmentation number) —
-a reminder that even at low temperature, a single run can still fail outright and multi-run
-evaluation remains the honest way to report this metric going forward.
-
-<details>
-<summary>Superseded: per-sentence protocol (one call per gold sentence, single run)</summary>
-
-| Metric | Value |
-|--------|-------|
-| Segmentation boundary F1 | 0.971 |
-| Segmentation sentence exact-match | 0.700 |
-| Dictionary form (aligned) | 0.946 |
-| Dictionary form (strict) | 0.854 |
-| Ruby (aligned) | 0.900 |
-| Ruby (strict) | 0.818 |
-
-Not comparable to the tables above even before the temperature fix: under this protocol the model
-was handed every sentence boundary for free and never had to find one itself, which flattered
-`sentence_exact_match` in a way production never benefits from — the whole reason the harness
-moved to whole-story calls.
-</details>
+Against the deterministic `sudachi-baseline` (boundary F1 0.894, sentence-exact 0.170),
+gemini-analysis's whole-story segmentation is more variable but reaches a materially higher
+ceiling — boundary F1 up to 0.960 and sentence-exact up to 0.540. Both adapters share the
+identical enrichment layer, so the remaining dict/ruby differences trace back to *who segments*,
+not to enrichment.
 
 ## Extending
 
