@@ -187,6 +187,11 @@ GitHub Actions (`.github/workflows/ci.yml`) runs on every PR and push to `main`:
 
 All steps must pass before merging.
 
+If the E2E step fails purely on stale Playwright snapshots, CI regenerates the Linux
+baselines, commits them back to the branch, and re-verifies in the same run — so snapshot
+drift self-heals rather than blocking. See
+[CONTRIBUTING.md](../CONTRIBUTING.md#visual-regression-snapshot-tests) for details.
+
 ---
 
 ## Deployment

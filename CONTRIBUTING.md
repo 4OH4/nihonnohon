@@ -86,24 +86,32 @@ For Playwright to run locally, install browsers once:
 pnpm --filter @nihonnohon/web exec playwright install chromium firefox webkit
 ```
 
-### Adding visual regression snapshot tests
+### Visual regression snapshot tests
 
-Playwright's `toMatchSnapshot()` stores per-platform baseline PNGs. CI runs on Linux, so
-Linux baselines must be committed alongside any new snapshot test. When you add a new
-`toMatchSnapshot()` call, follow this one-time process to generate them:
+Playwright's `toMatchSnapshot()` stores per-platform baseline PNGs in
+`apps/web/e2e/accessibility.spec.ts-snapshots/`. CI runs on Linux, so the committed
+baselines are the Linux (`-linux.png`) variants.
 
-1. Push your branch — CI will fail on the E2E step because the Linux PNGs don't exist yet.
-2. Download the `playwright-actual-snapshots` artifact from the failed run:
-   ```bash
-   gh run download <run-id> --name playwright-actual-snapshots --dir /tmp/snapshots
-   ```
-3. Copy the `-linux.png` files into `apps/web/e2e/accessibility.spec.ts-snapshots/`:
-   ```bash
-   cp /tmp/snapshots/*linux*.png apps/web/e2e/accessibility.spec.ts-snapshots/
-   ```
-4. Commit and push — CI will pass on the next run.
+**You normally don't generate these by hand.** When you push a branch that changes the
+rendered UI or adds a new `toMatchSnapshot()` call, CI heals the baselines automatically:
 
-The artifact is only uploaded when the E2E step fails, so it won't appear on green runs.
+1. The `E2E tests` step fails on the mismatch (or missing baseline).
+2. CI re-runs Playwright with `--update-snapshots`, commits the regenerated PNGs as
+   `chore(e2e): update playwright linux snapshots [skip ci]`, and pushes them back to your
+   branch.
+3. It re-runs the E2E suite to verify. If the snapshots were the only difference, the run
+   goes green in the same pass; a genuine test regression still fails the build.
+
+After CI heals a branch, run `git pull` to bring the auto-committed baselines into your
+local checkout before pushing again (otherwise your next push is rejected as
+non-fast-forward).
+
+**Fork PRs:** the auto-commit pushes using the `SNAPSHOT_PUSH_TOKEN` secret, which is not
+available to pull requests from forks. For a fork PR, either a maintainer runs the
+**Update Playwright Snapshots** workflow (`workflow_dispatch`, see
+[`.github/workflows/update-snapshots.yml`](.github/workflows/update-snapshots.yml)) against
+the branch, or you regenerate the `-linux.png` baselines locally (e.g. via the Playwright
+Docker image) and commit them.
 
 ## Where does code go?
 
@@ -173,6 +181,37 @@ Breaking changes to `story.v1.json` require:
 
 Non-breaking additions (new optional fields) do **not** require a version bump.
 `additionalProperties: false` must not be violated.
+
+## Maintainers
+
+### Snapshot auto-heal infrastructure
+
+The CI snapshot auto-heal (see [Visual regression snapshot tests](#visual-regression-snapshot-tests))
+pushes a commit back to the branch under test. On `main` that would normally be blocked by the
+**Protect Main** repository ruleset, which requires all changes to go through a pull request.
+Two pieces make the push work:
+
+- **Ruleset bypass** — the *Repository admin* role is on the "Protect Main" bypass list
+  (`bypass_mode: always`). A push authenticated as a repo admin therefore satisfies the rule.
+  The other rules (no deletion, no force-push, require-PR for everyone else) stay in force.
+- **`SNAPSHOT_PUSH_TOKEN` secret** — a fine-grained PAT owned by a repo admin, scoped to this
+  repository with **Contents: Read and write**. Both [`ci.yml`](.github/workflows/ci.yml) and
+  [`update-snapshots.yml`](.github/workflows/update-snapshots.yml) check out with
+  `${{ secrets.SNAPSHOT_PUSH_TOKEN || secrets.GITHUB_TOKEN }}`, so the auto-commit is
+  authenticated as the admin (who can bypass) rather than the built-in `github-actions[bot]`
+  (who cannot). The fallback to `GITHUB_TOKEN` is why the auto-commit is silently skipped on
+  fork PRs — forks don't receive the secret.
+
+The auto-commit message carries `[skip ci]` so the pushed commit doesn't re-trigger CI (no loop).
+
+**Rotating the token:** generate a fresh fine-grained PAT (same scope) and update the secret:
+
+```bash
+gh secret set SNAPSHOT_PUSH_TOKEN --repo <owner>/<repo>   # paste the new PAT when prompted
+```
+
+If the push starts failing with `remote: error: GH013: Repository rule violations found`,
+either the token expired/was revoked or the admin-role bypass was removed from the ruleset.
 
 ## License
 
