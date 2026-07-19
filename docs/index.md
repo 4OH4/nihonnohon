@@ -57,6 +57,7 @@ scan_level: deep
 | [source-tree-analysis.md](./source-tree-analysis.md) | Annotated directory structure |
 | [development-guide.md](./development-guide.md) | Setup, build, test, deploy |
 | [story-generation-pipeline.md](./story-generation-pipeline.md) | How a topic/story becomes a JSON story file; where Genki/kanji data enters (baseline for quality work) |
+| [enrichment-logic.md](./enrichment-logic.md) | How Japanese text should be processed: word-split boundaries, kanji-only ruby, dictionary-form, and part-of-speech rules |
 
 ---
 
