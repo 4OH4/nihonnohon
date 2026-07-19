@@ -143,8 +143,7 @@
         "の",
         "学校[がっこう]",
         "は",
-        "終[おわり]わり",
-        "ました",
+        "終[お]わりました",
         "。"
       ],
       "vocab_keys": [
@@ -153,7 +152,6 @@
         158,
         null,
         482,
-        null,
         null
       ],
       "translation": "Kenji’s school day finished.",
@@ -171,8 +169,7 @@
         "を",
         "かばん",
         "に",
-        "入[いれ]れ",
-        "ました",
+        "入[い]れました",
         "。"
       ],
       "vocab_keys": [
@@ -183,7 +180,6 @@
         110,
         null,
         10002,
-        null,
         null
       ],
       "translation": "He put his books into his bag.",
@@ -199,8 +195,7 @@
         "は",
         "学校[がっこう]",
         "を",
-        "出[で]",
-        "ました",
+        "出[で]ました",
         "。"
       ],
       "vocab_keys": [
@@ -209,7 +204,6 @@
         158,
         null,
         488,
-        null,
         null
       ],
       "translation": "He walked out of the classroom.",
@@ -245,9 +239,8 @@
       "words": [
         "けんじさん",
         "は",
-        "少し",
-        "お腹が空き",
-        "ました",
+        "少[すこ]し",
+        "お腹[なか]が空[す]きました",
         "。"
       ],
       "vocab_keys": [
@@ -255,7 +248,6 @@
         null,
         188,
         10004,
-        null,
         null
       ],
       "translation": "Kenji felt a little hungry.",
@@ -268,11 +260,10 @@
       "words": [
         "彼[かれ]",
         "は",
-        "何[なにか]か",
-        "食[たべもの]べ物",
+        "何[なに]か",
+        "食[た]べ物[もの]",
         "を",
-        "思[おもい]い",
-        "ました",
+        "思[おも]いました",
         "。"
       ],
       "vocab_keys": [
@@ -282,7 +273,6 @@
         262,
         null,
         442,
-        null,
         null
       ],
       "translation": "He thought about snacks.",
@@ -296,10 +286,10 @@
       "words": [
         "彼[かれ]",
         "は",
-        "甘[あまい]い",
-        "食[たべもの]べ物",
+        "甘[あま]い",
+        "食[た]べ物[もの]",
         "が",
-        "好[すき]き",
+        "好[す]き",
         "です",
         "。"
       ],
@@ -325,7 +315,7 @@
         "「",
         "コンビニ",
         "に",
-        "行[いく]く",
+        "行[い]く",
         "つもり",
         "です",
         "」",
@@ -333,8 +323,7 @@
         "、",
         "彼[かれ]",
         "は",
-        "決[きめ]め",
-        "ました",
+        "決[き]めました",
         "。"
       ],
       "vocab_keys": [
@@ -350,7 +339,6 @@
         10001,
         null,
         538,
-        null,
         null
       ],
       "translation": "\"I will go to the convenience store,\" he decided.",
@@ -369,8 +357,7 @@
         "の",
         "そば",
         "に",
-        "あり",
-        "ました",
+        "ありました",
         "。"
       ],
       "vocab_keys": [
@@ -381,7 +368,6 @@
         251,
         null,
         229,
-        null,
         null
       ],
       "translation": "The convenience store was near his school.",
@@ -396,9 +382,8 @@
       "words": [
         "彼[かれ]",
         "は",
-        "歩[あるいて]いて",
-        "行[いき]き",
-        "ました",
+        "歩[ある]いて",
+        "行[い]きました",
         "。"
       ],
       "vocab_keys": [
@@ -406,7 +391,6 @@
         null,
         540,
         170,
-        null,
         null
       ],
       "translation": "He walked down the street.",
@@ -423,8 +407,7 @@
         "も",
         "家[いえ]",
         "に",
-        "帰[かえり]り",
-        "ました",
+        "帰[かえ]りました",
         "。"
       ],
       "vocab_keys": [
@@ -435,7 +418,6 @@
         155,
         null,
         171,
-        null,
         null
       ],
       "translation": "Many students were walking home too.",
@@ -452,10 +434,10 @@
         "は",
         "コンビニ",
         "に",
-        "行[いく]く",
+        "行[い]く",
         "の",
         "が",
-        "好[すき]き",
+        "好[す]き",
         "でした",
         "。"
       ],
@@ -484,12 +466,11 @@
         "は",
         "ドア",
         "を",
-        "開[あけて]けて",
+        "開[あ]けて",
         "、",
         "中[なか]",
         "に",
-        "入[はいり]り",
-        "ました",
+        "入[はい]りました",
         "。"
       ],
       "vocab_keys": [
@@ -502,7 +483,6 @@
         248,
         null,
         340,
-        null,
         null
       ],
       "translation": "He opened the door and went inside.",
@@ -517,7 +497,7 @@
       "words": [
         "コンビニ",
         "は",
-        "涼[すずしくて]しくて",
+        "涼[すず]しくて",
         "、",
         "きれい",
         "でした",
@@ -543,15 +523,13 @@
       "words": [
         "音楽[おんがく]",
         "が",
-        "あり",
-        "ました",
+        "ありました",
         "。"
       ],
       "vocab_keys": [
         140,
         null,
         229,
-        null,
         null
       ],
       "translation": "Music was playing quietly.",
@@ -564,14 +542,13 @@
       "words": [
         "たくさん",
         "の",
-        "食[たべもの]べ物",
+        "食[た]べ物[もの]",
         "が",
         "コンビニ",
         "の",
         "中[なか]",
         "に",
-        "あり",
-        "ました",
+        "ありました",
         "。"
       ],
       "vocab_keys": [
@@ -584,7 +561,6 @@
         248,
         null,
         229,
-        null,
         null
       ],
       "translation": "Many different kinds of snacks were on the shelves.",
@@ -601,10 +577,9 @@
         "と",
         "チョコレート",
         "と",
-        "お握り",
+        "お握[にぎ]り",
         "が",
-        "あり",
-        "ました",
+        "ありました",
         "。"
       ],
       "vocab_keys": [
@@ -615,7 +590,6 @@
         10009,
         null,
         229,
-        null,
         null
       ],
       "translation": "There were potato chips, chocolates, and rice balls.",
@@ -629,10 +603,9 @@
       "words": [
         "たくさん",
         "の",
-        "飲[のみもの]み物",
+        "飲[の]み物[もの]",
         "も",
-        "あり",
-        "ました",
+        "ありました",
         "。"
       ],
       "vocab_keys": [
@@ -641,7 +614,6 @@
         266,
         5,
         229,
-        null,
         null
       ],
       "translation": "There were also many drinks.",
@@ -656,8 +628,7 @@
         "けんじさん",
         "は",
         "よく",
-        "見[み]",
-        "ました",
+        "見[み]ました",
         "。"
       ],
       "vocab_keys": [
@@ -665,7 +636,6 @@
         null,
         190,
         179,
-        null,
         null
       ],
       "translation": "Kenji looked at the shelves carefully.",
@@ -678,11 +648,10 @@
       "words": [
         "彼[かれ]",
         "は",
-        "新[あたらしい]しい",
+        "新[あたら]しい",
         "チョコレート",
         "を",
-        "見[み]",
-        "ました",
+        "見[み]ました",
         "。"
       ],
       "vocab_keys": [
@@ -692,7 +661,6 @@
         10008,
         null,
         179,
-        null,
         null
       ],
       "translation": "He saw a new chocolate bar.",
@@ -737,8 +705,7 @@
         "と",
         "彼[かれ]",
         "は",
-        "思[おもい]い",
-        "ました",
+        "思[おも]いました",
         "。"
       ],
       "vocab_keys": [
@@ -752,7 +719,6 @@
         10001,
         null,
         442,
-        null,
         null
       ],
       "translation": "\"This one looks good,\" he thought.",
@@ -769,8 +735,7 @@
         "は",
         "ジュース",
         "も",
-        "思[おもい]い",
-        "ました",
+        "思[おも]いました",
         "。"
       ],
       "vocab_keys": [
@@ -779,7 +744,6 @@
         10010,
         5,
         442,
-        null,
         null
       ],
       "translation": "He also wanted a juice.",
@@ -798,8 +762,7 @@
         "りんご",
         "ジュース",
         "を",
-        "取[とり]り",
-        "ました",
+        "取[と]りました",
         "。"
       ],
       "vocab_keys": [
@@ -811,7 +774,6 @@
         10010,
         null,
         232,
-        null,
         null
       ],
       "translation": "He picked up an apple juice from the refrigerator.",
@@ -831,13 +793,12 @@
         "りんご",
         "ジュース",
         "を",
-        "店員[てんいんさん]さん",
+        "店員[てんいん]さん",
         "の",
         "所[ところ]",
         "へ",
-        "持[もって]って",
-        "行[いき]き",
-        "ました",
+        "持[も]って",
+        "行[い]きました",
         "。"
       ],
       "vocab_keys": [
@@ -854,7 +815,6 @@
         null,
         352,
         170,
-        null,
         null
       ],
       "translation": "He took the chocolate bar and the apple juice to the counter.",
@@ -868,14 +828,13 @@
     {
       "id": "s26",
       "words": [
-        "店員[てんいんさん]さん",
+        "店員[てんいん]さん",
         "は",
         "「",
         "いらっしゃいませ",
         "」",
         "と",
-        "言[いい]い",
-        "ました",
+        "言[い]いました",
         "。"
       ],
       "vocab_keys": [
@@ -886,7 +845,6 @@
         null,
         null,
         439,
-        null,
         null
       ],
       "translation": "\"Hello,\" said the clerk.",
@@ -900,10 +858,9 @@
       "words": [
         "けんじさん",
         "は",
-        "お金",
+        "お金[かね]",
         "を",
-        "払[はらい]い",
-        "ました",
+        "払[はら]いました",
         "。"
       ],
       "vocab_keys": [
@@ -912,7 +869,6 @@
         311,
         null,
         537,
-        null,
         null
       ],
       "translation": "Kenji paid with his money.",
@@ -924,14 +880,13 @@
     {
       "id": "s28",
       "words": [
-        "店員[てんいんさん]さん",
+        "店員[てんいん]さん",
         "は",
         "「",
         "どうも",
         "」",
         "と",
-        "言[いい]い",
-        "ました",
+        "言[い]いました",
         "。"
       ],
       "vocab_keys": [
@@ -942,7 +897,6 @@
         null,
         null,
         439,
-        null,
         null
       ],
       "translation": "\"Thank you very much,\" the clerk said.",
@@ -956,15 +910,14 @@
       "words": [
         "けんじさん",
         "は",
-        "食[たべもの]べ物",
+        "食[た]べ物[もの]",
         "と",
-        "飲[のみもの]み物",
+        "飲[の]み物[もの]",
         "を",
         "かばん",
         "に",
-        "持[もって]って",
-        "行[いき]き",
-        "ました",
+        "持[も]って",
+        "行[い]きました",
         "。"
       ],
       "vocab_keys": [
@@ -978,7 +931,6 @@
         null,
         352,
         170,
-        null,
         null
       ],
       "translation": "Kenji put his snack and juice into his bag.",
@@ -995,8 +947,7 @@
         "は",
         "コンビニ",
         "を",
-        "出[で]",
-        "ました",
+        "出[で]ました",
         "。"
       ],
       "vocab_keys": [
@@ -1005,7 +956,6 @@
         375,
         null,
         488,
-        null,
         null
       ],
       "translation": "He walked out of the store.",
@@ -1023,8 +973,7 @@
         "の",
         "ベンチ",
         "に",
-        "座[すわり]り",
-        "ました",
+        "座[すわ]りました",
         "。"
       ],
       "vocab_keys": [
@@ -1035,7 +984,6 @@
         10012,
         null,
         335,
-        null,
         null
       ],
       "translation": "He sat on a bench outside.",
@@ -1052,10 +1000,9 @@
         "は",
         "チョコレート",
         "を",
-        "開[あけて]けて",
+        "開[あ]けて",
         "、",
-        "食[たべ]べ",
-        "ました",
+        "食[た]べました",
         "。"
       ],
       "vocab_keys": [
@@ -1066,7 +1013,6 @@
         343,
         null,
         177,
-        null,
         null
       ],
       "translation": "He opened the chocolate bar and ate it.",
@@ -1106,8 +1052,7 @@
         "りんご",
         "ジュース",
         "も",
-        "飲[のみ]み",
-        "ました",
+        "飲[の]みました",
         "。"
       ],
       "vocab_keys": [
@@ -1115,7 +1060,6 @@
         10010,
         5,
         173,
-        null,
         null
       ],
       "translation": "He drank the apple juice too.",
@@ -1133,7 +1077,7 @@
         "で",
         "とても",
         "いい",
-        "食[たべもの]べ物",
+        "食[た]べ物[もの]",
         "でした",
         "。"
       ],
