@@ -1,0 +1,183 @@
+{
+  "id": "eval-genki10-seasons",
+  "chapter": 10,
+  "source": "Gold annotations authored by Claude (Opus 4.8) sentence-by-sentence. Japanese drafted to approx. Genki II Ch.10 level (comparisons より/ほう/一番/ほど, なる, ～と, つもり).",
+  "english_source": "A learner compares Japan's seasons, explaining why winter is their favourite and plans for the winter holidays in Hokkaido.",
+  "conventions": {
+    "input": "The `ja` string is the frozen benchmark input. The system under test receives `ja` and must reproduce `words` (segmentation), `dict`, and `ruby`.",
+    "scored_fields": ["surface (segmentation)", "dict", "ruby"],
+    "ruby": "kanji-run[reading] with okurigana left bare, e.g. 起[お]きます, 勉強[べんきょう]します. Pure-kana tokens have ruby == surface. Canonical per-word: first-occurrence suppression is NOT applied here (it is a separate story-level transform).",
+    "dict": "Lexical dictionary/lemma form of the token's head word. For adjective+です tokens the head adjective (大きい). For particles/punctuation, dict == surface.",
+    "pos": "pron | n | v1 | v5 | v-irr | adj-i | adj-na | adv | conj | prt | aux | punct | name. Used to scope metrics: dict scored on content words; ruby scored on tokens containing kanji."
+  },
+  "sentences": [
+    {
+      "id": "s01",
+      "ja": "日本には四つの季節があります。",
+      "en": "Japan has four seasons.",
+      "words": [
+        { "surface": "日本", "dict": "日本", "ruby": "日本[にほん]", "pos": "name" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "四つ", "dict": "四つ", "ruby": "四[よっ]つ", "pos": "n" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "季節", "dict": "季節", "ruby": "季節[きせつ]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "あります", "dict": "ある", "ruby": "あります", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s02",
+      "ja": "私は夏より冬のほうが好きです。",
+      "en": "I like winter more than summer.",
+      "words": [
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "夏", "dict": "夏", "ruby": "夏[なつ]", "pos": "n" },
+        { "surface": "より", "dict": "より", "ruby": "より", "pos": "prt" },
+        { "surface": "冬", "dict": "冬", "ruby": "冬[ふゆ]", "pos": "n" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "ほう", "dict": "ほう", "ruby": "ほう", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "好き", "dict": "好き", "ruby": "好[す]き", "pos": "adj-na" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s03",
+      "ja": "冬は寒いですが、雪がとてもきれいです。",
+      "en": "Winter is cold, but the snow is very beautiful.",
+      "words": [
+        { "surface": "冬", "dict": "冬", "ruby": "冬[ふゆ]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "寒い", "dict": "寒い", "ruby": "寒[さむ]い", "pos": "adj-i" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "雪", "dict": "雪", "ruby": "雪[ゆき]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "とても", "dict": "とても", "ruby": "とても", "pos": "adv" },
+        { "surface": "きれい", "dict": "きれい", "ruby": "きれい", "pos": "adj-na" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s04",
+      "ja": "一年で冬が一番好きです。",
+      "en": "Of the whole year, I like winter the best.",
+      "words": [
+        { "surface": "一年", "dict": "一年", "ruby": "一年[いちねん]", "pos": "n" },
+        { "surface": "で", "dict": "で", "ruby": "で", "pos": "prt" },
+        { "surface": "冬", "dict": "冬", "ruby": "冬[ふゆ]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "一番", "dict": "一番", "ruby": "一番[いちばん]", "pos": "adv" },
+        { "surface": "好き", "dict": "好き", "ruby": "好[す]き", "pos": "adj-na" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s05",
+      "ja": "冬休みに友だちと北海道へ行くつもりです。",
+      "en": "I plan to go to Hokkaido with a friend during the winter holidays.",
+      "words": [
+        { "surface": "冬休み", "dict": "冬休み", "ruby": "冬[ふゆ]休[やす]み", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "友だち", "dict": "友だち", "ruby": "友[とも]だち", "pos": "n" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "北海道", "dict": "北海道", "ruby": "北海道[ほっかいどう]", "pos": "name" },
+        { "surface": "へ", "dict": "へ", "ruby": "へ", "pos": "prt" },
+        { "surface": "行く", "dict": "行く", "ruby": "行[い]く", "pos": "v5" },
+        { "surface": "つもり", "dict": "つもり", "ruby": "つもり", "pos": "n" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s06",
+      "ja": "北海道は日本で一番寒い所です。",
+      "en": "Hokkaido is the coldest place in Japan.",
+      "words": [
+        { "surface": "北海道", "dict": "北海道", "ruby": "北海道[ほっかいどう]", "pos": "name" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "日本", "dict": "日本", "ruby": "日本[にほん]", "pos": "name" },
+        { "surface": "で", "dict": "で", "ruby": "で", "pos": "prt" },
+        { "surface": "一番", "dict": "一番", "ruby": "一番[いちばん]", "pos": "adv" },
+        { "surface": "寒い", "dict": "寒い", "ruby": "寒[さむ]い", "pos": "adj-i" },
+        { "surface": "所", "dict": "所", "ruby": "所[ところ]", "pos": "n" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s07",
+      "ja": "冬になると、たくさん雪が降ります。",
+      "en": "When winter comes, a lot of snow falls.",
+      "words": [
+        { "surface": "冬", "dict": "冬", "ruby": "冬[ふゆ]", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "なる", "dict": "なる", "ruby": "なる", "pos": "v5" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "たくさん", "dict": "たくさん", "ruby": "たくさん", "pos": "adv" },
+        { "surface": "雪", "dict": "雪", "ruby": "雪[ゆき]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "降ります", "dict": "降る", "ruby": "降[ふ]ります", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s08",
+      "ja": "私はスキーが下手ですが、たくさん練習します。",
+      "en": "I'm bad at skiing, but I'll practise a lot.",
+      "words": [
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "スキー", "dict": "スキー", "ruby": "スキー", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "下手", "dict": "下手", "ruby": "下手[へた]", "pos": "adj-na" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "たくさん", "dict": "たくさん", "ruby": "たくさん", "pos": "adv" },
+        { "surface": "練習します", "dict": "練習する", "ruby": "練習[れんしゅう]します", "pos": "v-irr" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s09",
+      "ja": "でも、夏もいいと思います。",
+      "en": "But I think summer is good too.",
+      "words": [
+        { "surface": "でも", "dict": "でも", "ruby": "でも", "pos": "conj" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "夏", "dict": "夏", "ruby": "夏[なつ]", "pos": "n" },
+        { "surface": "も", "dict": "も", "ruby": "も", "pos": "prt" },
+        { "surface": "いい", "dict": "いい", "ruby": "いい", "pos": "adj-i" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "思います", "dict": "思う", "ruby": "思[おも]います", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s10",
+      "ja": "来年の夏は海へ行くつもりです。",
+      "en": "Next summer I plan to go to the sea.",
+      "words": [
+        { "surface": "来年", "dict": "来年", "ruby": "来年[らいねん]", "pos": "n" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "夏", "dict": "夏", "ruby": "夏[なつ]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "海", "dict": "海", "ruby": "海[うみ]", "pos": "n" },
+        { "surface": "へ", "dict": "へ", "ruby": "へ", "pos": "prt" },
+        { "surface": "行く", "dict": "行く", "ruby": "行[い]く", "pos": "v5" },
+        { "surface": "つもり", "dict": "つもり", "ruby": "つもり", "pos": "n" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    }
+  ]
+}

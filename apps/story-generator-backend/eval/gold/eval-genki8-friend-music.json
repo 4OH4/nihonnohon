@@ -1,0 +1,178 @@
+{
+  "id": "eval-genki8-friend-music",
+  "chapter": 8,
+  "source": "Gold annotations authored by Claude (Opus 4.8) sentence-by-sentence. Japanese drafted to approx. Genki I Ch.8 level (short/plain forms, ～と思う, ～と言っていた).",
+  "english_source": "A plain-form diary entry about a friend named Ken who loves music and bought a new guitar, and the writer's own wish to practise an instrument with him.",
+  "conventions": {
+    "input": "The `ja` string is the frozen benchmark input. The system under test receives `ja` and must reproduce `words` (segmentation), `dict`, and `ruby`.",
+    "scored_fields": ["surface (segmentation)", "dict", "ruby"],
+    "ruby": "kanji-run[reading] with okurigana left bare, e.g. 起[お]きます, 勉強[べんきょう]します. Pure-kana tokens have ruby == surface. Canonical per-word: first-occurrence suppression is NOT applied here (it is a separate story-level transform).",
+    "dict": "Lexical dictionary/lemma form of the token's head word. For adjective+です tokens the head adjective (大きい). For particles/punctuation, dict == surface.",
+    "pos": "pron | n | v1 | v5 | v-irr | adj-i | adj-na | adv | conj | prt | aux | punct | name. Used to scope metrics: dict scored on content words; ruby scored on tokens containing kanji."
+  },
+  "sentences": [
+    {
+      "id": "s01",
+      "ja": "私の友だちのけんは音楽が好きだ。",
+      "en": "My friend Ken likes music.",
+      "words": [
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "友だち", "dict": "友だち", "ruby": "友[とも]だち", "pos": "n" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "けん", "dict": "けん", "ruby": "けん", "pos": "name" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "音楽", "dict": "音楽", "ruby": "音楽[おんがく]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "好き", "dict": "好き", "ruby": "好[す]き", "pos": "adj-na" },
+        { "surface": "だ", "dict": "だ", "ruby": "だ", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s02",
+      "ja": "けんはよくギターをひくと思う。",
+      "en": "I think Ken often plays the guitar.",
+      "words": [
+        { "surface": "けん", "dict": "けん", "ruby": "けん", "pos": "name" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "よく", "dict": "よく", "ruby": "よく", "pos": "adv" },
+        { "surface": "ギター", "dict": "ギター", "ruby": "ギター", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "ひく", "dict": "ひく", "ruby": "ひく", "pos": "v5" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "思う", "dict": "思う", "ruby": "思[おも]う", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s03",
+      "ja": "きのう、けんは新しいギターを買った。",
+      "en": "Yesterday, Ken bought a new guitar.",
+      "words": [
+        { "surface": "きのう", "dict": "きのう", "ruby": "きのう", "pos": "n" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "けん", "dict": "けん", "ruby": "けん", "pos": "name" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "新しい", "dict": "新しい", "ruby": "新[あたら]しい", "pos": "adj-i" },
+        { "surface": "ギター", "dict": "ギター", "ruby": "ギター", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "買った", "dict": "買う", "ruby": "買[か]った", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s04",
+      "ja": "でも、あまり高くなかったと言っていた。",
+      "en": "But he said it wasn't very expensive.",
+      "words": [
+        { "surface": "でも", "dict": "でも", "ruby": "でも", "pos": "conj" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "あまり", "dict": "あまり", "ruby": "あまり", "pos": "adv" },
+        { "surface": "高くなかった", "dict": "高い", "ruby": "高[たか]くなかった", "pos": "adj-i" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "言って", "dict": "言う", "ruby": "言[い]って", "pos": "v5" },
+        { "surface": "いた", "dict": "いる", "ruby": "いた", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s05",
+      "ja": "私も音楽が大好きだ。",
+      "en": "I love music too.",
+      "words": [
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "も", "dict": "も", "ruby": "も", "pos": "prt" },
+        { "surface": "音楽", "dict": "音楽", "ruby": "音楽[おんがく]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "大好き", "dict": "大好き", "ruby": "大好[だいす]き", "pos": "adj-na" },
+        { "surface": "だ", "dict": "だ", "ruby": "だ", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s06",
+      "ja": "でも、私は楽器を何も持っていない。",
+      "en": "But I don't have any instruments.",
+      "words": [
+        { "surface": "でも", "dict": "でも", "ruby": "でも", "pos": "conj" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "楽器", "dict": "楽器", "ruby": "楽器[がっき]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "何", "dict": "何", "ruby": "何[なに]", "pos": "pron" },
+        { "surface": "も", "dict": "も", "ruby": "も", "pos": "prt" },
+        { "surface": "持って", "dict": "持つ", "ruby": "持[も]って", "pos": "v5" },
+        { "surface": "いない", "dict": "いる", "ruby": "いない", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s07",
+      "ja": "週末にけんとギターを練習するつもりだ。",
+      "en": "I plan to practise the guitar with Ken on the weekend.",
+      "words": [
+        { "surface": "週末", "dict": "週末", "ruby": "週末[しゅうまつ]", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "けん", "dict": "けん", "ruby": "けん", "pos": "name" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "ギター", "dict": "ギター", "ruby": "ギター", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "練習する", "dict": "練習する", "ruby": "練習[れんしゅう]する", "pos": "v-irr" },
+        { "surface": "つもり", "dict": "つもり", "ruby": "つもり", "pos": "n" },
+        { "surface": "だ", "dict": "だ", "ruby": "だ", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s08",
+      "ja": "けんはとても上手だと思う。",
+      "en": "I think Ken is very good at it.",
+      "words": [
+        { "surface": "けん", "dict": "けん", "ruby": "けん", "pos": "name" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "とても", "dict": "とても", "ruby": "とても", "pos": "adv" },
+        { "surface": "上手", "dict": "上手", "ruby": "上手[じょうず]", "pos": "adj-na" },
+        { "surface": "だ", "dict": "だ", "ruby": "だ", "pos": "aux" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "思う", "dict": "思う", "ruby": "思[おも]う", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s09",
+      "ja": "私はまだ下手だから、たくさん練習する。",
+      "en": "I'm still bad at it, so I practise a lot.",
+      "words": [
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "まだ", "dict": "まだ", "ruby": "まだ", "pos": "adv" },
+        { "surface": "下手", "dict": "下手", "ruby": "下手[へた]", "pos": "adj-na" },
+        { "surface": "だ", "dict": "だ", "ruby": "だ", "pos": "aux" },
+        { "surface": "から", "dict": "から", "ruby": "から", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "たくさん", "dict": "たくさん", "ruby": "たくさん", "pos": "adv" },
+        { "surface": "練習する", "dict": "練習する", "ruby": "練習[れんしゅう]する", "pos": "v-irr" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s10",
+      "ja": "来月、みんなで音楽を楽しむつもりだ。",
+      "en": "Next month, we all plan to enjoy music together.",
+      "words": [
+        { "surface": "来月", "dict": "来月", "ruby": "来月[らいげつ]", "pos": "n" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "みんな", "dict": "みんな", "ruby": "みんな", "pos": "n" },
+        { "surface": "で", "dict": "で", "ruby": "で", "pos": "prt" },
+        { "surface": "音楽", "dict": "音楽", "ruby": "音楽[おんがく]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "楽しむ", "dict": "楽しむ", "ruby": "楽[たの]しむ", "pos": "v5" },
+        { "surface": "つもり", "dict": "つもり", "ruby": "つもり", "pos": "n" },
+        { "surface": "だ", "dict": "だ", "ruby": "だ", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    }
+  ]
+}

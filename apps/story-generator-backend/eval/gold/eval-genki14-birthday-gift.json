@@ -1,0 +1,174 @@
+{
+  "id": "eval-genki14-birthday-gift",
+  "chapter": 14,
+  "source": "Gold annotations authored by Claude (Opus 4.8) sentence-by-sentence. Japanese drafted to approx. Genki II Ch.14 level (～がほしい, あげる/くれる, ～かもしれない, counters).",
+  "english_source": "The writer prepares for a younger sister's birthday: what she wants, gifts the family will give, and worries about the size.",
+  "conventions": {
+    "input": "The `ja` string is the frozen benchmark input. The system under test receives `ja` and must reproduce `words` (segmentation), `dict`, and `ruby`.",
+    "scored_fields": ["surface (segmentation)", "dict", "ruby"],
+    "ruby": "kanji-run[reading] with okurigana left bare, e.g. 起[お]きます, 勉強[べんきょう]します. Pure-kana tokens have ruby == surface. Canonical per-word: first-occurrence suppression is NOT applied here (it is a separate story-level transform).",
+    "dict": "Lexical dictionary/lemma form of the token's head word. For adjective+です tokens the head adjective (大きい). For particles/punctuation, dict == surface.",
+    "pos": "pron | n | v1 | v5 | v-irr | adj-i | adj-na | adv | conj | prt | aux | punct | name. Used to scope metrics: dict scored on content words; ruby scored on tokens containing kanji."
+  },
+  "sentences": [
+    {
+      "id": "s01",
+      "ja": "来週、妹の誕生日があります。",
+      "en": "Next week is my little sister's birthday.",
+      "words": [
+        { "surface": "来週", "dict": "来週", "ruby": "来週[らいしゅう]", "pos": "n" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "妹", "dict": "妹", "ruby": "妹[いもうと]", "pos": "n" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "誕生日", "dict": "誕生日", "ruby": "誕生日[たんじょうび]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "あります", "dict": "ある", "ruby": "あります", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s02",
+      "ja": "妹は新しいかばんがほしいと言っていました。",
+      "en": "My sister said she wants a new bag.",
+      "words": [
+        { "surface": "妹", "dict": "妹", "ruby": "妹[いもうと]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "新しい", "dict": "新しい", "ruby": "新[あたら]しい", "pos": "adj-i" },
+        { "surface": "かばん", "dict": "かばん", "ruby": "かばん", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "ほしい", "dict": "ほしい", "ruby": "ほしい", "pos": "adj-i" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "言って", "dict": "言う", "ruby": "言[い]って", "pos": "v5" },
+        { "surface": "いました", "dict": "いる", "ruby": "いました", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s03",
+      "ja": "だから、私は妹にかばんをあげるつもりです。",
+      "en": "So I plan to give my sister a bag.",
+      "words": [
+        { "surface": "だから", "dict": "だから", "ruby": "だから", "pos": "conj" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "妹", "dict": "妹", "ruby": "妹[いもうと]", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "かばん", "dict": "かばん", "ruby": "かばん", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "あげる", "dict": "あげる", "ruby": "あげる", "pos": "v1" },
+        { "surface": "つもり", "dict": "つもり", "ruby": "つもり", "pos": "n" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s04",
+      "ja": "母は妹にきれいなセーターを買ってあげます。",
+      "en": "My mother will buy my sister a pretty sweater.",
+      "words": [
+        { "surface": "母", "dict": "母", "ruby": "母[はは]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "妹", "dict": "妹", "ruby": "妹[いもうと]", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "きれいな", "dict": "きれい", "ruby": "きれいな", "pos": "adj-na" },
+        { "surface": "セーター", "dict": "セーター", "ruby": "セーター", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "買って", "dict": "買う", "ruby": "買[か]って", "pos": "v5" },
+        { "surface": "あげます", "dict": "あげる", "ruby": "あげます", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s05",
+      "ja": "去年、妹は私に手紙をくれました。",
+      "en": "Last year, my sister gave me a letter.",
+      "words": [
+        { "surface": "去年", "dict": "去年", "ruby": "去年[きょねん]", "pos": "n" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "妹", "dict": "妹", "ruby": "妹[いもうと]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "手紙", "dict": "手紙", "ruby": "手紙[てがみ]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "くれました", "dict": "くれる", "ruby": "くれました", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s06",
+      "ja": "私はプレゼントを三つ買いました。",
+      "en": "I bought three presents.",
+      "words": [
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "プレゼント", "dict": "プレゼント", "ruby": "プレゼント", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "三つ", "dict": "三つ", "ruby": "三[みっ]つ", "pos": "n" },
+        { "surface": "買いました", "dict": "買う", "ruby": "買[か]いました", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s07",
+      "ja": "写真も何枚か撮ろうと思います。",
+      "en": "I think I'll take a few photos too.",
+      "words": [
+        { "surface": "写真", "dict": "写真", "ruby": "写真[しゃしん]", "pos": "n" },
+        { "surface": "も", "dict": "も", "ruby": "も", "pos": "prt" },
+        { "surface": "何枚", "dict": "何枚", "ruby": "何枚[なんまい]", "pos": "n" },
+        { "surface": "か", "dict": "か", "ruby": "か", "pos": "prt" },
+        { "surface": "撮ろう", "dict": "撮る", "ruby": "撮[と]ろう", "pos": "v5" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "思います", "dict": "思う", "ruby": "思[おも]います", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s08",
+      "ja": "妹はきっと喜ぶと思います。",
+      "en": "I think my sister will surely be pleased.",
+      "words": [
+        { "surface": "妹", "dict": "妹", "ruby": "妹[いもうと]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "きっと", "dict": "きっと", "ruby": "きっと", "pos": "adv" },
+        { "surface": "喜ぶ", "dict": "喜ぶ", "ruby": "喜[よろこ]ぶ", "pos": "v5" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "思います", "dict": "思う", "ruby": "思[おも]います", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s09",
+      "ja": "でも、サイズが合わないかもしれません。",
+      "en": "But the size might not fit.",
+      "words": [
+        { "surface": "でも", "dict": "でも", "ruby": "でも", "pos": "conj" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "サイズ", "dict": "サイズ", "ruby": "サイズ", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "合わない", "dict": "合う", "ruby": "合[あ]わない", "pos": "v5" },
+        { "surface": "か", "dict": "か", "ruby": "か", "pos": "prt" },
+        { "surface": "も", "dict": "も", "ruby": "も", "pos": "prt" },
+        { "surface": "しれません", "dict": "しれる", "ruby": "しれません", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s10",
+      "ja": "妹の誕生日がとても楽しみです。",
+      "en": "I'm really looking forward to my sister's birthday.",
+      "words": [
+        { "surface": "妹", "dict": "妹", "ruby": "妹[いもうと]", "pos": "n" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "誕生日", "dict": "誕生日", "ruby": "誕生日[たんじょうび]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "とても", "dict": "とても", "ruby": "とても", "pos": "adv" },
+        { "surface": "楽しみ", "dict": "楽しみ", "ruby": "楽[たの]しみ", "pos": "n" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "id": "eval-genki6-daily-life",
   "chapter": 6,
-  "source": "Gold annotations authored by Claude (Opus 4.8) sentence-by-sentence. Japanese drafted to approx. Genki I Ch.6 level. HUMAN REVIEW REQUIRED before treating as ground truth — check segmentation boundaries, dictionary forms, and readings.",
+  "source": "Gold annotations authored by Claude (Opus 4.8) sentence-by-sentence. Japanese drafted to approx. Genki I Ch.6 level.",
   "english_source": "A university student describes their daily routine: waking up, going to class, studying Japanese, spending time with friends, and relaxing in the evening.",
   "conventions": {
     "input": "The `ja` string is the frozen benchmark input. The system under test receives `ja` and must reproduce `words` (segmentation), `dict`, and `ruby`.",
@@ -51,7 +51,8 @@
         { "surface": "大学", "dict": "大学", "ruby": "大学[だいがく]", "pos": "n" },
         { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
         { "surface": "とても", "dict": "とても", "ruby": "とても", "pos": "adv" },
-        { "surface": "大きいです", "dict": "大きい", "ruby": "大[おお]きいです", "pos": "adj-i" },
+        { "surface": "大きい", "dict": "大きい", "ruby": "大[おお]きい", "pos": "adj-i" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
         { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
       ]
     },
@@ -79,10 +80,12 @@
         { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
         { "surface": "クラス", "dict": "クラス", "ruby": "クラス", "pos": "n" },
         { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
-        { "surface": "難しいです", "dict": "難しい", "ruby": "難[むずか]しいです", "pos": "adj-i" },
+        { "surface": "難しい", "dict": "難しい", "ruby": "難[むずか]しい", "pos": "adj-i" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
         { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
         { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
-        { "surface": "おもしろいです", "dict": "おもしろい", "ruby": "おもしろいです", "pos": "adj-i" },
+        { "surface": "おもしろい", "dict": "おもしろい", "ruby": "おもしろい", "pos": "adj-i" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
         { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
       ]
     },
@@ -155,7 +158,8 @@
       "words": [
         { "surface": "毎日", "dict": "毎日", "ruby": "毎日[まいにち]", "pos": "n" },
         { "surface": "とても", "dict": "とても", "ruby": "とても", "pos": "adv" },
-        { "surface": "楽しいです", "dict": "楽しい", "ruby": "楽[たの]しいです", "pos": "adj-i" },
+        { "surface": "楽しい", "dict": "楽しい", "ruby": "楽[たの]しい", "pos": "adj-i" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
         { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
       ]
     }

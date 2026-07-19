@@ -1,0 +1,175 @@
+{
+  "id": "eval-genki16-helping-friend",
+  "chapter": 16,
+  "source": "Gold annotations authored by Claude (Opus 4.8) sentence-by-sentence. Japanese drafted to approx. Genki II Ch.16 level (～てあげる/くれる/もらう, ～ていただけませんか, ～と conditional, ～ながら).",
+  "english_source": "The writer describes getting help with Japanese homework from a friend, helping the friend in return, and a kind teacher who explains things.",
+  "conventions": {
+    "input": "The `ja` string is the frozen benchmark input. The system under test receives `ja` and must reproduce `words` (segmentation), `dict`, and `ruby`.",
+    "scored_fields": ["surface (segmentation)", "dict", "ruby"],
+    "ruby": "kanji-run[reading] with okurigana left bare, e.g. 起[お]きます, 勉強[べんきょう]します. Pure-kana tokens have ruby == surface. Canonical per-word: first-occurrence suppression is NOT applied here (it is a separate story-level transform).",
+    "dict": "Lexical dictionary/lemma form of the token's head word. For adjective+です tokens the head adjective (大きい). For particles/punctuation, dict == surface.",
+    "pos": "pron | n | v1 | v5 | v-irr | adj-i | adj-na | adv | conj | prt | aux | punct | name. Used to scope metrics: dict scored on content words; ruby scored on tokens containing kanji."
+  },
+  "sentences": [
+    {
+      "id": "s01",
+      "ja": "先週、私は日本語の宿題がわかりませんでした。",
+      "en": "Last week, I didn't understand the Japanese homework.",
+      "words": [
+        { "surface": "先週", "dict": "先週", "ruby": "先週[せんしゅう]", "pos": "n" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "日本語", "dict": "日本語", "ruby": "日本語[にほんご]", "pos": "n" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "宿題", "dict": "宿題", "ruby": "宿題[しゅくだい]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "わかりませんでした", "dict": "わかる", "ruby": "わかりませんでした", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s02",
+      "ja": "だから、友だちに教えてもらいました。",
+      "en": "So I had a friend teach me.",
+      "words": [
+        { "surface": "だから", "dict": "だから", "ruby": "だから", "pos": "conj" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "友だち", "dict": "友だち", "ruby": "友[とも]だち", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "教えて", "dict": "教える", "ruby": "教[おし]えて", "pos": "v1" },
+        { "surface": "もらいました", "dict": "もらう", "ruby": "もらいました", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s03",
+      "ja": "友だちは私にゆっくり説明してくれました。",
+      "en": "My friend explained it to me slowly.",
+      "words": [
+        { "surface": "友だち", "dict": "友だち", "ruby": "友[とも]だち", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "ゆっくり", "dict": "ゆっくり", "ruby": "ゆっくり", "pos": "adv" },
+        { "surface": "説明して", "dict": "説明する", "ruby": "説明[せつめい]して", "pos": "v-irr" },
+        { "surface": "くれました", "dict": "くれる", "ruby": "くれました", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s04",
+      "ja": "私も友だちの宿題を手伝ってあげました。",
+      "en": "I helped my friend with their homework in return.",
+      "words": [
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "も", "dict": "も", "ruby": "も", "pos": "prt" },
+        { "surface": "友だち", "dict": "友だち", "ruby": "友[とも]だち", "pos": "n" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "宿題", "dict": "宿題", "ruby": "宿題[しゅくだい]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "手伝って", "dict": "手伝う", "ruby": "手伝[てつだ]って", "pos": "v5" },
+        { "surface": "あげました", "dict": "あげる", "ruby": "あげました", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s05",
+      "ja": "音楽を聞きながら、いっしょに勉強しました。",
+      "en": "We studied together while listening to music.",
+      "words": [
+        { "surface": "音楽", "dict": "音楽", "ruby": "音楽[おんがく]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "聞きながら", "dict": "聞く", "ruby": "聞[き]きながら", "pos": "v5" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "いっしょに", "dict": "いっしょに", "ruby": "いっしょに", "pos": "adv" },
+        { "surface": "勉強しました", "dict": "勉強する", "ruby": "勉強[べんきょう]しました", "pos": "v-irr" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s06",
+      "ja": "わからないことがあると、すぐに友だちに聞きます。",
+      "en": "When there's something I don't understand, I ask my friend right away.",
+      "words": [
+        { "surface": "わからない", "dict": "わかる", "ruby": "わからない", "pos": "v5" },
+        { "surface": "こと", "dict": "こと", "ruby": "こと", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "ある", "dict": "ある", "ruby": "ある", "pos": "v5" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "すぐに", "dict": "すぐに", "ruby": "すぐに", "pos": "adv" },
+        { "surface": "友だち", "dict": "友だち", "ruby": "友[とも]だち", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "聞きます", "dict": "聞く", "ruby": "聞[き]きます", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s07",
+      "ja": "今度、先生に手紙を読んでいただけませんか。",
+      "en": "Next time, could I have the teacher read my letter?",
+      "words": [
+        { "surface": "今度", "dict": "今度", "ruby": "今度[こんど]", "pos": "n" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "先生", "dict": "先生", "ruby": "先生[せんせい]", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "手紙", "dict": "手紙", "ruby": "手紙[てがみ]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "読んで", "dict": "読む", "ruby": "読[よ]んで", "pos": "v5" },
+        { "surface": "いただけません", "dict": "いただく", "ruby": "いただけません", "pos": "v5" },
+        { "surface": "か", "dict": "か", "ruby": "か", "pos": "prt" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s08",
+      "ja": "先生はいつもやさしく教えてくださいます。",
+      "en": "The teacher always teaches me kindly.",
+      "words": [
+        { "surface": "先生", "dict": "先生", "ruby": "先生[せんせい]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "いつも", "dict": "いつも", "ruby": "いつも", "pos": "adv" },
+        { "surface": "やさしく", "dict": "やさしい", "ruby": "やさしく", "pos": "adj-i" },
+        { "surface": "教えて", "dict": "教える", "ruby": "教[おし]えて", "pos": "v1" },
+        { "surface": "くださいます", "dict": "くださる", "ruby": "くださいます", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s09",
+      "ja": "友だちがいると、勉強がもっと楽しくなります。",
+      "en": "When a friend is there, studying becomes more fun.",
+      "words": [
+        { "surface": "友だち", "dict": "友だち", "ruby": "友[とも]だち", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "いる", "dict": "いる", "ruby": "いる", "pos": "v1" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "勉強", "dict": "勉強", "ruby": "勉強[べんきょう]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "もっと", "dict": "もっと", "ruby": "もっと", "pos": "adv" },
+        { "surface": "楽しく", "dict": "楽しい", "ruby": "楽[たの]しく", "pos": "adj-i" },
+        { "surface": "なります", "dict": "なる", "ruby": "なります", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s10",
+      "ja": "いい友だちがいて、私は幸せです。",
+      "en": "I have good friends, and I'm happy.",
+      "words": [
+        { "surface": "いい", "dict": "いい", "ruby": "いい", "pos": "adj-i" },
+        { "surface": "友だち", "dict": "友だち", "ruby": "友[とも]だち", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "いて", "dict": "いる", "ruby": "いて", "pos": "v1" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "幸せ", "dict": "幸せ", "ruby": "幸[しあわ]せ", "pos": "adj-na" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    }
+  ]
+}

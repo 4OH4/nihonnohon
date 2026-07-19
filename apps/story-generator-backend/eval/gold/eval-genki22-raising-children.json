@@ -1,0 +1,170 @@
+{
+  "id": "eval-genki22-raising-children",
+  "chapter": 22,
+  "source": "Gold annotations authored by Claude (Opus 4.8) sentence-by-sentence. Japanese drafted to approx. Genki II Ch.22 level (causative ～させる, ～ていただけませんか, ～ないで).",
+  "english_source": "A parent describes making their two children help at home and eat vegetables, an apology for keeping a child waiting, and letting them play in the park.",
+  "conventions": {
+    "input": "The `ja` string is the frozen benchmark input. The system under test receives `ja` and must reproduce `words` (segmentation), `dict`, and `ruby`.",
+    "scored_fields": ["surface (segmentation)", "dict", "ruby"],
+    "ruby": "kanji-run[reading] with okurigana left bare, e.g. 起[お]きます, 勉強[べんきょう]します. Pure-kana tokens have ruby == surface. Canonical per-word: first-occurrence suppression is NOT applied here (it is a separate story-level transform). Causative ～せる/～させる stays whole in its token, tagged v1 (せる/させる inflect ichidan); dict is the base verb (待たせる→待つ, 食べさせる→食べる, そうじさせる→そうじする), per §3 rule 7.",
+    "dict": "Lexical dictionary/lemma form of the token's head word. For adjective+です tokens the head adjective (大きい). For particles/punctuation, dict == surface.",
+    "pos": "pron | n | v1 | v5 | v-irr | adj-i | adj-na | adv | conj | prt | aux | punct | name. Used to scope metrics: dict scored on content words; ruby scored on tokens containing kanji."
+  },
+  "sentences": [
+    {
+      "id": "s01",
+      "ja": "私には子どもが二人います。",
+      "en": "I have two children.",
+      "words": [
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "子ども", "dict": "子ども", "ruby": "子[こ]ども", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "二人", "dict": "二人", "ruby": "二人[ふたり]", "pos": "n" },
+        { "surface": "います", "dict": "いる", "ruby": "います", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s02",
+      "ja": "毎日、子どもたちに部屋をそうじさせます。",
+      "en": "Every day, I make my children clean their room.",
+      "words": [
+        { "surface": "毎日", "dict": "毎日", "ruby": "毎日[まいにち]", "pos": "n" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "子どもたち", "dict": "子どもたち", "ruby": "子[こ]どもたち", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "部屋", "dict": "部屋", "ruby": "部屋[へや]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "そうじさせます", "dict": "そうじする", "ruby": "そうじさせます", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s03",
+      "ja": "子どもたちはときどきいやだと言います。",
+      "en": "The children sometimes say they don't want to.",
+      "words": [
+        { "surface": "子どもたち", "dict": "子どもたち", "ruby": "子[こ]どもたち", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "ときどき", "dict": "ときどき", "ruby": "ときどき", "pos": "adv" },
+        { "surface": "いや", "dict": "いや", "ruby": "いや", "pos": "adj-na" },
+        { "surface": "だ", "dict": "だ", "ruby": "だ", "pos": "aux" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "言います", "dict": "言う", "ruby": "言[い]います", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s04",
+      "ja": "でも、私は子どもたちに野菜を食べさせます。",
+      "en": "But I make my children eat vegetables.",
+      "words": [
+        { "surface": "でも", "dict": "でも", "ruby": "でも", "pos": "conj" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "子どもたち", "dict": "子どもたち", "ruby": "子[こ]どもたち", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "野菜", "dict": "野菜", "ruby": "野菜[やさい]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "食べさせます", "dict": "食べる", "ruby": "食[た]べさせます", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s05",
+      "ja": "きのうは、子どもを一時間も待たせてしまいました。",
+      "en": "Yesterday, I kept my child waiting for a whole hour.",
+      "words": [
+        { "surface": "きのう", "dict": "きのう", "ruby": "きのう", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "子ども", "dict": "子ども", "ruby": "子[こ]ども", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "一時間", "dict": "一時間", "ruby": "一時間[いちじかん]", "pos": "n" },
+        { "surface": "も", "dict": "も", "ruby": "も", "pos": "prt" },
+        { "surface": "待たせて", "dict": "待つ", "ruby": "待[ま]たせて", "pos": "v1" },
+        { "surface": "しまいました", "dict": "しまう", "ruby": "しまいました", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s06",
+      "ja": "子どもが泣いたので、本当にかわいそうでした。",
+      "en": "My child cried, so I really felt sorry for them.",
+      "words": [
+        { "surface": "子ども", "dict": "子ども", "ruby": "子[こ]ども", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "泣いた", "dict": "泣く", "ruby": "泣[な]いた", "pos": "v5" },
+        { "surface": "ので", "dict": "ので", "ruby": "ので", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "本当に", "dict": "本当に", "ruby": "本当[ほんとう]に", "pos": "adv" },
+        { "surface": "かわいそう", "dict": "かわいそう", "ruby": "かわいそう", "pos": "adj-na" },
+        { "surface": "でした", "dict": "です", "ruby": "でした", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s07",
+      "ja": "今日は子どもたちを公園で遊ばせます。",
+      "en": "Today I'll let my children play in the park.",
+      "words": [
+        { "surface": "今日", "dict": "今日", "ruby": "今日[きょう]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "子どもたち", "dict": "子どもたち", "ruby": "子[こ]どもたち", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "公園", "dict": "公園", "ruby": "公園[こうえん]", "pos": "n" },
+        { "surface": "で", "dict": "で", "ruby": "で", "pos": "prt" },
+        { "surface": "遊ばせます", "dict": "遊ぶ", "ruby": "遊[あそ]ばせます", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s08",
+      "ja": "先生、子どもの写真を撮っていただけませんか。",
+      "en": "Teacher, could you take a photo of my children?",
+      "words": [
+        { "surface": "先生", "dict": "先生", "ruby": "先生[せんせい]", "pos": "n" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "子ども", "dict": "子ども", "ruby": "子[こ]ども", "pos": "n" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "写真", "dict": "写真", "ruby": "写真[しゃしん]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "撮って", "dict": "撮る", "ruby": "撮[と]って", "pos": "v5" },
+        { "surface": "いただけません", "dict": "いただく", "ruby": "いただけません", "pos": "v5" },
+        { "surface": "か", "dict": "か", "ruby": "か", "pos": "prt" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s09",
+      "ja": "子どもたちに無理をさせないでください。",
+      "en": "Please don't make the children overdo it.",
+      "words": [
+        { "surface": "子どもたち", "dict": "子どもたち", "ruby": "子[こ]どもたち", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "無理", "dict": "無理", "ruby": "無理[むり]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "させない", "dict": "する", "ruby": "させない", "pos": "v1" },
+        { "surface": "で", "dict": "で", "ruby": "で", "pos": "prt" },
+        { "surface": "ください", "dict": "くださる", "ruby": "ください", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s10",
+      "ja": "子どもたちはとてもかわいいです。",
+      "en": "My children are very dear to me.",
+      "words": [
+        { "surface": "子どもたち", "dict": "子どもたち", "ruby": "子[こ]どもたち", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "とても", "dict": "とても", "ruby": "とても", "pos": "adv" },
+        { "surface": "かわいい", "dict": "かわいい", "ruby": "かわいい", "pos": "adj-i" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    }
+  ]
+}

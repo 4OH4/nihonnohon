@@ -1,0 +1,170 @@
+{
+  "id": "eval-genki12-feeling-sick",
+  "chapter": 12,
+  "source": "Gold annotations authored by Claude (Opus 4.8) sentence-by-sentence. Japanese drafted to approx. Genki II Ch.12 level (～んです, ～すぎる, ～ほうがいい, ～ので, ～なければいけません, ～でしょう).",
+  "english_source": "Someone explains they feel unwell after drinking too much coffee and sleeping too little, and a friend advises them to rest and see a doctor.",
+  "conventions": {
+    "input": "The `ja` string is the frozen benchmark input. The system under test receives `ja` and must reproduce `words` (segmentation), `dict`, and `ruby`.",
+    "scored_fields": ["surface (segmentation)", "dict", "ruby"],
+    "ruby": "kanji-run[reading] with okurigana left bare, e.g. 起[お]きます, 勉強[べんきょう]します. Pure-kana tokens have ruby == surface. Canonical per-word: first-occurrence suppression is NOT applied here (it is a separate story-level transform). Explanatory ん (contracted の) is tokenised separately as prt.",
+    "dict": "Lexical dictionary/lemma form of the token's head word. For adjective+です tokens the head adjective (大きい). For particles/punctuation, dict == surface.",
+    "pos": "pron | n | v1 | v5 | v-irr | adj-i | adj-na | adv | conj | prt | aux | punct | name. Used to scope metrics: dict scored on content words; ruby scored on tokens containing kanji."
+  },
+  "sentences": [
+    {
+      "id": "s01",
+      "ja": "きのうから、頭がとても痛いんです。",
+      "en": "Since yesterday, my head has been hurting a lot.",
+      "words": [
+        { "surface": "きのう", "dict": "きのう", "ruby": "きのう", "pos": "n" },
+        { "surface": "から", "dict": "から", "ruby": "から", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "頭", "dict": "頭", "ruby": "頭[あたま]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "とても", "dict": "とても", "ruby": "とても", "pos": "adv" },
+        { "surface": "痛い", "dict": "痛い", "ruby": "痛[いた]い", "pos": "adj-i" },
+        { "surface": "ん", "dict": "ん", "ruby": "ん", "pos": "prt" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s02",
+      "ja": "ゆうべ、コーヒーを飲みすぎました。",
+      "en": "Last night, I drank too much coffee.",
+      "words": [
+        { "surface": "ゆうべ", "dict": "ゆうべ", "ruby": "ゆうべ", "pos": "n" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "コーヒー", "dict": "コーヒー", "ruby": "コーヒー", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "飲みすぎました", "dict": "飲む", "ruby": "飲[の]みすぎました", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s03",
+      "ja": "それに、ゆうべあまり寝なかったんです。",
+      "en": "On top of that, I didn't sleep much last night.",
+      "words": [
+        { "surface": "それに", "dict": "それに", "ruby": "それに", "pos": "conj" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "ゆうべ", "dict": "ゆうべ", "ruby": "ゆうべ", "pos": "n" },
+        { "surface": "あまり", "dict": "あまり", "ruby": "あまり", "pos": "adv" },
+        { "surface": "寝なかった", "dict": "寝る", "ruby": "寝[ね]なかった", "pos": "v1" },
+        { "surface": "ん", "dict": "ん", "ruby": "ん", "pos": "prt" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s04",
+      "ja": "今日は仕事を休んだほうがいいですよ。",
+      "en": "You'd better take the day off work today.",
+      "words": [
+        { "surface": "今日", "dict": "今日", "ruby": "今日[きょう]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "仕事", "dict": "仕事", "ruby": "仕事[しごと]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "休んだ", "dict": "休む", "ruby": "休[やす]んだ", "pos": "v5" },
+        { "surface": "ほう", "dict": "ほう", "ruby": "ほう", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "いい", "dict": "いい", "ruby": "いい", "pos": "adj-i" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "よ", "dict": "よ", "ruby": "よ", "pos": "prt" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s05",
+      "ja": "早く病院へ行ったほうがいいと思います。",
+      "en": "I think you'd better go to the hospital soon.",
+      "words": [
+        { "surface": "早く", "dict": "早い", "ruby": "早[はや]く", "pos": "adj-i" },
+        { "surface": "病院", "dict": "病院", "ruby": "病院[びょういん]", "pos": "n" },
+        { "surface": "へ", "dict": "へ", "ruby": "へ", "pos": "prt" },
+        { "surface": "行った", "dict": "行く", "ruby": "行[い]った", "pos": "v5" },
+        { "surface": "ほう", "dict": "ほう", "ruby": "ほう", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "いい", "dict": "いい", "ruby": "いい", "pos": "adj-i" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "思います", "dict": "思う", "ruby": "思[おも]います", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s06",
+      "ja": "熱もあるので、今日は早く寝ます。",
+      "en": "I have a fever too, so I'll sleep early today.",
+      "words": [
+        { "surface": "熱", "dict": "熱", "ruby": "熱[ねつ]", "pos": "n" },
+        { "surface": "も", "dict": "も", "ruby": "も", "pos": "prt" },
+        { "surface": "ある", "dict": "ある", "ruby": "ある", "pos": "v5" },
+        { "surface": "ので", "dict": "ので", "ruby": "ので", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "今日", "dict": "今日", "ruby": "今日[きょう]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "早く", "dict": "早い", "ruby": "早[はや]く", "pos": "adj-i" },
+        { "surface": "寝ます", "dict": "寝る", "ruby": "寝[ね]ます", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s07",
+      "ja": "あした、薬を飲まなければいけません。",
+      "en": "Tomorrow I have to take medicine.",
+      "words": [
+        { "surface": "あした", "dict": "あした", "ruby": "あした", "pos": "n" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "薬", "dict": "薬", "ruby": "薬[くすり]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "飲まなければ", "dict": "飲む", "ruby": "飲[の]まなければ", "pos": "v5" },
+        { "surface": "いけません", "dict": "いける", "ruby": "いけません", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s08",
+      "ja": "一人で行くのは大変でしょう。",
+      "en": "Going alone would be tough, wouldn't it.",
+      "words": [
+        { "surface": "一人", "dict": "一人", "ruby": "一人[ひとり]", "pos": "n" },
+        { "surface": "で", "dict": "で", "ruby": "で", "pos": "prt" },
+        { "surface": "行く", "dict": "行く", "ruby": "行[い]く", "pos": "v5" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "大変", "dict": "大変", "ruby": "大変[たいへん]", "pos": "adj-na" },
+        { "surface": "でしょう", "dict": "でしょう", "ruby": "でしょう", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s09",
+      "ja": "友だちが病院までいっしょに来てくれます。",
+      "en": "A friend will come with me to the hospital.",
+      "words": [
+        { "surface": "友だち", "dict": "友だち", "ruby": "友[とも]だち", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "病院", "dict": "病院", "ruby": "病院[びょういん]", "pos": "n" },
+        { "surface": "まで", "dict": "まで", "ruby": "まで", "pos": "prt" },
+        { "surface": "いっしょに", "dict": "いっしょに", "ruby": "いっしょに", "pos": "adv" },
+        { "surface": "来て", "dict": "来る", "ruby": "来[き]て", "pos": "v-irr" },
+        { "surface": "くれます", "dict": "くれる", "ruby": "くれます", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s10",
+      "ja": "だから、今日は早く帰ります。",
+      "en": "So I'll go home early today.",
+      "words": [
+        { "surface": "だから", "dict": "だから", "ruby": "だから", "pos": "conj" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "今日", "dict": "今日", "ruby": "今日[きょう]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "早く", "dict": "早い", "ruby": "早[はや]く", "pos": "adj-i" },
+        { "surface": "帰ります", "dict": "帰る", "ruby": "帰[かえ]ります", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    }
+  ]
+}

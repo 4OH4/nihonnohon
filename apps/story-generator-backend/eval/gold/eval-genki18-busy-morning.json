@@ -1,0 +1,176 @@
+{
+  "id": "eval-genki18-busy-morning",
+  "chapter": 18,
+  "source": "Gold annotations authored by Claude (Opus 4.8) sentence-by-sentence. Japanese drafted to approx. Genki II Ch.18 level (transitive/intransitive pairs, ～てしまう, ～と, ～ばよかった).",
+  "english_source": "A hurried, mistake-filled morning: forgetting the lights, an open window, spilled coffee, forgetting to lock up, and regretting not bringing an umbrella.",
+  "conventions": {
+    "input": "The `ja` string is the frozen benchmark input. The system under test receives `ja` and must reproduce `words` (segmentation), `dict`, and `ruby`.",
+    "scored_fields": ["surface (segmentation)", "dict", "ruby"],
+    "ruby": "kanji-run[reading] with okurigana left bare, e.g. 起[お]きます, 勉強[べんきょう]します. Pure-kana tokens have ruby == surface. Canonical per-word: first-occurrence suppression is NOT applied here (it is a separate story-level transform).",
+    "dict": "Lexical dictionary/lemma form of the token's head word. For adjective+です tokens the head adjective (大きい). For particles/punctuation, dict == surface.",
+    "pos": "pron | n | v1 | v5 | v-irr | adj-i | adj-na | adv | conj | prt | aux | punct | name. Used to scope metrics: dict scored on content words; ruby scored on tokens containing kanji."
+  },
+  "sentences": [
+    {
+      "id": "s01",
+      "ja": "今朝はとても忙しかったです。",
+      "en": "This morning was very busy.",
+      "words": [
+        { "surface": "今朝", "dict": "今朝", "ruby": "今朝[けさ]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "とても", "dict": "とても", "ruby": "とても", "pos": "adv" },
+        { "surface": "忙しかった", "dict": "忙しい", "ruby": "忙[いそが]しかった", "pos": "adj-i" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s02",
+      "ja": "急いでいたので、電気を消すのを忘れてしまいました。",
+      "en": "I was in a hurry, so I forgot to turn off the lights.",
+      "words": [
+        { "surface": "急いで", "dict": "急ぐ", "ruby": "急[いそ]いで", "pos": "v5" },
+        { "surface": "いた", "dict": "いる", "ruby": "いた", "pos": "v1" },
+        { "surface": "ので", "dict": "ので", "ruby": "ので", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "電気", "dict": "電気", "ruby": "電気[でんき]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "消す", "dict": "消す", "ruby": "消[け]す", "pos": "v5" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "忘れて", "dict": "忘れる", "ruby": "忘[わす]れて", "pos": "v1" },
+        { "surface": "しまいました", "dict": "しまう", "ruby": "しまいました", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s03",
+      "ja": "窓が開いていたので、部屋がとても寒かったです。",
+      "en": "The window was open, so the room was very cold.",
+      "words": [
+        { "surface": "窓", "dict": "窓", "ruby": "窓[まど]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "開いて", "dict": "開く", "ruby": "開[あ]いて", "pos": "v5" },
+        { "surface": "いた", "dict": "いる", "ruby": "いた", "pos": "v1" },
+        { "surface": "ので", "dict": "ので", "ruby": "ので", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "部屋", "dict": "部屋", "ruby": "部屋[へや]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "とても", "dict": "とても", "ruby": "とても", "pos": "adv" },
+        { "surface": "寒かった", "dict": "寒い", "ruby": "寒[さむ]かった", "pos": "adj-i" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s04",
+      "ja": "私は急いで窓を閉めました。",
+      "en": "I hurriedly closed the window.",
+      "words": [
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "急いで", "dict": "急ぐ", "ruby": "急[いそ]いで", "pos": "v5" },
+        { "surface": "窓", "dict": "窓", "ruby": "窓[まど]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "閉めました", "dict": "閉める", "ruby": "閉[し]めました", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s05",
+      "ja": "朝ごはんを食べているとき、コーヒーをこぼしてしまいました。",
+      "en": "While eating breakfast, I spilled my coffee.",
+      "words": [
+        { "surface": "朝ごはん", "dict": "朝ごはん", "ruby": "朝[あさ]ごはん", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "食べて", "dict": "食べる", "ruby": "食[た]べて", "pos": "v1" },
+        { "surface": "いる", "dict": "いる", "ruby": "いる", "pos": "v1" },
+        { "surface": "とき", "dict": "とき", "ruby": "とき", "pos": "n" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "コーヒー", "dict": "コーヒー", "ruby": "コーヒー", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "こぼして", "dict": "こぼす", "ruby": "こぼして", "pos": "v5" },
+        { "surface": "しまいました", "dict": "しまう", "ruby": "しまいました", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s06",
+      "ja": "新しいシャツが汚れてしまいました。",
+      "en": "My new shirt got dirty.",
+      "words": [
+        { "surface": "新しい", "dict": "新しい", "ruby": "新[あたら]しい", "pos": "adj-i" },
+        { "surface": "シャツ", "dict": "シャツ", "ruby": "シャツ", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "汚れて", "dict": "汚れる", "ruby": "汚[よご]れて", "pos": "v1" },
+        { "surface": "しまいました", "dict": "しまう", "ruby": "しまいました", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s07",
+      "ja": "家を出る時、かぎをかけるのを忘れました。",
+      "en": "When I left the house, I forgot to lock up.",
+      "words": [
+        { "surface": "家", "dict": "家", "ruby": "家[いえ]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "出る", "dict": "出る", "ruby": "出[で]る", "pos": "v1" },
+        { "surface": "時", "dict": "時", "ruby": "時[とき]", "pos": "n" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "かぎ", "dict": "かぎ", "ruby": "かぎ", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "かける", "dict": "かける", "ruby": "かける", "pos": "v1" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "忘れました", "dict": "忘れる", "ruby": "忘[わす]れました", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s08",
+      "ja": "会社に着くと、雨が降り始めました。",
+      "en": "When I arrived at the office, it began to rain.",
+      "words": [
+        { "surface": "会社", "dict": "会社", "ruby": "会社[かいしゃ]", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "着く", "dict": "着く", "ruby": "着[つ]く", "pos": "v5" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "雨", "dict": "雨", "ruby": "雨[あめ]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "降り始めました", "dict": "降り始める", "ruby": "降[ふ]り始[はじ]めました", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s09",
+      "ja": "かさを持ってくればよかったです。",
+      "en": "I wish I had brought an umbrella.",
+      "words": [
+        { "surface": "かさ", "dict": "かさ", "ruby": "かさ", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "持って", "dict": "持つ", "ruby": "持[も]って", "pos": "v5" },
+        { "surface": "くれば", "dict": "来る", "ruby": "くれば", "pos": "v-irr" },
+        { "surface": "よかった", "dict": "いい", "ruby": "よかった", "pos": "adj-i" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s10",
+      "ja": "今度からもっと気をつけようと思います。",
+      "en": "From now on, I'll try to be more careful.",
+      "words": [
+        { "surface": "今度", "dict": "今度", "ruby": "今度[こんど]", "pos": "n" },
+        { "surface": "から", "dict": "から", "ruby": "から", "pos": "prt" },
+        { "surface": "もっと", "dict": "もっと", "ruby": "もっと", "pos": "adv" },
+        { "surface": "気", "dict": "気", "ruby": "気[き]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "つけよう", "dict": "つける", "ruby": "つけよう", "pos": "v1" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "思います", "dict": "思う", "ruby": "思[おも]います", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    }
+  ]
+}

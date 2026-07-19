@@ -1,0 +1,162 @@
+{
+  "id": "eval-genki4-day-out",
+  "chapter": 4,
+  "source": "Gold annotations authored by Claude (Opus 4.8) sentence-by-sentence. Japanese drafted to approx. Genki I Ch.4 level.",
+  "english_source": "A student describes a day out in town yesterday: shopping at a department store, eating at a restaurant, taking photos in the park, and the weather.",
+  "conventions": {
+    "input": "The `ja` string is the frozen benchmark input. The system under test receives `ja` and must reproduce `words` (segmentation), `dict`, and `ruby`.",
+    "scored_fields": ["surface (segmentation)", "dict", "ruby"],
+    "ruby": "kanji-run[reading] with okurigana left bare, e.g. 起[お]きます, 勉強[べんきょう]します. Pure-kana tokens have ruby == surface. Canonical per-word: first-occurrence suppression is NOT applied here (it is a separate story-level transform).",
+    "dict": "Lexical dictionary/lemma form of the token's head word. For adjective+です tokens the head adjective (大きい). For particles/punctuation, dict == surface.",
+    "pos": "pron | n | v1 | v5 | v-irr | adj-i | adj-na | adv | conj | prt | aux | punct | name. Used to scope metrics: dict scored on content words; ruby scored on tokens containing kanji."
+  },
+  "sentences": [
+    {
+      "id": "s01",
+      "ja": "きのう友だちと町へ行きました。",
+      "en": "Yesterday I went to town with a friend.",
+      "words": [
+        { "surface": "きのう", "dict": "きのう", "ruby": "きのう", "pos": "n" },
+        { "surface": "友だち", "dict": "友だち", "ruby": "友[とも]だち", "pos": "n" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "町", "dict": "町", "ruby": "町[まち]", "pos": "n" },
+        { "surface": "へ", "dict": "へ", "ruby": "へ", "pos": "prt" },
+        { "surface": "行きました", "dict": "行く", "ruby": "行[い]きました", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s02",
+      "ja": "町にはたくさん人がいました。",
+      "en": "There were a lot of people in town.",
+      "words": [
+        { "surface": "町", "dict": "町", "ruby": "町[まち]", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "たくさん", "dict": "たくさん", "ruby": "たくさん", "pos": "adv" },
+        { "surface": "人", "dict": "人", "ruby": "人[ひと]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "いました", "dict": "いる", "ruby": "いました", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s03",
+      "ja": "デパートできれいなかばんを買いました。",
+      "en": "I bought a pretty bag at the department store.",
+      "words": [
+        { "surface": "デパート", "dict": "デパート", "ruby": "デパート", "pos": "n" },
+        { "surface": "で", "dict": "で", "ruby": "で", "pos": "prt" },
+        { "surface": "きれいな", "dict": "きれい", "ruby": "きれいな", "pos": "adj-na" },
+        { "surface": "かばん", "dict": "かばん", "ruby": "かばん", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "買いました", "dict": "買う", "ruby": "買[か]いました", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s04",
+      "ja": "かばんは少し高かったです。",
+      "en": "The bag was a little expensive.",
+      "words": [
+        { "surface": "かばん", "dict": "かばん", "ruby": "かばん", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "少し", "dict": "少し", "ruby": "少[すこ]し", "pos": "adv" },
+        { "surface": "高かった", "dict": "高い", "ruby": "高[たか]かった", "pos": "adj-i" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s05",
+      "ja": "それから、レストランで昼ごはんを食べました。",
+      "en": "After that, I ate lunch at a restaurant.",
+      "words": [
+        { "surface": "それから", "dict": "それから", "ruby": "それから", "pos": "conj" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "レストラン", "dict": "レストラン", "ruby": "レストラン", "pos": "n" },
+        { "surface": "で", "dict": "で", "ruby": "で", "pos": "prt" },
+        { "surface": "昼ごはん", "dict": "昼ごはん", "ruby": "昼[ひる]ごはん", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "食べました", "dict": "食べる", "ruby": "食[た]べました", "pos": "v1" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s06",
+      "ja": "レストランの料理はとてもおいしかったです。",
+      "en": "The restaurant's food was very delicious.",
+      "words": [
+        { "surface": "レストラン", "dict": "レストラン", "ruby": "レストラン", "pos": "n" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "料理", "dict": "料理", "ruby": "料理[りょうり]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "とても", "dict": "とても", "ruby": "とても", "pos": "adv" },
+        { "surface": "おいしかった", "dict": "おいしい", "ruby": "おいしかった", "pos": "adj-i" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s07",
+      "ja": "午後、公園で写真をたくさん撮りました。",
+      "en": "In the afternoon, I took a lot of photos in the park.",
+      "words": [
+        { "surface": "午後", "dict": "午後", "ruby": "午後[ごご]", "pos": "n" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "公園", "dict": "公園", "ruby": "公園[こうえん]", "pos": "n" },
+        { "surface": "で", "dict": "で", "ruby": "で", "pos": "prt" },
+        { "surface": "写真", "dict": "写真", "ruby": "写真[しゃしん]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "たくさん", "dict": "たくさん", "ruby": "たくさん", "pos": "adv" },
+        { "surface": "撮りました", "dict": "撮る", "ruby": "撮[と]りました", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s08",
+      "ja": "公園にはきれいな花がたくさんありました。",
+      "en": "There were a lot of pretty flowers in the park.",
+      "words": [
+        { "surface": "公園", "dict": "公園", "ruby": "公園[こうえん]", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "きれいな", "dict": "きれい", "ruby": "きれいな", "pos": "adj-na" },
+        { "surface": "花", "dict": "花", "ruby": "花[はな]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "たくさん", "dict": "たくさん", "ruby": "たくさん", "pos": "adv" },
+        { "surface": "ありました", "dict": "ある", "ruby": "ありました", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s09",
+      "ja": "天気もよかったですが、少し寒かったです。",
+      "en": "The weather was good too, but it was a little cold.",
+      "words": [
+        { "surface": "天気", "dict": "天気", "ruby": "天気[てんき]", "pos": "n" },
+        { "surface": "も", "dict": "も", "ruby": "も", "pos": "prt" },
+        { "surface": "よかった", "dict": "いい", "ruby": "よかった", "pos": "adj-i" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "少し", "dict": "少し", "ruby": "少[すこ]し", "pos": "adv" },
+        { "surface": "寒かった", "dict": "寒い", "ruby": "寒[さむ]かった", "pos": "adj-i" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s10",
+      "ja": "とても楽しい一日でした。",
+      "en": "It was a very fun day.",
+      "words": [
+        { "surface": "とても", "dict": "とても", "ruby": "とても", "pos": "adv" },
+        { "surface": "楽しい", "dict": "楽しい", "ruby": "楽[たの]しい", "pos": "adj-i" },
+        { "surface": "一日", "dict": "一日", "ruby": "一日[いちにち]", "pos": "n" },
+        { "surface": "でした", "dict": "です", "ruby": "でした", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    }
+  ]
+}

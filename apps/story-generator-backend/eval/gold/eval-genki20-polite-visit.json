@@ -1,0 +1,166 @@
+{
+  "id": "eval-genki20-polite-visit",
+  "chapter": 20,
+  "source": "Gold annotations authored by Claude (Opus 4.8) sentence-by-sentence. Japanese drafted to approx. Genki II Ch.20 level (humble & honorific expressions: 申す/うかがう/めしあがる/くださる/お～する/いたす, ～ないで).",
+  "english_source": "A student writes politely about visiting a professor: introducing themselves humbly, borrowing a book, asking questions, and the professor's kindness.",
+  "conventions": {
+    "input": "The `ja` string is the frozen benchmark input. The system under test receives `ja` and must reproduce `words` (segmentation), `dict`, and `ruby`.",
+    "scored_fields": ["surface (segmentation)", "dict", "ruby"],
+    "ruby": "kanji-run[reading] with okurigana left bare, e.g. 起[お]きます, 勉強[べんきょう]します. Pure-kana tokens have ruby == surface. Canonical per-word: first-occurrence suppression is NOT applied here (it is a separate story-level transform). Honorific prefix お/ご is bare kana within its token.",
+    "dict": "Lexical dictionary/lemma form of the token's head word. For adjective+です tokens the head adjective (大きい). For particles/punctuation, dict == surface.",
+    "pos": "pron | n | v1 | v5 | v-irr | adj-i | adj-na | adv | conj | prt | aux | punct | name. Used to scope metrics: dict scored on content words; ruby scored on tokens containing kanji."
+  },
+  "sentences": [
+    {
+      "id": "s01",
+      "ja": "私は田中と申します。",
+      "en": "My name is Tanaka.",
+      "words": [
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "田中", "dict": "田中", "ruby": "田中[たなか]", "pos": "name" },
+        { "surface": "と", "dict": "と", "ruby": "と", "pos": "prt" },
+        { "surface": "申します", "dict": "申す", "ruby": "申[もう]します", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s02",
+      "ja": "あした、先生のお宅へうかがいます。",
+      "en": "Tomorrow I will visit the teacher's home.",
+      "words": [
+        { "surface": "あした", "dict": "あした", "ruby": "あした", "pos": "n" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "先生", "dict": "先生", "ruby": "先生[せんせい]", "pos": "n" },
+        { "surface": "の", "dict": "の", "ruby": "の", "pos": "prt" },
+        { "surface": "お宅", "dict": "お宅", "ruby": "お宅[たく]", "pos": "n" },
+        { "surface": "へ", "dict": "へ", "ruby": "へ", "pos": "prt" },
+        { "surface": "うかがいます", "dict": "うかがう", "ruby": "うかがいます", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s03",
+      "ja": "先生はいつもいろいろなことを教えてくださいます。",
+      "en": "The teacher always teaches me all sorts of things.",
+      "words": [
+        { "surface": "先生", "dict": "先生", "ruby": "先生[せんせい]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "いつも", "dict": "いつも", "ruby": "いつも", "pos": "adv" },
+        { "surface": "いろいろな", "dict": "いろいろ", "ruby": "いろいろな", "pos": "adj-na" },
+        { "surface": "こと", "dict": "こと", "ruby": "こと", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "教えて", "dict": "教える", "ruby": "教[おし]えて", "pos": "v1" },
+        { "surface": "くださいます", "dict": "くださる", "ruby": "くださいます", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s04",
+      "ja": "先生は毎朝コーヒーをめしあがります。",
+      "en": "The teacher drinks coffee every morning.",
+      "words": [
+        { "surface": "先生", "dict": "先生", "ruby": "先生[せんせい]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "毎朝", "dict": "毎朝", "ruby": "毎朝[まいあさ]", "pos": "n" },
+        { "surface": "コーヒー", "dict": "コーヒー", "ruby": "コーヒー", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "めしあがります", "dict": "めしあがる", "ruby": "めしあがります", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s05",
+      "ja": "きのう、先生が私にお電話をくださいました。",
+      "en": "Yesterday, the teacher gave me a phone call.",
+      "words": [
+        { "surface": "きのう", "dict": "きのう", "ruby": "きのう", "pos": "n" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "先生", "dict": "先生", "ruby": "先生[せんせい]", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "お電話", "dict": "お電話", "ruby": "お電話[でんわ]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "くださいました", "dict": "くださる", "ruby": "くださいました", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s06",
+      "ja": "私は先生に本をお借りしました。",
+      "en": "I borrowed a book from the teacher.",
+      "words": [
+        { "surface": "私", "dict": "私", "ruby": "私[わたし]", "pos": "pron" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "先生", "dict": "先生", "ruby": "先生[せんせい]", "pos": "n" },
+        { "surface": "に", "dict": "に", "ruby": "に", "pos": "prt" },
+        { "surface": "本", "dict": "本", "ruby": "本[ほん]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "お借り", "dict": "借りる", "ruby": "お借[か]り", "pos": "v1" },
+        { "surface": "しました", "dict": "する", "ruby": "しました", "pos": "v-irr" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s07",
+      "ja": "分からないことがあったので、質問をいたしました。",
+      "en": "There was something I didn't understand, so I asked a question.",
+      "words": [
+        { "surface": "分からない", "dict": "分かる", "ruby": "分[わ]からない", "pos": "v5" },
+        { "surface": "こと", "dict": "こと", "ruby": "こと", "pos": "n" },
+        { "surface": "が", "dict": "が", "ruby": "が", "pos": "prt" },
+        { "surface": "あった", "dict": "ある", "ruby": "あった", "pos": "v5" },
+        { "surface": "ので", "dict": "ので", "ruby": "ので", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "質問", "dict": "質問", "ruby": "質問[しつもん]", "pos": "n" },
+        { "surface": "を", "dict": "を", "ruby": "を", "pos": "prt" },
+        { "surface": "いたしました", "dict": "いたす", "ruby": "いたしました", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s08",
+      "ja": "先生はゆっくり説明してくださいました。",
+      "en": "The teacher explained it to me slowly.",
+      "words": [
+        { "surface": "先生", "dict": "先生", "ruby": "先生[せんせい]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "ゆっくり", "dict": "ゆっくり", "ruby": "ゆっくり", "pos": "adv" },
+        { "surface": "説明して", "dict": "説明する", "ruby": "説明[せつめい]して", "pos": "v-irr" },
+        { "surface": "くださいました", "dict": "くださる", "ruby": "くださいました", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s09",
+      "ja": "分からないことは、遠慮しないで聞いてください。",
+      "en": "If there's something you don't understand, please ask without hesitation.",
+      "words": [
+        { "surface": "分からない", "dict": "分かる", "ruby": "分[わ]からない", "pos": "v5" },
+        { "surface": "こと", "dict": "こと", "ruby": "こと", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "、", "dict": "、", "ruby": "、", "pos": "punct" },
+        { "surface": "遠慮しない", "dict": "遠慮する", "ruby": "遠慮[えんりょ]しない", "pos": "v-irr" },
+        { "surface": "で", "dict": "で", "ruby": "で", "pos": "prt" },
+        { "surface": "聞いて", "dict": "聞く", "ruby": "聞[き]いて", "pos": "v5" },
+        { "surface": "ください", "dict": "くださる", "ruby": "ください", "pos": "v5" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    },
+    {
+      "id": "s10",
+      "ja": "先生は本当に立派な方です。",
+      "en": "The teacher is truly a fine person.",
+      "words": [
+        { "surface": "先生", "dict": "先生", "ruby": "先生[せんせい]", "pos": "n" },
+        { "surface": "は", "dict": "は", "ruby": "は", "pos": "prt" },
+        { "surface": "本当に", "dict": "本当に", "ruby": "本当[ほんとう]に", "pos": "adv" },
+        { "surface": "立派な", "dict": "立派", "ruby": "立派[りっぱ]な", "pos": "adj-na" },
+        { "surface": "方", "dict": "方", "ruby": "方[かた]", "pos": "n" },
+        { "surface": "です", "dict": "です", "ruby": "です", "pos": "aux" },
+        { "surface": "。", "dict": "。", "ruby": "。", "pos": "punct" }
+      ]
+    }
+  ]
+}
