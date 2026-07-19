@@ -313,10 +313,9 @@
         "へ",
         "ざいりょう",
         "を",
-        "買[買い]い",
+        "買[か]い",
         "に",
-        "行[行き]き",
-        "ました",
+        "行[い]きました",
         "。"
       ],
       "vocab_keys": [
@@ -329,7 +328,6 @@
         230,
         null,
         170,
-        null,
         null
       ],
       "translation": "First, I went to the supermarket to buy ingredients.",
@@ -350,8 +348,7 @@
         "と",
         "ぶたにく",
         "を",
-        "買[買い]い",
-        "ました",
+        "買[か]いました",
         "。"
       ],
       "vocab_keys": [
@@ -364,7 +361,6 @@
         10005,
         null,
         230,
-        null,
         null
       ],
       "translation": "I bought cabbage, flour, eggs, and pork.",
@@ -383,8 +379,7 @@
         "と",
         "マヨネーズ",
         "も",
-        "買[買い]い",
-        "ました",
+        "買[か]いました",
         "。"
       ],
       "vocab_keys": [
@@ -395,7 +390,6 @@
         10007,
         null,
         230,
-        null,
         null
       ],
       "translation": "After that, I also bought okonomiyaki sauce and mayonnaise.",
@@ -411,27 +405,23 @@
       "words": [
         "家[いえ]",
         "に",
-        "帰[帰っ]っ",
-        "た",
+        "帰[かえ]った",
         "とき",
         "、",
-        "料理",
+        "料理[りょうり]",
         "し",
-        "始[始め]め",
-        "ました",
+        "始[はじ]めました",
         "。"
       ],
       "vocab_keys": [
         155,
         null,
         171,
-        null,
         223,
         null,
         451,
         null,
         447,
-        null,
         null
       ],
       "translation": "When I came home, I started cooking.",
@@ -446,12 +436,10 @@
       "words": [
         "キャベツ",
         "を",
-        "洗[洗っ]っ",
-        "て",
+        "洗[あら]って",
         "、",
-        "小さく",
-        "切[切り]り",
-        "ました",
+        "小[ちい]さく",
+        "切[き]りました",
         "。"
       ],
       "vocab_keys": [
@@ -459,10 +447,8 @@
         null,
         438,
         null,
-        null,
         283,
         443,
-        null,
         null
       ],
       "translation": "I washed the cabbage and chopped it into small pieces.",
@@ -481,13 +467,12 @@
         "と",
         "たまご",
         "と",
-        "水",
+        "水[みず]",
         "を",
-        "大きい",
+        "大[おお]きい",
         "ボウル",
         "に",
-        "入[入れ]れ",
-        "ました",
+        "入[い]れました",
         "。"
       ],
       "vocab_keys": [
@@ -503,7 +488,6 @@
         10008,
         null,
         807,
-        null,
         null
       ],
       "translation": "Then, I put the flour, eggs, and water into a big bowl.",
@@ -519,14 +503,12 @@
       "id": "s09",
       "words": [
         "よく",
-        "混[混ぜ]ぜ",
-        "ました",
+        "混[ま]ぜました",
         "。"
       ],
       "vocab_keys": [
         190,
         10009,
-        null,
         null
       ],
       "translation": "I mixed everything well.",
@@ -540,18 +522,15 @@
         "その",
         "あと",
         "、",
-        "切[切っ]っ",
-        "た",
+        "切[き]った",
         "キャベツ",
         "を",
         "ボウル",
         "に",
-        "入[入れ]れ",
-        "て",
+        "入[い]れて",
         "、",
         "また",
-        "混[混ぜ]ぜ",
-        "ました",
+        "混[ま]ぜました",
         "。"
       ],
       "vocab_keys": [
@@ -559,17 +538,14 @@
         583,
         null,
         443,
-        null,
         10002,
         null,
         10008,
         null,
         807,
         null,
-        null,
         10010,
         10009,
-        null,
         null
       ],
       "translation": "After that, I added the chopped cabbage into the bowl and mixed it again.",
@@ -616,8 +592,7 @@
         "で",
         "フライパン",
         "を",
-        "あたため",
-        "ました",
+        "あたためました",
         "。"
       ],
       "vocab_keys": [
@@ -631,7 +606,6 @@
         10012,
         null,
         10013,
-        null,
         null
       ],
       "translation": "Next, I heated a frying pan on the stove.",
@@ -649,8 +623,7 @@
         "油[あぶら]",
         "を",
         "ちょっと",
-        "入[入れ]れ",
-        "ました",
+        "入[い]れました",
         "。"
       ],
       "vocab_keys": [
@@ -660,7 +633,6 @@
         null,
         188,
         807,
-        null,
         null
       ],
       "translation": "I put a little oil in the pan.",
@@ -674,20 +646,18 @@
       "words": [
         "それから",
         "、",
-        "熱い",
+        "熱[あつ]い",
         "フライパン",
         "に",
         "生地[きじ]",
         "を",
         "ちょっと",
-        "入[入れ]れ",
-        "て",
+        "入[い]れて",
         "、",
-        "丸[まるい]い",
+        "丸[まる]い",
         "形[かたち]",
         "に",
-        "し",
-        "ました",
+        "しました",
         "。"
       ],
       "vocab_keys": [
@@ -701,12 +671,10 @@
         188,
         807,
         null,
-        null,
         10015,
         10016,
         null,
         181,
-        null,
         null
       ],
       "translation": "Then, I poured some of the batter into the hot pan to make a round shape.",
@@ -724,11 +692,10 @@
         "の",
         "上[うえ]",
         "に",
-        "薄[うすい]い",
+        "薄[うす]い",
         "ぶたにく",
         "を",
-        "乗[乗せ]せ",
-        "ました",
+        "乗[の]せました",
         "。"
       ],
       "vocab_keys": [
@@ -740,7 +707,6 @@
         10005,
         null,
         10018,
-        null,
         null
       ],
       "translation": "On top of the batter, I placed thin slices of pork.",
@@ -758,8 +724,7 @@
         "いい",
         "におい",
         "が",
-        "し",
-        "ました",
+        "しました",
         "。"
       ],
       "vocab_keys": [
@@ -768,7 +733,6 @@
         10019,
         null,
         181,
-        null,
         null
       ],
       "translation": "It smelled good already.",
@@ -779,15 +743,13 @@
     {
       "id": "s17",
       "words": [
-        "何分か",
-        "焼[焼き]き",
-        "ました",
+        "何分[なんぷん]か",
+        "焼[や]きました",
         "。"
       ],
       "vocab_keys": [
         10021,
         10020,
-        null,
         null
       ],
       "translation": "I cooked it for several minutes.",
@@ -798,18 +760,17 @@
     {
       "id": "s18",
       "words": [
-        "ひっくり返す",
+        "ひっくり返[かえ]す",
         "の",
         "は",
         "ちょっと",
-        "難しかっ",
+        "難[むずか]しかっ",
         "たです",
         "が",
         "、",
-        "気[気をつけ]をつけ",
+        "気[き]をつけ",
         "ながら",
-        "やり",
-        "ました",
+        "やりました",
         "。"
       ],
       "vocab_keys": [
@@ -824,7 +785,6 @@
         772,
         null,
         302,
-        null,
         null
       ],
       "translation": "Flipping it was a little difficult, but I did it carefully.",
@@ -838,7 +798,7 @@
     {
       "id": "s19",
       "words": [
-        "今",
+        "今[いま]",
         "、",
         "ぶたにく",
         "は",
@@ -863,11 +823,10 @@
     {
       "id": "s20",
       "words": [
-        "もう一方",
+        "もう一方[いっぽう]",
         "も",
-        "何分か",
-        "焼[焼き]き",
-        "ました",
+        "何分[なんぷん]か",
+        "焼[や]きました",
         "。"
       ],
       "vocab_keys": [
@@ -875,7 +834,6 @@
         null,
         10021,
         10020,
-        null,
         null
       ],
       "translation": "I cooked the other side for a few more minutes.",
@@ -894,8 +852,7 @@
         "を",
         "皿[さら]",
         "に",
-        "乗[乗せ]せ",
-        "ました",
+        "乗[の]せました",
         "。"
       ],
       "vocab_keys": [
@@ -907,7 +864,6 @@
         703,
         null,
         10018,
-        null,
         null
       ],
       "translation": "When it was ready, I put the okonomiyaki on a plate.",
@@ -946,8 +902,7 @@
         "オコノミヤキソース",
         "を",
         "たくさん",
-        "かけ",
-        "ました",
+        "かけました",
         "。"
       ],
       "vocab_keys": [
@@ -955,7 +910,6 @@
         null,
         239,
         10026,
-        null,
         null
       ],
       "translation": "I put plenty of okonomiyaki sauce on top.",
@@ -973,8 +927,7 @@
         "を",
         "ジグザグ",
         "に",
-        "かけ",
-        "ました",
+        "かけました",
         "。"
       ],
       "vocab_keys": [
@@ -985,7 +938,6 @@
         10027,
         null,
         10026,
-        null,
         null
       ],
       "translation": "Then, I added mayonnaise in a zig-zag pattern.",
@@ -999,14 +951,12 @@
       "id": "s25",
       "words": [
         "はじめて",
-        "食[食べ]べ",
-        "ました",
+        "食[た]べました",
         "。"
       ],
       "vocab_keys": [
         635,
         177,
-        null,
         null
       ],
       "translation": "I took my first bite.",
@@ -1040,8 +990,7 @@
     {
       "id": "s27",
       "words": [
-        "あたたかく",
-        "て",
+        "あたたかくて",
         "、",
         "おいしかっ",
         "たです",
@@ -1049,7 +998,6 @@
       ],
       "vocab_keys": [
         528,
-        null,
         null,
         102,
         null,
@@ -1085,10 +1033,10 @@
       "words": [
         "オコノミヤキ",
         "を",
-        "作[つくる]る",
+        "作[つく]る",
         "の",
         "は",
-        "楽しかっ",
+        "楽[たの]しかっ",
         "たです",
         "。"
       ],
@@ -1111,7 +1059,7 @@
     {
       "id": "s30",
       "words": [
-        "食[たべる]べる",
+        "食[た]べる",
         "の",
         "は",
         "もっと",
@@ -1139,7 +1087,7 @@
       "words": [
         "また",
         "すぐ",
-        "作[作り]り",
+        "作[つく]り",
         "たいです",
         "。"
       ],
