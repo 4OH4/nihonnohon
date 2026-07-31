@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Rupert Thomas
 // SPDX-License-Identifier: MIT
 
-import { useRef, useState, useEffect, useMemo } from 'react'
+import { useRef, useState, useEffect, useLayoutEffect, useMemo } from 'react'
 import { useLoaderData, useRouteError, isRouteErrorResponse, Link } from 'react-router-dom'
 import type { LoaderFunctionArgs } from 'react-router-dom'
 import { useShallow } from 'zustand/react/shallow'
@@ -19,6 +19,7 @@ import { SentenceBlock } from '@/components/SentenceBlock'
 import { VocabPanel } from '@/components/VocabPanel'
 import { GrammarPanel } from '@/components/GrammarPanel'
 import { usePreferenceStore } from '@/stores/preferenceStore'
+import { useLookupStore } from '@/stores/lookupStore'
 import type { StoryModel, VocabSupplementEntry } from '@nihonnohon/schema'
 
 /** Returns raw supplement entries keyed by word; adaptation to display shape happens in WordToken. */
@@ -92,6 +93,16 @@ const TABS: { id: Tab; label: string }[] = [
 export function ReaderRoute() {
   const story = useLoaderData() as StoryModel
   const supplementMap = useMemo(() => buildSupplementMap(story.vocabSupplement), [story.vocabSupplement])
+
+  // Lookup state is story-scoped, but the store is a tab-lifetime singleton and the
+  // reader is not remounted when only :storyId changes — so clear it whenever a
+  // different story loads. Without this the InfoPanel keeps showing the previously
+  // selected word instead of the new story's title, and the carried-over sentence id
+  // (story-local, so it collides across stories) leaves a sentence pre-highlighted
+  // with its translation revealed. Layout effect, not effect: this runs on first
+  // mount too, and must land before paint so the stale panel is never visible.
+  const resetLookup = useLookupStore((s) => s.reset)
+  useLayoutEffect(() => { resetLookup() }, [story.id, resetLookup])
 
   const { textSize, activeTab, setActiveTab } = usePreferenceStore(
     useShallow(s => ({
