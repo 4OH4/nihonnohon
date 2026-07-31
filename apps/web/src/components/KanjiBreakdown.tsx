@@ -1,7 +1,8 @@
 // Copyright (c) 2026 Rupert Thomas
 // SPDX-License-Identifier: MIT
 
-import { lookupKanji } from '@/services/kanjiService'
+import { useSyncExternalStore } from 'react'
+import { getKanjiVersion, lookupKanji, subscribeKanji } from '@/services/kanjiService'
 import type { KanjiEntry } from '@nihonnohon/schema'
 
 interface KanjiBreakdownProps {
@@ -29,6 +30,11 @@ function splitIntoRows(cells: Cell[]): Cell[][] {
  *  jouyou set it covers — get no cell, since a character with no keyword only repeats
  *  what the word already shows. Returns null when that leaves nothing to render. */
 export function KanjiBreakdown({ word }: KanjiBreakdownProps) {
+  // kanji-data.json loads off the critical path, so a word can be tapped before it
+  // arrives — every lookup returns null until then. Subscribing re-runs them once
+  // the data lands, turning an empty breakdown into a populated one.
+  useSyncExternalStore(subscribeKanji, getKanjiVersion)
+
   const entries: Cell[] = [...word]
     .map((char) => ({ char, entry: lookupKanji(char) }))
     .filter((x): x is Cell => x.entry !== null)

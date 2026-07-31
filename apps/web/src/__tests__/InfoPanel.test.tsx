@@ -60,9 +60,10 @@ afterEach(() => {
   act(() => {
     useLookupStore.getState()._reset()
     usePreferenceStore.setState(DEFAULT_PREFS)
+    // Notifies KanjiBreakdown's subscription, so it needs to be inside act too.
+    _resetKanji()
   })
   localStorage.clear()
-  _resetKanji()
 })
 
 describe('InfoPanel', () => {

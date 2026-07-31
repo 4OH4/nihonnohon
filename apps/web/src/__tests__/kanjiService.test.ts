@@ -5,6 +5,8 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import {
   lookupKanji,
   initKanji,
+  subscribeKanji,
+  getKanjiVersion,
   _initKanjiFromData,
   _resetKanji,
 } from '@/services/kanjiService'
@@ -61,6 +63,45 @@ describe('kanjiService', () => {
   it('returns null for punctuation characters', () => {
     expect(lookupKanji('。')).toBeNull()
     expect(lookupKanji('、')).toBeNull()
+  })
+
+  it('returns null for every lookup before the data has loaded', () => {
+    _resetKanji()
+    expect(lookupKanji('食')).toBeNull()
+  })
+
+  // The data loads off the critical path, so components look up before it exists
+  // and rely on this signal to re-render once it lands.
+  it('notifies subscribers and advances the version when data loads', async () => {
+    _resetKanji()
+    const listener = vi.fn()
+    const unsubscribe = subscribeKanji(listener)
+    const before = getKanjiVersion()
+
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async (): Promise<Record<string, KanjiEntry>> => fixture,
+    })
+    vi.stubGlobal('fetch', mockFetch)
+
+    try {
+      await initKanji()
+      expect(listener).toHaveBeenCalled()
+      expect(getKanjiVersion()).not.toBe(before)
+      expect(lookupKanji('食')?.kw).toBe('eat')
+    } finally {
+      unsubscribe()
+      vi.unstubAllGlobals()
+      _resetKanji()
+    }
+  })
+
+  it('stops notifying after unsubscribe', () => {
+    const listener = vi.fn()
+    const unsubscribe = subscribeKanji(listener)
+    unsubscribe()
+    _initKanjiFromData(fixture)
+    expect(listener).not.toHaveBeenCalled()
   })
 
   it('does not fetch on repeat initKanji calls when already initialised', async () => {

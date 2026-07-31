@@ -101,6 +101,9 @@ test.describe('Visual regression snapshots', () => {
   test('InfoPanel found state', async ({ page }) => {
     await page.goto('/read/genki-i-ch6-tanaka-letter')
     await page.getByRole('button', { name: '起きます' }).click()
+    // kanji-data.json loads off the critical path, so the breakdown can appear a
+    // beat after the lookup — wait for it, or the snapshot races the fetch.
+    await page.getByLabel('Kanji breakdown').waitFor()
     expect(await page.getByLabel('Word lookup panel').screenshot({ animations: 'disabled' })).toMatchSnapshot('infopanel-found.png')
   })
 

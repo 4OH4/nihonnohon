@@ -35,7 +35,12 @@ function buildSupplementMap(supplement: VocabSupplementEntry[]): Map<string, Voc
 export async function loader({ params }: LoaderFunctionArgs): Promise<StoryModel> {
   if (!params.storyId) throw new Response('Not Found', { status: 404 })
   const storyId = params.storyId
-  await Promise.all([initVocab(), initKanji()])
+  // Vocabulary is read synchronously the moment a word is tapped, so it has to be
+  // ready before the reader renders. Kanji data only feeds KanjiBreakdown, which
+  // subscribes and re-renders when it lands — awaiting it here would put a ~70 KB
+  // fetch (and, being serial, the story fetch behind it) ahead of first paint.
+  initKanji().catch(() => { /* breakdown stays empty; a later lookup retries */ })
+  await initVocab()
 
   // Path 1: manifest lookup for library stories
   const manifest = await fetchManifest()
