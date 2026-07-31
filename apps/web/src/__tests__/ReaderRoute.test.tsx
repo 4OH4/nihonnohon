@@ -72,13 +72,18 @@ import { getStory } from '@/services/indexedDbService'
 //   - ruby toggle uses visibility:hidden not display:none
 //   - Trans toggle shows translations
 //   - vocab supplement takes precedence over main dict
-//   - supplement word with null vocabKey is tappable via supplement
+//   - supplement word is tappable via supplement
 //
 // PRESERVED (Story 3.3):
 //   - ReaderError renders "Story not found." for 404
 //   - ReaderError renders fallback for non-404
 //   - ReaderError always shows Back to library link
 //   - loader returns StoryModel when story ID found in manifest
+//
+// SUPERSEDED (issue #14):
+//   - "supplement word with null vocabKey is tappable via supplement" → supplement
+//     entries now resolve by vocabKey, never by surface, so a null key never resolves.
+//     No shipped story relied on the surface match. See storyVocabKeyIntegrity.test.ts.
 //
 // SUPERSEDED (Story 3.4):
 //   - "loader throws 404 when not in manifest" → now throws 410 (tries IndexedDB first)
@@ -389,7 +394,7 @@ describe('ReaderRoute', () => {
     expect(screen.getAllByText('No grammar notes for this story.').length).toBeGreaterThan(0)
   })
 
-  it('supplement word with null vocabKey is tappable via supplement', () => {
+  it('supplement word is tappable via its vocabKey', () => {
     const storyWithSupplement: StoryModel = {
       ...baseStory,
       vocabSupplement: [
@@ -398,7 +403,7 @@ describe('ReaderRoute', () => {
       sentences: [{
         id: 's1',
         tokens: [{ surface: 'まいあさ', segments: [{ text: 'まいあさ', ruby: null }] }],
-        vocabKeys: [null],
+        vocabKeys: [2001],
         translation: null,
         grammar: [],
       }],
@@ -406,8 +411,66 @@ describe('ReaderRoute', () => {
 
     renderRoute(storyWithSupplement)
     fireEvent.click(screen.getByRole('button', { name: 'まいあさ' }))
-    // 'every morning' appears in InfoPanel and VocabPanel (CSS hides one in practice)
-    expect(screen.getAllByText('every morning').length).toBeGreaterThan(0)
+    // Assert against the store rather than the rendered text: VocabPanel lists every
+    // supplement entry regardless of selection, so a text query would pass even if
+    // the tap resolved nothing.
+    expect(useLookupStore.getState().lookupState).toMatchObject({
+      status: 'found',
+      word: 'まいあさ',
+      entry: { meaning: 'every morning' },
+    })
+  })
+
+  // ─── supplement resolution (issue #14) ──────────────────────────────────────
+  // End-to-end over buildSupplementMap → SentenceBlock → WordToken: the seam where
+  // the surface-keyed map silently dropped every inflected supplement word.
+
+  it('resolves an inflected supplement word through the route-built supplement map', () => {
+    const storyWithSupplement: StoryModel = {
+      ...baseStory,
+      vocabSupplement: [
+        { key: 10007, word: '考える', hiragana: 'かんがえる', translation: 'to think', pos: 'v1' },
+      ],
+      sentences: [{
+        id: 's1',
+        tokens: [{
+          surface: '考えました',
+          segments: [{ text: '考', ruby: 'かんが' }, { text: 'えました', ruby: null }],
+        }],
+        vocabKeys: [10007],
+        translation: null,
+        grammar: [],
+      }],
+    }
+
+    renderRoute(storyWithSupplement)
+    fireEvent.click(screen.getByRole('button', { name: '考えました' }))
+    expect(useLookupStore.getState().lookupState).toMatchObject({
+      status: 'found',
+      word: '考えました',
+      pos: 'v1',
+      entry: { reading: 'かんがえる', meaning: 'to think' },
+    })
+  })
+
+  it('a token with no vocabKey does not resolve even when its surface is a supplement headword', () => {
+    const storyWithSupplement: StoryModel = {
+      ...baseStory,
+      vocabSupplement: [
+        { key: 10007, word: '考える', hiragana: 'かんがえる', translation: 'to think' },
+      ],
+      sentences: [{
+        id: 's1',
+        tokens: [{ surface: '考える', segments: [{ text: '考える', ruby: null }] }],
+        vocabKeys: [null],
+        translation: null,
+        grammar: [],
+      }],
+    }
+
+    renderRoute(storyWithSupplement)
+    fireEvent.click(screen.getByRole('button', { name: '考える' }))
+    expect(useLookupStore.getState().lookupState.status).toBe('idle')
   })
 })
 

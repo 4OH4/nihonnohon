@@ -14,8 +14,8 @@ import type { SentenceModel, VocabSupplementEntry } from '@nihonnohon/schema'
 interface SentenceBlockProps {
   sentence: SentenceModel
   sentenceIndex: number
-  /** Per-story supplement entries keyed by word string — supplement takes precedence over main vocab. */
-  supplementMap?: Map<string, VocabSupplementEntry>
+  /** Per-story supplement entries keyed by vocab key — supplement takes precedence over main vocab. */
+  supplementMap?: Map<number, VocabSupplementEntry>
   /** Scroll container used to keep this sentence visually fixed when an earlier translation collapses. */
   scrollContainerRef?: RefObject<HTMLDivElement | null>
 }
@@ -107,16 +107,21 @@ export function SentenceBlock({ sentence, sentenceIndex, supplementMap, scrollCo
         isSelected && 'bg-accent-subtle',
       )}
     >
-      {sentence.tokens.map((token, i) => (
-        <WordToken
-          key={i}
-          token={token}
-          vocabKey={sentence.vocabKeys[i] ?? null}
-          sentenceId={sentence.id}
-          supplementEntry={supplementMap?.get(token.surface) ?? null}
-          onBeforeActivate={captureAnchor}
-        />
-      ))}
+      {sentence.tokens.map((token, i) => {
+        // Resolve the supplement by vocab key, not by surface: the token carries its
+        // inflected form (考えました) while the supplement is keyed on the headword (考える).
+        const vocabKey = sentence.vocabKeys[i] ?? null
+        return (
+          <WordToken
+            key={i}
+            token={token}
+            vocabKey={vocabKey}
+            sentenceId={sentence.id}
+            supplementEntry={vocabKey === null ? null : supplementMap?.get(vocabKey) ?? null}
+            onBeforeActivate={captureAnchor}
+          />
+        )
+      })}
       {showTranslation && (
         <p className="w-full mt-1 italic text-translation text-[0.8em] select-none [-webkit-touch-callout:none]">
           {sentence.translation}
