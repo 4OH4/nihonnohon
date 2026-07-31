@@ -37,4 +37,24 @@ test.describe('Golden path', () => {
     await expect(page).toHaveURL('/')
     await expect(page.getByText("Mary's Letter to Tanaka-san")).toBeVisible()
   })
+
+  // Issue #11 — the lookup store outlives the route, so opening a second story
+  // used to leave the first story's selected word in the panel.
+  test('opening a second story resets the InfoPanel to the new story', async ({ page }) => {
+    await page.goto('/')
+    await page.getByText("Mary's Letter to Tanaka-san").click()
+    await expect(page).toHaveURL(/\/read\/genki-i-ch6-tanaka-letter/)
+
+    const infoPanel = page.getByLabel('Word lookup panel')
+    await page.getByRole('button', { name: '起きます' }).click()
+    await expect(infoPanel).toContainText('起きます')
+
+    await page.getByRole('link', { name: 'Back to library' }).click()
+    await expect(page).toHaveURL('/')
+
+    await page.getByText('A New Student in Class').click()
+    await expect(page).toHaveURL(/\/read\/genki-i-ch1-classroom-introduction/)
+    await expect(infoPanel).toContainText('A New Student in Class')
+    await expect(infoPanel).not.toContainText('起きます')
+  })
 })

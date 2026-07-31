@@ -100,6 +100,11 @@ import { getStory } from '@/services/indexedDbService'
 //   - Bottom tab bar renders Story/Vocabulary/Grammar tabs
 //   - Vocabulary tab shows VocabPanel
 //   - Grammar tab shows GrammarPanel
+//
+// NEW (Issue #11 — lookup state is story-scoped):
+//   - loading a different story resets the InfoPanel to the new story title
+//   - loading a different story clears the selected and translated sentence ids
+//   - re-rendering the same story leaves an active lookup intact
 
 // ─── Fixtures ────────────────────────────────────────────────────────────────
 
@@ -136,6 +141,28 @@ const baseStory: StoryModel = {
       ],
       vocabKeys: [null, null, 2],
       translation: 'I study Japanese.',
+      grammar: [],
+    },
+  ],
+}
+
+// A different story that deliberately reuses baseStory's sentence ids — ids are
+// story-local, so they collide, which is what makes carried-over lookup state
+// visible in the new story (issue #11).
+const otherStory: StoryModel = {
+  ...baseStory,
+  id: 'other-story',
+  title: 'Second Story',
+  titleJa: 'セカンド',
+  sentences: [
+    {
+      id: 's1',
+      tokens: [
+        { surface: '水',   segments: [{ text: '水',   ruby: 'みず' }] },
+        { surface: 'です', segments: [{ text: 'です', ruby: null }] },
+      ],
+      vocabKeys: [null, null],
+      translation: 'It is water.',
       grammar: [],
     },
   ],
@@ -219,6 +246,60 @@ describe('ReaderRoute', () => {
       document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))
     })
     expect(useLookupStore.getState().lookupState.status).toBe('idle')
+  })
+
+  // ── Issue #11: lookup state is story-scoped ───────────────────────────────
+
+  it('loading a different story resets the InfoPanel to the new story title', () => {
+    const { rerender } = renderRoute(baseStory)
+    fireEvent.click(screen.getByRole('button', { name: '食べる' }))
+    expect(screen.getByText('to eat')).toBeInTheDocument()
+
+    vi.mocked(useLoaderData).mockReturnValue(otherStory)
+    rerender(
+      <MemoryRouter>
+        <ReaderRoute />
+      </MemoryRouter>,
+    )
+
+    expect(useLookupStore.getState().lookupState.status).toBe('idle')
+    expect(screen.queryByText('to eat')).not.toBeInTheDocument()
+    expect(screen.getByText('Second Story')).toBeInTheDocument()
+  })
+
+  it('loading a different story clears the selected and translated sentence ids', () => {
+    const { rerender } = renderRoute(baseStory)
+    fireEvent.click(screen.getByRole('button', { name: '食べる' }))
+    act(() => { useLookupStore.getState().showSentenceTranslation('s1') })
+    expect(useLookupStore.getState().selectedSentenceId).toBe('s1')
+    expect(useLookupStore.getState().translatedSentenceId).toBe('s1')
+
+    vi.mocked(useLoaderData).mockReturnValue(otherStory)
+    rerender(
+      <MemoryRouter>
+        <ReaderRoute />
+      </MemoryRouter>,
+    )
+
+    // otherStory reuses sentence id 's1', so stale ids would highlight it and
+    // reveal its translation.
+    expect(useLookupStore.getState().selectedSentenceId).toBeNull()
+    expect(useLookupStore.getState().translatedSentenceId).toBeNull()
+    expect(screen.queryByText('It is water.')).not.toBeInTheDocument()
+  })
+
+  it('re-rendering the same story leaves an active lookup intact', () => {
+    const { rerender } = renderRoute(baseStory)
+    fireEvent.click(screen.getByRole('button', { name: '食べる' }))
+
+    rerender(
+      <MemoryRouter>
+        <ReaderRoute />
+      </MemoryRouter>,
+    )
+
+    expect(useLookupStore.getState().lookupState).toMatchObject({ status: 'found', word: '食べる' })
+    expect(screen.getByText('to eat')).toBeInTheDocument()
   })
 
   it('Ruby toggle (in settings): rt elements use invisible class when off, not display:none', () => {
