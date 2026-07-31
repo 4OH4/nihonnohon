@@ -94,6 +94,8 @@ interface KanjiEntry {
 
 > **Critical:** `kw` is the short Heisig keyword (UI label). `m` is the full meanings array (detail). Never treat them interchangeably.
 
+`kw` is `null` for entries KANJIDIC2 has no Heisig keyword for; `KanjiBreakdown` falls back to `m[0]` in that case.
+
 ### `VocabSupplementEntry`
 
 A story-specific vocabulary entry (keywords and vocab_supplement in the story JSON).
@@ -196,6 +198,8 @@ Served from `public/vocab.json`. Loaded once at reader startup into `Map<number,
 ### `kanji-data.json`
 
 Served from `public/kanji-data.json`. Loaded once into `Map<string, KanjiEntry>` keyed by the literal kanji character (e.g. `"食"`).
+
+Covers the jouyou kanji set from kanjiapi.dev (see `scripts/build-kanji.ts`). Characters outside that set — jinmeiyou, hyougai — have no entry, and `KanjiBreakdown` omits them from the breakdown rather than rendering a keyword-less cell.
 
 ### IndexedDB — `nihonnohon-local-stories`
 

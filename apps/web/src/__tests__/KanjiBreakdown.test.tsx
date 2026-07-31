@@ -70,6 +70,16 @@ describe('KanjiBreakdown', () => {
     expect(screen.queryByText('る')).toBeNull()
   })
 
+  it('omits a kanji with no entry while still rendering its neighbours', () => {
+    // 喫 is absent from the fixture, standing in for a kanji outside the set
+    // kanji-data.json covers. It gets no cell — a character with no keyword only
+    // repeats what the word already shows.
+    render(<KanjiBreakdown word="喫日本" />)
+    expect(screen.queryByText('喫')).toBeNull()
+    expect(screen.getByText('日')).toBeInTheDocument()
+    expect(screen.getByText('本')).toBeInTheDocument()
+  })
+
   it('uses entry.m[0] as fallback label when kw is null', () => {
     render(<KanjiBreakdown word="無" />)
     expect(screen.getByText('無')).toBeInTheDocument()

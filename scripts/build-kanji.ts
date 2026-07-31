@@ -1,5 +1,5 @@
 /**
- * One-time data script: fetches the kyouiku kanji set from kanjiapi.dev
+ * One-time data script: fetches the jouyou kanji set from kanjiapi.dev
  * and writes apps/web/public/kanji-data.json.
  *
  * The output is committed to the repo (not gitignored) — run this script
@@ -8,9 +8,16 @@
  * Usage (from repo root):
  *   pnpm run build-kanji
  *
- * Note: kanji-data.json intentionally covers only the 1026 kyouiku kanji.
- * kanjiService.ts returns null for any character not in the file — components
- * must handle this gracefully (show the character, omit the keyword label).
+ * Note: kanji-data.json covers the 2140 jouyou kanji kanjiapi.dev lists — the set
+ * taught through secondary school, which spans the vocabulary the stories draw
+ * on. It was previously limited to the 1006 kyouiku (grade 1-6) kanji, which
+ * silently dropped common characters such as the 喫 of 喫茶店 from the breakdown.
+ *
+ * kanjiService.ts returns null for any character not in the file, and
+ * KanjiBreakdown omits those characters from the breakdown entirely — a bare
+ * character with no keyword only repeats what the word already shows. Anything
+ * outside jouyou (jinmeiyou, hyougai) therefore degrades to no cell at all,
+ * which is intended; components must not throw on a missing character.
  */
 import { writeFileSync, mkdirSync } from 'fs'
 import { resolve, dirname } from 'path'
@@ -36,7 +43,7 @@ interface KanjiEntry {
   kunY: string[]
 }
 
-const KANJI_LIST_URL = 'https://kanjiapi.dev/v1/kanji/kyouiku'
+const KANJI_LIST_URL = 'https://kanjiapi.dev/v1/kanji/jouyou'
 const KANJI_URL = (char: string) => `https://kanjiapi.dev/v1/kanji/${encodeURIComponent(char)}`
 const DELAY_MS = 100
 
@@ -53,7 +60,7 @@ async function fetchJson<T>(url: string): Promise<T> {
 }
 
 async function main(): Promise<void> {
-  console.log('build-kanji: fetching kyouiku kanji list...')
+  console.log('build-kanji: fetching jouyou kanji list...')
   const characters = await fetchJson<string[]>(KANJI_LIST_URL)
   console.log(`build-kanji: ${characters.length} kanji to fetch`)
 

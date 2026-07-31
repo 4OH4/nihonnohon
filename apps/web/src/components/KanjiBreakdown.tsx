@@ -25,7 +25,9 @@ function splitIntoRows(cells: Cell[]): Cell[][] {
 }
 
 /** Kanji character + Heisig keyword cells for a looked-up word, in rows of at most
- *  three. Returns null when the word contains no recognised kanji. */
+ *  three. Characters with no entry in kanji-data.json — kana, and kanji outside the
+ *  jouyou set it covers — get no cell, since a character with no keyword only repeats
+ *  what the word already shows. Returns null when that leaves nothing to render. */
 export function KanjiBreakdown({ word }: KanjiBreakdownProps) {
   const entries: Cell[] = [...word]
     .map((char) => ({ char, entry: lookupKanji(char) }))
