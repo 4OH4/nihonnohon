@@ -22,11 +22,17 @@ import { usePreferenceStore } from '@/stores/preferenceStore'
 import { useLookupStore } from '@/stores/lookupStore'
 import type { StoryModel, VocabSupplementEntry } from '@nihonnohon/schema'
 
-/** Returns raw supplement entries keyed by word; adaptation to display shape happens in WordToken. */
-function buildSupplementMap(supplement: VocabSupplementEntry[]): Map<string, VocabSupplementEntry> {
-  const map = new Map<string, VocabSupplementEntry>()
+/**
+ * Returns raw supplement entries keyed by vocab key; adaptation to display shape happens in WordToken.
+ *
+ * Keyed by `key` rather than `word` because a token's surface is its inflected, in-sentence form
+ * (考えました) while the supplement holds the dictionary headword (考える). Only the numeric key in
+ * SentenceModel.vocabKeys reliably links the two.
+ */
+function buildSupplementMap(supplement: VocabSupplementEntry[]): Map<number, VocabSupplementEntry> {
+  const map = new Map<number, VocabSupplementEntry>()
   supplement.forEach((entry) => {
-    map.set(entry.word, entry)
+    map.set(entry.key, entry)
   })
   return map
 }
