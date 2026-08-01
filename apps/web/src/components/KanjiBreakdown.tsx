@@ -46,7 +46,11 @@ export function KanjiBreakdown({ word }: KanjiBreakdownProps) {
       {entries.map(({ char, entry }, i) => (
         <div
           key={char + i}
-          className="flex items-baseline gap-x-1.5 lg:min-w-[2.5em] lg:flex-col lg:items-center lg:gap-x-0 lg:text-center"
+          // gap in em, not a rem step: everything else in the cell scales with the
+          // story font size, so a fixed gap would visually close up at 'large'.
+          // items-center reads as centring the keyword against the character on
+          // mobile and the keyword under it on desktop — same class, both axes.
+          className="flex items-center gap-x-[0.4em] lg:min-w-[2.5em] lg:flex-col lg:gap-x-0 lg:text-center"
         >
           {/* leading-none: at 1.25em the character's line box, not its keyword, sets the
               row height — so any spare leading here is height the panel cannot spare. */}
