@@ -309,7 +309,7 @@ src/
 
 ### Edge Cases
 
-- A kanji character absent from `kanji-data.json` is valid — degrade gracefully (omit the kanji breakdown section for that character, do not throw)
+- A kanji character absent from `kanji-data.json` is valid — degrade gracefully (omit that character's cell from the kanji breakdown, do not throw). The file covers the jouyou set; anything beyond it has no entry and shows no cell, which is intended — a bare character with no keyword adds nothing over the word itself
 - A `vocab_key` of `null` means the token has no vocabulary entry (e.g. punctuation) — this is expected, not an error
 - `SentenceModel.translation` can be `null` — components must handle the no-translation case
 - `ruby` array entries can be `null` for tokens with no reading annotation

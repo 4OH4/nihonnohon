@@ -36,8 +36,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Only vocab.json — it is gitignored and must be generated. kanji-data.json
+      # is committed, so rebuilding it here just re-fetches ~2000 characters from
+      # kanjiapi.dev on every run; regenerate it locally with `pnpm build-kanji`.
       - name: Build data assets
-        run: pnpm build-vocab && pnpm build-kanji
+        run: pnpm build-vocab
 
       - name: Lint
         run: pnpm run lint

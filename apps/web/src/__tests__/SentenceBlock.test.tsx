@@ -231,4 +231,85 @@ describe('SentenceBlock', () => {
 
     expect(container.scrollTop).toBe(200)
   })
+
+  // ─── supplement resolution (issue #14) ──────────────────────────────────────
+  // The supplement map is keyed by vocab key, never by surface: a token carries
+  // its inflected in-sentence form while the supplement holds the headword.
+
+  it('resolves a supplement entry whose headword differs from the inflected surface', () => {
+    // 考えました (surface) vs 考える (supplement headword) — the ch17 autumn-cafe case.
+    const inflected: SentenceModel = {
+      id: 'sent-3',
+      tokens: [{ surface: '考えました', segments: [{ text: '考', ruby: 'かんが' }, { text: 'えました', ruby: null }] }],
+      vocabKeys: [10007],
+      translation: null,
+      grammar: [],
+    }
+    const supplementMap = new Map([
+      [10007, { key: 10007, word: '考える', hiragana: 'かんがえる', translation: 'to think', pos: 'v1' }],
+    ])
+    render(<SentenceBlock sentence={inflected} sentenceIndex={0} supplementMap={supplementMap} />)
+    fireEvent.click(screen.getByRole('button', { name: '考えました' }))
+
+    const state = useLookupStore.getState()
+    expect(state.lookupState).toMatchObject({
+      status: 'found',
+      word: '考えました',
+      pos: 'v1',
+      entry: { reading: 'かんがえる', meaning: 'to think' },
+    })
+  })
+
+  it('resolves a supplement entry when the token is a sub-span of the headword', () => {
+    // 屋 (surface) vs ラーメン屋 (headword) — tokenisation-split case from ch23.
+    const split: SentenceModel = {
+      id: 'sent-4',
+      tokens: [{ surface: '屋', segments: [{ text: '屋', ruby: 'や' }] }],
+      vocabKeys: [10001],
+      translation: null,
+      grammar: [],
+    }
+    const supplementMap = new Map([
+      [10001, { key: 10001, word: 'ラーメン屋', hiragana: 'ラーメンや', translation: 'ramen shop', pos: 'n' }],
+    ])
+    render(<SentenceBlock sentence={split} sentenceIndex={0} supplementMap={supplementMap} />)
+    fireEvent.click(screen.getByRole('button', { name: '屋' }))
+
+    expect(useLookupStore.getState().lookupState).toMatchObject({
+      status: 'found',
+      entry: { meaning: 'ramen shop' },
+    })
+  })
+
+  it('does not match a supplement entry by surface when its key is absent', () => {
+    // Guards against reintroducing surface-keyed lookup: the headword matches the
+    // surface exactly, but the token's key points elsewhere, so it must not resolve.
+    const mismatched: SentenceModel = {
+      id: 'sent-5',
+      tokens: [{ surface: '考える', segments: [{ text: '考える', ruby: null }] }],
+      vocabKeys: [null],
+      translation: null,
+      grammar: [],
+    }
+    const supplementMap = new Map([
+      [10007, { key: 10007, word: '考える', hiragana: 'かんがえる', translation: 'to think', pos: 'v1' }],
+    ])
+    render(<SentenceBlock sentence={mismatched} sentenceIndex={0} supplementMap={supplementMap} />)
+    fireEvent.click(screen.getByRole('button', { name: '考える' }))
+
+    expect(useLookupStore.getState().lookupState.status).toBe('idle')
+  })
+
+  it('main vocab still resolves for tokens without a supplement entry', () => {
+    const supplementMap = new Map([
+      [10007, { key: 10007, word: '考える', hiragana: 'かんがえる', translation: 'to think', pos: 'v1' }],
+    ])
+    render(<SentenceBlock sentence={sentence} sentenceIndex={0} supplementMap={supplementMap} />)
+    fireEvent.click(screen.getByRole('button', { name: '食べる' }))
+
+    expect(useLookupStore.getState().lookupState).toMatchObject({
+      status: 'found',
+      entry: { meaning: 'to eat' },
+    })
+  })
 })

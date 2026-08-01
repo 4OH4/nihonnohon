@@ -72,13 +72,18 @@ import { getStory } from '@/services/indexedDbService'
 //   - ruby toggle uses visibility:hidden not display:none
 //   - Trans toggle shows translations
 //   - vocab supplement takes precedence over main dict
-//   - supplement word with null vocabKey is tappable via supplement
+//   - supplement word is tappable via supplement
 //
 // PRESERVED (Story 3.3):
 //   - ReaderError renders "Story not found." for 404
 //   - ReaderError renders fallback for non-404
 //   - ReaderError always shows Back to library link
 //   - loader returns StoryModel when story ID found in manifest
+//
+// SUPERSEDED (issue #14):
+//   - "supplement word with null vocabKey is tappable via supplement" → supplement
+//     entries now resolve by vocabKey, never by surface, so a null key never resolves.
+//     No shipped story relied on the surface match. See storyVocabKeyIntegrity.test.ts.
 //
 // SUPERSEDED (Story 3.4):
 //   - "loader throws 404 when not in manifest" → now throws 410 (tries IndexedDB first)
@@ -100,6 +105,11 @@ import { getStory } from '@/services/indexedDbService'
 //   - Bottom tab bar renders Story/Vocabulary/Grammar tabs
 //   - Vocabulary tab shows VocabPanel
 //   - Grammar tab shows GrammarPanel
+//
+// NEW (Issue #11 — lookup state is story-scoped):
+//   - loading a different story resets the InfoPanel to the new story title
+//   - loading a different story clears the selected and translated sentence ids
+//   - re-rendering the same story leaves an active lookup intact
 
 // ─── Fixtures ────────────────────────────────────────────────────────────────
 
@@ -136,6 +146,28 @@ const baseStory: StoryModel = {
       ],
       vocabKeys: [null, null, 2],
       translation: 'I study Japanese.',
+      grammar: [],
+    },
+  ],
+}
+
+// A different story that deliberately reuses baseStory's sentence ids — ids are
+// story-local, so they collide, which is what makes carried-over lookup state
+// visible in the new story (issue #11).
+const otherStory: StoryModel = {
+  ...baseStory,
+  id: 'other-story',
+  title: 'Second Story',
+  titleJa: 'セカンド',
+  sentences: [
+    {
+      id: 's1',
+      tokens: [
+        { surface: '水',   segments: [{ text: '水',   ruby: 'みず' }] },
+        { surface: 'です', segments: [{ text: 'です', ruby: null }] },
+      ],
+      vocabKeys: [null, null],
+      translation: 'It is water.',
       grammar: [],
     },
   ],
@@ -219,6 +251,60 @@ describe('ReaderRoute', () => {
       document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))
     })
     expect(useLookupStore.getState().lookupState.status).toBe('idle')
+  })
+
+  // ── Issue #11: lookup state is story-scoped ───────────────────────────────
+
+  it('loading a different story resets the InfoPanel to the new story title', () => {
+    const { rerender } = renderRoute(baseStory)
+    fireEvent.click(screen.getByRole('button', { name: '食べる' }))
+    expect(screen.getByText('to eat')).toBeInTheDocument()
+
+    vi.mocked(useLoaderData).mockReturnValue(otherStory)
+    rerender(
+      <MemoryRouter>
+        <ReaderRoute />
+      </MemoryRouter>,
+    )
+
+    expect(useLookupStore.getState().lookupState.status).toBe('idle')
+    expect(screen.queryByText('to eat')).not.toBeInTheDocument()
+    expect(screen.getByText('Second Story')).toBeInTheDocument()
+  })
+
+  it('loading a different story clears the selected and translated sentence ids', () => {
+    const { rerender } = renderRoute(baseStory)
+    fireEvent.click(screen.getByRole('button', { name: '食べる' }))
+    act(() => { useLookupStore.getState().showSentenceTranslation('s1') })
+    expect(useLookupStore.getState().selectedSentenceId).toBe('s1')
+    expect(useLookupStore.getState().translatedSentenceId).toBe('s1')
+
+    vi.mocked(useLoaderData).mockReturnValue(otherStory)
+    rerender(
+      <MemoryRouter>
+        <ReaderRoute />
+      </MemoryRouter>,
+    )
+
+    // otherStory reuses sentence id 's1', so stale ids would highlight it and
+    // reveal its translation.
+    expect(useLookupStore.getState().selectedSentenceId).toBeNull()
+    expect(useLookupStore.getState().translatedSentenceId).toBeNull()
+    expect(screen.queryByText('It is water.')).not.toBeInTheDocument()
+  })
+
+  it('re-rendering the same story leaves an active lookup intact', () => {
+    const { rerender } = renderRoute(baseStory)
+    fireEvent.click(screen.getByRole('button', { name: '食べる' }))
+
+    rerender(
+      <MemoryRouter>
+        <ReaderRoute />
+      </MemoryRouter>,
+    )
+
+    expect(useLookupStore.getState().lookupState).toMatchObject({ status: 'found', word: '食べる' })
+    expect(screen.getByText('to eat')).toBeInTheDocument()
   })
 
   it('Ruby toggle (in settings): rt elements use invisible class when off, not display:none', () => {
@@ -308,7 +394,7 @@ describe('ReaderRoute', () => {
     expect(screen.getAllByText('No grammar notes for this story.').length).toBeGreaterThan(0)
   })
 
-  it('supplement word with null vocabKey is tappable via supplement', () => {
+  it('supplement word is tappable via its vocabKey', () => {
     const storyWithSupplement: StoryModel = {
       ...baseStory,
       vocabSupplement: [
@@ -317,7 +403,7 @@ describe('ReaderRoute', () => {
       sentences: [{
         id: 's1',
         tokens: [{ surface: 'まいあさ', segments: [{ text: 'まいあさ', ruby: null }] }],
-        vocabKeys: [null],
+        vocabKeys: [2001],
         translation: null,
         grammar: [],
       }],
@@ -325,8 +411,66 @@ describe('ReaderRoute', () => {
 
     renderRoute(storyWithSupplement)
     fireEvent.click(screen.getByRole('button', { name: 'まいあさ' }))
-    // 'every morning' appears in InfoPanel and VocabPanel (CSS hides one in practice)
-    expect(screen.getAllByText('every morning').length).toBeGreaterThan(0)
+    // Assert against the store rather than the rendered text: VocabPanel lists every
+    // supplement entry regardless of selection, so a text query would pass even if
+    // the tap resolved nothing.
+    expect(useLookupStore.getState().lookupState).toMatchObject({
+      status: 'found',
+      word: 'まいあさ',
+      entry: { meaning: 'every morning' },
+    })
+  })
+
+  // ─── supplement resolution (issue #14) ──────────────────────────────────────
+  // End-to-end over buildSupplementMap → SentenceBlock → WordToken: the seam where
+  // the surface-keyed map silently dropped every inflected supplement word.
+
+  it('resolves an inflected supplement word through the route-built supplement map', () => {
+    const storyWithSupplement: StoryModel = {
+      ...baseStory,
+      vocabSupplement: [
+        { key: 10007, word: '考える', hiragana: 'かんがえる', translation: 'to think', pos: 'v1' },
+      ],
+      sentences: [{
+        id: 's1',
+        tokens: [{
+          surface: '考えました',
+          segments: [{ text: '考', ruby: 'かんが' }, { text: 'えました', ruby: null }],
+        }],
+        vocabKeys: [10007],
+        translation: null,
+        grammar: [],
+      }],
+    }
+
+    renderRoute(storyWithSupplement)
+    fireEvent.click(screen.getByRole('button', { name: '考えました' }))
+    expect(useLookupStore.getState().lookupState).toMatchObject({
+      status: 'found',
+      word: '考えました',
+      pos: 'v1',
+      entry: { reading: 'かんがえる', meaning: 'to think' },
+    })
+  })
+
+  it('a token with no vocabKey does not resolve even when its surface is a supplement headword', () => {
+    const storyWithSupplement: StoryModel = {
+      ...baseStory,
+      vocabSupplement: [
+        { key: 10007, word: '考える', hiragana: 'かんがえる', translation: 'to think' },
+      ],
+      sentences: [{
+        id: 's1',
+        tokens: [{ surface: '考える', segments: [{ text: '考える', ruby: null }] }],
+        vocabKeys: [null],
+        translation: null,
+        grammar: [],
+      }],
+    }
+
+    renderRoute(storyWithSupplement)
+    fireEvent.click(screen.getByRole('button', { name: '考える' }))
+    expect(useLookupStore.getState().lookupState.status).toBe('idle')
   })
 })
 
