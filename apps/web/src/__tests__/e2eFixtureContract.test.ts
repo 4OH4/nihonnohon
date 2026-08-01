@@ -1,9 +1,10 @@
 // Copyright (c) 2026 Rupert Thomas
 // SPDX-License-Identifier: MIT
 
-// Contract tests for the story fixtures used by e2e/golden-path.spec.ts and
-// e2e/accessibility.spec.ts. If any of these fail, the E2E tests will fail on
-// CI too — update the E2E spec to match the new story data, then re-run.
+// Contract tests for the story fixtures used by e2e/golden-path.spec.ts,
+// e2e/accessibility.spec.ts and e2e/infopanel-layout.spec.ts. If any of these
+// fail, the E2E tests will fail on CI too — update the E2E spec to match the new
+// story data, then re-run.
 
 import { readFileSync } from 'fs'
 import { join } from 'path'
@@ -66,5 +67,43 @@ describe(`E2E fixture contract — ${STORY_ID}`, () => {
 
   it("story contains '、' punctuation (used for not-found InfoPanel test)", () => {
     expect(allSurfaces).toContain('、')
+  })
+})
+
+// ─── infopanel-layout fixture contract ────────────────────────────────────────
+// e2e/infopanel-layout.spec.ts measures the panel with specific words: it needs a
+// two-kanji word whose second keyword is long enough to overflow, and a
+// three-kanji word. Substituting arbitrary words would silently stop exercising
+// the condition behind issue #19.
+
+const LAYOUT_STORY_ID = 'genki-i-ch15-yumis-bento-lunch'
+
+const layoutStory = readJson(`../../public/stories/${LAYOUT_STORY_ID}.json`) as {
+  sentences: Array<{ words: string[] }>
+}
+
+const layoutSurfaces = layoutStory.sentences.flatMap((s) => s.words.map(surface))
+
+const kanjiData = readJson('../../public/kanji-data.json') as Record<string, { kw: string | null; m: string[] }>
+
+describe(`E2E fixture contract — ${LAYOUT_STORY_ID}`, () => {
+  it('story exists in manifest', () => {
+    expect(manifest.find((e) => e.id === LAYOUT_STORY_ID)).toBeDefined()
+  })
+
+  it.each(['食堂', '高校生'])("story contains '%s' (used by infopanel-layout.spec.ts)", (word) => {
+    expect(layoutSurfaces).toContain(word)
+  })
+
+  it('堂 still has a keyword long enough to force a wrap in a narrow cell', () => {
+    const entry = kanjiData['堂']
+    const keyword = entry?.kw ?? entry?.m[0] ?? ''
+    // "public chamber/hall" — the wrapping assertion needs a keyword that cannot
+    // fit a ~6em cell on one line.
+    expect(keyword.length).toBeGreaterThan(12)
+  })
+
+  it.each(['食堂', '高校生'])("every kanji in '%s' has a breakdown cell", (word) => {
+    for (const char of word) expect(kanjiData[char]).toBeDefined()
   })
 })

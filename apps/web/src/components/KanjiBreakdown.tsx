@@ -11,24 +11,10 @@ interface KanjiBreakdownProps {
 
 type Cell = { char: string; entry: KanjiEntry }
 
-/** Splits cells into balanced rows of at most 3, so a 4+ kanji word flows onto
- *  further rows (4→2+2, 5→3+2, 6→3+3, 7→3+2+2) rather than overflowing one row. */
-function splitIntoRows(cells: Cell[]): Cell[][] {
-  const rowCount = Math.ceil(cells.length / 3)
-  const rows: Cell[][] = []
-  let start = 0
-  for (let r = 0; r < rowCount; r++) {
-    const size = Math.ceil((cells.length - start) / (rowCount - r))
-    rows.push(cells.slice(start, start + size))
-    start += size
-  }
-  return rows
-}
-
-/** Kanji character + Heisig keyword cells for a looked-up word, in rows of at most
- *  three. Characters with no entry in kanji-data.json — kana, and kanji outside the
- *  jouyou set it covers — get no cell, since a character with no keyword only repeats
- *  what the word already shows. Returns null when that leaves nothing to render. */
+/** Kanji character + Heisig keyword cells for a looked-up word. Characters with no
+ *  entry in kanji-data.json — kana, and kanji outside the jouyou set it covers — get
+ *  no cell, since a character with no keyword only repeats what the word already
+ *  shows. Returns null when that leaves nothing to render. */
 export function KanjiBreakdown({ word }: KanjiBreakdownProps) {
   // kanji-data.json loads off the critical path, so a word can be tapped before it
   // arrives — every lookup returns null until then. Subscribing re-runs them once
@@ -42,19 +28,34 @@ export function KanjiBreakdown({ word }: KanjiBreakdownProps) {
   if (entries.length === 0) return null
 
   return (
-    // Char-above-keyword cells in rows of at most three (each cell sizes to its
-    // keyword when there's room and shrinks toward the 2.5em floor when tight). On
-    // desktop the rows collapse (lg:contents) into a single horizontal row, since
-    // the wider panel has room for all the kanji at once.
-    <div className="flex shrink-0 flex-col gap-y-1 lg:flex-row lg:gap-x-2" aria-label="Kanji breakdown">
-      {splitIntoRows(entries).map((row, ri) => (
-        <div key={ri} className="flex gap-x-2 lg:contents">
-          {row.map(({ char, entry }, i) => (
-            <div key={char + i} className="flex min-w-[2.5em] flex-col items-center text-center">
-              <span className="font-ja text-[1.25em]" lang="ja">{char}</span>
-              <span lang="en" className="w-full text-[0.75em] leading-tight text-muted hyphens-auto break-words">{entry.kw ?? entry.m[0] ?? ''}</span>
-            </div>
-          ))}
+    // The breakdown's width is an *input*, not an output of its keyword text: capped
+    // at 45% of the panel on mobile so the reading/translation column always keeps the
+    // rest. Without the cap a cell sizes to its keyword's max-content ("public
+    // chamber/hall" on one unbreakable line), which both crowds out that column and
+    // stops the keyword ever wrapping — the cell's width came from the very text it
+    // was meant to wrap. See issue #19.
+    //
+    // Mobile stacks one kanji per row, char *beside* keyword: a compact form that fits
+    // several kanji in the panel's ~5em without scrolling, where the desktop
+    // char-above-keyword cell would need ~3em per kanji. Desktop keeps that taller cell
+    // in a single horizontal row — the full-width panel there has room for it.
+    <div
+      className="flex max-w-[45%] shrink-0 flex-col gap-y-1 lg:max-w-none lg:flex-row lg:gap-x-2"
+      aria-label="Kanji breakdown"
+    >
+      {entries.map(({ char, entry }, i) => (
+        <div
+          key={char + i}
+          className="flex items-baseline gap-x-1.5 lg:min-w-[2.5em] lg:flex-col lg:items-center lg:gap-x-0 lg:text-center"
+        >
+          {/* leading-none: at 1.25em the character's line box, not its keyword, sets the
+              row height — so any spare leading here is height the panel cannot spare. */}
+          <span className="font-ja shrink-0 text-[1.25em] leading-none" lang="ja">{char}</span>
+          {/* min-w-0 lets the keyword shrink below its longest word and wrap inside the
+              capped row, rather than forcing the row wider. */}
+          <span lang="en" className="min-w-0 text-[0.75em] leading-tight text-muted hyphens-auto break-words lg:w-full">
+            {entry.kw ?? entry.m[0] ?? ''}
+          </span>
         </div>
       ))}
     </div>
