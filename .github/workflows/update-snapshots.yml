@@ -35,8 +35,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Only vocab.json — see the note in ci.yml; kanji-data.json is committed.
       - name: Build data assets
-        run: pnpm build-vocab && pnpm build-kanji
+        run: pnpm build-vocab
 
       - name: Install Playwright browsers
         run: pnpm --filter @nihonnohon/web exec playwright install --with-deps chromium firefox webkit

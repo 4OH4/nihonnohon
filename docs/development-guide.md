@@ -114,7 +114,7 @@ pnpm build-vocab
 pnpm build-kanji
 ```
 
-These are also run as part of the CI pipeline (`pnpm build-vocab && pnpm build-kanji`) before linting and testing.
+CI runs `pnpm build-vocab` only, before linting and testing — `vocab.json` is gitignored and must be generated on every run. `kanji-data.json` is committed to the repo, so `pnpm build-kanji` is a local, occasional task: run it when refreshing the kanji data and commit the result.
 
 ---
 
@@ -177,7 +177,7 @@ Non-breaking additions (new optional fields) do **not** require a version bump. 
 GitHub Actions (`.github/workflows/ci.yml`) runs on every PR and push to `main`:
 
 1. `pnpm install --frozen-lockfile`
-2. `pnpm build-vocab && pnpm build-kanji`
+2. `pnpm build-vocab`
 3. `pnpm run lint`
 4. `pnpm run typecheck`
 5. `pnpm run test:unit`

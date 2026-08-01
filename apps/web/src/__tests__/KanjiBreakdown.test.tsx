@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { act, render, screen } from '@testing-library/react'
 import { KanjiBreakdown } from '@/components/KanjiBreakdown'
 import { _initKanjiFromData, _resetKanji } from '@/services/kanjiService'
 import type { KanjiEntry } from '@nihonnohon/schema'
@@ -14,12 +14,13 @@ const kanjiFixture: Record<string, KanjiEntry> = {
   '無': { char: '無', kw: null, m: ['nothingness', 'none'], onY: ['ム', 'ブ'], kunY: ['な.い'] },
 }
 
+// Both helpers notify KanjiBreakdown's subscription, so they run inside act().
 beforeEach(() => {
-  _initKanjiFromData(kanjiFixture)
+  act(() => _initKanjiFromData(kanjiFixture))
 })
 
 afterEach(() => {
-  _resetKanji()
+  act(() => _resetKanji())
 })
 
 describe('KanjiBreakdown', () => {
@@ -70,6 +71,16 @@ describe('KanjiBreakdown', () => {
     expect(screen.queryByText('る')).toBeNull()
   })
 
+  it('omits a kanji with no entry while still rendering its neighbours', () => {
+    // 喫 is absent from the fixture, standing in for a kanji outside the set
+    // kanji-data.json covers. It gets no cell — a character with no keyword only
+    // repeats what the word already shows.
+    render(<KanjiBreakdown word="喫日本" />)
+    expect(screen.queryByText('喫')).toBeNull()
+    expect(screen.getByText('日')).toBeInTheDocument()
+    expect(screen.getByText('本')).toBeInTheDocument()
+  })
+
   it('uses entry.m[0] as fallback label when kw is null', () => {
     render(<KanjiBreakdown word="無" />)
     expect(screen.getByText('無')).toBeInTheDocument()
@@ -87,6 +98,21 @@ describe('KanjiBreakdown', () => {
     render(<KanjiBreakdown word="日" />)
     const span = screen.getByText('日')
     expect(span).toHaveAttribute('lang', 'ja')
+  })
+
+  // kanji-data.json is fetched off the critical path, so a word can be looked up
+  // before it arrives. The breakdown must fill itself in when the data lands
+  // rather than staying empty until the next lookup.
+  it('populates itself when the kanji data arrives after render', () => {
+    _resetKanji()
+    const { container } = render(<KanjiBreakdown word="日本" />)
+    expect(container.firstChild).toBeNull()
+
+    act(() => _initKanjiFromData(kanjiFixture))
+
+    expect(screen.getByText('日')).toBeInTheDocument()
+    expect(screen.getByText('sun')).toBeInTheDocument()
+    expect(screen.getByText('本')).toBeInTheDocument()
   })
 
   it('renders a kanji that appears twice in the word without deduplication', () => {
