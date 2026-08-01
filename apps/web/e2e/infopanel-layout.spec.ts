@@ -36,6 +36,28 @@ type Metrics = {
   charX: number
 }
 
+/**
+ * Resizes until the page actually lays out at `width` CSS pixels.
+ *
+ * WebKit on Windows lays out at the host's display-scaling factor rather than the
+ * requested viewport — at 125% a 412px viewport becomes 330 CSS px, and
+ * `deviceScaleFactor` does not override it. Left uncompensated these assertions
+ * describe one width while measuring another: 食堂 "overflows on WebKit" at 330px
+ * and fits perfectly at the 412px the test asks for.
+ *
+ * Measured via getBoundingClientRect, not documentElement.clientWidth: under mobile
+ * emulation the latter reports the scaled *visual* viewport (330) while the page
+ * genuinely lays out at the requested 412, so it would provoke a correction that is
+ * not needed and overshoot.
+ */
+async function useCssViewport(page: Page, width: number, height: number) {
+  const layoutWidth = () => page.evaluate(() => document.documentElement.getBoundingClientRect().width)
+  const actual = await layoutWidth()
+  if (Math.abs(actual - width) <= 2) return
+  const scale = width / actual
+  await page.setViewportSize({ width: Math.round(width * scale), height: Math.round(height * scale) })
+}
+
 async function openReader(page: Page, textSize: 'medium' | 'large', viewport: { width: number; height: number }) {
   await page.setViewportSize(viewport)
   await page.addInitScript((size) => {
@@ -48,6 +70,7 @@ async function openReader(page: Page, textSize: 'medium' | 'large', viewport: { 
     )
   }, textSize)
   await page.goto(STORY)
+  await useCssViewport(page, viewport.width, viewport.height)
 }
 
 /**
@@ -135,20 +158,27 @@ test.describe('InfoPanel layout — mobile', () => {
   })
 
   for (const word of [LONG_KEYWORD_WORD, THREE_KANJI_WORD]) {
-    test(`keeps ${word} within about a line of the panel at the largest text size`, async ({ page }) => {
+    test(`fits ${word} in the panel at the largest text size`, async ({ page }) => {
       await openReader(page, 'large', PHONE)
       const m = await lookUp(page, word, word === LONG_KEYWORD_WORD ? LONG_KEYWORD_CELLS : THREE_KANJI_CELLS)
 
-      // Measured: Chromium fits both words exactly, and WebKit overflows 食堂 by ~32px
-      // — one line, because its wider glyph metrics take the translation onto a third
-      // line. That last line falls under the panel's scroll-fade hint, which is the
-      // accepted trade-off for not making the panel permanently taller.
-      //
-      // The bound is what this layout actually guarantees, not an aspiration: before
-      // the fix the same lookup overflowed by ~190px, more than the panel's own height.
-      expect(m.clippedBy).toBeLessThan(m.panelH * 0.4)
+      // Both words fit exactly, on every engine, once the viewport really is 412px
+      // wide — before the fix this same lookup overflowed by ~190px, more than the
+      // panel's own height. A few pixels of slack absorbs sub-pixel line rounding.
+      expect(m.clippedBy).toBeLessThanOrEqual(4)
     })
   }
+
+  // A 330px-wide phone at the largest text size is the point where a two-line
+  // translation plus a wrapped keyword stops fitting. It is a supported width, so the
+  // panel must degrade to scrolling under its fade hint rather than clip silently.
+  test('degrades to a scrollable panel on a very narrow phone', async ({ page }) => {
+    await openReader(page, 'large', { width: 330, height: 915 })
+    const m = await lookUp(page, LONG_KEYWORD_WORD, LONG_KEYWORD_CELLS)
+
+    expect(m.breakdownPct).toBeLessThanOrEqual(46)
+    expect(m.clippedBy).toBeLessThan(m.panelH * 0.4)
+  })
 })
 
 test.describe('InfoPanel layout — desktop', () => {
