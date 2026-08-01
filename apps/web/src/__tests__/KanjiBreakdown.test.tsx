@@ -53,10 +53,13 @@ describe('KanjiBreakdown', () => {
   })
 
   // The cell, not its keyword, owns the width — otherwise the keyword's own
-  // max-content sizes the cell and can never wrap inside it (issue #19).
-  it('caps the breakdown width so a long keyword wraps rather than widening the panel', () => {
+  // max-content sizes the cell and can never wrap inside it (issue #19). Fixed
+  // rather than capped, so the characters do not shift between lookups.
+  it('fixes the breakdown width so a long keyword wraps rather than widening the panel', () => {
     render(<KanjiBreakdown word="食" />)
-    expect(screen.getByLabelText('Kanji breakdown').className).toContain('max-w-[45%]')
+    const region = screen.getByLabelText('Kanji breakdown')
+    expect(region.className).toContain('w-[45%]')
+    expect(region.className).toContain('shrink-0')
     expect(screen.getByText('eat').className).toContain('break-words')
   })
 

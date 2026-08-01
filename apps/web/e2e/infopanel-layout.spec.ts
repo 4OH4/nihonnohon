@@ -33,6 +33,7 @@ type Metrics = {
   breakdownPct: number
   rowTops: number[]
   cellHeights: number[]
+  charX: number
 }
 
 async function openReader(page: Page, textSize: 'medium' | 'large', viewport: { width: number; height: number }) {
@@ -76,6 +77,7 @@ async function lookUp(page: Page, word: string, expectedCells: number): Promise<
       breakdownPct: (breakdown.clientWidth / panel.clientWidth) * 100,
       rowTops: cells.map((c) => Math.round(c.getBoundingClientRect().y)),
       cellHeights: cells.map((c) => c.getBoundingClientRect().height),
+      charX: Math.round((breakdown.querySelector('span[lang="ja"]') as HTMLElement).getBoundingClientRect().x),
     }
   })
 }
@@ -92,10 +94,23 @@ test.describe('InfoPanel layout — mobile', () => {
       // assertions are not testing the condition that produced the bug.
       expect(m.panelW).toBeLessThan(500)
 
-      // The breakdown's width is capped, so a long keyword can no longer push the
+      // The breakdown holds a fixed 45%, so a long keyword can no longer push the
       // reading and translation into a one-kana-per-line column (it took 63%/26%).
       expect(m.breakdownPct).toBeLessThanOrEqual(46)
       expect(m.leftPct).toBeGreaterThanOrEqual(45)
+    })
+
+    test(`holds the kanji at the same position between lookups @${textSize}`, async ({ page }) => {
+      await openReader(page, textSize, PHONE)
+
+      // Two words whose keywords differ a lot in length: "public chamber/hall" fills
+      // the column, "tall"/"exam"/"life" leave most of it empty. While the column was
+      // content-sized the characters moved ~80px between these two lookups, which
+      // reads as the panel jumping under your thumb.
+      const a = await lookUp(page, LONG_KEYWORD_WORD, LONG_KEYWORD_CELLS)
+      const b = await lookUp(page, THREE_KANJI_WORD, THREE_KANJI_CELLS)
+
+      expect(b.charX).toBe(a.charX)
     })
 
     test(`stacks the kanji breakdown vertically @${textSize}`, async ({ page }) => {

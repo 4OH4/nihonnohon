@@ -28,19 +28,25 @@ export function KanjiBreakdown({ word }: KanjiBreakdownProps) {
   if (entries.length === 0) return null
 
   return (
-    // The breakdown's width is an *input*, not an output of its keyword text: capped
-    // at 45% of the panel on mobile so the reading/translation column always keeps the
-    // rest. Without the cap a cell sizes to its keyword's max-content ("public
-    // chamber/hall" on one unbreakable line), which both crowds out that column and
-    // stops the keyword ever wrapping — the cell's width came from the very text it
-    // was meant to wrap. See issue #19.
+    // The breakdown's width is an *input*, not an output of its keyword text: a fixed
+    // 45% of the panel on mobile, so the reading/translation column always keeps the
+    // rest. Sizing to content instead lets a cell take its keyword's max-content
+    // ("public chamber/hall" on one unbreakable line), which both crowds out that
+    // column and stops the keyword ever wrapping — the cell's width came from the very
+    // text it was meant to wrap. See issue #19.
+    //
+    // Fixed rather than merely capped so the characters keep the same screen position
+    // between lookups. Under a cap the column is as wide as its widest keyword, so the
+    // characters jump ~80px sideways when you tap a word whose keywords are shorter.
+    // The cost is real and deliberate: a word with short keywords leaves whitespace to
+    // the right of them, and the translation column, now a fixed 55%, wraps sooner.
     //
     // Mobile stacks one kanji per row, char *beside* keyword: a compact form that fits
     // several kanji in the panel's ~5em without scrolling, where the desktop
     // char-above-keyword cell would need ~3em per kanji. Desktop keeps that taller cell
     // in a single horizontal row — the full-width panel there has room for it.
     <div
-      className="flex max-w-[45%] shrink-0 flex-col gap-y-1 lg:max-w-none lg:flex-row lg:gap-x-2"
+      className="flex w-[45%] shrink-0 flex-col gap-y-1 lg:w-auto lg:flex-row lg:gap-x-2"
       aria-label="Kanji breakdown"
     >
       {entries.map(({ char, entry }, i) => (
