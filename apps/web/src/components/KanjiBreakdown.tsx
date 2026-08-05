@@ -58,9 +58,15 @@ export function KanjiBreakdown({ word }: KanjiBreakdownProps) {
           // mobile and the keyword under it on desktop — same class, both axes.
           className="flex items-center gap-x-[0.4em] lg:min-w-[2.5em] lg:flex-col lg:gap-x-0 lg:text-center"
         >
-          {/* leading-none: at 1.25em the character's line box, not its keyword, sets the
-              row height — so any spare leading here is height the panel cannot spare. */}
-          <span className="font-ja shrink-0 text-[1.25em] leading-none" lang="ja">{char}</span>
+          {/* leading-none: at 1.4em the character's line box, not its keyword, sets the
+              row height — so any spare leading here is height the panel cannot spare.
+              1.4em is sized against that row height: three rows plus their two gaps fill
+              94-98% of the panel's usable height at every text size, so the mobile stack
+              reads as exactly three kanji (1.25em left a stranded half-row). It does not
+              go higher because the gap and padding are rem, not em: at 'small' they are a
+              larger share of the panel, and 1.5em there overflows enough to raise the
+              scroll fade on a lookup that fits today. Keyword unchanged at 0.75em. */}
+          <span className="font-ja shrink-0 text-[1.4em] leading-none" lang="ja">{char}</span>
           {/* min-w-0 lets the keyword shrink below its longest word and wrap inside the
               capped row, rather than forcing the row wider. */}
           <span lang="en" className="min-w-0 text-[0.75em] leading-tight text-muted hyphens-auto break-words lg:w-full">
