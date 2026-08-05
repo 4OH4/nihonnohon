@@ -49,6 +49,21 @@ test.describe('Accessibility — axe-core WCAG 2.1 AA', () => {
 })
 
 test.describe('Visual regression snapshots', () => {
+  // Baselines are generated and maintained on CI (ubuntu), and only linux ones are
+  // committed. They cannot be reproduced faithfully elsewhere:
+  //
+  //  - WebKit on Windows lays the page out at the host's display-scaling factor
+  //    rather than the requested viewport (a 412px viewport becomes 330 CSS px at
+  //    125%, and deviceScaleFactor does not override it), so its captures encode the
+  //    developer's monitor settings.
+  //  - Font rasterisation and hinting differ per OS, well beyond the 2% diff ratio.
+  //
+  // Without this guard a Windows or macOS run does one of two unhelpful things:
+  // fails against CI's baselines, or — for any name with no local baseline yet —
+  // silently writes one and reports a first-run failure, leaving untracked PNGs that
+  // get committed by accident. Skip instead; CI is where these assert anything.
+  test.skip(process.platform !== 'linux', 'Pixel baselines are linux-only — these run on CI')
+
   test('Ruby toggle off', async ({ page }) => {
     await page.goto('/read/genki-i-ch6-tanaka-letter')
     await page.getByRole('button', { name: 'Settings' }).click()
