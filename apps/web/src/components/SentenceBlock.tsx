@@ -1,11 +1,12 @@
 // Copyright (c) 2026 Rupert Thomas
 // SPDX-License-Identifier: MIT
 
-import { useCallback, useLayoutEffect, useRef } from 'react'
+import { useCallback, useLayoutEffect, useMemo, useRef } from 'react'
 import type { RefObject } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import { cn } from '@/lib/utils'
 import { useLongPress } from '@/lib/useLongPress'
+import { clusterTokens } from '@/lib/tokenClusters'
 import { useLookupStore } from '@/stores/lookupStore'
 import { usePreferenceStore } from '@/stores/preferenceStore'
 import { WordToken } from '@/components/WordToken'
@@ -81,6 +82,31 @@ export function SentenceBlock({ sentence, sentenceIndex, supplementMap, scrollCo
   // is excluded — WordToken stops pointer propagation so word lookup wins there.
   const longPress = useLongPress(reveal)
 
+  // Tokens are individual flex items, so the browser's Japanese line-breaking rules
+  // never get to run and a trailing 。 can wrap onto a line by itself. Grouping the
+  // tokens that must not be split into a single flex item restores those rules.
+  const clusters = useMemo(() => clusterTokens(sentence.tokens), [sentence.tokens])
+
+  // One gap value for both the sentence row and the nested clusters, so grouping
+  // never changes the spacing between two adjacent tokens.
+  const gapClass = spacingVisible ? 'gap-x-2' : 'gap-x-0'
+
+  const renderToken = (i: number) => {
+    // Resolve the supplement by vocab key, not by surface: the token carries its
+    // inflected form (考えました) while the supplement is keyed on the headword (考える).
+    const vocabKey = sentence.vocabKeys[i] ?? null
+    return (
+      <WordToken
+        key={i}
+        token={sentence.tokens[i]}
+        vocabKey={vocabKey}
+        sentenceId={sentence.id}
+        supplementEntry={vocabKey === null ? null : supplementMap?.get(vocabKey) ?? null}
+        onBeforeActivate={captureAnchor}
+      />
+    )
+  }
+
   return (
     <div
       ref={rootRef}
@@ -103,25 +129,24 @@ export function SentenceBlock({ sentence, sentenceIndex, supplementMap, scrollCo
         // that previously lived on the scroll container) away from the edges.
         'flex flex-wrap items-baseline py-2 px-5',
         'transition-[gap,background-color] duration-150',
-        spacingVisible ? 'gap-x-2' : 'gap-x-0',
+        gapClass,
         isSelected && 'bg-accent-subtle',
       )}
     >
-      {sentence.tokens.map((token, i) => {
-        // Resolve the supplement by vocab key, not by surface: the token carries its
-        // inflected form (考えました) while the supplement is keyed on the headword (考える).
-        const vocabKey = sentence.vocabKeys[i] ?? null
-        return (
-          <WordToken
-            key={i}
-            token={token}
-            vocabKey={vocabKey}
-            sentenceId={sentence.id}
-            supplementEntry={vocabKey === null ? null : supplementMap?.get(vocabKey) ?? null}
-            onBeforeActivate={captureAnchor}
-          />
+      {clusters.map((cluster) =>
+        // A lone token stays a direct flex item — only a group that must hold
+        // together needs the extra wrapper.
+        cluster.length === 1 ? (
+          renderToken(cluster[0])
+        ) : (
+          <span
+            key={cluster[0]}
+            className={cn('flex items-baseline transition-[gap] duration-150', gapClass)}
+          >
+            {cluster.map(renderToken)}
+          </span>
         )
-      })}
+      )}
       {showTranslation && (
         <p className="w-full mt-1 italic text-translation text-[0.8em] select-none [-webkit-touch-callout:none]">
           {sentence.translation}

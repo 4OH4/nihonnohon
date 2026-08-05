@@ -25,6 +25,13 @@ const sentence: SentenceModel = {
   grammar: [],
 }
 
+const sentenceWithPunctuation: SentenceModel = {
+  ...sentence,
+  id: 'sent-3',
+  tokens: [...sentence.tokens, { surface: '。', segments: [{ text: '。', ruby: null }] }],
+  vocabKeys: [...sentence.vocabKeys, null],
+}
+
 const sentenceNoTranslation: SentenceModel = {
   ...sentence,
   id: 'sent-2',
@@ -68,6 +75,29 @@ describe('SentenceBlock', () => {
     expect(screen.getByRole('button', { name: '食べる' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'は' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: '楽しい' })).toBeInTheDocument()
+  })
+
+  // Issue #23: punctuation is its own token, so as a bare flex item it could wrap
+  // onto a line of its own. It must share a parent with the word it follows.
+  it('keeps a trailing 。 in the same flex item as the preceding word', () => {
+    render(<SentenceBlock sentence={sentenceWithPunctuation} sentenceIndex={0} />)
+    const word = screen.getByRole('button', { name: '楽しい' })
+    const period = screen.getByRole('button', { name: '。' })
+    expect(period.parentElement).toBe(word.parentElement)
+    expect(word.parentElement).not.toHaveAttribute('role', 'group')
+  })
+
+  it('does not wrap a token that has no punctuation to bind to', () => {
+    const { container } = render(<SentenceBlock sentence={sentence} sentenceIndex={0} />)
+    const group = container.querySelector('[role="group"]')!
+    expect(screen.getByRole('button', { name: '食べる' }).parentElement).toBe(group)
+  })
+
+  it('punctuation wrapper mirrors the sentence gap so spacing is unchanged', () => {
+    act(() => { usePreferenceStore.setState({ spacingVisible: true }) })
+    render(<SentenceBlock sentence={sentenceWithPunctuation} sentenceIndex={0} />)
+    const wrapper = screen.getByRole('button', { name: '。' }).parentElement!
+    expect(wrapper.classList.contains('gap-x-2')).toBe(true)
   })
 
   it('spacingVisible: false → gap-x-0 class', () => {
