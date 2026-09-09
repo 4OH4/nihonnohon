@@ -14,6 +14,7 @@
 // guard against were 2x+.
 
 import { test, expect, type Page } from '@playwright/test'
+import { useCssViewport } from './cssViewport'
 
 const STORY = '/read/genki-i-ch15-yumis-bento-lunch'
 
@@ -34,28 +35,6 @@ type Metrics = {
   rowTops: number[]
   cellHeights: number[]
   charX: number
-}
-
-/**
- * Resizes until the page actually lays out at `width` CSS pixels.
- *
- * WebKit on Windows lays out at the host's display-scaling factor rather than the
- * requested viewport — at 125% a 412px viewport becomes 330 CSS px, and
- * `deviceScaleFactor` does not override it. Left uncompensated these assertions
- * describe one width while measuring another: 食堂 "overflows on WebKit" at 330px
- * and fits perfectly at the 412px the test asks for.
- *
- * Measured via getBoundingClientRect, not documentElement.clientWidth: under mobile
- * emulation the latter reports the scaled *visual* viewport (330) while the page
- * genuinely lays out at the requested 412, so it would provoke a correction that is
- * not needed and overshoot.
- */
-async function useCssViewport(page: Page, width: number, height: number) {
-  const layoutWidth = () => page.evaluate(() => document.documentElement.getBoundingClientRect().width)
-  const actual = await layoutWidth()
-  if (Math.abs(actual - width) <= 2) return
-  const scale = width / actual
-  await page.setViewportSize({ width: Math.round(width * scale), height: Math.round(height * scale) })
 }
 
 async function openReader(page: Page, textSize: 'medium' | 'large', viewport: { width: number; height: number }) {
