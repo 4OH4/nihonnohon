@@ -14,6 +14,7 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@fontsource/noto-sans-jp": "^5.3.0",
     "@nihonnohon/schema": "workspace:*",
     "@nihonnohon/story-loader": "workspace:*",
     "@radix-ui/react-popover": "^1.1.15",
