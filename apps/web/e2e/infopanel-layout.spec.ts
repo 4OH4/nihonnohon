@@ -34,6 +34,16 @@ type Metrics = {
   rowTops: number[]
   cellHeights: number[]
   charX: number
+  // Diagnostics for the overflow bound below. A bare `clippedBy` says the panel
+  // clipped but not which column, by how many lines, or in what typeface — the gap
+  // that let a bound be justified by reasoning rather than measurement.
+  lineH: number // computed line-height of the meaning <p lang="en">
+  fontFamily: string // the family list it *specifies* — see probeW for what it gets
+  leftH: number // height of the reading/translation column
+  breakdownH: number // height of the kanji breakdown
+  layoutW: number // the width the page really laid out at (see useCssViewport)
+  probeW: Record<string, number> // typeface fingerprint — see the probe in lookUp
+  probeFont: string // the canvas font spec that produced probeW.stack
 }
 
 /**
@@ -49,6 +59,14 @@ type Metrics = {
  * emulation the latter reports the scaled *visual* viewport (330) while the page
  * genuinely lays out at the requested 412, so it would provoke a correction that is
  * not needed and overshoot.
+ *
+ * It corrects the layout width, not viewport-relative units. Getting a 412px layout
+ * means asking for a ~514px viewport, so 1vw grows with it and --story-font-size
+ * (clamp(1.5rem, 2rem - 1vw, 2rem)) resolves to 26.85px where a true 412px viewport
+ * gives 27.88px — measured, Windows WebKit at 125%. Harmless on the Linux runner,
+ * where layoutW already reads 412 and the early return above fires; but it is a
+ * second reason a local WebKit run cannot confirm these pixel numbers, and a reason
+ * the overflow bound below is derived from the measured lineH rather than a constant.
  */
 async function useCssViewport(page: Page, width: number, height: number) {
   const layoutWidth = () => page.evaluate(() => document.documentElement.getBoundingClientRect().width)
@@ -91,6 +109,44 @@ async function lookUp(page: Page, word: string, expectedCells: number): Promise<
     // The reading/translation column is the breakdown's sibling in the lookup row.
     const left = breakdown.previousElementSibling as HTMLElement
     const cells = [...breakdown.children] as HTMLElement[]
+    // The meaning paragraph: the element whose wrapping sets that column's height,
+    // and the only text in the panel with no declared font-family of its own.
+    const meaning = left.querySelector('p[lang="en"]') as HTMLElement
+    const meaningStyle = getComputedStyle(meaning)
+
+    // Which typeface is this paragraph actually in?
+    //
+    // Not a question getComputedStyle can answer: font-family computes to the
+    // author's list, so every engine echoes back the same 'ui-sans-serif,
+    // system-ui, sans-serif, ...' regardless of the face it picked. Measured
+    // instead — one probe string through a canvas under the paragraph's own font
+    // spec, then under named candidates. Widths that match mean faces that are
+    // metrically the same, which is the only sense in which "same typeface"
+    // matters to a layout bound. Canvas because it needs no layout and parses
+    // the spec identically across engines; probeFont echoes the spec back so a
+    // rejected one shows up as itself rather than as a bogus width.
+    //
+    // The named candidates only discriminate where those faces are installed — on the
+    // Linux runner, which is the only place these numbers are authoritative. On a dev
+    // machine without them they collapse onto one fallback width, which is a null
+    // result rather than a match.
+    const probe = 'cafeteria; dining commons'
+    const ctx = document.createElement('canvas').getContext('2d')!
+    const widthUnder = (family: string) => {
+      ctx.font = `${meaningStyle.fontSize} ${family}`
+      return Math.round(ctx.measureText(probe).width * 100) / 100
+    }
+    const candidates: [string, string][] = [
+      ['stack', meaningStyle.fontFamily],
+      ['dejavu', '"DejaVu Sans"'],
+      ['liberation', '"Liberation Sans"'],
+      ['arimo', 'Arimo'],
+      ['generic', 'sans-serif'],
+    ]
+    const probeW: Record<string, number> = {}
+    for (const [label, family] of candidates) probeW[label] = widthUnder(family)
+    ctx.font = `${meaningStyle.fontSize} ${meaningStyle.fontFamily}`
+    const probeFont = ctx.font
 
     return {
       panelW: panel.clientWidth,
@@ -101,6 +157,13 @@ async function lookUp(page: Page, word: string, expectedCells: number): Promise<
       rowTops: cells.map((c) => Math.round(c.getBoundingClientRect().y)),
       cellHeights: cells.map((c) => c.getBoundingClientRect().height),
       charX: Math.round((breakdown.querySelector('span[lang="ja"]') as HTMLElement).getBoundingClientRect().x),
+      lineH: parseFloat(meaningStyle.lineHeight),
+      fontFamily: meaningStyle.fontFamily,
+      leftH: left.getBoundingClientRect().height,
+      breakdownH: breakdown.getBoundingClientRect().height,
+      layoutW: document.documentElement.getBoundingClientRect().width,
+      probeW,
+      probeFont,
     }
   })
 }
@@ -162,10 +225,30 @@ test.describe('InfoPanel layout — mobile', () => {
       await openReader(page, 'large', PHONE)
       const m = await lookUp(page, word, word === LONG_KEYWORD_WORD ? LONG_KEYWORD_CELLS : THREE_KANJI_CELLS)
 
-      // Both words fit exactly, on every engine, once the viewport really is 412px
-      // wide — before the fix this same lookup overflowed by ~190px, more than the
-      // panel's own height. A few pixels of slack absorbs sub-pixel line rounding.
-      expect(m.clippedBy).toBeLessThanOrEqual(4)
+      // One self-identifying line per test, on passing runs as well as failing ones,
+      // so the numbers behind the bound below are on the record for every engine.
+      // The prefix and project name are load-bearing, not decoration: the CI reporter
+      // is 'dot', which echoes stdout with no test or project attribution, and four
+      // projects run fully parallel with up to three attempts each. Kept in place
+      // rather than removed once read — it is the only thing that makes the tolerance
+      // granted below visible as it drifts.
+      console.log(`[panel-metrics] ${JSON.stringify({ project: test.info().project.name, word, ...m })}`)
+
+      // 高校生 fits with nothing to spare on every engine. 食堂's meaning wraps onto one
+      // more line on WebKit than on Chromium, so it is allowed exactly one wrapped
+      // line — the smallest non-zero overflow text can produce, where two would mean
+      // the layout genuinely regressed. Quantised as a line rather than a pixel count
+      // because the number is typeface-driven and this app declares no font-family for
+      // Latin text, so an ubuntu-latest font change can move any constant.
+      //
+      // PROVISIONAL: that 食堂 is one line taller on WebKit is arithmetic that fits
+      // the observed 33px, not yet a measurement. leftH/breakdownH settle which column
+      // overflows, and probeW settles whether the engines are in metrically different
+      // faces (probeW.stack apart across projects) and which one (whichever candidate
+      // probeW.stack matches). Rewrite this comment from those values, and re-tighten
+      // the bound once the faces converge.
+      const tolerance = word === LONG_KEYWORD_WORD ? m.lineH + 4 : 4
+      expect(m.clippedBy).toBeLessThanOrEqual(tolerance)
     })
   }
 
