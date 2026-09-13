@@ -37,17 +37,14 @@ type Metrics = {
   // Diagnostics for the overflow bound below. A bare `clippedBy` says the panel
   // clipped but not which column, by how many lines, or in what typeface — the gap
   // that let a bound be justified by reasoning rather than measurement.
+  // Geometry behind the overflow bound below. A bare `clippedBy` says the panel
+  // clipped but not which column or by how many lines — the gap that let a bound
+  // be justified by reasoning rather than measurement.
   lineH: number // computed line-height of the meaning <p lang="en">
-  fontFamily: string // the family list it *specifies* — see probeW for what it gets
   leftH: number // height of the reading/translation column
   breakdownH: number // height of the kanji breakdown
+  meaningH: number // height of the meaning paragraph alone (leftH's variable part)
   layoutW: number // the width the page really laid out at (see useCssViewport)
-  probeW: Record<string, number> // typeface fingerprint — see the probe in lookUp
-  probeFont: string // the canvas font spec that produced probeW.stack
-  meaningH: number // height of the meaning paragraph alone
-  // TEMPORARY (remove once read): the meaning paragraph's height with one
-  // contributing feature disabled at a time, to attribute the extra WebKit line.
-  attribution: Record<string, number>
 }
 
 /**
@@ -113,74 +110,9 @@ async function lookUp(page: Page, word: string, expectedCells: number): Promise<
     // The reading/translation column is the breakdown's sibling in the lookup row.
     const left = breakdown.previousElementSibling as HTMLElement
     const cells = [...breakdown.children] as HTMLElement[]
-    // The meaning paragraph: the element whose wrapping sets that column's height,
-    // and the only text in the panel with no declared font-family of its own.
+    // The meaning paragraph: the element whose wrapping sets that column's height.
     const meaning = left.querySelector('p[lang="en"]') as HTMLElement
     const meaningStyle = getComputedStyle(meaning)
-
-    // Which typeface is this paragraph actually in?
-    //
-    // Not a question getComputedStyle can answer: font-family computes to the
-    // author's list, so every engine echoes back the same 'ui-sans-serif,
-    // system-ui, sans-serif, ...' regardless of the face it picked. Measured
-    // instead — one probe string through a canvas under the paragraph's own font
-    // spec, then under named candidates. Widths that match mean faces that are
-    // metrically the same, which is the only sense in which "same typeface"
-    // matters to a layout bound. Canvas because it needs no layout and parses
-    // the spec identically across engines; probeFont echoes the spec back so a
-    // rejected one shows up as itself rather than as a bogus width.
-    //
-    // The named candidates only discriminate where those faces are installed — on the
-    // Linux runner, which is the only place these numbers are authoritative. On a dev
-    // machine without them they collapse onto one fallback width, which is a null
-    // result rather than a match.
-    const probe = 'cafeteria; dining commons'
-    const ctx = document.createElement('canvas').getContext('2d')!
-    const widthUnder = (family: string) => {
-      ctx.font = `${meaningStyle.fontSize} ${family}`
-      return Math.round(ctx.measureText(probe).width * 100) / 100
-    }
-    const candidates: [string, string][] = [
-      ['stack', meaningStyle.fontFamily],
-      ['dejavu', '"DejaVu Sans"'],
-      ['liberation', '"Liberation Sans"'],
-      ['arimo', 'Arimo'],
-      ['generic', 'sans-serif'],
-    ]
-    const probeW: Record<string, number> = {}
-    for (const [label, family] of candidates) probeW[label] = widthUnder(family)
-    ctx.font = `${meaningStyle.fontSize} ${meaningStyle.fontFamily}`
-    const probeFont = ctx.font
-
-    // TEMPORARY — attribution probe. The first run established that the engines
-    // agree on face, size, line-height and column width, and still disagree by one
-    // line: so the difference is in *line breaking*, and these are the two features
-    // that decide where this paragraph breaks. Toggle each, remeasure, restore.
-    // Whichever toggle collapses the height is the mechanism; asserting one without
-    // this is precisely the move that produced the bound being fixed here.
-    const pill = meaning.querySelector('span') as HTMLElement | null
-    const measureWith = (mutate: () => void, restore: () => void) => {
-      mutate()
-      // Reading the rect forces the reflow, so no explicit flush is needed.
-      const h = meaning.getBoundingClientRect().height
-      restore()
-      return Math.round(h * 100) / 100
-    }
-    const attribution: Record<string, number> = {
-      asIs: Math.round(meaning.getBoundingClientRect().height * 100) / 100,
-      noHyphens: measureWith(
-        () => (meaning.style.hyphens = 'none'),
-        () => meaning.style.removeProperty('hyphens'),
-      ),
-      noBreakWords: measureWith(
-        () => (meaning.style.overflowWrap = 'normal'),
-        () => meaning.style.removeProperty('overflow-wrap'),
-      ),
-      noPill: measureWith(
-        () => pill && (pill.style.display = 'none'),
-        () => pill && pill.style.removeProperty('display'),
-      ),
-    }
 
     return {
       panelW: panel.clientWidth,
@@ -192,14 +124,10 @@ async function lookUp(page: Page, word: string, expectedCells: number): Promise<
       cellHeights: cells.map((c) => c.getBoundingClientRect().height),
       charX: Math.round((breakdown.querySelector('span[lang="ja"]') as HTMLElement).getBoundingClientRect().x),
       lineH: parseFloat(meaningStyle.lineHeight),
-      fontFamily: meaningStyle.fontFamily,
       leftH: left.getBoundingClientRect().height,
       breakdownH: breakdown.getBoundingClientRect().height,
-      layoutW: document.documentElement.getBoundingClientRect().width,
-      probeW,
-      probeFont,
       meaningH: Math.round(meaning.getBoundingClientRect().height * 100) / 100,
-      attribution,
+      layoutW: document.documentElement.getBoundingClientRect().width,
     }
   })
 }
@@ -261,28 +189,36 @@ test.describe('InfoPanel layout — mobile', () => {
       await openReader(page, 'large', PHONE)
       const m = await lookUp(page, word, word === LONG_KEYWORD_WORD ? LONG_KEYWORD_CELLS : THREE_KANJI_CELLS)
 
-      // One self-identifying line per test, on passing runs as well as failing ones,
-      // so the numbers behind the bound below are on the record for every engine.
-      // The prefix and project name are load-bearing, not decoration: the CI reporter
-      // is 'dot', which echoes stdout with no test or project attribution, and four
-      // projects run fully parallel with up to three attempts each. Kept in place
-      // rather than removed once read — it is the only thing that makes the tolerance
-      // granted below visible as it drifts.
+      // Per-engine numbers on the record for every run, passing ones included, so
+      // the tolerance granted below stays visible as it drifts — and so the trigger
+      // for taking it back is observable rather than remembered. The prefix and the
+      // project name are load-bearing, not decoration: the CI reporter is 'dot',
+      // which echoes stdout with no test or project attribution, and four projects
+      // run fully parallel with up to three attempts each.
       console.log(`[panel-metrics] ${JSON.stringify({ project: test.info().project.name, word, ...m })}`)
 
-      // 高校生 fits with nothing to spare on every engine. 食堂's meaning wraps onto one
-      // more line on WebKit than on Chromium, so it is allowed exactly one wrapped
-      // line — the smallest non-zero overflow text can produce, where two would mean
-      // the layout genuinely regressed. Quantised as a line rather than a pixel count
-      // because the number is typeface-driven and this app declares no font-family for
-      // Latin text, so an ubuntu-latest font change can move any constant.
+      // 食堂 is allowed one wrapped line on top of the panel; 高校生 is not.
       //
-      // PROVISIONAL: that 食堂 is one line taller on WebKit is arithmetic that fits
-      // the observed 33px, not yet a measurement. leftH/breakdownH settle which column
-      // overflows, and probeW settles whether the engines are in metrically different
-      // faces (probeW.stack apart across projects) and which one (whichever candidate
-      // probeW.stack matches). Rewrite this comment from those values, and re-tighten
-      // the bound once the faces converge.
+      // Measured on CI, not reasoned: the engines agree on everything that feeds
+      // this layout — same DejaVu Sans metrics, same 27.88px font-size, same 34.85px
+      // line-height, same 197.00px column — and still disagree by exactly one line.
+      // The cause is `hyphens-auto` on the meaning paragraph. Chromium and Firefox
+      // hyphenate and fit the translation in two lines; WebKit and Mobile Safari do
+      // not hyphenate at all on the Linux runner, so they need three. Disabling
+      // hyphens takes Chromium's paragraph from 69.69 to 104.53 — WebKit's number
+      // exactly — while disabling the part-of-speech pill or overflow-wrap moves
+      // nothing on any engine. One line at 34.85px over a ~137px budget is the 33px.
+      //
+      // So this is a browser capability difference, not a bug in the layout and not
+      // a font-stack problem: nothing the app declares can converge it, which is why
+      // the tolerance is a *line* rather than a pixel constant and why it is still
+      // here. If WebKit ever gains hyphenation, its meaningH drops to ~69.7 and this
+      // can go back to `<= 4` for both words — that is the trigger to watch for.
+      //
+      // The cost is real and worth stating: at lineH + 4 a genuine one-line
+      // regression on Chromium or Firefox would pass here unnoticed. No engine-free
+      // bound avoids it, since the assertion has to admit the loosest engine. The
+      // logged meaningH above is what makes that visible if it happens.
       const tolerance = word === LONG_KEYWORD_WORD ? m.lineH + 4 : 4
       expect(m.clippedBy).toBeLessThanOrEqual(tolerance)
     })
