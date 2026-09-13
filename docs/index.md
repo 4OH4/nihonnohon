@@ -65,7 +65,7 @@ scan_level: deep
 |----------|-------------|
 | [../README.md](../README.md) | One-line project description |
 | [../CONTRIBUTING.md](../CONTRIBUTING.md) | Contributor guide (code locations, conventions) |
-| [design-infopanel.md](./design-infopanel.md) | InfoPanel layout contract, the WebKit hyphenation divergence, and font handling |
+| [design-infopanel.md](./design-infopanel.md) | InfoPanel layout contract, the WebKit hyphenation divergence, gloss line breaking, and font handling |
 | [adr/001-monorepo-turborepo.md](./adr/001-monorepo-turborepo.md) | Why Turborepo + pnpm workspaces |
 | [adr/002-json-schema-over-zod.md](./adr/002-json-schema-over-zod.md) | Why JSON Schema over Zod |
 | [adr/003-story-generator-out-of-scope.md](./adr/003-story-generator-out-of-scope.md) | Story generator scope |

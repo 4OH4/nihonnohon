@@ -12,6 +12,7 @@ component. Where the two disagree, the divergences are listed at the end.
 Source: [`InfoPanel.tsx`](../apps/web/src/components/InfoPanel.tsx) ·
 [`KanjiBreakdown.tsx`](../apps/web/src/components/KanjiBreakdown.tsx) ·
 [`textSize.ts`](../apps/web/src/utils/textSize.ts) ·
+[`slashBreaks.tsx`](../apps/web/src/lib/slashBreaks.tsx) ·
 tests in [`infopanel-layout.spec.ts`](../apps/web/e2e/infopanel-layout.spec.ts)
 
 ---
@@ -56,7 +57,9 @@ The breakdown's width is an **input, not an output of its own text**. This is th
 for [issue #19](https://github.com/4OH4/nihonnohon/issues/19): sized to content, a cell
 takes its keyword's max-content width — `"public chamber/hall"` on one unbreakable
 line — which both crowds out the translation column and stops the keyword ever
-wrapping. The cell's width came from the very text it was meant to wrap.
+wrapping. The cell's width came from the very text it was meant to wrap. That keyword now
+also carries a break opportunity at its slash (§5), but this width contract does not
+depend on it: a `<wbr>` lowers min-content width, never max-content.
 
 It is **fixed at 45%, not merely capped**, so characters keep the same screen position
 between lookups. Under a cap the column is as wide as its widest keyword, so characters
@@ -104,6 +107,9 @@ The meaning paragraph carries `hyphens-auto break-words`:
 ```tsx
 <p lang="en" className="text-paper-text hyphens-auto break-words">
 ```
+
+Its text may also contain `<wbr>` break opportunities at forward slashes — §5 covers
+how the two interact, and why `hyphens-auto` stayed.
 
 ### What was measured
 
@@ -186,7 +192,125 @@ CI run is what makes that visible if it happens.
 
 ---
 
-## 5. Fonts
+## 5. Line breaking at `/`
+
+35 of the 2140 Heisig keywords and 23 of the 1172 vocab meanings contain a forward
+slash, and every one of them is unspaced: `"public chamber/hall"`,
+`"cold (thing/people)"`, `"to cook/grill"`. Until
+[issue #27](https://github.com/4OH4/nihonnohon/issues/27) they broke in the worst
+available place.
+
+### Why CSS cannot do this
+
+`/` is **not a line-break opportunity** under any `word-break` or `overflow-wrap` value.
+And `break-words` (`overflow-wrap: break-word`) only breaks a word that *alone* overflows
+its line — so a slashed gloss stayed one unbreakable token until it overflowed by itself,
+and then broke at an arbitrary character:
+
+| | Before | After |
+|---|---|---|
+| 堂 keyword, 412px `large` | `public` / `chamber/hal` / `l` | `public` / `chamber/` / `hall` |
+| `cold (thing/people)`, 412px `large` | `cold` / `(thing/people)` | `cold (thing/` / `people)` |
+| `to cook/grill` vocab row, 330px | `to` / `cook/grill` | `to cook/` / `grill` |
+
+The only CSS that breaks at a slash is `line-break: anywhere` / `word-break: break-all`,
+which breaks *everywhere* — worse than the problem it solves. So the break opportunity
+has to go into the markup, as `<wbr>`.
+
+### The fix
+
+[`slashBreaks.tsx`](../apps/web/src/lib/slashBreaks.tsx) exports `withSlashBreaks()`,
+which splits a gloss after each qualifying slash and inserts a `<wbr>`. It is called at
+the three places a gloss is rendered: the keyword cell in `KanjiBreakdown`, the meaning
+paragraph in `InfoPanel`, and the third column of `VocabItem` — which has no break
+utilities at all, so it needs it most.
+
+A slash qualifies unless it is:
+
+| Skipped | Because | Real examples |
+|---|---|---|
+| flanked by a digit on either side | a fraction reads as one token | `1/10 bu`, `8 1/3lbs`, `shaku/100`, `division (x/3)` |
+| adjacent to whitespace | there is already a break there | `to take (amount of time / money)` |
+| the first or last character | nothing to keep it with | — |
+
+The digit guard is currently **defensive rather than reachable**: those fractions live in
+`kanji-data.json`'s `m[]`, and `KanjiBreakdown` only falls back to `m[0]` when `kw` is
+null, which no entry is today. But `kw` is `string | null` and the file is regenerated
+from kanjiapi.dev.
+
+When nothing qualifies, the function returns **the input string unchanged**. That
+identity path is what keeps the ~98% of glosses without a slash rendering an identical
+DOM, and so what keeps the numbers in §3–§4 and the pixel baselines from moving.
+
+### It changes where text breaks, not the layout
+
+Measured before and after, with the change stashed to get the baseline:
+
+| Compared | Fields | Result |
+|---|---|---|
+| Chromium at 412 / 330 / 1280 | `clippedBy`, `charX`, `breakdownPct`, `cellHeights`, meaning line count and height | identical |
+| WebKit + Mobile Safari, layout spec | all eight `[panel-metrics]` geometry fields | **zero** differing |
+| Vocab row at 412 / 330 | grid track widths, row height, gloss line count | identical |
+
+This is worth measuring rather than assuming, because `<wbr>` lowers a string's
+**min-content** width — its longest unbreakable chunk gets shorter — and two things here
+floor a width on min-content: `VocabItem`'s `grid-cols-[1fr_1fr_1fr]` tracks, and the
+content-sized breakdown cells at `lg`. Neither moved. `charX` held in particular, so the
+issue-#19 guarantee in §2 is intact — as it should be, since `<wbr>` is a *soft* wrap
+opportunity and does not touch **max-content** width, which is the quantity that drove
+the original ~80px character jump.
+
+### Interaction with hyphenation (§4)
+
+`hyphens-auto` **stays.** Line breaking is greedy — it takes the last opportunity that
+fits — so a width that fits `thing/peo-` but not `thing/people` can still hyphenate
+instead of breaking at the slash. What this delivers is "the slash is a legal break,
+taken whenever the text after it does not fit", not a guarantee that it always wins.
+
+That covers the reported case and, notably, **every WebKit and Mobile Safari render**:
+those engines cannot hyphenate on the runner (§4), so their only previous option was the
+mid-word emergency break and now they always take the slash. They are the engines this
+helps most — the one place where the §4 divergence works in our favour.
+
+Two places the `<wbr>` is deliberately inert, both confirmed by measurement rather than
+inferred:
+
+- **330px at `large`** — measured: the break is *not* taken, and the cell still wraps to
+  three lines. The cell is too narrow for `public chamber/` itself, and a break
+  opportunity cannot help where the segment before it does not fit either.
+- **Desktop** — the keyword fits on one line, so the node is present and unused.
+
+### What not to do
+
+- **Don't remove `hyphens-auto` to make the slash strictly preferred.** It would take
+  Chromium and Firefox to three lines on *non-slashed* glosses — precisely the regression
+  §4 measured (69.69 → 104.53) — to win a stylistic preference in a narrow band of widths.
+- **Don't write the digit guard as `/(?<!\d)\/(?!\d)/`.** A lookbehind literal is a
+  **parse-time** `SyntaxError` on Safari below 16.4 — a blank page, not a degraded one —
+  esbuild cannot transpile it, and Vite's default build target includes safari14.
+  Playwright's WebKit is new enough to pass CI, so this would surface only on real older
+  iOS devices. Use a character scan.
+- **Don't wrap the segments in an element.** They must stay *direct* text children of the
+  caller's span or paragraph: Testing Library's `getNodeText` joins only direct child text
+  nodes, so nesting one keeps the page looking right while silently breaking every
+  `getByText()` on a slashed gloss.
+- **Don't substitute a zero-width space.** `<wbr>` contributes no characters to
+  `textContent`; `\u200B` would enter the clipboard, find-in-page and every text
+  assertion.
+
+### Coverage
+
+No e2e invariant was added, deliberately: there is no geometry change to guard, and the
+layout spec's existing words already render a slashed keyword (食堂 → 堂). The behaviour
+is pinned by unit tests instead —
+[`slashBreaks.test.tsx`](../apps/web/src/__tests__/slashBreaks.test.tsx) for the
+qualifying rules and the identity path, plus cases in `KanjiBreakdown.test.tsx` and
+`InfoPanel.test.tsx` covering the `getNodeText` constraint above and the POS pill still
+trailing the break nodes.
+
+---
+
+## 6. Fonts
 
 ### Japanese — Noto Sans JP, self-hosted
 
@@ -244,7 +368,7 @@ snapshot captures also await `document.fonts.ready`, so a capture cannot land mi
 
 ---
 
-## 6. The tested invariants
+## 7. The tested invariants
 
 From [`infopanel-layout.spec.ts`](../apps/web/e2e/infopanel-layout.spec.ts), measured at
 412×915 unless noted. These encode the contract above; read them before changing the
@@ -273,18 +397,18 @@ Two testing notes that cost real time to learn:
 
 ---
 
-## 7. Known divergences from the UX specification
+## 8. Known divergences from the UX specification
 
 | Spec says | Implementation | Why |
 |---|---|---|
-| UI text in `Inter` | No Latin family declared at all | Never implemented; see §5 |
+| UI text in `Inter` | No Latin family declared at all | Never implemented; see §6 |
 | InfoPanel height "fixed with `min-h`" | Hard `h-[5.5em]` | `min-h` lets the panel grow and push the story text |
 | Height "approx 110–140px on mobile" | 153px at `large` | Height is `em`-relative, so it scales with text size |
 | Lookup anatomy: word → translation → reading → breakdown | word → reading → translation | Reading sits with the word; both are `font-ja` |
 
 ---
 
-## 8. Changing this safely
+## 9. Changing this safely
 
 1. **Measure at 412px**, and at the `large` text size. Desktop tells you nothing here.
 2. **Verify in a real browser** (`pnpm dev`) for anything touching CSS visibility,
@@ -295,3 +419,7 @@ Two testing notes that cost real time to learn:
 4. **Don't write a justification into a comment until it has been measured** on the
    platform the assertion runs on. A confidently-worded comment asserting an unmeasured
    premise is what put the 33px overflow into CI for five weeks.
+5. **Remember that a gloss is not a single text node.** Any meaning or keyword may be
+   split around `<wbr>` elements (§5). `textContent` and `getByText()` are unaffected,
+   but `firstChild.nodeValue`, `childNodes[0]`, and anything asserting on the element's
+   child shape will see the break nodes.
