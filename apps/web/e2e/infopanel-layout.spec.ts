@@ -44,6 +44,10 @@ type Metrics = {
   layoutW: number // the width the page really laid out at (see useCssViewport)
   probeW: Record<string, number> // typeface fingerprint — see the probe in lookUp
   probeFont: string // the canvas font spec that produced probeW.stack
+  meaningH: number // height of the meaning paragraph alone
+  // TEMPORARY (remove once read): the meaning paragraph's height with one
+  // contributing feature disabled at a time, to attribute the extra WebKit line.
+  attribution: Record<string, number>
 }
 
 /**
@@ -148,6 +152,36 @@ async function lookUp(page: Page, word: string, expectedCells: number): Promise<
     ctx.font = `${meaningStyle.fontSize} ${meaningStyle.fontFamily}`
     const probeFont = ctx.font
 
+    // TEMPORARY — attribution probe. The first run established that the engines
+    // agree on face, size, line-height and column width, and still disagree by one
+    // line: so the difference is in *line breaking*, and these are the two features
+    // that decide where this paragraph breaks. Toggle each, remeasure, restore.
+    // Whichever toggle collapses the height is the mechanism; asserting one without
+    // this is precisely the move that produced the bound being fixed here.
+    const pill = meaning.querySelector('span') as HTMLElement | null
+    const measureWith = (mutate: () => void, restore: () => void) => {
+      mutate()
+      // Reading the rect forces the reflow, so no explicit flush is needed.
+      const h = meaning.getBoundingClientRect().height
+      restore()
+      return Math.round(h * 100) / 100
+    }
+    const attribution: Record<string, number> = {
+      asIs: Math.round(meaning.getBoundingClientRect().height * 100) / 100,
+      noHyphens: measureWith(
+        () => (meaning.style.hyphens = 'none'),
+        () => meaning.style.removeProperty('hyphens'),
+      ),
+      noBreakWords: measureWith(
+        () => (meaning.style.overflowWrap = 'normal'),
+        () => meaning.style.removeProperty('overflow-wrap'),
+      ),
+      noPill: measureWith(
+        () => pill && (pill.style.display = 'none'),
+        () => pill && pill.style.removeProperty('display'),
+      ),
+    }
+
     return {
       panelW: panel.clientWidth,
       panelH: panel.clientHeight,
@@ -164,6 +198,8 @@ async function lookUp(page: Page, word: string, expectedCells: number): Promise<
       layoutW: document.documentElement.getBoundingClientRect().width,
       probeW,
       probeFont,
+      meaningH: Math.round(meaning.getBoundingClientRect().height * 100) / 100,
+      attribution,
     }
   })
 }
