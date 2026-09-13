@@ -65,6 +65,7 @@ scan_level: deep
 |----------|-------------|
 | [../README.md](../README.md) | One-line project description |
 | [../CONTRIBUTING.md](../CONTRIBUTING.md) | Contributor guide (code locations, conventions) |
+| [design-infopanel.md](./design-infopanel.md) | InfoPanel layout contract, the WebKit hyphenation divergence, and font handling |
 | [adr/001-monorepo-turborepo.md](./adr/001-monorepo-turborepo.md) | Why Turborepo + pnpm workspaces |
 | [adr/002-json-schema-over-zod.md](./adr/002-json-schema-over-zod.md) | Why JSON Schema over Zod |
 | [adr/003-story-generator-out-of-scope.md](./adr/003-story-generator-out-of-scope.md) | Story generator scope |
@@ -87,6 +88,9 @@ See [development-guide.md](./development-guide.md) for the full setup, testing, 
 ## For AI Agents
 
 - Read [architecture-web.md](./architecture-web.md) before implementing any web feature.
+- Read [design-infopanel.md](./design-infopanel.md) before changing the reader's lookup panel,
+  its text sizing, or anything font-related — it holds measured browser behaviour that is not
+  recoverable by reading the components.
 - Read [data-models.md](./data-models.md) before touching story format or types.
 - Read [integration-architecture.md](./integration-architecture.md) before adding cross-package dependencies.
 - Read the project context at `_bmad-output/project-context.md` for coding rules and anti-patterns.
