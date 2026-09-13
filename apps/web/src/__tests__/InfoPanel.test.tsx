@@ -44,12 +44,21 @@ const hiraganaEntry: VocabEntry = {
   lesson: 'Genki I Ch.3',
 }
 
+// The gloss from issue #27's screenshot — a slash with no spaces around it.
+const slashMeaningEntry: VocabEntry = {
+  id: 531,
+  word: '冷たい',
+  reading: 'つめたい',
+  meaning: 'cold (thing/people)',
+  lesson: 'Genki I Ch.10',
+}
+
 const kanjiData: Record<string, KanjiEntry> = {
   '食': { char: '食', kw: 'eat', m: ['eat', 'food'], onY: ['ショク'], kunY: ['た.べる'] },
 }
 
 const DEFAULT_PREFS = {
-  rubyVisible: true,
+  rubyMode: 'all' as const,
   spacingVisible: false,
   transVisible: false,
   textSize: 'medium' as const,
@@ -162,6 +171,40 @@ describe('InfoPanel', () => {
     const pos = screen.getByText('n')
     // POS follows the meaning in document order.
     expect(meaning.compareDocumentPosition(pos) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
+  // The meaning can wrap at a "/" — CSS gives no way to break there, so the gloss
+  // used to break mid-word instead. Issue #27.
+  it('found state gives a slashed meaning a break opportunity at the slash', () => {
+    act(() => {
+      useLookupStore.getState().lookup('冷たい', slashMeaningEntry, 's1')
+    })
+    const { container } = render(<InfoPanel story={storyFixture} />)
+    expect(container.querySelectorAll('wbr')).toHaveLength(1)
+    // The <wbr> adds no characters, so the gloss is still matched by its full text.
+    expect(screen.getByText('cold (thing/people)')).toBeInTheDocument()
+  })
+
+  it('found state leaves a meaning with no slash untouched', () => {
+    act(() => {
+      useLookupStore.getState().lookup('食べる', vocabEntry, 's1')
+    })
+    const { container } = render(<InfoPanel story={storyFixture} />)
+    expect(container.querySelector('wbr')).toBeNull()
+  })
+
+  // The POS pill is inline content trailing the meaning text, so it has to stay after the
+  // break nodes rather than being displaced by them.
+  it('found state keeps the POS tag after a slashed meaning', () => {
+    act(() => {
+      useLookupStore.getState().lookup('冷たい', slashMeaningEntry, 's1', 'adj')
+    })
+    render(<InfoPanel story={storyFixture} />)
+    const meaning = screen.getByText('cold (thing/people)')
+    // text, <wbr>, text, then the pill last — the break nodes must not displace it.
+    const shape = [...meaning.childNodes].map((n) => (n.nodeType === Node.TEXT_NODE ? 'text' : n.nodeName.toLowerCase()))
+    expect(shape).toEqual(['text', 'wbr', 'text', 'span'])
+    expect(meaning.lastElementChild?.textContent).toBe('adj')
   })
 
   it('not-found state shows muted "No entry for" message', () => {

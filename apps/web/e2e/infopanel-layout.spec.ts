@@ -83,7 +83,7 @@ async function openReader(page: Page, textSize: 'medium' | 'large', viewport: { 
     localStorage.setItem(
       'nihonnohon-preferences',
       JSON.stringify({
-        state: { rubyVisible: true, spacingVisible: false, transVisible: false, textSize: size, activeTab: 'story' },
+        state: { rubyMode: 'all', spacingVisible: false, transVisible: false, textSize: size, activeTab: 'story' },
         version: 0,
       }),
     )
@@ -101,7 +101,15 @@ async function openReader(page: Page, textSize: 'medium' | 'large', viewport: { 
  */
 async function lookUp(page: Page, word: string, expectedCells: number): Promise<Metrics> {
   await page.getByRole('button', { name: word }).first().click()
-  await expect(page.getByLabel('Kanji breakdown').locator('> div')).toHaveCount(expectedCells)
+  // Longer than the 5s default because this waits on a real network fetch, and that
+  // fetch got slower when the Japanese webfont stopped coming from Google's CDN: the
+  // ~1MB face now shares an origin and a connection pool with kanji-data.json (529KB)
+  // and vocab.json (167KB), served by one Vite process on a CI runner, where before
+  // it arrived in parallel from somewhere else. This made the wait flaky on Firefox.
+  // The assertion is unchanged — it still fails if the breakdown never populates.
+  await expect(page.getByLabel('Kanji breakdown').locator('> div')).toHaveCount(expectedCells, {
+    timeout: 15_000,
+  })
 
   return page.evaluate(() => {
     const panel = document.querySelector('[aria-label="Word lookup panel"]') as HTMLElement

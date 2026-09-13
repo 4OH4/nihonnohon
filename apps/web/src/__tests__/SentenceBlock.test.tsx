@@ -32,7 +32,7 @@ const sentenceNoTranslation: SentenceModel = {
 }
 
 const DEFAULT_PREFS = {
-  rubyVisible: true,
+  rubyMode: 'all' as const,
   spacingVisible: false,
   transVisible: false,
   textSize: 'medium' as const,

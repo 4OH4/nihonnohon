@@ -183,7 +183,7 @@ const kanjiData: Record<string, KanjiEntry> = {
 }
 
 const DEFAULT_PREFS = {
-  rubyVisible: true,
+  rubyMode: 'all' as const,
   spacingVisible: false,
   transVisible: false,
   textSize: 'medium' as const,
@@ -307,10 +307,13 @@ describe('ReaderRoute', () => {
     expect(screen.getByText('to eat')).toBeInTheDocument()
   })
 
-  it('Ruby toggle (in settings): rt elements use invisible class when off, not display:none', () => {
+  it('Ruby cycled to off (in settings): rt elements use invisible class, not display:none', () => {
     renderRoute()
     fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
-    fireEvent.click(screen.getByRole('button', { name: 'Ruby' }))
+    // all -> supplement -> none
+    fireEvent.click(screen.getByRole('button', { name: /^Ruby:/ }))
+    fireEvent.click(screen.getByRole('button', { name: /^Ruby:/ }))
+    expect(usePreferenceStore.getState().rubyMode).toBe('none')
 
     const rtElements = document.querySelectorAll('rt')
     expect(rtElements.length).toBeGreaterThan(0)
@@ -351,12 +354,34 @@ describe('ReaderRoute', () => {
     expect(screen.queryByText('to eat')).not.toBeInTheDocument()
   })
 
+  it('Ruby cycled to supplement: supplement words keep ruby, Genki words lose it', () => {
+    const storyWithSupplement: StoryModel = {
+      ...baseStory,
+      // s1 is 食べる / は / 楽しい with vocabKeys [1, null, null], so key 1 makes 食べる a
+      // supplement word while 楽しい stays an ordinary annotated Genki word.
+      vocabSupplement: [
+        { key: 1, word: '食べる', hiragana: 'たべる', translation: 'to eat (supplement)' },
+      ],
+    }
+    renderRoute(storyWithSupplement)
+    fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
+    fireEvent.click(screen.getByRole('button', { name: /^Ruby:/ }))
+    expect(usePreferenceStore.getState().rubyMode).toBe('supplement')
+
+    const supplementRt = screen.getByRole('button', { name: '食べる' }).querySelector('rt')!
+    const genkiRt = screen.getByRole('button', { name: '楽しい' }).querySelector('rt')!
+    expect(supplementRt.classList.contains('invisible')).toBe(false)
+    expect(genkiRt.classList.contains('invisible')).toBe(true)
+    expect(genkiRt.style.display).not.toBe('none')
+  })
+
   it('SettingsMenu opens with spacing, ruby, trans, and text size controls', () => {
     renderRoute()
     fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
     expect(screen.getByText('Spaces')).toBeInTheDocument()
     expect(screen.getByText('Ruby')).toBeInTheDocument()
     expect(screen.getByText('Trans.')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /^Ruby:/ })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Smaller text' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Larger text' })).toBeInTheDocument()
   })

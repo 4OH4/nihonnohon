@@ -71,6 +71,23 @@ export function CreditsRoute() {
           </p>
         </section>
 
+        <section className="mb-8">
+          <h2 className="text-paper-text font-semibold mb-2">Typeface</h2>
+          <p className="text-muted text-sm leading-relaxed">
+            Japanese text is set in Noto Sans JP, &copy; Google Inc., released under the{' '}
+            <a
+              href="https://openfontlicense.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              SIL Open Font License 1.1
+            </a>
+            . The font files are served from this site rather than a third-party CDN, so
+            the app works offline and no request leaves for a font host while you read.
+          </p>
+        </section>
+
         <Link to="/" className="text-sm text-muted underline">
           ← Back to library
         </Link>
