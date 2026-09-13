@@ -130,7 +130,7 @@ export class LoaderError extends Error {
 - LookupStore interface: `{ lookupState: LookupState; selectedSentenceId: string | null; lookup(word, entry|null, sentenceId): void; selectSentence(sentenceId): void; reset(): void; _reset(): void }`
 - Word tap → `lookup(word, entry, sentenceId)` updates both lookupState AND selectedSentenceId
 - Sentence container tap → `selectSentence(sentenceId)` updates selectedSentenceId, resets lookupState to idle
-- preferenceStore persisted keys: rubyVisible, spacingVisible, transVisible, textSize ('small'|'medium'|'large'), activeTab ('story'|'vocabulary'|'grammar')
+- preferenceStore persisted keys: rubyMode ('all'|'supplement'|'none', default 'supplement'), spacingVisible, transVisible, textSize ('small'|'medium'|'large'), activeTab ('story'|'vocabulary'|'grammar')
 - Selector pattern: `useShallow` for object selections; no useShallow needed for primitive selections
 - Store actions: synchronous state updates ONLY; all async data fetching in React Router loaders (never useEffect, never store actions)
 
