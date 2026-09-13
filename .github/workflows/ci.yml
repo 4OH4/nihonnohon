@@ -2,8 +2,10 @@ name: CI
 
 on:
   pull_request:
+  # dev as well as main: without it dev is only tested while it happens to be a
+  # PR head, so it sits untested between a merge and the next dev -> main PR.
   push:
-    branches: [main]
+    branches: [main, dev]
 
 jobs:
   ci:
@@ -11,6 +13,11 @@ jobs:
 
     permissions:
       contents: write
+
+    env:
+      # Written by the auto-commit below and read back by its own loop guard, so
+      # the two cannot drift apart.
+      SNAPSHOT_COMMIT_SUBJECT: 'chore(e2e): update playwright linux snapshots'
 
     steps:
       - name: Checkout
@@ -59,39 +66,82 @@ jobs:
         run: pnpm run test:e2e
         continue-on-error: true
 
-      - name: Update stale snapshots
+      # Only toMatchSnapshot writes a *-actual.png, and it writes one whenever an
+      # image comparison fails or has no baseline yet. So this tells "baselines
+      # drifted" apart from "a test genuinely broke" without re-running anything:
+      # previously any E2E failure triggered a full ~2.5 min regeneration run that
+      # then found nothing to commit — as happened on every run of this suite's
+      # current 33px failure.
+      - name: Detect snapshot mismatches
+        id: mismatch
         if: steps.e2e.outcome == 'failure'
+        run: |
+          if [ -n "$(find apps/web/test-results -name '*-actual.png' -print -quit 2>/dev/null)" ]; then
+            echo "Snapshot mismatch detected — regenerating baselines."
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No snapshot mismatch — E2E failed for some other reason."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # The auto-commit below no longer carries [skip ci], so it triggers a fresh
+      # run — which must not regenerate again, or a baseline that never stabilises
+      # loops forever. One regeneration pass is all the automation gets; a second
+      # consecutive snapshot failure is a real problem and should go red.
+      - name: Check for a prior auto-commit at HEAD
+        id: head_check
+        if: steps.mismatch.outputs.found == 'true'
+        run: |
+          if [ "$(git log -1 --pretty=%s)" = "$SNAPSHOT_COMMIT_SUBJECT" ]; then
+            echo "HEAD is already a snapshot auto-commit — not regenerating twice."
+            echo "retry=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "retry=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Update stale snapshots
+        if: steps.head_check.outputs.retry == 'true'
         run: pnpm run test:e2e -- --update-snapshots
         continue-on-error: true
 
       - name: Commit updated snapshots
         id: commit_snapshots
-        if: steps.e2e.outcome == 'failure'
+        if: steps.head_check.outputs.retry == 'true'
+        env:
+          HAS_PUSH_TOKEN: ${{ secrets.SNAPSHOT_PUSH_TOKEN != '' }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add apps/web/e2e/accessibility.spec.ts-snapshots/
           if git diff --cached --quiet; then
-            echo "No snapshot changes — E2E failures are not snapshot mismatches"
+            echo "Regeneration produced no changes."
             echo "updated=false" >> "$GITHUB_OUTPUT"
-          else
-            git commit -m "chore(e2e): update playwright linux snapshots [skip ci]"
-            git push
-            echo "updated=true" >> "$GITHUB_OUTPUT"
-            echo "Snapshots updated and pushed."
+            exit 0
           fi
+          # Without the PAT the checkout token is GITHUB_TOKEN, which is read-only
+          # on a fork PR. Pushing would fail the job on something a contributor
+          # cannot fix and cannot even see the cause of, so say what to do instead
+          # and let the build fail below on the real reason: stale baselines.
+          if [ "$HAS_PUSH_TOKEN" != "true" ]; then
+            echo "::warning::Snapshot baselines are stale, but no push token is available (fork PR). Regenerate locally with 'pnpm test:e2e -- --update-snapshots' and commit the result."
+            echo "updated=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "$SNAPSHOT_COMMIT_SUBJECT"
+          git push
+          echo "updated=true" >> "$GITHUB_OUTPUT"
+          echo "::notice::Snapshots regenerated and pushed. The run triggered by that push is the authoritative check for this PR."
 
-      # Re-run against the freshly regenerated snapshots. If the original
-      # failure was pure snapshot drift, this passes and the job goes green in
-      # a single run (the [skip ci] commit above carries the fix forward). A
-      # genuine test regression fails here and turns the build red.
-      - name: Verify updated snapshots pass
-        if: steps.e2e.outcome == 'failure' && steps.commit_snapshots.outputs.updated == 'true'
-        run: pnpm run test:e2e
-
-      # Only reached when E2E failed but no snapshot update resolved it —
-      # i.e. a real failure that regeneration can't fix.
-      - name: Fail build if E2E failed for non-snapshot reasons
+      # Reached whenever E2E failed and the automation did not resolve it: a real
+      # regression, a fork PR with stale baselines, or a second consecutive
+      # snapshot failure. All three belong red.
+      #
+      # When the push above did happen this step is skipped and the job ends green,
+      # because the pushed commit fires its own run against the SHA that actually
+      # gets merged. That run — not this one — is the check to trust. Re-running the
+      # suite here to prove the same thing twice is what the old "Verify updated
+      # snapshots pass" step did, and it reported against a SHA nobody merges.
+      - name: Fail build if E2E failed and was not resolved
         if: steps.e2e.outcome == 'failure' && steps.commit_snapshots.outputs.updated != 'true'
         run: |
           echo "E2E failed and was not resolved by a snapshot update."
