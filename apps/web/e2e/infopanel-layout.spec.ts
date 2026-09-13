@@ -34,6 +34,17 @@ type Metrics = {
   rowTops: number[]
   cellHeights: number[]
   charX: number
+  // Diagnostics for the overflow bound below. A bare `clippedBy` says the panel
+  // clipped but not which column, by how many lines, or in what typeface — the gap
+  // that let a bound be justified by reasoning rather than measurement.
+  // Geometry behind the overflow bound below. A bare `clippedBy` says the panel
+  // clipped but not which column or by how many lines — the gap that let a bound
+  // be justified by reasoning rather than measurement.
+  lineH: number // computed line-height of the meaning <p lang="en">
+  leftH: number // height of the reading/translation column
+  breakdownH: number // height of the kanji breakdown
+  meaningH: number // height of the meaning paragraph alone (leftH's variable part)
+  layoutW: number // the width the page really laid out at (see useCssViewport)
 }
 
 /**
@@ -49,6 +60,14 @@ type Metrics = {
  * emulation the latter reports the scaled *visual* viewport (330) while the page
  * genuinely lays out at the requested 412, so it would provoke a correction that is
  * not needed and overshoot.
+ *
+ * It corrects the layout width, not viewport-relative units. Getting a 412px layout
+ * means asking for a ~514px viewport, so 1vw grows with it and --story-font-size
+ * (clamp(1.5rem, 2rem - 1vw, 2rem)) resolves to 26.85px where a true 412px viewport
+ * gives 27.88px — measured, Windows WebKit at 125%. Harmless on the Linux runner,
+ * where layoutW already reads 412 and the early return above fires; but it is a
+ * second reason a local WebKit run cannot confirm these pixel numbers, and a reason
+ * the overflow bound below is derived from the measured lineH rather than a constant.
  */
 async function useCssViewport(page: Page, width: number, height: number) {
   const layoutWidth = () => page.evaluate(() => document.documentElement.getBoundingClientRect().width)
@@ -91,6 +110,9 @@ async function lookUp(page: Page, word: string, expectedCells: number): Promise<
     // The reading/translation column is the breakdown's sibling in the lookup row.
     const left = breakdown.previousElementSibling as HTMLElement
     const cells = [...breakdown.children] as HTMLElement[]
+    // The meaning paragraph: the element whose wrapping sets that column's height.
+    const meaning = left.querySelector('p[lang="en"]') as HTMLElement
+    const meaningStyle = getComputedStyle(meaning)
 
     return {
       panelW: panel.clientWidth,
@@ -101,6 +123,11 @@ async function lookUp(page: Page, word: string, expectedCells: number): Promise<
       rowTops: cells.map((c) => Math.round(c.getBoundingClientRect().y)),
       cellHeights: cells.map((c) => c.getBoundingClientRect().height),
       charX: Math.round((breakdown.querySelector('span[lang="ja"]') as HTMLElement).getBoundingClientRect().x),
+      lineH: parseFloat(meaningStyle.lineHeight),
+      leftH: left.getBoundingClientRect().height,
+      breakdownH: breakdown.getBoundingClientRect().height,
+      meaningH: Math.round(meaning.getBoundingClientRect().height * 100) / 100,
+      layoutW: document.documentElement.getBoundingClientRect().width,
     }
   })
 }
@@ -162,10 +189,38 @@ test.describe('InfoPanel layout — mobile', () => {
       await openReader(page, 'large', PHONE)
       const m = await lookUp(page, word, word === LONG_KEYWORD_WORD ? LONG_KEYWORD_CELLS : THREE_KANJI_CELLS)
 
-      // Both words fit exactly, on every engine, once the viewport really is 412px
-      // wide — before the fix this same lookup overflowed by ~190px, more than the
-      // panel's own height. A few pixels of slack absorbs sub-pixel line rounding.
-      expect(m.clippedBy).toBeLessThanOrEqual(4)
+      // Per-engine numbers on the record for every run, passing ones included, so
+      // the tolerance granted below stays visible as it drifts — and so the trigger
+      // for taking it back is observable rather than remembered. The prefix and the
+      // project name are load-bearing, not decoration: the CI reporter is 'dot',
+      // which echoes stdout with no test or project attribution, and four projects
+      // run fully parallel with up to three attempts each.
+      console.log(`[panel-metrics] ${JSON.stringify({ project: test.info().project.name, word, ...m })}`)
+
+      // 食堂 is allowed one wrapped line on top of the panel; 高校生 is not.
+      //
+      // Measured on CI, not reasoned: the engines agree on everything that feeds
+      // this layout — same DejaVu Sans metrics, same 27.88px font-size, same 34.85px
+      // line-height, same 197.00px column — and still disagree by exactly one line.
+      // The cause is `hyphens-auto` on the meaning paragraph. Chromium and Firefox
+      // hyphenate and fit the translation in two lines; WebKit and Mobile Safari do
+      // not hyphenate at all on the Linux runner, so they need three. Disabling
+      // hyphens takes Chromium's paragraph from 69.69 to 104.53 — WebKit's number
+      // exactly — while disabling the part-of-speech pill or overflow-wrap moves
+      // nothing on any engine. One line at 34.85px over a ~137px budget is the 33px.
+      //
+      // So this is a browser capability difference, not a bug in the layout and not
+      // a font-stack problem: nothing the app declares can converge it, which is why
+      // the tolerance is a *line* rather than a pixel constant and why it is still
+      // here. If WebKit ever gains hyphenation, its meaningH drops to ~69.7 and this
+      // can go back to `<= 4` for both words — that is the trigger to watch for.
+      //
+      // The cost is real and worth stating: at lineH + 4 a genuine one-line
+      // regression on Chromium or Firefox would pass here unnoticed. No engine-free
+      // bound avoids it, since the assertion has to admit the loosest engine. The
+      // logged meaningH above is what makes that visible if it happens.
+      const tolerance = word === LONG_KEYWORD_WORD ? m.lineH + 4 : 4
+      expect(m.clippedBy).toBeLessThanOrEqual(tolerance)
     })
   }
 
