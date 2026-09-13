@@ -76,14 +76,19 @@ export function InfoPanel({ story }: InfoPanelProps) {
       )}
 
       {lookupState.status === 'found' && (
-        // The word column sizes to its content, keeping the kanji breakdown attached
-        // beside it. On mobile the word and reading stack (narrow column → the
-        // breakdown has room to stay horizontal); on desktop they sit inline.
-        <div className="flex items-start gap-x-3">
-          {/* min-w-0 lets this column shrink (and its reading/translation wrap)
-              when the breakdown needs room, rather than growing to max-content
-              and pushing the breakdown off the clipped right edge. */}
-          <div className="flex-initial min-w-0">
+        // Word column beside the kanji breakdown. The breakdown carries its own width
+        // cap, so this column's width is simply whatever is left — see KanjiBreakdown.
+        // On mobile the word and reading stack; on desktop they sit inline.
+        //
+        // leading-tight throughout: the panel is a dense reference card in a fixed
+        // ~5em box, where the default 1.5 leading spends a third of every line on
+        // whitespace and pushes the translation out of view on mobile.
+        <div className="flex items-start gap-x-3 leading-tight">
+          {/* flex-1 (basis 0) + min-w-0: this column takes exactly what the capped
+              breakdown leaves, so it can neither inflate to its max-content width nor
+              be squeezed below its share — the two failure modes this layout has
+              alternated between. */}
+          <div className="flex-1 min-w-0">
             <div className="flex flex-col lg:flex-row lg:flex-wrap lg:items-baseline lg:gap-x-2">
               <span className="font-ja font-semibold text-paper-text whitespace-nowrap" lang="ja">{lookupState.word}</span>
               {/* Skip the reading when it's identical to the surface (a kana-only word).
@@ -103,8 +108,8 @@ export function InfoPanel({ story }: InfoPanelProps) {
               )}
             </p>
           </div>
-          {/* Kanji breakdown — beside the word column; wraps onto further rows for a
-              wide multi-kanji word, after the reading has wrapped. */}
+          {/* Kanji breakdown — beside the word column, within its own width cap so it
+              never grows into that column. */}
           <KanjiBreakdown word={lookupState.word} />
         </div>
       )}
