@@ -16,7 +16,7 @@ All React components in `apps/web/src/`. Components are `.tsx` files with named 
 |-----------|------|-------------|
 | `AppBar` | `components/AppBar.tsx` | Application header. `variant="library"` shows logo only; `variant="reader"` (default) shows "← Library" back link. |
 | `ToolBar` | `components/ToolBar.tsx` | Reader reading controls: ruby toggle, translation toggle, settings gear icon. Reads/writes `preferenceStore`. |
-| `SettingsMenu` | `components/SettingsMenu.tsx` | Radix UI Popover opened by the settings gear. Contains spacing toggle and three-button text size control (A− / A / A+). |
+| `SettingsMenu` | `components/SettingsMenu.tsx` | Radix UI Popover opened by the settings gear. Contains spacing and translation toggles, a ruby button cycling All / New / Off, and a three-button text size control (A− / A / A+). |
 
 ---
 

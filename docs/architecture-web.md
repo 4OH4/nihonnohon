@@ -94,7 +94,7 @@ Persisted key: `nihonnohon-preferences`
 
 | State | Type | Default |
 |-------|------|---------|
-| `rubyVisible` | `boolean` | `true` |
+| `rubyMode` | `'all' \| 'supplement' \| 'none'` | `'supplement'` |
 | `spacingVisible` | `boolean` | `false` |
 | `transVisible` | `boolean` | `false` |
 | `textSize` | `'small' \| 'medium' \| 'large'` | `'medium'` |
@@ -192,7 +192,7 @@ Location: `src/__tests__/`
 | `GrammarPanel.test.tsx` | Highlight + mute on sentence select |
 | `StoryCard.test.tsx` | Link, badge, description |
 | `DifficultyBadge.test.tsx` | Badge render |
-| `SettingsMenu.test.tsx` | Popover, text size, spacing |
+| `SettingsMenu.test.tsx` | Popover, text size, spacing, ruby mode cycling |
 | `LibraryRoute.test.tsx` | Filter, upload, error |
 | `ReaderRoute.test.tsx` | Story render, tab switching |
 

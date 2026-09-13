@@ -26,9 +26,15 @@ export function WordToken({ token, vocabKey, sentenceId, supplementEntry, onBefo
   const activeWord = useLookupStore((s) =>
     s.lookupState.status === 'found' ? s.lookupState.word : null
   )
-  const rubyVisible = usePreferenceStore((s) => s.rubyVisible)
+  const rubyMode = usePreferenceStore((s) => s.rubyMode)
 
   const isActive = lookupStatus === 'found' && activeWord === token.surface
+
+  // 'supplement' shows furigana only for words in the story's vocab supplement — words outside
+  // the standard Genki curriculum. supplementEntry is already resolved by SentenceBlock, so no
+  // extra data plumbing is needed. `!= null` deliberately: an omitted prop (SentenceBlock
+  // rendered without a supplementMap) must not count as a supplement hit.
+  const showRuby = rubyMode === 'all' || (rubyMode === 'supplement' && supplementEntry != null)
 
   const handleActivate = (e: React.MouseEvent | React.KeyboardEvent) => {
     // Stop propagation always — prevents SentenceBlock container from calling
@@ -52,7 +58,7 @@ export function WordToken({ token, vocabKey, sentenceId, supplementEntry, onBefo
       ? (
         <ruby key={i}>
           {group.text}
-          <rt className={cn('select-none [-webkit-touch-callout:none]', !rubyVisible && !isActive && 'invisible')}>{group.ruby}</rt>
+          <rt className={cn('select-none [-webkit-touch-callout:none]', !showRuby && !isActive && 'invisible')}>{group.ruby}</rt>
           {group.trailer}
         </ruby>
       )

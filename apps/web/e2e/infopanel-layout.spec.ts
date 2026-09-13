@@ -83,7 +83,7 @@ async function openReader(page: Page, textSize: 'medium' | 'large', viewport: { 
     localStorage.setItem(
       'nihonnohon-preferences',
       JSON.stringify({
-        state: { rubyVisible: true, spacingVisible: false, transVisible: false, textSize: size, activeTab: 'story' },
+        state: { rubyMode: 'all', spacingVisible: false, transVisible: false, textSize: size, activeTab: 'story' },
         version: 0,
       }),
     )

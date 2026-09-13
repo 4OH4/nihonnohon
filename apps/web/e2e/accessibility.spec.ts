@@ -58,6 +58,26 @@ test.describe('Accessibility — axe-core WCAG 2.1 AA', () => {
  * nothing downstream can tell. Self-hosting the face made that unlikely; waiting
  * makes it impossible.
  */
+/**
+ * Seeds the ruby preference before first paint.
+ *
+ * These baselines used to rely on the store default, which silently made `ruby-on.png` a
+ * picture of whatever the default happened to be — so changing the default (to 'supplement',
+ * issue #33) would have quietly repointed the baseline instead of failing. Seeding pins each
+ * snapshot to the mode it is named for.
+ */
+async function seedRubyMode(page: Page, rubyMode: 'all' | 'supplement' | 'none') {
+  await page.addInitScript((mode) => {
+    localStorage.setItem(
+      'nihonnohon-preferences',
+      JSON.stringify({
+        state: { rubyMode: mode, spacingVisible: false, transVisible: false, textSize: 'medium', activeTab: 'story' },
+        version: 0,
+      }),
+    )
+  }, rubyMode)
+}
+
 async function snapshot(page: Page, target: Locator, name: string) {
   await page.evaluate(() => document.fonts.ready)
   expect(await target.screenshot({ animations: 'disabled' })).toMatchSnapshot(name)
@@ -79,17 +99,15 @@ test.describe('Visual regression snapshots', () => {
   // get committed by accident. Skip instead; CI is where these assert anything.
   test.skip(process.platform !== 'linux', 'Pixel baselines are linux-only — these run on CI')
 
-  test('Ruby toggle off', async ({ page }) => {
+  test('Ruby off', async ({ page }) => {
+    await seedRubyMode(page, 'none')
     await page.goto('/read/genki-i-ch6-tanaka-letter')
-    await page.getByRole('button', { name: 'Settings' }).click()
-    await page.getByRole('button', { name: 'Ruby' }).click()
-    await page.keyboard.press('Escape')
     await snapshot(page, page.getByRole('group', { name: 'Sentence 1', exact: true }), 'ruby-off.png')
   })
 
-  test('Ruby toggle on', async ({ page }) => {
+  test('Ruby on all words', async ({ page }) => {
+    await seedRubyMode(page, 'all')
     await page.goto('/read/genki-i-ch6-tanaka-letter')
-    // Ruby is on by default
     await snapshot(page, page.getByRole('group', { name: 'Sentence 1', exact: true }), 'ruby-on.png')
   })
 
