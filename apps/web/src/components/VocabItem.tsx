@@ -11,6 +11,12 @@ export function VocabItem({ entry, pos }: { entry: VocabEntry; pos?: string }) {
   const lookup = useLookupStore((s) => s.lookup)
   const lookupState = useLookupStore((s) => s.lookupState)
   const isActive = lookupState.status === 'found' && lookupState.word === entry.word
+  // Kana-only words carry a reading identical to the word (ノート/ノート) or, in some story
+  // files, none at all (ラーメン/""). Either way column 2 adds nothing, so the word takes both
+  // columns and flows across them. Column 3 stays aligned across rows because the grid tracks
+  // are fixed thirds, not content-sized.
+  const reading = entry.reading.trim()
+  const showReading = reading !== '' && reading !== entry.word.trim()
 
   const handleActivate = () => {
     // sentenceId is null — vocab panel taps do not select or highlight a sentence
@@ -33,8 +39,12 @@ export function VocabItem({ entry, pos }: { entry: VocabEntry; pos?: string }) {
         isActive ? 'bg-accent-subtle' : 'hover:bg-accent-subtle',
       )}
     >
-      <span className="font-ja text-paper-text" lang="ja">{entry.word}</span>
-      <span className="font-ja text-muted text-[0.85em]" lang="ja">{entry.reading}</span>
+      <span className={cn('font-ja text-paper-text', !showReading && 'col-span-2')} lang="ja">
+        {entry.word}
+      </span>
+      {showReading && (
+        <span className="font-ja text-muted text-[0.85em]" lang="ja">{entry.reading}</span>
+      )}
       {/* withSlashBreaks: this column is a third of the row with no break utilities, so a
           slashed gloss ("to cook/grill") needs the break opportunity most — #27. */}
       <span className="text-paper-text text-[0.8em]">{withSlashBreaks(entry.meaning)}</span>

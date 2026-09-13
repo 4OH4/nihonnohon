@@ -26,6 +26,23 @@ const otherEntry: VocabEntry = {
   lesson: 'supplement',
 }
 
+// Kana-only entries: the reading either duplicates the word, or the story file omits it.
+const kanaEntry: VocabEntry = {
+  id: -3,
+  word: 'ノート',
+  reading: 'ノート',
+  meaning: 'notebook',
+  lesson: 'supplement',
+}
+
+const noReadingEntry: VocabEntry = {
+  id: -4,
+  word: 'ラーメン',
+  reading: '',
+  meaning: 'ramen',
+  lesson: 'supplement',
+}
+
 afterEach(() => {
   act(() => { useLookupStore.getState()._reset() })
 })
@@ -79,6 +96,46 @@ describe('VocabItem', () => {
   it('does not apply active bg in idle state', () => {
     const { container } = render(<VocabItem entry={entry} />)
     expect(container.firstChild).not.toHaveClass('bg-accent-subtle')
+  })
+
+  // ── Redundant reading (issue #38) ──
+
+  it('keeps the reading in its own cell when it differs from the word', () => {
+    const { container } = render(<VocabItem entry={entry} />)
+    const row = container.firstChild as HTMLElement
+    expect(row.children).toHaveLength(3)
+    expect(row.firstElementChild).not.toHaveClass('col-span-2')
+  })
+
+  it('renders a duplicated reading once, merged across the first two columns', () => {
+    const { container } = render(<VocabItem entry={kanaEntry} />)
+    // One ノート, not two — and the word cell spans the vacated reading column.
+    expect(screen.getAllByText('ノート')).toHaveLength(1)
+    const row = container.firstChild as HTMLElement
+    expect(row.children).toHaveLength(2)
+    expect(row.firstElementChild).toHaveClass('col-span-2')
+  })
+
+  it('merges the word cell when the entry has no reading at all', () => {
+    const { container } = render(<VocabItem entry={noReadingEntry} />)
+    const row = container.firstChild as HTMLElement
+    expect(row.children).toHaveLength(2)
+    expect(row.firstElementChild).toHaveClass('col-span-2')
+  })
+
+  it('merged word keeps the word styling, not the reading styling', () => {
+    const { container } = render(<VocabItem entry={kanaEntry} />)
+    const word = (container.firstChild as HTMLElement).firstElementChild!
+    expect(word).toHaveClass('font-ja', 'text-paper-text')
+    expect(word).not.toHaveClass('text-muted')
+  })
+
+  it('tap on a merged row still looks up the full entry', () => {
+    render(<VocabItem entry={kanaEntry} />)
+    fireEvent.click(screen.getByRole('button'))
+    expect(useLookupStore.getState().lookupState).toEqual({
+      status: 'found', word: 'ノート', entry: kanaEntry,
+    })
   })
 })
 
