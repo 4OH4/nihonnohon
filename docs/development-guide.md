@@ -196,4 +196,6 @@ drift self-heals rather than blocking. See
 
 ## Deployment
 
-Deployed automatically to Vercel on merge to `main`. Configuration: `vercel.json` sets `rootDirectory: apps/web` and adds a SPA catch-all rewrite (`/(.*) → /index.html`).
+Deployed automatically to Vercel on merge to `main`. Configuration: `vercel.json` builds from the
+monorepo root (`buildCommand: turbo build --filter=@nihonnohon/web`, `outputDirectory:
+apps/web/dist`) and adds a SPA catch-all rewrite (`/(.*) → /index.html`).
