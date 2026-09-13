@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 import { cn } from '@/lib/utils'
+import { withSlashBreaks } from '@/lib/slashBreaks'
 import { useLookupStore } from '@/stores/lookupStore'
 import type { VocabEntry } from '@nihonnohon/schema'
 
@@ -34,7 +35,9 @@ export function VocabItem({ entry, pos }: { entry: VocabEntry; pos?: string }) {
     >
       <span className="font-ja text-paper-text" lang="ja">{entry.word}</span>
       <span className="font-ja text-muted text-[0.85em]" lang="ja">{entry.reading}</span>
-      <span className="text-paper-text text-[0.8em]">{entry.meaning}</span>
+      {/* withSlashBreaks: this column is a third of the row with no break utilities, so a
+          slashed gloss ("to cook/grill") needs the break opportunity most — #27. */}
+      <span className="text-paper-text text-[0.8em]">{withSlashBreaks(entry.meaning)}</span>
     </div>
   )
 }
