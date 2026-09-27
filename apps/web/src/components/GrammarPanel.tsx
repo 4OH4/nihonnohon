@@ -30,6 +30,7 @@ export function GrammarPanel({ grammar, sentences }: GrammarPanelProps) {
 
   return (
     <ul className="p-4 space-y-2" style={{ fontSize: 'var(--story-font-size)' }}>
+      {/* Newest chapter first: reverse the rendered items, keeping `i` as the original index that sentence grammar refers to */}
       {grammar.map((point, i) => {
         const isHighlighted = selectedSentenceId !== null && highlightedIndices.has(i)
         const isMuted = selectedSentenceId !== null && !highlightedIndices.has(i)
@@ -46,7 +47,7 @@ export function GrammarPanel({ grammar, sentences }: GrammarPanelProps) {
             {point}
           </li>
         )
-      })}
+      }).reverse()}
     </ul>
   )
 }

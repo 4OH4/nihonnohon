@@ -45,14 +45,20 @@ describe('GrammarPanel', () => {
   it('highlights correct indices and mutes others when sentence with grammar is selected', () => {
     act(() => { useLookupStore.setState({ selectedSentenceId: 's2' }) })
     render(<GrammarPanel grammar={grammar} sentences={sentences} />)
+    const item = (text: string) => screen.getByText(text).closest('li')
+    // s2 has grammar: [0, 2] → indices into the original (unreversed) array
+    expect(item('Grammar point A')).toHaveClass('bg-accent-subtle')
+    expect(item('Grammar point A')).toHaveClass('border-accent')
+    expect(item('Grammar point B')).toHaveClass('text-muted')
+    expect(item('Grammar point B')).not.toHaveClass('bg-accent-subtle')
+    expect(item('Grammar point C')).toHaveClass('bg-accent-subtle')
+    expect(item('Grammar point C')).toHaveClass('border-accent')
+  })
+
+  it('renders grammar points in reverse order (highest chapter first)', () => {
+    render(<GrammarPanel grammar={grammar} sentences={sentences} />)
     const items = screen.getAllByRole('listitem')
-    // s2 has grammar: [0, 2]
-    expect(items[0]).toHaveClass('bg-accent-subtle')
-    expect(items[0]).toHaveClass('border-accent')
-    expect(items[1]).toHaveClass('text-muted')
-    expect(items[1]).not.toHaveClass('bg-accent-subtle')
-    expect(items[2]).toHaveClass('bg-accent-subtle')
-    expect(items[2]).toHaveClass('border-accent')
+    expect(items.map(li => li.textContent)).toEqual(['Grammar point C', 'Grammar point B', 'Grammar point A'])
   })
 
   it('mutes all items when selected sentence has grammar: []', () => {
