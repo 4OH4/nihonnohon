@@ -12,6 +12,13 @@ jobs:
   update-snapshots:
     runs-on: ubuntu-latest
 
+    # Must stay byte-identical to SNAPSHOT_COMMIT_SUBJECT in ci.yml: that workflow
+    # recognises this exact subject at HEAD as "a regeneration pass already ran" and
+    # declines to regenerate again. Change one without the other and the loop guard
+    # silently stops guarding.
+    env:
+      SNAPSHOT_COMMIT_SUBJECT: 'chore(e2e): update playwright linux snapshots'
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -46,10 +53,21 @@ jobs:
         run: pnpm run test:e2e -- --update-snapshots
         continue-on-error: true
 
+      # No [skip ci] on the commit. It used to carry one, which meant the commit this
+      # workflow pushes was never tested — and if it landed on a PR branch, the new
+      # head SHA carried no check at all. That is exactly the state a required status
+      # check cannot recover from: it waits for a run that will never be queued.
+      # Letting the push trigger CI costs one run and makes the regenerated baselines
+      # something a human can actually see verified.
       - name: Commit updated snapshots
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add apps/web/e2e/accessibility.spec.ts-snapshots/
-          git diff --cached --quiet || git commit -m "chore(e2e): update playwright linux snapshots [skip ci]"
+          if git diff --cached --quiet; then
+            echo "Regeneration produced no changes — nothing to push."
+            exit 0
+          fi
+          git commit -m "$SNAPSHOT_COMMIT_SUBJECT"
           git push
+          echo "::notice::Baselines regenerated and pushed. Review the diff rather than assuming drift — a font or rendering change looks identical to noise here."

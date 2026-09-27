@@ -9,13 +9,13 @@ _Author note: I've been learning Japanese for a couple of years now, and what I'
 ## Features
 
 - **Word-level vocabulary lookup** — tap any word token to see its meaning, reading, and lesson reference
-- **Furigana (ruby) annotations** — toggle hiragana readings above each word on or off
+- **Furigana (ruby) annotations** — show hiragana readings above all words, above only words outside the standard Genki vocabulary, or not at all
 - **Kanji breakdown** — selected words show each kanji character with its Heisig keyword
 - **Grammar notes** — story-level grammar points, highlighted for the currently selected sentence
 - **Sentence translations** — toggle inline English translations per sentence
 - **Story library** — browse built-in stories with source and chapter difficulty filters (Genki I/II, JLPT)
 - **Local story upload** — load your own `.json` story file directly from your device
-- **Persistent preferences** — ruby, spacing, translation, and text size settings survive page refresh
+- **Persistent preferences** — ruby mode, spacing, translation, and text size settings survive page refresh
 - **Responsive layout** — two-column reader on desktop; tabbed Story / Vocabulary / Grammar on mobile
 - **Accessibility** — ARIA labels and WCAG 2.1 AA coverage via axe-core
 
@@ -31,7 +31,7 @@ The reader app is a single-page web application deployed at [nihonnohon.vercel.a
 
 **Reader view** — the story is split into sentence blocks and tokenised into individual words. Select any word to open an inline popover with its reading, English meaning, and the lesson where it was first introduced. The kanji breakdown panel lists each character with its Heisig keyword, and the grammar panel highlights the current sentence's relevant grammar points.
 
-Persistent preferences (furigana on/off, sentence translations, text size, word spacing) are saved across sessions. On desktop the vocabulary and grammar panels sit in a sidebar; on mobile they collapse into tabs.
+Persistent preferences (furigana mode, sentence translations, text size, word spacing) are saved across sessions. On desktop the vocabulary and grammar panels sit in a sidebar; on mobile they collapse into tabs.
 
 ---
 

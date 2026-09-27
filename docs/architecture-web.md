@@ -94,7 +94,7 @@ Persisted key: `nihonnohon-preferences`
 
 | State | Type | Default |
 |-------|------|---------|
-| `rubyVisible` | `boolean` | `true` |
+| `rubyMode` | `'all' \| 'supplement' \| 'none'` | `'supplement'` |
 | `spacingVisible` | `boolean` | `false` |
 | `transVisible` | `boolean` | `false` |
 | `textSize` | `'small' \| 'medium' \| 'large'` | `'medium'` |
@@ -192,7 +192,7 @@ Location: `src/__tests__/`
 | `GrammarPanel.test.tsx` | Highlight + mute on sentence select |
 | `StoryCard.test.tsx` | Link, badge, description |
 | `DifficultyBadge.test.tsx` | Badge render |
-| `SettingsMenu.test.tsx` | Popover, text size, spacing |
+| `SettingsMenu.test.tsx` | Popover, text size, spacing, ruby mode cycling |
 | `LibraryRoute.test.tsx` | Filter, upload, error |
 | `ReaderRoute.test.tsx` | Story render, tab switching |
 
@@ -214,17 +214,37 @@ Browsers: Chromium, Firefox, WebKit (all three required).
 
 ## Deployment
 
-Deployed on Vercel from `rootDirectory: apps/web`.
+Deployed on Vercel, built from the monorepo root via Turborepo.
 
 `vercel.json`:
 ```json
 {
-  "rootDirectory": "apps/web",
+  "buildCommand": "turbo build --filter=@nihonnohon/web",
+  "outputDirectory": "apps/web/dist",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
 ```
 
+Building from the root (rather than setting `rootDirectory: apps/web`) lets Turbo build the
+workspace packages `@nihonnohon/web` depends on before the app itself.
+
 The SPA rewrite ensures all paths (e.g. `/read/story-id`) return `index.html` and React Router handles client-side navigation.
+
+### Analytics
+
+Vercel Web Analytics and Speed Insights are mounted in `App.tsx` behind
+`import.meta.env.PROD`, so neither loads in the dev server or under Playwright. Both are
+first-party — script and collection endpoints are served from this origin under
+`/_vercel/insights` — so no third-party runtime request is introduced.
+
+Page views on client-side navigation are tracked by the injected script patching `history`,
+but the plain-React integration has no route support: each view is reported under its literal
+pathname, so `/read/:storyId` yields one row per story rather than an aggregate. Passing
+`route`/`path` props from inside the router's `Root` layout would parameterise this if the
+dashboard noise ever outweighs the extra code.
+
+Both products must also be enabled per-project in the Vercel dashboard; each takes effect on
+the next deployment after enabling.
 
 ---
 

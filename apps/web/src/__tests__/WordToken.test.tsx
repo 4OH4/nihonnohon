@@ -7,7 +7,7 @@ import { WordToken } from '@/components/WordToken'
 import { useLookupStore } from '@/stores/lookupStore'
 import { usePreferenceStore } from '@/stores/preferenceStore'
 import { _initVocabFromData, _resetVocab } from '@/services/vocabService'
-import type { ParsedWord, VocabEntry } from '@nihonnohon/schema'
+import type { ParsedWord, VocabEntry, VocabSupplementEntry } from '@nihonnohon/schema'
 
 const vocabFixture: VocabEntry[] = [
   { id: 42, word: '食べる', reading: 'たべる', meaning: 'to eat', lesson: 'Genki I Ch.3' },
@@ -19,8 +19,28 @@ const makeToken = (surface: string, ruby: string | null = null): ParsedWord => (
   segments: [{ text: surface, ruby }],
 })
 
+/** Build a supplement entry for the 'supplement' ruby-mode tests. */
+const makeSupplement = (word: string, translation = 'a gloss'): VocabSupplementEntry => ({
+  key: 10000,
+  word,
+  hiragana: 'たべる',
+  translation,
+  pos: 'v1',
+})
+
+/** Kanji + okurigana across two stems — two <rt> elements in one token. */
+const multiSegmentToken: ParsedWord = {
+  surface: '付け加える',
+  segments: [
+    { text: '付', ruby: 'つ' },
+    { text: 'け', ruby: null },
+    { text: '加', ruby: 'くわ' },
+    { text: 'える', ruby: null },
+  ],
+}
+
 const DEFAULT_PREFS = {
-  rubyVisible: true,
+  rubyMode: 'all' as const,
   spacingVisible: false,
   transVisible: false,
   textSize: 'medium' as const,
@@ -46,8 +66,8 @@ describe('WordToken', () => {
     expect(screen.getByRole('button', { name: '食べる' })).toBeInTheDocument()
   })
 
-  it('rt element has invisible class when rubyVisible is false', () => {
-    act(() => { usePreferenceStore.setState({ rubyVisible: false }) })
+  it('rt element has invisible class when rubyMode is none', () => {
+    act(() => { usePreferenceStore.setState({ rubyMode: 'none' }) })
     const { container } = render(
       <WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" />
     )
@@ -56,7 +76,7 @@ describe('WordToken', () => {
   })
 
   it('rt element does NOT use display:none for ruby toggle', () => {
-    act(() => { usePreferenceStore.setState({ rubyVisible: false }) })
+    act(() => { usePreferenceStore.setState({ rubyMode: 'none' }) })
     const { container } = render(
       <WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" />
     )
@@ -64,7 +84,7 @@ describe('WordToken', () => {
     expect(rt.style.display).not.toBe('none')
   })
 
-  it('rt element has no invisible class when rubyVisible is true', () => {
+  it('rt element has no invisible class when rubyMode is all', () => {
     const { container } = render(
       <WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" />
     )
@@ -72,8 +92,8 @@ describe('WordToken', () => {
     expect(rt.classList.contains('invisible')).toBe(false)
   })
 
-  it('selected word shows ruby even when rubyVisible is false', () => {
-    act(() => { usePreferenceStore.setState({ rubyVisible: false }) })
+  it('selected word shows ruby even when rubyMode is none', () => {
+    act(() => { usePreferenceStore.setState({ rubyMode: 'none' }) })
     const { container, rerender } = render(
       <WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" />
     )
@@ -83,16 +103,16 @@ describe('WordToken', () => {
     expect(container.querySelector('rt')!.classList.contains('invisible')).toBe(false)
   })
 
-  it('non-selected word keeps ruby hidden when rubyVisible is false', () => {
-    act(() => { usePreferenceStore.setState({ rubyVisible: false }) })
+  it('non-selected word keeps ruby hidden when rubyMode is none', () => {
+    act(() => { usePreferenceStore.setState({ rubyMode: 'none' }) })
     const { container } = render(
       <WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" />
     )
     expect(container.querySelector('rt')!.classList.contains('invisible')).toBe(true)
   })
 
-  it('deselecting the word hides its ruby again when rubyVisible is false', () => {
-    act(() => { usePreferenceStore.setState({ rubyVisible: false }) })
+  it('deselecting the word hides its ruby again when rubyMode is none', () => {
+    act(() => { usePreferenceStore.setState({ rubyMode: 'none' }) })
     const { container, rerender } = render(
       <WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" />
     )
@@ -226,22 +246,105 @@ describe('WordToken', () => {
     expect(container.querySelectorAll('rt')).toHaveLength(0)
   })
 
-  it('invisible class applies to all rt elements when rubyVisible is false', () => {
-    act(() => { usePreferenceStore.setState({ rubyVisible: false }) })
-    const token: ParsedWord = {
-      surface: '付け加える',
-      segments: [
-        { text: '付', ruby: 'つ' },
-        { text: 'け', ruby: null },
-        { text: '加', ruby: 'くわ' },
-        { text: 'える', ruby: null },
-      ],
-    }
+  it('invisible class applies to all rt elements when rubyMode is none', () => {
+    act(() => { usePreferenceStore.setState({ rubyMode: 'none' }) })
     const { container } = render(
-      <WordToken token={token} vocabKey={null} sentenceId="s1" />
+      <WordToken token={multiSegmentToken} vocabKey={null} sentenceId="s1" />
     )
     const rts = container.querySelectorAll('rt')
     expect(rts).toHaveLength(2)
     rts.forEach(rt => expect(rt.classList.contains('invisible')).toBe(true))
+  })
+})
+
+// Issue #33: 'supplement' shows furigana only above words outside the standard Genki
+// vocabulary, identified by the supplementEntry prop SentenceBlock already resolves.
+describe("WordToken — rubyMode 'supplement'", () => {
+  beforeEach(() => {
+    act(() => { usePreferenceStore.setState({ rubyMode: 'supplement' }) })
+  })
+
+  it('shows ruby for a word that has a supplement entry', () => {
+    const { container } = render(
+      <WordToken
+        token={makeToken('食べる', 'たべる')}
+        vocabKey={10000}
+        sentenceId="s1"
+        supplementEntry={makeSupplement('食べる')}
+      />
+    )
+    expect(container.querySelector('rt')!.classList.contains('invisible')).toBe(false)
+  })
+
+  it('hides ruby for a word whose supplement entry is null', () => {
+    const { container } = render(
+      <WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" supplementEntry={null} />
+    )
+    expect(container.querySelector('rt')!.classList.contains('invisible')).toBe(true)
+  })
+
+  // Pins `!= null` over `!== null`: SentenceBlock's supplementMap prop is optional, so an
+  // omitted entry must not be read as a supplement hit.
+  it('hides ruby when the supplementEntry prop is omitted entirely', () => {
+    const { container } = render(
+      <WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" />
+    )
+    expect(container.querySelector('rt')!.classList.contains('invisible')).toBe(true)
+  })
+
+  // Six shipped supplement entries have an empty translation (proper nouns the pipeline found
+  // no gloss for) — exactly the words a reader most needs a reading for. Visibility must never
+  // depend on gloss content.
+  it('shows ruby for a supplement entry with an empty translation', () => {
+    const { container } = render(
+      <WordToken
+        token={makeToken('田中', 'たなか')}
+        vocabKey={10000}
+        sentenceId="s1"
+        supplementEntry={makeSupplement('田中', '')}
+      />
+    )
+    expect(container.querySelector('rt')!.classList.contains('invisible')).toBe(false)
+  })
+
+  it('still shows ruby for the selected word even when it is not a supplement word', () => {
+    render(
+      <WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" supplementEntry={null} />
+    )
+    const token = screen.getByRole('button', { name: '食べる' })
+    fireEvent.click(token)
+    expect(token.querySelector('rt')!.classList.contains('invisible')).toBe(false)
+  })
+
+  it('never uses display:none to hide a non-supplement word', () => {
+    const { container } = render(
+      <WordToken token={makeToken('食べる', 'たべる')} vocabKey={42} sentenceId="s1" supplementEntry={null} />
+    )
+    const rt = container.querySelector('rt')!
+    expect(rt.classList.contains('invisible')).toBe(true)
+    expect(rt.style.display).not.toBe('none')
+  })
+
+  it('hides every rt of a multi-segment non-supplement word', () => {
+    const { container } = render(
+      <WordToken token={multiSegmentToken} vocabKey={null} sentenceId="s1" supplementEntry={null} />
+    )
+    const rts = container.querySelectorAll('rt')
+    expect(rts).toHaveLength(2)
+    rts.forEach(rt => expect(rt.classList.contains('invisible')).toBe(true))
+  })
+
+  it('shows every rt of a multi-segment supplement word', () => {
+    const { container } = render(
+      <WordToken
+        token={multiSegmentToken}
+        vocabKey={10000}
+        sentenceId="s1"
+        supplementEntry={makeSupplement('付け加える')}
+      />
+    )
+    const rts = container.querySelectorAll('rt')
+    expect(rts).toHaveLength(2)
+    rts.forEach(rt => expect(rt.classList.contains('invisible')).toBe(false))
   })
 })

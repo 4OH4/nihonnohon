@@ -3,6 +3,7 @@
 
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useLookupStore } from '@/stores/lookupStore'
+import { withSlashBreaks } from '@/lib/slashBreaks'
 import { KanjiBreakdown } from '@/components/KanjiBreakdown'
 import type { StoryModel } from '@nihonnohon/schema'
 
@@ -102,7 +103,9 @@ export function InfoPanel({ story }: InfoPanelProps) {
                 line only when there's no room), rather than dropping below the
                 whole paragraph. Hyphenates on wrap. */}
             <p lang="en" className="text-paper-text hyphens-auto break-words">
-              {lookupState.entry.meaning}
+              {/* withSlashBreaks lets a gloss wrap at "/" ("cold (thing/people)"), which
+                  CSS offers no way to do — issue #27. */}
+              {withSlashBreaks(lookupState.entry.meaning)}
               {lookupState.pos && (
                 <span className={`${TAG_CLASS} ml-2 inline-block whitespace-nowrap align-baseline`}>{lookupState.pos}</span>
               )}

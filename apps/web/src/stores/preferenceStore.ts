@@ -4,13 +4,22 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
+/**
+ * Furigana display mode.
+ * - `all` — ruby above every annotated word
+ * - `supplement` — ruby only above words in the story's vocab supplement, i.e. words outside
+ *   the standard Genki curriculum
+ * - `none` — no ruby (the selected word still shows its own; see WordToken)
+ */
+export type RubyMode = 'all' | 'supplement' | 'none'
+
 interface PreferenceStoreState {
-  rubyVisible: boolean
+  rubyMode: RubyMode
   spacingVisible: boolean
   transVisible: boolean
   textSize: 'small' | 'medium' | 'large'
   activeTab: 'story' | 'vocabulary' | 'grammar'
-  setRubyVisible: (v: boolean) => void
+  setRubyMode: (mode: RubyMode) => void
   setSpacingVisible: (v: boolean) => void
   setTransVisible: (v: boolean) => void
   setTextSize: (size: 'small' | 'medium' | 'large') => void
@@ -20,12 +29,14 @@ interface PreferenceStoreState {
 export const usePreferenceStore = create<PreferenceStoreState>()(
   persist(
     (set): PreferenceStoreState => ({
-      rubyVisible: true,
+      // Default to 'supplement': readers working at their own level know the Genki vocab and
+      // mainly need readings for words outside it (issue #33).
+      rubyMode: 'supplement',
       spacingVisible: false,
       transVisible: false,
       textSize: 'medium',
       activeTab: 'story',
-      setRubyVisible: (v) => set({ rubyVisible: v }),
+      setRubyMode: (mode) => set({ rubyMode: mode }),
       setSpacingVisible: (v) => set({ spacingVisible: v }),
       setTransVisible: (v) => set({ transVisible: v }),
       setTextSize: (size) => set({ textSize: size }),
@@ -34,7 +45,7 @@ export const usePreferenceStore = create<PreferenceStoreState>()(
     {
       name: 'nihonnohon-preferences',
       partialize: (state) => ({
-        rubyVisible: state.rubyVisible,
+        rubyMode: state.rubyMode,
         spacingVisible: state.spacingVisible,
         transVisible: state.transVisible,
         textSize: state.textSize,

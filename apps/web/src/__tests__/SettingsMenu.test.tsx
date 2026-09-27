@@ -8,7 +8,7 @@ import { usePreferenceStore } from '@/stores/preferenceStore'
 
 const DEFAULT_PREFS = {
   spacingVisible: false,
-  rubyVisible: true,
+  rubyMode: 'all' as const,
   transVisible: false,
   textSize: 'medium' as const,
 }
@@ -30,6 +30,7 @@ describe('SettingsMenu', () => {
     expect(screen.getByText('Spaces')).toBeInTheDocument()
     expect(screen.getByText('Ruby')).toBeInTheDocument()
     expect(screen.getByText('Trans.')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /^Ruby:/ })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Smaller text' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /Medium text/ })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Larger text' })).toBeInTheDocument()
@@ -42,11 +43,40 @@ describe('SettingsMenu', () => {
     expect(usePreferenceStore.getState().spacingVisible).toBe(true)
   })
 
-  it('Ruby toggle updates rubyVisible in store', () => {
+  it('Ruby button cycles all -> supplement -> none -> all', () => {
     render(<SettingsMenu />)
     fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
-    fireEvent.click(screen.getByRole('button', { name: 'Ruby' }))
-    expect(usePreferenceStore.getState().rubyVisible).toBe(false)
+    // The accessible name carries the current mode, so match on the prefix: the same
+    // locator keeps resolving as the label changes under it.
+    const ruby = () => screen.getByRole('button', { name: /^Ruby:/ })
+    fireEvent.click(ruby())
+    expect(usePreferenceStore.getState().rubyMode).toBe('supplement')
+    fireEvent.click(ruby())
+    expect(usePreferenceStore.getState().rubyMode).toBe('none')
+    fireEvent.click(ruby())
+    expect(usePreferenceStore.getState().rubyMode).toBe('all')
+  })
+
+  it('Ruby button label tracks the current mode', () => {
+    render(<SettingsMenu />)
+    fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
+    expect(screen.getByRole('button', { name: /^Ruby:/ })).toHaveTextContent('All')
+    fireEvent.click(screen.getByRole('button', { name: /^Ruby:/ }))
+    expect(screen.getByRole('button', { name: /^Ruby:/ })).toHaveTextContent('New')
+    fireEvent.click(screen.getByRole('button', { name: /^Ruby:/ }))
+    expect(screen.getByRole('button', { name: /^Ruby:/ })).toHaveTextContent('Off')
+  })
+
+  it('Ruby button shows the accent only while ruby is showing', () => {
+    render(<SettingsMenu />)
+    fireEvent.click(screen.getByRole('button', { name: 'Settings' }))
+    const ruby = () => screen.getByRole('button', { name: /^Ruby:/ })
+    // Cycled by click rather than setState so each change is act()-wrapped and re-renders.
+    expect(ruby()).toHaveClass('bg-accent-subtle')   // all
+    fireEvent.click(ruby())
+    expect(ruby()).toHaveClass('bg-accent-subtle')   // supplement
+    fireEvent.click(ruby())
+    expect(ruby()).not.toHaveClass('bg-accent-subtle') // none
   })
 
   it('Trans toggle updates transVisible in store', () => {

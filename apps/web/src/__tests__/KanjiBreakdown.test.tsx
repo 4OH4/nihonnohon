@@ -12,6 +12,8 @@ const kanjiFixture: Record<string, KanjiEntry> = {
   '日': { char: '日', kw: 'sun', m: ['sun', 'day'], onY: ['ニチ', 'ジツ'], kunY: ['ひ', 'か'] },
   '本': { char: '本', kw: 'root', m: ['root', 'origin', 'book'], onY: ['ホン'], kunY: ['もと'] },
   '無': { char: '無', kw: null, m: ['nothingness', 'none'], onY: ['ム', 'ブ'], kunY: ['な.い'] },
+  // 堂 — the issue-#19/#27 keyword: long, and slashed.
+  '堂': { char: '堂', kw: 'public chamber/hall', m: ['public chamber', 'hall'], onY: ['ドウ'], kunY: [] },
 }
 
 // Both helpers notify KanjiBreakdown's subscription, so they run inside act().
@@ -119,6 +121,20 @@ describe('KanjiBreakdown', () => {
     expect(screen.getByText('日')).toBeInTheDocument()
     expect(screen.getByText('sun')).toBeInTheDocument()
     expect(screen.getByText('本')).toBeInTheDocument()
+  })
+
+  // A keyword with a "/" gets a <wbr> so this narrow cell can break there rather than
+  // mid-word ('chamber/h' + 'all'). CSS has no property for it — issue #27.
+  it('gives a slashed keyword a break opportunity at the slash', () => {
+    const { container } = render(<KanjiBreakdown word="堂" />)
+    expect(container.querySelectorAll('wbr')).toHaveLength(1)
+    // Still one label, still queryable by its full text.
+    expect(screen.getByText('public chamber/hall')).toBeInTheDocument()
+  })
+
+  it('leaves a keyword with no slash untouched', () => {
+    const { container } = render(<KanjiBreakdown word="食" />)
+    expect(container.querySelector('wbr')).toBeNull()
   })
 
   it('renders a kanji that appears twice in the word without deduplication', () => {

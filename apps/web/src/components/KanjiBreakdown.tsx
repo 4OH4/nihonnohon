@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 import { useSyncExternalStore } from 'react'
+import { withSlashBreaks } from '@/lib/slashBreaks'
 import { getKanjiVersion, lookupKanji, subscribeKanji } from '@/services/kanjiService'
 import type { KanjiEntry } from '@nihonnohon/schema'
 
@@ -70,7 +71,10 @@ export function KanjiBreakdown({ word }: KanjiBreakdownProps) {
           {/* min-w-0 lets the keyword shrink below its longest word and wrap inside the
               capped row, rather than forcing the row wider. */}
           <span lang="en" className="min-w-0 text-[0.75em] leading-tight text-muted hyphens-auto break-words lg:w-full">
-            {entry.kw ?? entry.m[0] ?? ''}
+            {/* withSlashBreaks: 35 keywords contain a "/" ("public chamber/hall"), which
+                is not a break opportunity in CSS — so this cell used to break them
+                mid-word. See issue #27. */}
+            {withSlashBreaks(entry.kw ?? entry.m[0] ?? '')}
           </span>
         </div>
       ))}

@@ -28,6 +28,10 @@ import type { StoryModel, VocabSupplementEntry } from '@nihonnohon/schema'
  * Keyed by `key` rather than `word` because a token's surface is its inflected, in-sentence form
  * (考えました) while the supplement holds the dictionary headword (考える). Only the numeric key in
  * SentenceModel.vocabKeys reliably links the two.
+ *
+ * Built from `vocabSupplement` only — `story.keywords` is deliberately excluded. It is empty in
+ * every shipped story today, but note that a story populating it would get no furigana for those
+ * words under `rubyMode: 'supplement'`, which resolves supplement-ness from this map.
  */
 function buildSupplementMap(supplement: VocabSupplementEntry[]): Map<number, VocabSupplementEntry> {
   const map = new Map<number, VocabSupplementEntry>()

@@ -4,8 +4,19 @@
 import * as Popover from '@radix-ui/react-popover'
 import { cn } from '@/lib/utils'
 import { usePreferenceStore } from '@/stores/preferenceStore'
+import type { RubyMode } from '@/stores/preferenceStore'
 import { useShallow } from 'zustand/react/shallow'
-import { TEXT_SIZE_VALUES } from '@/utils/textSize'
+
+/** Cycle order for the ruby button — decreasing furigana density. */
+const RUBY_MODE_ORDER = ['all', 'supplement', 'none'] as const
+
+/** 'supplement' reads as "New" — words that are new to the reader. */
+const RUBY_MODE_LABELS: Record<RubyMode, string> = { all: 'All', supplement: 'New', none: 'Off' }
+
+/** Next mode in the cycle, wrapping from 'none' back to 'all'. */
+function nextRubyMode(mode: RubyMode): RubyMode {
+  return RUBY_MODE_ORDER[(RUBY_MODE_ORDER.indexOf(mode) + 1) % RUBY_MODE_ORDER.length]
+}
 
 const SIZE_CONFIG = [
   { size: 'small', label: 'A−', ariaLabel: 'Smaller text' },
@@ -16,16 +27,16 @@ const SIZE_CONFIG = [
 /** Settings popover containing the reading toggles and text size controls. */
 export function SettingsMenu() {
   const {
-    spacingVisible, rubyVisible, transVisible, textSize,
-    setSpacingVisible, setRubyVisible, setTransVisible, setTextSize,
+    spacingVisible, rubyMode, transVisible, textSize,
+    setSpacingVisible, setRubyMode, setTransVisible, setTextSize,
   } = usePreferenceStore(
     useShallow(s => ({
       spacingVisible: s.spacingVisible,
-      rubyVisible: s.rubyVisible,
+      rubyMode: s.rubyMode,
       transVisible: s.transVisible,
       textSize: s.textSize,
       setSpacingVisible: s.setSpacingVisible,
-      setRubyVisible: s.setRubyVisible,
+      setRubyMode: s.setRubyMode,
       setTransVisible: s.setTransVisible,
       setTextSize: s.setTextSize,
     }))
@@ -33,7 +44,6 @@ export function SettingsMenu() {
 
   const toggles = [
     { label: 'Spaces', value: spacingVisible, set: setSpacingVisible },
-    { label: 'Ruby', value: rubyVisible, set: setRubyVisible },
     { label: 'Trans.', value: transVisible, set: setTransVisible },
   ]
 
@@ -74,6 +84,25 @@ export function SettingsMenu() {
               </button>
             </div>
           ))}
+
+          {/* Ruby mode — cycles All -> New -> Off. Not a boolean toggle, so no aria-pressed:
+              the current mode goes into the accessible name so it is announced. */}
+          <div className="flex items-center justify-between gap-4">
+            <span className="text-sm text-paper-text">Ruby</span>
+            <button
+              type="button"
+              aria-label={`Ruby: ${RUBY_MODE_LABELS[rubyMode]}`}
+              onClick={() => setRubyMode(nextRubyMode(rubyMode))}
+              className={cn(
+                'px-3 py-1 rounded text-sm border',
+                rubyMode !== 'none'
+                  ? 'bg-accent-subtle border-accent text-paper-text'
+                  : 'bg-surface border-border text-muted',
+              )}
+            >
+              {RUBY_MODE_LABELS[rubyMode]}
+            </button>
+          </div>
 
           {/* Text size controls */}
           <div className="flex items-center gap-1">

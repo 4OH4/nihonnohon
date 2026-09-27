@@ -33,7 +33,7 @@ nihonnohon/
 ├── .github/workflows/ci.yml    # GitHub Actions CI pipeline
 ├── turbo.json                  # Turborepo pipeline configuration
 ├── pnpm-workspace.yaml         # pnpm workspace package list
-├── vercel.json                 # Vercel deployment (rootDirectory + SPA rewrite)
+├── vercel.json                 # Vercel deployment (root build command + SPA rewrite)
 └── package.json                # Root scripts (build, dev, lint, typecheck, tests)
 ```
 
