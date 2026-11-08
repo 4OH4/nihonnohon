@@ -1,0 +1,974 @@
+{
+  "run": {
+    "started_at": "2026-07-19T19:41:50.168772+00:00",
+    "adapter": "sudachi-baseline",
+    "adapter_module": "adapters.sudachi_baseline",
+    "git_commit": "ba38ca4ecc43108fb54c19606a4e71c7d212143b",
+    "gold_id": "gold[10 stories]",
+    "gold_path": [
+      "eval\\gold\\eval-genki10-seasons.json",
+      "eval\\gold\\eval-genki12-feeling-sick.json",
+      "eval\\gold\\eval-genki14-birthday-gift.json",
+      "eval\\gold\\eval-genki16-helping-friend.json",
+      "eval\\gold\\eval-genki18-busy-morning.json",
+      "eval\\gold\\eval-genki20-polite-visit.json",
+      "eval\\gold\\eval-genki22-raising-children.json",
+      "eval\\gold\\eval-genki4-day-out.json",
+      "eval\\gold\\eval-genki6-daily-life.json",
+      "eval\\gold\\eval-genki8-friend-music.json"
+    ],
+    "n_sentences": 100,
+    "model": null
+  },
+  "metrics": {
+    "n_sentences": 100,
+    "segmentation": {
+      "boundary_precision": 0.8084507042253521,
+      "boundary_recall": 1.0,
+      "boundary_f1": 0.8940809968847352,
+      "sentence_exact_match": 0.17
+    },
+    "dictionary_form": {
+      "accuracy_strict": 0.6628959276018099,
+      "accuracy_aligned": 0.9965986394557823,
+      "n_content_words": 442
+    },
+    "ruby": {
+      "accuracy_strict": 0.6062717770034843,
+      "accuracy_aligned": 0.8656716417910447,
+      "n_kanji_words": 287
+    },
+    "per_story": {
+      "eval-genki10-seasons": {
+        "n_sentences": 10,
+        "segmentation": {
+          "boundary_precision": 0.9238095238095239,
+          "boundary_recall": 1.0,
+          "boundary_f1": 0.9603960396039605,
+          "sentence_exact_match": 0.5
+        },
+        "dictionary_form": {
+          "accuracy_strict": 0.8372093023255814,
+          "accuracy_aligned": 1.0,
+          "n_content_words": 43
+        },
+        "ruby": {
+          "accuracy_strict": 0.7142857142857143,
+          "accuracy_aligned": 0.8333333333333334,
+          "n_kanji_words": 35
+        },
+        "per_sentence": [
+          {
+            "id": "s01",
+            "seg_exact": false,
+            "dict_ok": 1,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s02",
+            "seg_exact": true,
+            "dict_ok": 5,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s03",
+            "seg_exact": true,
+            "dict_ok": 5,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s04",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s05",
+            "seg_exact": true,
+            "dict_ok": 4,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s06",
+            "seg_exact": true,
+            "dict_ok": 3,
+            "ruby_ok": 4
+          },
+          {
+            "id": "s07",
+            "seg_exact": false,
+            "dict_ok": 4,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s08",
+            "seg_exact": false,
+            "dict_ok": 4,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s09",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s10",
+            "seg_exact": true,
+            "dict_ok": 5,
+            "ruby_ok": 4
+          }
+        ],
+        "counts": {
+          "b_tp": 97,
+          "b_fp": 8,
+          "b_fn": 0,
+          "dict_total": 43,
+          "dict_aligned": 36,
+          "dict_correct": 36,
+          "ruby_total": 35,
+          "ruby_aligned": 30,
+          "ruby_correct": 25,
+          "sent_exact": 5
+        }
+      },
+      "eval-genki12-feeling-sick": {
+        "n_sentences": 10,
+        "segmentation": {
+          "boundary_precision": 0.8076923076923077,
+          "boundary_recall": 1.0,
+          "boundary_f1": 0.8936170212765957,
+          "sentence_exact_match": 0.2
+        },
+        "dictionary_form": {
+          "accuracy_strict": 0.6744186046511628,
+          "accuracy_aligned": 1.0,
+          "n_content_words": 43
+        },
+        "ruby": {
+          "accuracy_strict": 0.6538461538461539,
+          "accuracy_aligned": 1.0,
+          "n_kanji_words": 26
+        },
+        "per_sentence": [
+          {
+            "id": "s01",
+            "seg_exact": true,
+            "dict_ok": 4,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s02",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 0
+          },
+          {
+            "id": "s03",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 0
+          },
+          {
+            "id": "s04",
+            "seg_exact": false,
+            "dict_ok": 4,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s05",
+            "seg_exact": false,
+            "dict_ok": 4,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s06",
+            "seg_exact": false,
+            "dict_ok": 4,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s07",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s08",
+            "seg_exact": true,
+            "dict_ok": 3,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s09",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s10",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 2
+          }
+        ],
+        "counts": {
+          "b_tp": 84,
+          "b_fp": 20,
+          "b_fn": 0,
+          "dict_total": 43,
+          "dict_aligned": 29,
+          "dict_correct": 29,
+          "ruby_total": 26,
+          "ruby_aligned": 17,
+          "ruby_correct": 17,
+          "sent_exact": 2
+        }
+      },
+      "eval-genki14-birthday-gift": {
+        "n_sentences": 10,
+        "segmentation": {
+          "boundary_precision": 0.822429906542056,
+          "boundary_recall": 1.0,
+          "boundary_f1": 0.9025641025641025,
+          "sentence_exact_match": 0.1
+        },
+        "dictionary_form": {
+          "accuracy_strict": 0.6808510638297872,
+          "accuracy_aligned": 1.0,
+          "n_content_words": 47
+        },
+        "ruby": {
+          "accuracy_strict": 0.6551724137931034,
+          "accuracy_aligned": 0.8636363636363636,
+          "n_kanji_words": 29
+        },
+        "per_sentence": [
+          {
+            "id": "s01",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s02",
+            "seg_exact": false,
+            "dict_ok": 4,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s03",
+            "seg_exact": false,
+            "dict_ok": 5,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s04",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s05",
+            "seg_exact": false,
+            "dict_ok": 4,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s06",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 0
+          },
+          {
+            "id": "s07",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s08",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s09",
+            "seg_exact": false,
+            "dict_ok": 1,
+            "ruby_ok": 0
+          },
+          {
+            "id": "s10",
+            "seg_exact": true,
+            "dict_ok": 4,
+            "ruby_ok": 3
+          }
+        ],
+        "counts": {
+          "b_tp": 88,
+          "b_fp": 19,
+          "b_fn": 0,
+          "dict_total": 47,
+          "dict_aligned": 32,
+          "dict_correct": 32,
+          "ruby_total": 29,
+          "ruby_aligned": 22,
+          "ruby_correct": 19,
+          "sent_exact": 1
+        }
+      },
+      "eval-genki16-helping-friend": {
+        "n_sentences": 10,
+        "segmentation": {
+          "boundary_precision": 0.7478991596638656,
+          "boundary_recall": 1.0,
+          "boundary_f1": 0.8557692307692307,
+          "sentence_exact_match": 0.0
+        },
+        "dictionary_form": {
+          "accuracy_strict": 0.6,
+          "accuracy_aligned": 1.0,
+          "n_content_words": 50
+        },
+        "ruby": {
+          "accuracy_strict": 0.6,
+          "accuracy_aligned": 0.8181818181818182,
+          "n_kanji_words": 30
+        },
+        "per_sentence": [
+          {
+            "id": "s01",
+            "seg_exact": false,
+            "dict_ok": 4,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s02",
+            "seg_exact": false,
+            "dict_ok": 1,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s03",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s04",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s05",
+            "seg_exact": false,
+            "dict_ok": 1,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s06",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s07",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s08",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s09",
+            "seg_exact": false,
+            "dict_ok": 5,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s10",
+            "seg_exact": false,
+            "dict_ok": 4,
+            "ruby_ok": 2
+          }
+        ],
+        "counts": {
+          "b_tp": 89,
+          "b_fp": 30,
+          "b_fn": 0,
+          "dict_total": 50,
+          "dict_aligned": 30,
+          "dict_correct": 30,
+          "ruby_total": 30,
+          "ruby_aligned": 22,
+          "ruby_correct": 18,
+          "sent_exact": 0
+        }
+      },
+      "eval-genki18-busy-morning": {
+        "n_sentences": 10,
+        "segmentation": {
+          "boundary_precision": 0.75,
+          "boundary_recall": 1.0,
+          "boundary_f1": 0.8571428571428571,
+          "sentence_exact_match": 0.0
+        },
+        "dictionary_form": {
+          "accuracy_strict": 0.5510204081632653,
+          "accuracy_aligned": 0.9642857142857143,
+          "n_content_words": 49
+        },
+        "ruby": {
+          "accuracy_strict": 0.5333333333333333,
+          "accuracy_aligned": 0.9411764705882353,
+          "n_kanji_words": 30
+        },
+        "per_sentence": [
+          {
+            "id": "s01",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s02",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s03",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s04",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s05",
+            "seg_exact": false,
+            "dict_ok": 4,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s06",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s07",
+            "seg_exact": false,
+            "dict_ok": 5,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s08",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s09",
+            "seg_exact": false,
+            "dict_ok": 0,
+            "ruby_ok": 0
+          },
+          {
+            "id": "s10",
+            "seg_exact": false,
+            "dict_ok": 4,
+            "ruby_ok": 2
+          }
+        ],
+        "counts": {
+          "b_tp": 90,
+          "b_fp": 30,
+          "b_fn": 0,
+          "dict_total": 49,
+          "dict_aligned": 28,
+          "dict_correct": 27,
+          "ruby_total": 30,
+          "ruby_aligned": 17,
+          "ruby_correct": 16,
+          "sent_exact": 0
+        }
+      },
+      "eval-genki20-polite-visit": {
+        "n_sentences": 10,
+        "segmentation": {
+          "boundary_precision": 0.7476635514018691,
+          "boundary_recall": 1.0,
+          "boundary_f1": 0.8556149732620321,
+          "sentence_exact_match": 0.0
+        },
+        "dictionary_form": {
+          "accuracy_strict": 0.5454545454545454,
+          "accuracy_aligned": 1.0,
+          "n_content_words": 44
+        },
+        "ruby": {
+          "accuracy_strict": 0.4074074074074074,
+          "accuracy_aligned": 0.6875,
+          "n_kanji_words": 27
+        },
+        "per_sentence": [
+          {
+            "id": "s01",
+            "seg_exact": false,
+            "dict_ok": 1,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s02",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s03",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s04",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s05",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s06",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s07",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s08",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s09",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 0
+          },
+          {
+            "id": "s10",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 1
+          }
+        ],
+        "counts": {
+          "b_tp": 80,
+          "b_fp": 27,
+          "b_fn": 0,
+          "dict_total": 44,
+          "dict_aligned": 24,
+          "dict_correct": 24,
+          "ruby_total": 27,
+          "ruby_aligned": 16,
+          "ruby_correct": 11,
+          "sent_exact": 0
+        }
+      },
+      "eval-genki22-raising-children": {
+        "n_sentences": 10,
+        "segmentation": {
+          "boundary_precision": 0.7777777777777778,
+          "boundary_recall": 1.0,
+          "boundary_f1": 0.8750000000000001,
+          "sentence_exact_match": 0.1
+        },
+        "dictionary_form": {
+          "accuracy_strict": 0.6666666666666666,
+          "accuracy_aligned": 1.0,
+          "n_content_words": 42
+        },
+        "ruby": {
+          "accuracy_strict": 0.6551724137931034,
+          "accuracy_aligned": 0.9047619047619048,
+          "n_kanji_words": 29
+        },
+        "per_sentence": [
+          {
+            "id": "s01",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s02",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s03",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s04",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s05",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s06",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s07",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s08",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s09",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s10",
+            "seg_exact": true,
+            "dict_ok": 3,
+            "ruby_ok": 1
+          }
+        ],
+        "counts": {
+          "b_tp": 84,
+          "b_fp": 24,
+          "b_fn": 0,
+          "dict_total": 42,
+          "dict_aligned": 28,
+          "dict_correct": 28,
+          "ruby_total": 29,
+          "ruby_aligned": 21,
+          "ruby_correct": 19,
+          "sent_exact": 1
+        }
+      },
+      "eval-genki4-day-out": {
+        "n_sentences": 10,
+        "segmentation": {
+          "boundary_precision": 0.7755102040816326,
+          "boundary_recall": 1.0,
+          "boundary_f1": 0.8735632183908045,
+          "sentence_exact_match": 0.0
+        },
+        "dictionary_form": {
+          "accuracy_strict": 0.625,
+          "accuracy_aligned": 1.0,
+          "n_content_words": 40
+        },
+        "ruby": {
+          "accuracy_strict": 0.6363636363636364,
+          "accuracy_aligned": 1.0,
+          "n_kanji_words": 22
+        },
+        "per_sentence": [
+          {
+            "id": "s01",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s02",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s03",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 0
+          },
+          {
+            "id": "s04",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s05",
+            "seg_exact": false,
+            "dict_ok": 1,
+            "ruby_ok": 0
+          },
+          {
+            "id": "s06",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s07",
+            "seg_exact": false,
+            "dict_ok": 4,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s08",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s09",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s10",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 1
+          }
+        ],
+        "counts": {
+          "b_tp": 76,
+          "b_fp": 22,
+          "b_fn": 0,
+          "dict_total": 40,
+          "dict_aligned": 25,
+          "dict_correct": 25,
+          "ruby_total": 22,
+          "ruby_aligned": 14,
+          "ruby_correct": 14,
+          "sent_exact": 0
+        }
+      },
+      "eval-genki6-daily-life": {
+        "n_sentences": 10,
+        "segmentation": {
+          "boundary_precision": 0.8617021276595744,
+          "boundary_recall": 1.0,
+          "boundary_f1": 0.9257142857142857,
+          "sentence_exact_match": 0.3
+        },
+        "dictionary_form": {
+          "accuracy_strict": 0.7073170731707317,
+          "accuracy_aligned": 1.0,
+          "n_content_words": 41
+        },
+        "ruby": {
+          "accuracy_strict": 0.6060606060606061,
+          "accuracy_aligned": 0.9090909090909091,
+          "n_kanji_words": 33
+        },
+        "per_sentence": [
+          {
+            "id": "s01",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s02",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s03",
+            "seg_exact": true,
+            "dict_ok": 4,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s04",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s05",
+            "seg_exact": true,
+            "dict_ok": 4,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s06",
+            "seg_exact": false,
+            "dict_ok": 4,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s07",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s08",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s09",
+            "seg_exact": false,
+            "dict_ok": 2,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s10",
+            "seg_exact": true,
+            "dict_ok": 3,
+            "ruby_ok": 2
+          }
+        ],
+        "counts": {
+          "b_tp": 81,
+          "b_fp": 13,
+          "b_fn": 0,
+          "dict_total": 41,
+          "dict_aligned": 29,
+          "dict_correct": 29,
+          "ruby_total": 33,
+          "ruby_aligned": 22,
+          "ruby_correct": 20,
+          "sent_exact": 3
+        }
+      },
+      "eval-genki8-friend-music": {
+        "n_sentences": 10,
+        "segmentation": {
+          "boundary_precision": 0.8932038834951457,
+          "boundary_recall": 1.0,
+          "boundary_f1": 0.9435897435897436,
+          "sentence_exact_match": 0.5
+        },
+        "dictionary_form": {
+          "accuracy_strict": 0.7674418604651163,
+          "accuracy_aligned": 1.0,
+          "n_content_words": 43
+        },
+        "ruby": {
+          "accuracy_strict": 0.5769230769230769,
+          "accuracy_aligned": 0.75,
+          "n_kanji_words": 26
+        },
+        "per_sentence": [
+          {
+            "id": "s01",
+            "seg_exact": true,
+            "dict_ok": 4,
+            "ruby_ok": 3
+          },
+          {
+            "id": "s02",
+            "seg_exact": true,
+            "dict_ok": 4,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s03",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s04",
+            "seg_exact": false,
+            "dict_ok": 1,
+            "ruby_ok": 0
+          },
+          {
+            "id": "s05",
+            "seg_exact": true,
+            "dict_ok": 3,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s06",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s07",
+            "seg_exact": false,
+            "dict_ok": 3,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s08",
+            "seg_exact": true,
+            "dict_ok": 3,
+            "ruby_ok": 2
+          },
+          {
+            "id": "s09",
+            "seg_exact": false,
+            "dict_ok": 4,
+            "ruby_ok": 1
+          },
+          {
+            "id": "s10",
+            "seg_exact": true,
+            "dict_ok": 5,
+            "ruby_ok": 3
+          }
+        ],
+        "counts": {
+          "b_tp": 92,
+          "b_fp": 11,
+          "b_fn": 0,
+          "dict_total": 43,
+          "dict_aligned": 33,
+          "dict_correct": 33,
+          "ruby_total": 26,
+          "ruby_aligned": 20,
+          "ruby_correct": 15,
+          "sent_exact": 5
+        }
+      }
+    }
+  }
+}
