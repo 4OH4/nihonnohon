@@ -1,6 +1,6 @@
 # Story se4-3: Update Prompt and Install Entry Point
 
-Status: in-progress
+Status: review
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -197,7 +197,7 @@ This is the **last story in supp-epic-4**. Until it ships, a deployed update wai
     - In the se4-3 ACs, replace "SettingsMenu shows …" with the library link wording.
     - Change the Notes line "Optionally add an e2e-pwa spec…" to say the real-update spec is required (RT, 2026-11-08).
   - [x] `deferred-work.md`: mark the se4-1 item *No periodic service worker update check (for se4-3)* with "**→ resolved in se4-3:**" plus one line on how it was resolved.
-- [ ] **Task 9: Browser verification** (AC: 8; CLAUDE.md requires it)
+- [x] **Task 9: Browser verification** (AC: 8; CLAUDE.md requires it)
   - [x] **`pnpm dev`, at 412 px and at desktop width (≥ 1280):**
     - **Toast:** open a story and force the toast from the DevTools console with the test hook. Check that:
       - at 412 px it sits above the tab bar
@@ -213,14 +213,14 @@ This is the **last story in supp-epic-4**. Until it ships, a deployed update wai
     4. Click **Reload**. Expect one reload, with the change visible.
     5. Repeat, but this time click ×, then reload the page. The toast should reappear.
     6. Revert the temporary change. Clear site data for `localhost:4173`.
-  - [ ] **Install (Chrome)** on `localhost:4173`:
+  - [x] **Install (Chrome)** on `localhost:4173`:
     1. The library shows "Install app". Click it: the native dialog opens.
     2. Cancel. The link should hide.
     3. Install from the omnibox and open the standalone window. The library should show no install link.
     4. Uninstall.
   - [x] Record what you saw in Completion Notes.
-- [ ] **Task 10: Regression gates** (AC: 9)
-  - [ ] `pnpm typecheck`, `pnpm run lint`, `pnpm test:unit` (root), `pnpm test:e2e` (apps/web, all four browser projects installed) and `pnpm test:e2e:pwa` (apps/web).
+- [x] **Task 10: Regression gates** (AC: 9)
+  - [x] `pnpm typecheck`, `pnpm run lint`, `pnpm test:unit` (root), `pnpm test:e2e` (apps/web, all four browser projects installed) and `pnpm test:e2e:pwa` (apps/web).
   - [x] No pixel baseline should change. The library has no snapshot, and SettingsMenu is untouched. If one changes, find out why before accepting it.
   - [x] The mobile-safari project uses an iPhone UA, so its library page now shows "Add to Home Screen". The existing `accessibility.spec.ts` "library view" axe test must still pass there. `golden-path`, `file-upload` and `smoke` must be unaffected: they locate the upload button by its exact name.
 
@@ -726,9 +726,11 @@ Claude Opus 5.5 (claude-opus-5-5)
   - Reload gave `loads=1`. The new label was visible, no worker was waiting, and the toast had cleared.
   - For v3, a reload brought the toast; × hid it; another reload brought it back while the page still showed v2.
   - The source was reverted and `dist/` rebuilt.
-- **Not verified, needs RT:** the *Install (Chrome)* steps (native dialog, cancel hides the link, omnibox install, standalone window, uninstall). Headless Chromium never fired a real `beforeinstallprompt`, and the native install UI cannot be operated from automation. Standalone hiding is covered by unit tests (`isStandalone`, `selectInstallOption`, LibraryRoute "standalone").
+- **Cancel behaviour (found in RT's manual Chrome check):** after Cancel, Chrome fires a fresh `beforeinstallprompt` straight away (RT confirmed it in the console), so the link stays visible. A session-only `installDeclined` flag to hide it was built, then removed at RT's request: **RT decided the link may stay after a cancel.** This supersedes Task 9's "Cancel. The link should hide." Kept from that work: the install handler now clears only the event it used (`installPrompt === event`), so a fresh event arriving before `userChoice` settles is never wiped. 2 new LibraryRoute tests (fresh event after cancel keeps the link; fresh event before the choice is not cleared). Mutation check: with the guard removed, the second test fails. Updated the `architecture-web.md` Install row and annotated the epic AC.
+- **Install (Chrome), verified by RT:** the native dialog opens from "Install app"; Cancel leaves the link showing (Chrome re-offers install; accepted by RT, see above); omnibox install, standalone window and uninstall all checked. A stale service worker from earlier testing first served a pre-se4-3 build: *Clear site data* fixed it. The real update toast was also seen when the fix was rebuilt under a running preview.
+- **Install dialog content (RT's request, beyond the story ACs):** Chrome's install dialog text cannot be changed, but a manifest with `screenshots` gets the richer dialog, which also shows the manifest description. Added two screenshots from RT (`public/screenshots/library.png`, `reader.png`, 713×808, title bar and window border cropped), marked `form_factor: 'wide'` so the desktop dialog shows them side by side; RT checked the dialog. They are kept out of the precache (`workbox.globIgnores`). RT reworded the description, changed in `vite.config.ts` and the `index.html` meta description together. New tests: `pwaManifest.test.ts` checks each screenshot's declared size against the PNG; `precache.spec.ts` checks screenshots are built but not precached.
 - **Hook stripped:** after `vite build`, no file in `dist/assets/*.js` contains `__PWA_STORE__`.
-- **Gates (Task 10):** `pnpm typecheck` ✓; `pnpm run lint` ✓; `pnpm test:unit` (root) ✓ (web 352, story-loader 34, story-generator 280). `pnpm test:e2e` ✓: 142 passed, 42 skipped (Linux-only pixel snapshots plus project-gated cases), 0 failed. The mobile-safari library axe test and golden-path, file-upload and smoke all pass. No baselines changed. The PWA suite passed 17/17, but on port 4174: **`pnpm test:e2e:pwa` itself has not been run**, because port 4173 is busy.
+- **Gates (Task 10):** `pnpm typecheck` ✓; `pnpm run lint` ✓; `pnpm test:unit` (root) ✓ (web 352, story-loader 34, story-generator 280). `pnpm test:e2e` ✓: 142 passed, 42 skipped (Linux-only pixel snapshots plus project-gated cases), 0 failed. The mobile-safari library axe test and golden-path, file-upload and smoke all pass. No baselines changed. The PWA suite first passed 17/17 on port 4174 while 4173 was busy; after RT approved force-stopping the leftover preview, `pnpm test:e2e:pwa` passed 17/17 on 4173.
 
 ### File List
 
@@ -744,6 +746,12 @@ Claude Opus 5.5 (claude-opus-5-5)
 - `apps/web/src/__tests__/UpdatePrompt.test.tsx` (new)
 - `apps/web/e2e/pwa-ui.spec.ts` (new)
 - `apps/web/e2e-pwa/update.spec.ts` (new)
+- `apps/web/e2e-pwa/precache.spec.ts` (modified)
+- `apps/web/src/__tests__/pwaManifest.test.ts` (modified)
+- `apps/web/vite.config.ts` (modified)
+- `apps/web/index.html` (modified)
+- `apps/web/public/screenshots/library.png` (new)
+- `apps/web/public/screenshots/reader.png` (new)
 - `docs/architecture-web.md` (modified)
 - `docs/development-guide.md` (modified)
 - `_bmad-output/planning-artifacts/ux-design-specification.md` (modified)
@@ -753,4 +761,8 @@ Claude Opus 5.5 (claude-opus-5-5)
 
 ## Change Log
 
-- 2026-11-08: Implemented se4-3. Added the update toast, the library install link, install capture, the periodic update check, unit and E2E tests (including the real-update spec, mutation-checked), and the docs and planning amendments. Pending RT: the manual Chrome install check, and `pnpm test:e2e:pwa` on port 4173.
+- 2026-11-08: Implemented se4-3. Added the update toast, the library install link, install capture, the periodic update check, unit and E2E tests (including the real-update spec, mutation-checked), and the docs and planning amendments. Pending RT: the manual Chrome install check.
+- 2026-11-08: `pnpm test:e2e:pwa` run on port 4173 (17/17) after the leftover preview was stopped; Task 10 complete.
+- 2026-11-08: Install link after Cancel: a hide-for-the-session fix was tried and reverted; RT decided the link may stay (Chrome re-offers install). Kept a guard so the handler never clears a newer event.
+- 2026-11-08: RT completed the manual Chrome install check; Task 9 complete. Status → review.
+- 2026-11-08: Added install-dialog screenshots and RT's new app description (manifest and meta description).
