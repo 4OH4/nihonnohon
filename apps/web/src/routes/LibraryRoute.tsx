@@ -136,7 +136,12 @@ export function LibraryRoute() {
       .prompt()
       .then(() => event.userChoice)
       .catch(() => undefined) // already used, or the browser refused
-      .finally(() => usePwaStore.getState().setInstallPrompt(null)) // an event can prompt only once
+      .finally(() => {
+        // An event can prompt only once, so drop it. After a cancel Chrome fires a fresh
+        // beforeinstallprompt (the link stays); never clear that one if it arrived first.
+        const store = usePwaStore.getState()
+        if (store.installPrompt === event) store.setInstallPrompt(null)
+      })
   }
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {

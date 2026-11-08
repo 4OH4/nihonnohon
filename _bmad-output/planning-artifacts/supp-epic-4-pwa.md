@@ -249,7 +249,8 @@ update is still waiting
 **Given** a Chromium browser fires `beforeinstallprompt`
 **Then** the library shows an "Install app" text link directly above "Load a story from your
 device", and choosing it calls `prompt()` on the deferred event and hides the link after the
-user's choice
+user's choice. (RT, 2026-11-08: after a cancel the link may stay, because Chrome offers install
+again straight away; that is fine.)
 
 **Given** iOS, not standalone (Safari on any version; Chrome, Edge or Firefox on iOS 16.4+)
 **Then** the same spot in the library shows "Add to Home Screen", which reveals the

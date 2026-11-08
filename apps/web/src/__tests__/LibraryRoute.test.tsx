@@ -30,6 +30,7 @@ import type { StoryModel } from '@nihonnohon/schema'
 //
 // NEW (se4-3 — install link above the upload button):
 //   - 'prompt': "Install app" shows before "Load a story from your device"; click prompts once, then hides
+//   - 'prompt': after a cancel, Chrome's fresh event shows it again and is never cleared by the old one
 //   - 'prompt': a rejected prompt() also hides the link
 //   - 'ios': "Add to Home Screen" toggles the instruction and aria-expanded
 //   - standalone: no install link, even with a deferred event stored
@@ -371,6 +372,34 @@ describe('LibraryRoute — install link', () => {
     expect(screen.queryByRole('button', { name: 'Install app' })).not.toBeInTheDocument()
     expect(usePwaStore.getState().installPrompt).toBeNull()
     expect(screen.getByRole('button', UPLOAD_BUTTON)).toBeInTheDocument()
+  })
+
+  it("'prompt': after a cancel, Chrome's fresh install event keeps the link", async () => {
+    const { event, resolveChoice } = fakeInstallEvent()
+    usePwaStore.setState({ installPrompt: event })
+    renderLibrary()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Install app' }))
+    await act(async () => resolveChoice({ outcome: 'dismissed', platform: '' }))
+    const fresh = fakeInstallEvent().event
+    act(() => usePwaStore.getState().setInstallPrompt(fresh))
+
+    expect(screen.getByRole('button', { name: 'Install app' })).toBeInTheDocument()
+    expect(usePwaStore.getState().installPrompt).toBe(fresh)
+  })
+
+  it("'prompt': a fresh event that arrives before the choice settles is not cleared", async () => {
+    const { event, resolveChoice } = fakeInstallEvent()
+    usePwaStore.setState({ installPrompt: event })
+    renderLibrary()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Install app' }))
+    const fresh = fakeInstallEvent().event
+    act(() => usePwaStore.getState().setInstallPrompt(fresh))
+    await act(async () => resolveChoice({ outcome: 'dismissed', platform: '' }))
+
+    expect(usePwaStore.getState().installPrompt).toBe(fresh)
+    expect(screen.getByRole('button', { name: 'Install app' })).toBeInTheDocument()
   })
 
   it("'prompt': a rejected prompt() also hides the link", async () => {
