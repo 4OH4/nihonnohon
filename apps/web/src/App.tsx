@@ -3,12 +3,15 @@
 
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
+import { UpdatePrompt } from '@/components/UpdatePrompt'
 import { Router } from '@/router'
 
 export default function App() {
   return (
     <>
       <Router />
+      {/* Outside the router so the update toast shows on every route. */}
+      <UpdatePrompt />
       {/* Analytics and Speed Insights are first-party: both the script and the
           collection endpoints are served from this origin under /_vercel/insights,
           which exists only on a Vercel deployment. Gating on PROD therefore keeps

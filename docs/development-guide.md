@@ -121,6 +121,21 @@ lookup, deep links, an uploaded story and a data file opened directly. The defau
 4. DevTools → Network → **Offline**, then reload and browse: open a story you have not opened
    yet and tap a word.
 
+**Update prompt.** `e2e-pwa/update.spec.ts` covers a real update automatically: it serves its
+own copy of `dist/` on port 4175 and changes that copy's `sw.js`. To see it by hand:
+
+1. `pnpm build`, then `pnpm preview` (apps/web), open `http://localhost:4173` and reload once so
+   the page is controlled.
+2. Make a visible change, then run `pnpm build` again without stopping preview (it serves
+   `dist/` from disk).
+3. Switch to another tab and back (the on-visible update check, at most once a minute), or
+   reload. The "New version available" toast appears. **Reload** applies it with one reload;
+   **×** hides it until the next reload.
+
+Under `pnpm dev` there is no worker, so force the toast from the DevTools console with the
+dev-only hook: `window.__PWA_STORE__.getState().setNeedRefresh(true)`. The hook is stripped
+from production builds.
+
 **Clean up afterwards:** Application → Storage → **Clear site data** for `localhost:4173`.
 Otherwise the old worker keeps serving the previous build to later preview sessions. The dev
 server on port 5173 is a different origin and is unaffected.

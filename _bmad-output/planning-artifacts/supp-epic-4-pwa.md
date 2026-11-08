@@ -117,7 +117,7 @@ central 80%). The icon set is generated from that one source SVG with
 | HTML shell | `apps/web/index.html` | `theme-color`, `apple-touch-icon`, favicon, `apple-mobile-web-app-capable`, `apple-mobile-web-app-title`, `apple-mobile-web-app-status-bar-style` |
 | Icons | `apps/web/public/` (+ source SVG, e.g. `apps/web/pwa-assets/icon.svg`) | Generated icon set |
 | Registration | `apps/web/src/lib/pwa.ts` (new), `apps/web/src/main.tsx` | Guarded registration; exposes update and install state to UI |
-| UI | `apps/web/src/components/UpdatePrompt.tsx` (new), `SettingsMenu.tsx` | Update toast; install item |
+| UI | `apps/web/src/components/UpdatePrompt.tsx` (new), `routes/LibraryRoute.tsx` | Update toast; install link |
 | Deploy | `vercel.json` | `/sw.js` header |
 | Tests | `apps/web/playwright.pwa.config.ts` (new), `apps/web/e2e-pwa/*.spec.ts` (new), `.github/workflows/ci.yml` | Offline E2E against `vite preview` (Chromium) |
 | Docs | `docs/architecture-web.md`, `docs/development-guide.md` | Service worker overview; how to test a PWA locally |
@@ -247,24 +247,29 @@ button, and nothing reloads automatically
 update is still waiting
 
 **Given** a Chromium browser fires `beforeinstallprompt`
-**Then** SettingsMenu shows an "Install app" item, and choosing it calls `prompt()` on the
-deferred event and hides the item after the user's choice
+**Then** the library shows an "Install app" text link directly above "Load a story from your
+device", and choosing it calls `prompt()` on the deferred event and hides the link after the
+user's choice
 
-**Given** iOS Safari, not standalone
-**Then** SettingsMenu shows "Add to Home Screen", which reveals the instruction "Tap Share,
-then Add to Home Screen"
+**Given** iOS, not standalone (Safari on any version; Chrome, Edge or Firefox on iOS 16.4+)
+**Then** the same spot in the library shows "Add to Home Screen", which reveals the
+instruction "Tap Share, then Add to Home Screen"
 
 **Given** the app is running standalone (`display-mode: standalone` or `navigator.standalone`)
-**Then** no install item is shown
+**Then** no install link is shown
 
-**Given** the toast and the menu item
+**Given** the reader
+**Then** SettingsMenu carries no install item (RT decision, 2026-11-08: keep the reading
+interface clean)
+
+**Given** the toast and the install link
 **Then** they use only design tokens (`surface`, `border`, `paper-text`, `accent`), are
 keyboard accessible, pass axe (WCAG 2.1 AA tags), and are browser-verified at 412px and at
 desktop width
 
 **Notes:** Drive the toast from the `needRefresh` state exposed by se4-1. A test hook can
-force `needRefresh` true for unit and E2E tests. Optionally add an e2e-pwa spec that serves
-two builds to exercise a real update. A unit test with a mocked store is the minimum.
+force `needRefresh` true for unit and E2E tests. An e2e-pwa spec that serves a changed build
+to exercise a real update is required (RT, 2026-11-08), in addition to unit tests.
 
 ---
 

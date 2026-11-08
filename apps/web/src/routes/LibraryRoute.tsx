@@ -1,13 +1,14 @@
 // Copyright (c) 2026 Rupert Thomas
 // SPDX-License-Identifier: MIT
 
-import { useState, useMemo, useRef, useEffect } from 'react'
+import { useState, useMemo, useRef, useEffect, useId } from 'react'
 import { useLoaderData, useRevalidator, useNavigate, Link } from 'react-router-dom'
 import { loadStory, LoaderError } from '@nihonnohon/story-loader'
 import { AppBar } from '@/components/AppBar'
 import { StoryCard } from '@/components/StoryCard'
 import { cn } from '@/lib/utils'
 import { saveStory } from '@/services/indexedDbService'
+import { usePwaStore, selectInstallOption } from '@/stores/pwaStore'
 import {
   fetchManifest,
   parseDifficultySource,
@@ -68,6 +69,9 @@ export function LibraryRoute() {
   const [chapter, setChapter] = useState<string>('All')
   const [uploadError, setUploadError] = useState<LoaderError | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const installOption = usePwaStore(selectInstallOption)
+  const [iosHelpOpen, setIosHelpOpen] = useState(false)
+  const iosHelpId = useId()
 
   // Dismiss upload error when user clicks anywhere outside the error panel
   useEffect(() => {
@@ -121,6 +125,18 @@ export function LibraryRoute() {
   const resetFilter = () => {
     setSource('All')
     setChapter('All')
+  }
+
+  // Install app: show the browser's deferred install dialog
+  const install = () => {
+    const event = usePwaStore.getState().installPrompt
+    if (!event) return
+    // prompt() must run inside the click's user activation, before any await.
+    event
+      .prompt()
+      .then(() => event.userChoice)
+      .catch(() => undefined) // already used, or the browser refused
+      .finally(() => usePwaStore.getState().setInstallPrompt(null)) // an event can prompt only once
   }
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -220,8 +236,36 @@ export function LibraryRoute() {
           </div>
         )}
 
-        {/* File upload CTA — always visible at bottom of list */}
+        {/* File upload CTA — always visible at bottom of list.
+            The install link (FR45) sits above it: native prompt on Chromium, instruction on iOS,
+            nothing when installed. */}
         <div className="mt-8 text-center">
+          {installOption && (
+            <div className="mb-3">
+              {installOption === 'prompt' ? (
+                <button type="button" onClick={install} className="text-sm underline text-muted">
+                  Install app
+                </button>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    aria-expanded={iosHelpOpen}
+                    aria-controls={iosHelpId}
+                    onClick={() => setIosHelpOpen((o) => !o)}
+                    className="text-sm underline text-muted"
+                  >
+                    Add to Home Screen
+                  </button>
+                  {iosHelpOpen && (
+                    <p id={iosHelpId} className="mt-1 text-sm text-muted">
+                      Tap Share, then Add to Home Screen
+                    </p>
+                  )}
+                </>
+              )}
+            </div>
+          )}
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}

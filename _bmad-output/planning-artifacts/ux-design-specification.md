@@ -79,11 +79,14 @@ _Added 2026-11-08 (supp-epic-4)._
   + **Reload** + dismiss (×). Never auto-reload — the reader may be mid-sentence. Dismissed
   toasts reappear on the next app launch. Uses existing tokens only (`surface`, `border`,
   `paper-text`, `accent` for the action).
-- **Install entry point:** a "Install app" item in the SettingsMenu, shown only when the
-  browser has offered an install prompt (`beforeinstallprompt`, Chromium) — it triggers the
-  native prompt. On iOS Safari (no install API) the item reads "Add to Home Screen" and
-  opens a one-line instruction: "Tap Share, then Add to Home Screen". Hidden entirely when
-  already running standalone.
+- **Install entry point:** a small "Install app" text link at the bottom of the library,
+  directly above "Load a story from your device" and in the same quiet style, shown only
+  when the browser has offered an install prompt (`beforeinstallprompt`, Chromium) — it
+  triggers the native prompt. On iOS (no install API) the link reads "Add to Home Screen"
+  and reveals a one-line instruction beneath it: "Tap Share, then Add to Home Screen"
+  (Safari on any iOS version; Chrome, Edge and Firefox on iOS 16.4+). Hidden entirely when
+  already running standalone. The reading interface (SettingsMenu) carries no install
+  item — RT decision, 2026-11-08, to keep the reader clean.
 - No install banners or interstitials on first visit — the reading surface stays clean.
 
 ### Effortless Interactions
