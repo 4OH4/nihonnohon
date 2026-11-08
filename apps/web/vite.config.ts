@@ -41,7 +41,18 @@ export default defineConfig({
           { src: 'maskable-icon-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
-      // workbox: intentionally left at plugin defaults — se4-2 owns globPatterns / navigateFallback.
+      // A file over Workbox's 2 MiB per-file limit is otherwise dropped from the precache silently.
+      showMaximumFileSizeToCacheInBytesWarning: true,
+      // Whole-library precache (ADR 007, offline option "b"): app shell, fonts, dictionary data,
+      // the story manifest and every story. Budget ≤ 10 MB — enforced by e2e-pwa/precache.spec.ts.
+      // Large optional assets are opt-in downloads outside the precache; never widen these globs for them.
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,woff2,png,svg,ico,webmanifest,json}'],
+        // Deep links (/read/:storyId) open offline; /_vercel/* (Analytics, Speed Insights) stays on the network.
+        navigateFallback: '/index.html',
+        navigateFallbackDenylist: [/^\/_vercel\//],
+        // Never set skipWaiting / clientsClaim: updates wait for the reader (FR47, se4-3).
+      },
     }),
   ],
   resolve: {
@@ -53,6 +64,6 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./src/__tests__/setup.ts'],
-    exclude: ['**/node_modules/**', '**/dist/**', '**/e2e/**'],
+    exclude: ['**/node_modules/**', '**/dist/**', '**/e2e/**', '**/e2e-pwa/**'],
   },
 })

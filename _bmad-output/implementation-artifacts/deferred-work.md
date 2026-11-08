@@ -3,7 +3,7 @@
 ## Deferred from: code review of se4-1-web-manifest-icons-and-sw-registration (2026-11-08)
 
 - **No periodic service worker update check (for se4-3):** Client-side React Router navigations do not trigger the browser's SW update check, so a long-lived installed (standalone) session never fires `onNeedRefresh` until relaunch. Consider `onRegisteredSW` plus a periodic `registration.update()` when building `UpdatePrompt`. [`apps/web/src/lib/pwa.ts`]
-- **Favicons outside the precache; navigation fallback has no denylist (for se4-2):** The plugin-default precache covers only JS/CSS/HTML and the manifest icons, so `favicon.ico`, `favicon.svg` and `apple-touch-icon-180x180.png` fail offline. The default `NavigationRoute` (no `navigateFallbackDenylist`) returns the SPA shell when `/vocab.json`, `/kanji-data.json` or `/stories/*` is opened directly in a tab. [`apps/web/vite.config.ts`]
+- **Favicons outside the precache; navigation fallback has no denylist (for se4-2):** The plugin-default precache covers only JS/CSS/HTML and the manifest icons, so `favicon.ico`, `favicon.svg` and `apple-touch-icon-180x180.png` fail offline. The default `NavigationRoute` (no `navigateFallbackDenylist`) returns the SPA shell when `/vocab.json`, `/kanji-data.json` or `/stories/*` is opened directly in a tab. [`apps/web/vite.config.ts`] **→ resolved in se4-2:** the `png`/`svg`/`ico` precache globs cover the favicons, `navigateFallbackDenylist: [/^\/_vercel\//]` is set, and precached JSON is answered by the precache route (registered before the `NavigationRoute`), so only unknown paths fall back to the shell. Enforced by `e2e-pwa/precache.spec.ts`.
 
 ## Deferred from: code review of se2-3-schema-and-type-updates (2026-06-04)
 

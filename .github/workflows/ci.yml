@@ -157,3 +157,16 @@ jobs:
 
       - name: Build
         run: pnpm run build
+
+      # Offline / service-worker suite against a production build (se4-2). Chromium only;
+      # the browser is installed by the step above. Not part of `pnpm test:e2e`.
+      - name: PWA offline E2E (Chromium)
+        run: pnpm --filter @nihonnohon/web test:e2e:pwa
+
+      - name: Upload PWA test results on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-pwa-test-results
+          path: apps/web/test-results-pwa/
+          if-no-files-found: ignore

@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-05-11
-last_updated: 2026-11-08  # se4-1 done (code review); supp-epic-4 in progress
+last_updated: 2026-11-08  # se4-1 done (code review); se4-2 review; supp-epic-4 in progress
 # v1 complete: all epics done, retrospective closed
 # supp-epic-1 (furigana rework) and supp-epic-2 (Python enrichment) done
 project: nihonnohon
@@ -110,6 +110,6 @@ development_status:
   # Change proposal: _bmad-output/planning-artifacts/sprint-change-proposal-2026-11-08.md
   supp-epic-4: in-progress
   se4-1-web-manifest-icons-and-sw-registration: done
-  se4-2-offline-library-precache-and-offline-e2e: backlog
+  se4-2-offline-library-precache-and-offline-e2e: review
   se4-3-update-prompt-and-install-entry-point: backlog
   supp-epic-4-retrospective: optional

@@ -93,6 +93,38 @@ pnpm --filter @nihonnohon/web test:e2e
 
 The E2E suite requires the app to be built. Turbo handles this via `dependsOn: ["build"]`.
 
+### PWA / Offline Tests
+
+`pnpm dev` never registers a service worker. This is deliberate, so the default E2E suite
+always runs without one. Offline behaviour can only be checked against a production build.
+
+**Automated:** a separate Chromium-only suite in `apps/web/e2e-pwa/` builds the app and
+serves it with `vite preview` on port 4173. It needs `vocab.json` and the built workspace
+packages, so run `pnpm build` from the root once first.
+
+```bash
+# from apps/web
+pnpm test:e2e:pwa
+```
+
+`precache.spec.ts` checks what the build precaches and the 10 MB budget. `offline.spec.ts`
+loads the app online, goes offline and exercises the library, an unopened story, word
+lookup, deep links and an uploaded story. The default `pnpm test:e2e` does not run this suite.
+
+**Manually in Chrome:**
+
+1. `pnpm build` (root), then `pnpm preview` in `apps/web`, and open `http://localhost:4173`.
+2. DevTools → Application → Service workers: `sw.js` is *activated and is running*.
+   Cache storage lists a `workbox-precache-v2-…` cache containing the stories, `vocab.json`
+   and the fonts.
+3. Reload once. The first visit is never controlled by the worker, because updates use prompt mode.
+4. DevTools → Network → **Offline**, then reload and browse: open a story you have not opened
+   yet and tap a word.
+
+**Clean up afterwards:** Application → Storage → **Clear site data** for `localhost:4173`.
+Otherwise the old worker keeps serving the previous build to later preview sessions. The dev
+server on port 5173 is a different origin and is unaffected.
+
 ### Lint + Type Check
 
 ```bash
@@ -195,6 +227,7 @@ GitHub Actions (`.github/workflows/ci.yml`) runs on every PR and push to `main`:
 6. `playwright install --with-deps chromium firefox webkit`
 7. `pnpm run test:e2e`
 8. `pnpm run build`
+9. `pnpm --filter @nihonnohon/web test:e2e:pwa` (offline / service-worker suite, Chromium only)
 
 All steps must pass before merging.
 
