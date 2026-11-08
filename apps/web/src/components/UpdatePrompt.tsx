@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Rupert Thomas
 // SPDX-License-Identifier: MIT
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import { usePwaStore } from '@/stores/pwaStore'
 
@@ -17,11 +17,16 @@ export function UpdatePrompt() {
   const [reloading, setReloading] = useState(false)
   const visible = needRefresh && !updateDismissed
 
+  // The component never unmounts, so re-enable Reload when the toast hides (a newer worker re-shows it).
+  useEffect(() => {
+    if (!visible) setReloading(false)
+  }, [visible])
+
   const reload = () => {
     setReloading(true)
     const update = usePwaStore.getState().updateServiceWorker
     // vite-plugin-pwa reloads the page once the new service worker takes control.
-    if (update) void update()
+    if (update) update().catch(() => window.location.reload())
     else window.location.reload()
   }
 

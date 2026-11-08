@@ -5,6 +5,7 @@ import { create } from 'zustand'
 
 /**
  * Tells the waiting service worker to skip waiting; the page then reloads once it takes control.
+ * With no waiting worker (its update already activated), it reloads the page directly.
  * vite-plugin-pwa 2.0 ignores `reloadPage` in prompt mode — the reload always happens
  * (registerServiceWorker passes no onNeedReload), so callers cannot suppress it.
  */

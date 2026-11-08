@@ -264,7 +264,8 @@ instruction "Tap Share, then Add to Home Screen"
 interface clean)
 
 **Given** the toast and the install link
-**Then** they use only design tokens (`surface`, `border`, `paper-text`, `accent`), are
+**Then** they use only design tokens (`surface`, `border`, `paper-text`, `accent`, and `muted`
+for secondary text), are
 keyboard accessible, pass axe (WCAG 2.1 AA tags), and are browser-verified at 412px and at
 desktop width
 

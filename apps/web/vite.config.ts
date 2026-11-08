@@ -42,8 +42,9 @@ export default defineConfig({
           { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png' },
           { src: 'maskable-icon-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
-        // Chrome's richer install dialog shows these with the description. The desktop dialog only
-        // uses 'wide' ones (these are portrait, so two fit side by side); sizes must match the file
+        // Chrome's richer install dialog shows these with the description. Desktop uses only 'wide'
+        // entries and Android only 'narrow' ones, so each phone-sized image is listed under both
+        // (portrait, so two fit side by side on desktop). Sizes must match the file
         // (pwaManifest.test.ts). Not precached (globIgnores).
         screenshots: [
           {
@@ -58,6 +59,20 @@ export default defineConfig({
             sizes: '713x808',
             type: 'image/png',
             form_factor: 'wide',
+            label: 'Reading a story, with the word 天気 looked up and translations shown',
+          },
+          {
+            src: 'screenshots/library.png',
+            sizes: '713x808',
+            type: 'image/png',
+            form_factor: 'narrow',
+            label: 'The story library, with stories tagged by Genki chapter',
+          },
+          {
+            src: 'screenshots/reader.png',
+            sizes: '713x808',
+            type: 'image/png',
+            form_factor: 'narrow',
             label: 'Reading a story, with the word 天気 looked up and translations shown',
           },
         ],

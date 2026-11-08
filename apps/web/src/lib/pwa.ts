@@ -28,15 +28,27 @@ export async function registerServiceWorker(): Promise<void> {
     // Dynamic import keeps workbox-window out of dev and out of the main chunk.
     const { registerSW } = await import('virtual:pwa-register')
     const store = usePwaStore.getState()
+    let registration: ServiceWorkerRegistration | undefined
     const updateSW = registerSW({
       onNeedRefresh: () => store.setNeedRefresh(true),
       onOfflineReady: () => store.setOfflineReady(true),
-      onRegisteredSW: (_swUrl, registration) => {
-        if (registration) watchForUpdates(registration)
+      onRegisteredSW: (_swUrl, r) => {
+        if (!r) return
+        registration = r
+        watchForUpdates(r)
       },
       onRegisterError: (error) => console.warn('[pwa] service worker registration failed', error),
     })
-    store.setUpdateServiceWorker(updateSW)
+    store.setUpdateServiceWorker(async () => {
+      // No waiting worker: in a tab the worker never controlled (first visit, no clientsClaim)
+      // an update activates at once, so skip-waiting has no target and no reload would follow.
+      // The new worker is already active, so a plain reload loads the new version.
+      if (registration && !registration.waiting) {
+        window.location.reload()
+        return
+      }
+      await updateSW()
+    })
   } catch (error) {
     // The app must work identically without a service worker — never surface this to the reader.
     console.warn('[pwa] service worker unavailable', error)
@@ -49,12 +61,13 @@ const UPDATE_INTERVAL_MS = 60 * 60 * 1000
 const MIN_CHECK_GAP_MS = 60 * 1000
 
 /**
- * Asks the browser to re-check sw.js hourly and whenever the app returns to the foreground.
- * An installed app is usually resumed, not relaunched, and client-side navigation never
- * triggers the browser's own update check, so without this a deploy would go unseen.
- * Listeners live for the page's lifetime (registration runs once per page).
+ * Asks the browser to re-check sw.js hourly, whenever the app returns to the foreground and
+ * when the connection returns. An installed app is usually resumed, not relaunched, and
+ * client-side navigation never triggers the browser's own update check, so without this a
+ * deploy would go unseen. Listeners live for the page's lifetime (registration runs once per page).
  */
 function watchForUpdates(registration: ServiceWorkerRegistration): void {
+  // ─── triggers ──────────────────────────────────────────────────────────────
   // Registration has just fetched sw.js, so the gap starts now.
   let lastCheck = Date.now()
   const check = () => {
@@ -66,6 +79,19 @@ function watchForUpdates(registration: ServiceWorkerRegistration): void {
   setInterval(check, UPDATE_INTERVAL_MS)
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') check()
+  })
+  window.addEventListener('online', check) // a check skipped offline would otherwise wait an hour
+
+  // ─── later updates ─────────────────────────────────────────────────────────
+  // workbox-window (7.4) stops listening for updatefound after the first update these checks
+  // find, so a newer deploy in the same page would never re-show a dismissed toast.
+  registration.addEventListener('updatefound', () => {
+    const sw = registration.installing
+    sw?.addEventListener('statechange', () => {
+      if (sw.state === 'installed' && registration.waiting === sw && navigator.serviceWorker.controller) {
+        usePwaStore.getState().setNeedRefresh(true)
+      }
+    })
   })
 }
 

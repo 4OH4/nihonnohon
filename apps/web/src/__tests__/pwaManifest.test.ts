@@ -29,7 +29,10 @@ describe('install screenshots', () => {
   it('each manifest screenshot exists in public/ with the declared sizes', () => {
     const config = readFileSync(join(APP_ROOT, 'vite.config.ts'), 'utf-8')
     const shots = [...config.matchAll(/src: '(screenshots\/[^']+\.png)',\s*sizes: '(\d+)x(\d+)'/g)]
+    // Every screenshot entry must be parsed, so a reordered or reformatted one cannot slip past.
+    const entries = config.match(/src: ['"]screenshots\//g) ?? []
     expect(shots.length).toBeGreaterThan(0)
+    expect(shots.length).toBe(entries.length)
 
     for (const [, src, width, height] of shots) {
       const png = readFileSync(join(APP_ROOT, 'public', src!))

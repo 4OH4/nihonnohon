@@ -143,7 +143,7 @@ Open `http://localhost:5173`, exercise the specific feature, and confirm the vis
 - The app is an installable PWA (vite-plugin-pwa, Workbox `generateSW`, `registerType: 'prompt'`). See `docs/adr/007-pwa-offline.md`
 - **The service worker is a transparent cache only.** App code uses plain `fetch()` and must work identically with no service worker — never read caches directly, never message the SW for app logic
 - Register the SW **only** through `registerServiceWorker()` in `src/lib/pwa.ts`; it no-ops outside production builds. Do not call `navigator.serviceWorker` anywhere else
-- Everything under `public/` matching the precache globs is cached at install — a new file in `public/stories/` is offline automatically; keep the precache under 10 MB (check the build log)
+- Everything under `public/` matching the precache globs is cached at install — a new file in `public/stories/` is offline automatically; keep the precache under 10 MB (check the build log). The one exclusion is `public/screenshots/` (install-dialog screenshots, `workbox.globIgnores`)
 - The 10 MB budget applies to the **default precache**, which every visitor downloads. Large optional assets (e.g. a future full dictionary) must be **opt-in downloads stored outside the Workbox precache** (e.g. imported into IndexedDB) — never add them to the precache globs
 - Never auto-reload on SW update — surface it through `UpdatePrompt` and let the reader choose
 - The default E2E suite runs on `vite` (dev) with **no** service worker; offline behaviour is tested only in the preview-server spec (`e2e-pwa/`). Do not enable `devOptions` in the PWA plugin

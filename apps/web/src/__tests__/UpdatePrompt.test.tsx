@@ -35,9 +35,10 @@ describe('UpdatePrompt', () => {
     expect(screen.getByRole('status')).toHaveTextContent('New version available')
   })
 
-  it('never takes focus', () => {
-    usePwaStore.setState({ needRefresh: true })
+  it('never takes focus when it appears', () => {
     render(<UpdatePrompt />)
+    act(() => usePwaStore.getState().setNeedRefresh(true))
+    expect(screen.getByRole('button', { name: 'Reload' })).toBeInTheDocument()
     expect(document.body).toHaveFocus()
   })
 
@@ -72,6 +73,31 @@ describe('UpdatePrompt', () => {
 
     expect(updateSW).toHaveBeenCalledTimes(1)
     expect(reload).toBeDisabled()
+  })
+
+  it('re-enables Reload when a newer worker re-shows the toast after a dismiss', () => {
+    usePwaStore.setState({ needRefresh: true, updateServiceWorker: vi.fn(async () => {}) })
+    render(<UpdatePrompt />)
+    fireEvent.click(screen.getByRole('button', { name: 'Reload' }))
+    expect(screen.getByRole('button', { name: 'Reload' })).toBeDisabled()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Dismiss' }))
+    act(() => usePwaStore.getState().setNeedRefresh(true))
+
+    expect(screen.getByRole('button', { name: 'Reload' })).toBeEnabled()
+  })
+
+  it('Reload falls back to location.reload when the update handle rejects', async () => {
+    const reloadPage = vi.fn()
+    vi.stubGlobal('location', { ...window.location, reload: reloadPage })
+    usePwaStore.setState({ needRefresh: true, updateServiceWorker: vi.fn(async () => Promise.reject(new Error('x'))) })
+    render(<UpdatePrompt />)
+
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Reload' }))
+    })
+
+    expect(reloadPage).toHaveBeenCalledTimes(1)
   })
 
   it('Reload falls back to location.reload when the handle is null', () => {

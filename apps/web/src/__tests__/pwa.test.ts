@@ -35,6 +35,7 @@ afterEach(() => {
   removeInstallListeners = null
   vi.useRealTimers()
   vi.unstubAllEnvs()
+  vi.unstubAllGlobals()
   // Restore spies (console.warn) even when a test fails before its own cleanup.
   vi.restoreAllMocks()
   // mockReset drops any unconsumed mockImplementationOnce and restores the default implementation.
@@ -79,7 +80,45 @@ describe('registerServiceWorker', () => {
     expect(registerSW).toHaveBeenCalledTimes(1)
     // Default (non-immediate) registration: precaching waits for the load event.
     expect(registerSW.mock.calls[0]![0]).not.toHaveProperty('immediate', true)
-    expect(usePwaStore.getState().updateServiceWorker).toBe(updateSW)
+    expect(usePwaStore.getState().updateServiceWorker).toBeTypeOf('function')
+  })
+
+  it('the stored handle delegates to the registerSW handle before the registration resolves', async () => {
+    vi.stubEnv('PROD', true)
+    stubServiceWorkerSupport()
+    await registerServiceWorker()
+
+    await usePwaStore.getState().updateServiceWorker!()
+
+    expect(updateSW).toHaveBeenCalledTimes(1)
+  })
+
+  it('the stored handle skips waiting when a worker is waiting', async () => {
+    vi.stubEnv('PROD', true)
+    stubServiceWorkerSupport()
+    await registerServiceWorker()
+    const registration = Object.assign(new EventTarget(), { waiting: {}, installing: null, update: vi.fn(async () => undefined) })
+    registerSW.mock.calls[0]![0]!.onRegisteredSW?.('/sw.js', registration as unknown as ServiceWorkerRegistration)
+
+    await usePwaStore.getState().updateServiceWorker!()
+
+    expect(updateSW).toHaveBeenCalledTimes(1)
+  })
+
+  it('the stored handle reloads directly when no worker is waiting (update already active)', async () => {
+    vi.stubEnv('PROD', true)
+    stubServiceWorkerSupport()
+    const reloadPage = vi.fn()
+    // jsdom's location.reload is not configurable, so swap the whole location object.
+    vi.stubGlobal('location', { ...window.location, reload: reloadPage })
+    await registerServiceWorker()
+    const registration = Object.assign(new EventTarget(), { waiting: null, installing: null, update: vi.fn(async () => undefined) })
+    registerSW.mock.calls[0]![0]!.onRegisteredSW?.('/sw.js', registration as unknown as ServiceWorkerRegistration)
+
+    await usePwaStore.getState().updateServiceWorker!()
+
+    expect(reloadPage).toHaveBeenCalledTimes(1)
+    expect(updateSW).not.toHaveBeenCalled()
   })
 
   it('wires onNeedRefresh and onOfflineReady to the store', async () => {
@@ -130,10 +169,11 @@ describe('periodic update check (onRegisteredSW)', () => {
 
   /** A fresh registration per test, so a listener left by an earlier test can only call an old mock. */
   function fakeRegistration() {
-    return {
+    return Object.assign(new EventTarget(), {
       installing: null as object | null,
+      waiting: null as object | null,
       update: vi.fn(async (): Promise<unknown> => undefined),
-    }
+    })
   }
 
   /** Registers with fake timers and hands the registration to onRegisteredSW. */
@@ -232,6 +272,62 @@ describe('periodic update check (onRegisteredSW)', () => {
   it('tolerates an undefined registration', async () => {
     await expect(registerWith(undefined)).resolves.toBeUndefined()
     await vi.advanceTimersByTimeAsync(HOUR)
+  })
+
+  it('checks when the connection returns, subject to the 60-second gap', async () => {
+    const registration = fakeRegistration()
+    await registerWith(registration)
+
+    window.dispatchEvent(new Event('online'))
+    expect(registration.update).not.toHaveBeenCalled()
+
+    await vi.advanceTimersByTimeAsync(2 * 60 * 1000)
+    window.dispatchEvent(new Event('online'))
+    expect(registration.update).toHaveBeenCalledTimes(1)
+  })
+
+  describe('a later update in the same page', () => {
+    /** Simulates updatefound with a worker that then reaches `state`. */
+    function findUpdate(registration: ReturnType<typeof fakeRegistration>, state: string, waiting: boolean) {
+      const sw = Object.assign(new EventTarget(), { state: 'installing' })
+      registration.installing = sw
+      registration.dispatchEvent(new Event('updatefound'))
+      sw.state = state
+      registration.installing = null
+      registration.waiting = waiting ? sw : null
+      sw.dispatchEvent(new Event('statechange'))
+    }
+
+    it('re-shows a dismissed toast when a newer worker is installed and waiting', async () => {
+      const registration = fakeRegistration()
+      await registerWith(registration)
+      Object.defineProperty(navigator, 'serviceWorker', { value: { controller: {} }, configurable: true })
+      usePwaStore.setState({ needRefresh: true, updateDismissed: true })
+
+      findUpdate(registration, 'installed', true)
+
+      expect(usePwaStore.getState()).toMatchObject({ needRefresh: true, updateDismissed: false })
+    })
+
+    it('ignores a worker that is not left waiting (activated at once)', async () => {
+      const registration = fakeRegistration()
+      await registerWith(registration)
+      Object.defineProperty(navigator, 'serviceWorker', { value: { controller: {} }, configurable: true })
+
+      findUpdate(registration, 'installed', false)
+
+      expect(usePwaStore.getState().needRefresh).toBe(false)
+    })
+
+    it('ignores an update in a page with no controller (first install)', async () => {
+      const registration = fakeRegistration()
+      await registerWith(registration)
+      Object.defineProperty(navigator, 'serviceWorker', { value: { controller: null }, configurable: true })
+
+      findUpdate(registration, 'installed', true)
+
+      expect(usePwaStore.getState().needRefresh).toBe(false)
+    })
   })
 })
 

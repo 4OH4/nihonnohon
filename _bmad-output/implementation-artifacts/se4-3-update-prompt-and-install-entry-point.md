@@ -1,6 +1,6 @@
 # Story se4-3: Update Prompt and Install Entry Point
 
-Status: review
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -67,8 +67,9 @@ This is the **last story in supp-epic-4**. Until it ships, a deployed update wai
    - When the install option is `'prompt'`, the library shows an **"Install app"** text link directly above "Load a story from your device". Choosing it:
      - calls `prompt()` on the deferred event **synchronously in the click handler**, because the browser requires a user gesture
      - then awaits `userChoice`
-     - then clears `installPrompt`, so the link hides whatever the reader chose
+     - then clears `installPrompt`, but only if it still holds the event that was used
    - A rejected `prompt()` (for example, the event was already used) also clears it.
+   - _Amended after RT's cancel decision (2026-11-08):_ after a cancel, Chrome fires a fresh `beforeinstallprompt` straight away, so the link stays. The handler never clears a newer event.
 
 6. **AC6: Add to Home Screen link on iOS**
    - On an iOS or iPadOS device that is not running standalone, the same spot in the library shows an **"Add to Home Screen"** text link, provided the browser can add to the home screen:
@@ -215,7 +216,7 @@ This is the **last story in supp-epic-4**. Until it ships, a deployed update wai
     6. Revert the temporary change. Clear site data for `localhost:4173`.
   - [x] **Install (Chrome)** on `localhost:4173`:
     1. The library shows "Install app". Click it: the native dialog opens.
-    2. Cancel. The link should hide.
+    2. Cancel. The link stays, because Chrome fires a fresh `beforeinstallprompt` (RT's decision, 2026-11-08; originally "The link should hide").
     3. Install from the omnibox and open the standalone window. The library should show no install link.
     4. Uninstall.
   - [x] Record what you saw in Completion Notes.
@@ -223,6 +224,22 @@ This is the **last story in supp-epic-4**. Until it ships, a deployed update wai
   - [x] `pnpm typecheck`, `pnpm run lint`, `pnpm test:unit` (root), `pnpm test:e2e` (apps/web, all four browser projects installed) and `pnpm test:e2e:pwa` (apps/web).
   - [x] No pixel baseline should change. The library has no snapshot, and SettingsMenu is untouched. If one changes, find out why before accepting it.
   - [x] The mobile-safari project uses an iPhone UA, so its library page now shows "Add to Home Screen". The existing `accessibility.spec.ts` "library view" axe test must still pass there. `golden-path`, `file-upload` and `smoke` must be unaffected: they locate the upload button by its exact name.
+
+### Review Findings
+
+_Code review 2026-11-08, range `e4715c8..419a558`. Layers: Blind Hunter, Edge Case Hunter and Acceptance Auditor. Library behaviour was checked against the workbox-window 7.4.1 and vite-plugin-pwa 2.0.0 source._
+
+- [x] [Review][Decision] **Accepted by RT (2026-11-08): no change.** Reload in one tab force-reloads every other open tab. In prompt mode the plugin adds a `controlling` listener in each tab that saw the waiting worker, and it calls `location.reload()` when there is no `onNeedReload`. Tab A's Reload therefore activates the worker, and tab B reloads even if its reader dismissed the toast. That breaks "Never auto-reload on SW update". Options: (a) accept; (b) pass `onNeedReload` so only the tab that asked reloads, while the others re-show the toast to finish updating. With (b), those tabs run old JS under the new worker, and their old lazy chunks have left the precache.
+- [x] [Review][Decision] **Accepted by RT (2026-11-08): no change, the toast can be dismissed.** Below `lg`, the toast hides the bottom of the page. On the library, the toast (64–108px from the bottom) covers the centred "Install app" and "Load a story" links when scrolled to the end, and `main` has only `p-4`, so it cannot scroll past them. On the reader, the last sentence's words sit under the `pointer-events-auto` toast. Options: (a) accept, since the toast can be dismissed; (b) add bottom padding to the library `main` and the story column while the toast is visible.
+- [x] [Review][Patch] Android's install sheet shows no screenshots [apps/web/vite.config.ts:48]. Both entries are `form_factor: 'wide'`, which only desktop Chrome uses. RT (2026-11-08): the images are phone-sized, so reuse them. Fix: list each file a second time with `form_factor: 'narrow'` and keep the `wide` entries for desktop. Update the comment, and confirm `pwaManifest.test.ts` still matches every entry.
+- [x] [Review][Patch] Reload can do nothing and stay disabled for good [apps/web/src/components/UpdatePrompt.tsx:17]. Scenario: a first-visit tab is never controlled (no `clientsClaim`), and the hourly or on-visible check finds a deploy. The plugin raises the toast for the external `installed` event, but the new worker activates at once because nothing waits on it. `messageSkipWaiting()` finds no `registration.waiting`, and `controlling` never fires. `reloading` is also never reset, so after a dismiss and a newer worker the toast returns with Reload disabled, and a rejected `update()` goes unhandled. Fix: in `pwa.ts`, the stored handle calls `location.reload()` when `registration.waiting` is absent; reset `reloading` when the toast is re-shown; catch the rejection.
+- [x] [Review][Patch] A second deploy in the same page never re-raises a dismissed toast [apps/web/src/lib/pwa.ts:57]. workbox-window 7.4.1 removes its `updatefound` listener after the first externally triggered update, so the periodic check's later finds go unseen. That breaks AC3's "a newer waiting worker shows the toast again" within the page's lifetime. Fix: `watchForUpdates` adds its own `updatefound` → `statechange` listener and calls `setNeedRefresh(true)` when the worker is `installed`, `registration.waiting === sw` and the page has a controller.
+- [x] [Review][Patch] The update check doesn't run on reconnect [apps/web/src/lib/pwa.ts:66]. A check skipped while offline waits up to an hour after the connection returns. Fix: `window.addEventListener('online', check)`.
+- [x] [Review][Patch] The screenshot precache exclusion is undocumented [docs/architecture-web.md:187]. The Precache row and the Budget paragraph (line 193) still say everything the globs match is precached. Also update the PWA bullet in `_bmad-output/project-context.md`.
+- [x] [Review][Patch] AC5 and Task 9 still say the install link hides after a cancel [_bmad-output/implementation-artifacts/se4-3-update-prompt-and-install-entry-point.md:218]. This contradicts RT's cancel decision, which the code (commit 11bd995), the epic and the architecture doc follow. Amend AC5 and Task 9 step 2.
+- [x] [Review][Patch] The epic's se4-3 AC token list omits `muted` [_bmad-output/planning-artifacts/supp-epic-4-pwa.md]. The × button and the install link use `text-muted`, as story AC8 allows.
+- [x] [Review][Patch] The screenshot-size test can silently skip entries [apps/web/src/__tests__/pwaManifest.test.ts]. The regex depends on quote style and key order, and the test only checks that at least one entry matched. Fix: assert the matched count equals the number of `screenshots/` entries in `vite.config.ts`.
+- [x] [Review][Patch] The "never takes focus" test doesn't exercise the real transition [apps/web/src/__tests__/UpdatePrompt.test.tsx]. It renders with `needRefresh` already true. Fix: render hidden, then flip `needRefresh` to true and assert focus did not move.
 
 ## Dev Notes
 
@@ -766,3 +783,4 @@ Claude Opus 5.5 (claude-opus-5-5)
 - 2026-11-08: Install link after Cancel: a hide-for-the-session fix was tried and reverted; RT decided the link may stay (Chrome re-offers install). Kept a guard so the handler never clears a newer event.
 - 2026-11-08: RT completed the manual Chrome install check; Task 9 complete. Status → review.
 - 2026-11-08: Added install-dialog screenshots and RT's new app description (manifest and meta description).
+- 2026-11-08: Code review (e4715c8..419a558): 3 decisions (2 accepted by RT, 1 became a patch), 9 patches applied — Reload fallback when no worker waits and re-enable after re-show, own updatefound listener for later deploys, online-triggered check, narrow install screenshots, docs and test hardening. Unit 364/364, `test:e2e:pwa` 18/18 (port 4179; 4173 held by a manual preview), `pwa-ui.spec` 18 passed / 6 skipped by design. Status → done.
