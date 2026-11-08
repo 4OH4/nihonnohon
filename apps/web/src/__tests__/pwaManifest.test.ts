@@ -24,6 +24,21 @@ describe('web manifest description', () => {
   })
 })
 
+// Chrome ignores a screenshot whose declared sizes do not match the image.
+describe('install screenshots', () => {
+  it('each manifest screenshot exists in public/ with the declared sizes', () => {
+    const config = readFileSync(join(APP_ROOT, 'vite.config.ts'), 'utf-8')
+    const shots = [...config.matchAll(/src: '(screenshots\/[^']+\.png)',\s*sizes: '(\d+)x(\d+)'/g)]
+    expect(shots.length).toBeGreaterThan(0)
+
+    for (const [, src, width, height] of shots) {
+      const png = readFileSync(join(APP_ROOT, 'public', src!))
+      // PNG IHDR: width and height are big-endian uint32s at bytes 16 and 20.
+      expect([png.readUInt32BE(16), png.readUInt32BE(20)], src).toEqual([Number(width), Number(height)])
+    }
+  })
+})
+
 // Android paints the status and navigation bars in the theme colour. They border the
 // AppBar and the mobile tab bar, which are `surface`, so all three must use that token.
 describe('theme colour', () => {

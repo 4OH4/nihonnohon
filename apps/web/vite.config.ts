@@ -9,7 +9,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 // Mirrors the meta description in index.html — keep the two identical.
 const APP_DESCRIPTION =
-  'Nihon no Hon — read Japanese stories at your level with instant word lookup and kanji breakdown.'
+  'Nihon no Hon: read Japanese stories at your level with instant word lookup and kanji breakdown. Install the app for access to all stories offline.'
 
 export default defineConfig({
   plugins: [
@@ -42,6 +42,25 @@ export default defineConfig({
           { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png' },
           { src: 'maskable-icon-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
+        // Chrome's richer install dialog shows these with the description. The desktop dialog only
+        // uses 'wide' ones (these are portrait, so two fit side by side); sizes must match the file
+        // (pwaManifest.test.ts). Not precached (globIgnores).
+        screenshots: [
+          {
+            src: 'screenshots/library.png',
+            sizes: '713x808',
+            type: 'image/png',
+            form_factor: 'wide',
+            label: 'The story library, with stories tagged by Genki chapter',
+          },
+          {
+            src: 'screenshots/reader.png',
+            sizes: '713x808',
+            type: 'image/png',
+            form_factor: 'wide',
+            label: 'Reading a story, with the word 天気 looked up and translations shown',
+          },
+        ],
       },
       // A file over Workbox's 2 MiB per-file limit is otherwise dropped from the precache silently.
       showMaximumFileSizeToCacheInBytesWarning: true,
@@ -50,6 +69,8 @@ export default defineConfig({
       // Large optional assets are opt-in downloads outside the precache; never widen these globs for them.
       workbox: {
         globPatterns: ['**/*.{js,css,html,woff2,png,svg,ico,webmanifest,json}'],
+        // Install-dialog screenshots: only used online, by the browser, so kept out of the budget.
+        globIgnores: ['screenshots/**'],
         // Deep links (/read/:storyId) open offline; /_vercel/* (Analytics, Speed Insights) stays on the network.
         navigateFallback: '/index.html',
         navigateFallbackDenylist: [/^\/_vercel\//],

@@ -21,8 +21,11 @@ const PRECACHE_BUDGET_BYTES = 10_000_000
 /** Extensions matched by `workbox.globPatterns` in vite.config.ts — keep the two in step. */
 const PRECACHE_EXTENSIONS = /\.(js|css|html|woff2|png|svg|ico|webmanifest|json)$/
 
-/** Build outputs the plugin keeps out of the precache on purpose (the worker and its runtime). */
-const NOT_PRECACHED = /^(sw\.js|workbox-[\w-]+\.js)$/
+/**
+ * Build outputs kept out of the precache on purpose: the worker and its runtime, and the
+ * install-dialog screenshots (`workbox.globIgnores` in vite.config.ts).
+ */
+const NOT_PRECACHED = /^(sw\.js|workbox-[\w-]+\.js|screenshots\/.+)$/
 
 interface PrecacheEntry {
   url: string
@@ -138,6 +141,12 @@ test.describe('Workbox precache', () => {
     ]) {
       expect(urls, `${url} missing from precache`).toContain(url)
     }
+  })
+
+  test('builds the install-dialog screenshots but does not precache them', () => {
+    const built = listFiles(DIST).filter((f) => f.startsWith('screenshots/'))
+    expect(built.length, 'no screenshots in dist/').toBeGreaterThan(0)
+    expect([...precache().urls].filter((u) => u.startsWith('screenshots/'))).toEqual([])
   })
 
   test('has no URL listed with conflicting revisions', () => {
