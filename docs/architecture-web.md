@@ -185,14 +185,15 @@ across reloads and restarts.
 | Registration | Only `registerServiceWorker()` in `src/lib/pwa.ts`, production builds only. No other module touches `navigator.serviceWorker`, which `serviceWorkerBoundary.test.ts` enforces. Nothing registers under `vite` dev |
 | Transparent cache | App code uses plain `fetch()` and behaves the same with no service worker. It never reads Cache Storage and never messages the worker |
 | Precache | `**/*.{js,css,html,woff2,png,svg,ico,webmanifest,json}`: the app shell, the four Noto Sans JP `.woff2` files, icons, `vocab.json`, `kanji-data.json`, `stories/manifest.json` and every `stories/*.json`. A new file in `public/stories/` is offline automatically |
-| Consistency | Each precache entry has a per-deploy revision, so a story and the `vocab.json` it references always come from the same build |
+| Consistency | Each service worker version installs one precache manifest (entries revisioned by content hash), and the active worker serves only its own manifest, so a story and the `vocab.json` it references always come from the same build |
 | Navigation fallback | Navigations to non-precached paths (such as `/read/:storyId`) get the precached `/index.html`. `/_vercel/*` (Analytics, Speed Insights) is denylisted. Precached files such as `/vocab.json` are matched first, so opening one directly returns the file, not the shell |
-| Updates | `registerType: 'prompt'`. A new worker waits until the reader chooses to reload, and the app never reloads by itself. `skipWaiting` and `clientsClaim` are deliberately unset |
+| Updates | `registerType: 'prompt'`. A new worker waits until the reader chooses to reload, and the app never reloads by itself (se4-3 adds the `UpdatePrompt` toast). `skipWaiting` and `clientsClaim` are deliberately unset |
 
 **Budget.** The default precache, which every visitor downloads in the background after
-first load, must stay at or under **10 MB**. It is about 3.8 MB today. `e2e-pwa/precache.spec.ts`
-fails the build if the budget is exceeded, and also fails if any story file is missing from the
-precache. Workbox skips files over 2 MiB, and the build log warns when it does. If the library outgrows
+first load, must stay at or under **10 MB**. It is about 3.9 MB today. `e2e-pwa/precache.spec.ts`
+(the PWA E2E step in CI, not `pnpm build` itself) fails if the budget is exceeded, and also fails
+if any build output the globs match is missing from the precache. That includes files over
+Workbox's 2 MiB per-file limit, which the build otherwise only warns about. If the library outgrows
 the budget, move `stories/*.json` from the precache to runtime `CacheFirst` caching.
 
 **Large optional assets** (for example a future full dictionary) must be opt-in downloads
@@ -249,7 +250,7 @@ It runs on Chromium only, against a production build served by `vite preview`:
 | Spec | Covers |
 |------|--------|
 | `precache.spec.ts` | Build output: every story, data file, font and icon is in the precache; no conflicting revisions; ≤ 10 MB budget; navigation fallback and `/_vercel/` denylist |
-| `offline.spec.ts` | Offline after one online visit: library reload, a never-opened story, word lookup with kanji breakdown, a hard deep link, an uploaded (IndexedDB) story. It also asserts that data came from the service worker and that no same-origin request failed |
+| `offline.spec.ts` | Offline after one online visit: library reload, a never-opened story, word lookup with kanji breakdown, a hard deep link, an uploaded (IndexedDB) story, and a precached JSON file opened directly. It also asserts that the expected data was served by the service worker and that no same-origin request failed, errored or bypassed the worker |
 
 ---
 

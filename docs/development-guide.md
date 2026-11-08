@@ -109,7 +109,7 @@ pnpm test:e2e:pwa
 
 `precache.spec.ts` checks what the build precaches and the 10 MB budget. `offline.spec.ts`
 loads the app online, goes offline and exercises the library, an unopened story, word
-lookup, deep links and an uploaded story. The default `pnpm test:e2e` does not run this suite.
+lookup, deep links, an uploaded story and a data file opened directly. The default `pnpm test:e2e` does not run this suite.
 
 **Manually in Chrome:**
 

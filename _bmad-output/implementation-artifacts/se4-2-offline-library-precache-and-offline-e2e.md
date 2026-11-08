@@ -1,6 +1,6 @@
 # Story se4-2: Offline Library Precache and Offline E2E
 
-Status: review
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -135,14 +135,68 @@ Implements PRD **FR46** and the amended **NFR6**. Builds on se4-1, which added t
     - Add step 9 to *CI Pipeline*.
     - Leave the *PWA icons* subsection from se4-1 as it is.
   - [x] Resolve the se4-2 item in `_bmad-output/implementation-artifacts/deferred-work.md`: add "→ resolved in se4-2" with one line on how it was resolved. See *Deferred item from se4-1*.
-- [ ] **Task 8: Verify** (AC: 4, 7)
+- [x] **Task 8: Verify** (AC: 4, 7)
   - [x] Run `pnpm test:e2e:pwa` from `apps/web`, and paste the pass summary into Completion Notes. *(Run with the identical config on port 4174 because 4173 was occupied; RT accepted this on 2026-11-08. CI runs the committed config.)*
   - [x] Manual browser check (CLAUDE.md requires one): `pnpm preview`, then Chrome on `localhost:4173`:
     - DevTools → Application → Cache storage lists the `workbox-precache-v2-…` cache with the stories, `vocab.json` and fonts.
     - Network → Offline, then reload, then open a story, then tap a word.
     - Then use "Clear site data" for `localhost:4173`.
   - [x] Regression gates: `pnpm typecheck`, `pnpm run lint`, `pnpm test:unit` and `pnpm test:e2e` (all four browser projects).
-  - [ ] Ask RT for the real-device spot checks (AC7), and record the results. *(**Open gate before `done`** — RT decided on 2026-11-08 to move to review now and do the checks on the Vercel preview after pushing.)*
+  - [x] Ask RT for the real-device spot checks (AC7), and record the results. *(Android Chrome passed; iOS Safari not checked and accepted at risk by RT on 2026-11-08. See Completion Notes.)*
+
+### Review Findings
+
+_Code review 2026-11-08 (Blind Hunter, Edge Case Hunter, Acceptance Auditor). The audit found no AC violations. The AC7 real-device checks were then recorded: Android Chrome passed, and iOS Safari is accepted at risk._
+
+- [x] [Review][Patch] **The precache spec does not check that the precache is complete.** Workbox drops any file over 2 MiB with only a build-log warning. Nothing compares the files in `dist/` that match the globs against the precache list. As a result:
+  - a JS chunk or PNG that grows past 2 MiB disappears offline, and every test, including the budget, still passes
+  - "all JS and CSS" (AC2) is not enforced
+  - a story in a subfolder of `public/stories/`, or a manifest `filename` whose case differs from the file, goes unchecked
+  - the font check counts four `noto-sans-jp-*.woff2` files without asserting japanese/latin × 400/600
+  
+  Fix:
+  - Walk `dist/` recursively. Assert that every file matching the glob extensions, except `sw.js` and `workbox-*.js`, is in the precache.
+  - Assert that every manifest `filename` is in the precache as `stories/<filename>`.
+  - Match the four font names explicitly.
+  - Compute the budget from the files on disk.
+  
+  [apps/web/e2e-pwa/precache.spec.ts:298-345]
+- [x] [Review][Patch] **The offline tests can fail at random when a request still in flight is aborted.** Two cases:
+  - In scenario (e), the reader loader starts `initKanji()` without awaiting it. `page.goto(uploadedUrl)` can abort that `kanji-data.json` fetch, and the abort is recorded as an offline failure (`net::ERR_ABORTED`).
+  - In priming, the library cards render only after the async manifest fetch, so `document.fonts.ready` can resolve before the Japanese font loads have started. The next reload or goto then aborts them.
+  
+  Fix:
+  - Wait for the library cards to be visible before awaiting `fonts.ready`.
+  - In (e), wait for the `kanji-data.json` response before going offline.
+  
+  [apps/web/e2e-pwa/offline.spec.ts:127-140, 234-241]
+- [x] [Review][Patch] **The offline network checks can pass without proving anything, and they miss some failures.** Gaps:
+  - Nothing asserts that the data files were actually requested while offline.
+  - `assertServedOffline()` runs straight after the last UI assertion, so a request that fails later is never seen. Scenario (d) never waits for `kanji-data.json`.
+  - A 4xx/5xx response is not caught.
+  - JS, CSS and font responses are not checked with `fromServiceWorker()`.
+  
+  Fix: make `assertServedOffline(expectedPaths)` poll until each expected data path has been served by the worker, record same-origin responses with status ≥ 400, and apply the `fromServiceWorker()` check to every same-origin response.
+  
+  [apps/web/e2e-pwa/offline.spec.ts:147-174]
+- [x] [Review][Patch] **No test checks the claim that precached JSON beats the navigation fallback.** `deferred-work.md` says this is "enforced by `e2e-pwa/precache.spec.ts`", and `architecture-web.md` makes the same claim. The spec only regex-matches the `NavigationRoute`; nothing opens `/vocab.json` directly. Fix: add an offline scenario that does a hard navigation to `/vocab.json` and to a story file, and asserts a JSON response served by the worker. [apps/web/e2e-pwa/offline.spec.ts]
+- [x] [Review][Patch] **The docs are wrong in four places:**
+  - "about 3.8 MB today" should be 3.9 MB (3,935,426 bytes; the budget is decimal).
+  - The spec "fails the build" is wrong: it fails the PWA E2E CI step.
+  - "per-deploy revision" is wrong. Revisions are content hashes, and consistency comes from each service-worker version installing a single manifest.
+  - The *Updates* row does not mention se4-3's `UpdatePrompt`.
+  
+  [docs/architecture-web.md:529-536]
+- [x] [Review][Patch] **Brittle test inputs give confusing errors.** Two cases:
+  - When the data changes, the test crashes with a TypeError instead of naming the cause:
+    - `firstWordSurface` indexes `words[-1]` when sentence 0 has no vocab key.
+    - `manifest.find(...)!` returns undefined when a story ID is renamed.
+  - `precache.spec.ts` reads `dist/sw.js` when the module loads, so `--list` and IDE test discovery throw ENOENT on a fresh clone.
+  
+  Fix: throw explicit messages, and read `sw.js` lazily with a clear "run the build first" error.
+  
+  [apps/web/e2e-pwa/offline.spec.ts:116-124, 204, 225; apps/web/e2e-pwa/precache.spec.ts:288]
+- [x] [Review][Defer] **Playwright specs are not type-checked.** `e2e/` (already) and now `e2e-pwa/` are outside every tsconfig `include`, so `pnpm typecheck` never sees type errors in them. [apps/web/tsconfig.app.json] — deferred, pre-existing
 
 ## Dev Notes
 
@@ -555,6 +609,9 @@ Claude Opus 5.5 (`claude-opus-5-5`)
 - **RT decisions (2026-11-08):**
   1. The 4174 run of the PWA suite is accepted in place of a 4173 run (the only difference is the port; CI runs the committed config).
   2. The story moves to review with the real-device spot checks (iOS Safari, Android Chrome, AC7) still open, as a gate before `done`. RT will do them on the Vercel preview after pushing; record the results at code review.
+  3. **AC7 real-device results (recorded at code review, 2026-11-08):**
+     - **Android Chrome: passed.** RT ran the offline checks on the deployed preview and is happy with the results. The screenshot shows *A New Student in Class* rendered in the reader, with ruby.
+     - **iOS Safari: not checked.** No iPhone was available. RT accepted this at risk and closed the story. The gap is tracked in `deferred-work.md`.
 
 ### File List
 
@@ -587,3 +644,22 @@ Claude Opus 5.5 (`claude-opus-5-5`)
   - service worker and offline-testing docs
   - the se4-1 deferred item resolved
   - Status → review. Real-device checks remain open as a gate before `done` (RT decision).
+- 2026-11-08: Code review. No AC violations. All 6 patch findings applied:
+  - `precache.spec.ts`:
+    - checks precache completeness against every globbed `dist/` file (catches files over 2 MiB that Workbox drops)
+    - checks every manifest `filename` is precached
+    - asserts the four font faces by name
+    - sizes the budget from disk
+    - reads `sw.js` lazily
+  - `offline.spec.ts`:
+    - waits for the library cards and fonts before going offline, and for `kanji-data.json` in (e)
+    - `assertServedOffline(expected)` polls until the expected paths have been served by the worker, and checks every same-origin response for error statuses and service-worker origin
+    - new scenario (f): direct navigation to precached JSON
+    - clearer errors when the test data changes
+  - Docs corrected: 3.9 MB, "fails the PWA E2E step", content-hash revisions, `UpdatePrompt` note.
+  - PWA suite 15/15 passed (port 4174, same temp-config workaround), and `--repeat-each=3` on the offline spec passed 15/15.
+  - Mutation check: `maximumFileSizeToCacheInBytes: 600_000` made the completeness test fail and name both dropped fonts. Restored.
+  - Lint clean.
+  - One item deferred: E2E specs are not type-checked.
+  - Status stays `review` until the AC7 real-device checks are recorded.
+- 2026-11-08: AC7 recorded. Android Chrome passed. iOS Safari was not checked and is accepted at risk (RT). Status → done.
