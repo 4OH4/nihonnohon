@@ -1,6 +1,6 @@
 # Story se2-5: Story Library Re-enrichment
 
-Status: review
+Status: done
 
 ## Story
 

@@ -4,7 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google" content="notranslate" />
-    <meta name="description" content="Nihon no Hon — read Japanese stories at your level with instant word lookup and kanji breakdown." />
+    <meta name="description" content="Nihon no Hon: read Japanese stories at your level with instant word lookup and kanji breakdown. Install the app for access to all stories offline." />
+    <!-- PWA shell (ADR 007). The manifest <link> is injected at build time by vite-plugin-pwa;
+         icons are generated from public/favicon.svg (pnpm generate-pwa-assets). -->
+    <meta name="theme-color" content="#FFFFFF" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Nihon no Hon" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <title>Nihon no Hon</title>
   </head>
   <body>

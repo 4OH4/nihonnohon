@@ -13,5 +13,5 @@ module.exports = {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
   },
-  ignorePatterns: ['dist/', 'node_modules/', 'playwright-report/', 'test-results/'],
+  ignorePatterns: ['dist/', 'node_modules/', 'playwright-report/', 'test-results/', 'playwright-report-pwa/', 'test-results-pwa/'],
 }

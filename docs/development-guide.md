@@ -93,6 +93,53 @@ pnpm --filter @nihonnohon/web test:e2e
 
 The E2E suite requires the app to be built. Turbo handles this via `dependsOn: ["build"]`.
 
+### PWA / Offline Tests
+
+`pnpm dev` never registers a service worker. This is deliberate, so the default E2E suite
+always runs without one. Offline behaviour can only be checked against a production build.
+
+**Automated:** a separate Chromium-only suite in `apps/web/e2e-pwa/` builds the app and
+serves it with `vite preview` on port 4173. It needs `vocab.json` and the built workspace
+packages, so run `pnpm build` from the root once first.
+
+```bash
+# from apps/web
+pnpm test:e2e:pwa
+```
+
+`precache.spec.ts` checks what the build precaches and the 10 MB budget. `offline.spec.ts`
+loads the app online, goes offline and exercises the library, an unopened story, word
+lookup, deep links, an uploaded story and a data file opened directly. The default `pnpm test:e2e` does not run this suite.
+
+**Manually in Chrome:**
+
+1. `pnpm build` (root), then `pnpm preview` in `apps/web`, and open `http://localhost:4173`.
+2. DevTools → Application → Service workers: `sw.js` is *activated and is running*.
+   Cache storage lists a `workbox-precache-v2-…` cache containing the stories, `vocab.json`
+   and the fonts.
+3. Reload once. The first visit is never controlled by the worker, because updates use prompt mode.
+4. DevTools → Network → **Offline**, then reload and browse: open a story you have not opened
+   yet and tap a word.
+
+**Update prompt.** `e2e-pwa/update.spec.ts` covers a real update automatically: it serves its
+own copy of `dist/` on port 4175 and changes that copy's `sw.js`. To see it by hand:
+
+1. `pnpm build`, then `pnpm preview` (apps/web), open `http://localhost:4173` and reload once so
+   the page is controlled.
+2. Make a visible change, then run `pnpm build` again without stopping preview (it serves
+   `dist/` from disk).
+3. Switch to another tab and back (the on-visible update check, at most once a minute), or
+   reload. The "New version available" toast appears. **Reload** applies it with one reload;
+   **×** hides it until the next reload.
+
+Under `pnpm dev` there is no worker, so force the toast from the DevTools console with the
+dev-only hook: `window.__PWA_STORE__.getState().setNeedRefresh(true)`. The hook is stripped
+from production builds.
+
+**Clean up afterwards:** Application → Storage → **Clear site data** for `localhost:4173`.
+Otherwise the old worker keeps serving the previous build to later preview sessions. The dev
+server on port 5173 is a different origin and is unaffected.
+
 ### Lint + Type Check
 
 ```bash
@@ -115,6 +162,17 @@ pnpm build-kanji
 ```
 
 CI runs `pnpm build-vocab` only, before linting and testing — `vocab.json` is gitignored and must be generated on every run. `kanji-data.json` is committed to the repo, so `pnpm build-kanji` is a local, occasional task: run it when refreshing the kanji data and commit the result.
+
+### PWA icons
+
+The app icon set (favicon, apple-touch-icon, and the 64/192/512 and maskable PWA icons in `apps/web/public/`) is generated from one source, `apps/web/public/favicon.svg`, by `@vite-pwa/assets-generator` (config: `apps/web/pwa-assets.config.ts`). To change the artwork, edit the SVG, then regenerate and commit the PNGs and ICO:
+
+```bash
+# from apps/web
+pnpm generate-pwa-assets
+```
+
+The generated files are committed; `pnpm build` does not regenerate them. Keep every mark inside the maskable safe zone, a central circle with a radius of 40% of the icon width, or launchers that crop to a circle will clip it. See [ADR 007](adr/007-pwa-offline.md) for the PWA design.
 
 ---
 
@@ -184,6 +242,7 @@ GitHub Actions (`.github/workflows/ci.yml`) runs on every PR and push to `main`:
 6. `playwright install --with-deps chromium firefox webkit`
 7. `pnpm run test:e2e`
 8. `pnpm run build`
+9. `pnpm --filter @nihonnohon/web test:e2e:pwa` (offline / service-worker suite, Chromium only)
 
 All steps must pass before merging.
 

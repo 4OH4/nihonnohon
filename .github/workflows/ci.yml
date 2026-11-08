@@ -9,7 +9,10 @@ on:
 
 jobs:
   ci:
-    runs-on: ubuntu-latest
+    # Pinned, not ubuntu-latest: that moved to 26.04, where Playwright 1.59 cannot
+    # install browsers, and the Linux pixel baselines were rendered on 24.04.
+    # Keep in step with update-snapshots.yml.
+    runs-on: ubuntu-24.04
 
     permissions:
       contents: write
@@ -157,3 +160,16 @@ jobs:
 
       - name: Build
         run: pnpm run build
+
+      # Offline / service-worker suite against a production build (se4-2). Chromium only;
+      # the browser is installed by the step above. Not part of `pnpm test:e2e`.
+      - name: PWA offline E2E (Chromium)
+        run: pnpm --filter @nihonnohon/web test:e2e:pwa
+
+      - name: Upload PWA test results on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-pwa-test-results
+          path: apps/web/test-results-pwa/
+          if-no-files-found: ignore

@@ -33,6 +33,7 @@ The app is static — it fetches vocabulary and kanji dictionaries once at start
 | Unit testing | Vitest + @testing-library/react | 3.0.0 |
 | E2E testing | Playwright + axe-core | 1.44.0 |
 | Accessibility | @axe-core/playwright | ^4.11.3 |
+| PWA / offline | vite-plugin-pwa (Workbox `generateSW`) | 2.0.0 |
 
 ---
 
@@ -167,6 +168,40 @@ Runtime data pipeline:
 4. `stories/*.json` — loaded per-reader-navigation, validated by `loadStory()`
 5. IndexedDB — local story storage, accessed by UUID
 
+Items 1–4 are precached by the service worker, so after the first visit they load offline.
+See [Offline & Service Worker](#offline--service-worker).
+
+---
+
+## Offline & Service Worker
+
+The app is an installable PWA ([ADR 007](adr/007-pwa-offline.md)). After one online visit,
+the whole app, the dictionary data and the bundled story library work with no network,
+across reloads and restarts.
+
+| Aspect | Design |
+|---|---|
+| Generation | **vite-plugin-pwa**, Workbox `generateSW`, configured in `vite.config.ts`. The build writes `sw.js`, a `workbox-<hash>.js` runtime and `manifest.webmanifest` |
+| Registration | Only `registerServiceWorker()` in `src/lib/pwa.ts`, production builds only. No other module touches `navigator.serviceWorker`, which `serviceWorkerBoundary.test.ts` enforces. Nothing registers under `vite` dev |
+| Transparent cache | App code uses plain `fetch()` and behaves the same with no service worker. It never reads Cache Storage and never messages the worker |
+| Precache | `**/*.{js,css,html,woff2,png,svg,ico,webmanifest,json}`: the app shell, the four Noto Sans JP `.woff2` files, icons, `vocab.json`, `kanji-data.json`, `stories/manifest.json` and every `stories/*.json`. A new file in `public/stories/` is offline automatically. One exclusion (`globIgnores`): `screenshots/**`, the install-dialog screenshots, which only the browser uses, online, so they stay out of the budget |
+| Consistency | Each service worker version installs one precache manifest (entries revisioned by content hash), and the active worker serves only its own manifest, so a story and the `vocab.json` it references always come from the same build |
+| Navigation fallback | Navigations to non-precached paths (such as `/read/:storyId`) get the precached `/index.html`. `/_vercel/*` (Analytics, Speed Insights) is denylisted. Precached files such as `/vocab.json` are matched first, so opening one directly returns the file, not the shell |
+| Updates | `registerType: 'prompt'`. A new worker waits until the reader chooses to reload; the app never reloads by itself. `UpdatePrompt` (mounted once in `App.tsx`, every route) shows a non-modal "New version available" toast above the reader's mobile tab bar when `needRefresh` is set. **Reload** calls the stored `updateServiceWorker` handle → `SKIP_WAITING` → the new worker activates → vite-plugin-pwa reloads the page once on `controlling` (the button disables after the first tap, and re-enables if the toast hides and returns). In a tab the worker never controlled (a first visit, since `clientsClaim` is unset) an update activates at once and nothing waits, so the handle reloads the page directly instead. **×** sets an in-memory `updateDismissed`, so the toast returns on the next launch (the still-waiting worker fires `waiting` again) or when a newer worker arrives. Because an installed app is resumed rather than relaunched, `src/lib/pwa.ts` also calls `registration.update()` every 60 minutes, when the document becomes visible and when the connection returns, at most once a minute, skipping when offline or already installing. workbox-window stops listening for `updatefound` after the first update these checks find, so `pwa.ts` watches for later ones itself and sets `needRefresh` again, which re-shows a dismissed toast. `skipWaiting` and `clientsClaim` are deliberately unset |
+| Install | `initInstallPrompt()` (called from `main.tsx` before render) captures Chromium's `beforeinstallprompt`, suppresses the mini-infobar and keeps the event in `usePwaStore`; `appinstalled` clears it. The library shows a quiet "Install app" text link above "Load a story from your device" that opens the native dialog. Each event can prompt only once, so the used one is dropped; after a cancel Chrome fires a fresh `beforeinstallprompt` straight away, so the link stays. The handler clears only the event it used, never a newer one. On iOS/iPadOS (Safari on any version; Chrome, Edge and Firefox on iOS 16.4+) the same spot reads "Add to Home Screen" and reveals "Tap Share, then Add to Home Screen". Nothing shows when running standalone or when the browser offers neither. The reader and `SettingsMenu` carry no install item |
+
+**Budget.** The default precache, which every visitor downloads in the background after
+first load, must stay at or under **10 MB**. It is about 3.9 MB today. `e2e-pwa/precache.spec.ts`
+(the PWA E2E step in CI, not `pnpm build` itself) fails if the budget is exceeded, and also fails
+if any build output the globs match is missing from the precache (apart from the deliberate
+`screenshots/**` exclusion, which it checks stays out). That includes files over
+Workbox's 2 MiB per-file limit, which the build otherwise only warns about. If the library outgrows
+the budget, move `stories/*.json` from the precache to runtime `CacheFirst` caching.
+
+**Large optional assets** (for example a future full dictionary) must be opt-in downloads
+stored outside the Workbox precache, for example imported into IndexedDB. Never widen the
+precache globs for them.
+
 ---
 
 ## Testing Strategy
@@ -210,6 +245,15 @@ Location: `apps/web/e2e/`
 
 Browsers: Chromium, Firefox, WebKit (all three required).
 
+The default suite runs on `vite` (dev), where no service worker exists. Offline behaviour has
+its own suite in `apps/web/e2e-pwa/` (`playwright.pwa.config.ts`, run with `pnpm test:e2e:pwa`).
+It runs on Chromium only, against a production build served by `vite preview`:
+
+| Spec | Covers |
+|------|--------|
+| `precache.spec.ts` | Build output: every story, data file, font and icon is in the precache; no conflicting revisions; ≤ 10 MB budget; navigation fallback and `/_vercel/` denylist |
+| `offline.spec.ts` | Offline after one online visit: library reload, a never-opened story, word lookup with kanji breakdown, a hard deep link, an uploaded (IndexedDB) story, and a precached JSON file opened directly. It also asserts that the expected data was served by the service worker and that no same-origin request failed, errored or bypassed the worker |
+
 ---
 
 ## Deployment
@@ -221,9 +265,18 @@ Deployed on Vercel, built from the monorepo root via Turborepo.
 {
   "buildCommand": "turbo build --filter=@nihonnohon/web",
   "outputDirectory": "apps/web/dist",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "headers": [
+    { "source": "/sw.js", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] }
+  ]
 }
 ```
+
+The `sw.js` header makes browsers revalidate the service worker script on every update
+check, so installed apps see new deploys. Vercel already sends `max-age=0, must-revalidate`,
+and the explicit header pins that behaviour against future defaults. Static files (including
+`sw.js`, the web manifest and the JSON data) are served before the SPA rewrite, so the
+rewrite needs no exceptions.
 
 Building from the root (rather than setting `rootDirectory: apps/web`) lets Turbo build the
 workspace packages `@nihonnohon/web` depends on before the app itself.

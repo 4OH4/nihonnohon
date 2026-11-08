@@ -35,9 +35,9 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-05-11
-last_updated: 2026-06-04  # se2-5 story created
+last_updated: 2026-11-08  # supp-epic-4 done, retrospective closed
 # v1 complete: all epics done, retrospective closed
-# supp-epic-1 (furigana rework) in progress
+# supp-epic-1 (furigana rework) and supp-epic-2 (Python enrichment) done
 project: nihonnohon
 project_key: NOKEY
 tracking_system: file-system
@@ -81,7 +81,7 @@ development_status:
   # Supplemental Epic 1: Furigana Rework — Per-Kanji Annotations and story.v2.json
   # Planning: _bmad-output/planning-artifacts/supp-epic-1-furigana-rework.md
   # ADR: docs/adr/005-inline-furigana-format.md
-  supp-epic-1: in-progress
+  supp-epic-1: done
   se1-1-inline-ruby-parser-and-v2-schema: done
   se1-2-internal-type-changes: done
   se1-3-loader-v2-and-v1-shim: done
@@ -93,9 +93,23 @@ development_status:
 
   # Supplemental Epic 2: Python-Side Tokenization and Vocab Enrichment
   # Planning: _bmad-output/planning-artifacts/supp-epic-2-python-enrichment.md
-  supp-epic-2: in-progress
+  supp-epic-2: done
   se2-1-enrichment-module: done
   se2-2-updated-generation-pipeline: done
   se2-3-schema-and-type-updates: done
-  se2-4-web-app-pos-display: review
-  se2-5-story-library-re-enrichment: review
+  se2-4-web-app-pos-display: done
+  se2-5-story-library-re-enrichment: done
+  supp-epic-2-retrospective: optional
+
+  # Supplemental Epic 3: staged generation pipeline (story generator) — tracked informally,
+  # no planning doc here; see commit 759857e (se3-1)
+
+  # Supplemental Epic 4: Installable PWA and Offline Library
+  # Planning: _bmad-output/planning-artifacts/supp-epic-4-pwa.md
+  # ADR: docs/adr/007-pwa-offline.md
+  # Change proposal: _bmad-output/planning-artifacts/sprint-change-proposal-2026-11-08.md
+  supp-epic-4: done
+  se4-1-web-manifest-icons-and-sw-registration: done
+  se4-2-offline-library-precache-and-offline-e2e: done
+  se4-3-update-prompt-and-install-entry-point: done
+  supp-epic-4-retrospective: done

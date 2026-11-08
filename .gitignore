@@ -27,6 +27,8 @@ resources/.ignore
 coverage/
 playwright-report/
 test-results/
+playwright-report-pwa/
+test-results-pwa/
 
 # lint cache
 .eslintcache

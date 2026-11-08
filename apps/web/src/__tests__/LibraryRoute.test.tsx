@@ -27,6 +27,14 @@ import type { StoryModel } from '@nihonnohon/schema'
 //   - SCHEMA_INVALID shows inline error with hint and spec link
 //   - UNSUPPORTED_VERSION shows inline error
 //   - PARSE_FAILED shows inline error
+//
+// NEW (se4-3 — install link above the upload button):
+//   - 'prompt': "Install app" shows before "Load a story from your device"; click prompts once, then hides
+//   - 'prompt': after a cancel, Chrome's fresh event shows it again and is never cleared by the old one
+//   - 'prompt': a rejected prompt() also hides the link
+//   - 'ios': "Add to Home Screen" toggles the instruction and aria-expanded
+//   - standalone: no install link, even with a deferred event stored
+//   - none: no install link; the upload button is still present
 
 // ─── Mock react-router-dom ────────────────────────────────────────────────────
 
@@ -69,6 +77,7 @@ vi.stubGlobal('FileReader', vi.fn(() => mockFileReader))
 import { useLoaderData, useRouteError, useRevalidator, useNavigate } from 'react-router-dom'
 import { loadStory, LoaderError } from '@nihonnohon/story-loader'
 import { saveStory } from '@/services/indexedDbService'
+import { usePwaStore, type BeforeInstallPromptEvent } from '@/stores/pwaStore'
 
 // ─── Fixtures ─────────────────────────────────────────────────────────────────
 
@@ -157,6 +166,7 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.clearAllMocks()
+  usePwaStore.getState()._reset()
 })
 
 // ─── LibraryRoute — Existing Tests (PRESERVED from Story 3.2) ────────────────
@@ -322,5 +332,126 @@ describe('LibraryRoute — file upload', () => {
 
     expect(screen.getByText("This file couldn't be read as a story.")).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'View the story format documentation' })).toBeInTheDocument()
+  })
+})
+
+// ─── LibraryRoute — install link (NEW in se4-3) ──────────────────────────────
+
+/** A stand-in for Chromium's deferred BeforeInstallPromptEvent. */
+function fakeInstallEvent(prompt: () => Promise<void> = async () => {}) {
+  let resolveChoice!: (choice: { outcome: 'accepted' | 'dismissed'; platform: string }) => void
+  const userChoice = new Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>((r) => {
+    resolveChoice = r
+  })
+  const event = Object.assign(new Event('beforeinstallprompt'), {
+    prompt: vi.fn(prompt),
+    userChoice,
+  }) as BeforeInstallPromptEvent & { prompt: ReturnType<typeof vi.fn> }
+  return { event, resolveChoice }
+}
+
+const UPLOAD_BUTTON = { name: 'Load a story from your device' }
+
+describe('LibraryRoute — install link', () => {
+  it("'prompt': shows Install app above the upload button; prompts once and hides after the choice", async () => {
+    const { event, resolveChoice } = fakeInstallEvent()
+    usePwaStore.setState({ installPrompt: event })
+    renderLibrary()
+
+    const install = screen.getByRole('button', { name: 'Install app' })
+    const upload = screen.getByRole('button', UPLOAD_BUTTON)
+    expect(install.compareDocumentPosition(upload) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(install).toHaveClass('text-sm', 'underline', 'text-muted')
+
+    fireEvent.click(install)
+    // prompt() runs synchronously inside the click, before any await.
+    expect(event.prompt).toHaveBeenCalledTimes(1)
+
+    await act(async () => resolveChoice({ outcome: 'dismissed', platform: '' }))
+
+    expect(screen.queryByRole('button', { name: 'Install app' })).not.toBeInTheDocument()
+    expect(usePwaStore.getState().installPrompt).toBeNull()
+    expect(screen.getByRole('button', UPLOAD_BUTTON)).toBeInTheDocument()
+  })
+
+  it("'prompt': after a cancel, Chrome's fresh install event keeps the link", async () => {
+    const { event, resolveChoice } = fakeInstallEvent()
+    usePwaStore.setState({ installPrompt: event })
+    renderLibrary()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Install app' }))
+    await act(async () => resolveChoice({ outcome: 'dismissed', platform: '' }))
+    const fresh = fakeInstallEvent().event
+    act(() => usePwaStore.getState().setInstallPrompt(fresh))
+
+    expect(screen.getByRole('button', { name: 'Install app' })).toBeInTheDocument()
+    expect(usePwaStore.getState().installPrompt).toBe(fresh)
+  })
+
+  it("'prompt': a fresh event that arrives before the choice settles is not cleared", async () => {
+    const { event, resolveChoice } = fakeInstallEvent()
+    usePwaStore.setState({ installPrompt: event })
+    renderLibrary()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Install app' }))
+    const fresh = fakeInstallEvent().event
+    act(() => usePwaStore.getState().setInstallPrompt(fresh))
+    await act(async () => resolveChoice({ outcome: 'dismissed', platform: '' }))
+
+    expect(usePwaStore.getState().installPrompt).toBe(fresh)
+    expect(screen.getByRole('button', { name: 'Install app' })).toBeInTheDocument()
+  })
+
+  it("'prompt': a rejected prompt() also hides the link", async () => {
+    const { event } = fakeInstallEvent(async () => {
+      throw new DOMException('already used', 'InvalidStateError')
+    })
+    usePwaStore.setState({ installPrompt: event })
+    renderLibrary()
+
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Install app' }))
+    })
+
+    expect(screen.queryByRole('button', { name: 'Install app' })).not.toBeInTheDocument()
+    expect(usePwaStore.getState().installPrompt).toBeNull()
+  })
+
+  it("'ios': Add to Home Screen toggles the instruction and aria-expanded", () => {
+    usePwaStore.setState({ iosInstallable: true })
+    renderLibrary()
+
+    const link = screen.getByRole('button', { name: 'Add to Home Screen' })
+    expect(link.compareDocumentPosition(screen.getByRole('button', UPLOAD_BUTTON)) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(link).toHaveAttribute('aria-expanded', 'false')
+    expect(screen.queryByText('Tap Share, then Add to Home Screen')).not.toBeInTheDocument()
+
+    fireEvent.click(link)
+    expect(link).toHaveAttribute('aria-expanded', 'true')
+    const help = screen.getByText('Tap Share, then Add to Home Screen')
+    expect(link).toHaveAttribute('aria-controls', help.id)
+
+    fireEvent.click(link)
+    expect(link).toHaveAttribute('aria-expanded', 'false')
+    expect(screen.queryByText('Tap Share, then Add to Home Screen')).not.toBeInTheDocument()
+  })
+
+  it('standalone: no install link, even with a deferred event stored', () => {
+    usePwaStore.setState({ standalone: true, installPrompt: fakeInstallEvent().event, iosInstallable: true })
+    renderLibrary()
+
+    expect(screen.queryByRole('button', { name: 'Install app' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Add to Home Screen' })).not.toBeInTheDocument()
+  })
+
+  it('none: no install link, and the upload button is still the first control in its block', () => {
+    renderLibrary()
+
+    expect(screen.queryByRole('button', { name: 'Install app' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: 'Add to Home Screen' })).not.toBeInTheDocument()
+    const upload = screen.getByRole('button', UPLOAD_BUTTON)
+    // No empty wrapper is left behind: the upload button opens the mt-8 footer block, as before.
+    expect(upload.parentElement).toHaveClass('mt-8')
+    expect(upload.parentElement!.firstElementChild).toBe(upload)
   })
 })

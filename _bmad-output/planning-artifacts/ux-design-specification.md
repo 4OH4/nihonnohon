@@ -67,8 +67,27 @@ Everything else — library filter, ruby toggle, file upload, word spacing — s
 
 - **Platform:** Static SPA deployed as a hosted website; no backend
 - **Primary input:** Touch on mobile (iOS Safari is the primary mobile constraint); mouse on desktop
-- **Offline behaviour:** Fully functional once loaded — dictionary data bundled client-side; no network dependency during a reading session
-- **Native mobile:** Out of scope for v1; web-first with responsive layout covering both form factors
+- **Offline behaviour:** Installable PWA — after the first online visit the whole app, dictionary data and bundled story library work with no network, across reloads and restarts. There is no offline indicator: offline should feel identical to online
+- **Native mobile:** Not planned; the installed PWA launches standalone from the home screen. A native wrapper may follow later over the same build (ADR 007)
+
+### App Install & Updates
+
+_Added 2026-11-08 (supp-epic-4)._
+
+- **Update available:** when a new version has been downloaded, show a small non-modal
+  toast at the bottom of the viewport (above the mobile tab bar): "New version available"
+  + **Reload** + dismiss (×). Never auto-reload — the reader may be mid-sentence. Dismissed
+  toasts reappear on the next app launch. Uses existing tokens only (`surface`, `border`,
+  `paper-text`, `accent` for the action).
+- **Install entry point:** a small "Install app" text link at the bottom of the library,
+  directly above "Load a story from your device" and in the same quiet style, shown only
+  when the browser has offered an install prompt (`beforeinstallprompt`, Chromium) — it
+  triggers the native prompt. On iOS (no install API) the link reads "Add to Home Screen"
+  and reveals a one-line instruction beneath it: "Tap Share, then Add to Home Screen"
+  (Safari on any iOS version; Chrome, Edge and Firefox on iOS 16.4+). Hidden entirely when
+  already running standalone. The reading interface (SettingsMenu) carries no install
+  item — RT decision, 2026-11-08, to keep the reader clean.
+- No install banners or interstitials on first visit — the reading surface stays clean.
 
 ### Effortless Interactions
 

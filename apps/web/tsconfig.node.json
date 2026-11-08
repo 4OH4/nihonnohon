@@ -4,5 +4,5 @@
     "noEmit": true,
     "allowImportingTsExtensions": true
   },
-  "include": ["vite.config.ts", "tailwind.config.ts", "playwright.config.ts"]
+  "include": ["vite.config.ts", "tailwind.config.ts", "playwright.config.ts", "playwright.pwa.config.ts", "pwa-assets.config.ts"]
 }

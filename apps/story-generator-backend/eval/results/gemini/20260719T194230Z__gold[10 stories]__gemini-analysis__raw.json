@@ -1,0 +1,5605 @@
+{
+  "run": {
+    "started_at": "2026-07-19T19:42:30.402968+00:00",
+    "adapter": "gemini-analysis",
+    "adapter_module": "adapters.gemini_analysis",
+    "git_commit": "ba38ca4ecc43108fb54c19606a4e71c7d212143b",
+    "gold_id": "gold[10 stories]",
+    "gold_path": [
+      "eval\\gold\\eval-genki10-seasons.json",
+      "eval\\gold\\eval-genki12-feeling-sick.json",
+      "eval\\gold\\eval-genki14-birthday-gift.json",
+      "eval\\gold\\eval-genki16-helping-friend.json",
+      "eval\\gold\\eval-genki18-busy-morning.json",
+      "eval\\gold\\eval-genki20-polite-visit.json",
+      "eval\\gold\\eval-genki22-raising-children.json",
+      "eval\\gold\\eval-genki4-day-out.json",
+      "eval\\gold\\eval-genki6-daily-life.json",
+      "eval\\gold\\eval-genki8-friend-music.json"
+    ],
+    "n_sentences": 100,
+    "model": "gemini-2.5-flash"
+  },
+  "results": [
+    {
+      "story_id": "eval-genki10-seasons",
+      "id": "s01",
+      "ja": "日本には四つの季節があります。",
+      "words": [
+        {
+          "surface": "日本",
+          "dict": "日本",
+          "ruby": "日本[にっぽん]",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "四つ",
+          "dict": "四",
+          "ruby": "四[よん]つ",
+          "pos": "n"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "季節",
+          "dict": "季節",
+          "ruby": "季節[きせつ]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "あります",
+          "dict": "ある",
+          "ruby": "あります",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki10-seasons",
+      "id": "s02",
+      "ja": "私は夏より冬のほうが好きです。",
+      "words": [
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "夏",
+          "dict": "夏",
+          "ruby": "夏[なつ]",
+          "pos": "n"
+        },
+        {
+          "surface": "より",
+          "dict": "より",
+          "ruby": "より",
+          "pos": "adv"
+        },
+        {
+          "surface": "冬",
+          "dict": "冬",
+          "ruby": "冬[ふゆ]",
+          "pos": "n"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "ほう",
+          "dict": "ほう",
+          "ruby": "ほう",
+          "pos": ""
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "好き",
+          "dict": "好き",
+          "ruby": "好[す]き",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki10-seasons",
+      "id": "s03",
+      "ja": "冬は寒いですが、雪がとてもきれいです。",
+      "words": [
+        {
+          "surface": "冬",
+          "dict": "冬",
+          "ruby": "冬[ふゆ]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "寒い",
+          "dict": "寒い",
+          "ruby": "寒[さむ]い",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "雪",
+          "dict": "雪",
+          "ruby": "雪[ゆき]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "とても",
+          "dict": "とても",
+          "ruby": "とても",
+          "pos": "adv"
+        },
+        {
+          "surface": "きれい",
+          "dict": "きれい",
+          "ruby": "きれい",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki10-seasons",
+      "id": "s04",
+      "ja": "一年で冬が一番好きです。",
+      "words": [
+        {
+          "surface": "一年",
+          "dict": "一",
+          "ruby": "一[いち]年[ねん]",
+          "pos": "n"
+        },
+        {
+          "surface": "で",
+          "dict": "で",
+          "ruby": "で",
+          "pos": "conj"
+        },
+        {
+          "surface": "冬",
+          "dict": "冬",
+          "ruby": "冬[ふゆ]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "一番",
+          "dict": "一番",
+          "ruby": "一番[いちばん]",
+          "pos": "adv"
+        },
+        {
+          "surface": "好き",
+          "dict": "好き",
+          "ruby": "好[す]き",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki10-seasons",
+      "id": "s05",
+      "ja": "冬休みに友だちと北海道へ行くつもりです。",
+      "words": [
+        {
+          "surface": "冬休み",
+          "dict": "冬休み",
+          "ruby": "冬休[ふゆやす]み",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "友だち",
+          "dict": "友だち",
+          "ruby": "友[とも]だち",
+          "pos": "n"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "北海道",
+          "dict": "北海道",
+          "ruby": "北海道[ほっかいどう]",
+          "pos": "n"
+        },
+        {
+          "surface": "へ",
+          "dict": "へ",
+          "ruby": "へ",
+          "pos": "prt"
+        },
+        {
+          "surface": "行く",
+          "dict": "行く",
+          "ruby": "行[い]く",
+          "pos": "v5"
+        },
+        {
+          "surface": "つもり",
+          "dict": "つもり",
+          "ruby": "つもり",
+          "pos": "n"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki10-seasons",
+      "id": "s06",
+      "ja": "北海道は日本で一番寒い所です。",
+      "words": [
+        {
+          "surface": "北海道",
+          "dict": "北海道",
+          "ruby": "北海道[ほっかいどう]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "日本",
+          "dict": "日本",
+          "ruby": "日本[にっぽん]",
+          "pos": "n"
+        },
+        {
+          "surface": "で",
+          "dict": "で",
+          "ruby": "で",
+          "pos": "conj"
+        },
+        {
+          "surface": "一番",
+          "dict": "一番",
+          "ruby": "一番[いちばん]",
+          "pos": "adv"
+        },
+        {
+          "surface": "寒い",
+          "dict": "寒い",
+          "ruby": "寒[さむ]い",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "所",
+          "dict": "所",
+          "ruby": "所[ところ]",
+          "pos": "n"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki10-seasons",
+      "id": "s07",
+      "ja": "冬になると、たくさん雪が降ります。",
+      "words": [
+        {
+          "surface": "冬",
+          "dict": "冬",
+          "ruby": "冬[ふゆ]",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "なる",
+          "dict": "なる",
+          "ruby": "なる",
+          "pos": "v5"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "たくさん",
+          "dict": "たくさん",
+          "ruby": "たくさん",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "雪",
+          "dict": "雪",
+          "ruby": "雪[ゆき]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "降り",
+          "dict": "降り",
+          "ruby": "降[ふ]り",
+          "pos": "n"
+        },
+        {
+          "surface": "ます",
+          "dict": "ます",
+          "ruby": "ます",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki10-seasons",
+      "id": "s08",
+      "ja": "私はスキーが下手ですが、たくさん練習します。",
+      "words": [
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "スキー",
+          "dict": "スキー",
+          "ruby": "スキー",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "下手",
+          "dict": "下手",
+          "ruby": "下手[へた]",
+          "pos": "n"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "たくさん",
+          "dict": "たくさん",
+          "ruby": "たくさん",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "練習",
+          "dict": "練習",
+          "ruby": "練習[れんしゅう]",
+          "pos": "n"
+        },
+        {
+          "surface": "し",
+          "dict": "き",
+          "ruby": "し",
+          "pos": ""
+        },
+        {
+          "surface": "ます",
+          "dict": "ます",
+          "ruby": "ます",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki10-seasons",
+      "id": "s09",
+      "ja": "でも、夏もいいと思います。",
+      "words": [
+        {
+          "surface": "でも",
+          "dict": "で",
+          "ruby": "でも",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "夏",
+          "dict": "夏",
+          "ruby": "夏[なつ]",
+          "pos": "n"
+        },
+        {
+          "surface": "も",
+          "dict": "も",
+          "ruby": "も",
+          "pos": "prt"
+        },
+        {
+          "surface": "いい",
+          "dict": "いい",
+          "ruby": "いい",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "思い",
+          "dict": "思い",
+          "ruby": "思[おも]い",
+          "pos": "n"
+        },
+        {
+          "surface": "ます",
+          "dict": "ます",
+          "ruby": "ます",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki10-seasons",
+      "id": "s10",
+      "ja": "来年の夏は海へ行くつもりです。",
+      "words": [
+        {
+          "surface": "来年",
+          "dict": "来年",
+          "ruby": "来年[らいねん]",
+          "pos": "n"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "夏",
+          "dict": "夏",
+          "ruby": "夏[なつ]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "海",
+          "dict": "海",
+          "ruby": "海[うみ]",
+          "pos": "n"
+        },
+        {
+          "surface": "へ",
+          "dict": "へ",
+          "ruby": "へ",
+          "pos": "prt"
+        },
+        {
+          "surface": "行く",
+          "dict": "行く",
+          "ruby": "行[い]く",
+          "pos": "v5"
+        },
+        {
+          "surface": "つもり",
+          "dict": "つもり",
+          "ruby": "つもり",
+          "pos": "n"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki12-feeling-sick",
+      "id": "s01",
+      "ja": "きのうから、頭がとても痛いんです。",
+      "words": []
+    },
+    {
+      "story_id": "eval-genki12-feeling-sick",
+      "id": "s02",
+      "ja": "ゆうべ、コーヒーを飲みすぎました。",
+      "words": []
+    },
+    {
+      "story_id": "eval-genki12-feeling-sick",
+      "id": "s03",
+      "ja": "それに、ゆうべあまり寝なかったんです。",
+      "words": []
+    },
+    {
+      "story_id": "eval-genki12-feeling-sick",
+      "id": "s04",
+      "ja": "今日は仕事を休んだほうがいいですよ。",
+      "words": []
+    },
+    {
+      "story_id": "eval-genki12-feeling-sick",
+      "id": "s05",
+      "ja": "早く病院へ行ったほうがいいと思います。",
+      "words": []
+    },
+    {
+      "story_id": "eval-genki12-feeling-sick",
+      "id": "s06",
+      "ja": "熱もあるので、今日は早く寝ます。",
+      "words": []
+    },
+    {
+      "story_id": "eval-genki12-feeling-sick",
+      "id": "s07",
+      "ja": "あした、薬を飲まなければいけません。",
+      "words": []
+    },
+    {
+      "story_id": "eval-genki12-feeling-sick",
+      "id": "s08",
+      "ja": "一人で行くのは大変でしょう。",
+      "words": []
+    },
+    {
+      "story_id": "eval-genki12-feeling-sick",
+      "id": "s09",
+      "ja": "友だちが病院までいっしょに来てくれます。",
+      "words": []
+    },
+    {
+      "story_id": "eval-genki12-feeling-sick",
+      "id": "s10",
+      "ja": "だから、今日は早く帰ります。",
+      "words": []
+    },
+    {
+      "story_id": "eval-genki14-birthday-gift",
+      "id": "s01",
+      "ja": "来週、妹の誕生日があります。",
+      "words": [
+        {
+          "surface": "来週",
+          "dict": "来週",
+          "ruby": "来週[らいしゅう]",
+          "pos": "n"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "妹",
+          "dict": "妹",
+          "ruby": "妹[いもうと]",
+          "pos": "n"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "誕生日",
+          "dict": "誕生日",
+          "ruby": "誕生日[たんじょうび]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "あります",
+          "dict": "ある",
+          "ruby": "あります",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki14-birthday-gift",
+      "id": "s02",
+      "ja": "妹は新しいかばんがほしいと言っていました。",
+      "words": [
+        {
+          "surface": "妹",
+          "dict": "妹",
+          "ruby": "妹[いもうと]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "新しい",
+          "dict": "新しい",
+          "ruby": "新[あたら]しい",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "かばん",
+          "dict": "かばん",
+          "ruby": "かばん",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "ほしい",
+          "dict": "ほしい",
+          "ruby": "ほしい",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "言っていました",
+          "dict": "言う",
+          "ruby": "言[い]っていました",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki14-birthday-gift",
+      "id": "s03",
+      "ja": "だから、私は妹にかばんをあげるつもりです。",
+      "words": [
+        {
+          "surface": "だから",
+          "dict": "だ",
+          "ruby": "だから",
+          "pos": ""
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "妹",
+          "dict": "妹",
+          "ruby": "妹[いもうと]",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "かばん",
+          "dict": "かばん",
+          "ruby": "かばん",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "あげる",
+          "dict": "あげる",
+          "ruby": "あげる",
+          "pos": "v1"
+        },
+        {
+          "surface": "つもりです",
+          "dict": "つもり",
+          "ruby": "つもりです",
+          "pos": "n"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki14-birthday-gift",
+      "id": "s04",
+      "ja": "母は妹にきれいなセーターを買ってあげます。",
+      "words": [
+        {
+          "surface": "母",
+          "dict": "母",
+          "ruby": "母[はは]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "妹",
+          "dict": "妹",
+          "ruby": "妹[いもうと]",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "きれいな",
+          "dict": "きれい",
+          "ruby": "きれいな",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "セーター",
+          "dict": "セーター",
+          "ruby": "セーター",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "買ってあげます",
+          "dict": "買う",
+          "ruby": "買[か]ってあげます",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki14-birthday-gift",
+      "id": "s05",
+      "ja": "去年、妹は私に手紙をくれました。",
+      "words": [
+        {
+          "surface": "去年",
+          "dict": "去年",
+          "ruby": "去年[きょねん]",
+          "pos": "n"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "妹",
+          "dict": "妹",
+          "ruby": "妹[いもうと]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "手紙",
+          "dict": "手紙",
+          "ruby": "手紙[てがみ]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "くれました",
+          "dict": "くれる",
+          "ruby": "くれました",
+          "pos": "v1"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki14-birthday-gift",
+      "id": "s06",
+      "ja": "私はプレゼントを三つ買いました。",
+      "words": [
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "プレゼント",
+          "dict": "プレゼント",
+          "ruby": "プレゼント",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "三つ",
+          "dict": "三",
+          "ruby": "三[みっ]つ",
+          "pos": "n"
+        },
+        {
+          "surface": "買いました",
+          "dict": "買う",
+          "ruby": "買[か]いました",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki14-birthday-gift",
+      "id": "s07",
+      "ja": "写真も何枚か撮ろうと思います。",
+      "words": [
+        {
+          "surface": "写真",
+          "dict": "写真",
+          "ruby": "写真[しゃしん]",
+          "pos": "n"
+        },
+        {
+          "surface": "も",
+          "dict": "も",
+          "ruby": "も",
+          "pos": "prt"
+        },
+        {
+          "surface": "何枚",
+          "dict": "何枚",
+          "ruby": "何枚[なんまい]",
+          "pos": "n"
+        },
+        {
+          "surface": "か",
+          "dict": "か",
+          "ruby": "か",
+          "pos": "prt"
+        },
+        {
+          "surface": "撮ろう",
+          "dict": "撮る",
+          "ruby": "撮[と]ろう",
+          "pos": "v5"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "思います",
+          "dict": "思う",
+          "ruby": "思[おも]います",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki14-birthday-gift",
+      "id": "s08",
+      "ja": "妹はきっと喜ぶと思います。",
+      "words": [
+        {
+          "surface": "妹",
+          "dict": "妹",
+          "ruby": "妹[いもうと]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "きっと",
+          "dict": "きっと",
+          "ruby": "きっと",
+          "pos": "adv"
+        },
+        {
+          "surface": "喜ぶ",
+          "dict": "喜ぶ",
+          "ruby": "喜[よろこ]ぶ",
+          "pos": "v5"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "思います",
+          "dict": "思う",
+          "ruby": "思[おも]います",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki14-birthday-gift",
+      "id": "s09",
+      "ja": "でも、サイズが合わないかもしれません。",
+      "words": [
+        {
+          "surface": "でも",
+          "dict": "で",
+          "ruby": "でも",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "サイズ",
+          "dict": "サイズ",
+          "ruby": "サイズ",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "合わない",
+          "dict": "合う",
+          "ruby": "合[あ]わない",
+          "pos": "v5"
+        },
+        {
+          "surface": "かもしれません",
+          "dict": "しれる",
+          "ruby": "かもしれません",
+          "pos": "v1"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki14-birthday-gift",
+      "id": "s10",
+      "ja": "妹の誕生日がとても楽しみです。",
+      "words": [
+        {
+          "surface": "妹",
+          "dict": "妹",
+          "ruby": "妹[いもうと]",
+          "pos": "n"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "誕生日",
+          "dict": "誕生日",
+          "ruby": "誕生日[たんじょうび]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "とても",
+          "dict": "とても",
+          "ruby": "とても",
+          "pos": "adv"
+        },
+        {
+          "surface": "楽しみ",
+          "dict": "楽しみ",
+          "ruby": "楽[たの]しみ",
+          "pos": "n"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki16-helping-friend",
+      "id": "s01",
+      "ja": "先週、私は日本語の宿題がわかりませんでした。",
+      "words": [
+        {
+          "surface": "先週",
+          "dict": "先週",
+          "ruby": "先週[せんしゅう]",
+          "pos": "n"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "日本語",
+          "dict": "日本語",
+          "ruby": "日本語[にほんご]",
+          "pos": "n"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "宿題",
+          "dict": "宿題",
+          "ruby": "宿題[しゅくだい]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "わかりませんでした",
+          "dict": "わかる",
+          "ruby": "わかりませんでした",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki16-helping-friend",
+      "id": "s02",
+      "ja": "だから、友だちに教えてもらいました。",
+      "words": [
+        {
+          "surface": "だから",
+          "dict": "だ",
+          "ruby": "だから",
+          "pos": ""
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "友だち",
+          "dict": "友だち",
+          "ruby": "友[とも]だち",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "教えて",
+          "dict": "教える",
+          "ruby": "教[おし]えて",
+          "pos": "v1"
+        },
+        {
+          "surface": "もらいました",
+          "dict": "もらう",
+          "ruby": "もらいました",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki16-helping-friend",
+      "id": "s03",
+      "ja": "友だちは私にゆっくり説明してくれました。",
+      "words": [
+        {
+          "surface": "友だち",
+          "dict": "友だち",
+          "ruby": "友[とも]だち",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "ゆっくり",
+          "dict": "ゆっくり",
+          "ruby": "ゆっくり",
+          "pos": "adv"
+        },
+        {
+          "surface": "説明して",
+          "dict": "説明する",
+          "ruby": "説明[せつめい]して",
+          "pos": "v-irr"
+        },
+        {
+          "surface": "くれました",
+          "dict": "くれる",
+          "ruby": "くれました",
+          "pos": "v1"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki16-helping-friend",
+      "id": "s04",
+      "ja": "私も友だちの宿題を手伝ってあげました。",
+      "words": [
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "も",
+          "dict": "も",
+          "ruby": "も",
+          "pos": "prt"
+        },
+        {
+          "surface": "友だち",
+          "dict": "友だち",
+          "ruby": "友[とも]だち",
+          "pos": "n"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "宿題",
+          "dict": "宿題",
+          "ruby": "宿題[しゅくだい]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "手伝って",
+          "dict": "手伝う",
+          "ruby": "手伝[てつだ]って",
+          "pos": "v5"
+        },
+        {
+          "surface": "あげました",
+          "dict": "あげる",
+          "ruby": "あげました",
+          "pos": "v1"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki16-helping-friend",
+      "id": "s05",
+      "ja": "音楽を聞きながら、いっしょに勉強しました。",
+      "words": [
+        {
+          "surface": "音楽",
+          "dict": "音楽",
+          "ruby": "音楽[おんがく]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "聞き",
+          "dict": "聞く",
+          "ruby": "聞[き]き",
+          "pos": "v5"
+        },
+        {
+          "surface": "ながら",
+          "dict": "ながら",
+          "ruby": "ながら",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "いっしょに",
+          "dict": "いっしょ",
+          "ruby": "いっしょに",
+          "pos": "n"
+        },
+        {
+          "surface": "勉強しました",
+          "dict": "勉強する",
+          "ruby": "勉強[べんきょう]しました",
+          "pos": "v-irr"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki16-helping-friend",
+      "id": "s06",
+      "ja": "わからないことがあると、すぐに友だちに聞きます。",
+      "words": [
+        {
+          "surface": "わからない",
+          "dict": "わかる",
+          "ruby": "わからない",
+          "pos": "v5"
+        },
+        {
+          "surface": "こと",
+          "dict": "こと",
+          "ruby": "こと",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "ある",
+          "dict": "ある",
+          "ruby": "ある",
+          "pos": "v5"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "すぐ",
+          "dict": "すぐ",
+          "ruby": "すぐ",
+          "pos": "adv"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "友だち",
+          "dict": "友だち",
+          "ruby": "友[とも]だち",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "聞きます",
+          "dict": "聞く",
+          "ruby": "聞[き]きます",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki16-helping-friend",
+      "id": "s07",
+      "ja": "今度、先生に手紙を読んでいただけませんか。",
+      "words": [
+        {
+          "surface": "今度",
+          "dict": "今度",
+          "ruby": "今度[こんど]",
+          "pos": "n"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "先生",
+          "dict": "先生",
+          "ruby": "先生[せんせい]",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "手紙",
+          "dict": "手紙",
+          "ruby": "手紙[てがみ]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "読んで",
+          "dict": "読む",
+          "ruby": "読[よ]んで",
+          "pos": "v5"
+        },
+        {
+          "surface": "いただけませんか",
+          "dict": "いただける",
+          "ruby": "いただけませんか",
+          "pos": "v1"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki16-helping-friend",
+      "id": "s08",
+      "ja": "先生はいつもやさしく教えてくださいます。",
+      "words": [
+        {
+          "surface": "先生",
+          "dict": "先生",
+          "ruby": "先生[せんせい]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "いつも",
+          "dict": "いつも",
+          "ruby": "いつも",
+          "pos": "n"
+        },
+        {
+          "surface": "やさしく",
+          "dict": "やさしい",
+          "ruby": "やさしく",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "教えて",
+          "dict": "教える",
+          "ruby": "教[おし]えて",
+          "pos": "v1"
+        },
+        {
+          "surface": "くださいます",
+          "dict": "くださる",
+          "ruby": "くださいます",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki16-helping-friend",
+      "id": "s09",
+      "ja": "友だちがいると、勉強がもっと楽しくなります。",
+      "words": [
+        {
+          "surface": "友だち",
+          "dict": "友だち",
+          "ruby": "友[とも]だち",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "いる",
+          "dict": "いる",
+          "ruby": "いる",
+          "pos": "v1"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "勉強",
+          "dict": "勉強",
+          "ruby": "勉強[べんきょう]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "もっと",
+          "dict": "もっと",
+          "ruby": "もっと",
+          "pos": "adv"
+        },
+        {
+          "surface": "楽しく",
+          "dict": "楽しい",
+          "ruby": "楽[たの]しく",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "なります",
+          "dict": "なる",
+          "ruby": "なります",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki16-helping-friend",
+      "id": "s10",
+      "ja": "いい友だちがいて、私は幸せです。",
+      "words": [
+        {
+          "surface": "いい",
+          "dict": "いい",
+          "ruby": "いい",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "友だち",
+          "dict": "友だち",
+          "ruby": "友[とも]だち",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "いて",
+          "dict": "いる",
+          "ruby": "いて",
+          "pos": "v1"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "幸せ",
+          "dict": "幸せ",
+          "ruby": "幸[しあわ]せ",
+          "pos": "n"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki18-busy-morning",
+      "id": "s01",
+      "ja": "今朝はとても忙しかったです。",
+      "words": [
+        {
+          "surface": "今朝",
+          "dict": "今朝",
+          "ruby": "今朝[けさ]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "とても",
+          "dict": "とても",
+          "ruby": "とても",
+          "pos": "adv"
+        },
+        {
+          "surface": "忙しかっ",
+          "dict": "忙しい",
+          "ruby": "忙[いそが]しかっ",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "た",
+          "dict": "た",
+          "ruby": "た",
+          "pos": ""
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki18-busy-morning",
+      "id": "s02",
+      "ja": "急いでいたので、電気を消すのを忘れてしまいました。",
+      "words": [
+        {
+          "surface": "急い",
+          "dict": "急ぐ",
+          "ruby": "急[いそ]い",
+          "pos": "v5"
+        },
+        {
+          "surface": "で",
+          "dict": "で",
+          "ruby": "で",
+          "pos": "conj"
+        },
+        {
+          "surface": "いた",
+          "dict": "いる",
+          "ruby": "いた",
+          "pos": "v1"
+        },
+        {
+          "surface": "ので",
+          "dict": "の",
+          "ruby": "ので",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "電気",
+          "dict": "電気",
+          "ruby": "電気[でんき]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "消す",
+          "dict": "消す",
+          "ruby": "消[け]す",
+          "pos": "v5"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "忘れ",
+          "dict": "忘れる",
+          "ruby": "忘[わす]れ",
+          "pos": "v1"
+        },
+        {
+          "surface": "て",
+          "dict": "て",
+          "ruby": "て",
+          "pos": "conj"
+        },
+        {
+          "surface": "しまい",
+          "dict": "しまい",
+          "ruby": "しまい",
+          "pos": "n"
+        },
+        {
+          "surface": "ました",
+          "dict": "ます",
+          "ruby": "ました",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki18-busy-morning",
+      "id": "s03",
+      "ja": "窓が開いていたので、部屋がとても寒かったです。",
+      "words": [
+        {
+          "surface": "窓",
+          "dict": "窓",
+          "ruby": "窓[まど]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "開い",
+          "dict": "開く",
+          "ruby": "開[ひら]い",
+          "pos": "v5"
+        },
+        {
+          "surface": "て",
+          "dict": "て",
+          "ruby": "て",
+          "pos": "conj"
+        },
+        {
+          "surface": "いた",
+          "dict": "いる",
+          "ruby": "いた",
+          "pos": "v1"
+        },
+        {
+          "surface": "ので",
+          "dict": "の",
+          "ruby": "ので",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "部屋",
+          "dict": "部屋",
+          "ruby": "部屋[へや]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "とても",
+          "dict": "とても",
+          "ruby": "とても",
+          "pos": "adv"
+        },
+        {
+          "surface": "寒かっ",
+          "dict": "寒い",
+          "ruby": "寒[さむ]かっ",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "た",
+          "dict": "た",
+          "ruby": "た",
+          "pos": ""
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki18-busy-morning",
+      "id": "s04",
+      "ja": "私は急いで窓を閉めました。",
+      "words": [
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "急い",
+          "dict": "急ぐ",
+          "ruby": "急[いそ]い",
+          "pos": "v5"
+        },
+        {
+          "surface": "で",
+          "dict": "で",
+          "ruby": "で",
+          "pos": "conj"
+        },
+        {
+          "surface": "窓",
+          "dict": "窓",
+          "ruby": "窓[まど]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "閉め",
+          "dict": "閉める",
+          "ruby": "閉[し]め",
+          "pos": "v1"
+        },
+        {
+          "surface": "ました",
+          "dict": "ます",
+          "ruby": "ました",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki18-busy-morning",
+      "id": "s05",
+      "ja": "朝ごはんを食べているとき、コーヒーをこぼしてしまいました。",
+      "words": [
+        {
+          "surface": "朝ごはん",
+          "dict": "朝ごはん",
+          "ruby": "朝[あさ]ごはん",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "食べ",
+          "dict": "食べる",
+          "ruby": "食[た]べ",
+          "pos": "v1"
+        },
+        {
+          "surface": "て",
+          "dict": "て",
+          "ruby": "て",
+          "pos": "conj"
+        },
+        {
+          "surface": "いる",
+          "dict": "いる",
+          "ruby": "いる",
+          "pos": "v1"
+        },
+        {
+          "surface": "とき",
+          "dict": "とき",
+          "ruby": "とき",
+          "pos": "n"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "コーヒー",
+          "dict": "コーヒー",
+          "ruby": "コーヒー",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "こぼし",
+          "dict": "こぼし",
+          "ruby": "こぼし",
+          "pos": "n"
+        },
+        {
+          "surface": "て",
+          "dict": "て",
+          "ruby": "て",
+          "pos": "conj"
+        },
+        {
+          "surface": "しまい",
+          "dict": "しまい",
+          "ruby": "しまい",
+          "pos": "n"
+        },
+        {
+          "surface": "ました",
+          "dict": "ます",
+          "ruby": "ました",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki18-busy-morning",
+      "id": "s06",
+      "ja": "新しいシャツが汚れてしまいました。",
+      "words": [
+        {
+          "surface": "新しい",
+          "dict": "新しい",
+          "ruby": "新[あたら]しい",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "シャツ",
+          "dict": "シャツ",
+          "ruby": "シャツ",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "汚れ",
+          "dict": "汚れ",
+          "ruby": "汚[よご]れ",
+          "pos": "n"
+        },
+        {
+          "surface": "て",
+          "dict": "て",
+          "ruby": "て",
+          "pos": "conj"
+        },
+        {
+          "surface": "しまい",
+          "dict": "しまい",
+          "ruby": "しまい",
+          "pos": "n"
+        },
+        {
+          "surface": "ました",
+          "dict": "ます",
+          "ruby": "ました",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki18-busy-morning",
+      "id": "s07",
+      "ja": "家を出る時、かぎをかけるのを忘れました。",
+      "words": [
+        {
+          "surface": "家",
+          "dict": "家",
+          "ruby": "家[いえ]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "出る",
+          "dict": "出る",
+          "ruby": "出[で]る",
+          "pos": "v1"
+        },
+        {
+          "surface": "時",
+          "dict": "時",
+          "ruby": "時[とき]",
+          "pos": "n"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "かぎ",
+          "dict": "かぎ",
+          "ruby": "かぎ",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "かける",
+          "dict": "かける",
+          "ruby": "かける",
+          "pos": "n"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "忘れ",
+          "dict": "忘れる",
+          "ruby": "忘[わす]れ",
+          "pos": "v1"
+        },
+        {
+          "surface": "ました",
+          "dict": "ます",
+          "ruby": "ました",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki18-busy-morning",
+      "id": "s08",
+      "ja": "会社に着くと、雨が降り始めました。",
+      "words": [
+        {
+          "surface": "会社",
+          "dict": "会社",
+          "ruby": "会社[かいしゃ]",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "着く",
+          "dict": "着く",
+          "ruby": "着[つ]く",
+          "pos": "v5"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "雨",
+          "dict": "雨",
+          "ruby": "雨[あめ]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "降り",
+          "dict": "降り",
+          "ruby": "降[ふ]り",
+          "pos": "n"
+        },
+        {
+          "surface": "始め",
+          "dict": "始める",
+          "ruby": "始[はじ]め",
+          "pos": "v1"
+        },
+        {
+          "surface": "ました",
+          "dict": "ます",
+          "ruby": "ました",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki18-busy-morning",
+      "id": "s09",
+      "ja": "かさを持ってくればよかったです。",
+      "words": [
+        {
+          "surface": "かさ",
+          "dict": "か",
+          "ruby": "かさ",
+          "pos": "prt"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "持っ",
+          "dict": "持つ",
+          "ruby": "持[も]っ",
+          "pos": "v5"
+        },
+        {
+          "surface": "て",
+          "dict": "て",
+          "ruby": "て",
+          "pos": "conj"
+        },
+        {
+          "surface": "くれ",
+          "dict": "くれる",
+          "ruby": "くれ",
+          "pos": "v1"
+        },
+        {
+          "surface": "ば",
+          "dict": "ば",
+          "ruby": "ば",
+          "pos": "adv"
+        },
+        {
+          "surface": "よかっ",
+          "dict": "よい",
+          "ruby": "よかっ",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "た",
+          "dict": "た",
+          "ruby": "た",
+          "pos": ""
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki18-busy-morning",
+      "id": "s10",
+      "ja": "今度からもっと気をつけようと思います。",
+      "words": [
+        {
+          "surface": "今度",
+          "dict": "今度",
+          "ruby": "今度[こんど]",
+          "pos": "n"
+        },
+        {
+          "surface": "から",
+          "dict": "から",
+          "ruby": "から",
+          "pos": "conj"
+        },
+        {
+          "surface": "もっと",
+          "dict": "もっと",
+          "ruby": "もっと",
+          "pos": "adv"
+        },
+        {
+          "surface": "気をつけ",
+          "dict": "気",
+          "ruby": "気[き]をつけ",
+          "pos": "n"
+        },
+        {
+          "surface": "よう",
+          "dict": "よう",
+          "ruby": "よう",
+          "pos": "adv"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "思い",
+          "dict": "思い",
+          "ruby": "思[おも]い",
+          "pos": "n"
+        },
+        {
+          "surface": "ます",
+          "dict": "ます",
+          "ruby": "ます",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki20-polite-visit",
+      "id": "s01",
+      "ja": "私は田中と申します。",
+      "words": [
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "田中",
+          "dict": "田中",
+          "ruby": "田中[たなか]",
+          "pos": "n"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "申し",
+          "dict": "申す",
+          "ruby": "申[もう]し",
+          "pos": "v5"
+        },
+        {
+          "surface": "ます",
+          "dict": "ます",
+          "ruby": "ます",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki20-polite-visit",
+      "id": "s02",
+      "ja": "あした、先生のお宅へうかがいます。",
+      "words": [
+        {
+          "surface": "あした",
+          "dict": "あした",
+          "ruby": "あした",
+          "pos": "n"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "先生",
+          "dict": "先生",
+          "ruby": "先生[せんせい]",
+          "pos": "n"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "お宅",
+          "dict": "お宅",
+          "ruby": "お宅[おたく]",
+          "pos": "pron"
+        },
+        {
+          "surface": "へ",
+          "dict": "へ",
+          "ruby": "へ",
+          "pos": "prt"
+        },
+        {
+          "surface": "うかがい",
+          "dict": "うかがい",
+          "ruby": "うかがい",
+          "pos": "n"
+        },
+        {
+          "surface": "ます",
+          "dict": "ます",
+          "ruby": "ます",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki20-polite-visit",
+      "id": "s03",
+      "ja": "先生はいつもいろいろなことを教えてくださいます。",
+      "words": [
+        {
+          "surface": "先生",
+          "dict": "先生",
+          "ruby": "先生[せんせい]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "いつも",
+          "dict": "いつも",
+          "ruby": "いつも",
+          "pos": "n"
+        },
+        {
+          "surface": "いろいろな",
+          "dict": "いろいろ",
+          "ruby": "いろいろな",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "こと",
+          "dict": "こと",
+          "ruby": "こと",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "教え",
+          "dict": "教え",
+          "ruby": "教[おし]え",
+          "pos": "n"
+        },
+        {
+          "surface": "て",
+          "dict": "て",
+          "ruby": "て",
+          "pos": "conj"
+        },
+        {
+          "surface": "ください",
+          "dict": "くださる",
+          "ruby": "ください",
+          "pos": "v5"
+        },
+        {
+          "surface": "ます",
+          "dict": "ます",
+          "ruby": "ます",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki20-polite-visit",
+      "id": "s04",
+      "ja": "先生は毎朝コーヒーをめしあがります。",
+      "words": [
+        {
+          "surface": "先生",
+          "dict": "先生",
+          "ruby": "先生[せんせい]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "毎朝",
+          "dict": "毎朝",
+          "ruby": "毎朝[まいあさ]",
+          "pos": "n"
+        },
+        {
+          "surface": "コーヒー",
+          "dict": "コーヒー",
+          "ruby": "コーヒー",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "めしあがり",
+          "dict": "めしあがる",
+          "ruby": "めしあがり",
+          "pos": "v5"
+        },
+        {
+          "surface": "ます",
+          "dict": "ます",
+          "ruby": "ます",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki20-polite-visit",
+      "id": "s05",
+      "ja": "きのう、先生が私にお電話をくださいました。",
+      "words": [
+        {
+          "surface": "きのう",
+          "dict": "きのう",
+          "ruby": "きのう",
+          "pos": "n"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "先生",
+          "dict": "先生",
+          "ruby": "先生[せんせい]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "お電話",
+          "dict": "お",
+          "ruby": "お電話[でんわ]",
+          "pos": "pref"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "ください",
+          "dict": "くださる",
+          "ruby": "ください",
+          "pos": "v5"
+        },
+        {
+          "surface": "まし",
+          "dict": "まし",
+          "ruby": "まし",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "た",
+          "dict": "た",
+          "ruby": "た",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki20-polite-visit",
+      "id": "s06",
+      "ja": "私は先生に本をお借りしました。",
+      "words": [
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "先生",
+          "dict": "先生",
+          "ruby": "先生[せんせい]",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "本",
+          "dict": "本",
+          "ruby": "本[ほん]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "お借りし",
+          "dict": "お",
+          "ruby": "お借[か]りし",
+          "pos": "pref"
+        },
+        {
+          "surface": "まし",
+          "dict": "まし",
+          "ruby": "まし",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "た",
+          "dict": "た",
+          "ruby": "た",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki20-polite-visit",
+      "id": "s07",
+      "ja": "分からないことがあったので、質問をいたしました。",
+      "words": [
+        {
+          "surface": "分から",
+          "dict": "分",
+          "ruby": "分[ぶん]から",
+          "pos": "n"
+        },
+        {
+          "surface": "ない",
+          "dict": "ない",
+          "ruby": "ない",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "こと",
+          "dict": "こと",
+          "ruby": "こと",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "あっ",
+          "dict": "あっ",
+          "ruby": "あっ",
+          "pos": ""
+        },
+        {
+          "surface": "た",
+          "dict": "た",
+          "ruby": "た",
+          "pos": ""
+        },
+        {
+          "surface": "ので",
+          "dict": "の",
+          "ruby": "ので",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "質問",
+          "dict": "質問",
+          "ruby": "質問[しつもん]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "いたし",
+          "dict": "いたす",
+          "ruby": "いたし",
+          "pos": "v5"
+        },
+        {
+          "surface": "まし",
+          "dict": "まし",
+          "ruby": "まし",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "た",
+          "dict": "た",
+          "ruby": "た",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki20-polite-visit",
+      "id": "s08",
+      "ja": "先生はゆっくり説明してくださいました。",
+      "words": [
+        {
+          "surface": "先生",
+          "dict": "先生",
+          "ruby": "先生[せんせい]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "ゆっくり",
+          "dict": "ゆっくり",
+          "ruby": "ゆっくり",
+          "pos": "adv"
+        },
+        {
+          "surface": "説明し",
+          "dict": "説明する",
+          "ruby": "説明[せつめい]し",
+          "pos": "v-irr"
+        },
+        {
+          "surface": "て",
+          "dict": "て",
+          "ruby": "て",
+          "pos": "conj"
+        },
+        {
+          "surface": "ください",
+          "dict": "くださる",
+          "ruby": "ください",
+          "pos": "v5"
+        },
+        {
+          "surface": "まし",
+          "dict": "まし",
+          "ruby": "まし",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "た",
+          "dict": "た",
+          "ruby": "た",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki20-polite-visit",
+      "id": "s09",
+      "ja": "分からないことは、遠慮しないで聞いてください。",
+      "words": [
+        {
+          "surface": "分から",
+          "dict": "分",
+          "ruby": "分[ぶん]から",
+          "pos": "n"
+        },
+        {
+          "surface": "ない",
+          "dict": "ない",
+          "ruby": "ない",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "こと",
+          "dict": "こと",
+          "ruby": "こと",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "遠慮し",
+          "dict": "遠慮する",
+          "ruby": "遠慮[えんりょ]し",
+          "pos": "v-irr"
+        },
+        {
+          "surface": "ない",
+          "dict": "ない",
+          "ruby": "ない",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "で",
+          "dict": "で",
+          "ruby": "で",
+          "pos": "conj"
+        },
+        {
+          "surface": "聞い",
+          "dict": "聞く",
+          "ruby": "聞[き]い",
+          "pos": "v5"
+        },
+        {
+          "surface": "て",
+          "dict": "て",
+          "ruby": "て",
+          "pos": "conj"
+        },
+        {
+          "surface": "ください",
+          "dict": "くださる",
+          "ruby": "ください",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki20-polite-visit",
+      "id": "s10",
+      "ja": "先生は本当に立派な方です。",
+      "words": [
+        {
+          "surface": "先生",
+          "dict": "先生",
+          "ruby": "先生[せんせい]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "本当に",
+          "dict": "本当",
+          "ruby": "本当[ほんとう]に",
+          "pos": "n"
+        },
+        {
+          "surface": "立派",
+          "dict": "立派",
+          "ruby": "立派[りっぱ]",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "な",
+          "dict": "だ",
+          "ruby": "な",
+          "pos": ""
+        },
+        {
+          "surface": "方",
+          "dict": "方",
+          "ruby": "方[ほう]",
+          "pos": "n"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki22-raising-children",
+      "id": "s01",
+      "ja": "私には子どもが二人います。",
+      "words": [
+        {
+          "surface": "毎日",
+          "dict": "毎日",
+          "ruby": "毎日[まいにち]",
+          "pos": "n"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "子どもたち",
+          "dict": "子どもたち",
+          "ruby": "子[こ]どもたち",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "部屋",
+          "dict": "部屋",
+          "ruby": "部屋[へや]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "そうじさせます",
+          "dict": "そうじする",
+          "ruby": "そうじさせます",
+          "pos": "v-irr"
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki22-raising-children",
+      "id": "s02",
+      "ja": "毎日、子どもたちに部屋をそうじさせます。",
+      "words": [
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        },
+        {
+          "surface": "子どもたち",
+          "dict": "子どもたち",
+          "ruby": "子[こ]どもたち",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "ときどき",
+          "dict": "ときどき",
+          "ruby": "ときどき",
+          "pos": "n"
+        },
+        {
+          "surface": "いやだ",
+          "dict": "いや",
+          "ruby": "いやだ",
+          "pos": "adj-na"
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki22-raising-children",
+      "id": "s03",
+      "ja": "子どもたちはときどきいやだと言います。",
+      "words": [
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "言います",
+          "dict": "言う",
+          "ruby": "言[い]います",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        },
+        {
+          "surface": "でも",
+          "dict": "で",
+          "ruby": "でも",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "子どもたち",
+          "dict": "子どもたち",
+          "ruby": "子[こ]どもたち",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "野菜",
+          "dict": "野菜",
+          "ruby": "野菜[やさい]",
+          "pos": "n"
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki22-raising-children",
+      "id": "s04",
+      "ja": "でも、私は子どもたちに野菜を食べさせます。",
+      "words": [
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "食べさせます",
+          "dict": "食べる",
+          "ruby": "食[た]べさせます",
+          "pos": "v1"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        },
+        {
+          "surface": "きのう",
+          "dict": "きのう",
+          "ruby": "きのう",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "子ども",
+          "dict": "子ども",
+          "ruby": "子[こ]ども",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "一時間",
+          "dict": "一",
+          "ruby": "一[いち]時間[じかん]",
+          "pos": "n"
+        },
+        {
+          "surface": "も",
+          "dict": "も",
+          "ruby": "も",
+          "pos": "prt"
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki22-raising-children",
+      "id": "s05",
+      "ja": "きのうは、子どもを一時間も待たせてしまいました。",
+      "words": [
+        {
+          "surface": "待たせてしまいました",
+          "dict": "待つ",
+          "ruby": "待[ま]たせてしまいました",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        },
+        {
+          "surface": "子ども",
+          "dict": "子ども",
+          "ruby": "子[こ]ども",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "泣いた",
+          "dict": "泣く",
+          "ruby": "泣[な]いた",
+          "pos": "v5"
+        },
+        {
+          "surface": "ので",
+          "dict": "の",
+          "ruby": "ので",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "本当に",
+          "dict": "本当",
+          "ruby": "本当[ほんとう]に",
+          "pos": "n"
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki22-raising-children",
+      "id": "s06",
+      "ja": "子どもが泣いたので、本当にかわいそうでした。",
+      "words": [
+        {
+          "surface": "かわいそうでした",
+          "dict": "かわいそう",
+          "ruby": "かわいそうでした",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        },
+        {
+          "surface": "今日",
+          "dict": "今日",
+          "ruby": "今日[きょう]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "子どもたち",
+          "dict": "子どもたち",
+          "ruby": "子[こ]どもたち",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "公園",
+          "dict": "公園",
+          "ruby": "公園[こうえん]",
+          "pos": "n"
+        },
+        {
+          "surface": "で",
+          "dict": "で",
+          "ruby": "で",
+          "pos": "conj"
+        },
+        {
+          "surface": "遊ばせます",
+          "dict": "遊ぶ",
+          "ruby": "遊[あそ]ばせます",
+          "pos": "v5"
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki22-raising-children",
+      "id": "s07",
+      "ja": "今日は子どもたちを公園で遊ばせます。",
+      "words": [
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        },
+        {
+          "surface": "先生",
+          "dict": "先生",
+          "ruby": "先生[せんせい]",
+          "pos": "n"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "子ども",
+          "dict": "子ども",
+          "ruby": "子[こ]ども",
+          "pos": "n"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "写真",
+          "dict": "写真",
+          "ruby": "写真[しゃしん]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "撮って",
+          "dict": "撮る",
+          "ruby": "撮[と]って",
+          "pos": "v5"
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki22-raising-children",
+      "id": "s08",
+      "ja": "先生、子どもの写真を撮っていただけませんか。",
+      "words": [
+        {
+          "surface": "いただけませんか",
+          "dict": "いただける",
+          "ruby": "いただけませんか",
+          "pos": "v1"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        },
+        {
+          "surface": "子どもたち",
+          "dict": "子どもたち",
+          "ruby": "子[こ]どもたち",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "無理",
+          "dict": "無理",
+          "ruby": "無理[むり]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "させないでください",
+          "dict": "する",
+          "ruby": "させないでください",
+          "pos": "v-irr"
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki22-raising-children",
+      "id": "s09",
+      "ja": "子どもたちに無理をさせないでください。",
+      "words": [
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        },
+        {
+          "surface": "子どもたち",
+          "dict": "子どもたち",
+          "ruby": "子[こ]どもたち",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "とても",
+          "dict": "とても",
+          "ruby": "とても",
+          "pos": "adv"
+        },
+        {
+          "surface": "かわいい",
+          "dict": "かわいい",
+          "ruby": "かわいい",
+          "pos": "adj-i"
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki22-raising-children",
+      "id": "s10",
+      "ja": "子どもたちはとてもかわいいです。",
+      "words": [
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki4-day-out",
+      "id": "s01",
+      "ja": "きのう友だちと町へ行きました。",
+      "words": [
+        {
+          "surface": "きのう",
+          "dict": "きのう",
+          "ruby": "きのう",
+          "pos": "n"
+        },
+        {
+          "surface": "友だち",
+          "dict": "友だち",
+          "ruby": "友[とも]だち",
+          "pos": "n"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "町",
+          "dict": "町",
+          "ruby": "町[まち]",
+          "pos": "n"
+        },
+        {
+          "surface": "へ",
+          "dict": "へ",
+          "ruby": "へ",
+          "pos": "prt"
+        },
+        {
+          "surface": "行きました",
+          "dict": "行く",
+          "ruby": "行[い]きました",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki4-day-out",
+      "id": "s02",
+      "ja": "町にはたくさん人がいました。",
+      "words": [
+        {
+          "surface": "町",
+          "dict": "町",
+          "ruby": "町[まち]",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "たくさん",
+          "dict": "たくさん",
+          "ruby": "たくさん",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "人",
+          "dict": "人",
+          "ruby": "人[ひと]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "いました",
+          "dict": "いる",
+          "ruby": "いました",
+          "pos": "v1"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki4-day-out",
+      "id": "s03",
+      "ja": "デパートできれいなかばんを買いました。",
+      "words": [
+        {
+          "surface": "デパート",
+          "dict": "デパート",
+          "ruby": "デパート",
+          "pos": "n"
+        },
+        {
+          "surface": "で",
+          "dict": "で",
+          "ruby": "で",
+          "pos": "conj"
+        },
+        {
+          "surface": "きれい",
+          "dict": "きれい",
+          "ruby": "きれい",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "な",
+          "dict": "だ",
+          "ruby": "な",
+          "pos": ""
+        },
+        {
+          "surface": "かばん",
+          "dict": "かばん",
+          "ruby": "かばん",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "買いました",
+          "dict": "買う",
+          "ruby": "買[か]いました",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki4-day-out",
+      "id": "s04",
+      "ja": "かばんは少し高かったです。",
+      "words": [
+        {
+          "surface": "かばん",
+          "dict": "かばん",
+          "ruby": "かばん",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "少し",
+          "dict": "少し",
+          "ruby": "少[すこ]し",
+          "pos": "adv"
+        },
+        {
+          "surface": "高かったです",
+          "dict": "高い",
+          "ruby": "高[たか]かったです",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki4-day-out",
+      "id": "s05",
+      "ja": "それから、レストランで昼ごはんを食べました。",
+      "words": [
+        {
+          "surface": "それから",
+          "dict": "それ",
+          "ruby": "それから",
+          "pos": "pron"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "レストラン",
+          "dict": "レストラン",
+          "ruby": "レストラン",
+          "pos": "n"
+        },
+        {
+          "surface": "で",
+          "dict": "で",
+          "ruby": "で",
+          "pos": "conj"
+        },
+        {
+          "surface": "昼ごはん",
+          "dict": "昼ごはん",
+          "ruby": "昼[ひる]ごはん",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "食べました",
+          "dict": "食べる",
+          "ruby": "食[た]べました",
+          "pos": "v1"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki4-day-out",
+      "id": "s06",
+      "ja": "レストランの料理はとてもおいしかったです。",
+      "words": [
+        {
+          "surface": "レストラン",
+          "dict": "レストラン",
+          "ruby": "レストラン",
+          "pos": "n"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "料理",
+          "dict": "料理",
+          "ruby": "料理[りょうり]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "とても",
+          "dict": "とても",
+          "ruby": "とても",
+          "pos": "adv"
+        },
+        {
+          "surface": "おいしかったです",
+          "dict": "おいしい",
+          "ruby": "おいしかったです",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki4-day-out",
+      "id": "s07",
+      "ja": "午後、公園で写真をたくさん撮りました。",
+      "words": [
+        {
+          "surface": "午後",
+          "dict": "午後",
+          "ruby": "午後[ごご]",
+          "pos": "n"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "公園",
+          "dict": "公園",
+          "ruby": "公園[こうえん]",
+          "pos": "n"
+        },
+        {
+          "surface": "で",
+          "dict": "で",
+          "ruby": "で",
+          "pos": "conj"
+        },
+        {
+          "surface": "写真",
+          "dict": "写真",
+          "ruby": "写真[しゃしん]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "たくさん",
+          "dict": "たくさん",
+          "ruby": "たくさん",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "撮りました",
+          "dict": "撮る",
+          "ruby": "撮[と]りました",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki4-day-out",
+      "id": "s08",
+      "ja": "公園にはきれいな花がたくさんありました。",
+      "words": [
+        {
+          "surface": "公園",
+          "dict": "公園",
+          "ruby": "公園[こうえん]",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "きれい",
+          "dict": "きれい",
+          "ruby": "きれい",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "な",
+          "dict": "だ",
+          "ruby": "な",
+          "pos": ""
+        },
+        {
+          "surface": "花",
+          "dict": "花",
+          "ruby": "花[はな]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "たくさん",
+          "dict": "たくさん",
+          "ruby": "たくさん",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "ありました",
+          "dict": "ある",
+          "ruby": "ありました",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki4-day-out",
+      "id": "s09",
+      "ja": "天気もよかったですが、少し寒かったです。",
+      "words": [
+        {
+          "surface": "天気",
+          "dict": "天気",
+          "ruby": "天気[てんき]",
+          "pos": "n"
+        },
+        {
+          "surface": "も",
+          "dict": "も",
+          "ruby": "も",
+          "pos": "prt"
+        },
+        {
+          "surface": "よかった",
+          "dict": "よい",
+          "ruby": "よかった",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "少し",
+          "dict": "少し",
+          "ruby": "少[すこ]し",
+          "pos": "adv"
+        },
+        {
+          "surface": "寒かったです",
+          "dict": "寒い",
+          "ruby": "寒[さむ]かったです",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki4-day-out",
+      "id": "s10",
+      "ja": "とても楽しい一日でした。",
+      "words": [
+        {
+          "surface": "とても",
+          "dict": "とても",
+          "ruby": "とても",
+          "pos": "adv"
+        },
+        {
+          "surface": "楽しい",
+          "dict": "楽しい",
+          "ruby": "楽[たの]しい",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "一日",
+          "dict": "一",
+          "ruby": "一[いち]日[にち]",
+          "pos": "n"
+        },
+        {
+          "surface": "でした",
+          "dict": "です",
+          "ruby": "でした",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki6-daily-life",
+      "id": "s01",
+      "ja": "私は毎朝六時に起きます。",
+      "words": [
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "毎朝",
+          "dict": "毎朝",
+          "ruby": "毎朝[まいあさ]",
+          "pos": "n"
+        },
+        {
+          "surface": "六時",
+          "dict": "六",
+          "ruby": "六[ろく]時[じ]",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "起きます",
+          "dict": "起きる",
+          "ruby": "起[お]きます",
+          "pos": "v1"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki6-daily-life",
+      "id": "s02",
+      "ja": "朝ごはんを食べてから、大学へ行きます。",
+      "words": [
+        {
+          "surface": "朝ごはん",
+          "dict": "朝ごはん",
+          "ruby": "朝[あさ]ごはん",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "食べ",
+          "dict": "食べる",
+          "ruby": "食[た]べ",
+          "pos": "v1"
+        },
+        {
+          "surface": "て",
+          "dict": "て",
+          "ruby": "て",
+          "pos": "conj"
+        },
+        {
+          "surface": "から",
+          "dict": "から",
+          "ruby": "から",
+          "pos": "conj"
+        },
+        {
+          "surface": "、大学",
+          "dict": "大学",
+          "ruby": "、大学[だいがく]",
+          "pos": "n"
+        },
+        {
+          "surface": "へ",
+          "dict": "へ",
+          "ruby": "へ",
+          "pos": "prt"
+        },
+        {
+          "surface": "行きます",
+          "dict": "行く",
+          "ruby": "行[い]きます",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki6-daily-life",
+      "id": "s03",
+      "ja": "私の大学はとても大きいです。",
+      "words": [
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "大学",
+          "dict": "大学",
+          "ruby": "大学[だいがく]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "とても",
+          "dict": "とても",
+          "ruby": "とても",
+          "pos": "adv"
+        },
+        {
+          "surface": "大きい",
+          "dict": "大きい",
+          "ruby": "大[おお]きい",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki6-daily-life",
+      "id": "s04",
+      "ja": "月曜日から金曜日まで日本語を勉強します。",
+      "words": [
+        {
+          "surface": "月曜日",
+          "dict": "月曜日",
+          "ruby": "月曜日[げつようび]",
+          "pos": "n"
+        },
+        {
+          "surface": "から",
+          "dict": "から",
+          "ruby": "から",
+          "pos": "conj"
+        },
+        {
+          "surface": "金曜日",
+          "dict": "金曜日",
+          "ruby": "金曜日[きんようび]",
+          "pos": "n"
+        },
+        {
+          "surface": "まで",
+          "dict": "ま",
+          "ruby": "まで",
+          "pos": ""
+        },
+        {
+          "surface": "日本語",
+          "dict": "日本語",
+          "ruby": "日本語[にほんご]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "勉強します",
+          "dict": "勉強する",
+          "ruby": "勉強[べんきょう]します",
+          "pos": "v-irr"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki6-daily-life",
+      "id": "s05",
+      "ja": "日本語のクラスは難しいですが、おもしろいです。",
+      "words": [
+        {
+          "surface": "日本語",
+          "dict": "日本語",
+          "ruby": "日本語[にほんご]",
+          "pos": "n"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "クラス",
+          "dict": "クラス",
+          "ruby": "クラス",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "難しい",
+          "dict": "難しい",
+          "ruby": "難[むずか]しい",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "、おもしろい",
+          "dict": "おもしろい",
+          "ruby": "、おもしろい",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki6-daily-life",
+      "id": "s06",
+      "ja": "ときどき友だちと図書館で本を読みます。",
+      "words": [
+        {
+          "surface": "ときどき",
+          "dict": "ときどき",
+          "ruby": "ときどき",
+          "pos": "n"
+        },
+        {
+          "surface": "友だち",
+          "dict": "友だち",
+          "ruby": "友[とも]だち",
+          "pos": "n"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "図書館",
+          "dict": "図書館",
+          "ruby": "図書館[としょかん]",
+          "pos": "n"
+        },
+        {
+          "surface": "で",
+          "dict": "で",
+          "ruby": "で",
+          "pos": "conj"
+        },
+        {
+          "surface": "本",
+          "dict": "本",
+          "ruby": "本[ほん]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "読みます",
+          "dict": "読む",
+          "ruby": "読[よ]みます",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki6-daily-life",
+      "id": "s07",
+      "ja": "夜はテレビを見て、おふろに入ります。",
+      "words": [
+        {
+          "surface": "夜",
+          "dict": "夜",
+          "ruby": "夜[よる]",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "テレビ",
+          "dict": "テレビ",
+          "ruby": "テレビ",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "見",
+          "dict": "見る",
+          "ruby": "見[み]",
+          "pos": "v1"
+        },
+        {
+          "surface": "て",
+          "dict": "て",
+          "ruby": "て",
+          "pos": "conj"
+        },
+        {
+          "surface": "、おふろ",
+          "dict": "お",
+          "ruby": "、おふろ",
+          "pos": "pref"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "入ります",
+          "dict": "入る",
+          "ruby": "入[はい]ります",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki6-daily-life",
+      "id": "s08",
+      "ja": "週末に友だちと映画を見ます。",
+      "words": [
+        {
+          "surface": "週末",
+          "dict": "週末",
+          "ruby": "週末[しゅうまつ]",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "友だち",
+          "dict": "友だち",
+          "ruby": "友[とも]だち",
+          "pos": "n"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "映画",
+          "dict": "映画",
+          "ruby": "映画[えいが]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "見ます",
+          "dict": "見る",
+          "ruby": "見[み]ます",
+          "pos": "v1"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki6-daily-life",
+      "id": "s09",
+      "ja": "とても疲れたから、早く寝ます。",
+      "words": [
+        {
+          "surface": "とても",
+          "dict": "とても",
+          "ruby": "とても",
+          "pos": "adv"
+        },
+        {
+          "surface": "疲れ",
+          "dict": "疲れ",
+          "ruby": "疲[つか]れ",
+          "pos": "n"
+        },
+        {
+          "surface": "た",
+          "dict": "た",
+          "ruby": "た",
+          "pos": ""
+        },
+        {
+          "surface": "から",
+          "dict": "から",
+          "ruby": "から",
+          "pos": "conj"
+        },
+        {
+          "surface": "、早く",
+          "dict": "早い",
+          "ruby": "、早[はや]く",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "寝ます",
+          "dict": "寝る",
+          "ruby": "寝[ね]ます",
+          "pos": "v1"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki6-daily-life",
+      "id": "s10",
+      "ja": "毎日とても楽しいです。",
+      "words": [
+        {
+          "surface": "毎日",
+          "dict": "毎日",
+          "ruby": "毎日[まいにち]",
+          "pos": "n"
+        },
+        {
+          "surface": "とても",
+          "dict": "とても",
+          "ruby": "とても",
+          "pos": "adv"
+        },
+        {
+          "surface": "楽しい",
+          "dict": "楽しい",
+          "ruby": "楽[たの]しい",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "です",
+          "dict": "です",
+          "ruby": "です",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki8-friend-music",
+      "id": "s01",
+      "ja": "私の友だちのけんは音楽が好きだ。",
+      "words": [
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "友だち",
+          "dict": "友だち",
+          "ruby": "友[とも]だち",
+          "pos": "n"
+        },
+        {
+          "surface": "の",
+          "dict": "の",
+          "ruby": "の",
+          "pos": "prt"
+        },
+        {
+          "surface": "けん",
+          "dict": "けん",
+          "ruby": "けん",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "音楽",
+          "dict": "音楽",
+          "ruby": "音楽[おんがく]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "好き",
+          "dict": "好き",
+          "ruby": "好[す]き",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "だ",
+          "dict": "だ",
+          "ruby": "だ",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki8-friend-music",
+      "id": "s02",
+      "ja": "けんはよくギターをひくと思う。",
+      "words": [
+        {
+          "surface": "けん",
+          "dict": "けん",
+          "ruby": "けん",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "よく",
+          "dict": "よく",
+          "ruby": "よく",
+          "pos": "adv"
+        },
+        {
+          "surface": "ギター",
+          "dict": "ギター",
+          "ruby": "ギター",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "ひく",
+          "dict": "ひく",
+          "ruby": "ひく",
+          "pos": "v5"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "思う",
+          "dict": "思う",
+          "ruby": "思[おも]う",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki8-friend-music",
+      "id": "s03",
+      "ja": "きのう、けんは新しいギターを買った。",
+      "words": [
+        {
+          "surface": "きのう",
+          "dict": "きのう",
+          "ruby": "きのう",
+          "pos": "n"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "けん",
+          "dict": "けん",
+          "ruby": "けん",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "新しい",
+          "dict": "新しい",
+          "ruby": "新[あたら]しい",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "ギター",
+          "dict": "ギター",
+          "ruby": "ギター",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "買っ",
+          "dict": "買う",
+          "ruby": "買[か]っ",
+          "pos": "v5"
+        },
+        {
+          "surface": "た",
+          "dict": "た",
+          "ruby": "た",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki8-friend-music",
+      "id": "s04",
+      "ja": "でも、あまり高くなかったと言っていた。",
+      "words": [
+        {
+          "surface": "でも",
+          "dict": "で",
+          "ruby": "でも",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "あまり",
+          "dict": "あまり",
+          "ruby": "あまり",
+          "pos": "adv"
+        },
+        {
+          "surface": "高く",
+          "dict": "高い",
+          "ruby": "高[たか]く",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "なかった",
+          "dict": "ない",
+          "ruby": "なかった",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "言っ",
+          "dict": "言う",
+          "ruby": "言[い]っ",
+          "pos": "v5"
+        },
+        {
+          "surface": "て",
+          "dict": "て",
+          "ruby": "て",
+          "pos": "conj"
+        },
+        {
+          "surface": "い",
+          "dict": "い",
+          "ruby": "い",
+          "pos": "prt"
+        },
+        {
+          "surface": "た",
+          "dict": "た",
+          "ruby": "た",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki8-friend-music",
+      "id": "s05",
+      "ja": "私も音楽が大好きだ。",
+      "words": [
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "も",
+          "dict": "も",
+          "ruby": "も",
+          "pos": "prt"
+        },
+        {
+          "surface": "音楽",
+          "dict": "音楽",
+          "ruby": "音楽[おんがく]",
+          "pos": "n"
+        },
+        {
+          "surface": "が",
+          "dict": "が",
+          "ruby": "が",
+          "pos": "conj"
+        },
+        {
+          "surface": "大好き",
+          "dict": "大好き",
+          "ruby": "大好[だいす]き",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "だ",
+          "dict": "だ",
+          "ruby": "だ",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki8-friend-music",
+      "id": "s06",
+      "ja": "でも、私は楽器を何も持っていない。",
+      "words": [
+        {
+          "surface": "でも",
+          "dict": "で",
+          "ruby": "でも",
+          "pos": "prt"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "楽器",
+          "dict": "楽器",
+          "ruby": "楽器[がっき]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "何も",
+          "dict": "何",
+          "ruby": "何[なん]も",
+          "pos": "pron"
+        },
+        {
+          "surface": "持っ",
+          "dict": "持つ",
+          "ruby": "持[も]っ",
+          "pos": "v5"
+        },
+        {
+          "surface": "て",
+          "dict": "て",
+          "ruby": "て",
+          "pos": "conj"
+        },
+        {
+          "surface": "い",
+          "dict": "い",
+          "ruby": "い",
+          "pos": "prt"
+        },
+        {
+          "surface": "ない",
+          "dict": "ない",
+          "ruby": "ない",
+          "pos": "adj-i"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki8-friend-music",
+      "id": "s07",
+      "ja": "週末にけんとギターを練習するつもりだ。",
+      "words": [
+        {
+          "surface": "週末",
+          "dict": "週末",
+          "ruby": "週末[しゅうまつ]",
+          "pos": "n"
+        },
+        {
+          "surface": "に",
+          "dict": "に",
+          "ruby": "に",
+          "pos": "prt"
+        },
+        {
+          "surface": "けん",
+          "dict": "けん",
+          "ruby": "けん",
+          "pos": "n"
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "ギター",
+          "dict": "ギター",
+          "ruby": "ギター",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "練習",
+          "dict": "練習",
+          "ruby": "練習[れんしゅう]",
+          "pos": "n"
+        },
+        {
+          "surface": "する",
+          "dict": "する",
+          "ruby": "する",
+          "pos": "v-irr"
+        },
+        {
+          "surface": "つもり",
+          "dict": "つもり",
+          "ruby": "つもり",
+          "pos": "n"
+        },
+        {
+          "surface": "だ",
+          "dict": "だ",
+          "ruby": "だ",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki8-friend-music",
+      "id": "s08",
+      "ja": "けんはとても上手だと思う。",
+      "words": [
+        {
+          "surface": "けん",
+          "dict": "けん",
+          "ruby": "けん",
+          "pos": "n"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "とても",
+          "dict": "とても",
+          "ruby": "とても",
+          "pos": "adv"
+        },
+        {
+          "surface": "上手",
+          "dict": "上手",
+          "ruby": "上手[じょうず]",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "だ",
+          "dict": "だ",
+          "ruby": "だ",
+          "pos": ""
+        },
+        {
+          "surface": "と",
+          "dict": "と",
+          "ruby": "と",
+          "pos": "prt"
+        },
+        {
+          "surface": "思う",
+          "dict": "思う",
+          "ruby": "思[おも]う",
+          "pos": "v5"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki8-friend-music",
+      "id": "s09",
+      "ja": "私はまだ下手だから、たくさん練習する。",
+      "words": [
+        {
+          "surface": "私",
+          "dict": "私",
+          "ruby": "私[わたくし]",
+          "pos": "pron"
+        },
+        {
+          "surface": "は",
+          "dict": "は",
+          "ruby": "は",
+          "pos": "prt"
+        },
+        {
+          "surface": "まだ",
+          "dict": "まだ",
+          "ruby": "まだ",
+          "pos": "adv"
+        },
+        {
+          "surface": "下手",
+          "dict": "下手",
+          "ruby": "下手[へた]",
+          "pos": "n"
+        },
+        {
+          "surface": "だ",
+          "dict": "だ",
+          "ruby": "だ",
+          "pos": ""
+        },
+        {
+          "surface": "から",
+          "dict": "から",
+          "ruby": "から",
+          "pos": "conj"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "たくさん",
+          "dict": "たくさん",
+          "ruby": "たくさん",
+          "pos": "adj-na"
+        },
+        {
+          "surface": "練習",
+          "dict": "練習",
+          "ruby": "練習[れんしゅう]",
+          "pos": "n"
+        },
+        {
+          "surface": "する",
+          "dict": "する",
+          "ruby": "する",
+          "pos": "v-irr"
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    },
+    {
+      "story_id": "eval-genki8-friend-music",
+      "id": "s10",
+      "ja": "来月、みんなで音楽を楽しむつもりだ。",
+      "words": [
+        {
+          "surface": "来月",
+          "dict": "来月",
+          "ruby": "来月[らいげつ]",
+          "pos": "n"
+        },
+        {
+          "surface": "、",
+          "dict": "、",
+          "ruby": "、",
+          "pos": ""
+        },
+        {
+          "surface": "みんな",
+          "dict": "みんな",
+          "ruby": "みんな",
+          "pos": "n"
+        },
+        {
+          "surface": "で",
+          "dict": "で",
+          "ruby": "で",
+          "pos": "conj"
+        },
+        {
+          "surface": "音楽",
+          "dict": "音楽",
+          "ruby": "音楽[おんがく]",
+          "pos": "n"
+        },
+        {
+          "surface": "を",
+          "dict": "を",
+          "ruby": "を",
+          "pos": "prt"
+        },
+        {
+          "surface": "楽しむ",
+          "dict": "楽しむ",
+          "ruby": "楽[たの]しむ",
+          "pos": "v5"
+        },
+        {
+          "surface": "つもり",
+          "dict": "つもり",
+          "ruby": "つもり",
+          "pos": "n"
+        },
+        {
+          "surface": "だ",
+          "dict": "だ",
+          "ruby": "だ",
+          "pos": ""
+        },
+        {
+          "surface": "。",
+          "dict": "。",
+          "ruby": "。",
+          "pos": ""
+        }
+      ]
+    }
+  ]
+}

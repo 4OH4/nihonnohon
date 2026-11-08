@@ -69,6 +69,7 @@ scan_level: deep
 | [adr/001-monorepo-turborepo.md](./adr/001-monorepo-turborepo.md) | Why Turborepo + pnpm workspaces |
 | [adr/002-json-schema-over-zod.md](./adr/002-json-schema-over-zod.md) | Why JSON Schema over Zod |
 | [adr/003-story-generator-out-of-scope.md](./adr/003-story-generator-out-of-scope.md) | Story generator scope |
+| [adr/007-pwa-offline.md](./adr/007-pwa-offline.md) | Installable PWA with full offline precache |
 | [../packages/schema/SCHEMA_CHANGELOG.md](../packages/schema/SCHEMA_CHANGELOG.md) | Story format version history |
 
 ---

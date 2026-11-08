@@ -1,5 +1,5 @@
 ---
-status: backlog
+status: done
 type: supplemental-epic
 epic_id: supp-epic-1
 created: "2026-06-04"

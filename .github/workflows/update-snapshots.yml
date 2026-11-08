@@ -10,7 +10,9 @@ on:
 
 jobs:
   update-snapshots:
-    runs-on: ubuntu-latest
+    # Must match ci.yml's runner: baselines rendered on another image would
+    # mismatch in CI. Pinned to 24.04 for the same reason as ci.yml.
+    runs-on: ubuntu-24.04
 
     # Must stay byte-identical to SNAPSHOT_COMMIT_SUBJECT in ci.yml: that workflow
     # recognises this exact subject at HEAD as "a regeneration pass already ran" and

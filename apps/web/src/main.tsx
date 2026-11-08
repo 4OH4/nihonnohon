@@ -23,10 +23,17 @@ import '@fontsource/noto-sans-jp/latin-400.css'
 import '@fontsource/noto-sans-jp/japanese-600.css'
 import '@fontsource/noto-sans-jp/latin-600.css'
 import App from '@/App'
+import { initInstallPrompt, registerServiceWorker } from '@/lib/pwa'
 import '@/index.css'
+
+// Before render, so an early beforeinstallprompt is never missed (see src/lib/pwa.ts).
+initInstallPrompt()
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
 )
+
+// Service worker for install + offline (production builds only; see src/lib/pwa.ts).
+void registerServiceWorker()

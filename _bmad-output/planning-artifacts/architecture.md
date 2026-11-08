@@ -27,7 +27,7 @@ _This document builds collaboratively through step-by-step discovery. Sections a
 44 FRs across 7 categories (Story Discovery · Story Loading · Reading · Word Lookup · Reading Aids & Display · Story Authoring Format · Application & Platform), with the following v1 scoping decisions applied:
 
 - **Word lookup** is direct key-based lookup against bundled data files — no dictionary bundle, no morphological analysis, no de-inflection. Words in story sentences carry explicit vocabulary key IDs referencing the Genki vocabulary data.
-- **Offline capability** is explicitly out of scope for v1. The app is a hosted web page requiring an internet connection to access. Offline support is deferred to future mobile app iterations.
+- **Offline capability** was out of scope for v1. **Amended 2026-11-08 (supp-epic-4, ADR 007):** the app is an installable PWA; a Workbox service worker precaches the app shell, fonts, dictionary data and the full bundled story library, so the app works offline after the first online visit.
 - **Multilingual support** is architecturally preserved (story format language field, ruby label derived from language field, loader architecture is language-agnostic) but not implemented in v1. Japanese / Genki is the first-class v1 experience.
 - **Advanced dictionary** (JMdict, KANJIDIC2, de-inflection) is deferred to a future iteration, likely coinciding with dedicated mobile app development.
 - **Example stories at v1 launch:** 1 story (reduced from 5). The AI story authoring tool (see external dependency below) must produce one valid, renderable story before v1 can ship.
@@ -53,7 +53,7 @@ _This document builds collaboratively through step-by-step discovery. Sections a
 | Story word linkage | Parallel `vocab_keys` array in sentence data, alongside `words` and `ruby` arrays; items are `integer \| null`; `null` = no vocabulary entry for that token | Direct reference to vocabulary entry by row ID; punctuation tokens use `null`; no runtime lookup by string |
 | Parallel array invariant | `words`, `ruby`, and `vocab_keys` arrays MUST have equal length per sentence; parser throws on mismatch | Prevents silent misalignment at render time; validated at load, not at render |
 | Sentence ID field | Each sentence carries a stable unique `id` field within the story | Required for stable React keys and AI authoring tool correction/regeneration flows; cheaper to add at schema v1 than in a future bump |
-| Offline capability | Not supported in v1 | Web app requires internet to load; offline deferred to future mobile apps |
+| Offline capability | Installable PWA with full precache (amended 2026-11-08, ADR 007) | Delivers NFR6 and Journey 5 without native wrappers; Capacitor remains an optional later layer over the same build |
 | Story format versioning | `schema_version` field in story JSON (string enum, e.g. `"1"`); one versioned loader module per supported schema version; new schema version requires a new loader | Explicit forward-compatibility model; loader dispatch via version-keyed registry, not if/else chains |
 | Schema version format | Integer-as-string (e.g. `"1"`, `"2"`); no minor/patch subdivision | Avoids `1` vs `"1"` parse ambiguity; every schema change that nihonnohon cares about gets a new version and a new loader |
 | StoryModel | Internal reader representation is version-agnostic; loaders are responsible for transforming versioned story JSON into StoryModel; no schema-version-specific logic outside the loader layer | Decouples reader components from schema evolution |
@@ -299,6 +299,10 @@ cd web && npx shadcn@latest init
 | CI/CD | **GitHub Actions** — pipeline: lint → type-check → test → build on every PR; Vercel GitHub integration deploys on merge to main | Free for public repos; GHA owns quality gates, Vercel owns deployment |
 | Bundle size budget | Target ≤ 150KB gzipped initial bundle; bundle analyser step in CI | Enforces mobile-first performance; catches dependency bloat before it ships |
 | Font loading | Noto Sans JP (web font, subset for Genki kanji range) + `Inter` for UI text + system CJK fallback | Consistent Japanese text rendering across devices; specified in UX design system |
+| Service worker | **vite-plugin-pwa** (Workbox `generateSW`), `registerType: 'prompt'`; registered only via `registerServiceWorker()` in `src/lib/pwa.ts`, production builds only | Generated precache manifest with per-file revision hashes; one guarded entry point so tests and a future native wrapper can disable it |
+| Offline caching | Precache `**/*.{js,css,html,woff2,png,svg,ico,webmanifest,json}` — includes `vocab.json`, `kanji-data.json`, `stories/manifest.json` and every `stories/*.json`; `navigateFallback: '/index.html'` with denylist `/_vercel/` | Whole library offline from install; content versions stay consistent per deploy; budget ≤ 10 MB for the default precache, beyond which stories move to runtime `CacheFirst` caching. Large optional assets (e.g. a full dictionary) are opt-in downloads stored outside the precache, never precached |
+| Web app manifest | Generated by vite-plugin-pwa: `name` "Nihon no Hon", `short_name` "Nihon no Hon", `display: standalone`, `start_url: /`, `theme_color`/`background_color` = `surface` (#FFFFFF; was `paper-bg`, changed 2026-11-08 so the Android system bars match the white AppBar and tab bar), icons 192/512 + maskable 512 | FR45 installability |
+| Vercel caching | No rewrite change needed — Vercel serves static files before the SPA rewrite, and already sends `max-age=0, must-revalidate`. Add an explicit `headers` entry for `/sw.js` (`Cache-Control: no-cache`) to pin the behaviour | Prevents a stale service worker if Vercel defaults change |
 
 ### Testing Strategy
 
@@ -306,6 +310,7 @@ cd web && npx shadcn@latest init
 |---|---|---|
 | Unit | **Vitest** + `@testing-library/react` | Loader validation; vocab/kanji lookup services; parallel array invariants; discriminated union state transitions; component rendering with mock data |
 | E2e | **Playwright** (Chromium + Firefox + WebKit) | Golden path; error paths; accessibility (axe-core); visual regression (toHaveScreenshot for toggle states); manifest fetch failure; localStorage persistence across reload; iPhone 14 viewport |
+| Offline E2E | **Playwright**, separate config against `vite preview` (production build, service worker active) | Install SW → go offline (`context.setOffline(true)`) → reload → open a story never visited → word lookup works; update-prompt appears when a new SW is waiting |
 
 **Playwright golden path:** User opens app → sees story in library → taps story card → reader loads → reads a sentence → taps a word → InfoPanel updates with translation + reading → taps a second word → InfoPanel updates → navigates back to library.
 
@@ -1080,7 +1085,7 @@ All technology choices are mutually compatible. The dependency chain (`packages/
 | NFR3 | Text size instant | CSS custom property `--story-font-size`; no re-render |
 | NFR4 | File load ≤1s | AJV validation + StoryModel transform; well within target |
 | NFR5 | Initial load optimised | Small static files fetched async; no large dictionary bundle |
-| NFR6 | Functional once loaded | Static SPA; offline explicitly deferred to mobile iteration |
+| NFR6 | Functional once loaded | PWA precache of shell, fonts, dictionary data and full story library (supp-epic-4); verified by offline E2E spec |
 | NFR7 | WCAG 2.1 AA contrast | Design tokens verified; axe-core in Playwright suite |
 | NFR8 | ≥3 text size settings | `small` / `medium` / `large` in `TEXT_SIZE_VALUES` |
 | NFR9 | Escape dismisses panel | Documented in InfoPanel accessibility pattern |
