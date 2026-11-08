@@ -32,8 +32,10 @@ export default defineConfig({
         start_url: '/',
         scope: '/',
         display: 'standalone',
-        theme_color: '#FDF6E3', // paper-bg token
-        background_color: '#FDF6E3', // paper-bg token
+        // surface token: Android paints the status and navigation bars in these, and the
+        // AppBar and mobile tab bar they border are white (paper-bg there looked like a gap).
+        theme_color: '#FFFFFF',
+        background_color: '#FFFFFF',
         lang: 'en',
         icons: [
           { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' },

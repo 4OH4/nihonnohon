@@ -23,3 +23,19 @@ describe('web manifest description', () => {
     expect(manifestDescription).toBe(htmlDescription)
   })
 })
+
+// Android paints the status and navigation bars in the theme colour. They border the
+// AppBar and the mobile tab bar, which are `surface`, so all three must use that token.
+describe('theme colour', () => {
+  it('uses the surface token in index.html and the web manifest', () => {
+    const html = readFileSync(join(APP_ROOT, 'index.html'), 'utf-8')
+    const config = readFileSync(join(APP_ROOT, 'vite.config.ts'), 'utf-8')
+    const tailwind = readFileSync(join(APP_ROOT, 'tailwind.config.ts'), 'utf-8')
+
+    const surface = tailwind.match(/\bsurface: '(#[0-9A-Fa-f]{6})'/)?.[1]
+    expect(surface).toBeTruthy()
+    expect(html.match(/<meta name="theme-color" content="([^"]+)"/)?.[1]).toBe(surface)
+    expect(config.match(/theme_color: '([^']+)'/)?.[1]).toBe(surface)
+    expect(config.match(/background_color: '([^']+)'/)?.[1]).toBe(surface)
+  })
+})

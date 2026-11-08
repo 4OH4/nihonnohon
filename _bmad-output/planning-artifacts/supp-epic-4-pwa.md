@@ -87,7 +87,7 @@ of those, and nearly all of it carries over if a native wrapper is ever added.
 | `description` | Same as the `index.html` meta description |
 | `start_url` / `scope` | `/` / `/` |
 | `display` | `standalone` |
-| `theme_color` / `background_color` | `#FDF6E3` (`paper-bg` token) |
+| `theme_color` / `background_color` | `#FFFFFF` (`surface` token — matches the AppBar and mobile tab bar that the Android status and navigation bars border; changed from `paper-bg` 2026-11-08 after on-device testing) |
 | `icons` | 192×192, 512×512, 512×512 `purpose: maskable` |
 | `lang` | `en` |
 
