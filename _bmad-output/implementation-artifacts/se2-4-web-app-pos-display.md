@@ -1,6 +1,6 @@
 # Story se2-4: Web App — POS Display
 
-Status: review
+Status: done
 
 ## Story
 
