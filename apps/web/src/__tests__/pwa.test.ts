@@ -19,9 +19,15 @@ function stubServiceWorkerSupport() {
   Object.defineProperty(navigator, 'serviceWorker', { value: {}, configurable: true })
 }
 
+const INITIAL_STATE = { needRefresh: false, offlineReady: false, updateServiceWorker: null }
+
 afterEach(() => {
   vi.unstubAllEnvs()
-  registerSW.mockClear()
+  // Restore spies (console.warn) even when a test fails before its own cleanup.
+  vi.restoreAllMocks()
+  // mockReset drops any unconsumed mockImplementationOnce and restores the default implementation.
+  registerSW.mockReset()
+  updateSW.mockClear()
   usePwaStore.getState()._reset()
   Reflect.deleteProperty(navigator, 'serviceWorker')
 })
@@ -36,7 +42,7 @@ describe('registerServiceWorker', () => {
     await registerServiceWorker()
 
     expect(registerSW).not.toHaveBeenCalled()
-    expect(usePwaStore.getState().updateServiceWorker).toBeNull()
+    expect(usePwaStore.getState()).toMatchObject(INITIAL_STATE)
   })
 
   it('is a no-op when the browser has no service worker support', async () => {
@@ -45,6 +51,7 @@ describe('registerServiceWorker', () => {
     await registerServiceWorker()
 
     expect(registerSW).not.toHaveBeenCalled()
+    expect(usePwaStore.getState()).toMatchObject(INITIAL_STATE)
   })
 
   it('registers once in production and stores the update handle', async () => {
@@ -72,7 +79,7 @@ describe('registerServiceWorker', () => {
     expect(usePwaStore.getState().offlineReady).toBe(true)
   })
 
-  it('swallows registration failures so the app runs without a service worker', async () => {
+  it('swallows a synchronous registration failure so the app runs without a service worker', async () => {
     vi.stubEnv('PROD', true)
     stubServiceWorkerSupport()
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
@@ -83,6 +90,19 @@ describe('registerServiceWorker', () => {
     await expect(registerServiceWorker()).resolves.toBeUndefined()
     expect(warn).toHaveBeenCalled()
     expect(usePwaStore.getState().updateServiceWorker).toBeNull()
-    warn.mockRestore()
+  })
+
+  it('logs asynchronous registration failures reported through onRegisterError', async () => {
+    vi.stubEnv('PROD', true)
+    stubServiceWorkerSupport()
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+
+    await registerServiceWorker()
+    const error = new Error('register rejected')
+    // vite-plugin-pwa reports workbox-window import and wb.register() failures here, after registerSW returns.
+    registerSW.mock.calls[0]![0]!.onRegisterError?.(error)
+
+    expect(warn).toHaveBeenCalledWith(expect.stringContaining('[pwa]'), error)
+    expect(usePwaStore.getState()).toMatchObject({ needRefresh: false, offlineReady: false })
   })
 })

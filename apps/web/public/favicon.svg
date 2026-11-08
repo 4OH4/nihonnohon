@@ -9,7 +9,7 @@
     <path d="M256 132 V384"/>
     <path d="M248 204 Q212 292 150 340"/>
     <path d="M264 204 Q300 292 362 340"/>
-    <path d="M204 312 H308"/>
+    <path d="M222 330 H290"/>
   </g>
   <rect x="176" y="402" width="160" height="14" rx="7" fill="#C8A85A"/>
 </svg>

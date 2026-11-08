@@ -1,6 +1,6 @@
 # Story se4-1: Web Manifest, Icons and Service Worker Registration
 
-Status: review
+Status: done
 
 <!-- Note: Validation is optional. Run validate-create-story for quality check before dev-story. -->
 
@@ -94,6 +94,24 @@ Implements PRD **FR45** and lays the groundwork for FR46/FR47 (se4-2, se4-3). Ep
   - [x] Run `pnpm typecheck`, `pnpm run lint`, `pnpm test:unit` (in `apps/web`) and `pnpm test:e2e` (in `apps/web`, with all four browser projects installed).
 - [x] **Task 9: Developer guide note** (AC: 2)
   - [x] Add a short "PWA icons" subsection to `docs/development-guide.md`: the source is `public/favicon.svg`, run `pnpm generate-pwa-assets` in `apps/web`, then commit the PNGs. se4-2 adds the full service worker and offline testing docs; do not write those here.
+
+### Review Findings
+
+Code review 2026-11-08: commit `e9f3704` vs `1d6195f`; Blind Hunter, Edge Case Hunter and Acceptance Auditor. All seven ACs are met.
+
+- [x] [Review][Decision] What `usePwaStore.reset()` should clear — `reset` and `_reset` are identical, so a public `reset()` call nulls `updateServiceWorker`, and se4-3's Reload button would then do nothing. **Resolved (RT): (a), keep the handle** → patch below.
+- [x] [Review][Decision] Icon artwork: the lower bar joins both sweeps — `M204 312 H308` overlaps both sweeps, so the lower half of 本 reads as a closed triangle. **Resolved (RT): shorten the bar** → patch below.
+- [x] [Review][Patch] `reset()` keeps the update handle — `reset` clears `needRefresh`/`offlineReady` only; `_reset` (test teardown) still clears everything, including `updateServiceWorker`. Update `pwaStore.test.ts` to match. [apps/web/src/stores/pwaStore.ts:417]
+- [x] [Review][Patch] Shorten 本's lower bar so it stands free of the sweeps — edit `favicon.svg` (e.g. `M222 316 H290`), recheck the maskable safe zone on the generated pixels, run `pnpm generate-pwa-assets` and commit the regenerated PNGs/ICO. [apps/web/public/favicon.svg:79]
+- [x] [Review][Patch] Boundary test can be bypassed and also gives false positives — it matches only the literal substrings `navigator.serviceWorker`/`virtual:pwa-register`, so `'serviceWorker' in navigator`, `navigator['serviceWorker']`, `const { serviceWorker } = navigator` and a direct `workbox-window` import all pass. It skips only the top-level `__tests__/`, so a nested or colocated test fails it, and it scans only `.ts`/`.tsx`. Fix: match any `serviceWorker` identifier plus `virtual:pwa-register` and `workbox-window`, skip every `__tests__` directory and `*.test.*` file, and scan `.js/.jsx/.mts/.cts` too. [apps/web/src/__tests__/serviceWorkerBoundary.test.ts:16]
+- [x] [Review][Patch] Store docstrings misstate how the update handle behaves — (1) vite-plugin-pwa 2.0 ignores `reloadPage` in prompt mode: `updateServiceWorker(false)` still reloads, because no `onNeedReload` is passed. (2) The handle is stored as soon as registration *starts*, so a non-null handle does not mean a worker exists (failures arrive later via `onRegisterError`). Correct the `UpdateServiceWorker` and `updateServiceWorker` docs so se4-3 does not rely on either. [apps/web/src/stores/pwaStore.ts:6]
+- [x] [Review][Patch] Test mocks can leak between tests — `afterEach` only calls `registerSW.mockClear()`, which leaves a queued `mockImplementationOnce` (the "boom" throw) in place. `updateSW` is never cleared, and the `console.warn` spy is restored only if every assertion before it passes. Use `registerSW.mockReset()` (Vitest 3 restores the original implementation), `updateSW.mockClear()` and `vi.restoreAllMocks()` in `afterEach`. [apps/web/src/__tests__/pwa.test.ts:149]
+- [x] [Review][Patch] The real failure path is untested — the library reports async failures through `onRegisterError`, but the test only simulates a synchronous throw. Add a test that calls `options.onRegisterError(err)` and asserts `console.warn`. [apps/web/src/__tests__/pwa.test.ts:202]
+- [x] [Review][Patch] No-op tests don't assert the whole store is unchanged (AC7) — the first checks only `updateServiceWorker`, and the "no SW support" test checks nothing. Assert `needRefresh`/`offlineReady`/`updateServiceWorker` all match the initial state in both. [apps/web/src/__tests__/pwa.test.ts:159]
+- [x] [Review][Patch] `generateSW` is implicit (AC1) — add `strategies: 'generateSW'` so the AC can be read from the config itself. [apps/web/vite.config.ts:466]
+- [x] [Review][Patch] Nothing enforces that the manifest description matches `index.html` (AC1) — only a comment keeps the two strings in step. Add a node-environment unit test asserting that the `index.html` meta description string appears verbatim in `vite.config.ts`. [apps/web/vite.config.ts:456]
+- [x] [Review][Defer] No periodic update check for long-lived sessions [apps/web/src/lib/pwa.ts:21] — deferred to se4-3: client-side navigations don't trigger the browser's SW update check, so an installed app that is never relaunched never fires `onNeedRefresh`. Consider `onRegisteredSW` + an hourly `registration.update()` alongside `UpdatePrompt`.
+- [x] [Review][Defer] HTML favicons not precached; navigation fallback has no denylist [apps/web/vite.config.ts:488] — deferred to se4-2: the default precache omits `favicon.ico`/`favicon.svg`/`apple-touch-icon-180x180.png`, and the default `NavigationRoute` serves the SPA shell when `/vocab.json`, `/kanji-data.json` or `/stories/*` is opened directly.
 
 ## Dev Notes
 
@@ -495,3 +513,4 @@ Claude Opus 5.5 (`claude-opus-5-5`)
   - added unit tests, including a service-worker boundary test
   - added the dev-guide note on PWA icons
   - Status → review.
+- 2026-11-08: Code review. Applied 9 patches: a stricter service-worker boundary test, a manifest-description guard test, PWA test cleanup and coverage of the onRegisterError failure path, accurate store docstrings, `reset()` now keeps the update handle, explicit `strategies: 'generateSW'`, and a shortened lower bar on 本 with regenerated icons (safe zone re-measured: 176.5/204.8 px). 2 items deferred to se4-2/se4-3. Status → done.

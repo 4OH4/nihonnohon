@@ -16,6 +16,8 @@ export default defineConfig({
     react(),
     // Installable PWA (ADR 007). See project-context.md → PWA & Offline.
     VitePWA({
+      // Workbox generates sw.js from config; no hand-written worker (ADR 007).
+      strategies: 'generateSW',
       // Updates wait for the reader's choice (FR47); se4-3 surfaces them via UpdatePrompt.
       registerType: 'prompt',
       // Registration happens only in src/lib/pwa.ts — never an injected registerSW.js.

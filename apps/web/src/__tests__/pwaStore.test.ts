@@ -32,17 +32,26 @@ describe('usePwaStore', () => {
     expect(usePwaStore.getState().updateServiceWorker).toBe(updateSW)
   })
 
-  it('reset and _reset restore the initial state', () => {
+  it('reset clears the flags but keeps the update handle', () => {
+    const { setNeedRefresh, setOfflineReady, setUpdateServiceWorker } = usePwaStore.getState()
+    const updateSW = vi.fn(async () => {})
+
+    setNeedRefresh(true)
+    setOfflineReady(true)
+    setUpdateServiceWorker(updateSW)
+    usePwaStore.getState().reset()
+
+    expect(usePwaStore.getState()).toMatchObject({ needRefresh: false, offlineReady: false, updateServiceWorker: updateSW })
+  })
+
+  it('_reset restores the full initial state, including the update handle', () => {
     const { setNeedRefresh, setOfflineReady, setUpdateServiceWorker } = usePwaStore.getState()
 
     setNeedRefresh(true)
     setOfflineReady(true)
     setUpdateServiceWorker(vi.fn(async () => {}))
-    usePwaStore.getState().reset()
-    expect(usePwaStore.getState()).toMatchObject({ needRefresh: false, offlineReady: false, updateServiceWorker: null })
-
-    setNeedRefresh(true)
     usePwaStore.getState()._reset()
-    expect(usePwaStore.getState().needRefresh).toBe(false)
+
+    expect(usePwaStore.getState()).toMatchObject({ needRefresh: false, offlineReady: false, updateServiceWorker: null })
   })
 })
