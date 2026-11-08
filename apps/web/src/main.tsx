@@ -23,6 +23,7 @@ import '@fontsource/noto-sans-jp/latin-400.css'
 import '@fontsource/noto-sans-jp/japanese-600.css'
 import '@fontsource/noto-sans-jp/latin-600.css'
 import App from '@/App'
+import { registerServiceWorker } from '@/lib/pwa'
 import '@/index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -30,3 +31,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <App />
   </React.StrictMode>,
 )
+
+// Service worker for install + offline (production builds only; see src/lib/pwa.ts).
+void registerServiceWorker()

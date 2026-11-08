@@ -116,6 +116,17 @@ pnpm build-kanji
 
 CI runs `pnpm build-vocab` only, before linting and testing — `vocab.json` is gitignored and must be generated on every run. `kanji-data.json` is committed to the repo, so `pnpm build-kanji` is a local, occasional task: run it when refreshing the kanji data and commit the result.
 
+### PWA icons
+
+The app icon set (favicon, apple-touch-icon, and the 64/192/512 and maskable PWA icons in `apps/web/public/`) is generated from one source, `apps/web/public/favicon.svg`, by `@vite-pwa/assets-generator` (config: `apps/web/pwa-assets.config.ts`). To change the artwork, edit the SVG, then regenerate and commit the PNGs and ICO:
+
+```bash
+# from apps/web
+pnpm generate-pwa-assets
+```
+
+The generated files are committed; `pnpm build` does not regenerate them. Keep every mark inside the maskable safe zone, a central circle with a radius of 40% of the icon width, or launchers that crop to a circle will clip it. See [ADR 007](adr/007-pwa-offline.md) for the PWA design.
+
 ---
 
 ## Adding a Story

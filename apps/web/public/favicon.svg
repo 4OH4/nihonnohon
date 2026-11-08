@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Nihon no Hon app icon: 本 in paper-text on paper-bg, accent rule beneath.
+       Drawn as stroked paths (no font needed). Every mark sits within ~180px of the
+       centre, inside the maskable safe-zone circle (radius 204.8px).
+       Regenerate the PNG set after editing: pnpm generate-pwa-assets -->
+  <rect width="512" height="512" fill="#FDF6E3"/>
+  <g fill="none" stroke="#1C1C1C" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M156 196 H356"/>
+    <path d="M256 132 V384"/>
+    <path d="M248 204 Q212 292 150 340"/>
+    <path d="M264 204 Q300 292 362 340"/>
+    <path d="M204 312 H308"/>
+  </g>
+  <rect x="176" y="402" width="160" height="14" rx="7" fill="#C8A85A"/>
+</svg>
