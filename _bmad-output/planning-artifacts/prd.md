@@ -49,7 +49,7 @@ Planned future capabilities — audio playback, a community story-sharing hub, a
 
 | Attribute | Value |
 |---|---|
-| Project Type | Web App (SPA, internet-required; offline-capable once loaded, no backend) |
+| Project Type | Web App (installable PWA, no backend; internet required for first visit, fully offline thereafter) |
 | Domain | Language Learning (EdTech-adjacent) |
 | Complexity | Low-Medium |
 | Project Context | Greenfield |
@@ -107,7 +107,8 @@ Planned future capabilities — audio playback, a community story-sharing hub, a
 ### Growth Features (Post-MVP)
 
 - Audio playback per sentence and full story (story format already accommodates audio links)
-- Mobile app wrappers with offline story downloading (Capacitor or similar — not a rebuild)
+- ~~Mobile app wrappers with offline story downloading~~ → delivered as an installable PWA (supp-epic-4, see ADR 007)
+- Native app wrapper (Capacitor or similar — not a rebuild) — optional; revisit only for app-store distribution or native-only features (iOS file "Open in…", local reminders, background audio)
 - Community story-sharing hub: browse, upload, and download stories (Anki Web analogue)
 - Personal study list — flag words from the info panel, persist across sessions
 - Quiz and study mode for study list words, with image mnemonics
@@ -375,7 +376,8 @@ Measurable targets for performance, accessibility, and browser compatibility are
 
 **Growth (v2):**
 - Audio playback per sentence and full story (story format already accommodates audio links)
-- Mobile app wrappers with offline story downloading (Capacitor or similar)
+- ~~Mobile app wrappers with offline story downloading~~ → delivered as an installable PWA (supp-epic-4, see ADR 007)
+- Native app wrapper (Capacitor or similar) — optional; revisit only for app-store distribution or native-only features
 - Community story-sharing hub (browse, upload, download)
 - Personal study list — flag words from the info panel, persist across sessions
 - Quiz and study mode for study list words, with image mnemonics
@@ -486,6 +488,9 @@ Measurable targets for performance, accessibility, and browser compatibility are
 - **FR42:** Reader can view grammar learning points for the current story
 - **FR43:** On wide viewports, vocabulary and grammar panels display alongside the story text in a two-column layout with Vocabulary/Grammar tabs
 - **FR44:** On narrow viewports, story text, vocabulary panel, and grammar panel are accessible via tabs (Story | Vocabulary | Grammar)
+- **FR45:** Reader can install the app to their device home screen / app launcher and launch it in a standalone window (no browser chrome)
+- **FR46:** Once the app has been loaded online once, the reader can open the library, open any bundled story, and perform word lookups with no network connection
+- **FR47:** When a new version of the app or story library has been deployed, the reader is informed non-intrusively and can choose when to reload; reading is never interrupted by an automatic reload
 
 ## Non-Functional Requirements
 
@@ -496,7 +501,7 @@ Measurable targets for performance, accessibility, and browser compatibility are
 - **NFR3:** Text size adjustment applies instantly without page reload or content reflow flash
 - **NFR4:** Local story file loading completes in under 1 second for typical story sizes (estimated under 100KB per story)
 - **NFR5:** Initial page load is optimised — dictionary bundle size is the primary constraint; target a time-to-interactive that does not feel slow on a standard broadband connection
-- **NFR6:** The app remains fully functional once loaded, regardless of network state
+- **NFR6:** The app remains fully functional once loaded, regardless of network state — including across reloads, app restarts, and opening bundled stories not previously viewed (offline payload target: ≤ 10 MB default precache; current ≈ 4 MB)
 
 ### Accessibility
 

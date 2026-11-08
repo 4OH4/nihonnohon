@@ -28,6 +28,7 @@ _Critical rules and patterns that AI agents must follow when implementing code i
 - Tailwind CSS 3.4.0
 - shadcn/ui (default style, no CSS variables)
 - clsx 2.1.0 + tailwind-merge 2.3.0 (via `cn()` utility)
+- vite-plugin-pwa (Workbox) — service worker + web manifest
 
 **Internal packages**
 - `@nihonnohon/schema` — TypeScript types + JSON Schema for story format
@@ -136,6 +137,17 @@ Open `http://localhost:5173`, exercise the specific feature, and confirm the vis
 - Vocabulary is an array loaded into a `Map<number, VocabEntry>` keyed by `VocabEntry.id`
 - Kanji data is a JSON object keyed by the literal kanji character (e.g. `{"食": {...}}`)
 - Both are O(1) lookups; no async after initial load
+
+### PWA & Offline
+
+- The app is an installable PWA (vite-plugin-pwa, Workbox `generateSW`, `registerType: 'prompt'`). See `docs/adr/007-pwa-offline.md`
+- **The service worker is a transparent cache only.** App code uses plain `fetch()` and must work identically with no service worker — never read caches directly, never message the SW for app logic
+- Register the SW **only** through `registerServiceWorker()` in `src/lib/pwa.ts`; it no-ops outside production builds. Do not call `navigator.serviceWorker` anywhere else
+- Everything under `public/` matching the precache globs is cached at install — a new file in `public/stories/` is offline automatically; keep the precache under 10 MB (check the build log)
+- The 10 MB budget applies to the **default precache**, which every visitor downloads. Large optional assets (e.g. a future full dictionary) must be **opt-in downloads stored outside the Workbox precache** (e.g. imported into IndexedDB) — never add them to the precache globs
+- Never auto-reload on SW update — surface it through `UpdatePrompt` and let the reader choose
+- The default E2E suite runs on `vite` (dev) with **no** service worker; offline behaviour is tested only in the preview-server spec (`e2e-pwa/`). Do not enable `devOptions` in the PWA plugin
+- Persistence goes through `indexedDbService` — keep storage behind that service so a native backend can replace it
 
 ## Testing Rules
 
@@ -305,7 +317,6 @@ src/
 - **Never assume parallel arrays are equal length in components.** Always trust the loader (which throws on mismatch) — do not re-validate in UI code
 - **Never import `vocab.json` or `kanji-data.json` as ES modules.** They are served from `public/` and must be fetched at runtime
 - **Never use arbitrary Tailwind colours.** Only the custom tokens defined in `tailwind.config.ts` are on-brand
-- **Never add offline/PWA support in v1.** The app requires an internet connection; offline is explicitly deferred
 
 ### Edge Cases
 
@@ -322,4 +333,4 @@ src/
 
 **For Humans:** Keep this file lean and focused on agent needs. Update when the technology stack changes or new non-obvious patterns emerge.
 
-_Last updated: 2026-05-13_
+_Last updated: 2026-11-08_

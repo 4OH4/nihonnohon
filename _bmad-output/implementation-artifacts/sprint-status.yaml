@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-05-11
-last_updated: 2026-11-08  # supp-epic-1 and supp-epic-2 closed
+last_updated: 2026-11-08  # supp-epic-4 (PWA) added; supp-epic-1 and supp-epic-2 closed
 # v1 complete: all epics done, retrospective closed
 # supp-epic-1 (furigana rework) and supp-epic-2 (Python enrichment) done
 project: nihonnohon
@@ -100,3 +100,16 @@ development_status:
   se2-4-web-app-pos-display: done
   se2-5-story-library-re-enrichment: done
   supp-epic-2-retrospective: optional
+
+  # Supplemental Epic 3: staged generation pipeline (story generator) — tracked informally,
+  # no planning doc here; see commit 759857e (se3-1)
+
+  # Supplemental Epic 4: Installable PWA and Offline Library
+  # Planning: _bmad-output/planning-artifacts/supp-epic-4-pwa.md
+  # ADR: docs/adr/007-pwa-offline.md
+  # Change proposal: _bmad-output/planning-artifacts/sprint-change-proposal-2026-11-08.md
+  supp-epic-4: backlog
+  se4-1-web-manifest-icons-and-sw-registration: backlog
+  se4-2-offline-library-precache-and-offline-e2e: backlog
+  se4-3-update-prompt-and-install-entry-point: backlog
+  supp-epic-4-retrospective: optional
