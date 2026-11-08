@@ -101,7 +101,8 @@ of those, and nearly all of it carries over if a native wrapper is ever added.
 ### Icons
 
 No brand asset exists. Default artwork: the kanji **本** in `paper-text` (#1C1C1C) on a
-`paper-bg` square with an `accent` (#C8A85A) rule beneath, drawn as SVG **paths** (not
+`paper-bg` square, on its own (the original `accent` rule beneath it was removed on
+2026-11-08 after on-device review), drawn as SVG **paths** (not
 live text) so it renders without the font. Keep it within the maskable safe zone (the
 central 80%). The icon set is generated from that one source SVG with
 `@vite-pwa/assets-generator`, so RT can swap the artwork later and regenerate.
